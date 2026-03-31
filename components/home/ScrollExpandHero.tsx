@@ -452,7 +452,7 @@ export function ScrollExpandHero() {
             filter:    'brightness(0.65) saturate(0.6)',
           }}
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dpljev9ap/video/upload/v1774996821/hero-section-background-manuel-fernandez_1_dfbmep.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay — fades out as video expands */}
