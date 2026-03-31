@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "inicio": "Inicio",
+    "sastreria": "La Sastrería",
+    "experiencia": "Experiencia a Medida",
+    "servicios": "Servicios",
+    "bodas": "Bodas y Ceremonia",
+    "coleccion": "Colección",
+    "reservar": "Reservar Cita",
+    "contacto": "Contacto"
+  },
+  "hero": {
+    "tagline": "No hacemos trajes.",
+    "tagline2": "Construimos identidad.",
+    "subtext": "Atelier privado en el corazón de la artesanía española.",
+    "cta_primary": "Reservar Cita",
+    "cta_secondary": "Descubrir la experiencia"
+  },
+  "traje_empieza": {
+    "label": "El proceso",
+    "title": "Tu traje empieza en ti",
+    "body": "Antes de elegir un tejido o perfilar una solapa, necesitamos conocerte. Tu momento vital, tu personalidad, lo que quieres transmitir. Cada traje que construimos nace de una conversación honesta sobre quién eres y quién quieres ser."
+  },
+  "proceso": {
+    "label": "Nuestra metodología",
+    "step1_num": "01",
+    "step1_title": "Intención",
+    "step1_body": "¿Para qué es el traje? ¿Qué quieres transmitir? Todo comienza comprendiendo el momento y la persona.",
+    "step2_num": "02",
+    "step2_title": "Interpretación Sartorial",
+    "step2_body": "Cada elemento que elegimos —solapa, hombro, tejido, color— comunica algo. Lo hacemos de forma consciente y precisa.",
+    "step3_num": "03",
+    "step3_title": "Resultado",
+    "step3_body": "No verás un traje. Verás una versión mejorada de ti mismo. Esa es la diferencia entre ropa y identidad."
+  },
+  "testimonials": {
+    "label": "Lo que dicen",
+    "items": [
+      {
+        "quote": "Nunca pensé que un traje pudiera cambiar la forma en que me percibo a mí mismo. Manuel entendió lo que yo necesitaba antes de que yo mismo lo supiera.",
+        "name": "Carlos M.",
+        "occasion": "Director General, Madrid"
+      },
+      {
+        "quote": "La experiencia del día de mi boda fue perfecta en cada detalle. El traje era exactamente lo que había soñado, y el proceso fue una experiencia en sí misma.",
+        "name": "Alejandro R.",
+        "occasion": "Boda, Sevilla"
+      },
+      {
+        "quote": "Llevar un traje de Manuel Fernández es llevar confianza. Es difícil explicarlo, pero quien lo ha vivido lo entiende.",
+        "name": "Javier L.",
+        "occasion": "Empresario, Barcelona"
+      }
+    ]
+  },
+  "editorial": {
+    "label": "Inspiración editorial",
+    "articles": [
+      {
+        "category": "Cultura del Traje",
+        "title": "La solapa como lenguaje silencioso del poder",
+        "excerpt": "Cada milímetro cuenta. El ancho de una solapa no es una decisión estética, es una declaración de intención."
+      },
+      {
+        "category": "Artesanía",
+        "title": "El tejido que elige quién eres",
+        "excerpt": "De las casas inglesas de Holland & Sherry a los lanifici italianos, cada tela tiene una historia."
+      },
+      {
+        "category": "Bodas",
+        "title": "El gran día empieza meses antes",
+        "excerpt": "Cómo convertir el proceso de elección del traje de novio en una experiencia que recordarás toda la vida."
+      },
+      {
+        "category": "El Corte",
+        "title": "El patrón: primer lenguaje del sastre",
+        "excerpt": "Antes de una sola puntada, el patrón ya habla. Líneas de tiza sobre paño azul: la cartografía de un traje único."
+      },
+      {
+        "category": "El Cliente",
+        "title": "Un traje empieza en la conversación",
+        "excerpt": "No medimos primero el cuerpo. Medimos la persona: su historia, su propósito, la versión de sí mismo que quiere proyectar."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Construimos identidad desde la artesanía.",
+    "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",
+    "address": "Dirección disponible bajo cita previa",
+    "phone": "+34 000 000 000",
+    "hours": "Lunes a Sábado, 10:00 – 20:00"
+  }
+}

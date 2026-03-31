@@ -1,26 +1,330 @@
 @import "tailwindcss";
 
+/* ============================================
+   DESIGN SYSTEM — SASTRERÍA MANUEL FERNÁNDEZ
+   Concepto: Savile Row 2035
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color Palette */
+  --color-navy:        #050C14;
+  --color-navy-mid:    #081018;
+  --color-navy-light:  #0D1B2A;
+  --color-black:       #080808;
+  --color-charcoal:    #1C1C1C;
+  --color-offwhite:    #F5F0EA;
+  --color-cream:       #EDE8E0;
+  --color-gold:        #C4A35A;
+  --color-gold-light:  #E8D5A3;
+  --color-gold-dim:    #8A6F38;
+  --color-white:       #FFFFFF;
+
+  /* Typography Scale */
+  --font-serif:        var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans:         var(--font-inter), 'Inter', -apple-system, sans-serif;
+
+  /* Spacing */
+  --section-padding:   clamp(80px, 12vw, 160px);
+  --container-max:     1400px;
+  --container-padding: clamp(24px, 5vw, 80px);
+
+  /* Transitions */
+  --ease-silk:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinematic:    cubic-bezier(0.4, 0, 0.15, 1);
+  --duration-slow:     900ms;
+  --duration-medium:   600ms;
+  --duration-fast:     300ms;
+
+  /* Gold line thickness */
+  --gold-line:         1px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-navy);
+  color: var(--color-offwhite);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.text-display {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 9rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.text-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.text-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 1.2;
+}
+
+.text-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.text-body {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--color-navy); }
+::-webkit-scrollbar-thumb { background: var(--color-gold-dim); }
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+/* ============================================
+   GOLD ACCENT UTILITIES
+   ============================================ */
+
+.gold-line-top {
+  border-top: var(--gold-line) solid var(--color-gold);
+}
+
+.gold-line-bottom {
+  border-bottom: var(--gold-line) solid var(--color-gold);
+}
+
+.gold-line-left {
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1.5rem;
+}
+
+/* Animated underline for nav links */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width var(--duration-medium) var(--ease-silk);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: var(--color-gold);
+  color: var(--color-black);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-silk),
+              transform var(--duration-fast) var(--ease-silk);
+}
+
+.btn-primary:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: var(--color-offwhite);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid rgba(196, 163, 90, 0.4);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-silk),
+              color var(--duration-fast) var(--ease-silk),
+              transform var(--duration-fast) var(--ease-silk);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-light);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   SECTION LAYOUT
+   ============================================ */
+
+.section {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* ============================================
+   IMAGE UTILITIES
+   ============================================ */
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   GSAP ANIMATION DEFAULTS
+   ============================================ */
+
+.gsap-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.gsap-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.gsap-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.5rem var(--container-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--duration-medium) var(--ease-silk),
+              padding var(--duration-medium) var(--ease-silk),
+              backdrop-filter var(--duration-medium) var(--ease-silk);
+}
+
+.nav-bar.scrolled {
+  background: rgba(13, 27, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(196, 163, 90, 0.1);
+}
+
+/* ============================================
+   MOBILE MENU OVERLAY
+   ============================================ */
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-black);
+  z-index: 990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
