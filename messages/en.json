@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "inicio": "Home",
+    "sastreria": "The Atelier",
+    "experiencia": "Bespoke Experience",
+    "servicios": "Services",
+    "bodas": "Weddings & Ceremony",
+    "coleccion": "Collection",
+    "reservar": "Book Appointment",
+    "contacto": "Contact"
+  },
+  "hero": {
+    "tagline": "We don't make suits.",
+    "tagline2": "We build identity.",
+    "subtext": "A private atelier at the heart of Spanish craftsmanship.",
+    "cta_primary": "Book Appointment",
+    "cta_secondary": "Discover the experience"
+  },
+  "traje_empieza": {
+    "label": "The process",
+    "title": "Your suit begins with you",
+    "body": "Before choosing a fabric or shaping a lapel, we need to know you. Your life moment, your personality, what you want to convey. Every suit we build is born from an honest conversation about who you are and who you want to be."
+  },
+  "proceso": {
+    "label": "Our methodology",
+    "step1_num": "01",
+    "step1_title": "Intention",
+    "step1_body": "What is the suit for? What do you want to convey? Everything begins with understanding the moment and the person.",
+    "step2_num": "02",
+    "step2_title": "Sartorial Interpretation",
+    "step2_body": "Every element we choose — lapel, shoulder, fabric, color — communicates something. We do it consciously and precisely.",
+    "step3_num": "03",
+    "step3_title": "Result",
+    "step3_body": "You won't see a suit. You'll see an elevated version of yourself. That is the difference between clothing and identity."
+  },
+  "testimonials": {
+    "label": "What they say",
+    "items": [
+      {
+        "quote": "I never thought a suit could change the way I perceive myself. Manuel understood what I needed before I even knew it myself.",
+        "name": "Carlos M.",
+        "occasion": "Managing Director, Madrid"
+      },
+      {
+        "quote": "The experience on my wedding day was perfect in every detail. The suit was exactly what I had dreamed of, and the process was an experience in itself.",
+        "name": "Alejandro R.",
+        "occasion": "Wedding, Seville"
+      },
+      {
+        "quote": "Wearing a Manuel Fernández suit means wearing confidence. It's hard to explain, but those who've lived it understand.",
+        "name": "Javier L.",
+        "occasion": "Entrepreneur, Barcelona"
+      }
+    ]
+  },
+  "editorial": {
+    "label": "Editorial inspiration",
+    "articles": [
+      {
+        "category": "Suit Culture",
+        "title": "The lapel as the silent language of power",
+        "excerpt": "Every millimetre counts. The width of a lapel is not an aesthetic decision — it's a declaration of intent."
+      },
+      {
+        "category": "Craftsmanship",
+        "title": "The fabric that chooses who you are",
+        "excerpt": "From the English houses of Holland & Sherry to the Italian lanifici, each cloth has a story."
+      },
+      {
+        "category": "Weddings",
+        "title": "The big day starts months before",
+        "excerpt": "How to turn the groom's suit selection into an experience you'll remember for a lifetime."
+      },
+      {
+        "category": "The Cut",
+        "title": "The pattern: a tailor's first language",
+        "excerpt": "Before a single stitch, the pattern already speaks. Chalk lines on navy cloth: the cartography of a unique suit."
+      },
+      {
+        "category": "The Client",
+        "title": "A suit begins in conversation",
+        "excerpt": "We don't measure the body first. We measure the person: their story, their purpose, the version of themselves they wish to project."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Building identity through craftsmanship.",
+    "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
+    "address": "Address available by prior appointment",
+    "phone": "+34 000 000 000",
+    "hours": "Monday to Saturday, 10:00 – 20:00"
+  }
+}
