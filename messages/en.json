@@ -83,6 +83,89 @@
       }
     ]
   },
+  "la_sastreria": {
+    "hero": {
+      "label": "The Atelier · Est. 1978",
+      "headline_line1": "The Art of",
+      "headline_line2": "Dressing Well",
+      "subline": "Four decades of craft in Madrid."
+    },
+    "historia": {
+      "label": "The Story",
+      "title": "A Lifelong Vocation",
+      "p1": "In 1978, Manuel Fernández opened his first atelier in the heart of Madrid with a simple conviction: that well-made clothes change the way a man perceives himself.",
+      "p2": "He learned the craft from the great Spanish master tailors, absorbing not only the technique — the English cut, the hand-sewn canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment.",
+      "p3": "Four decades later, nothing has changed. The same respect for the cloth, the same patience with the pattern, the same honest conversation before a single measurement is taken."
+    },
+    "maestro": {
+      "label": "The Master",
+      "quote": "A suit is not finished when the last stitch is sewn. It is finished when the person wearing it recognises in it a better version of themselves.",
+      "attribution": "— Manuel Fernández, Master Tailor",
+      "bio": "With more than four decades dedicated to bespoke tailoring, Manuel Fernández has dressed executives, grooms and men at their most important moments. His Madrid atelier is, above all, a space for listening."
+    },
+    "oficio": {
+      "label": "The Craft",
+      "title": "The Discipline of Detail",
+      "cat1": "The Cut",
+      "cat2": "The Cloth",
+      "cat3": "The Construction",
+      "cat4": "The Lining"
+    },
+    "cifras": {
+      "label": "By the Numbers",
+      "n1": "1978", "l1": "Founded",
+      "n2": "45",   "l2": "Years of Craft",
+      "n3": "Madrid", "l3": "Our City",
+      "n4": "Bespoke", "l4": "Every Suit"
+    },
+    "espacio": {
+      "label": "The Space",
+      "title": "Where the Suit is Born",
+      "description": "A private atelier in Madrid where every visit is an experience as carefully considered as the garment created within it."
+    },
+    "filosofia": {
+      "label": "The Philosophy",
+      "q1": "We don't measure the body.",
+      "q2": "We measure the person.",
+      "q3": "That is the entire difference.",
+      "p1": "At Sastrería Manuel Fernández, the process begins with questions, not measuring tape. We want to understand who you are, what moment you are living, what you want to communicate to the world.",
+      "p2": "The result is never just a suit. It is a tool of identity. A silent declaration. The most authentic version of yourself, sewn by hand."
+    },
+    "cta": {
+      "label": "The Next Step",
+      "headline": "The suit you imagine is one conversation away",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "Our Process"
+    }
+  },
+  "contacto": {
+    "section_label": "Contact",
+    "headline": "Let's Talk",
+    "subheadline": "Every commission begins with a conversation.",
+    "address_label": "Atelier",
+    "address": "Address available by prior appointment",
+    "phone_label": "Phone",
+    "phone": "+34 000 000 000",
+    "hours_label": "Hours",
+    "hours": "Monday to Saturday · 10:00 – 20:00",
+    "email_label": "Email",
+    "email": "hola@manuelfernandez.com",
+    "cta_reservar": "Book Appointment",
+    "form_title": "Send Us a Message",
+    "form_name": "Name",
+    "form_email": "Email address",
+    "form_message": "Message",
+    "form_submit": "Send",
+    "form_success": "Message sent. We'll be in touch shortly.",
+    "quote1": "The exact measure of the extraordinary.",
+    "quote2": "Every stitch, a conscious decision.",
+    "quote3": "The suit begins before the cloth.",
+    "quote4": "A singular occasion deserves a singular work.",
+    "quote5": "The fabric chooses who you are.",
+    "quote6": "The lapel: the silent language of power.",
+    "quote7": "We build identity, not clothing.",
+    "quote8": "The big day starts months before."
+  },
   "footer": {
     "tagline": "Building identity through craftsmanship.",
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",

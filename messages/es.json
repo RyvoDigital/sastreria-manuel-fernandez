@@ -83,6 +83,89 @@
       }
     ]
   },
+  "la_sastreria": {
+    "hero": {
+      "label": "La Sastrería · Est. 1978",
+      "headline_line1": "El Arte de",
+      "headline_line2": "Vestir Bien",
+      "subline": "Cuatro décadas de oficio en Madrid."
+    },
+    "historia": {
+      "label": "La Historia",
+      "title": "Una Vocación de por Vida",
+      "p1": "En 1978, Manuel Fernández abrió su primer atelier en el corazón de Madrid con una convicción sencilla: que la ropa bien hecha cambia la forma en que un hombre se percibe a sí mismo.",
+      "p2": "Aprendió el oficio de los grandes maestros sastres españoles, absorbiendo no sólo la técnica —el corte inglés, la entretela cosida a mano, la solapa que cae sola— sino también la filosofía: que cada cliente merece una prenda única.",
+      "p3": "Cuatro décadas después, nada ha cambiado. El mismo respeto por el tejido, la misma paciencia con el patrón, la misma conversación honesta antes de tomar una sola medida."
+    },
+    "maestro": {
+      "label": "El Maestro",
+      "quote": "Un traje no se termina cuando se cose la última puntada. Se termina cuando la persona que lo lleva reconoce en él una versión mejor de sí misma.",
+      "attribution": "— Manuel Fernández, Maestro Sastre",
+      "bio": "Con más de cuatro décadas dedicadas al traje a medida, Manuel Fernández ha vestido a directivos, novios y hombres en sus momentos más importantes. Su atelier en Madrid es, ante todo, un espacio de escucha."
+    },
+    "oficio": {
+      "label": "El Oficio",
+      "title": "La Disciplina del Detalle",
+      "cat1": "El Corte",
+      "cat2": "El Tejido",
+      "cat3": "La Confección",
+      "cat4": "El Forro"
+    },
+    "cifras": {
+      "label": "En Números",
+      "n1": "1978", "l1": "Fundación",
+      "n2": "45",   "l2": "Años de Oficio",
+      "n3": "Madrid", "l3": "Nuestra Ciudad",
+      "n4": "A Medida", "l4": "Cada Traje"
+    },
+    "espacio": {
+      "label": "El Espacio",
+      "title": "Donde Nace el Traje",
+      "description": "Un atelier privado en Madrid donde cada visita es una experiencia tan cuidada como la prenda que se crea en él."
+    },
+    "filosofia": {
+      "label": "La Filosofía",
+      "q1": "No medimos el cuerpo.",
+      "q2": "Medimos la persona.",
+      "q3": "Esa es toda la diferencia.",
+      "p1": "En Sastrería Manuel Fernández, el proceso comienza con preguntas, no con cinta métrica. Queremos entender quién eres, qué momento vives, qué quieres comunicar al mundo.",
+      "p2": "El resultado nunca es sólo un traje. Es una herramienta de identidad. Una declaración silenciosa. La versión más auténtica de ti mismo, cosida a mano."
+    },
+    "cta": {
+      "label": "El Siguiente Paso",
+      "headline": "El traje que imaginas está a una conversación de distancia",
+      "btn_primary": "Reservar Cita",
+      "btn_secondary": "Ver el Proceso"
+    }
+  },
+  "contacto": {
+    "section_label": "Contacto",
+    "headline": "Hablemos",
+    "subheadline": "Cada encargo comienza con una conversación.",
+    "address_label": "Atelier",
+    "address": "Dirección disponible bajo cita previa",
+    "phone_label": "Teléfono",
+    "phone": "+34 000 000 000",
+    "hours_label": "Horario",
+    "hours": "Lunes a Sábado · 10:00 – 20:00",
+    "email_label": "Correo",
+    "email": "hola@manuelfernandez.com",
+    "cta_reservar": "Reservar Cita",
+    "form_title": "Envíenos un mensaje",
+    "form_name": "Nombre",
+    "form_email": "Correo electrónico",
+    "form_message": "Mensaje",
+    "form_submit": "Enviar",
+    "form_success": "Mensaje enviado. Nos pondremos en contacto pronto.",
+    "quote1": "La medida exacta de lo extraordinario.",
+    "quote2": "Cada puntada, una decisión consciente.",
+    "quote3": "El traje comienza antes del tejido.",
+    "quote4": "Una ocasión única merece una obra única.",
+    "quote5": "El tejido elige quién eres.",
+    "quote6": "La solapa: el lenguaje silencioso del poder.",
+    "quote7": "Construimos identidad, no ropa.",
+    "quote8": "El gran día empieza meses antes."
+  },
   "footer": {
     "tagline": "Construimos identidad desde la artesanía.",
     "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",
