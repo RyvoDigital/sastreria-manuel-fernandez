@@ -204,6 +204,42 @@
     "quote7": "We build identity, not clothing.",
     "quote8": "The big day starts months before."
   },
+  "coleccion": {
+    "hero": { "label": "Sastrería Manuel Fernández · Madrid", "title": "The Atelier Collection" },
+    "statement": {
+      "label": "The Collection · 2025",
+      "headline": "We don't make suits. We create a man's second skin.",
+      "body": "Every piece that leaves this atelier carries within its fabric the time, the craft and the conversation that made it possible."
+    },
+    "categorias": {
+      "label": "The Categories",
+      "cat1": "Bespoke Suits",        "cat1_desc": "The perfect suit begins with the perfect cloth.",
+      "cat2": "Jackets & Overcoats",  "cat2_desc": "Versatility without sacrificing the rigour of the craft.",
+      "cat3": "Weddings & Ceremony",  "cat3_desc": "For the moment that deserves nothing less."
+    },
+    "editorial": {
+      "label1": "The Craft",   "title1": "Forty-five years shape a style of one's own.",
+      "body1": "Every suit Manuel Fernández creates is the result of decades of listening, cloth and precision.",
+      "label2": "The Result",  "title2": "The cloth speaks when the cut is perfect.",
+      "body2": "We work only with the finest European fabrics because the difference between a good suit and an exceptional one begins with the material."
+    },
+    "carousel": { "label": "The Details" },
+    "grid": {
+      "label": "The Collection", "subtitle": "6 Pieces", "cta": "Enquire",
+      "item1_cat": "Suit",      "item1_name": "The Blue Prince",
+      "item2_cat": "Jacket",    "item2_name": "The Camel Journey",
+      "item3_cat": "Blazer",    "item3_name": "The Mint of Madrid",
+      "item4_cat": "Overcoat",  "item4_name": "The Madrileño",
+      "item5_cat": "Ceremony",  "item5_name": "The Grand Morning",
+      "item6_cat": "Jacket",    "item6_name": "The Grey Check"
+    },
+    "cta": {
+      "label": "The Next Step",
+      "headline": "Your suit is waiting to be created.",
+      "btn_primary": "Book an Appointment",
+      "btn_secondary": "Meet the Atelier"
+    }
+  },
   "footer": {
     "tagline": "Building identity through craftsmanship.",
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
