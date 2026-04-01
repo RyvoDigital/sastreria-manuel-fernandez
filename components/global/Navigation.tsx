@@ -30,6 +30,11 @@ export function Navigation() {
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
+  // Pages with light hero backgrounds need the nav to always be opaque
+  const lightBgPages = ['/coleccion']
+  const forceOpaque = lightBgPages.some(r => pathname.startsWith(r))
+  const isOpaque = scrolled || forceOpaque
+
   /* scroll */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -78,11 +83,11 @@ export function Navigation() {
           display:        'flex',
           alignItems:     'center',
           justifyContent: 'space-between',
-          padding:        `${scrolled ? '1rem' : '1.6rem'} var(--container-padding)`,
-          background:      scrolled ? 'rgba(5,12,20,0.97)' : 'transparent',
-          backdropFilter:  scrolled ? 'blur(18px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(18px)' : 'none',
-          borderBottom:    scrolled ? '1px solid rgba(196,163,90,0.07)' : 'none',
+          padding:        `${isOpaque ? '1rem' : '1.6rem'} var(--container-padding)`,
+          background:      isOpaque ? 'rgba(5,12,20,0.97)' : 'transparent',
+          backdropFilter:  isOpaque ? 'blur(18px)' : 'none',
+          WebkitBackdropFilter: isOpaque ? 'blur(18px)' : 'none',
+          borderBottom:    isOpaque ? '1px solid rgba(196,163,90,0.07)' : 'none',
           transition:     'padding .45s ease, background .45s ease, border-color .45s ease',
         }}
       >
