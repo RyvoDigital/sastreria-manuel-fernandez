@@ -138,6 +138,44 @@
       "btn_secondary": "Our Process"
     }
   },
+  "servicios": {
+    "hero": {
+      "label": "Services · The Repertoire",
+      "headline": "Everything a Master Tailor Can Create"
+    },
+    "services": {
+      "s1_num": "01", "s1_title": "Bespoke Suit",          "s1_duration": "8–10 weeks",
+      "s2_num": "02", "s2_title": "Sport Coat",            "s2_duration": "6–8 weeks",
+      "s3_num": "03", "s3_title": "Bespoke Trousers",      "s3_duration": "3–4 weeks",
+      "s4_num": "04", "s4_title": "Bespoke Overcoat",      "s4_duration": "8–10 weeks",
+      "s5_num": "05", "s5_title": "Wedding Suit",          "s5_duration": "10–12 weeks",
+      "s6_num": "06", "s6_title": "Alterations",           "s6_duration": "On request"
+    },
+    "credenciales": {
+      "badge": "Trusted Atelier",
+      "headline1": "Four Decades of",
+      "headline2": "Exceptional Craft",
+      "body": "Every suit that leaves the atelier carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
+      "stat1_val": "45+",      "stat1_label": "Years of Craft",
+      "stat2_val": "Bespoke",  "stat2_label": "Every Piece",
+      "stat3_val": "Madrid",   "stat3_label": "Our City",
+      "satisfaction_label": "Satisfied Clients",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "The Atelier"
+    },
+    "tejidos": {
+      "label": "The Cloths",
+      "title": "From the Finest Mills in the World",
+      "p1": "We work exclusively with Europe's great cloth houses: Holland & Sherry of Huddersfield, Vitale Barberis Canonico of Biella, Dormeuil of Lyon.",
+      "p2": "Every cloth is selected in person. Because the character of a suit begins before the first cut."
+    },
+    "cta": {
+      "label": "The Next Step",
+      "headline": "The suit you imagine is one conversation away",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "The Atelier"
+    }
+  },
   "contacto": {
     "section_label": "Contact",
     "headline": "Let's Talk",

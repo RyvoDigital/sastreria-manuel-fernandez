@@ -138,6 +138,44 @@
       "btn_secondary": "Ver el Proceso"
     }
   },
+  "servicios": {
+    "hero": {
+      "label": "Servicios · El Repertorio",
+      "headline": "Todo lo Que Puede Crear un Sastre"
+    },
+    "services": {
+      "s1_num": "01", "s1_title": "Traje a Medida",        "s1_duration": "8–10 semanas",
+      "s2_num": "02", "s2_title": "Chaqueta Deportiva",    "s2_duration": "6–8 semanas",
+      "s3_num": "03", "s3_title": "Pantalón a Medida",     "s3_duration": "3–4 semanas",
+      "s4_num": "04", "s4_title": "Abrigo a Medida",       "s4_duration": "8–10 semanas",
+      "s5_num": "05", "s5_title": "Traje de Novio",        "s5_duration": "10–12 semanas",
+      "s6_num": "06", "s6_title": "Arreglos & Renovación", "s6_duration": "Consultar"
+    },
+    "credenciales": {
+      "badge": "Sastrería de Confianza",
+      "headline1": "Cuatro Décadas de",
+      "headline2": "Oficio Excepcional",
+      "body": "Cada traje que sale del atelier lleva consigo décadas de conocimiento, el mejor paño europeo y el rigor de quien hace de la perfección un hábito.",
+      "stat1_val": "45+",      "stat1_label": "Años de Oficio",
+      "stat2_val": "A Medida", "stat2_label": "Cada Pieza",
+      "stat3_val": "Madrid",   "stat3_label": "Nuestra Ciudad",
+      "satisfaction_label": "Clientes Satisfechos",
+      "btn_primary": "Reservar Cita",
+      "btn_secondary": "Ver la Sastrería"
+    },
+    "tejidos": {
+      "label": "Los Tejidos",
+      "title": "Del Lomo de las Mejores Fábricas del Mundo",
+      "p1": "Trabajamos exclusivamente con las grandes casas de tejido europeas: Holland & Sherry de Huddersfield, Vitale Barberis Canonico de Biella, Dormeuil de Lyon.",
+      "p2": "Cada tejido es seleccionado en persona. Porque el carácter de un traje comienza antes del primer corte."
+    },
+    "cta": {
+      "label": "El Siguiente Paso",
+      "headline": "El traje que imaginas está a una conversación de distancia",
+      "btn_primary": "Reservar Cita",
+      "btn_secondary": "Ver la Sastrería"
+    }
+  },
   "contacto": {
     "section_label": "Contacto",
     "headline": "Hablemos",
