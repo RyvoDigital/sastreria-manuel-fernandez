@@ -1,0 +1,69 @@
+'use client'
+
+import { useI18n } from '@/lib/i18n'
+import { FullScreenScrollFX } from '@/components/ui/full-screen-scroll-fx'
+
+export function CraftJourneySection() {
+  const { t } = useI18n()
+
+  const sections = [
+    {
+      id:          'corte',
+      background:  '/photos/cutting-table.jpg',
+      leftLabel:   t.la_sastreria.oficio.cat1,
+      title:       'Precisión',
+      rightLabel:  '1978',
+    },
+    {
+      id:          'tejido',
+      background:  '/photos/cutting-tweed.jpg',
+      leftLabel:   t.la_sastreria.oficio.cat2,
+      title:       'Carácter',
+      rightLabel:  'Lana & Seda',
+    },
+    {
+      id:          'confeccion',
+      background:  '/photos/sleeve-buttons.jpg',
+      leftLabel:   t.la_sastreria.oficio.cat3,
+      title:       'Paciencia',
+      rightLabel:  'A Mano',
+    },
+    {
+      id:          'forro',
+      background:  '/photos/velvet-lining.jpg',
+      leftLabel:   t.la_sastreria.oficio.cat4,
+      title:       'Perfección',
+      rightLabel:  'El Detalle',
+    },
+  ]
+
+  return (
+    <FullScreenScrollFX
+      sections={sections}
+      header={
+        <div style={{
+          fontFamily:    'var(--font-sans)',
+          fontSize:      '0.6rem',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          color:         'rgba(196,163,90,0.55)',
+        }}>
+          {t.la_sastreria.oficio.label}
+          <span style={{ margin: '0 0.8em', opacity: 0.4 }}>·</span>
+          {t.la_sastreria.oficio.title}
+        </div>
+      }
+      fontFamily="var(--font-serif), 'Cormorant Garamond', Georgia, serif"
+      colors={{
+        text:    'rgba(245,240,234,0.92)',
+        overlay: 'rgba(5,12,20,0.5)',
+        pageBg:  '#050C14',
+        stageBg: '#050C14',
+      }}
+      showProgress
+      durations={{ change: 0.8, snap: 900 }}
+      gridPaddingX={3}
+      ariaLabel="El Oficio — journey through the craft"
+    />
+  )
+}
