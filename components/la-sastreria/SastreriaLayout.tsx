@@ -5,7 +5,7 @@ import { SastreriaHero }    from './SastreriaHero'
 import { HistoriaSection }  from './HistoriaSection'
 import { MaestroSection }   from './MaestroSection'
 import { OficioGrid }       from './OficioGrid'
-import { CifrasSection }    from './CifrasSection'
+import { CraftJourneySection } from './CraftJourneySection'
 import { EspacioSection }   from './EspacioSection'
 import { FilosofiaSection } from './FilosofiaSection'
 import { SastreriaCTA }     from './SastreriaCTA'
@@ -39,7 +39,7 @@ export function SastreriaLayout() {
       <HistoriaSection />
       <MaestroSection />
       <OficioGrid />
-      <CifrasSection />
+      <CraftJourneySection />
       <EspacioSection />
       <FilosofiaSection />
       <SastreriaCTA />
