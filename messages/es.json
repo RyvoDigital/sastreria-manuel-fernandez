@@ -205,39 +205,24 @@
     "quote8": "El gran día empieza meses antes."
   },
   "coleccion": {
-    "hero": { "label": "Sastrería Manuel Fernández · Madrid", "title": "La Colección del Atelier" },
-    "statement": {
+    "hero": {
       "label": "La Colección · 2025",
-      "headline": "No fabricamos trajes. Creamos la segunda piel de un hombre.",
-      "body": "Cada pieza que sale de este atelier lleva en su tejido el tiempo, el oficio y la conversación que la hizo posible."
+      "title": "El Atelier Abierto",
+      "body": "Cada pieza que ofrecemos es el resultado de décadas de oficio. Seleccione, consulte y permítanos crear algo único para usted.",
+      "featured_label": "Pieza Destacada"
     },
-    "categorias": {
-      "label": "Las Categorías",
-      "cat1": "Trajes a Medida",     "cat1_desc": "El traje perfecto comienza con el paño perfecto.",
-      "cat2": "Chaquetas & Abrigos", "cat2_desc": "Versatilidad sin sacrificar el rigor del oficio.",
-      "cat3": "Bodas & Ceremonias",  "cat3_desc": "Para el momento que merece lo mejor."
-    },
-    "editorial": {
-      "label1": "El Oficio",    "title1": "Cuarenta y cinco años dan forma a un estilo propio.",
-      "body1": "Cada traje que Manuel Fernández crea es el resultado de décadas de escucha, de paño y de precisión.",
-      "label2": "El Resultado", "title2": "El paño habla cuando el corte es perfecto.",
-      "body2": "Trabajamos solo con los mejores tejidos europeos porque la diferencia entre un traje bueno y uno excepcional está en el material."
-    },
-    "carousel": { "label": "Los Detalles" },
-    "grid": {
-      "label": "La Colección", "subtitle": "6 Piezas", "cta": "Consultar",
-      "item1_cat": "Traje",     "item1_name": "El Príncipe Azul",
-      "item2_cat": "Chaqueta",  "item2_name": "La Jornada Camel",
-      "item3_cat": "Blazer",    "item3_name": "La Menta de Madrid",
-      "item4_cat": "Abrigo",    "item4_name": "El Madrileño",
-      "item5_cat": "Ceremonia", "item5_name": "La Gran Mañana",
-      "item6_cat": "Chaqueta",  "item6_name": "El Check Gris"
+    "shop": {
+      "filter_all": "Todos",
+      "filter_trajes": "Trajes",
+      "filter_chaquetas": "Chaquetas",
+      "filter_accesorios": "Accesorios",
+      "filter_ceremonias": "Ceremonias"
     },
     "cta": {
-      "label": "El Siguiente Paso",
-      "headline": "Su traje está esperando ser creado.",
+      "headline": "¿Tiene algo en mente?",
+      "body": "Cada encargo comienza con una conversación. Cuéntenos qué necesita y lo haremos realidad.",
       "btn_primary": "Reservar Cita",
-      "btn_secondary": "Conocer el Atelier"
+      "btn_secondary": "Contactar"
     }
   },
   "bodas": {
