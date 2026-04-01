@@ -141,15 +141,15 @@ const ParallaxImages = () => {
 // ─── Services list with hover animations ─────────────────────────────────────
 
 const ServiceItem = ({
-  num, title, duration,
-}: { num: string; title: string; duration: string }) => {
+  num, title, duration, index,
+}: { num: string; title: string; duration: string; index: number }) => {
   const [hovered, setHovered] = useState(false)
 
   return (
     <motion.div
       initial={{ y: 48, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      transition={{ ease: 'easeInOut', duration: 0.75 }}
+      transition={{ ease: 'easeInOut', duration: 0.75, delay: index * 0.08 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -215,28 +215,64 @@ const ServiciosList = () => {
 
   return (
     <section style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 1rem 8rem' }}>
-      <motion.h2
-        initial={{ y: 48, opacity: 0 }}
+
+      {/* Gold sweep line */}
+      <motion.div
+        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+        whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
+        transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1] }}
+        viewport={{ once: true }}
+        style={{
+          height: '1px',
+          background: 'linear-gradient(to right, var(--color-gold), rgba(196,163,90,0.15))',
+          marginBottom: '2rem',
+          opacity: 0.45,
+        }}
+      />
+
+      {/* Small caps label */}
+      <motion.p
+        initial={{ y: 20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ ease: 'easeInOut', duration: 0.75 }}
+        transition={{ duration: 0.7, delay: 0.4 }}
+        viewport={{ once: true }}
         style={{
           fontFamily: 'var(--font-sans)',
           fontSize: '0.6rem',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
           color: 'rgba(196,163,90,0.55)',
-          marginBottom: '3rem',
+          marginBottom: '1rem',
         }}
       >
         {t.servicios.hero.label}
+      </motion.p>
+
+      {/* Editorial anchor heading */}
+      <motion.h2
+        initial={{ y: 32, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.55 }}
+        viewport={{ once: true }}
+        style={{
+          fontFamily: 'var(--font-serif)',
+          fontStyle: 'italic',
+          fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
+          fontWeight: 400,
+          color: 'var(--color-offwhite)',
+          lineHeight: 1.15,
+          marginBottom: 'clamp(2rem, 4vh, 3.5rem)',
+        }}
+      >
+        El Arte del Sastre
       </motion.h2>
 
-      <ServiceItem num={s.s1_num} title={s.s1_title} duration={s.s1_duration} />
-      <ServiceItem num={s.s2_num} title={s.s2_title} duration={s.s2_duration} />
-      <ServiceItem num={s.s3_num} title={s.s3_title} duration={s.s3_duration} />
-      <ServiceItem num={s.s4_num} title={s.s4_title} duration={s.s4_duration} />
-      <ServiceItem num={s.s5_num} title={s.s5_title} duration={s.s5_duration} />
-      <ServiceItem num={s.s6_num} title={s.s6_title} duration={s.s6_duration} />
+      <ServiceItem num={s.s1_num} title={s.s1_title} duration={s.s1_duration} index={0} />
+      <ServiceItem num={s.s2_num} title={s.s2_title} duration={s.s2_duration} index={1} />
+      <ServiceItem num={s.s3_num} title={s.s3_title} duration={s.s3_duration} index={2} />
+      <ServiceItem num={s.s4_num} title={s.s4_title} duration={s.s4_duration} index={3} />
+      <ServiceItem num={s.s5_num} title={s.s5_title} duration={s.s5_duration} index={4} />
+      <ServiceItem num={s.s6_num} title={s.s6_title} duration={s.s6_duration} index={5} />
     </section>
   )
 }
