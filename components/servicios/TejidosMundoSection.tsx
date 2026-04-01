@@ -173,9 +173,9 @@ export function TejidosMundoSection() {
                 dark={1}
                 markerColor={[0.77, 0.64, 0.35]}
                 arcColor={[0.77, 0.64, 0.35]}
-                baseColor={[0.08, 0.12, 0.18]}
+                baseColor={[0.20, 0.15, 0.07]}
                 glowColor={[0.77, 0.64, 0.35]}
-                mapBrightness={7}
+                mapBrightness={5}
                 mapSamples={20000}
                 speed={0.004}
                 theta={0.38}

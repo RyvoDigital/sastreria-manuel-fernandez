@@ -314,6 +314,22 @@ export function ServiciosMorphGallery() {
             className="absolute top-[8%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-4"
           >
             <p style={{
+              fontFamily: 'var(--font-serif)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(1rem, 1.5vw, 1.3rem)',
+              fontWeight: 400,
+              color: 'var(--color-offwhite)',
+              marginBottom: '0.6rem',
+            }}>
+              El Repertorio
+            </p>
+            <div style={{
+              width: '2rem', height: '1px',
+              background: 'var(--color-gold)',
+              opacity: 0.5,
+              margin: '0 auto 0.75rem',
+            }} />
+            <p style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.58rem',
               letterSpacing: '0.28em',
