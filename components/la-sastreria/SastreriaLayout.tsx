@@ -4,7 +4,7 @@ import { useScroll, useTransform, motion } from 'framer-motion'
 import { SastreriaHero }    from './SastreriaHero'
 import { HistoriaSection }  from './HistoriaSection'
 import { MaestroSection }   from './MaestroSection'
-import { OficioGrid }       from './OficioGrid'
+import { OficioFlipSection } from './OficioFlipSection'
 import { CraftJourneySection } from './CraftJourneySection'
 import { EspacioSection }   from './EspacioSection'
 import { FilosofiaSection } from './FilosofiaSection'
@@ -38,7 +38,7 @@ export function SastreriaLayout() {
       <SastreriaHero />
       <HistoriaSection />
       <MaestroSection />
-      <OficioGrid />
+      <OficioFlipSection />
       <CraftJourneySection />
       <EspacioSection />
       <FilosofiaSection />
