@@ -175,8 +175,8 @@ export function HistoriaSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={photoImgRef}
-            src="/photos/camel-jacket-form.jpg"
-            alt="Traje sobre maniquí de sastrería"
+            src="/photos/maestro-cutting-table.jpg"
+            alt="Manuel Fernández en la mesa de corte"
             style={{
               position:   'absolute',
               inset:      '-10%',
