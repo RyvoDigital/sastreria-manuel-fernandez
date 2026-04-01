@@ -240,6 +240,48 @@
       "btn_secondary": "Conocer el Atelier"
     }
   },
+  "bodas": {
+    "hero": {
+      "label": "Sastrería Manuel Fernández · Bodas & Ceremonia",
+      "title": "El Traje del Día Más Importante"
+    },
+    "statement": {
+      "label": "Bodas & Ceremonia · 2025",
+      "headline": "El día que lo cambia todo merece el traje que lo expresa todo.",
+      "body": "Llevamos más de cuatro décadas vistiendo a los protagonistas de las historias más importantes de sus vidas. Cada traje nupcial es único, irrepetible, construido con el mismo rigor con el que se construye un voto."
+    },
+    "categorias": {
+      "label": "Los Estilos de Ceremonia",
+      "cat1": "Chaqué de Mañana",  "cat1_desc": "La máxima expresión de la elegancia nupcial.",
+      "cat2": "Smoking & Tuxedo",  "cat2_desc": "Impecable para la ceremonia y para la noche.",
+      "cat3": "Traje Oscuro",      "cat3_desc": "Versátil, elegante, siempre correcto."
+    },
+    "editorial": {
+      "label1": "La Promesa",  "title1": "Cada boda es un relato que comienza en el atelier.",
+      "body1": "Cuando un cliente nos visita para su traje de boda, no viene a elegir una tela. Viene a construir la imagen que recordará el resto de su vida.",
+      "label2": "El Detalle",  "title2": "Un traje nupcial se recuerda cuarenta años después.",
+      "body2": "Los botones de nácar, el forro bordado, la solapa que define el carácter. Cada decisión es permanente. Por eso la tomamos juntos, sin prisa."
+    },
+    "proceso": {
+      "label": "El Proceso Nupcial",
+      "title": "Del primer café a la última prueba.",
+      "step1_num": "01", "step1_title": "La Primera Cita",
+      "step1_body": "Conversamos sobre el día, el lugar, el estilo. Sin catálogos, sin presiones.",
+      "step2_num": "02", "step2_title": "La Elección del Paño",
+      "step2_body": "Tejidos exclusivos de lana, seda y mohair. Solo lo mejor para el mejor día.",
+      "step3_num": "03", "step3_title": "Las Pruebas",
+      "step3_body": "Múltiples sesiones de prueba para garantizar el ajuste perfecto antes del gran día.",
+      "step4_num": "04", "step4_title": "El Resultado",
+      "step4_body": "Entrega con tiempo para que sea suyo mucho antes de ponérselo."
+    },
+    "carousel": { "label": "Los Detalles Nupciales" },
+    "cta": {
+      "label": "El Siguiente Paso",
+      "headline": "El día más importante de su vida merece el mejor traje.",
+      "btn_primary": "Reservar Cita",
+      "btn_secondary": "Conocer el Atelier"
+    }
+  },
   "footer": {
     "tagline": "Construimos identidad desde la artesanía.",
     "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",

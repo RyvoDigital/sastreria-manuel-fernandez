@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { key: 'sastreria'   as const, href: '/la-sastreria' },
   { key: 'experiencia' as const, href: '/experiencia' },
   { key: 'servicios'   as const, href: '/servicios' },
-  { key: 'bodas'       as const, href: '/bodas' },
+  { key: 'bodas'       as const, href: '/bodas-y-ceremonia' },
   { key: 'coleccion'   as const, href: '/coleccion' },
   { key: 'contacto'    as const, href: '/contacto' },
 ]

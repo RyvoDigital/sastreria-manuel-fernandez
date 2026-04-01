@@ -240,6 +240,48 @@
       "btn_secondary": "Meet the Atelier"
     }
   },
+  "bodas": {
+    "hero": {
+      "label": "Sastrería Manuel Fernández · Weddings & Ceremony",
+      "title": "The Suit for the Most Important Day"
+    },
+    "statement": {
+      "label": "Weddings & Ceremony · 2025",
+      "headline": "The day that changes everything deserves the suit that expresses everything.",
+      "body": "For more than four decades we have dressed the protagonists of the most important stories of their lives. Every wedding suit is unique, unrepeatable, built with the same rigour with which a vow is made."
+    },
+    "categorias": {
+      "label": "Ceremony Styles",
+      "cat1": "Morning Coat",    "cat1_desc": "The ultimate expression of nuptial elegance.",
+      "cat2": "Smoking & Tuxedo","cat2_desc": "Impeccable for the ceremony and the evening.",
+      "cat3": "Dark Suit",       "cat3_desc": "Versatile, elegant, always correct."
+    },
+    "editorial": {
+      "label1": "The Promise", "title1": "Every wedding is a story that begins in the atelier.",
+      "body1": "When a client visits us for their wedding suit, they are not coming to choose a fabric. They are coming to build the image they will remember for the rest of their life.",
+      "label2": "The Detail",  "title2": "A wedding suit is remembered forty years later.",
+      "body2": "The mother-of-pearl buttons, the embroidered lining, the lapel that defines character. Every decision is permanent. That is why we make them together, without haste."
+    },
+    "proceso": {
+      "label": "The Wedding Process",
+      "title": "From the first coffee to the final fitting.",
+      "step1_num": "01", "step1_title": "The First Meeting",
+      "step1_body": "We talk about the day, the venue, the style. No catalogues, no pressure.",
+      "step2_num": "02", "step2_title": "Choosing the Cloth",
+      "step2_body": "Exclusive wools, silks and mohairs. Only the best for the best day.",
+      "step3_num": "03", "step3_title": "The Fittings",
+      "step3_body": "Multiple fitting sessions to guarantee the perfect fit well before the big day.",
+      "step4_num": "04", "step4_title": "The Result",
+      "step4_body": "Delivered with time to spare so it is truly yours before you wear it."
+    },
+    "carousel": { "label": "The Nuptial Details" },
+    "cta": {
+      "label": "The Next Step",
+      "headline": "The most important day of your life deserves the finest suit.",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "Meet the Atelier"
+    }
+  },
   "footer": {
     "tagline": "Building identity through craftsmanship.",
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
