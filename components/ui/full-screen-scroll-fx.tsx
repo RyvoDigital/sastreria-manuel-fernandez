@@ -707,10 +707,6 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             </div>
           </div>
 
-          {/* End spacer */}
-          <div className="mf-fx-end">
-            <p className="mf-fx-fin">fin</p>
-          </div>
         </div>
       </div>
     )
