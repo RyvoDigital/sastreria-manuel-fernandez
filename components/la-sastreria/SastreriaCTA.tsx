@@ -44,18 +44,18 @@ export function SastreriaCTA() {
         height:         'min(100vh, 900px)',
         overflow:       'hidden',
         display:        'flex',
-        alignItems:     'center',
+        alignItems:     'flex-start',
         justifyContent: 'center',
       }}
     >
       {/* Photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/photos/wedding-rome.jpg"
+        src="/photos/madrid-suit-street.jpg"
         alt=""
         aria-hidden
         className="mf-sas-cta-photo"
-        style={{ filter: 'brightness(0.6) saturate(0.75)' }}
+        style={{ filter: 'brightness(0.55) saturate(0.7)', objectPosition: 'center 30%' }}
       />
 
       {/* Gradient overlay */}
@@ -66,10 +66,10 @@ export function SastreriaCTA() {
 
       {/* Content */}
       <div style={{
-        position:  'relative', zIndex: 1,
-        textAlign: 'center',
-        padding:   '0 var(--container-padding)',
-        maxWidth:  '800px',
+        position:   'relative', zIndex: 1,
+        textAlign:  'center',
+        padding:    'clamp(5rem, 10vh, 8rem) var(--container-padding) 0',
+        maxWidth:   '800px',
       }}>
 
         {/* Label */}
