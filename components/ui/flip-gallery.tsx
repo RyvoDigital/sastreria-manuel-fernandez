@@ -44,25 +44,6 @@ const flipAnimationBottomReverse: Keyframe[] = [
 const buildCSS = (id: string) => `
   #${id} { position: relative; }
 
-  /* Gold divider with soft glow */
-  #${id}::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0;
-    top: 50%;
-    height: 1px;
-    transform: translateY(-50%);
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(196,163,90,0.85) 15%,
-      rgba(196,163,90,0.85) 85%,
-      transparent 100%
-    );
-    box-shadow: 0 0 10px rgba(196,163,90,0.35);
-    z-index: 20;
-    pointer-events: none;
-  }
 
   /* Half containers */
   #${id} > .mf-fg-half {
