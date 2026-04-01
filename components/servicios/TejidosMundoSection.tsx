@@ -9,18 +9,22 @@ import { Globe, type GlobeMarker, type GlobeArc } from '@/components/ui/globe'
 gsap.registerPlugin(ScrollTrigger)
 
 const MARKERS: GlobeMarker[] = [
-  { id: 'madrid',       location: [40.4168, -3.7038], label: 'Madrid — Atelier'      },
-  { id: 'huddersfield', location: [53.6450, -1.7852], label: 'Holland & Sherry'       },
-  { id: 'biella',       location: [45.5659,  8.0530], label: 'VBC · Biella'          },
-  { id: 'lyon',         location: [45.7640,  4.8357], label: 'Dormeuil · Lyon'        },
-  { id: 'sabadell',     location: [41.5433,  2.1094], label: 'Tejidos Españoles'      },
+  { id: 'madrid',       location: [40.4168, -3.7038],   label: 'Madrid — Atelier'            },
+  { id: 'huddersfield', location: [53.6450, -1.7852],   label: 'Holland & Sherry · Huddersfield' },
+  { id: 'hawick',       location: [55.4224, -2.7878],   label: 'Cashmere · Hawick'           },
+  { id: 'biella',       location: [45.5659,  8.0530],   label: 'VBC · Biella'                },
+  { id: 'loropiana',    location: [45.8200,  8.0980],   label: 'Loro Piana · Trivero'        },
+  { id: 'lyon',         location: [45.7640,  4.8357],   label: 'Dormeuil · Lyon'             },
+  { id: 'prato',        location: [43.8777,  11.1021],  label: 'Lanifici · Prato'            },
 ]
 
 const ARCS: GlobeArc[] = [
   { id: 'madrid-huddersfield', from: [40.4168, -3.7038], to: [53.6450, -1.7852] },
+  { id: 'madrid-hawick',       from: [40.4168, -3.7038], to: [55.4224, -2.7878] },
   { id: 'madrid-biella',       from: [40.4168, -3.7038], to: [45.5659,  8.0530] },
+  { id: 'madrid-loropiana',    from: [40.4168, -3.7038], to: [45.8200,  8.0980] },
   { id: 'madrid-lyon',         from: [40.4168, -3.7038], to: [45.7640,  4.8357] },
-  { id: 'madrid-sabadell',     from: [40.4168, -3.7038], to: [41.5433,  2.1094] },
+  { id: 'madrid-prato',        from: [40.4168, -3.7038], to: [43.8777, 11.1021] },
 ]
 
 export function TejidosMundoSection() {
@@ -152,24 +156,38 @@ export function TejidosMundoSection() {
 
         {/* Right: Globe */}
         <div className="mf-tj-globe" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Globe
-            markers={MARKERS}
-            arcs={ARCS}
-            dark={1}
-            markerColor={[0.77, 0.64, 0.35]}
-            arcColor={[0.77, 0.64, 0.35]}
-            baseColor={[0.05, 0.08, 0.1]}
-            glowColor={[0.77, 0.64, 0.35]}
-            mapBrightness={4}
-            mapSamples={16000}
-            speed={0.003}
-            theta={0.3}
-            diffuse={1.2}
-            markerSize={0.03}
-            arcWidth={0.4}
-            arcHeight={0.3}
-            className="w-full max-w-[520px]"
-          />
+          {/* Gold glow halo behind the globe */}
+          <div style={{ position: 'relative', width: '100%', maxWidth: '540px' }}>
+            <div style={{
+              position: 'absolute',
+              inset: '-10%',
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse at center, rgba(196,163,90,0.12) 0%, rgba(196,163,90,0.04) 50%, transparent 70%)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }} />
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <Globe
+                markers={MARKERS}
+                arcs={ARCS}
+                dark={1}
+                markerColor={[0.77, 0.64, 0.35]}
+                arcColor={[0.77, 0.64, 0.35]}
+                baseColor={[0.08, 0.12, 0.18]}
+                glowColor={[0.77, 0.64, 0.35]}
+                mapBrightness={7}
+                mapSamples={20000}
+                speed={0.004}
+                theta={0.38}
+                diffuse={1.8}
+                markerSize={0.05}
+                markerElevation={0.015}
+                arcWidth={0.5}
+                arcHeight={0.35}
+                className="w-full"
+              />
+            </div>
+          </div>
         </div>
 
       </div>
