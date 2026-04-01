@@ -3,21 +3,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-export type GalleryImage = {
-  title: string
-  url: string
-}
+export type GalleryImage = { title: string; url: string }
 
 export type FlipGalleryProps = {
   images: GalleryImage[]
-  id?: string      // scopes all CSS selectors — must be unique per page
-  width?: number   // card width in px
-  height?: number  // card height in px
+  id?: string
+  width?: number
+  height?: number
+  onIndexChange?: (index: number) => void
 }
 
-// ─── Animation keyframes ─────────────────────────────────────────────────────
+// ─── Flip animation keyframes ─────────────────────────────────────────────────
 
-const FLIP_SPEED = 750
+const FLIP_SPEED = 720
 const flipTiming: KeyframeAnimationOptions = { duration: FLIP_SPEED, iterations: 1 }
 
 const flipAnimationTop: Keyframe[] = [
@@ -41,68 +39,76 @@ const flipAnimationBottomReverse: Keyframe[] = [
   { transform: 'rotateX(90deg)' },
 ]
 
-// ─── Scoped CSS (injected once per id) ───────────────────────────────────────
+// ─── Scoped CSS ───────────────────────────────────────────────────────────────
 
-const buildCSS = (id: string, w: number, h: number) => `
-  #${id} {
-    position: relative;
-  }
+const buildCSS = (id: string) => `
+  #${id} { position: relative; }
 
-  /* Gold divider at card midpoint */
+  /* Gold divider with soft glow */
   #${id}::after {
     content: '';
     position: absolute;
-    background: var(--color-gold, #C4A35A);
-    opacity: 0.55;
-    width: 100%;
-    height: 1px;
+    left: 0; right: 0;
     top: 50%;
-    left: 0;
+    height: 1px;
     transform: translateY(-50%);
-    z-index: 10;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(196,163,90,0.85) 15%,
+      rgba(196,163,90,0.85) 85%,
+      transparent 100%
+    );
+    box-shadow: 0 0 10px rgba(196,163,90,0.35);
+    z-index: 20;
     pointer-events: none;
   }
 
-  /* Category caption — appears below card via ::before */
-  #${id}::before {
-    content: attr(data-title);
-    font-family: var(--font-sans, sans-serif);
-    font-size: 0.62rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--color-gold, #C4A35A);
-    position: absolute;
-    left: 0;
-    top: calc(100% + 1.25rem);
-    width: 100%;
-    text-align: left;
-    opacity: var(--title-opacity, 0);
-    transform: translateY(var(--title-y, 0.5rem));
-    transition: opacity 450ms ease-in-out, transform 450ms ease-in-out;
-    pointer-events: none;
-  }
-
-  /* Card halves */
+  /* Half containers */
   #${id} > .mf-fg-half {
     position: absolute;
     width: 100%;
     height: 50%;
     overflow: hidden;
-    background-size: cover;
   }
 
   #${id} > .mf-fg-top,
   #${id} > .mf-fg-overlay-top {
     top: 0;
-    transform-origin: bottom;
-    background-position: top center;
+    transform-origin: bottom center;
   }
 
   #${id} > .mf-fg-bottom,
   #${id} > .mf-fg-overlay-bottom {
     bottom: 0;
-    transform-origin: top;
-    background-position: bottom center;
+    transform-origin: top center;
+  }
+
+  /*
+   * BUG FIX: each img is 200% tall relative to its 50%-height parent,
+   * which equals the full card height. top-half shows top portion,
+   * bottom-half shows bottom portion — no more doubling.
+   */
+  #${id} > .mf-fg-top img,
+  #${id} > .mf-fg-overlay-top img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 200%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  #${id} > .mf-fg-bottom img,
+  #${id} > .mf-fg-overlay-bottom img {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 200%;
+    object-fit: cover;
+    object-position: center bottom;
+    display: block;
   }
 `
 
@@ -111,45 +117,27 @@ const buildCSS = (id: string, w: number, h: number) => `
 export function FlipGallery({
   images,
   id = 'mf-flip-gallery',
-  width = 340,
-  height = 560,
+  width = 360,
+  height = 580,
+  onIndexChange,
 }: FlipGalleryProps) {
-  const containerRef   = useRef<HTMLDivElement>(null)
-  const halvesRef      = useRef<HTMLElement[]>([])
-  const currentIdxRef  = useRef(0)
-  const [, forceRender] = useState(0) // only used to trigger re-render if needed
+  const containerRef  = useRef<HTMLDivElement>(null)
+  const halvesRef     = useRef<HTMLElement[]>([])
+  const currentIdxRef = useRef(0)
+  const [displayIdx, setDisplayIdx] = useState(0)
 
-  // Initialise first image after mount
   useEffect(() => {
     if (!containerRef.current) return
     halvesRef.current = Array.from(
       containerRef.current.querySelectorAll<HTMLElement>('.mf-fg-half')
     )
-    setAllHalves()
-    showTitle()
+    halvesRef.current.forEach((el) => setHalfSrc(el, images[0].url))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const setAllHalves = () => {
-    halvesRef.current.forEach((el) => {
-      el.style.backgroundImage = `url('${images[currentIdxRef.current].url}')`
-    })
-  }
-
-  const showTitle = () => {
-    const el = containerRef.current
-    if (!el) return
-    el.setAttribute('data-title', images[currentIdxRef.current].title)
-    el.style.setProperty('--title-opacity', '1')
-    el.style.setProperty('--title-y', '0rem')
-  }
-
-  const hideTitle = () => {
-    const el = containerRef.current
-    if (!el) return
-    el.style.setProperty('--title-opacity', '0')
-    el.style.setProperty('--title-y', '0.5rem')
-    el.setAttribute('data-title', '')
+  const setHalfSrc = (wrapperEl: HTMLElement, url: string) => {
+    const img = wrapperEl.querySelector<HTMLImageElement>('img')
+    if (img) img.src = url
   }
 
   const flipTo = (nextIdx: number, reverse: boolean) => {
@@ -159,123 +147,180 @@ export function FlipGallery({
     const topAnim    = reverse ? flipAnimationTopReverse    : flipAnimationTop
     const bottomAnim = reverse ? flipAnimationBottomReverse : flipAnimationBottom
 
-    const overlayTop    = gallery.querySelector<HTMLElement>('.mf-fg-overlay-top')
-    const overlayBottom = gallery.querySelector<HTMLElement>('.mf-fg-overlay-bottom')
-    overlayTop?.animate(topAnim, flipTiming)
-    overlayBottom?.animate(bottomAnim, flipTiming)
+    gallery.querySelector<HTMLElement>('.mf-fg-overlay-top')?.animate(topAnim, flipTiming)
+    gallery.querySelector<HTMLElement>('.mf-fg-overlay-bottom')?.animate(bottomAnim, flipTiming)
 
-    hideTitle()
-
-    // Update background images staggered so the flip looks physical
     halvesRef.current.forEach((el, idx) => {
       const isSecondaryHalf = idx === 1 || idx === 2
       const delay = (reverse && !isSecondaryHalf) || (!reverse && isSecondaryHalf)
         ? FLIP_SPEED - 200
         : 0
-      setTimeout(() => {
-        el.style.backgroundImage = `url('${images[nextIdx].url}')`
-      }, delay)
+      setTimeout(() => setHalfSrc(el, images[nextIdx].url), delay)
     })
-
-    // Reveal new caption mid-animation
-    setTimeout(showTitle, FLIP_SPEED * 0.5)
   }
 
   const navigate = (increment: number) => {
     const next    = (currentIdxRef.current + increment + images.length) % images.length
     const reverse = increment < 0
     currentIdxRef.current = next
+    setDisplayIdx(next)
+    onIndexChange?.(next)
     flipTo(next, reverse)
-    forceRender((n) => n + 1) // keep React in sync (optional, purely cosmetic)
   }
+
+  const pad = (n: number) => String(n + 1).padStart(2, '0')
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: buildCSS(id, width, height) }} />
+      <style dangerouslySetInnerHTML={{ __html: buildCSS(id) }} />
 
-      {/* Outer wrapper — keeps caption space and nav together */}
-      <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch' }}>
+      <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
 
-        {/* Card frame */}
+        {/* Card shell */}
         <div style={{
-          border:     '1px solid rgba(196,163,90,0.18)',
-          padding:    '5px',
-          background: 'rgba(196,163,90,0.025)',
+          position:   'relative',
+          boxShadow:  '0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(196,163,90,0.1)',
         }}>
+          {/* Flip card */}
           <div
             id={id}
             ref={containerRef}
-            style={{ width: `${width}px`, height: `${height}px`, perspective: '800px' }}
+            style={{ width: `${width}px`, height: `${height}px`, perspective: '1000px' }}
           >
-            <div className="mf-fg-half mf-fg-top" />
-            <div className="mf-fg-half mf-fg-bottom" />
-            <div className="mf-fg-half mf-fg-overlay-top" />
-            <div className="mf-fg-half mf-fg-overlay-bottom" />
+            {/* Background (static, always current image) */}
+            <div className="mf-fg-half mf-fg-top">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={images[0].url} alt="" />
+            </div>
+            <div className="mf-fg-half mf-fg-bottom">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={images[0].url} alt="" />
+            </div>
+            {/* Animated overlays */}
+            <div className="mf-fg-half mf-fg-overlay-top">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={images[0].url} alt="" />
+            </div>
+            <div className="mf-fg-half mf-fg-overlay-bottom">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={images[0].url} alt="" />
+            </div>
+          </div>
+
+          {/* Progress bar — thin gold fill at bottom of card */}
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            height: '2px',
+            background: 'rgba(196,163,90,0.1)',
+            zIndex: 30,
+          }}>
+            <div style={{
+              height:     '100%',
+              width:      `${((displayIdx + 1) / images.length) * 100}%`,
+              background: 'rgba(196,163,90,0.65)',
+              transition: 'width 0.7s cubic-bezier(0.4,0,0.2,1)',
+            }} />
           </div>
         </div>
 
-        {/* Navigation row — sits below caption space */}
+        {/* Controls row */}
         <div style={{
-          display:        'flex',
-          justifyContent: 'flex-end',
-          gap:            '0.25rem',
-          paddingTop:     '3rem',   /* clears the ::before caption */
+          display:         'flex',
+          alignItems:      'center',
+          justifyContent:  'space-between',
+          paddingTop:      '1.1rem',
+          width:           `${width}px`,
         }}>
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            aria-label="Anterior"
-            style={{
-              color:      'var(--color-gold)',
-              opacity:     0.55,
-              background: 'none',
-              border:     'none',
-              cursor:     'pointer',
-              padding:    '4px',
-              display:    'flex',
-              transition: 'opacity .2s, transform .2s',
-            }}
-            onMouseEnter={(e) => {
-              const t = e.currentTarget as HTMLButtonElement
-              t.style.opacity = '1'
-              t.style.transform = 'scale(1.2)'
-            }}
-            onMouseLeave={(e) => {
-              const t = e.currentTarget as HTMLButtonElement
-              t.style.opacity = '0.55'
-              t.style.transform = 'scale(1)'
-            }}
-          >
-            <ChevronLeft size={16} />
-          </button>
 
-          <button
-            type="button"
-            onClick={() => navigate(1)}
-            aria-label="Siguiente"
-            style={{
-              color:      'var(--color-gold)',
-              opacity:     0.55,
-              background: 'none',
-              border:     'none',
-              cursor:     'pointer',
-              padding:    '4px',
-              display:    'flex',
-              transition: 'opacity .2s, transform .2s',
-            }}
-            onMouseEnter={(e) => {
-              const t = e.currentTarget as HTMLButtonElement
-              t.style.opacity = '1'
-              t.style.transform = 'scale(1.2)'
-            }}
-            onMouseLeave={(e) => {
-              const t = e.currentTarget as HTMLButtonElement
-              t.style.opacity = '0.55'
-              t.style.transform = 'scale(1)'
-            }}
-          >
-            <ChevronRight size={16} />
-          </button>
+          {/* Current category label */}
+          <div style={{
+            fontFamily:    'var(--font-sans)',
+            fontSize:      '0.6rem',
+            letterSpacing: '0.26em',
+            textTransform: 'uppercase',
+            color:         'var(--color-gold)',
+            opacity:        0.8,
+          }}>
+            {images[displayIdx].title}
+          </div>
+
+          {/* Counter + navigation */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <span style={{
+              fontFamily:    'var(--font-sans)',
+              fontSize:      '0.58rem',
+              letterSpacing: '0.12em',
+              color:         'rgba(196,163,90,0.35)',
+            }}>
+              {pad(displayIdx)} — {pad(images.length - 1)}
+            </span>
+
+            {/* Prev */}
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              aria-label="Anterior"
+              style={{
+                width:      '30px',
+                height:     '30px',
+                display:    'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'none',
+                border:     '1px solid rgba(196,163,90,0.18)',
+                color:      'rgba(196,163,90,0.5)',
+                cursor:     'pointer',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                const t = e.currentTarget
+                t.style.borderColor = 'rgba(196,163,90,0.55)'
+                t.style.color = 'rgba(196,163,90,0.95)'
+                t.style.background = 'rgba(196,163,90,0.05)'
+              }}
+              onMouseLeave={(e) => {
+                const t = e.currentTarget
+                t.style.borderColor = 'rgba(196,163,90,0.18)'
+                t.style.color = 'rgba(196,163,90,0.5)'
+                t.style.background = 'none'
+              }}
+            >
+              <ChevronLeft size={13} strokeWidth={1.5} />
+            </button>
+
+            {/* Next */}
+            <button
+              type="button"
+              onClick={() => navigate(1)}
+              aria-label="Siguiente"
+              style={{
+                width:      '30px',
+                height:     '30px',
+                display:    'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'none',
+                border:     '1px solid rgba(196,163,90,0.18)',
+                color:      'rgba(196,163,90,0.5)',
+                cursor:     'pointer',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                const t = e.currentTarget
+                t.style.borderColor = 'rgba(196,163,90,0.55)'
+                t.style.color = 'rgba(196,163,90,0.95)'
+                t.style.background = 'rgba(196,163,90,0.05)'
+              }}
+              onMouseLeave={(e) => {
+                const t = e.currentTarget
+                t.style.borderColor = 'rgba(196,163,90,0.18)'
+                t.style.color = 'rgba(196,163,90,0.5)'
+                t.style.background = 'none'
+              }}
+            >
+              <ChevronRight size={13} strokeWidth={1.5} />
+            </button>
+          </div>
         </div>
       </div>
     </>
