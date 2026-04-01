@@ -2,10 +2,14 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { motion, useTransform, useSpring, useMotionValue } from 'framer-motion'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type AnimationPhase = 'scatter' | 'line' | 'circle' | 'bottom-strip'
+type AnimationPhase = 'scatter' | 'line' | 'circle'
 
 interface FlipCardTarget {
   x: number
@@ -59,31 +63,15 @@ const IMAGES = [
   '/photos/scissors-cutting.jpg',
   '/photos/fabric-consultation.jpg',
   '/photos/showroom-suits.jpg',
-  '/photos/cutting-table.jpg',   // repeat
-  '/photos/sleeve-buttons.jpg',  // repeat
+  '/photos/cutting-table.jpg',
+  '/photos/sleeve-buttons.jpg',
 ]
 
 const lerp = (start: number, end: number, t: number) => start * (1 - t) + end * t
 
-// ─── Scoped CSS ───────────────────────────────────────────────────────────────
-
-const CSS = `
-  @keyframes mf-sm-fadeSlideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0);    }
-  }
-  .mf-sm-fade-in {
-    animation: mf-sm-fadeSlideIn 0.8s ease-out forwards;
-    opacity: 0;
-  }
-  .mf-sm-delay-100 { animation-delay: 0.1s; }
-  .mf-sm-delay-200 { animation-delay: 0.2s; }
-  .mf-sm-delay-300 { animation-delay: 0.3s; }
-`
-
 // ─── FlipCard ─────────────────────────────────────────────────────────────────
 
-function FlipCard({ src, index, phase, target, serviceName }: FlipCardProps) {
+function FlipCard({ src, index, target }: FlipCardProps) {
   return (
     <motion.div
       animate={{
@@ -115,12 +103,12 @@ function FlipCard({ src, index, phase, target, serviceName }: FlipCardProps) {
           style={{
             backfaceVisibility: 'hidden',
             borderRadius: '2px',
-            boxShadow: '0 8px 32px rgba(5,12,20,0.4)',
+            boxShadow: '0 8px 32px rgba(5,12,20,0.25)',
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={src} alt="" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
+          <div className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/0" />
         </div>
 
         {/* Back */}
@@ -130,7 +118,7 @@ function FlipCard({ src, index, phase, target, serviceName }: FlipCardProps) {
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
             background: 'var(--color-navy)',
-            border: '1px solid rgba(196,163,90,0.25)',
+            border: '1px solid rgba(196,163,90,0.3)',
             borderRadius: '2px',
             padding: '0.5rem',
           }}
@@ -167,68 +155,59 @@ function FlipCard({ src, index, phase, target, serviceName }: FlipCardProps) {
 export function ServiciosMorphGallery() {
   const [introPhase, setIntroPhase] = useState<AnimationPhase>('scatter')
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
+  const sectionRef  = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Container size
+  // Container size tracking
   useEffect(() => {
     if (!containerRef.current) return
-    const handleResize = (entries: ResizeObserverEntry[]) => {
+    const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         setContainerSize({ width: entry.contentRect.width, height: entry.contentRect.height })
       }
-    }
-    const observer = new ResizeObserver(handleResize)
+    })
     observer.observe(containerRef.current)
     setContainerSize({ width: containerRef.current.offsetWidth, height: containerRef.current.offsetHeight })
     return () => observer.disconnect()
   }, [])
 
-  // Virtual scroll
+  // Virtual scroll — driven by GSAP ScrollTrigger after intro completes
   const virtualScroll = useMotionValue(0)
-  const scrollRef = useRef(0)
+  const scrollRef     = useRef(0)
 
+  // Intro: scatter → line → circle
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const t1 = setTimeout(() => setIntroPhase('line'),   500)
+    const t2 = setTimeout(() => setIntroPhase('circle'), 2500)
+    return () => { clearTimeout(t1); clearTimeout(t2) }
+  }, [])
 
-    const handleWheel = (e: WheelEvent) => {
-      const s = scrollRef.current
-      // Allow page scroll at boundaries
-      if ((e.deltaY > 0 && s >= MAX_SCROLL) || (e.deltaY < 0 && s <= 0)) return
-      e.preventDefault()
-      const newScroll = Math.min(Math.max(s + e.deltaY, 0), MAX_SCROLL)
-      scrollRef.current = newScroll
-      virtualScroll.set(newScroll)
-    }
+  // GSAP ScrollTrigger pin — fires once intro reaches 'circle'.
+  // Pins the section for MAX_SCROLL pixels of scroll distance, driving the animation.
+  // Fully reversible: scrolling back drives morphValue back toward 0, restoring the title.
+  useEffect(() => {
+    if (introPhase !== 'circle' || !sectionRef.current) return
 
-    let touchStartY = 0
-    const handleTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY }
-    const handleTouchMove = (e: TouchEvent) => {
-      const deltaY = touchStartY - e.touches[0].clientY
-      touchStartY = e.touches[0].clientY
-      const s = scrollRef.current
-      if ((deltaY > 0 && s >= MAX_SCROLL) || (deltaY < 0 && s <= 0)) return
-      e.preventDefault()
-      const newScroll = Math.min(Math.max(s + deltaY, 0), MAX_SCROLL)
-      scrollRef.current = newScroll
-      virtualScroll.set(newScroll)
-    }
+    const el = sectionRef.current
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top top',
+        end: `+=${MAX_SCROLL}`,
+        pin: true,
+        scrub: 1.2,
+        onUpdate: (self) => {
+          const val = self.progress * MAX_SCROLL
+          scrollRef.current = val
+          virtualScroll.set(val)
+        },
+      })
+    })
 
-    container.addEventListener('wheel', handleWheel, { passive: false })
-    container.addEventListener('touchstart', handleTouchStart, { passive: false })
-    container.addEventListener('touchmove', handleTouchMove, { passive: false })
-    return () => {
-      container.removeEventListener('wheel', handleWheel)
-      container.removeEventListener('touchstart', handleTouchStart)
-      container.removeEventListener('touchmove', handleTouchMove)
-    }
-  }, [virtualScroll])
+    return () => ctx.revert()
+  }, [introPhase, virtualScroll])
 
-  const morphProgress  = useTransform(virtualScroll, [0, 600], [0, 1])
-  const smoothMorph    = useSpring(morphProgress, { stiffness: 40, damping: 20 })
-  const scrollRotate   = useTransform(virtualScroll, [600, 3000], [0, 360])
-  const smoothScrollRotate = useSpring(scrollRotate, { stiffness: 40, damping: 20 })
-
+  // Mouse parallax
   const mouseX = useMotionValue(0)
   const smoothMouseX = useSpring(mouseX, { stiffness: 30, damping: 20 })
 
@@ -238,31 +217,21 @@ export function ServiciosMorphGallery() {
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect()
       const normalizedX = ((e.clientX - rect.left) / rect.width) * 2 - 1
-      mouseX.set(normalizedX * 100)
+      mouseX.set(normalizedX * 80)
     }
     container.addEventListener('mousemove', handleMouseMove)
     return () => container.removeEventListener('mousemove', handleMouseMove)
   }, [mouseX])
 
-  // Intro sequence
-  useEffect(() => {
-    const t1 = setTimeout(() => setIntroPhase('line'), 500)
-    const t2 = setTimeout(() => setIntroPhase('circle'), 2500)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
+  // Animation springs
+  const morphProgress      = useTransform(virtualScroll, [0, 600], [0, 1])
+  const smoothMorph        = useSpring(morphProgress, { stiffness: 40, damping: 20 })
+  const scrollRotate       = useTransform(virtualScroll, [600, 3000], [0, 360])
+  const smoothScrollRotate = useSpring(scrollRotate, { stiffness: 40, damping: 20 })
 
-  // Random scatter positions
-  const scatterPositions = useMemo(() => IMAGES.map(() => ({
-    x: (Math.random() - 0.5) * 1500,
-    y: (Math.random() - 0.5) * 1000,
-    rotation: (Math.random() - 0.5) * 180,
-    scale: 0.6,
-    opacity: 0,
-  })), [])
-
-  // Render loop values
-  const [morphValue, setMorphValue] = useState(0)
-  const [rotateValue, setRotateValue] = useState(0)
+  // Subscribe to render values
+  const [morphValue,   setMorphValue]   = useState(0)
+  const [rotateValue,  setRotateValue]  = useState(0)
   const [parallaxValue, setParallaxValue] = useState(0)
 
   useEffect(() => {
@@ -275,23 +244,43 @@ export function ServiciosMorphGallery() {
   const contentOpacity = useTransform(smoothMorph, [0.8, 1], [0, 1])
   const contentY       = useTransform(smoothMorph, [0.8, 1], [20, 0])
 
+  // Stable random scatter positions
+  const scatterPositions = useMemo(() => IMAGES.map(() => ({
+    x: (Math.random() - 0.5) * 1500,
+    y: (Math.random() - 0.5) * 1000,
+    rotation: (Math.random() - 0.5) * 180,
+    scale: 0.6,
+    opacity: 0,
+  })), [])
+
+  // Title is visible when morphValue is low (either never scrolled or scrolled back)
+  const titleVisible = introPhase === 'circle' && morphValue < 0.5
+
   return (
-    <section style={{ height: '100vh', overflow: 'hidden', background: 'var(--color-cream)', position: 'relative' }}>
-      <style dangerouslySetInnerHTML={{ __html: CSS }} />
-
-      <div ref={containerRef} style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
-        <div className="flex h-full w-full flex-col items-center justify-center" style={{ perspective: '1000px' }}>
-
-          {/* Intro text — fades out as morph begins */}
-          <div className="absolute z-0 flex flex-col items-center justify-center text-center pointer-events-none top-1/2 -translate-y-1/2">
+    <section
+      ref={sectionRef}
+      style={{ height: '100vh', background: 'var(--color-cream)', position: 'relative', overflow: 'hidden' }}
+    >
+      <div
+        ref={containerRef}
+        style={{ position: 'relative', width: '100%', height: '100%' }}
+      >
+        <div
+          className="flex h-full w-full flex-col items-center justify-center"
+          style={{ perspective: '1000px' }}
+        >
+          {/* Title — fades out as morph starts, fades BACK IN when scrolling up */}
+          <div
+            className="absolute z-0 flex flex-col items-center justify-center text-center pointer-events-none"
+            style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%' }}
+          >
             <motion.h2
-              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-              animate={
-                introPhase === 'circle' && morphValue < 0.5
-                  ? { opacity: 1 - morphValue * 2, y: 0, filter: 'blur(0px)' }
-                  : { opacity: 0, filter: 'blur(10px)' }
-              }
-              transition={{ duration: 1 }}
+              animate={{
+                opacity: titleVisible ? Math.max(0, 1 - morphValue * 2) : 0,
+                y:       titleVisible ? 0 : 20,
+                filter:  titleVisible ? 'blur(0px)' : 'blur(10px)',
+              }}
+              transition={{ duration: 0.6 }}
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontStyle: 'italic',
@@ -304,13 +293,8 @@ export function ServiciosMorphGallery() {
               El Repertorio
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={
-                introPhase === 'circle' && morphValue < 0.5
-                  ? { opacity: 0.5 - morphValue }
-                  : { opacity: 0 }
-              }
-              transition={{ duration: 1, delay: 0.2 }}
+              animate={{ opacity: titleVisible ? Math.max(0, 0.5 - morphValue) : 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               style={{
                 marginTop: '1rem',
                 fontFamily: 'var(--font-sans)',
@@ -324,7 +308,7 @@ export function ServiciosMorphGallery() {
             </motion.p>
           </div>
 
-          {/* Arc active text — fades in */}
+          {/* Arc-state label */}
           <motion.div
             style={{ opacity: contentOpacity, y: contentY }}
             className="absolute top-[8%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-4"
@@ -336,7 +320,7 @@ export function ServiciosMorphGallery() {
               textTransform: 'uppercase',
               color: 'rgba(196,163,90,0.6)',
             }}>
-              Pase el cursor para descubrir · Deslice para explorar
+              Pase el cursor para descubrir · Continúe desplazando
             </p>
           </motion.div>
 
@@ -350,33 +334,33 @@ export function ServiciosMorphGallery() {
               } else if (introPhase === 'line') {
                 const lineSpacing = 65
                 const lineTotalWidth = TOTAL_IMAGES * lineSpacing
-                const lineX = i * lineSpacing - lineTotalWidth / 2
-                target = { x: lineX, y: 0, rotation: 0, scale: 1, opacity: 1 }
+                target = { x: i * lineSpacing - lineTotalWidth / 2, y: 0, rotation: 0, scale: 1, opacity: 1 }
               } else {
-                const isMobile = containerSize.width < 768
+                const isMobile    = containerSize.width < 768
                 const minDimension = Math.min(containerSize.width, containerSize.height)
+
+                // Circle position
                 const circleRadius = Math.min(minDimension * 0.35, 350)
-                const circleAngle = (i / TOTAL_IMAGES) * 360
-                const circleRad = (circleAngle * Math.PI) / 180
-                const circlePos = {
+                const circleAngle  = (i / TOTAL_IMAGES) * 360
+                const circleRad   = (circleAngle * Math.PI) / 180
+                const circlePos   = {
                   x: Math.cos(circleRad) * circleRadius,
                   y: Math.sin(circleRad) * circleRadius,
                   rotation: circleAngle + 90,
                 }
 
-                const baseRadius = Math.min(containerSize.width, containerSize.height * 1.5)
-                const arcRadius  = baseRadius * (isMobile ? 1.4 : 1.1)
-                const arcApexY   = containerSize.height * (isMobile ? 0.35 : 0.25)
-                const arcCenterY = arcApexY + arcRadius
-                const spreadAngle = isMobile ? 100 : 130
-                const startAngle  = -90 - spreadAngle / 2
-                const step        = spreadAngle / (TOTAL_IMAGES - 1)
-
-                const scrollProgress   = Math.min(Math.max(rotateValue / 360, 0), 1)
-                const maxRotation      = spreadAngle * 0.8
-                const boundedRotation  = -scrollProgress * maxRotation
+                // Arc position
+                const baseRadius    = Math.min(containerSize.width, containerSize.height * 1.5)
+                const arcRadius     = baseRadius * (isMobile ? 1.4 : 1.1)
+                const arcApexY      = containerSize.height * (isMobile ? 0.35 : 0.25)
+                const arcCenterY    = arcApexY + arcRadius
+                const spreadAngle   = isMobile ? 100 : 130
+                const startAngle    = -90 - spreadAngle / 2
+                const step          = spreadAngle / (TOTAL_IMAGES - 1)
+                const scrollProgress  = Math.min(Math.max(rotateValue / 360, 0), 1)
+                const boundedRotation = -scrollProgress * spreadAngle * 0.8
                 const currentArcAngle = startAngle + i * step + boundedRotation
-                const arcRad = (currentArcAngle * Math.PI) / 180
+                const arcRad         = (currentArcAngle * Math.PI) / 180
                 const arcPos = {
                   x: Math.cos(arcRad) * arcRadius + parallaxValue,
                   y: Math.sin(arcRad) * arcRadius + arcCenterY,

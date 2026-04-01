@@ -5,8 +5,6 @@ import { ServiciosHero }         from './ServiciosHero'
 import { ServiciosMorphGallery } from './ServiciosMorphGallery'
 import { CredencialesSection }   from './CredencialesSection'
 import { TejidosMundoSection }   from './TejidosMundoSection'
-import { ServiciosCTA }          from './ServiciosCTA'
-
 export function ServiciosLayout() {
   const { scrollYProgress } = useScroll()
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
@@ -36,7 +34,6 @@ export function ServiciosLayout() {
       <ServiciosMorphGallery />
       <CredencialesSection />
       <TejidosMundoSection />
-      <ServiciosCTA />
     </div>
   )
 }

@@ -91,8 +91,8 @@ export function CredencialesSection() {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 'clamp(3rem, 6vw, 7rem)',
+        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+        gap: 'clamp(2.5rem, 5vw, 6rem)',
         alignItems: 'center',
         position: 'relative', zIndex: 1,
       }}>
@@ -278,7 +278,7 @@ export function CredencialesSection() {
               <div style={{ height: '1px', background: 'rgba(196,163,90,0.1)', marginBottom: '1.25rem' }} />
 
               {/* Mini stats */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr auto 1fr', alignItems: 'center', textAlign: 'center' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr)', alignItems: 'center', textAlign: 'center' }}>
                 <StatItem value={c.stat1_val} label={c.stat1_label} />
                 <div style={{ width: '1px', height: '2.5rem', background: 'rgba(196,163,90,0.12)' }} />
                 <StatItem value={c.stat2_val} label={c.stat2_label} />
