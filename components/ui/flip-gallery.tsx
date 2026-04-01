@@ -88,8 +88,7 @@ const buildCSS = (id: string, w: number, h: number) => `
     width: 100%;
     height: 50%;
     overflow: hidden;
-    background-size: ${w}px ${h}px;
-    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   #${id} > .mf-fg-top,
