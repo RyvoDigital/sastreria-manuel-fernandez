@@ -311,17 +311,17 @@ export function ServiciosMorphGallery() {
           {/* Arc-state label */}
           <motion.div
             style={{ opacity: contentOpacity, y: contentY }}
-            className="absolute top-[8%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-4"
+            className="absolute top-[22%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-4"
           >
             <p style={{
-              fontFamily: 'var(--font-serif)',
-              fontStyle: 'italic',
-              fontSize: 'clamp(1rem, 1.5vw, 1.3rem)',
-              fontWeight: 400,
-              color: 'var(--color-offwhite)',
-              marginBottom: '0.6rem',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.58rem',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: 'rgba(196,163,90,0.6)',
+              marginBottom: '0.75rem',
             }}>
-              El Repertorio
+              Pase el cursor para descubrir · Continúe desplazando
             </p>
             <div style={{
               width: '2rem', height: '1px',
@@ -330,13 +330,14 @@ export function ServiciosMorphGallery() {
               margin: '0 auto 0.75rem',
             }} />
             <p style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.58rem',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'rgba(196,163,90,0.6)',
+              fontFamily: 'var(--font-serif)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+              fontWeight: 400,
+              color: 'var(--color-navy)',
+              lineHeight: 1.1,
             }}>
-              Pase el cursor para descubrir · Continúe desplazando
+              El Corte como Lenguaje
             </p>
           </motion.div>
 
