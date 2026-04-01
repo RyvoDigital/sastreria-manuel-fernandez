@@ -1,0 +1,138 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useI18n } from '@/lib/i18n'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const CATS = [
+  { src: '/photos/wedding-morning-coat.jpg', height: '46vh', key: 'cat1' as const },
+  { src: '/photos/wedding-tuxedo.jpg',       height: '63vh', key: 'cat2' as const },
+  { src: '/photos/wedding-rome.jpg',         height: '46vh', key: 'cat3' as const },
+]
+
+export function BodasCategorias() {
+  const { t } = useI18n()
+  const c = t.bodas.categorias
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const ctx = gsap.context(() => {
+      gsap.from('.mf-bodas-cat-card', {
+        y: 60, opacity: 0, duration: 1, ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: { trigger: el, start: 'top 75%', toggleActions: 'play none none none' },
+      })
+    }, el)
+    return () => ctx.revert()
+  }, [])
+
+  const labels: Record<string, string> = { cat1: c.cat1, cat2: c.cat2, cat3: c.cat3 }
+  const descs: Record<string, string> = { cat1: c.cat1_desc, cat2: c.cat2_desc, cat3: c.cat3_desc }
+
+  return (
+    <section
+      ref={sectionRef}
+      style={{
+        background: '#EDE8E0',
+        padding: 'clamp(1rem, 2vh, 2rem) var(--container-padding) clamp(5rem, 10vh, 9rem)',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Label */}
+      <div style={{
+        maxWidth: 'var(--container-max)',
+        margin: '0 auto',
+        marginBottom: 'clamp(2.5rem, 5vh, 4rem)',
+        textAlign: 'center',
+      }}>
+        <p style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.55rem',
+          letterSpacing: '0.32em',
+          textTransform: 'uppercase',
+          color: 'rgba(196,163,90,0.65)',
+        }}>
+          {c.label}
+        </p>
+      </div>
+
+      {/* Photos row */}
+      <div style={{
+        maxWidth: 'var(--container-max)',
+        margin: '0 auto',
+        display: 'flex',
+        gap: 'clamp(1rem, 2vw, 1.5rem)',
+        alignItems: 'flex-end',
+      }}>
+        {CATS.map(({ src, height, key }) => (
+          <div
+            key={key}
+            className="mf-bodas-cat-card"
+            style={{
+              flex: key === 'cat2' ? '1.2' : '1',
+              height,
+              position: 'relative',
+              borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
+              overflow: 'hidden',
+              cursor: 'default',
+              transition: 'transform 0.4s ease, box-shadow 0.4s ease',
+              boxShadow: '0 20px 60px rgba(5,12,20,0.15)',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'translateY(-12px)'
+              el.style.boxShadow = '0 40px 80px rgba(5,12,20,0.25)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'translateY(0)'
+              el.style.boxShadow = '0 20px 60px rgba(5,12,20,0.15)'
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={src}
+              alt={labels[key]}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+            {/* Gradient overlay */}
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: '55%',
+              background: 'linear-gradient(to top, rgba(5,12,20,0.88) 0%, rgba(5,12,20,0.4) 50%, transparent 100%)',
+            }} />
+            {/* Text */}
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              padding: '1.5rem 1.25rem',
+            }}>
+              <p style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.5rem',
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                color: 'rgba(196,163,90,0.85)',
+                marginBottom: '0.4rem',
+              }}>
+                {labels[key]}
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-serif)',
+                fontStyle: 'italic',
+                fontSize: 'clamp(0.85rem, 1.2vw, 1.05rem)',
+                color: 'rgba(245,240,234,0.78)',
+                lineHeight: 1.4,
+              }}>
+                {descs[key]}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
