@@ -6,14 +6,14 @@ import { useI18n } from '@/lib/i18n'
 const NAV_COL1 = [
   { key: 'inicio' as const, href: '/' },
   { key: 'sastreria' as const, href: '/la-sastreria' },
-  { key: 'experiencia' as const, href: '/experiencia' },
   { key: 'servicios' as const, href: '/servicios' },
+  { key: 'bodas' as const, href: '/bodas-y-ceremonia' },
 ]
 
 const NAV_COL2 = [
-  { key: 'bodas' as const, href: '/bodas' },
-  { key: 'coleccion' as const, href: '/coleccion' },
-  { key: 'reservar' as const, href: '/reservar' },
+  { key: 'configurador' as const, href: '/configurador' },
+  { key: 'cursos' as const, href: '/cursos' },
+  { key: 'videollamada' as const, href: '/videollamada' },
   { key: 'contacto' as const, href: '/contacto' },
 ]
 
