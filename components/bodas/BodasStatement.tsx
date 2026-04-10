@@ -9,7 +9,7 @@ export function BodasStatement() {
 
   return (
     <section style={{
-      background: '#EDE8E0',
+      background: '#FFFFFF',
       padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
     }}>
       <div style={{
@@ -32,7 +32,7 @@ export function BodasStatement() {
             fontSize: '0.55rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color: 'rgba(196,163,90,0.7)',
+            color: 'rgba(201,168,76,0.75)',
             marginBottom: '1.5rem',
           }}>
             {c.label}
@@ -40,7 +40,7 @@ export function BodasStatement() {
           <div style={{
             width: '2.5rem',
             height: '1px',
-            background: 'var(--color-gold)',
+            background: '#C9A84C',
             opacity: 0.5,
           }} />
         </motion.div>
@@ -57,7 +57,7 @@ export function BodasStatement() {
             fontStyle: 'italic',
             fontSize: 'clamp(1.5rem, 2.5vw, 2.4rem)',
             fontWeight: 400,
-            color: 'var(--color-navy)',
+            color: '#0A1628',
             lineHeight: 1.3,
             marginBottom: '1.5rem',
           }}>
@@ -67,7 +67,7 @@ export function BodasStatement() {
             fontFamily: 'var(--font-sans)',
             fontSize: 'clamp(0.85rem, 1.1vw, 0.95rem)',
             lineHeight: 1.85,
-            color: 'rgba(5,12,20,0.55)',
+            color: 'rgba(10,22,40,0.65)',
             maxWidth: '52ch',
           }}>
             {c.body}

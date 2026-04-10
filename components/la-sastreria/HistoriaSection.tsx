@@ -72,7 +72,7 @@ export function HistoriaSection() {
     <section
       ref={sectionRef}
       style={{
-        background: 'var(--color-cream)',
+        background: '#FFFFFF',
         padding:    'clamp(5rem, 10vh, 9rem) var(--container-padding)',
         overflow:   'hidden',
       }}
@@ -97,7 +97,7 @@ export function HistoriaSection() {
             fontFamily:    'var(--font-serif)',
             fontSize:      'clamp(8rem, 18vw, 20rem)',
             fontWeight:     700,
-            color:         'var(--color-navy)',
+            color:         '#0A1628',
             opacity:        0.06,
             lineHeight:     1,
             pointerEvents: 'none',
@@ -114,7 +114,7 @@ export function HistoriaSection() {
             fontSize:      '0.65rem',
             letterSpacing: '0.28em',
             textTransform: 'uppercase',
-            color:         'var(--color-gold)',
+            color:         '#C9A84C',
             marginBottom:  '1.2rem',
             opacity:        0.85,
           }}>
@@ -125,7 +125,7 @@ export function HistoriaSection() {
           <div style={{
             position:   'relative', zIndex: 1,
             width:      '36px', height: '1px',
-            background: 'rgba(196,163,90,0.5)',
+            background: 'rgba(201,168,76,0.5)',
             marginBottom: '1.5rem',
           }} />
 
@@ -136,7 +136,7 @@ export function HistoriaSection() {
             fontSize:      'clamp(2.4rem, 4.5vw, 4.2rem)',
             fontWeight:     400,
             lineHeight:     1.1,
-            color:         'var(--color-navy)',
+            color:         '#0A1628',
             marginBottom:  'clamp(2rem, 4vh, 3rem)',
           }}>
             {t.la_sastreria.historia.title}
@@ -153,7 +153,7 @@ export function HistoriaSection() {
               fontFamily: 'var(--font-sans)',
               fontSize:   'clamp(0.88rem, 1.3vw, 1.02rem)',
               lineHeight:  1.88,
-              color:      '#2a2a2a',
+              color:      '#0A1628',
               marginBottom: '1.4rem',
               maxWidth:   '58ch',
             }}>
@@ -191,7 +191,7 @@ export function HistoriaSection() {
           {/* Subtle left-side gold gradient */}
           <div style={{
             position:      'absolute', inset: 0, pointerEvents: 'none',
-            background:    'linear-gradient(to right, rgba(237,232,224,0.3), transparent 30%)',
+            background:    'linear-gradient(to right, rgba(255,255,255,0.3), transparent 30%)',
           }} />
         </div>
       </div>

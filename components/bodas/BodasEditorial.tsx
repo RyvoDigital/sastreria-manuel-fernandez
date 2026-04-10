@@ -38,7 +38,7 @@ export function BodasEditorial() {
         ref={blockARef}
         style={{
           position: 'relative',
-          background: 'var(--color-navy)',
+          background: '#0A1628',
           minHeight: '80vh',
           overflow: 'hidden',
           display: 'flex',
@@ -60,7 +60,7 @@ export function BodasEditorial() {
             fontStyle: 'italic',
             fontSize: 'clamp(8rem, 16vw, 18rem)',
             fontWeight: 400,
-            color: 'var(--color-gold)',
+            color: '#C9A84C',
             opacity: 0.055,
             lineHeight: 0.9,
             display: 'block',
@@ -94,7 +94,7 @@ export function BodasEditorial() {
           <div style={{
             position: 'absolute', inset: 0,
             borderRadius: '0 1.5rem 1.5rem 0',
-            boxShadow: 'inset 0 0 0 1px rgba(196,163,90,0.15)',
+            boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.18)',
             pointerEvents: 'none',
           }} />
         </div>
@@ -117,14 +117,14 @@ export function BodasEditorial() {
             fontSize: '0.55rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color: 'rgba(196,163,90,0.65)',
+            color: 'rgba(201,168,76,0.7)',
             marginBottom: '1.2rem',
           }}>
             {c.label1}
           </p>
           <div style={{
             width: '2rem', height: '1px',
-            background: 'rgba(196,163,90,0.4)',
+            background: 'rgba(201,168,76,0.4)',
             marginBottom: '1.8rem',
           }} />
           <h2 style={{
@@ -132,7 +132,7 @@ export function BodasEditorial() {
             fontStyle: 'italic',
             fontSize: 'clamp(1.8rem, 2.8vw, 3rem)',
             fontWeight: 400,
-            color: 'var(--color-offwhite)',
+            color: '#FFFFFF',
             lineHeight: 1.2,
             marginBottom: '1.5rem',
           }}>
@@ -142,7 +142,7 @@ export function BodasEditorial() {
             fontFamily: 'var(--font-sans)',
             fontSize: 'clamp(0.84rem, 1.1vw, 0.94rem)',
             lineHeight: 1.9,
-            color: 'rgba(245,240,234,0.42)',
+            color: 'rgba(255,255,255,0.5)',
             maxWidth: '44ch',
           }}>
             {c.body1}
@@ -155,7 +155,7 @@ export function BodasEditorial() {
         ref={blockBRef}
         style={{
           position: 'relative',
-          background: '#EDE8E0',
+          background: '#FFFFFF',
           minHeight: '80vh',
           overflow: 'hidden',
           display: 'flex',
@@ -177,7 +177,7 @@ export function BodasEditorial() {
             fontStyle: 'italic',
             fontSize: 'clamp(8rem, 18vw, 20rem)',
             fontWeight: 400,
-            color: 'var(--color-navy)',
+            color: '#0A1628',
             opacity: 0.05,
             lineHeight: 0.9,
             display: 'block',
@@ -210,7 +210,7 @@ export function BodasEditorial() {
           <div style={{
             position: 'absolute', inset: 0,
             borderRadius: '1.5rem 0 0 1.5rem',
-            boxShadow: 'inset 0 0 0 1px rgba(5,12,20,0.08)',
+            boxShadow: 'inset 0 0 0 1px rgba(10,22,40,0.1)',
             pointerEvents: 'none',
           }} />
         </div>
@@ -232,14 +232,14 @@ export function BodasEditorial() {
             fontSize: '0.55rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color: 'rgba(196,163,90,0.8)',
+            color: '#C9A84C',
             marginBottom: '1.2rem',
           }}>
             {c.label2}
           </p>
           <div style={{
             width: '2rem', height: '1px',
-            background: 'rgba(196,163,90,0.5)',
+            background: 'rgba(201,168,76,0.5)',
             marginBottom: '1.8rem',
           }} />
           <h2 style={{
@@ -257,7 +257,7 @@ export function BodasEditorial() {
             fontFamily: 'var(--font-sans)',
             fontSize: 'clamp(0.84rem, 1.1vw, 0.94rem)',
             lineHeight: 1.9,
-            color: 'rgba(5,12,20,0.5)',
+            color: 'rgba(10,22,40,0.55)',
             maxWidth: '44ch',
           }}>
             {c.body2}

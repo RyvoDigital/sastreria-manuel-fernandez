@@ -26,7 +26,7 @@ export function SastreriaLayout() {
           top:             '76px',
           bottom:           0,
           width:           '1px',
-          background:      'linear-gradient(to bottom, transparent 0%, var(--color-gold) 5%, var(--color-gold) 95%, transparent 100%)',
+          background:      'linear-gradient(to bottom, transparent 0%, #C9A84C 5%, #C9A84C 95%, transparent 100%)',
           transformOrigin: 'top center',
           scaleY,
           zIndex:           10,

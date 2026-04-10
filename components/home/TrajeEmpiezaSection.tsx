@@ -74,8 +74,9 @@ export function TrajeEmpiezaSection() {
   return (
     <section
       ref={sectionRef}
+      data-section="traje"
       style={{
-        background: 'var(--color-offwhite)',
+        background: '#FFFFFF',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         minHeight: '90vh',
@@ -118,7 +119,7 @@ export function TrajeEmpiezaSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          background: 'var(--color-offwhite)',
+          background: '#FFFFFF',
         }}
       >
         {/* Label */}
@@ -150,7 +151,7 @@ export function TrajeEmpiezaSection() {
         {/* Title */}
         <h2
           className="reveal-item text-headline"
-          style={{ color: 'var(--color-black)', marginBottom: '2rem' }}
+          style={{ color: '#0A1628', marginBottom: '2rem' }}
         >
           {t.traje_empieza.title}
         </h2>
@@ -159,7 +160,7 @@ export function TrajeEmpiezaSection() {
         <p
           className="reveal-item text-body"
           style={{
-            color: 'rgba(8,8,8,0.6)',
+            color: 'rgba(10,22,40,0.7)',
             maxWidth: '480px',
             marginBottom: '3rem',
           }}
@@ -174,7 +175,7 @@ export function TrajeEmpiezaSection() {
             fontFamily: 'var(--font-serif)',
             fontSize: '6rem',
             lineHeight: 0.8,
-            color: 'rgba(196,163,90,0.12)',
+            color: 'rgba(201,168,76,0.15)',
             userSelect: 'none',
             fontStyle: 'italic',
           }}

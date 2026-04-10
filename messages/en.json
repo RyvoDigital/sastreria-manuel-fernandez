@@ -1,20 +1,21 @@
 {
   "nav": {
     "inicio": "Home",
-    "sastreria": "The Atelier",
-    "experiencia": "Bespoke Experience",
+    "sastreria": "Artisan Tailoring",
     "servicios": "Services",
     "bodas": "Weddings & Ceremony",
-    "coleccion": "Collection",
-    "reservar": "Book Appointment",
-    "contacto": "Contact"
+    "contacto": "Contact",
+    "configurador": "Configurator",
+    "cursos": "Online Courses",
+    "videollamada": "Video Call"
   },
   "hero": {
-    "tagline": "We don't make suits.",
-    "tagline2": "We build identity.",
-    "subtext": "A private atelier at the heart of Spanish craftsmanship.",
-    "cta_primary": "Book Appointment",
-    "cta_secondary": "Discover the experience"
+    "tagline": "Artisan tailoring since 1978",
+    "tagline2": "Everything handmade. No industrial patterns.",
+    "subtext": "Each garment built from scratch, no prior fittings.",
+    "cta_book": "Book Appointment",
+    "cta_call": "Call Us",
+    "cta_contact": "Contact"
   },
   "traje_empieza": {
     "label": "The process",
@@ -85,23 +86,23 @@
   },
   "la_sastreria": {
     "hero": {
-      "label": "The Atelier · Est. 1978",
+      "label": "Artisan Tailoring · Est. 1978",
       "headline_line1": "The Art of",
       "headline_line2": "Dressing Well",
-      "subline": "Four decades of craft in Madrid."
+      "subline": "Everything handmade. No industrial patterns. Each garment built from scratch."
     },
     "historia": {
       "label": "The Story",
       "title": "A Lifelong Vocation",
-      "p1": "In 1978, Manuel Fernández opened his first atelier in the heart of Madrid with a simple conviction: that well-made clothes change the way a man perceives himself.",
-      "p2": "He learned the craft from the great Spanish master tailors, absorbing not only the technique — the English cut, the hand-sewn canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment.",
-      "p3": "Four decades later, nothing has changed. The same respect for the cloth, the same patience with the pattern, the same honest conversation before a single measurement is taken."
+      "p1": "In 1978, Manuel Fernández opened his first artisan tailoring shop in the heart of Madrid with a simple conviction: that well-made clothes change the way a man perceives himself.",
+      "p2": "He learned the craft from the great Spanish master tailors, absorbing not only the technique — the English cut, the hand-sewn canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment, built from scratch without industrial patterns.",
+      "p3": "Years later, nothing has changed. The same respect for the cloth, the same patience with the pattern, the same honest conversation before a single measurement is taken. Each suit is unique, unrepeatable, handmade."
     },
     "maestro": {
       "label": "The Master",
       "quote": "A suit is not finished when the last stitch is sewn. It is finished when the person wearing it recognises in it a better version of themselves.",
       "attribution": "— Manuel Fernández, Master Tailor",
-      "bio": "With more than four decades dedicated to bespoke tailoring, Manuel Fernández has dressed executives, grooms and men at their most important moments. His Madrid atelier is, above all, a space for listening."
+      "bio": "With decades dedicated to artisan bespoke tailoring, Manuel Fernández has dressed executives, grooms and men at their most important moments. His tailoring shop in Madrid is, above all, a space for listening where each garment is built from scratch."
     },
     "oficio": {
       "label": "The Craft",
@@ -114,9 +115,9 @@
     "cifras": {
       "label": "By the Numbers",
       "n1": "1978", "l1": "Founded",
-      "n2": "45",   "l2": "Years of Craft",
+      "n2": "∞",   "l2": "Unique Suits",
       "n3": "Madrid", "l3": "Our City",
-      "n4": "Bespoke", "l4": "Every Suit"
+      "n4": "By Hand", "l4": "Every Piece"
     },
     "espacio": {
       "label": "The Space",
@@ -164,10 +165,10 @@
       "btn_secondary": "The Atelier"
     },
     "tejidos": {
-      "label": "The Cloths",
-      "title": "From the Finest Mills in the World",
-      "p1": "We work exclusively with Europe's great cloth houses: Holland & Sherry of Huddersfield, Vitale Barberis Canonico of Biella, Dormeuil of Lyon.",
-      "p2": "Every cloth is selected in person. Because the character of a suit begins before the first cut."
+      "label": "Our Clients",
+      "title": "Where We Work with Clients",
+      "p1": "From Madrid, we dress gentlemen worldwide. Miami, Oporto, Lisbon, Paris, London, Rome, Dubai and more. Every suit travels handmade.",
+      "p2": "Artisan tailoring knows no borders. Every client, wherever they are, receives the same dedication and attention to detail."
     },
     "cta": {
       "label": "The Next Step",
@@ -231,38 +232,43 @@
       "title": "The Suit for the Most Important Day"
     },
     "statement": {
-      "label": "Weddings & Ceremony · 2025",
+      "label": "Weddings & Ceremony",
       "headline": "The day that changes everything deserves the suit that expresses everything.",
-      "body": "For more than four decades we have dressed the protagonists of the most important stories of their lives. Every wedding suit is unique, unrepeatable, built with the same rigour with which a vow is made."
+      "body": "Every wedding suit is unique, unrepeatable, handmade from scratch without industrial patterns. One appointment, one fitting: the client leaves with everything ready, no stress, no loose ends."
     },
     "categorias": {
       "label": "Ceremony Styles",
-      "cat1": "Morning Coat",    "cat1_desc": "The ultimate expression of nuptial elegance.",
-      "cat2": "Smoking & Tuxedo","cat2_desc": "Impeccable for the ceremony and the evening.",
-      "cat3": "Dark Suit",       "cat3_desc": "Versatile, elegant, always correct."
+      "cat1": "Morning Coat",    "cat1_desc": "The ultimate expression of morning wedding elegance.",
+      "cat2": "Tuxedo","cat2_desc": "Impeccable for the ceremony and evening reception.",
+      "cat3": "Tailcoat",       "cat3_desc": "The most formal elegance for unique occasions."
     },
-    "editorial": {
-      "label1": "The Promise", "title1": "Every wedding is a story that begins in the atelier.",
-      "body1": "When a client visits us for their wedding suit, they are not coming to choose a fabric. They are coming to build the image they will remember for the rest of their life.",
-      "label2": "The Detail",  "title2": "A wedding suit is remembered forty years later.",
-      "body2": "The mother-of-pearl buttons, the embroidered lining, the lapel that defines character. Every decision is permanent. That is why we make them together, without haste."
+    "formal_wear": {
+      "label": "Formal Wear",
+      "title": "From the first appointment",
+      "items": ["Bespoke suit", "Morning coat", "Tailcoat", "Tuxedo"]
+    },
+    "accesorios": {
+      "label": "Accessories",
+      "title": "Everything included",
+      "items": ["Bespoke ties", "Personalised pocket squares", "Shirts", "Cummerbunds", "Bow ties", "Shoes", "Cufflinks", "Socks"]
     },
     "proceso": {
       "label": "The Wedding Process",
-      "title": "From the first coffee to the final fitting.",
-      "step1_num": "01", "step1_title": "The First Meeting",
-      "step1_body": "We talk about the day, the venue, the style. No catalogues, no pressure.",
-      "step2_num": "02", "step2_title": "Choosing the Cloth",
-      "step2_body": "Exclusive wools, silks and mohairs. Only the best for the best day.",
-      "step3_num": "03", "step3_title": "The Fittings",
-      "step3_body": "Multiple fitting sessions to guarantee the perfect fit well before the big day.",
-      "step4_num": "04", "step4_title": "The Result",
-      "step4_body": "Delivered with time to spare so it is truly yours before you wear it."
+      "title": "From the first appointment",
+      "step1_num": "01", "step1_title": "First Appointment",
+      "step1_body": "We talk about the day, the venue, the style. No catalogues, no pressure. We understand who you are and what you need.",
+      "step2_num": "02", "step2_title": "Fabric Selection",
+      "step2_body": "Exclusive wools, silks and mohairs. Only the best for the best day. Every fibre hand-selected.",
+      "step3_num": "03", "step3_title": "The Fitting",
+      "step3_body": "A single fitting session. We build the suit to your exact measurements, with no need for multiple adjustments.",
+      "step4_num": "04", "step4_title": "Everything Ready",
+      "step4_body": "The client leaves with everything prepared: suit, shirt, tie, shoes and accessories. No stress, no loose ends."
     },
-    "carousel": { "label": "The Nuptial Details" },
+    "key_message": "The client leaves with everything ready — no stress, no loose ends.",
+    "carousel": { "label": "Wedding Details" },
     "cta": {
       "label": "The Next Step",
-      "headline": "The most important day of your life deserves the finest suit.",
+      "headline": "The most important day of your life deserves a unique suit.",
       "btn_primary": "Book Appointment",
       "btn_secondary": "Meet the Atelier"
     }

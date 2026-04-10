@@ -69,7 +69,7 @@ export function SastreriaHero() {
         width:      '100%',
         height:     '100vh',
         overflow:   'hidden',
-        background: 'var(--color-navy)',
+        background: '#0A1628',
       }}>
         {/* Photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -78,7 +78,7 @@ export function SastreriaHero() {
         {/* Gradient overlay */}
         <div style={{
           position:      'absolute', inset: 0, pointerEvents: 'none',
-          background:    'linear-gradient(to bottom, rgba(5,12,20,0.18) 0%, rgba(5,12,20,0.3) 40%, rgba(5,12,20,0.82) 100%)',
+          background:    'linear-gradient(to bottom, rgba(10,22,40,0.18) 0%, rgba(10,22,40,0.3) 40%, rgba(10,22,40,0.85) 100%)',
         }} />
 
         {/* Content — anchored bottom-left */}
@@ -97,7 +97,7 @@ export function SastreriaHero() {
             fontSize:      '0.72rem',
             letterSpacing: '0.28em',
             textTransform: 'uppercase',
-            color:         'var(--color-gold)',
+            color:         '#C9A84C',
             marginBottom:  '1.5rem',
             opacity:        0.85,
           }}>
@@ -114,7 +114,7 @@ export function SastreriaHero() {
                   fontFamily: 'var(--font-serif)',
                   fontSize:   'clamp(4.5rem, 11vw, 10.5rem)',
                   fontWeight:  400,
-                  color:      'var(--color-offwhite)',
+                  color:      '#FFFFFF',
                   marginRight: '0.25em',
                 }}>
                   {word}
@@ -130,7 +130,7 @@ export function SastreriaHero() {
                   fontSize:   'clamp(4.5rem, 11vw, 10.5rem)',
                   fontWeight:  400,
                   fontStyle:  'italic',
-                  color:      'var(--color-gold)',
+                  color:      '#C9A84C',
                   marginRight: '0.25em',
                 }}>
                   {word}
@@ -144,7 +144,7 @@ export function SastreriaHero() {
             fontFamily:    'var(--font-sans)',
             fontSize:      'clamp(0.82rem, 1.4vw, 0.95rem)',
             letterSpacing: '0.06em',
-            color:         'rgba(245,240,234,0.55)',
+            color:         'rgba(255,255,255,0.6)',
             maxWidth:      '420px',
           }}>
             {t.la_sastreria.hero.subline}
@@ -167,13 +167,13 @@ export function SastreriaHero() {
             fontSize:      '0.48rem',
             letterSpacing: '0.28em',
             textTransform: 'uppercase',
-            color:         'rgba(196,163,90,0.45)',
+            color:         'rgba(201,168,76,0.5)',
           }}>
             Scroll
           </div>
           <div style={{
             width: '1px', height: '40px',
-            background: 'linear-gradient(to bottom, var(--color-gold), transparent)',
+            background: 'linear-gradient(to bottom, #C9A84C, transparent)',
             opacity: 0.4,
           }} />
         </div>

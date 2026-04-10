@@ -37,7 +37,7 @@ const CenterImage = () => {
     >
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(to bottom, rgba(5,12,20,0.3) 0%, rgba(5,12,20,0.1) 50%, rgba(5,12,20,0.5) 100%)',
+        background: 'linear-gradient(to bottom, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.1) 50%, rgba(10,22,40,0.5) 100%)',
       }} />
       <div style={{
         position: 'absolute', top: '50%', left: '50%',
@@ -49,7 +49,7 @@ const CenterImage = () => {
           fontSize: '0.55rem',
           letterSpacing: '0.4em',
           textTransform: 'uppercase',
-          color: 'rgba(196,163,90,0.7)',
+          color: 'rgba(201,168,76,0.8)',
           marginBottom: '1rem',
         }}>
           Sastrería Manuel Fernández
@@ -59,7 +59,7 @@ const CenterImage = () => {
           fontStyle: 'italic',
           fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
           fontWeight: 400,
-          color: 'rgba(245,240,234,0.92)',
+          color: '#FFFFFF',
           lineHeight: 1.1,
         }}>
           El Repertorio
@@ -156,12 +156,12 @@ const ServiceItem = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderBottom: '1px solid rgba(196,163,90,0.12)',
+        borderBottom: '1px solid rgba(201,168,76,0.15)',
         padding: '1.4rem 0.75rem',
         gap: '1rem',
         cursor: 'default',
         transition: 'background 0.3s ease',
-        background: hovered ? 'rgba(196,163,90,0.04)' : 'transparent',
+        background: hovered ? 'rgba(201,168,76,0.05)' : 'transparent',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem' }}>
@@ -169,7 +169,7 @@ const ServiceItem = ({
           fontFamily: 'var(--font-sans)',
           fontSize: '0.55rem',
           letterSpacing: '0.18em',
-          color: hovered ? 'rgba(196,163,90,0.8)' : 'rgba(196,163,90,0.45)',
+          color: hovered ? '#C9A84C' : 'rgba(201,168,76,0.5)',
           transition: 'color 0.3s ease',
           minWidth: '1.6rem',
         }}>{num}</span>
@@ -178,7 +178,7 @@ const ServiceItem = ({
           fontStyle: 'italic',
           fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
           fontWeight: 400,
-          color: hovered ? 'var(--color-gold-light)' : 'var(--color-offwhite)',
+          color: hovered ? '#E8D5A3' : '#FFFFFF',
           letterSpacing: '0.02em',
           transition: 'color 0.3s ease, transform 0.3s ease',
           transform: hovered ? 'translateX(6px)' : 'translateX(0)',
@@ -190,7 +190,7 @@ const ServiceItem = ({
         {/* Expanding gold rule on hover */}
         <div style={{
           height: '1px',
-          background: 'linear-gradient(to right, rgba(196,163,90,0.6), transparent)',
+          background: 'linear-gradient(to right, #C9A84C, transparent)',
           transition: 'width 0.4s ease',
           width: hovered ? '4rem' : '0',
           overflow: 'hidden',
@@ -200,7 +200,7 @@ const ServiceItem = ({
           fontSize: '0.58rem',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
-          color: hovered ? 'rgba(196,163,90,0.85)' : 'rgba(196,163,90,0.5)',
+          color: hovered ? '#C9A84C' : 'rgba(201,168,76,0.6)',
           whiteSpace: 'nowrap',
           transition: 'color 0.3s ease',
         }}>{duration}</span>
@@ -224,7 +224,7 @@ const ServiciosList = () => {
         viewport={{ once: true }}
         style={{
           height: '1px',
-          background: 'linear-gradient(to right, var(--color-gold), rgba(196,163,90,0.15))',
+          background: 'linear-gradient(to right, #C9A84C, rgba(201,168,76,0.2))',
           marginBottom: '2rem',
           opacity: 0.45,
         }}
@@ -241,7 +241,7 @@ const ServiciosList = () => {
           fontSize: '0.6rem',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
-          color: 'rgba(196,163,90,0.55)',
+          color: 'rgba(201,168,76,0.6)',
           marginBottom: '1rem',
         }}
       >
@@ -259,7 +259,7 @@ const ServiciosList = () => {
           fontStyle: 'italic',
           fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
           fontWeight: 400,
-          color: 'var(--color-offwhite)',
+          color: '#FFFFFF',
           lineHeight: 1.15,
           marginBottom: 'clamp(2rem, 4vh, 3.5rem)',
         }}
@@ -281,13 +281,13 @@ const ServiciosList = () => {
 
 export function ServiciosHero() {
   return (
-    <div style={{ background: 'var(--color-navy)' }}>
+    <div style={{ background: '#0A1628' }}>
       <div style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)`, position: 'relative', width: '100%' }}>
         <CenterImage />
         <ParallaxImages />
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: '24rem',
-          background: 'linear-gradient(to bottom, rgba(5,12,20,0) 0%, #050C14 100%)',
+          background: 'linear-gradient(to bottom, rgba(10,22,40,0) 0%, #0A1628 100%)',
         }} />
       </div>
       <ServiciosList />

@@ -57,7 +57,7 @@ export function MaestroSection() {
     <section
       ref={sectionRef}
       style={{
-        background: 'var(--color-navy)',
+        background: '#0A1628',
         overflow:   'hidden',
         display:    'grid',
         gridTemplateColumns: '45fr 55fr',
@@ -87,7 +87,7 @@ export function MaestroSection() {
         {/* Right bleed gradient */}
         <div style={{
           position:      'absolute', inset: 0, pointerEvents: 'none',
-          background:    'linear-gradient(to right, transparent 60%, var(--color-navy) 100%)',
+          background:    'linear-gradient(to right, transparent 60%, #0A1628 100%)',
         }} />
       </div>
 
@@ -105,7 +105,7 @@ export function MaestroSection() {
           fontSize:      '0.6rem',
           letterSpacing: '0.3em',
           textTransform: 'uppercase',
-          color:         'rgba(196,163,90,0.55)',
+          color:         'rgba(201,168,76,0.6)',
           marginBottom:  '2.5rem',
         }}>
           {t.la_sastreria.maestro.label}
@@ -116,7 +116,7 @@ export function MaestroSection() {
           fontFamily:   'var(--font-serif)',
           fontSize:     '5.5rem',
           lineHeight:    0,
-          color:        'var(--color-gold)',
+          color:        '#C9A84C',
           opacity:       0.2,
           marginBottom: '1.5rem',
           fontStyle:    'italic',
@@ -132,7 +132,7 @@ export function MaestroSection() {
           fontSize:     'clamp(1.6rem, 3.2vw, 3.5rem)',
           fontWeight:    400,
           lineHeight:    1.3,
-          color:        'var(--color-gold-light)',
+          color:        '#E8D5A3',
           marginBottom: '2rem',
           margin:        '0 0 2rem 0',
         }}>
@@ -142,7 +142,7 @@ export function MaestroSection() {
         {/* Gold rule */}
         <div style={{
           width: '36px', height: '1px',
-          background: 'rgba(196,163,90,0.4)',
+          background: 'rgba(201,168,76,0.4)',
           marginBottom: '1.5rem',
         }} />
 
@@ -152,7 +152,7 @@ export function MaestroSection() {
           fontSize:      '0.72rem',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
-          color:         'var(--color-gold)',
+          color:         '#C9A84C',
           marginBottom:  '2.5rem',
           opacity:        0.8,
         }}>
@@ -164,7 +164,7 @@ export function MaestroSection() {
           fontFamily: 'var(--font-sans)',
           fontSize:   'clamp(0.85rem, 1.3vw, 1rem)',
           lineHeight:  1.85,
-          color:      'rgba(245,240,234,0.62)',
+          color:      'rgba(255,255,255,0.65)',
           maxWidth:   '45ch',
           margin:      0,
         }}>

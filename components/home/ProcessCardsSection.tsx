@@ -44,7 +44,7 @@ function ProcessCard({ num, title, body, image, index }: CardProps) {
         <div style={{
           position:   'absolute',
           inset:       0,
-          background: 'rgba(5,12,20,0.62)',
+          background: 'rgba(10,22,40,0.7)',
         }} />
 
         {/* Ghost numeral watermark */}
@@ -57,7 +57,7 @@ function ProcessCard({ num, title, body, image, index }: CardProps) {
           lineHeight:     1,
           fontWeight:     400,
           letterSpacing: '-0.04em',
-          color:         'rgba(196,163,90,0.04)',
+          color:         'rgba(201,168,76,0.06)',
           userSelect:    'none',
           pointerEvents: 'none',
           zIndex:         1,
@@ -106,7 +106,7 @@ function ProcessCard({ num, title, body, image, index }: CardProps) {
             fontWeight:     400,
             lineHeight:     1.05,
             letterSpacing: '-0.01em',
-            color:          'var(--color-offwhite)',
+            color:          '#FFFFFF',
             fontStyle:     'italic',
             marginBottom:  '2rem',
           }}>
@@ -119,7 +119,7 @@ function ProcessCard({ num, title, body, image, index }: CardProps) {
             fontSize:    'clamp(0.8rem, 1vw, 0.95rem)',
             fontWeight:   300,
             lineHeight:   1.9,
-            color:        'rgba(245,240,234,0.45)',
+            color:        'rgba(255,255,255,0.6)',
             maxWidth:    '420px',
           }}>
             {body}
@@ -133,7 +133,7 @@ function ProcessCard({ num, title, body, image, index }: CardProps) {
           left:        0,
           right:       0,
           height:     '1px',
-          background: 'linear-gradient(to right, transparent, rgba(196,163,90,0.15), transparent)',
+          background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent)',
           zIndex:      2,
         }} />
 
@@ -145,7 +145,7 @@ function ProcessCard({ num, title, body, image, index }: CardProps) {
           fontFamily:    'var(--font-sans)',
           fontSize:      '0.52rem',
           letterSpacing: '0.25em',
-          color:         'rgba(196,163,90,0.3)',
+          color:         'rgba(201,168,76,0.4)',
           zIndex:         3,
           textTransform: 'uppercase',
         }}>
@@ -165,7 +165,7 @@ export function ProcessCardsSection() {
   ]
 
   return (
-    <section style={{ background: '#050C14' }}>
+    <section style={{ background: '#0A1628' }}>
       {steps.map((step, i) => (
         <ProcessCard
           key={i}

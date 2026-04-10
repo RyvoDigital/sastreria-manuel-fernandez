@@ -3,19 +3,27 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
+import { Phone, MapPin } from 'lucide-react'
 
 const NAV_ITEMS = [
-  { key: 'inicio'      as const, href: '/' },
-  { key: 'sastreria'   as const, href: '/la-sastreria' },
-  { key: 'experiencia' as const, href: '/experiencia' },
-  { key: 'servicios'   as const, href: '/servicios' },
-  { key: 'bodas'       as const, href: '/bodas-y-ceremonia' },
-  { key: 'coleccion'   as const, href: '/coleccion' },
-  { key: 'contacto'    as const, href: '/contacto' },
+  { key: 'inicio'        as const, href: '/' },
+  { key: 'sastreria'     as const, href: '/la-sastreria' },
+  { key: 'bodas'         as const, href: '/bodas-y-ceremonia' },
+  { key: 'servicios'     as const, href: '/servicios' },
+  { key: 'configurador'  as const, href: '/configurador' },
+  { key: 'cursos'        as const, href: '/cursos' },
+  { key: 'videollamada'  as const, href: '/videollamada' },
+  { key: 'contacto'      as const, href: '/contacto' },
 ]
+
+// Persistent contact buttons data
+const CONTACT_BUTTONS = {
+  call: { label: 'Llámanos', href: 'tel:+34000000000', icon: Phone },
+  location: { label: 'Dónde Estamos', href: '/contacto', icon: MapPin },
+}
 
 export function Navigation() {
   const { t, locale, toggleLocale } = useI18n()
@@ -94,26 +102,15 @@ export function Navigation() {
 
         {/* ── LOGO ─────────────────────────────────────────── */}
         <Link href="/" style={{ textDecoration: 'none', flexShrink: 0, lineHeight: 1 }}>
-          <div style={{
-            fontFamily:    'var(--font-serif)',
-            fontSize:      'clamp(0.9rem, 1.5vw, 1.05rem)',
-            fontWeight:     400,
-            letterSpacing: '0.07em',
-            color:          'var(--color-offwhite)',
-          }}>
-            Manuel Fernández
-          </div>
-          <div style={{
-            fontFamily:    'var(--font-sans)',
-            fontSize:      '0.48rem',
-            letterSpacing: '0.38em',
-            textTransform: 'uppercase',
-            color:          'var(--color-gold)',
-            marginTop:     '4px',
-            opacity:        0.65,
-          }}>
-            Sastrería
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="Sastrería Manuel Fernández"
+            style={{
+              height: 'clamp(40px, 5vh, 56px)',
+              width: 'auto',
+              objectFit: 'contain',
+            }}
+          />
         </Link>
 
         {/* ── DESKTOP LINKS ────────────────────────────────── */}
@@ -126,7 +123,7 @@ export function Navigation() {
             listStyle:   'none',
             margin:       0,
             padding:      0,
-            gap:         'clamp(1.4rem, 2.2vw, 2.8rem)',
+            gap:         'clamp(1.8rem, 2.8vw, 3.5rem)',
             alignItems:  'center',
           }}
           className="mf-desktop-nav"
@@ -148,15 +145,15 @@ export function Navigation() {
                   style={{
                     display:       'block',
                     fontFamily:    'var(--font-sans)',
-                    fontSize:      '0.59rem',
-                    fontWeight:     300,
-                    letterSpacing: '0.22em',
+                    fontSize:      '0.72rem',
+                    fontWeight:     400,
+                    letterSpacing: '0.18em',
                     textTransform: 'uppercase',
                     color:          lit
-                      ? 'var(--color-offwhite)'
-                      : 'rgba(245,240,234,0.38)',
+                      ? 'var(--color-white)'
+                      : 'rgba(255,255,255,0.55)',
                     textDecoration: 'none',
-                    paddingBottom:  '7px',
+                    paddingBottom:  '8px',
                     transition:    'color .3s ease',
                   }}
                 >
@@ -172,7 +169,7 @@ export function Navigation() {
                       bottom:      0,
                       left:        0,
                       right:       0,
-                      height:     '1px',
+                      height:     '2px',
                       background:  'var(--color-gold)',
                     }}
                     transition={{
@@ -188,38 +185,78 @@ export function Navigation() {
         </ul>
 
         {/* ── RIGHT CLUSTER ────────────────────────────────── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
 
-          {/* Reservar Cita — desktop only */}
-          <Link
-            href="/reservar"
-            className="mf-reservar"
+          {/* CALL US BUTTON — Desktop only, persistent on all pages */}
+          <a
+            href={CONTACT_BUTTONS.call.href}
+            className="mf-contact-btn"
             style={{
               display:        'none',
+              alignItems:     'center',
+              gap:            '0.5rem',
               fontFamily:     'var(--font-sans)',
-              fontSize:       '0.57rem',
-              fontWeight:      400,
-              letterSpacing:  '0.2em',
+              fontSize:       '0.65rem',
+              fontWeight:      500,
+              letterSpacing:  '0.12em',
               textTransform:  'uppercase',
               textDecoration:  'none',
-              padding:        '0.6rem 1.6rem',
-              color:           '#080808',
-              background:     'var(--color-gold)',
-              transition:     'background .25s, transform .2s',
+              padding:        '0.55rem 1.1rem',
+              color:           'var(--color-gold)',
+              border:          '1px solid var(--color-gold)',
+              background:      'transparent',
+              transition:     'all .25s ease',
               whiteSpace:     'nowrap',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--color-gold-light)'
-              el.style.transform  = 'translateY(-1px)'
+              el.style.background = 'var(--color-gold)'
+              el.style.color = 'var(--color-black)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--color-gold)'
-              el.style.transform  = 'translateY(0)'
+              el.style.background = 'transparent'
+              el.style.color = 'var(--color-gold)'
             }}
           >
-            {t.nav.reservar}
+            <Phone size={14} strokeWidth={1.5} />
+            {CONTACT_BUTTONS.call.label}
+          </a>
+
+          {/* WHERE WE ARE BUTTON — Desktop only, persistent on all pages */}
+          <Link
+            href={CONTACT_BUTTONS.location.href}
+            className="mf-contact-btn"
+            style={{
+              display:        'none',
+              alignItems:     'center',
+              gap:            '0.5rem',
+              fontFamily:     'var(--font-sans)',
+              fontSize:       '0.65rem',
+              fontWeight:      500,
+              letterSpacing:  '0.12em',
+              textTransform:  'uppercase',
+              textDecoration:  'none',
+              padding:        '0.55rem 1.1rem',
+              color:           'var(--color-white)',
+              border:          '1px solid rgba(255,255,255,0.3)',
+              background:      'transparent',
+              transition:     'all .25s ease',
+              whiteSpace:     'nowrap',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.borderColor = 'var(--color-white)'
+              el.style.background = 'rgba(255,255,255,0.1)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.borderColor = 'rgba(255,255,255,0.3)'
+              el.style.background = 'transparent'
+            }}
+          >
+            <MapPin size={14} strokeWidth={1.5} />
+            {CONTACT_BUTTONS.location.label}
           </Link>
 
           {/* Language toggle */}
@@ -231,10 +268,10 @@ export function Navigation() {
               border:        'none',
               padding:       '2px 0',
               fontFamily:    'var(--font-sans)',
-              fontSize:      '0.55rem',
+              fontSize:      '0.6rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color:          'rgba(196,163,90,0.45)',
+              color:          'rgba(201,168,76,0.5)',
               cursor:         'pointer',
               transition:    'color .25s',
               borderBottom:  '1px solid transparent',
@@ -242,11 +279,11 @@ export function Navigation() {
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
               el.style.color            = 'var(--color-gold)'
-              el.style.borderBottomColor = 'rgba(196,163,90,0.35)'
+              el.style.borderBottomColor = 'rgba(201,168,76,0.35)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.color            = 'rgba(196,163,90,0.45)'
+              el.style.color            = 'rgba(201,168,76,0.5)'
               el.style.borderBottomColor = 'transparent'
             }}
           >
@@ -269,7 +306,7 @@ export function Navigation() {
               gap:           '5px',
             }}
           >
-            <span style={{ display: 'block', width: '22px', height: '1px', background: 'rgba(245,240,234,0.65)' }} />
+            <span style={{ display: 'block', width: '22px', height: '1px', background: 'rgba(255,255,255,0.65)' }} />
             <span style={{ display: 'block', width: '14px', height: '1px', background: 'var(--color-gold)' }} />
           </button>
 
@@ -280,8 +317,11 @@ export function Navigation() {
       <style>{`
         @media (min-width: 1024px) {
           .mf-desktop-nav { display: flex !important; }
-          .mf-reservar    { display: inline-flex !important; }
+          .mf-contact-btn { display: inline-flex !important; }
           .mf-hamburger   { display: none !important; }
+        }
+        @media (max-width: 1200px) {
+          .mf-contact-btn span { display: none !important; }
         }
       `}</style>
 
@@ -293,7 +333,7 @@ export function Navigation() {
           position:       'fixed',
           inset:           0,
           zIndex:          990,
-          background:     '#050C14',
+          background:     '#0A1628',
           flexDirection:  'column',
           alignItems:     'center',
           justifyContent: 'center',
@@ -321,15 +361,19 @@ export function Navigation() {
         {/* logo */}
         <div style={{
           position:   'absolute',
-          top:        '1.5rem',
+          top:        '1.2rem',
           left:       'var(--container-padding)',
-          fontFamily: 'var(--font-serif)',
-          fontSize:    '0.95rem',
-          letterSpacing: '0.06em',
-          color:       'var(--color-offwhite)',
-          opacity:      0.6,
         }}>
-          Manuel Fernández
+          <img 
+            src="/logo.png" 
+            alt="Sastrería Manuel Fernández"
+            style={{
+              height: '40px',
+              width: 'auto',
+              objectFit: 'contain',
+              opacity: 0.9,
+            }}
+          />
         </div>
 
         {/* decorative line */}
@@ -342,7 +386,7 @@ export function Navigation() {
 
         {/* links */}
         <ul style={{ listStyle: 'none', textAlign: 'center', padding: 0, margin: 0 }}>
-          {[...NAV_ITEMS, { key: 'reservar' as const, href: '/reservar' }].map(({ key, href }, i) => (
+          {NAV_ITEMS.map(({ key, href }, i) => (
             <li
               key={key}
               ref={el => { if (el) mobileItemRefs.current[i] = el as HTMLLIElement }}
@@ -353,13 +397,13 @@ export function Navigation() {
                 onClick={() => setMenuOpen(false)}
                 style={{
                   fontFamily:    'var(--font-sans)',
-                  fontSize:      'clamp(0.7rem, 2.8vw, 0.85rem)',
-                  fontWeight:     300,
-                  letterSpacing: '0.3em',
+                  fontSize:      'clamp(0.85rem, 3vw, 1rem)',
+                  fontWeight:     400,
+                  letterSpacing: '0.25em',
                   textTransform: 'uppercase',
                   color:          isActive(href)
                     ? 'var(--color-gold)'
-                    : 'rgba(245,240,234,0.55)',
+                    : 'rgba(255,255,255,0.7)',
                   textDecoration: 'none',
                   display:       'block',
                   transition:    'color .2s',
@@ -370,6 +414,56 @@ export function Navigation() {
             </li>
           ))}
         </ul>
+
+        {/* Mobile contact buttons */}
+        <div style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '1rem', 
+          marginTop: '2rem',
+          alignItems: 'center' 
+        }}>
+          <a
+            href={CONTACT_BUTTONS.call.href}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: 'var(--color-gold)',
+              textDecoration: 'none',
+              padding: '0.75rem 1.5rem',
+              border: '1px solid var(--color-gold)',
+            }}
+          >
+            <Phone size={16} />
+            {CONTACT_BUTTONS.call.label}
+          </a>
+          <Link
+            href={CONTACT_BUTTONS.location.href}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: 'var(--color-white)',
+              textDecoration: 'none',
+              padding: '0.75rem 1.5rem',
+              border: '1px solid rgba(255,255,255,0.3)',
+            }}
+          >
+            <MapPin size={16} />
+            {CONTACT_BUTTONS.location.label}
+          </Link>
+        </div>
 
         {/* bottom accent */}
         <div style={{
@@ -384,13 +478,14 @@ export function Navigation() {
           onClick={toggleLocale}
           style={{
             background: 'none',
-            border:     '1px solid rgba(196,163,90,0.18)',
-            color:       'rgba(196,163,90,0.5)',
+            border:     '1px solid rgba(201,168,76,0.25)',
+            color:       'rgba(201,168,76,0.6)',
             fontFamily: 'var(--font-sans)',
-            fontSize:   '0.55rem',
+            fontSize:   '0.6rem',
             letterSpacing: '0.22em',
-            padding:    '0.45rem 1rem',
+            padding:    '0.5rem 1.25rem',
             cursor:      'pointer',
+            marginTop:   '1rem',
           }}
         >
           {locale === 'es' ? 'EN' : 'ES'}

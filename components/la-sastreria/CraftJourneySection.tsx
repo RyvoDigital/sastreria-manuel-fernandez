@@ -55,10 +55,10 @@ export function CraftJourneySection() {
       }
       fontFamily="var(--font-serif), 'Cormorant Garamond', Georgia, serif"
       colors={{
-        text:    'rgba(245,240,234,0.92)',
-        overlay: 'rgba(5,12,20,0.5)',
-        pageBg:  '#050C14',
-        stageBg: '#050C14',
+        text:    'rgba(255,255,255,0.95)',
+        overlay: 'rgba(10,22,40,0.55)',
+        pageBg:  '#0A1628',
+        stageBg: '#0A1628',
       }}
       showProgress
       durations={{ change: 0.8, snap: 900 }}

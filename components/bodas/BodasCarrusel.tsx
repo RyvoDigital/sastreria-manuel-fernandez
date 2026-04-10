@@ -28,10 +28,10 @@ export function BodasCarrusel() {
 
   return (
     <section style={{
-      background: 'var(--color-navy)',
+      background: '#0A1628',
       padding: 'clamp(5rem, 10vh, 9rem) 0',
       overflow: 'hidden',
-      borderTop: '1px solid rgba(196,163,90,0.08)',
+      borderTop: '1px solid rgba(201,168,76,0.1)',
     }}>
       {/* Header */}
       <div style={{
@@ -45,7 +45,7 @@ export function BodasCarrusel() {
           fontSize: '0.55rem',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
-          color: 'rgba(196,163,90,0.55)',
+          color: 'rgba(201,168,76,0.6)',
           marginBottom: '0.8rem',
         }}>
           {c.label}
@@ -53,7 +53,7 @@ export function BodasCarrusel() {
         <div style={{
           width: '2.5rem',
           height: '1px',
-          background: 'rgba(196,163,90,0.35)',
+          background: 'rgba(201,168,76,0.35)',
           margin: '0 auto',
         }} />
       </div>
@@ -97,7 +97,7 @@ export function BodasCarrusel() {
                 overflow: 'hidden',
                 position: 'relative',
                 flexShrink: 0,
-                border: '1px solid rgba(196,163,90,0.1)',
+                border: '1px solid rgba(201,168,76,0.15)',
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -117,7 +117,7 @@ export function BodasCarrusel() {
               {/* Caption overlay */}
               <div style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0,
-                background: 'linear-gradient(to top, rgba(5,12,20,0.88) 0%, transparent 100%)',
+                background: 'linear-gradient(to top, rgba(10,22,40,0.9) 0%, transparent 100%)',
                 padding: '2rem 1.25rem 1.25rem',
               }}>
                 <p style={{
@@ -125,7 +125,7 @@ export function BodasCarrusel() {
                   fontSize: '0.5rem',
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
-                  color: 'rgba(196,163,90,0.78)',
+                  color: '#C9A84C',
                 }}>
                   {card.caption}
                 </p>
@@ -142,7 +142,7 @@ export function BodasCarrusel() {
           fontSize: '0.48rem',
           letterSpacing: '0.22em',
           textTransform: 'uppercase',
-          color: 'rgba(196,163,90,0.3)',
+          color: 'rgba(201,168,76,0.35)',
         }}>
           ← Arrastrar →
         </p>
