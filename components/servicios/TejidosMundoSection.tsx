@@ -8,23 +8,39 @@ import { Globe, type GlobeMarker, type GlobeArc } from '@/components/ui/globe'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Client locations where we work — Madrid atelier at center
 const MARKERS: GlobeMarker[] = [
-  { id: 'madrid',       location: [40.4168, -3.7038],   label: 'Madrid — Atelier'            },
-  { id: 'huddersfield', location: [53.6450, -1.7852],   label: 'Holland & Sherry · Huddersfield' },
-  { id: 'hawick',       location: [55.4224, -2.7878],   label: 'Cashmere · Hawick'           },
-  { id: 'biella',       location: [45.5659,  8.0530],   label: 'VBC · Biella'                },
-  { id: 'loropiana',    location: [45.8200,  8.0980],   label: 'Loro Piana · Trivero'        },
-  { id: 'lyon',         location: [45.7640,  4.8357],   label: 'Dormeuil · Lyon'             },
-  { id: 'prato',        location: [43.8777,  11.1021],  label: 'Lanifici · Prato'            },
+  { id: 'madrid',       location: [40.4168,  -3.7038],  label: 'Madrid — Nuestro Atelier' },
+  { id: 'miami',        location: [25.7617,  -80.1918], label: 'Miami · USA' },
+  { id: 'oporto',       location: [41.1579,   -8.6291], label: 'Oporto · Portugal' },
+  { id: 'lisbon',       location: [38.7223,   -9.1393], label: 'Lisboa · Portugal' },
+  { id: 'canarias',     location: [28.2916,  -16.6291], label: 'Islas Canarias · España' },
+  { id: 'paris',        location: [48.8566,    2.3522], label: 'París · Francia' },
+  { id: 'london',       location: [51.5074,   -0.1278], label: 'Londres · UK' },
+  { id: 'rome',         location: [41.9028,   12.4964], label: 'Roma · Italia' },
+  { id: 'birmingham',   location: [52.4862,   -1.8904], label: 'Birmingham · UK' },
+  { id: 'dominican',    location: [18.7357,  -70.1627], label: 'República Dominicana' },
+  { id: 'peru',         location: [-9.1900,   -75.0152], label: 'Perú' },
+  { id: 'dubai',        location: [25.2048,   55.2708], label: 'Dubái · UAE' },
+  { id: 'germany',      location: [51.1657,   10.4515], label: 'Alemania' },
+  { id: 'belgium',      location: [50.8503,    4.3517], label: 'Bélgica' },
 ]
 
+// Arcs from Madrid to client locations
 const ARCS: GlobeArc[] = [
-  { id: 'madrid-huddersfield', from: [40.4168, -3.7038], to: [53.6450, -1.7852] },
-  { id: 'madrid-hawick',       from: [40.4168, -3.7038], to: [55.4224, -2.7878] },
-  { id: 'madrid-biella',       from: [40.4168, -3.7038], to: [45.5659,  8.0530] },
-  { id: 'madrid-loropiana',    from: [40.4168, -3.7038], to: [45.8200,  8.0980] },
-  { id: 'madrid-lyon',         from: [40.4168, -3.7038], to: [45.7640,  4.8357] },
-  { id: 'madrid-prato',        from: [40.4168, -3.7038], to: [43.8777, 11.1021] },
+  { id: 'madrid-miami',      from: [40.4168, -3.7038], to: [25.7617, -80.1918] },
+  { id: 'madrid-oporto',     from: [40.4168, -3.7038], to: [41.1579, -8.6291] },
+  { id: 'madrid-lisbon',     from: [40.4168, -3.7038], to: [38.7223, -9.1393] },
+  { id: 'madrid-canarias',   from: [40.4168, -3.7038], to: [28.2916, -16.6291] },
+  { id: 'madrid-paris',      from: [40.4168, -3.7038], to: [48.8566,  2.3522] },
+  { id: 'madrid-london',     from: [40.4168, -3.7038], to: [51.5074, -0.1278] },
+  { id: 'madrid-rome',       from: [40.4168, -3.7038], to: [41.9028, 12.4964] },
+  { id: 'madrid-birmingham', from: [40.4168, -3.7038], to: [52.4862, -1.8904] },
+  { id: 'madrid-dominican',  from: [40.4168, -3.7038], to: [18.7357, -70.1627] },
+  { id: 'madrid-peru',       from: [40.4168, -3.7038], to: [-9.1900, -75.0152] },
+  { id: 'madrid-dubai',      from: [40.4168, -3.7038], to: [25.2048, 55.2708] },
+  { id: 'madrid-germany',    from: [40.4168, -3.7038], to: [51.1657, 10.4515] },
+  { id: 'madrid-belgium',    from: [40.4168, -3.7038], to: [50.8503,  4.3517] },
 ]
 
 export function TejidosMundoSection() {
@@ -54,7 +70,7 @@ export function TejidosMundoSection() {
     <section
       ref={sectionRef}
       style={{
-        background: 'var(--color-navy)',
+        background: '#0A1628',
         padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
         overflow: 'hidden',
         position: 'relative',
@@ -63,7 +79,7 @@ export function TejidosMundoSection() {
       {/* Subtle grain texture overlay */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 70% 70% at 60% 50%, rgba(196,163,90,0.03) 0%, transparent 100%)',
+        background: 'radial-gradient(ellipse 70% 70% at 60% 50%, rgba(201,168,76,0.04) 0%, transparent 100%)',
       }} />
 
       <div style={{
@@ -84,7 +100,7 @@ export function TejidosMundoSection() {
             fontSize: '0.6rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color: 'rgba(196,163,90,0.55)',
+            color: 'rgba(201,168,76,0.6)',
             marginBottom: '1.2rem',
           }}>
             {tj.label}
@@ -92,7 +108,7 @@ export function TejidosMundoSection() {
 
           <div style={{
             width: '36px', height: '1px',
-            background: 'rgba(196,163,90,0.4)',
+            background: 'rgba(201,168,76,0.4)',
             marginBottom: '1.6rem',
           }} />
 
@@ -102,7 +118,7 @@ export function TejidosMundoSection() {
             fontSize: 'clamp(2rem, 3.5vw, 3.2rem)',
             fontWeight: 400,
             lineHeight: 1.15,
-            color: 'var(--color-offwhite)',
+            color: '#FFFFFF',
             marginBottom: 'clamp(1.8rem, 3vh, 2.5rem)',
           }}>
             {tj.title}
@@ -112,7 +128,7 @@ export function TejidosMundoSection() {
             fontFamily: 'var(--font-sans)',
             fontSize: 'clamp(0.84rem, 1.15vw, 0.95rem)',
             lineHeight: 1.88,
-            color: 'rgba(245,240,234,0.42)',
+            color: 'rgba(255,255,255,0.5)',
             maxWidth: '46ch',
             marginBottom: '1.2rem',
           }}>
@@ -123,31 +139,35 @@ export function TejidosMundoSection() {
             fontFamily: 'var(--font-sans)',
             fontSize: 'clamp(0.84rem, 1.15vw, 0.95rem)',
             lineHeight: 1.88,
-            color: 'rgba(245,240,234,0.42)',
+            color: 'rgba(255,255,255,0.5)',
             maxWidth: '46ch',
             marginBottom: '2.5rem',
           }}>
             {tj.p2}
           </p>
 
-          {/* Origin list */}
+          {/* Client locations list */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {[
-              { city: 'Huddersfield', country: 'Reino Unido', house: 'Holland & Sherry' },
-              { city: 'Biella',       country: 'Italia',       house: 'Vitale Barberis Canonico' },
-              { city: 'Lyon',         country: 'Francia',      house: 'Dormeuil' },
-              { city: 'Sabadell',     country: 'España',       house: 'Tejidos Españoles' },
-            ].map((origin) => (
-              <div key={origin.city} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.6 }} />
+              { city: 'Miami', country: 'USA' },
+              { city: 'Oporto', country: 'Portugal' },
+              { city: 'Lisboa', country: 'Portugal' },
+              { city: 'París', country: 'Francia' },
+              { city: 'Londres', country: 'UK' },
+              { city: 'Roma', country: 'Italia' },
+              { city: 'Dubái', country: 'UAE' },
+              { city: 'Rep. Dominicana', country: 'Caribe' },
+            ].map((loc) => (
+              <div key={loc.city} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C9A84C', opacity: 0.6 }} />
                 <span style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.62rem',
                   letterSpacing: '0.08em',
-                  color: 'rgba(245,240,234,0.55)',
+                  color: 'rgba(255,255,255,0.55)',
                 }}>
-                  <span style={{ color: 'rgba(196,163,90,0.7)' }}>{origin.city}</span>
-                  {' · '}{origin.house}
+                  <span style={{ color: 'rgba(201,168,76,0.8)' }}>{loc.city}</span>
+                  {' · '}{loc.country}
                 </span>
               </div>
             ))}
@@ -162,7 +182,7 @@ export function TejidosMundoSection() {
               position: 'absolute',
               inset: '-10%',
               borderRadius: '50%',
-              background: 'radial-gradient(ellipse at center, rgba(196,163,90,0.12) 0%, rgba(196,163,90,0.04) 50%, transparent 70%)',
+              background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 50%, transparent 70%)',
               pointerEvents: 'none',
               zIndex: 0,
             }} />

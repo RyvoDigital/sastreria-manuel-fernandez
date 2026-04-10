@@ -61,7 +61,7 @@ export function SastreriaCTA() {
       {/* Gradient overlay */}
       <div style={{
         position:      'absolute', inset: 0, pointerEvents: 'none',
-        background:    'linear-gradient(135deg, rgba(5,12,20,0.78) 0%, rgba(5,12,20,0.42) 50%, rgba(5,12,20,0.68) 100%)',
+        background:    'linear-gradient(135deg, rgba(10,22,40,0.8) 0%, rgba(10,22,40,0.45) 50%, rgba(10,22,40,0.7) 100%)',
       }} />
 
       {/* Content */}
@@ -78,7 +78,7 @@ export function SastreriaCTA() {
           fontSize:      '0.6rem',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
-          color:         'rgba(196,163,90,0.65)',
+          color:         'rgba(201,168,76,0.7)',
           marginBottom:  '1.5rem',
         }}>
           {t.la_sastreria.cta.label}
@@ -91,7 +91,7 @@ export function SastreriaCTA() {
           fontSize:     'clamp(2rem, 4.2vw, 4rem)',
           fontWeight:    400,
           lineHeight:    1.25,
-          color:        'var(--color-offwhite)',
+          color:        '#FFFFFF',
           marginBottom: '3rem',
         }}>
           {t.la_sastreria.cta.headline}
@@ -103,26 +103,26 @@ export function SastreriaCTA() {
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',
-            background:     'var(--color-gold)',
-            color:          '#080808',
+            background:     '#C9A84C',
+            color:          '#000000',
             fontFamily:     'var(--font-sans)',
             fontSize:       '0.7rem',
             letterSpacing:  '0.18em',
             textTransform:  'uppercase',
             textDecoration: 'none',
-            border:         '1px solid var(--color-gold)',
+            border:         '1px solid #C9A84C',
             transition:     'background .25s, transform .2s',
           }}
           onMouseEnter={e => {
             const el = e.currentTarget as HTMLElement
-            el.style.background = 'var(--color-gold-light)'
-            el.style.borderColor = 'var(--color-gold-light)'
+            el.style.background = '#E8D5A3'
+            el.style.borderColor = '#E8D5A3'
             el.style.transform = 'translateY(-2px)'
           }}
           onMouseLeave={e => {
             const el = e.currentTarget as HTMLElement
-            el.style.background = 'var(--color-gold)'
-            el.style.borderColor = 'var(--color-gold)'
+            el.style.background = '#C9A84C'
+            el.style.borderColor = '#C9A84C'
             el.style.transform = 'translateY(0)'
           }}>
             {t.la_sastreria.cta.btn_primary}
@@ -133,25 +133,25 @@ export function SastreriaCTA() {
             alignItems:     'center',
             padding:        '1rem 2.5rem',
             background:     'transparent',
-            color:          'rgba(245,240,234,0.8)',
+            color:          'rgba(255,255,255,0.85)',
             fontFamily:     'var(--font-sans)',
             fontSize:       '0.7rem',
             letterSpacing:  '0.18em',
             textTransform:  'uppercase',
             textDecoration: 'none',
-            border:         '1px solid rgba(245,240,234,0.3)',
+            border:         '1px solid rgba(255,255,255,0.3)',
             transition:     'border-color .25s, color .25s, transform .2s',
           }}
           onMouseEnter={e => {
             const el = e.currentTarget as HTMLElement
-            el.style.borderColor = 'rgba(245,240,234,0.7)'
-            el.style.color = 'var(--color-offwhite)'
+            el.style.borderColor = 'rgba(255,255,255,0.7)'
+            el.style.color = '#FFFFFF'
             el.style.transform = 'translateY(-2px)'
           }}
           onMouseLeave={e => {
             const el = e.currentTarget as HTMLElement
-            el.style.borderColor = 'rgba(245,240,234,0.3)'
-            el.style.color = 'rgba(245,240,234,0.8)'
+            el.style.borderColor = 'rgba(255,255,255,0.3)'
+            el.style.color = 'rgba(255,255,255,0.8)'
             el.style.transform = 'translateY(0)'
           }}>
             {t.la_sastreria.cta.btn_secondary}

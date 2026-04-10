@@ -160,7 +160,7 @@ export function FlipGallery({
         {/* Card shell */}
         <div style={{
           position:   'relative',
-          boxShadow:  '0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(196,163,90,0.1)',
+          boxShadow:  '0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.15)',
         }}>
           {/* Flip card */}
           <div
@@ -192,13 +192,13 @@ export function FlipGallery({
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0,
             height: '2px',
-            background: 'rgba(196,163,90,0.1)',
+            background: 'rgba(201,168,76,0.12)',
             zIndex: 30,
           }}>
             <div style={{
               height:     '100%',
               width:      `${((displayIdx + 1) / images.length) * 100}%`,
-              background: 'rgba(196,163,90,0.65)',
+              background: 'rgba(201,168,76,0.7)',
               transition: 'width 0.7s cubic-bezier(0.4,0,0.2,1)',
             }} />
           </div>
@@ -219,7 +219,7 @@ export function FlipGallery({
             fontSize:      '0.6rem',
             letterSpacing: '0.26em',
             textTransform: 'uppercase',
-            color:         'var(--color-gold)',
+            color:         '#C9A84C',
             opacity:        0.8,
           }}>
             {images[displayIdx].title}
@@ -231,7 +231,7 @@ export function FlipGallery({
               fontFamily:    'var(--font-sans)',
               fontSize:      '0.58rem',
               letterSpacing: '0.12em',
-              color:         'rgba(196,163,90,0.35)',
+              color:         'rgba(201,168,76,0.4)',
             }}>
               {pad(displayIdx)} — {pad(images.length - 1)}
             </span>
@@ -248,21 +248,21 @@ export function FlipGallery({
                 alignItems: 'center',
                 justifyContent: 'center',
                 background: 'none',
-                border:     '1px solid rgba(196,163,90,0.18)',
-                color:      'rgba(196,163,90,0.5)',
+                border:     '1px solid rgba(201,168,76,0.2)',
+                color:      'rgba(201,168,76,0.55)',
                 cursor:     'pointer',
                 transition: 'all 0.2s ease',
               }}
               onMouseEnter={(e) => {
                 const t = e.currentTarget
-                t.style.borderColor = 'rgba(196,163,90,0.55)'
-                t.style.color = 'rgba(196,163,90,0.95)'
-                t.style.background = 'rgba(196,163,90,0.05)'
+                t.style.borderColor = 'rgba(201,168,76,0.6)'
+                t.style.color = '#C9A84C'
+                t.style.background = 'rgba(201,168,76,0.08)'
               }}
               onMouseLeave={(e) => {
                 const t = e.currentTarget
-                t.style.borderColor = 'rgba(196,163,90,0.18)'
-                t.style.color = 'rgba(196,163,90,0.5)'
+                t.style.borderColor = 'rgba(201,168,76,0.2)'
+                t.style.color = 'rgba(201,168,76,0.55)'
                 t.style.background = 'none'
               }}
             >
@@ -294,8 +294,8 @@ export function FlipGallery({
               }}
               onMouseLeave={(e) => {
                 const t = e.currentTarget
-                t.style.borderColor = 'rgba(196,163,90,0.18)'
-                t.style.color = 'rgba(196,163,90,0.5)'
+                t.style.borderColor = 'rgba(201,168,76,0.2)'
+                t.style.color = 'rgba(201,168,76,0.55)'
                 t.style.background = 'none'
               }}
             >

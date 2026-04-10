@@ -37,7 +37,7 @@ export function BodasProceso() {
     <section
       ref={sectionRef}
       style={{
-        background: 'var(--color-navy)',
+        background: '#0A1628',
         padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
         overflow: 'hidden',
       }}
@@ -55,7 +55,7 @@ export function BodasProceso() {
           viewport={{ once: true }}
           style={{
             height: '1px',
-            background: 'linear-gradient(to right, var(--color-gold), rgba(196,163,90,0.12))',
+            background: 'linear-gradient(to right, #C9A84C, rgba(201,168,76,0.15))',
             marginBottom: '2rem',
             opacity: 0.45,
           }}
@@ -72,7 +72,7 @@ export function BodasProceso() {
             fontSize: '0.55rem',
             letterSpacing: '0.32em',
             textTransform: 'uppercase',
-            color: 'rgba(196,163,90,0.6)',
+            color: 'rgba(201,168,76,0.65)',
             marginBottom: '1rem',
           }}
         >
@@ -90,7 +90,7 @@ export function BodasProceso() {
             fontStyle: 'italic',
             fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
             fontWeight: 400,
-            color: 'var(--color-offwhite)',
+            color: '#FFFFFF',
             lineHeight: 1.15,
           }}
         >
@@ -111,7 +111,7 @@ export function BodasProceso() {
           left: '12.5%',
           right: '12.5%',
           height: '1px',
-          background: 'rgba(196,163,90,0.2)',
+          background: 'rgba(201,168,76,0.2)',
           pointerEvents: 'none',
         }} />
 
@@ -131,12 +131,12 @@ export function BodasProceso() {
                 width: '3.5rem',
                 height: '3.5rem',
                 borderRadius: '50%',
-                border: '1px solid rgba(196,163,90,0.35)',
+                border: '1px solid rgba(201,168,76,0.4)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '1.5rem',
-                background: 'rgba(196,163,90,0.06)',
+                background: 'rgba(201,168,76,0.08)',
                 position: 'relative',
                 zIndex: 1,
               }}>
@@ -145,7 +145,7 @@ export function BodasProceso() {
                   fontStyle: 'italic',
                   fontSize: '1rem',
                   fontWeight: 400,
-                  color: 'rgba(196,163,90,0.75)',
+                  color: '#C9A84C',
                 }}>
                   {step.num}
                 </span>
@@ -157,7 +157,7 @@ export function BodasProceso() {
                 fontStyle: 'italic',
                 fontSize: 'clamp(1rem, 1.4vw, 1.2rem)',
                 fontWeight: 400,
-                color: 'var(--color-offwhite)',
+                color: '#FFFFFF',
                 lineHeight: 1.25,
                 marginBottom: '0.75rem',
               }}>
@@ -169,7 +169,7 @@ export function BodasProceso() {
                 fontFamily: 'var(--font-sans)',
                 fontSize: 'clamp(0.78rem, 0.95vw, 0.88rem)',
                 lineHeight: 1.8,
-                color: 'rgba(245,240,234,0.42)',
+                color: 'rgba(255,255,255,0.55)',
               }}>
                 {step.body}
               </p>

@@ -67,7 +67,7 @@ export function TestimonialsSection() {
       style={{
         position: 'relative',
         height: `${TOTAL * 100}vh`,
-        background: 'var(--color-navy)',
+        background: '#0A1628',
       }}
     >
       {/* Sticky viewport */}
@@ -136,7 +136,7 @@ export function TestimonialsSection() {
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.75rem',
                   letterSpacing: '0.1em',
-                  color: 'rgba(245,240,234,0.35)',
+                  color: 'rgba(255,255,255,0.4)',
                   fontVariantNumeric: 'tabular-nums',
                 }}
               >
@@ -154,7 +154,7 @@ export function TestimonialsSection() {
                   fontSize: '0.55rem',
                   letterSpacing: '0.3em',
                   textTransform: 'uppercase',
-                  color: 'rgba(245,240,234,0.2)',
+                  color: 'rgba(255,255,255,0.25)',
                   writingMode: 'vertical-rl',
                   transform: 'rotate(180deg)',
                   marginTop: '2rem',
@@ -253,7 +253,7 @@ export function TestimonialsSection() {
               flexDirection: 'column',
               justifyContent: 'space-between',
               paddingLeft: 'clamp(1rem, 3vw, 3rem)',
-              borderLeft: '1px solid rgba(196,163,90,0.12)',
+              borderLeft: '1px solid rgba(201,168,76,0.15)',
             }}
           >
             {/* Quote block */}
@@ -291,7 +291,7 @@ export function TestimonialsSection() {
                       fontSize: 'clamp(1.3rem, 2.2vw, 2rem)',
                       fontWeight: 400,
                       lineHeight: 1.55,
-                      color: 'var(--color-offwhite)',
+                      color: '#FFFFFF',
                       fontStyle: 'italic',
                       marginBottom: '2.5rem',
                     }}
@@ -304,7 +304,7 @@ export function TestimonialsSection() {
                     style={{
                       width: '32px',
                       height: '1px',
-                      background: 'rgba(196,163,90,0.5)',
+                      background: 'rgba(201,168,76,0.6)',
                       marginBottom: '1.5rem',
                     }}
                   />
@@ -327,7 +327,7 @@ export function TestimonialsSection() {
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.62rem',
                       letterSpacing: '0.18em',
-                      color: 'rgba(245,240,234,0.35)',
+                      color: 'rgba(255,255,255,0.4)',
                       textTransform: 'uppercase',
                     }}
                   >
@@ -353,7 +353,7 @@ export function TestimonialsSection() {
                   position: 'relative',
                   width: '1px',
                   height: '40px',
-                  background: 'rgba(196,163,90,0.2)',
+                  background: 'rgba(201,168,76,0.25)',
                   overflow: 'hidden',
                 }}
               >
@@ -377,7 +377,7 @@ export function TestimonialsSection() {
                   fontSize: '0.55rem',
                   letterSpacing: '0.25em',
                   textTransform: 'uppercase',
-                  color: 'rgba(245,240,234,0.4)',
+                  color: 'rgba(255,255,255,0.45)',
                 }}
               >
                 Scroll

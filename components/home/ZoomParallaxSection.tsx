@@ -61,7 +61,7 @@ export function ZoomParallaxSection() {
       style={{
         position:   'relative',
         height:     '300vh',
-        background: '#050C14',
+        background: '#0A1628',
       }}
     >
       {/* Sticky viewport */}
@@ -106,7 +106,7 @@ export function ZoomParallaxSection() {
         <div style={{
           position:   'absolute',
           inset:       0,
-          background: 'radial-gradient(ellipse 100% 100% at 50% 50%, transparent 25%, rgba(5,12,20,0.65) 100%)',
+          background: 'radial-gradient(ellipse 100% 100% at 50% 50%, transparent 25%, rgba(10,22,40,0.7) 100%)',
           pointerEvents: 'none',
           zIndex:      10,
         }} />
@@ -115,7 +115,7 @@ export function ZoomParallaxSection() {
         <div style={{
           position:   'absolute',
           inset:       0,
-          boxShadow:  'inset 0 0 160px rgba(5,12,20,0.5)',
+          boxShadow:  'inset 0 0 160px rgba(10,22,40,0.6)',
           pointerEvents: 'none',
           zIndex:      11,
         }} />

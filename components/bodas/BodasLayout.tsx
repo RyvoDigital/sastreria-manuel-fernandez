@@ -3,7 +3,7 @@
 import { BodasHero } from './BodasHero'
 import { BodasStatement } from './BodasStatement'
 import { BodasCategorias } from './BodasCategorias'
-import { BodasEditorial } from './BodasEditorial'
+import { BodasFormalWear } from './BodasFormalWear'
 import { BodasProceso } from './BodasProceso'
 import { BodasCarrusel } from './BodasCarrusel'
 import { BodasFinal } from './BodasFinal'
@@ -14,7 +14,7 @@ export function BodasLayout() {
       <BodasHero />
       <BodasStatement />
       <BodasCategorias />
-      <BodasEditorial />
+      <BodasFormalWear />
       <BodasProceso />
       <BodasCarrusel />
       <BodasFinal />

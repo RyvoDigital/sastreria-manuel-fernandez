@@ -6,18 +6,21 @@
    ============================================ */
 
 :root {
-  /* Color Palette */
-  --color-navy:        #050C14;
-  --color-navy-mid:    #081018;
-  --color-navy-light:  #0D1B2A;
-  --color-black:       #080808;
-  --color-charcoal:    #1C1C1C;
-  --color-offwhite:    #F5F0EA;
-  --color-cream:       #EDE8E0;
-  --color-gold:        #C4A35A;
+  /* BRAND COLOR PALETTE — SASTRERÍA MANUEL FERNÁNDEZ */
+  /* Use ONLY these four colors throughout the entire site */
+  --color-black:       #000000;
+  --color-white:       #FFFFFF;
+  --color-gold:        #C9A84C;
   --color-gold-light:  #E8D5A3;
   --color-gold-dim:    #8A6F38;
-  --color-white:       #FFFFFF;
+  --color-navy:        #0A1628;
+  --color-navy-mid:    #0D1D30;
+  --color-navy-light:  #122238;
+  
+  /* Legacy aliases for backwards compatibility - map to brand colors */
+  --color-charcoal:    #0A1628;  /* Was #1C1C1C, now navy */
+  --color-offwhite:    #FFFFFF;  /* Was #F5F0EA, now white */
+  --color-cream:       #FFFFFF;  /* Was #EDE8E0, now white */
 
   /* Typography Scale */
   --font-serif:        var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
@@ -58,7 +61,7 @@ html {
 
 body {
   background-color: var(--color-navy);
-  color: var(--color-offwhite);
+  color: var(--color-white);
   font-family: var(--font-sans);
   font-weight: 300;
   line-height: 1.6;
@@ -117,8 +120,8 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--color-navy); }
-::-webkit-scrollbar-thumb { background: var(--color-gold-dim); }
+::-webkit-scrollbar-track { background: var(--color-black); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); }
 
 /* ============================================
    SELECTION
@@ -201,7 +204,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.75rem;
   padding: 1rem 2.5rem;
   background: transparent;
-  color: var(--color-offwhite);
+  color: var(--color-white);
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 300;
@@ -274,7 +277,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--color-black);
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -302,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-bar.scrolled {
-  background: rgba(13, 27, 42, 0.95);
+  background: rgba(10, 22, 40, 0.97);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding-top: 1rem;
@@ -317,7 +320,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: var(--color-black);
+  background: #000000;
   z-index: 990;
   display: flex;
   align-items: center;

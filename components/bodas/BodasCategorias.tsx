@@ -38,7 +38,7 @@ export function BodasCategorias() {
     <section
       ref={sectionRef}
       style={{
-        background: '#EDE8E0',
+        background: '#FFFFFF',
         padding: 'clamp(1rem, 2vh, 2rem) var(--container-padding) clamp(5rem, 10vh, 9rem)',
         overflow: 'hidden',
       }}
@@ -55,7 +55,7 @@ export function BodasCategorias() {
           fontSize: '0.55rem',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
-          color: 'rgba(196,163,90,0.65)',
+          color: 'rgba(201,168,76,0.7)',
         }}>
           {c.label}
         </p>
@@ -81,12 +81,12 @@ export function BodasCategorias() {
               overflow: 'hidden',
               cursor: 'default',
               transition: 'transform 0.4s ease, box-shadow 0.4s ease',
-              boxShadow: '0 20px 60px rgba(5,12,20,0.15)',
+              boxShadow: '0 20px 60px rgba(10,22,40,0.15)',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
               el.style.transform = 'translateY(-12px)'
-              el.style.boxShadow = '0 40px 80px rgba(5,12,20,0.25)'
+              el.style.boxShadow = '0 40px 80px rgba(10,22,40,0.25)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
@@ -103,7 +103,7 @@ export function BodasCategorias() {
             {/* Gradient overlay */}
             <div style={{
               position: 'absolute', bottom: 0, left: 0, right: 0, height: '55%',
-              background: 'linear-gradient(to top, rgba(5,12,20,0.88) 0%, rgba(5,12,20,0.4) 50%, transparent 100%)',
+              background: 'linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.4) 50%, transparent 100%)',
             }} />
             {/* Text */}
             <div style={{
@@ -115,7 +115,7 @@ export function BodasCategorias() {
                 fontSize: '0.5rem',
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: 'rgba(196,163,90,0.85)',
+                color: '#C9A84C',
                 marginBottom: '0.4rem',
               }}>
                 {labels[key]}
@@ -124,7 +124,7 @@ export function BodasCategorias() {
                 fontFamily: 'var(--font-serif)',
                 fontStyle: 'italic',
                 fontSize: 'clamp(0.85rem, 1.2vw, 1.05rem)',
-                color: 'rgba(245,240,234,0.78)',
+                color: 'rgba(255,255,255,0.85)',
                 lineHeight: 1.4,
               }}>
                 {descs[key]}

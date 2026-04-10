@@ -60,7 +60,7 @@ export function FilosofiaSection() {
       ref={sectionRef}
       style={{
         position:   'relative',
-        background: 'var(--color-navy)',
+        background: '#0A1628',
         padding:    'clamp(7rem, 13vh, 12rem) var(--container-padding)',
         overflow:   'hidden',
       }}
@@ -68,7 +68,7 @@ export function FilosofiaSection() {
       {/* Subtle gold radial grain */}
       <div style={{
         position:      'absolute', inset: 0, pointerEvents: 'none',
-        background:    'radial-gradient(ellipse at 50% 0%, rgba(196,163,90,0.05) 0%, transparent 60%)',
+        background:    'radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%)',
       }} />
 
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', position: 'relative', zIndex: 1 }}>
@@ -79,7 +79,7 @@ export function FilosofiaSection() {
           fontSize:      '0.6rem',
           letterSpacing: '0.3em',
           textTransform: 'uppercase',
-          color:         'rgba(196,163,90,0.55)',
+          color:         'rgba(201,168,76,0.6)',
           marginBottom:  'clamp(3rem, 5vh, 4rem)',
         }}>
           {t.la_sastreria.filosofia.label}
@@ -103,7 +103,7 @@ export function FilosofiaSection() {
                 fontStyle:     'italic',
                 fontSize:      'clamp(2.8rem, 5.5vw, 6rem)',
                 fontWeight:     400,
-                color:         i < 2 ? 'var(--color-offwhite)' : 'var(--color-gold)',
+                color:         i < 2 ? '#FFFFFF' : '#C9A84C',
                 paddingBottom:  '0.1em',
               }}>
                 {line}
@@ -124,7 +124,7 @@ export function FilosofiaSection() {
               fontFamily: 'var(--font-sans)',
               fontSize:   'clamp(0.85rem, 1.3vw, 1rem)',
               lineHeight:  1.85,
-              color:      'rgba(245,240,234,0.6)',
+              color:      'rgba(255,255,255,0.65)',
               margin:      0,
             }}>
               {p}

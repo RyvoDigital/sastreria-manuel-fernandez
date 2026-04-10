@@ -57,7 +57,7 @@ export function EspacioSection() {
     <section
       ref={sectionRef}
       style={{
-        background: '#0a0f17',
+        background: '#0A1628',
         overflow:   'hidden',
         padding:    '0 var(--container-padding) clamp(5rem, 8vh, 7rem)',
       }}
@@ -77,7 +77,7 @@ export function EspacioSection() {
             fontSize:      '0.6rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color:         'rgba(196,163,90,0.55)',
+            color:         'rgba(201,168,76,0.6)',
           }}>
             {t.la_sastreria.espacio.label}
           </div>
@@ -86,7 +86,7 @@ export function EspacioSection() {
             fontStyle:  'italic',
             fontSize:   'clamp(2rem, 4vw, 3.8rem)',
             fontWeight:  400,
-            color:      'var(--color-offwhite)',
+            color:      '#FFFFFF',
             margin:      0,
           }}>
             {t.la_sastreria.espacio.title}
@@ -172,7 +172,7 @@ export function EspacioSection() {
             fontFamily: 'var(--font-sans)',
             fontSize:   'clamp(0.85rem, 1.3vw, 1rem)',
             lineHeight:  1.85,
-            color:      'rgba(245,240,234,0.55)',
+            color:      'rgba(255,255,255,0.6)',
             margin:      0,
           }}>
             {t.la_sastreria.espacio.description}

@@ -1,20 +1,21 @@
 {
   "nav": {
     "inicio": "Inicio",
-    "sastreria": "La Sastrería",
-    "experiencia": "Experiencia a Medida",
+    "sastreria": "Sastrería Artesanal",
     "servicios": "Servicios",
     "bodas": "Bodas y Ceremonia",
-    "coleccion": "Colección",
-    "reservar": "Reservar Cita",
-    "contacto": "Contacto"
+    "contacto": "Contacto",
+    "configurador": "Configurador",
+    "cursos": "Cursos Online",
+    "videollamada": "Videollamada"
   },
   "hero": {
-    "tagline": "No hacemos trajes.",
-    "tagline2": "Construimos identidad.",
-    "subtext": "Atelier privado en el corazón de la artesanía española.",
-    "cta_primary": "Reservar Cita",
-    "cta_secondary": "Descubrir la experiencia"
+    "tagline": "Sastrería artesanal desde 1978",
+    "tagline2": "Todo hecho a mano. Sin patrones industriales.",
+    "subtext": "Cada prenda construida desde cero, sin pruebas previas.",
+    "cta_book": "Reservar Cita",
+    "cta_call": "Llámanos",
+    "cta_contact": "Contactar"
   },
   "traje_empieza": {
     "label": "El proceso",
@@ -85,23 +86,23 @@
   },
   "la_sastreria": {
     "hero": {
-      "label": "La Sastrería · Est. 1978",
+      "label": "Sastrería Artesanal · Est. 1978",
       "headline_line1": "El Arte de",
       "headline_line2": "Vestir Bien",
-      "subline": "Cuatro décadas de oficio en Madrid."
+      "subline": "Todo hecho a mano. Sin patrones industriales. Cada prenda construida desde cero."
     },
     "historia": {
       "label": "La Historia",
       "title": "Una Vocación de por Vida",
-      "p1": "En 1978, Manuel Fernández abrió su primer atelier en el corazón de Madrid con una convicción sencilla: que la ropa bien hecha cambia la forma en que un hombre se percibe a sí mismo.",
-      "p2": "Aprendió el oficio de los grandes maestros sastres españoles, absorbiendo no sólo la técnica —el corte inglés, la entretela cosida a mano, la solapa que cae sola— sino también la filosofía: que cada cliente merece una prenda única.",
-      "p3": "Cuatro décadas después, nada ha cambiado. El mismo respeto por el tejido, la misma paciencia con el patrón, la misma conversación honesta antes de tomar una sola medida."
+      "p1": "En 1978, Manuel Fernández abrió su primer sastrería artesanal en el corazón de Madrid con una convicción sencilla: que la ropa bien hecha cambia la forma en que un hombre se percibe a sí mismo.",
+      "p2": "Aprendió el oficio de los grandes maestros sastres españoles, absorbiendo no sólo la técnica —el corte inglés, la entretela cosida a mano, la solapa que cae sola— sino también la filosofía: que cada cliente merece una prenda única, construida desde cero sin patrones industriales.",
+      "p3": "Años después, nada ha cambiado. El mismo respeto por el tejido, la misma paciencia con el patrón, la misma conversación honesta antes de tomar una sola medida. Cada traje es único, irrepetible, hecho a mano."
     },
     "maestro": {
       "label": "El Maestro",
       "quote": "Un traje no se termina cuando se cose la última puntada. Se termina cuando la persona que lo lleva reconoce en él una versión mejor de sí misma.",
       "attribution": "— Manuel Fernández, Maestro Sastre",
-      "bio": "Con más de cuatro décadas dedicadas al traje a medida, Manuel Fernández ha vestido a directivos, novios y hombres en sus momentos más importantes. Su atelier en Madrid es, ante todo, un espacio de escucha."
+      "bio": "Con décadas dedicadas al traje a medida artesanal, Manuel Fernández ha vestido a directivos, novios y hombres en sus momentos más importantes. Su sastrería en Madrid es, ante todo, un espacio de escucha donde cada prenda se construye desde cero."
     },
     "oficio": {
       "label": "El Oficio",
@@ -114,9 +115,9 @@
     "cifras": {
       "label": "En Números",
       "n1": "1978", "l1": "Fundación",
-      "n2": "45",   "l2": "Años de Oficio",
+      "n2": "∞",   "l2": "Trajes Únicos",
       "n3": "Madrid", "l3": "Nuestra Ciudad",
-      "n4": "A Medida", "l4": "Cada Traje"
+      "n4": "A Mano", "l4": "Cada Pieza"
     },
     "espacio": {
       "label": "El Espacio",
@@ -164,10 +165,10 @@
       "btn_secondary": "Ver la Sastrería"
     },
     "tejidos": {
-      "label": "Los Tejidos",
-      "title": "Del Lomo de las Mejores Fábricas del Mundo",
-      "p1": "Trabajamos exclusivamente con las grandes casas de tejido europeas: Holland & Sherry de Huddersfield, Vitale Barberis Canonico de Biella, Dormeuil de Lyon.",
-      "p2": "Cada tejido es seleccionado en persona. Porque el carácter de un traje comienza antes del primer corte."
+      "label": "Nuestros Clientes",
+      "title": "Donde Trabajamos con Clientes",
+      "p1": "Desde Madrid, vestimos a caballeros en todo el mundo. Miami, Oporto, Lisboa, París, Londres, Roma, Dubái y más. Cada traje viaja hecho a mano.",
+      "p2": "La sastrería artesanal no conoce fronteras. Cada cliente, donde esté, recibe la misma dedicación y atención al detalle."
     },
     "cta": {
       "label": "El Siguiente Paso",
@@ -231,40 +232,45 @@
       "title": "El Traje del Día Más Importante"
     },
     "statement": {
-      "label": "Bodas & Ceremonia · 2025",
+      "label": "Bodas & Ceremonia",
       "headline": "El día que lo cambia todo merece el traje que lo expresa todo.",
-      "body": "Llevamos más de cuatro décadas vistiendo a los protagonistas de las historias más importantes de sus vidas. Cada traje nupcial es único, irrepetible, construido con el mismo rigor con el que se construye un voto."
+      "body": "Cada traje nupcial es único, irrepetible, construido a mano desde cero sin patrones industriales. Un solo encuentro, una sola prueba: el cliente se lleva todo listo, sin estrés, sin cabos sueltos."
     },
     "categorias": {
-      "label": "Los Estilos de Ceremonia",
-      "cat1": "Chaqué de Mañana",  "cat1_desc": "La máxima expresión de la elegancia nupcial.",
-      "cat2": "Smoking & Tuxedo",  "cat2_desc": "Impecable para la ceremonia y para la noche.",
-      "cat3": "Traje Oscuro",      "cat3_desc": "Versátil, elegante, siempre correcto."
+      "label": "Estilos de Ceremonia",
+      "cat1": "Chaqué",  "cat1_desc": "La máxima expresión de la elegancia nupcial de mañana.",
+      "cat2": "Esmoquin",  "cat2_desc": "Impecable para la ceremonia y la velada.",
+      "cat3": "Frac",      "cat3_desc": "La elegancia más formal para ocasiones únicas."
     },
-    "editorial": {
-      "label1": "La Promesa",  "title1": "Cada boda es un relato que comienza en el atelier.",
-      "body1": "Cuando un cliente nos visita para su traje de boda, no viene a elegir una tela. Viene a construir la imagen que recordará el resto de su vida.",
-      "label2": "El Detalle",  "title2": "Un traje nupcial se recuerda cuarenta años después.",
-      "body2": "Los botones de nácar, el forro bordado, la solapa que define el carácter. Cada decisión es permanente. Por eso la tomamos juntos, sin prisa."
+    "formal_wear": {
+      "label": "Vestimenta Formal",
+      "title": "Desde la primera cita",
+      "items": ["Traje a medida", "Chaqué", "Frac", "Esmoquin"]
+    },
+    "accesorios": {
+      "label": "Complementos",
+      "title": "Todo incluido",
+      "items": ["Corbatas a medida", "Pañuelos personalizados", "Camisas", "Fajines", "Pajaritas", "Zapatos", "Gemelos", "Calcetines"]
     },
     "proceso": {
       "label": "El Proceso Nupcial",
-      "title": "Del primer café a la última prueba.",
-      "step1_num": "01", "step1_title": "La Primera Cita",
-      "step1_body": "Conversamos sobre el día, el lugar, el estilo. Sin catálogos, sin presiones.",
-      "step2_num": "02", "step2_title": "La Elección del Paño",
-      "step2_body": "Tejidos exclusivos de lana, seda y mohair. Solo lo mejor para el mejor día.",
-      "step3_num": "03", "step3_title": "Las Pruebas",
-      "step3_body": "Múltiples sesiones de prueba para garantizar el ajuste perfecto antes del gran día.",
-      "step4_num": "04", "step4_title": "El Resultado",
-      "step4_body": "Entrega con tiempo para que sea suyo mucho antes de ponérselo."
+      "title": "Desde la primera cita",
+      "step1_num": "01", "step1_title": "Primera Cita",
+      "step1_body": "Conversamos sobre el día, el lugar, el estilo. Sin catálogos, sin presiones. Entendemos quién eres y qué necesitas.",
+      "step2_num": "02", "step2_title": "Selección de Tejido",
+      "step2_body": "Tejidos exclusivos de lana, seda y mohair. Solo lo mejor para el mejor día. Cada fibra seleccionada a mano.",
+      "step3_num": "03", "step3_title": "La Prueba",
+      "step3_body": "Una única sesión de prueba. Construimos el traje a tu medida exacta, sin necesidad de múltiples ajustes.",
+      "step4_num": "04", "step4_title": "Todo Listo",
+      "step4_body": "El cliente se lleva todo preparado: traje, camisa, corbata, zapatos y accesorios. Sin estrés, sin cabos sueltos."
     },
-    "carousel": { "label": "Los Detalles Nupciales" },
+    "key_message": "El cliente se lleva todo listo — sin estrés, sin cabos sueltos.",
+    "carousel": { "label": "Detalles Nupciales" },
     "cta": {
       "label": "El Siguiente Paso",
-      "headline": "El día más importante de su vida merece el mejor traje.",
+      "headline": "El día más importante de su vida merece un traje único.",
       "btn_primary": "Reservar Cita",
-      "btn_secondary": "Conocer el Atelier"
+      "btn_secondary": "Conocer la Sastrería"
     }
   },
   "footer": {

@@ -61,7 +61,7 @@ export function OficioFlipSection() {
     <section
       ref={sectionRef}
       style={{
-        background: 'var(--color-navy)',
+        background: '#0A1628',
         padding:    'clamp(6rem, 12vh, 10rem) var(--container-padding)',
         overflow:   'hidden',
         position:   'relative',
@@ -72,7 +72,7 @@ export function OficioFlipSection() {
       {/* Warm gold radial glow toward gallery side */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 55% 70% at 78% 50%, rgba(196,163,90,0.05) 0%, transparent 100%)',
+        background: 'radial-gradient(ellipse 55% 70% at 78% 50%, rgba(201,168,76,0.06) 0%, transparent 100%)',
       }} />
 
       <div style={{
@@ -94,7 +94,7 @@ export function OficioFlipSection() {
             fontSize:      '0.6rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color:         'rgba(196,163,90,0.55)',
+            color:         'rgba(201,168,76,0.6)',
             marginBottom:  '1.2rem',
           }}>
             {t.la_sastreria.oficio.label}
@@ -102,7 +102,7 @@ export function OficioFlipSection() {
 
           <div style={{
             width: '36px', height: '1px',
-            background:   'rgba(196,163,90,0.4)',
+            background:   'rgba(201,168,76,0.4)',
             marginBottom: '1.6rem',
           }} />
 
@@ -112,7 +112,7 @@ export function OficioFlipSection() {
             fontSize:     'clamp(2.2rem, 4vw, 3.8rem)',
             fontWeight:    400,
             lineHeight:    1.1,
-            color:        'var(--color-offwhite)',
+            color:        '#FFFFFF',
             marginBottom: 'clamp(2.5rem, 5vh, 3.5rem)',
             margin:        '0 0 clamp(2.5rem, 5vh, 3.5rem) 0',
           }}>
@@ -143,7 +143,7 @@ export function OficioFlipSection() {
                   fontFamily: 'var(--font-serif)',
                   fontStyle:  'italic',
                   fontSize:   '0.72rem',
-                  color:      'var(--color-gold)',
+                  color:      '#C9A84C',
                   minWidth:   '1.6rem',
                   opacity:     0.75,
                 }}>
@@ -156,7 +156,7 @@ export function OficioFlipSection() {
                   fontSize:      '0.63rem',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  color:         i === activeIdx ? 'var(--color-gold-light)' : 'rgba(245,240,234,0.75)',
+                  color:         i === activeIdx ? '#E8D5A3' : 'rgba(255,255,255,0.75)',
                   transition:    'color 0.55s ease',
                 }}>
                   {d.label}
@@ -167,7 +167,7 @@ export function OficioFlipSection() {
                   <div style={{
                     flex:       1,
                     height:     '1px',
-                    background: 'linear-gradient(to right, rgba(196,163,90,0.45), transparent)',
+                    background: 'linear-gradient(to right, rgba(201,168,76,0.45), transparent)',
                   }} />
                 )}
               </div>
@@ -179,7 +179,7 @@ export function OficioFlipSection() {
             fontFamily: 'var(--font-sans)',
             fontSize:   'clamp(0.82rem, 1.1vw, 0.94rem)',
             lineHeight:  1.85,
-            color:      'rgba(245,240,234,0.42)',
+            color:      'rgba(255,255,255,0.5)',
             maxWidth:   '36ch',
             margin:      0,
           }}>
@@ -203,7 +203,7 @@ export function OficioFlipSection() {
               fontStyle:     'italic',
               fontSize:      'clamp(9rem, 17vw, 17rem)',
               fontWeight:     700,
-              color:         'rgba(196,163,90,0.04)',
+              color:         'rgba(201,168,76,0.05)',
               lineHeight:     1,
               pointerEvents: 'none',
               userSelect:    'none',
@@ -218,8 +218,8 @@ export function OficioFlipSection() {
             <FlipGallery
               images={images}
               id="mf-oficio-flip"
-              width={360}
-              height={580}
+              width={440}
+              height={680}
               onIndexChange={setActiveIdx}
             />
           </div>

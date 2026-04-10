@@ -74,7 +74,7 @@ export function CredencialesSection() {
       ref={sectionRef}
       style={{
         position: 'relative',
-        background: 'var(--color-navy)',
+        background: '#0A1628',
         padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
         overflow: 'hidden',
       }}
@@ -84,7 +84,7 @@ export function CredencialesSection() {
       {/* Radial gold glow */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 60% 80% at 72% 50%, rgba(196,163,90,0.04) 0%, transparent 100%)',
+        background: 'radial-gradient(ellipse 60% 80% at 72% 50%, rgba(201,168,76,0.06) 0%, transparent 100%)',
       }} />
 
       <div style={{
@@ -104,8 +104,8 @@ export function CredencialesSection() {
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
             borderRadius: '9999px',
-            border: '1px solid rgba(196,163,90,0.18)',
-            background: 'rgba(196,163,90,0.06)',
+            border: '1px solid rgba(201,168,76,0.2)',
+            background: 'rgba(201,168,76,0.08)',
             padding: '0.4rem 0.9rem',
             marginBottom: '1.8rem',
             width: 'fit-content',
@@ -115,7 +115,7 @@ export function CredencialesSection() {
               fontSize: '0.52rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'rgba(245,240,234,0.7)',
+              color: 'rgba(255,255,255,0.8)',
             }}>{c.badge}</span>
             <Star style={{ width: '0.8rem', height: '0.8rem', color: 'var(--color-gold)', fill: 'var(--color-gold)' }} />
           </div>
@@ -128,7 +128,7 @@ export function CredencialesSection() {
               fontSize: 'clamp(2.2rem, 4vw, 3.8rem)',
               fontWeight: 300,
               letterSpacing: '-0.02em',
-              color: 'var(--color-offwhite)',
+              color: '#FFFFFF',
               lineHeight: 1.05,
             }}>{c.headline1}</span>
             <span style={{
@@ -137,7 +137,7 @@ export function CredencialesSection() {
               fontStyle: 'italic',
               fontSize: 'clamp(2.4rem, 4.2vw, 4.2rem)',
               fontWeight: 400,
-              color: 'var(--color-gold)',
+              color: '#C9A84C',
               lineHeight: 1.05,
             }}>{c.headline2}</span>
           </h2>
@@ -147,7 +147,7 @@ export function CredencialesSection() {
             fontFamily: 'var(--font-sans)',
             fontSize: 'clamp(0.85rem, 1.2vw, 0.96rem)',
             lineHeight: 1.85,
-            color: 'rgba(245,240,234,0.42)',
+            color: 'rgba(255,255,255,0.5)',
             maxWidth: '44ch',
             marginBottom: '2.5rem',
           }}>{c.body}</p>
@@ -157,24 +157,24 @@ export function CredencialesSection() {
             <Link href="/reservar" style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
               padding: '0.85rem 2rem',
-              background: 'var(--color-gold)',
-              color: '#080808',
+              background: '#C9A84C',
+              color: '#000000',
               fontFamily: 'var(--font-sans)',
               fontSize: '0.65rem',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               textDecoration: 'none',
-              border: '1px solid var(--color-gold)',
+              border: '1px solid #C9A84C',
               transition: 'all 0.2s ease',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--color-gold-light)'
+              el.style.background = '#E8D5A3'
               el.style.transform = 'translateY(-1px)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--color-gold)'
+              el.style.background = '#C9A84C'
               el.style.transform = 'translateY(0)'
             }}>
               {c.btn_primary}
@@ -185,24 +185,24 @@ export function CredencialesSection() {
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
               padding: '0.85rem 2rem',
               background: 'transparent',
-              color: 'rgba(245,240,234,0.7)',
+              color: 'rgba(255,255,255,0.8)',
               fontFamily: 'var(--font-sans)',
               fontSize: '0.65rem',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               textDecoration: 'none',
-              border: '1px solid rgba(245,240,234,0.18)',
+              border: '1px solid rgba(255,255,255,0.2)',
               transition: 'all 0.2s ease',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(245,240,234,0.5)'
-              el.style.color = 'var(--color-offwhite)'
+              el.style.borderColor = 'rgba(255,255,255,0.5)'
+              el.style.color = '#FFFFFF'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(245,240,234,0.18)'
-              el.style.color = 'rgba(245,240,234,0.7)'
+              el.style.borderColor = 'rgba(255,255,255,0.2)'
+              el.style.color = 'rgba(255,255,255,0.7)'
             }}>
               {c.btn_secondary}
             </Link>
@@ -217,18 +217,18 @@ export function CredencialesSection() {
             position: 'relative',
             overflow: 'hidden',
             borderRadius: '1.5rem',
-            border: '1px solid rgba(196,163,90,0.12)',
+            border: '1px solid rgba(201,168,76,0.15)',
             background: 'rgba(255,255,255,0.04)',
             padding: '2rem',
             backdropFilter: 'blur(16px)',
-            boxShadow: '0 25px 60px rgba(5,12,20,0.6)',
+            boxShadow: '0 25px 60px rgba(10,22,40,0.6)',
           }}>
             {/* Glow */}
             <div style={{
               position: 'absolute', top: 0, right: 0,
               width: '16rem', height: '16rem',
               borderRadius: '50%',
-              background: 'rgba(196,163,90,0.04)',
+              background: 'rgba(201,168,76,0.06)',
               filter: 'blur(48px)',
               pointerEvents: 'none',
             }} />
@@ -240,7 +240,7 @@ export function CredencialesSection() {
                   width: '3rem', height: '3rem',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   borderRadius: '0.75rem',
-                  background: 'rgba(196,163,90,0.1)',
+                  background: 'rgba(201,168,76,0.1)',
                   border: '1px solid rgba(196,163,90,0.2)',
                 }}>
                   <Target style={{ width: '1.4rem', height: '1.4rem', color: 'var(--color-gold)' }} />
@@ -251,14 +251,14 @@ export function CredencialesSection() {
                     fontStyle: 'italic',
                     fontSize: '2.2rem',
                     fontWeight: 400,
-                    color: 'var(--color-offwhite)',
+                    color: '#FFFFFF',
                     lineHeight: 1,
                   }}>45+</div>
                   <div style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.62rem',
                     letterSpacing: '0.12em',
-                    color: 'rgba(196,163,90,0.5)',
+                    color: 'rgba(201,168,76,0.5)',
                     marginTop: '0.15rem',
                   }}>{c.stat1_label}</div>
                 </div>
@@ -291,8 +291,8 @@ export function CredencialesSection() {
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                   borderRadius: '9999px',
-                  border: '1px solid rgba(196,163,90,0.15)',
-                  background: 'rgba(196,163,90,0.05)',
+                  border: '1px solid rgba(201,168,76,0.2)',
+                  background: 'rgba(201,168,76,0.06)',
                   padding: '0.3rem 0.75rem',
                 }}>
                   <span style={{ position: 'relative', display: 'inline-flex', width: '0.5rem', height: '0.5rem' }}>
@@ -307,8 +307,8 @@ export function CredencialesSection() {
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                   borderRadius: '9999px',
-                  border: '1px solid rgba(196,163,90,0.15)',
-                  background: 'rgba(196,163,90,0.05)',
+                  border: '1px solid rgba(201,168,76,0.2)',
+                  background: 'rgba(201,168,76,0.06)',
                   padding: '0.3rem 0.75rem',
                 }}>
                   <Crown style={{ width: '0.65rem', height: '0.65rem', color: 'var(--color-gold)' }} />
@@ -323,7 +323,7 @@ export function CredencialesSection() {
             position: 'relative',
             overflow: 'hidden',
             borderRadius: '1.5rem',
-            border: '1px solid rgba(196,163,90,0.12)',
+            border: '1px solid rgba(201,168,76,0.15)',
             background: 'rgba(255,255,255,0.04)',
             padding: '1.5rem 0',
             backdropFilter: 'blur(16px)',
@@ -333,7 +333,7 @@ export function CredencialesSection() {
               fontSize: '0.55rem',
               letterSpacing: '0.22em',
               textTransform: 'uppercase',
-              color: 'rgba(196,163,90,0.35)',
+              color: 'rgba(201,168,76,0.4)',
               paddingLeft: '2rem',
               marginBottom: '1.25rem',
             }}>

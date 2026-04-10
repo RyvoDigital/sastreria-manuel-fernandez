@@ -11,7 +11,7 @@ export function BodasHero() {
     <section style={{
       position: 'relative',
       height: '100vh',
-      background: 'var(--color-navy)',
+      background: '#0A1628',
       overflow: 'hidden',
     }}>
       {/* Layer 0: Background photo + overlay */}
@@ -24,7 +24,7 @@ export function BodasHero() {
         />
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(135deg, rgba(5,12,20,0.94) 0%, rgba(5,12,20,0.72) 50%, rgba(5,12,20,0.90) 100%)',
+          background: 'linear-gradient(135deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.75) 50%, rgba(10,22,40,0.92) 100%)',
         }} />
       </div>
 
@@ -44,7 +44,7 @@ export function BodasHero() {
           fontStyle: 'italic',
           fontSize: 'clamp(8rem, 22vw, 26rem)',
           fontWeight: 400,
-          color: 'var(--color-gold)',
+          color: '#C9A84C',
           opacity: 0.07,
           lineHeight: 0.85,
           letterSpacing: '-0.02em',
@@ -74,7 +74,7 @@ export function BodasHero() {
             objectFit: 'cover',
             objectPosition: 'top center',
             borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
-            boxShadow: '0 40px 100px rgba(5,12,20,0.75), 0 0 0 1px rgba(196,163,90,0.14)',
+            boxShadow: '0 40px 100px rgba(10,22,40,0.8), 0 0 0 1px rgba(201,168,76,0.18)',
             display: 'block',
           }}
         />
@@ -98,7 +98,7 @@ export function BodasHero() {
           fontSize: '0.55rem',
           letterSpacing: '0.35em',
           textTransform: 'uppercase',
-          color: 'rgba(196,163,90,0.65)',
+          color: 'rgba(201,168,76,0.7)',
           marginBottom: '1.2rem',
         }}>
           {c.label}
@@ -108,7 +108,7 @@ export function BodasHero() {
           fontStyle: 'italic',
           fontSize: 'clamp(2.4rem, 4vw, 4rem)',
           fontWeight: 400,
-          color: 'var(--color-offwhite)',
+          color: '#FFFFFF',
           lineHeight: 1.1,
           letterSpacing: '-0.01em',
         }}>
@@ -135,14 +135,14 @@ export function BodasHero() {
         <div style={{
           width: '1px',
           height: '3rem',
-          background: 'linear-gradient(to bottom, transparent, rgba(196,163,90,0.5))',
+          background: 'linear-gradient(to bottom, transparent, rgba(201,168,76,0.55))',
         }} />
         <p style={{
           fontFamily: 'var(--font-sans)',
           fontSize: '0.48rem',
           letterSpacing: '0.25em',
           textTransform: 'uppercase',
-          color: 'rgba(196,163,90,0.45)',
+          color: 'rgba(201,168,76,0.5)',
           writingMode: 'vertical-rl',
         }}>
           Desplazar
@@ -162,7 +162,7 @@ export function BodasHero() {
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(196,163,90,0.18)',
+          border: '1px solid rgba(201,168,76,0.2)',
           borderRadius: '1rem',
           padding: '1.25rem 1.5rem',
           minWidth: '180px',
@@ -174,7 +174,7 @@ export function BodasHero() {
             fontSize: '0.52rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'rgba(245,240,234,0.7)',
+            color: 'rgba(255,255,255,0.75)',
           }}>Est. 1978</span>
           <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.7 }} />
           <span style={{
@@ -182,12 +182,12 @@ export function BodasHero() {
             fontSize: '0.52rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'rgba(245,240,234,0.7)',
+            color: 'rgba(255,255,255,0.75)',
           }}>Madrid</span>
         </div>
         <div style={{ height: '1px', background: 'rgba(196,163,90,0.15)', marginBottom: '0.75rem' }} />
         <div style={{ display: 'flex', gap: '1.2rem' }}>
-          {[{ val: '200+', label: 'Bodas' }, { val: '100%', label: 'A Medida' }].map((s) => (
+          {[{ val: '1978', label: 'Est.' }, { val: '100%', label: 'A Mano' }].map((s) => (
             <div key={s.label}>
               <div style={{
                 fontFamily: 'var(--font-serif)',

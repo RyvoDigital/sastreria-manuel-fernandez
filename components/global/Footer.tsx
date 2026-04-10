@@ -23,7 +23,7 @@ export function Footer() {
   return (
     <footer
       style={{
-        background: 'var(--color-charcoal)',
+        background: 'var(--color-black)',
         borderTop: '1px solid var(--color-gold)',
         paddingTop: '4rem',
         paddingBottom: '2.5rem',
@@ -71,7 +71,7 @@ export function Footer() {
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.8rem',
-              color: 'rgba(245, 240, 234, 0.45)',
+              color: 'rgba(255, 255, 255, 0.5)',
               lineHeight: 1.7,
               maxWidth: '220px',
             }}
@@ -92,7 +92,7 @@ export function Footer() {
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.72rem',
                     letterSpacing: '0.12em',
-                    color: 'rgba(245, 240, 234, 0.55)',
+                    color: 'rgba(255, 255, 255, 0.6)',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                   }}
@@ -116,7 +116,7 @@ export function Footer() {
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.72rem',
                     letterSpacing: '0.12em',
-                    color: 'rgba(245, 240, 234, 0.55)',
+                    color: 'rgba(255, 255, 255, 0.6)',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                   }}
@@ -142,7 +142,7 @@ export function Footer() {
                   marginBottom: '0.85rem',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.72rem',
-                  color: 'rgba(245, 240, 234, 0.45)',
+                  color: 'rgba(255, 255, 255, 0.5)',
                   lineHeight: 1.6,
                 }}
               >
@@ -177,7 +177,7 @@ export function Footer() {
           style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '0.65rem',
-            color: 'rgba(245, 240, 234, 0.3)',
+            color: 'rgba(255, 255, 255, 0.35)',
             letterSpacing: '0.05em',
           }}
         >
@@ -192,7 +192,7 @@ export function Footer() {
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.65rem',
                 letterSpacing: '0.12em',
-                color: 'rgba(196, 163, 90, 0.5)',
+                color: 'rgba(201, 168, 76, 0.6)',
                 textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'color 0.3s',
