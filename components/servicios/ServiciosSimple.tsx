@@ -60,6 +60,14 @@ export function ServiciosSimple() {
   const { locale } = useI18n()
   const sectionRef = useRef<HTMLElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -232,7 +240,7 @@ export function ServiciosSimple() {
                   overflow: 'hidden',
                   opacity: isActive ? 1 : 0.3,
                   transition: 'opacity 0.3s ease',
-                  display: window?.innerWidth < 768 ? 'none' : 'block',
+                  display: isMobile ? 'none' : 'block',
                 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
