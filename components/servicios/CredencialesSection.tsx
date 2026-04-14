@@ -253,7 +253,7 @@ export function CredencialesSection() {
                     fontWeight: 400,
                     color: '#FFFFFF',
                     lineHeight: 1,
-                  }}>45+</div>
+                  }}>{c.stat1_val}</div>
                   <div style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.62rem',

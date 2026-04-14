@@ -6,6 +6,7 @@ import { HistoriaSection }  from './HistoriaSection'
 import { MaestroSection }   from './MaestroSection'
 import { OficioFlipSection } from './OficioFlipSection'
 import { CraftJourneySection } from './CraftJourneySection'
+import { ServiciosMorphGallery } from '../servicios/ServiciosMorphGallery'
 import { EspacioSection }   from './EspacioSection'
 import { FilosofiaSection } from './FilosofiaSection'
 import { SastreriaCTA }     from './SastreriaCTA'
@@ -40,6 +41,7 @@ export function SastreriaLayout() {
       <MaestroSection />
       <OficioFlipSection />
       <CraftJourneySection />
+      <ServiciosMorphGallery />
       <EspacioSection />
       <FilosofiaSection />
       <SastreriaCTA />

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
+
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
 import { Phone, MapPin } from 'lucide-react'
@@ -29,17 +29,15 @@ export function Navigation() {
   const { t, locale, toggleLocale } = useI18n()
   const pathname   = usePathname()
   const [scrolled, setScrolled]   = useState(false)
-  const [hovered,  setHovered]    = useState<string | null>(null)
   const [menuOpen, setMenuOpen]   = useState(false)
   const overlayRef     = useRef<HTMLDivElement>(null)
   const mobileItemRefs = useRef<HTMLLIElement[]>([])
-  const hoverTimer     = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   // Pages with light hero backgrounds need the nav to always be opaque
-  const lightBgPages = ['/coleccion']
+  const lightBgPages: string[] = []
   const forceOpaque = lightBgPages.some(r => pathname.startsWith(r))
   const isOpaque = scrolled || forceOpaque
 
@@ -75,9 +73,6 @@ export function Navigation() {
     }
   }, [menuOpen])
 
-  /* which item should show the indicator */
-  const indicatorOn = hovered ?? NAV_ITEMS.find(i => isActive(i.href))?.key ?? null
-
   return (
     <>
       {/* ─── NAVBAR ──────────────────────────────────────────── */}
@@ -112,77 +107,6 @@ export function Navigation() {
             }}
           />
         </Link>
-
-        {/* ── DESKTOP LINKS ────────────────────────────────── */}
-        <ul
-          onMouseLeave={() => {
-            hoverTimer.current = setTimeout(() => setHovered(null), 80)
-          }}
-          style={{
-            display:     'none',
-            listStyle:   'none',
-            margin:       0,
-            padding:      0,
-            gap:         'clamp(1.8rem, 2.8vw, 3.5rem)',
-            alignItems:  'center',
-          }}
-          className="mf-desktop-nav"
-        >
-          {NAV_ITEMS.map(({ key, href }) => {
-            const lit = indicatorOn === key
-
-            return (
-              <li
-                key={key}
-                style={{ position: 'relative' }}
-                onMouseEnter={() => {
-                  if (hoverTimer.current) clearTimeout(hoverTimer.current)
-                  setHovered(key)
-                }}
-              >
-                <Link
-                  href={href}
-                  style={{
-                    display:       'block',
-                    fontFamily:    'var(--font-sans)',
-                    fontSize:      '0.72rem',
-                    fontWeight:     400,
-                    letterSpacing: '0.18em',
-                    textTransform: 'uppercase',
-                    color:          lit
-                      ? 'var(--color-white)'
-                      : 'rgba(255,255,255,0.55)',
-                    textDecoration: 'none',
-                    paddingBottom:  '8px',
-                    transition:    'color .3s ease',
-                  }}
-                >
-                  {t.nav[key]}
-                </Link>
-
-                {/* shared sliding gold underline */}
-                {lit && (
-                  <motion.div
-                    layoutId="mf-nav-indicator"
-                    style={{
-                      position:   'absolute',
-                      bottom:      0,
-                      left:        0,
-                      right:       0,
-                      height:     '2px',
-                      background:  'var(--color-gold)',
-                    }}
-                    transition={{
-                      type:      'spring',
-                      stiffness:  420,
-                      damping:     36,
-                    }}
-                  />
-                )}
-              </li>
-            )
-          })}
-        </ul>
 
         {/* ── RIGHT CLUSTER ────────────────────────────────── */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
@@ -290,7 +214,7 @@ export function Navigation() {
             {locale === 'es' ? 'EN' : 'ES'}
           </button>
 
-          {/* Hamburger — mobile only */}
+          {/* Hamburger */}
           <button
             onClick={() => setMenuOpen(v => !v)}
             aria-label="Abrir menú"
@@ -316,9 +240,7 @@ export function Navigation() {
       {/* ─── BREAKPOINT HELPERS ─────────────────────────────── */}
       <style>{`
         @media (min-width: 1024px) {
-          .mf-desktop-nav { display: flex !important; }
           .mf-contact-btn { display: inline-flex !important; }
-          .mf-hamburger   { display: none !important; }
         }
         @media (max-width: 1200px) {
           .mf-contact-btn span { display: none !important; }
