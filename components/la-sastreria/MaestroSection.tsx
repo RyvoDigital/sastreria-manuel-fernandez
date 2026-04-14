@@ -76,7 +76,7 @@ export function MaestroSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/photos/fitting-vest.jpg"
-          alt="Manuel Fernández en su atelier"
+          alt="Manuel Fernández en su taller"
           style={{
             position:   'absolute', inset: 0,
             width:      '100%', height: '100%',

@@ -8,9 +8,9 @@ import { Globe, type GlobeMarker, type GlobeArc } from '@/components/ui/globe'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Client locations where we work — Madrid atelier at center
+// Client locations where we work — Madrid workshop at center
 const MARKERS: GlobeMarker[] = [
-  { id: 'madrid',       location: [40.4168,  -3.7038],  label: 'Madrid — Nuestro Atelier' },
+  { id: 'madrid',       location: [40.4168,  -3.7038],  label: 'Madrid — Nuestro Taller' },
   { id: 'miami',        location: [25.7617,  -80.1918], label: 'Miami · USA' },
   { id: 'oporto',       location: [41.1579,   -8.6291], label: 'Oporto · Portugal' },
   { id: 'lisbon',       location: [38.7223,   -9.1393], label: 'Lisboa · Portugal' },
@@ -82,7 +82,7 @@ export function TejidosMundoSection() {
         background: 'radial-gradient(ellipse 70% 70% at 60% 50%, rgba(201,168,76,0.04) 0%, transparent 100%)',
       }} />
 
-      <div style={{
+      <div className="mf-tj-grid" style={{
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'grid',
@@ -91,6 +91,11 @@ export function TejidosMundoSection() {
         alignItems: 'center',
         position: 'relative', zIndex: 1,
       }}>
+      <style>{`
+        @media (max-width: 900px) {
+          .mf-tj-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
 
         {/* Left: editorial text */}
         <div className="mf-tj-lhs">

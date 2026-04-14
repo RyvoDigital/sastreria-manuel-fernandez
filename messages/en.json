@@ -122,7 +122,7 @@
     "espacio": {
       "label": "The Space",
       "title": "Where the Suit is Born",
-      "description": "A private atelier in Madrid where every visit is an experience as carefully considered as the garment created within it."
+      "description": "A private workshop in Madrid where every visit is an experience as carefully considered as the garment created within it."
     },
     "filosofia": {
       "label": "The Philosophy",
@@ -145,24 +145,24 @@
       "headline": "Everything a Master Tailor Can Create"
     },
     "services": {
-      "s1_num": "01", "s1_title": "Bespoke Suit",          "s1_duration": "8–10 weeks",
-      "s2_num": "02", "s2_title": "Sport Coat",            "s2_duration": "6–8 weeks",
-      "s3_num": "03", "s3_title": "Bespoke Trousers",      "s3_duration": "3–4 weeks",
-      "s4_num": "04", "s4_title": "Bespoke Overcoat",      "s4_duration": "8–10 weeks",
-      "s5_num": "05", "s5_title": "Wedding Suit",          "s5_duration": "10–12 weeks",
+      "s1_num": "01", "s1_title": "Bespoke Suit",          "s1_duration": "Approx. 8–10 weeks",
+      "s2_num": "02", "s2_title": "Sport Coat",            "s2_duration": "Approx. 6–8 weeks",
+      "s3_num": "03", "s3_title": "Bespoke Trousers",      "s3_duration": "Approx. 3–4 weeks",
+      "s4_num": "04", "s4_title": "Bespoke Overcoat",      "s4_duration": "Approx. 8–10 weeks",
+      "s5_num": "05", "s5_title": "Wedding Suit",          "s5_duration": "Approx. 10–12 weeks",
       "s6_num": "06", "s6_title": "Alterations",           "s6_duration": "On request"
     },
     "credenciales": {
-      "badge": "Trusted Atelier",
-      "headline1": "Four Decades of",
+      "badge": "Trusted Tailoring",
+      "headline1": "A Legacy of",
       "headline2": "Exceptional Craft",
-      "body": "Every suit that leaves the atelier carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
-      "stat1_val": "45+",      "stat1_label": "Years of Craft",
+      "body": "Every suit that leaves the workshop carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
+      "stat1_val": "1978",      "stat1_label": "Since",
       "stat2_val": "Bespoke",  "stat2_label": "Every Piece",
       "stat3_val": "Madrid",   "stat3_label": "Our City",
       "satisfaction_label": "Satisfied Clients",
       "btn_primary": "Book Appointment",
-      "btn_secondary": "The Atelier"
+      "btn_secondary": "The Workshop"
     },
     "tejidos": {
       "label": "Our Clients",
@@ -174,14 +174,14 @@
       "label": "The Next Step",
       "headline": "The suit you imagine is one conversation away",
       "btn_primary": "Book Appointment",
-      "btn_secondary": "The Atelier"
+      "btn_secondary": "The Workshop"
     }
   },
   "contacto": {
     "section_label": "Contact",
     "headline": "Let's Talk",
     "subheadline": "Every commission begins with a conversation.",
-    "address_label": "Atelier",
+    "address_label": "Workshop",
     "address": "Address available by prior appointment",
     "phone_label": "Phone",
     "phone": "+34 000 000 000",
@@ -270,7 +270,7 @@
       "label": "The Next Step",
       "headline": "The most important day of your life deserves a unique suit.",
       "btn_primary": "Book Appointment",
-      "btn_secondary": "Meet the Atelier"
+      "btn_secondary": "Our Story"
     }
   },
   "footer": {

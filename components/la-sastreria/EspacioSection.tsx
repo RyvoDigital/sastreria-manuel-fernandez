@@ -109,7 +109,7 @@ export function EspacioSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/photos/tailor-workshop.jpg"
-              alt="Atelier de Sastrería Manuel Fernández"
+              alt="Taller de Sastrería Manuel Fernández"
               style={{
                 width:          '100%',
                 height:         '100%',

@@ -30,8 +30,8 @@ interface FlipCardProps {
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const IMG_WIDTH  = 55
-const IMG_HEIGHT = 78
+const IMG_WIDTH  = 150
+const IMG_HEIGHT = 210
 const TOTAL_IMAGES = 20
 const MAX_SCROLL   = 3000
 
@@ -125,7 +125,7 @@ function FlipCard({ src, index, target }: FlipCardProps) {
         >
           <div style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: '0.38rem',
+            fontSize: '0.65rem',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             color: 'rgba(196,163,90,0.55)',
@@ -137,7 +137,7 @@ function FlipCard({ src, index, target }: FlipCardProps) {
           <div style={{
             fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
-            fontSize: '0.55rem',
+            fontSize: '0.9rem',
             color: 'var(--color-gold)',
             textAlign: 'center',
             lineHeight: 1.3,
@@ -290,7 +290,7 @@ export function ServiciosMorphGallery() {
                 lineHeight: 1.1,
               }}
             >
-              El Repertorio
+              El Corte como Lenguaje
             </motion.h2>
             <motion.p
               animate={{ opacity: titleVisible ? Math.max(0, 0.5 - morphValue) : 0 }}
@@ -349,7 +349,7 @@ export function ServiciosMorphGallery() {
               if (introPhase === 'scatter') {
                 target = scatterPositions[i]
               } else if (introPhase === 'line') {
-                const lineSpacing = 65
+                const lineSpacing = 170
                 const lineTotalWidth = TOTAL_IMAGES * lineSpacing
                 target = { x: i * lineSpacing - lineTotalWidth / 2, y: 0, rotation: 0, scale: 1, opacity: 1 }
               } else {

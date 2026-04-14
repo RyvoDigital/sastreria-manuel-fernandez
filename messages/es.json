@@ -122,7 +122,7 @@
     "espacio": {
       "label": "El Espacio",
       "title": "Donde Nace el Traje",
-      "description": "Un atelier privado en Madrid donde cada visita es una experiencia tan cuidada como la prenda que se crea en él."
+      "description": "Un taller privado en Madrid donde cada visita es una experiencia tan cuidada como la prenda que se crea en él."
     },
     "filosofia": {
       "label": "La Filosofía",
@@ -145,19 +145,19 @@
       "headline": "Todo lo Que Puede Crear un Sastre"
     },
     "services": {
-      "s1_num": "01", "s1_title": "Traje a Medida",        "s1_duration": "8–10 semanas",
-      "s2_num": "02", "s2_title": "Chaqueta Deportiva",    "s2_duration": "6–8 semanas",
-      "s3_num": "03", "s3_title": "Pantalón a Medida",     "s3_duration": "3–4 semanas",
-      "s4_num": "04", "s4_title": "Abrigo a Medida",       "s4_duration": "8–10 semanas",
-      "s5_num": "05", "s5_title": "Traje de Novio",        "s5_duration": "10–12 semanas",
-      "s6_num": "06", "s6_title": "Arreglos & Renovación", "s6_duration": "Consultar"
+      "s1_num": "01", "s1_title": "Traje a Medida",        "s1_duration": "Aprox. 8–10 semanas",
+      "s2_num": "02", "s2_title": "Chaqueta Deportiva",    "s2_duration": "Aprox. 6–8 semanas",
+      "s3_num": "03", "s3_title": "Pantalón a Medida",     "s3_duration": "Aprox. 3–4 semanas",
+      "s4_num": "04", "s4_title": "Abrigo a Medida",       "s4_duration": "Aprox. 8–10 semanas",
+      "s5_num": "05", "s5_title": "Traje de Novio",        "s5_duration": "Aprox. 10–12 semanas",
+      "s6_num": "06", "s6_title": "Arreglos & Renovación", "s6_duration": "A consultar"
     },
     "credenciales": {
       "badge": "Sastrería de Confianza",
-      "headline1": "Cuatro Décadas de",
+      "headline1": "Un Legado de",
       "headline2": "Oficio Excepcional",
-      "body": "Cada traje que sale del atelier lleva consigo décadas de conocimiento, el mejor paño europeo y el rigor de quien hace de la perfección un hábito.",
-      "stat1_val": "45+",      "stat1_label": "Años de Oficio",
+      "body": "Cada traje que sale del taller lleva consigo décadas de conocimiento, el mejor paño europeo y el rigor de quien hace de la perfección un hábito.",
+      "stat1_val": "1978",      "stat1_label": "Desde",
       "stat2_val": "A Medida", "stat2_label": "Cada Pieza",
       "stat3_val": "Madrid",   "stat3_label": "Nuestra Ciudad",
       "satisfaction_label": "Clientes Satisfechos",
@@ -181,7 +181,7 @@
     "section_label": "Contacto",
     "headline": "Hablemos",
     "subheadline": "Cada encargo comienza con una conversación.",
-    "address_label": "Atelier",
+    "address_label": "Taller",
     "address": "Dirección disponible bajo cita previa",
     "phone_label": "Teléfono",
     "phone": "+34 000 000 000",
@@ -270,7 +270,7 @@
       "label": "El Siguiente Paso",
       "headline": "El día más importante de su vida merece un traje único.",
       "btn_primary": "Reservar Cita",
-      "btn_secondary": "Conocer la Sastrería"
+      "btn_secondary": "Conocer el Taller"
     }
   },
   "footer": {
