@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
@@ -9,42 +10,14 @@ import { Eye, Leaf, Award, Hand } from 'lucide-react'
 gsap.registerPlugin(ScrollTrigger)
 
 const CONTENT_BLOCKS = [
-  {
-    id: 'visual',
-    icon: Eye,
-    title_es: 'Visual',
-    title_en: 'Visual',
-    desc_es: 'Fotografías macro de texturas de tejidos; procesos naturales (ovejas, cabras, fibra cruda, hilado).',
-    desc_en: 'Macro photography of fabric textures; natural processes (sheep, goats, raw fibre, spinning).',
-  },
-  {
-    id: 'origins',
-    icon: Leaf,
-    title_es: 'Origen',
-    title_en: 'Origin',
-    desc_es: 'Cómo se obtiene cada fibra: Lana, Cachemira, Seda, Vicuña — énfasis en singularidad (agua, temperatura, terreno).',
-    desc_en: 'How each fibre is obtained: Wool, Cashmere, Silk, Vicuña — emphasis on uniqueness (water, temperature, terrain).',
-  },
-  {
-    id: 'grading',
-    icon: Award,
-    title_es: 'Graduación',
-    title_en: 'Grading',
-    desc_es: 'Explicación de Super 100 / 120 / 150 / 200 — qué significa cada uno, cómo afecta la calidad.',
-    desc_en: 'Explanation of Super 100 / 120 / 150 / 200 — what each means, how it affects quality.',
-  },
-  {
-    id: 'selection',
-    icon: Hand,
-    title_es: 'Selección',
-    title_en: 'Selection',
-    desc_es: 'Cómo se selecciona cada fibra a mano — enfoque artesanal en la selección de materiales.',
-    desc_en: 'How each fibre is hand-selected — artisan approach to material selection.',
-  },
+  { id: 'visual' as const, icon: Eye },
+  { id: 'origins' as const, icon: Leaf },
+  { id: 'grading' as const, icon: Award },
+  { id: 'selection' as const, icon: Hand },
 ]
 
 export function FabricsSection() {
-  const { locale } = useI18n()
+  const { t } = useI18n()
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -62,24 +35,6 @@ export function FabricsSection() {
     return () => ctx.revert()
   }, [])
 
-  const t = {
-    es: {
-      label: 'Los Tejidos',
-      title: 'Sensory, educativo y aspiracional',
-      subtitle: 'Ayudamos a los clientes a entender y desear el material. Cada fibra cuenta una historia de origen, selección y artesanía.',
-      values: 'Valores de marca: Sostenibilidad, selección artesanal, exclusividad material',
-      pending: 'Imágenes pendientes del cliente',
-    },
-    en: {
-      label: 'The Fabrics',
-      title: 'Sensory, educational and aspirational',
-      subtitle: 'We help clients understand and desire the material. Every fibre tells a story of origin, selection and craftsmanship.',
-      values: 'Brand values: Sustainability, artisan selection, material exclusivity',
-      pending: 'Images pending from client',
-    },
-  }
-
-  const currentT = t[locale as 'es' | 'en'] || t.es
 
   return (
     <section
@@ -117,7 +72,7 @@ export function FabricsSection() {
             color: '#C9A84C',
             marginBottom: '1rem',
           }}>
-            {currentT.label}
+            {t.fabrics.label}
           </div>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
@@ -127,7 +82,7 @@ export function FabricsSection() {
             color: '#0A1628',
             margin: '0 0 1rem 0',
           }}>
-            {currentT.title}
+            {t.fabrics.title}
           </h2>
           <p style={{
             fontFamily: 'var(--font-sans)',
@@ -137,7 +92,7 @@ export function FabricsSection() {
             maxWidth: '700px',
             margin: '0 auto',
           }}>
-            {currentT.subtitle}
+            {t.fabrics.subtitle}
           </p>
         </div>
 
@@ -145,47 +100,77 @@ export function FabricsSection() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.5rem',
+          gap: '2rem',
           marginBottom: '3rem',
         }}>
           {CONTENT_BLOCKS.map((block) => {
             const Icon = block.icon
-            const title = block[`title_${locale}` as const] || block.title_es
-            const desc = block[`desc_${locale}` as const] || block.desc_es
+            const { title, desc } = t.fabrics.items[block.id]
 
             return (
-              <div
+              <motion.div
                 key={block.id}
                 className="mf-fabrics-block"
+                whileHover={{ 
+                  y: -10,
+                  rotateX: 5,
+                  rotateY: -5,
+                  scale: 1.02,
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 style={{
-                  padding: '2rem',
-                  background: 'rgba(10,22,40,0.02)',
-                  border: '1px solid rgba(201,168,76,0.2)',
-                  transition: 'all 0.3s ease',
+                  padding: '2.5rem 2rem',
+                  background: '#FFFFFF',
+                  border: '1px solid rgba(201,168,76,0.15)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  cursor: 'default',
+                  perspective: '1000px',
                 }}
               >
+                {/* Decorative fabric drape background element (blurred) */}
+                <motion.div
+                  style={{
+                    position: 'absolute',
+                    top: '-20%',
+                    right: '-20%',
+                    width: '150px',
+                    height: '150px',
+                    background: 'radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%)',
+                    borderRadius: '50%',
+                    pointerEvents: 'none',
+                  }}
+                  whileHover={{ scale: 1.5, opacity: 0.1 }}
+                />
+
                 {/* Icon */}
-                <div style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '50%',
-                  border: '1px solid #C9A84C',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.5rem',
-                  color: '#C9A84C',
-                }}>
-                  <Icon size={24} strokeWidth={1.5} />
-                </div>
+                <motion.div 
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '4px',
+                    background: 'rgba(201,168,76,0.05)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '2rem',
+                    color: '#C9A84C',
+                    border: '1px solid rgba(201,168,76,0.3)',
+                  }}
+                >
+                  <Icon size={28} strokeWidth={1} />
+                </motion.div>
 
                 {/* Title */}
                 <h3 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.35rem',
+                  fontSize: '1.5rem',
                   fontWeight: 400,
                   color: '#0A1628',
-                  margin: '0 0 0.75rem 0',
+                  margin: '0 0 1rem 0',
                 }}>
                   {title}
                 </h3>
@@ -193,14 +178,25 @@ export function FabricsSection() {
                 {/* Description */}
                 <p style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.9rem',
-                  lineHeight: 1.6,
+                  fontSize: '0.95rem',
+                  lineHeight: 1.7,
                   color: 'rgba(10,22,40,0.6)',
                   margin: 0,
                 }}>
                   {desc}
                 </p>
-              </div>
+                
+                {/* Subtle gold accent line revealed on hover */}
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileHover={{ width: '40px' }}
+                  style={{
+                    height: '2px',
+                    background: '#C9A84C',
+                    marginTop: '1.5rem',
+                  }}
+                />
+              </motion.div>
             )
           })}
         </div>
@@ -218,7 +214,7 @@ export function FabricsSection() {
             color: '#FFFFFF',
             margin: '0 0 0.5rem 0',
           }}>
-            {currentT.values}
+            {t.fabrics.values}
           </p>
           <div style={{
             width: '60px',
@@ -242,7 +238,7 @@ export function FabricsSection() {
             color: 'rgba(10,22,40,0.5)',
             margin: 0,
           }}>
-            {currentT.pending}
+            {t.fabrics.pending}
           </p>
         </div>
       </div>

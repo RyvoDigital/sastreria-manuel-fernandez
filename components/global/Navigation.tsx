@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { key: 'sastreria'     as const, href: '/la-sastreria' },
   { key: 'bodas'         as const, href: '/bodas-y-ceremonia' },
   { key: 'servicios'     as const, href: '/servicios' },
+  { key: 'modelos3d'     as const, href: '/modelos-3d' },
   { key: 'configurador'  as const, href: '/configurador' },
   { key: 'cursos'        as const, href: '/cursos' },
   { key: 'videollamada'  as const, href: '/videollamada' },

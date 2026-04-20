@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { useScroll, useTransform, motion } from 'framer-motion'
+import { useI18n } from '@/lib/i18n'
 
 const IMAGES = [
   '/photos/cutting-table.jpg',
@@ -40,6 +41,7 @@ const IMAGE_LAYOUT: React.CSSProperties[] = [
 ]
 
 export function ZoomParallaxSection() {
+  const { t } = useI18n()
   const container = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -73,34 +75,64 @@ export function ZoomParallaxSection() {
       }}>
 
         {/* Image layers */}
-        {IMAGES.map((src, index) => (
-          <motion.div
-            key={index}
-            style={{
-              scale:    scales[index],
-              position: 'absolute',
-              inset:    0,
-              display:  'flex',
-              alignItems:     'center',
-              justifyContent: 'center',
-            }}
-          >
-            <div style={IMAGE_LAYOUT[index]}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={`Sastrería Manuel Fernández — imagen ${index + 1}`}
-                style={{
-                  width:      '100%',
-                  height:     '100%',
-                  objectFit:  'cover',
-                  filter:     'brightness(0.75) saturate(0.6)',
-                  display:    'block',
+        {IMAGES.map((src, index) => {
+          // Floating animation constants based on index
+          const floatingDelay = index * 0.5
+          const floatingDuration = 3 + (index % 3)
+          
+          return (
+            <motion.div
+              key={index}
+              style={{
+                scale:    scales[index],
+                position: 'absolute',
+                inset:    0,
+                display:  'flex',
+                alignItems:     'center',
+                justifyContent: 'center',
+                zIndex: index === 0 ? 5 : 1, // Center image stays prominent
+              }}
+            >
+              <motion.div 
+                style={IMAGE_LAYOUT[index]}
+                animate={{
+                  y: [0, -15, 0],
+                  x: [0, 5, 0],
+                  rotate: [0, 1, 0]
                 }}
-              />
-            </div>
-          </motion.div>
-        ))}
+                transition={{
+                  duration: floatingDuration,
+                  repeat: Infinity,
+                  delay: floatingDelay,
+                  ease: "easeInOut"
+                }}
+              >
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: '4px',
+                  boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+                }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={`${t.zoom_parallax.alt} ${index + 1}`}
+                    style={{
+                      width:      '100%',
+                      height:     '100%',
+                      objectFit:  'cover',
+                      filter:     index === 0 ? 'brightness(0.9)' : 'brightness(0.6) saturate(0.4)',
+                      display:    'block',
+                      transition: 'filter 0.5s ease',
+                    }}
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          )
+        })}
 
         {/* Dark vignette overlay — sits above images */}
         <div style={{

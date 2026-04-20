@@ -12,6 +12,8 @@ export function TrajeEmpiezaSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
+  const curtainRef = useRef<HTMLDivElement>(null)
+  const lineRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -20,52 +22,50 @@ export function TrajeEmpiezaSection() {
     if (!section || !image || !text) return
 
     const ctx = gsap.context(() => {
-      // Image reveal from left
-      gsap.fromTo(
-        image,
-        { x: -60, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          },
-        }
-      )
-
-      // Text reveal from right
-      gsap.fromTo(
-        text.querySelectorAll('.reveal-item'),
-        { x: 40, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power3.out',
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 70%',
-            toggleActions: 'play none none none',
-          },
-        }
-      )
-
-      // Parallax on image
-      gsap.to(image.querySelector('.parallax-img'), {
-        y: -40,
-        ease: 'none',
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5,
-        },
+          start: 'top 65%',
+        }
       })
+
+      // 1. Curtain wipe reveal
+      tl.to(curtainRef.current, {
+        xPercent: 105,
+        duration: 1.4,
+        ease: 'power3.inOut'
+      })
+
+      // 2. Parallax zoom on image during reveal
+      gsap.fromTo(image.querySelector('.parallax-img'), 
+        { scale: 1.2 },
+        {
+          scale: 1,
+          duration: 1.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'bottom top',
+            scrub: true,
+          }
+        }
+      )
+
+      // 3. Gold line drawing from center
+      tl.fromTo(lineRef.current,
+        { scaleX: 0, transformOrigin: 'center' },
+        { scaleX: 1, duration: 0.8, ease: 'power2.out' },
+        "-=0.6"
+      )
+
+      // 4. Text reveal (simulated typewriter / fade-in)
+      const items = text.querySelectorAll('.reveal-item')
+      tl.fromTo(items,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out' },
+        "-=0.4"
+      )
     }, section)
 
     return () => ctx.revert()
@@ -92,10 +92,20 @@ export function TrajeEmpiezaSection() {
           className="parallax-img"
           style={{
             position: 'absolute',
-            inset: '-10%',
+            inset: 0,
             backgroundImage: `url('/photos/camel-jacket-form.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
+          }}
+        />
+        {/* Cinematic Curtain */}
+        <div
+          ref={curtainRef}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: '#0A1628',
+            zIndex: 2,
           }}
         />
         {/* Gold border accent */}
@@ -139,9 +149,10 @@ export function TrajeEmpiezaSection() {
 
         {/* Gold line */}
         <div
+          ref={lineRef}
           className="reveal-item"
           style={{
-            width: '40px',
+            width: '80px',
             height: '1px',
             background: 'var(--color-gold)',
             marginBottom: '2rem',

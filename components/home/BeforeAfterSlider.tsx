@@ -1,59 +1,62 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { motion, useSpring, useMotionValue } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { MoveHorizontal } from 'lucide-react'
 
 export function BeforeAfterSlider() {
-  const { locale } = useI18n()
-  const [sliderPosition, setSliderPosition] = useState(50)
+  const { t } = useI18n()
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  
+  // Motion values for smooth inertia
+  const xPercent = useMotionValue(50)
+  const springConfig = { stiffness: 300, damping: 30, restDelta: 0.01 }
+  const smoothX = useSpring(xPercent, springConfig)
+  
+  const lastInteractTime = useRef(Date.now())
 
-  const t = {
-    es: {
-      label: 'Antes y Después',
-      title: 'La diferencia de un traje a medida',
-      subtitle: 'Desliza para ver la transformación',
-      before: 'Antes',
-      after: 'Después',
-      placeholder: 'Imágenes pendientes del cliente',
-    },
-    en: {
-      label: 'Before & After',
-      title: 'The difference of a bespoke suit',
-      subtitle: 'Drag to see the transformation',
-      before: 'Before',
-      after: 'After',
-      placeholder: 'Images pending from client',
-    },
-  }
-
-  const currentT = t[locale as 'es' | 'en'] || t.es
 
   const handleMove = (clientX: number) => {
     if (!containerRef.current) return
     const rect = containerRef.current.getBoundingClientRect()
     const x = clientX - rect.left
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
-    setSliderPosition(percentage)
+    xPercent.set(percentage)
+    lastInteractTime.current = Date.now()
   }
 
   const handleMouseDown = () => setIsDragging(true)
   const handleMouseUp = () => setIsDragging(false)
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (isDragging) handleMove(e.clientX)
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    handleMove(e.touches[0].clientX)
-  }
+  
+  // Auto-sliding effect when idle
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const idleTime = Date.now() - lastInteractTime.current
+      if (idleTime > 5000 && !isDragging) {
+        // Subtle ping-pong animation
+        const time = Date.now() / 2000
+        const autoPos = 50 + Math.sin(time) * 15
+        xPercent.set(autoPos)
+      }
+    }, 50)
+    return () => clearInterval(interval)
+  }, [isDragging, xPercent])
 
   useEffect(() => {
     const handleGlobalMouseUp = () => setIsDragging(false)
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (isDragging) handleMove(e.clientX)
+    }
+    
     window.addEventListener('mouseup', handleGlobalMouseUp)
-    return () => window.removeEventListener('mouseup', handleGlobalMouseUp)
-  }, [])
+    window.addEventListener('mousemove', handleGlobalMouseMove)
+    return () => {
+      window.removeEventListener('mouseup', handleGlobalMouseUp)
+      window.removeEventListener('mousemove', handleGlobalMouseMove)
+    }
+  }, [isDragging])
 
   return (
     <section style={{
@@ -88,7 +91,7 @@ export function BeforeAfterSlider() {
             color: '#C9A84C',
             marginBottom: '1rem',
           }}>
-            {currentT.label}
+            {t.before_after.label}
           </div>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
@@ -98,14 +101,14 @@ export function BeforeAfterSlider() {
             color: '#FFFFFF',
             margin: '0 0 0.5rem 0',
           }}>
-            {currentT.title}
+            {t.before_after.title}
           </h2>
           <p style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '1rem',
             color: 'rgba(255,255,255,0.5)',
           }}>
-            {currentT.subtitle}
+            {t.before_after.subtitle}
           </p>
         </div>
 
@@ -124,10 +127,7 @@ export function BeforeAfterSlider() {
             border: '1px solid rgba(201,168,76,0.2)',
           }}
           onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseUp}
-          onTouchMove={handleTouchMove}
+          onTouchMove={(e) => handleMove(e.touches[0].clientX)}
           onTouchStart={handleMouseDown}
           onTouchEnd={handleMouseUp}
         >
@@ -152,7 +152,7 @@ export function BeforeAfterSlider() {
                 color: 'rgba(255,255,255,0.4)',
                 margin: 0,
               }}>
-                {currentT.placeholder}
+                {t.before_after.placeholder}
               </p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export function BeforeAfterSlider() {
             color: '#FFFFFF',
             zIndex: 2,
           }}>
-            {currentT.before}
+            {t.before_after.before}
           </div>
 
           {/* After Label */}
@@ -188,20 +188,20 @@ export function BeforeAfterSlider() {
             color: '#000000',
             zIndex: 2,
           }}>
-            {currentT.after}
+            {t.before_after.after}
           </div>
 
           {/* Slider Line */}
-          <div style={{
+          <motion.div style={{
             position: 'absolute',
             top: 0,
             bottom: 0,
-            left: `${sliderPosition}%`,
+            left: smoothX,
             width: '2px',
             background: '#C9A84C',
             transform: 'translateX(-50%)',
             zIndex: 3,
-            boxShadow: '0 0 10px rgba(201,168,76,0.5)',
+            boxShadow: '0 0 15px rgba(201,168,76,0.6)',
           }}>
             {/* Slider Handle */}
             <div style={{
@@ -220,7 +220,7 @@ export function BeforeAfterSlider() {
             }}>
               <MoveHorizontal size={20} color="#000000" />
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Instructions */}
@@ -231,7 +231,7 @@ export function BeforeAfterSlider() {
           fontSize: '0.8rem',
           color: 'rgba(255,255,255,0.4)',
         }}>
-          {locale === 'es' ? 'Arrastra el control deslizante para comparar' : 'Drag the slider to compare'}
+          {t.before_after.instruction}
         </p>
       </div>
     </section>

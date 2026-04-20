@@ -5,7 +5,7 @@ import { LanguageProvider } from '@/lib/i18n'
 import { LenisProvider } from '@/lib/lenis-provider'
 import { LoadingScreen } from '@/components/global/LoadingScreen'
 import { Navigation } from '@/components/global/Navigation'
-import { Footer } from '@/components/global/Footer'
+import { FooterEnhanced } from '@/components/global/FooterEnhanced'
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
@@ -42,7 +42,7 @@ export default function RootLayout({
             <LoadingScreen />
             <Navigation />
             <main>{children}</main>
-            <Footer />
+            <FooterEnhanced />
           </LenisProvider>
         </LanguageProvider>
       </body>
