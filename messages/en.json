@@ -7,7 +7,8 @@
     "contacto": "Contact",
     "configurador": "Configurator",
     "cursos": "Online Courses",
-    "videollamada": "Video Call"
+    "videollamada": "Video Call",
+    "modelos3d": "3D Models"
   },
   "hero": {
     "tagline": "Artisan tailoring since 1978",
@@ -15,15 +16,30 @@
     "subtext": "Each garment built from scratch, no prior fittings.",
     "cta_book": "Book Appointment",
     "cta_call": "Call Us",
-    "cta_contact": "Contact"
+    "cta_contact": "Contact",
+    "since": "Since 1978",
+    "discover": "Discover"
+  },
+  "zoom_parallax": {
+    "alt": "Sastrería Manuel Fernández — image"
   },
   "traje_empieza": {
     "label": "The process",
     "title": "Your suit begins with you",
     "body": "Before choosing a fabric or shaping a lapel, we need to know you. Your life moment, your personality, what you want to convey. Every suit we build is born from an honest conversation about who you are and who you want to be."
   },
+  "before_after": {
+    "label": "Before & After",
+    "title": "The difference of a bespoke suit",
+    "subtitle": "Drag to see the transformation",
+    "before": "Before",
+    "after": "After",
+    "placeholder": "Images pending from client",
+    "instruction": "Drag the slider to compare"
+  },
   "proceso": {
     "label": "Our methodology",
+    "step_label": "Step",
     "step1_num": "01",
     "step1_title": "Intention",
     "step1_body": "What is the suit for? What do you want to convey? Everything begins with understanding the moment and the person.",
@@ -36,11 +52,12 @@
   },
   "testimonials": {
     "label": "What they say",
+    "title": "Real Experiences",
     "items": [
       {
         "quote": "I never thought a suit could change the way I perceive myself. Manuel understood what I needed before I even knew it myself.",
         "name": "Carlos M.",
-        "occasion": "Managing Director, Madrid"
+        "occasion": "CEO, Madrid"
       },
       {
         "quote": "The experience on my wedding day was perfect in every detail. The suit was exactly what I had dreamed of, and the process was an experience in itself.",
@@ -48,34 +65,57 @@
         "occasion": "Wedding, Seville"
       },
       {
-        "quote": "Wearing a Manuel Fernández suit means wearing confidence. It's hard to explain, but those who've lived it understand.",
+        "quote": "Wearing a Manuel Fernández suit is wearing confidence. It's hard to explain, but anyone who has lived it understands.",
         "name": "Javier L.",
         "occasion": "Entrepreneur, Barcelona"
       }
     ]
   },
+  "suit_showcase": {
+    "label": "The Anatomy of the Suit",
+    "title": "Details that make the difference",
+    "hint": "Explore the key points of our artisan tailoring",
+    "hotspots": {
+      "lapel": {
+        "title": "Hand-stitched lapel",
+        "desc": "Invisible stitches that provide natural structure and flexibility to the lapel."
+      },
+      "buttons": {
+        "title": "Natural horn buttons",
+        "desc": "Buttons selected one by one for their grain and exceptional durability."
+      },
+      "shoulder": {
+        "title": "Neapolitan shoulder",
+        "desc": "Natural drape without padding for superior comfort and elegant style."
+      },
+      "fabric": {
+        "title": "Super 150s Wool",
+        "desc": "Fine Italian fabric with a natural sheen and silk touch."
+      }
+    }
+  },
   "editorial": {
-    "label": "Editorial inspiration",
+    "label": "Editorial Inspiration",
     "articles": [
       {
         "category": "Suit Culture",
         "title": "The lapel as the silent language of power",
-        "excerpt": "Every millimetre counts. The width of a lapel is not an aesthetic decision — it's a declaration of intent."
+        "excerpt": "Every millimetre counts. The width of a lapel is not an aesthetic decision, it is a statement of intent."
       },
       {
         "category": "Craftsmanship",
         "title": "The fabric that chooses who you are",
-        "excerpt": "From the English houses of Holland & Sherry to the Italian lanifici, each cloth has a story."
+        "excerpt": "From the English houses of Holland & Sherry to the Italian lanifici, every cloth has a story."
       },
       {
         "category": "Weddings",
         "title": "The big day starts months before",
-        "excerpt": "How to turn the groom's suit selection into an experience you'll remember for a lifetime."
+        "excerpt": "How to turn the process of choosing a groom's suit into an experience you will remember for a lifetime."
       },
       {
         "category": "The Cut",
-        "title": "The pattern: a tailor's first language",
-        "excerpt": "Before a single stitch, the pattern already speaks. Chalk lines on navy cloth: the cartography of a unique suit."
+        "title": "The pattern: the tailor's first language",
+        "excerpt": "Before a single stitch, the pattern already speaks. Chalk lines on blue cloth: the cartography of a unique suit."
       },
       {
         "category": "The Client",
@@ -137,6 +177,58 @@
       "headline": "The suit you imagine is one conversation away",
       "btn_primary": "Book Appointment",
       "btn_secondary": "Our Process"
+    }
+  },
+  "fabrics": {
+    "label": "The Fabrics",
+    "title": "Sensory, educational and aspirational",
+    "subtitle": "We help clients understand and desire the material. Every fibre tells a story of origin, selection and craftsmanship.",
+    "values": "Brand values: Sustainability, artisan selection, material exclusivity",
+    "pending": "Images pending from client",
+    "items": {
+      "visual": {
+        "title": "Visual",
+        "desc": "Macro photographs of fabric textures; natural processes (sheep, goats, raw fibre, spinning)."
+      },
+      "origins": {
+        "title": "Origin",
+        "desc": "How each fibre is obtained: Wool, Cashmere, Silk, Vicuña — emphasis on uniqueness (water, temperature, terrain)."
+      },
+      "grading": {
+        "title": "Grading",
+        "desc": "Explanation of Super 100 / 120 / 150 / 200 — what each means, how it affects quality."
+      },
+      "selection": {
+        "title": "Selection",
+        "desc": "How each fibre is hand-selected — artisan approach to material selection."
+      }
+    }
+  },
+  "home_services": {
+    "section_label": "Our Services",
+    "section_title": "Everything we offer",
+    "discover": "Discover",
+    "items": {
+      "artisan": {
+        "label": "Artisan Tailoring",
+        "desc": "Handmade suits from scratch, no industrial patterns."
+      },
+      "weddings": {
+        "label": "Weddings & Ceremony",
+        "desc": "Unique wedding attire: morning coat, tailcoat, tuxedo."
+      },
+      "configurator": {
+        "label": "Garment Configurator",
+        "desc": "Design your suit step by step. Paid access."
+      },
+      "courses": {
+        "label": "Online Courses",
+        "desc": "Learn tailoring techniques with video tutorials."
+      },
+      "videocall": {
+        "label": "Video Consultations",
+        "desc": "Remote personalized advice. 20-25 min."
+      }
     }
   },
   "servicios": {
@@ -239,7 +331,7 @@
     "categorias": {
       "label": "Ceremony Styles",
       "cat1": "Morning Coat",    "cat1_desc": "The ultimate expression of morning wedding elegance.",
-      "cat2": "Tuxedo","cat2_desc": "Impeccable for the ceremony and evening reception.",
+      "cat2": "Tuxedo","cat2_desc": "Impecable for the ceremony and evening reception.",
       "cat3": "Tailcoat",       "cat3_desc": "The most formal elegance for unique occasions."
     },
     "formal_wear": {
@@ -278,6 +370,10 @@
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
     "address": "Address available by prior appointment",
     "phone": "+34 000 000 000",
-    "hours": "Monday to Saturday, 10:00 – 20:00"
+    "hours": "Monday to Saturday, 10:00 – 20:00",
+    "cta_title": "Ready for your next suit?",
+    "cta_btn": "Book Appointment",
+    "instagram": "Instagram",
+    "legal": "Legal Notice"
   }
 }

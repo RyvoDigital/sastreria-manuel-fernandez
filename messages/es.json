@@ -7,7 +7,8 @@
     "contacto": "Contacto",
     "configurador": "Configurador",
     "cursos": "Cursos Online",
-    "videollamada": "Videollamada"
+    "videollamada": "Videollamada",
+    "modelos3d": "Modelos 3D"
   },
   "hero": {
     "tagline": "Sastrería artesanal desde 1978",
@@ -15,15 +16,30 @@
     "subtext": "Cada prenda construida desde cero, sin pruebas previas.",
     "cta_book": "Reservar Cita",
     "cta_call": "Llámanos",
-    "cta_contact": "Contactar"
+    "cta_contact": "Contactar",
+    "since": "Desde 1978",
+    "discover": "Descubrir"
+  },
+  "zoom_parallax": {
+    "alt": "Sastrería Manuel Fernández — imagen"
   },
   "traje_empieza": {
     "label": "El proceso",
     "title": "Tu traje empieza en ti",
     "body": "Antes de elegir un tejido o perfilar una solapa, necesitamos conocerte. Tu momento vital, tu personalidad, lo que quieres transmitir. Cada traje que construimos nace de una conversación honesta sobre quién eres y quién quieres ser."
   },
+  "before_after": {
+    "label": "Antes y Después",
+    "title": "La diferencia de un traje a medida",
+    "subtitle": "Desliza para ver la transformación",
+    "before": "Antes",
+    "after": "Después",
+    "placeholder": "Imágenes pendientes del cliente",
+    "instruction": "Arrastra el control deslizante para comparar"
+  },
   "proceso": {
     "label": "Nuestra metodología",
+    "step_label": "Paso",
     "step1_num": "01",
     "step1_title": "Intención",
     "step1_body": "¿Para qué es el traje? ¿Qué quieres transmitir? Todo comienza comprendiendo el momento y la persona.",
@@ -36,6 +52,7 @@
   },
   "testimonials": {
     "label": "Lo que dicen",
+    "title": "Experiencias Reales",
     "items": [
       {
         "quote": "Nunca pensé que un traje pudiera cambiar la forma en que me percibo a mí mismo. Manuel entendió lo que yo necesitaba antes de que yo mismo lo supiera.",
@@ -53,6 +70,29 @@
         "occasion": "Empresario, Barcelona"
       }
     ]
+  },
+  "suit_showcase": {
+    "label": "La Anatomía del Traje",
+    "title": "Detalles que marcan la diferencia",
+    "hint": "Explora los puntos clave de nuestra confección artesanal",
+    "hotspots": {
+      "lapel": {
+        "title": "Solapa cosida a mano",
+        "desc": "Puntadas invisibles que dan estructura y flexibilidad natural a la solapa."
+      },
+      "buttons": {
+        "title": "Botones de asta natural",
+        "desc": "Botones seleccionados uno a uno por su veteado y durabilidad excepcional."
+      },
+      "shoulder": {
+        "title": "Hombro napolitano",
+        "desc": "Caída natural sin hombreras para una comodidad superior y estilo elegante."
+      },
+      "fabric": {
+        "title": "Lana Super 150s",
+        "desc": "Tejido italiano de máxima finura con un brillo natural y tacto seda."
+      }
+    }
   },
   "editorial": {
     "label": "Inspiración editorial",
@@ -137,6 +177,58 @@
       "headline": "El traje que imaginas está a una conversación de distancia",
       "btn_primary": "Reservar Cita",
       "btn_secondary": "Ver el Proceso"
+    }
+  },
+  "fabrics": {
+    "label": "Los Tejidos",
+    "title": "Sensorial, educativo y aspiracional",
+    "subtitle": "Ayudamos a los clientes a entender y desear el material. Cada fibra cuenta una historia de origen, selección y artesanía.",
+    "values": "Valores de marca: Sostenibilidad, selección artesanal, exclusividad material",
+    "pending": "Imágenes pendientes del cliente",
+    "items": {
+      "visual": {
+        "title": "Visual",
+        "desc": "Fotografías macro de texturas de tejidos; procesos naturales (ovejas, cabras, fibra cruda, hilado)."
+      },
+      "origins": {
+        "title": "Origen",
+        "desc": "Cómo se obtiene cada fibra: Lana, Cachemira, Seda, Vicuña — énfasis en singularidad (agua, temperatura, terreno)."
+      },
+      "grading": {
+        "title": "Graduación",
+        "desc": "Explicación de Super 100 / 120 / 150 / 200 — qué significa cada uno, cómo afecta la calidad."
+      },
+      "selection": {
+        "title": "Selección",
+        "desc": "Cómo se selecciona cada fibra a mano — enfoque artesanal en la selección de materiales."
+      }
+    }
+  },
+  "home_services": {
+    "section_label": "Nuestros Servicios",
+    "section_title": "Todo lo que ofrecemos",
+    "discover": "Descubrir",
+    "items": {
+      "artisan": {
+        "label": "Sastrería Artesanal",
+        "desc": "Trajes hechos a mano desde cero, sin patrones industriales."
+      },
+      "weddings": {
+        "label": "Bodas y Ceremonia",
+        "desc": "Trajes nupciales únicos: chaqué, frac, esmoquin."
+      },
+      "configurator": {
+        "label": "Configurador de Prendas",
+        "desc": "Diseña tu traje paso a paso. Acceso con pago."
+      },
+      "courses": {
+        "label": "Cursos Online",
+        "desc": "Aprende técnicas de sastrería con video tutoriales."
+      },
+      "videocall": {
+        "label": "Videollamadas",
+        "desc": "Asesoramiento personalizado a distancia. 20-25 min."
+      }
     }
   },
   "servicios": {
@@ -278,6 +370,10 @@
     "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",
     "address": "Dirección disponible bajo cita previa",
     "phone": "+34 000 000 000",
-    "hours": "Lunes a Sábado, 10:00 – 20:00"
+    "hours": "Lunes a Sábado, 10:00 – 20:00",
+    "cta_title": "¿Listo para su próximo traje?",
+    "cta_btn": "Solicitar Cita",
+    "instagram": "Instagram",
+    "legal": "Aviso Legal"
   }
 }

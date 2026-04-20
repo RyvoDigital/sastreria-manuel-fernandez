@@ -16,7 +16,7 @@ export function TestimonialsSection() {
   const { t } = useI18n()
   const sectionRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
-  const [direction, setDirection] = useState<'down' | 'up'>('down')
+  const [isHovered, setIsHovered] = useState(false)
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -27,39 +27,11 @@ export function TestimonialsSection() {
     const raw = v * TOTAL
     const next = Math.min(Math.floor(raw), TOTAL - 1)
     if (next !== active) {
-      setDirection(next > active ? 'down' : 'up')
       setActive(next)
     }
   })
 
   const items = t.testimonials.items
-
-  // thumbnails = the two testimonials that are NOT active
-  const thumbIndices = [0, 1, 2].filter((i) => i !== active)
-
-  const imageVariants = {
-    enter: (dir: 'down' | 'up') => ({
-      y: dir === 'down' ? '100%' : '-100%',
-      opacity: 0,
-    }),
-    center: { y: '0%', opacity: 1 },
-    exit: (dir: 'down' | 'up') => ({
-      y: dir === 'down' ? '-100%' : '100%',
-      opacity: 0,
-    }),
-  }
-
-  const textVariants = {
-    enter: (dir: 'down' | 'up') => ({
-      y: dir === 'down' ? 30 : -30,
-      opacity: 0,
-    }),
-    center: { y: 0, opacity: 1 },
-    exit: (dir: 'down' | 'up') => ({
-      y: dir === 'down' ? -30 : 30,
-      opacity: 0,
-    }),
-  }
 
   return (
     <div
@@ -68,6 +40,7 @@ export function TestimonialsSection() {
         position: 'relative',
         height: `${TOTAL * 100}vh`,
         background: '#0A1628',
+        overflow: 'visible',
       }}
     >
       {/* Sticky viewport */}
@@ -76,9 +49,12 @@ export function TestimonialsSection() {
           position: 'sticky',
           top: 0,
           height: '100vh',
-          overflow: 'hidden',
           display: 'flex',
-          alignItems: 'stretch',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          perspective: '1200px',
         }}
       >
         {/* Subtle fabric texture overlay */}
@@ -94,296 +70,177 @@ export function TestimonialsSection() {
           }}
         />
 
-        {/* 3-column grid */}
-        <div
+        {/* Section Header */}
+        <div style={{
+          position: 'absolute',
+          top: '10vh',
+          textAlign: 'center',
+          zIndex: 10,
+        }}>
+          <div style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.65rem',
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            color: '#C9A84C',
+            marginBottom: '1.5rem',
+          }}>
+            {t.testimonials.label}
+          </div>
+          <h2 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+            fontWeight: 400,
+            color: '#FFFFFF',
+            margin: 0,
+          }}>
+            {t.testimonials.title}
+          </h2>
+        </div>
+
+        {/* 3D Carousel Stage */}
+        <div 
           style={{
             position: 'relative',
-            zIndex: 1,
             width: '100%',
-            display: 'grid',
-            gridTemplateColumns: '1fr 2.2fr 2.8fr',
-            padding: 'clamp(4rem, 8vw, 7rem) clamp(3rem, 6vw, 6rem)',
-            gap: 'clamp(2rem, 4vw, 4rem)',
+            height: '60vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transformStyle: 'preserve-3d',
           }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {/* ── LEFT COLUMN ── counter + label + thumbnails ── */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div>
-              {/* Section label */}
-              <div
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.6rem',
-                  letterSpacing: '0.28em',
-                  textTransform: 'uppercase',
-                  color: 'var(--color-gold)',
-                  marginBottom: '1.8rem',
-                  opacity: 0.8,
-                }}
-              >
-                {t.testimonials.label}
-              </div>
+          {items.map((item, i) => {
+            const isActive = active === i
+            const rotationY = (i - active) * 45 // 45 degree separation
+            const translateZ = isActive ? 0 : -300
+            const translateX = (i - active) * 350
+            const opacity = isActive ? 1 : 0.3
 
-              {/* Counter */}
-              <div
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.1em',
-                  color: 'rgba(255,255,255,0.4)',
-                  fontVariantNumeric: 'tabular-nums',
-                }}
-              >
-                <span style={{ color: 'var(--color-gold)', fontSize: '1rem' }}>
-                  {String(active + 1).padStart(2, '0')}
-                </span>
-                {' / '}
-                {String(TOTAL).padStart(2, '0')}
-              </div>
-
-              {/* Vertical label */}
-              <div
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.55rem',
-                  letterSpacing: '0.3em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.25)',
-                  writingMode: 'vertical-rl',
-                  transform: 'rotate(180deg)',
-                  marginTop: '2rem',
-                }}
-              >
-                Testimonios
-              </div>
-            </div>
-
-            {/* Thumbnails */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {thumbIndices.map((i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.45 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  style={{
-                    width: '100%',
-                    aspectRatio: '3/4',
-                    maxHeight: '110px',
-                    overflow: 'hidden',
-                    borderRadius: '2px',
-                  }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={PHOTOS[i]}
-                    alt={items[i]?.name ?? ''}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      filter: 'brightness(0.6) saturate(0.4)',
-                    }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* ── CENTER COLUMN ── main portrait photo ── */}
-          <div
-            style={{
-              position: 'relative',
-              overflow: 'hidden',
-              borderRadius: '2px',
-            }}
-          >
-            <AnimatePresence initial={false} custom={direction}>
+            return (
               <motion.div
-                key={active}
-                custom={direction}
-                variants={imageVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
+                key={i}
+                initial={false}
+                animate={{
+                  rotateY: rotationY,
+                  z: translateZ,
+                  x: translateX,
+                  opacity: opacity,
+                  scale: isActive ? 1 : 0.8,
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 20,
+                }}
                 style={{
                   position: 'absolute',
-                  inset: 0,
+                  width: 'min(500px, 85vw)',
+                  background: 'rgba(5, 12, 20, 0.85)',
+                  backdropFilter: 'blur(12px)',
+                  border: `1px solid ${isActive ? 'rgba(201,168,76,0.3)' : 'rgba(255,255,255,0.05)'}`,
+                  borderRadius: '12px',
+                  padding: '3rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '2rem',
+                  boxShadow: isActive ? '0 30px 60px rgba(0,0,0,0.5)' : 'none',
+                  backfaceVisibility: 'hidden',
                 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={PHOTOS[active]}
-                  alt={items[active]?.name ?? ''}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center top',
-                    filter: 'brightness(0.88) saturate(0.7)',
-                  }}
-                />
-                {/* Bottom gradient for readability */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '40%',
-                    background: 'linear-gradient(to top, rgba(5,12,20,0.6), transparent)',
-                  }}
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* ── RIGHT COLUMN ── quote + name + scroll hint ── */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              paddingLeft: 'clamp(1rem, 3vw, 3rem)',
-              borderLeft: '1px solid rgba(201,168,76,0.15)',
-            }}
-          >
-            {/* Quote block */}
-            <div style={{ paddingTop: '2rem' }}>
-              {/* Gold opening quote */}
-              <div
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: '3.5rem',
-                  lineHeight: 0.7,
-                  color: 'var(--color-gold)',
-                  opacity: 0.4,
-                  fontStyle: 'italic',
-                  marginBottom: '1.5rem',
-                  userSelect: 'none',
-                }}
-              >
-                "
-              </div>
-
-              <AnimatePresence initial={false} custom={direction} mode="wait">
-                <motion.div
-                  key={active}
-                  custom={direction}
-                  variants={textVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  {/* Quote text */}
-                  <blockquote
-                    style={{
-                      fontFamily: 'var(--font-serif)',
-                      fontSize: 'clamp(1.3rem, 2.2vw, 2rem)',
-                      fontWeight: 400,
-                      lineHeight: 1.55,
-                      color: '#FFFFFF',
-                      fontStyle: 'italic',
-                      marginBottom: '2.5rem',
-                    }}
-                  >
-                    {items[active]?.quote}
-                  </blockquote>
-
-                  {/* Gold rule */}
-                  <div
-                    style={{
-                      width: '32px',
-                      height: '1px',
-                      background: 'rgba(201,168,76,0.6)',
-                      marginBottom: '1.5rem',
-                    }}
-                  />
-
-                  {/* Author */}
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.8rem',
-                      fontWeight: 400,
-                      letterSpacing: '0.08em',
-                      color: 'var(--color-gold-light, var(--color-gold))',
-                      marginBottom: '0.35rem',
-                    }}
-                  >
-                    {items[active]?.name}
+                {/* Photo and Name */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                  <div style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                    border: '1.5px solid #C9A84C',
+                  }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={PHOTOS[i]}
+                      alt={item.name}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
                   </div>
-                  <div
-                    style={{
+                  <div>
+                    <div style={{
                       fontFamily: 'var(--font-sans)',
-                      fontSize: '0.62rem',
-                      letterSpacing: '0.18em',
-                      color: 'rgba(255,255,255,0.4)',
+                      fontSize: '1rem',
+                      fontWeight: 500,
+                      color: '#C9A84C',
+                      marginBottom: '0.2rem',
+                    }}>
+                      {item.name}
+                    </div>
+                    <div style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.65rem',
                       textTransform: 'uppercase',
-                    }}
-                  >
-                    {items[active]?.occasion}
+                      letterSpacing: '0.15em',
+                      color: 'rgba(255,255,255,0.4)',
+                    }}>
+                      {item.occasion}
+                    </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                </div>
 
-            {/* Scroll hint — fades out on last testimonial */}
-            <motion.div
-              animate={{ opacity: active === TOTAL - 1 ? 0 : 0.45 }}
-              transition={{ duration: 0.5 }}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-              }}
-            >
-              {/* Animated scroll line */}
-              <div
-                style={{
+                {/* Quote */}
+                <blockquote style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: 'clamp(1.1rem, 1.5vw, 1.4rem)',
+                  lineHeight: 1.6,
+                  color: '#FFFFFF',
+                  fontStyle: 'italic',
+                  margin: 0,
                   position: 'relative',
-                  width: '1px',
-                  height: '40px',
-                  background: 'rgba(201,168,76,0.25)',
-                  overflow: 'hidden',
-                }}
-              >
-                <motion.div
-                  animate={{ y: ['0%', '100%'] }}
-                  transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
-                  style={{
+                }}>
+                  <span style={{
                     position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '40%',
-                    background: 'var(--color-gold)',
-                    opacity: 0.6,
-                  }}
-                />
-              </div>
-              <span
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.55rem',
-                  letterSpacing: '0.25em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.45)',
-                }}
-              >
-                Scroll
-              </span>
-            </motion.div>
-          </div>
+                    top: '-1rem',
+                    left: '-1.5rem',
+                    fontSize: '4rem',
+                    color: 'rgba(201,168,76,0.1)',
+                    lineHeight: 1,
+                  }}>"</span>
+                  {item.quote}
+                </blockquote>
+
+                {/* Decorative Author accent */}
+                <div style={{
+                  width: '30px',
+                  height: '1px',
+                  background: 'rgba(201,168,76,0.4)',
+                  marginTop: '1rem',
+                }} />
+              </motion.div>
+            )
+          })}
+        </div>
+
+        {/* Progress Navigation */}
+        <div style={{
+          position: 'absolute',
+          bottom: '8vh',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '2rem',
+        }}>
+          {items.map((_, i) => (
+            <div
+              key={i}
+              style={{
+                width: i === active ? '40px' : '8px',
+                height: '4px',
+                borderRadius: '4px',
+                background: i === active ? '#C9A84C' : 'rgba(255,255,255,0.1)',
+                transition: 'all 0.5s ease',
+              }}
+            />
+          ))}
         </div>
 
         {/* Bottom gold progress bar */}
