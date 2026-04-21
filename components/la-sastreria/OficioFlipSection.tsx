@@ -24,10 +24,10 @@ export function OficioFlipSection() {
   const [activeIdx, setActiveIdx] = useState(0)
 
   const disciplines = [
-    { label: t.la_sastreria.oficio.cat1, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/cGhvdG9zL2N1dHRpbmctdGFibGVfcGd1Z2tk'  },
-    { label: t.la_sastreria.oficio.cat2, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/cGhvdG9zL2N1dHRpbmctdHdlZWRfc2drZmlm'  },
-    { label: t.la_sastreria.oficio.cat3, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/cGhvdG9zL3NsZWV2ZS1idXR0b25zX2RyaDJweA==' },
-    { label: t.la_sastreria.oficio.cat4, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/cGhvdG9zL3ZlbHZldC1saW5pbmdfdWtlZmxx'  },
+    { label: t.la_sastreria.oficio.cat1, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/photos/cutting-table_pgugkd'  },
+    { label: t.la_sastreria.oficio.cat2, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/photos/cutting-tweed_sgkfif'  },
+    { label: t.la_sastreria.oficio.cat3, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/sleeve-buttons_drh2px' },
+    { label: t.la_sastreria.oficio.cat4, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq'  },
   ]
 
   const images = disciplines.map((d) => ({ title: d.label, url: d.url }))

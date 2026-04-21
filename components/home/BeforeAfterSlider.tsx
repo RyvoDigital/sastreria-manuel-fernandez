@@ -135,7 +135,7 @@ export function BeforeAfterSlider() {
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* After Image (Right side) */}
             <img
-              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/cGhvdG9zL2NhbWVsLWphY2tldC1mb3JtX2JjYzc4cQ=="
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/photos/camel-jacket-form_bcc78q"
               alt="After fitting"
               style={{
                 width: '100%',
@@ -156,7 +156,7 @@ export function BeforeAfterSlider() {
             }}
           >
             <img
-              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797444/cGhvdG9zL2ZpdHRpbmctdmVzdF9jNnNlaWw="
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797444/photos/fitting-vest_c6seil"
               alt="Before fitting"
               style={{
                 width: '100%',

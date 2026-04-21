@@ -131,7 +131,7 @@ function TiltCard({
         }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
-            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797480/cGhvdG9zL2ZhYnJpYy1jb25zdWx0YXRpb25fdnRxam1v" 
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797480/photos/fabric-consultation_vtqjmo" 
             alt="Courses background" 
             style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(0.5)' }} 
           />

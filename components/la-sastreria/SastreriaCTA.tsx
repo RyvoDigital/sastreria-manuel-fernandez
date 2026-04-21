@@ -51,7 +51,7 @@ export function SastreriaCTA() {
       {/* Photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/cGhvdG9zL21hZHJpZC1zdWl0LXN0cmVldF9zbHNpbmU="
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/photos/madrid-suit-street_slsine"
         alt=""
         aria-hidden
         className="mf-sas-cta-photo"

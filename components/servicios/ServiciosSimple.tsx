@@ -12,7 +12,7 @@ const SERVICES = [
     title_en: 'Bespoke Suit',
     desc_es: 'Cada traje construido desde cero, sin patrones industriales. Entretela cosida a mano, solapa que cae sola, ajuste perfecto.',
     desc_en: 'Each suit built from scratch, no industrial patterns. Hand-sewn canvas, natural lapel fall, perfect fit.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/cGhvdG9zL3Nob3dyb29tLXN1aXRzX3pxbXNjZA==',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/showroom-suits_zqmscd',
   },
   {
     num: '02',
@@ -20,7 +20,7 @@ const SERVICES = [
     title_en: 'Sport Coat',
     desc_es: 'Versatilidad sin compromiso. Tejidos exclusivos para cada ocasión, desde lo más casual hasta lo semi-formal.',
     desc_en: 'Versatility without compromise. Exclusive fabrics for every occasion, from casual to semi-formal.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/cGhvdG9zL2NhbWVsLWphY2tldC1mb3JtX2JjYzc4cQ==',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/photos/camel-jacket-form_bcc78q',
   },
   {
     num: '03',
@@ -28,7 +28,7 @@ const SERVICES = [
     title_en: 'Bespoke Trousers',
     desc_es: 'El complemento esencial. Corte preciso, caída perfecta, confección que respira con el movimiento.',
     desc_en: 'The essential complement. Precise cut, perfect drape, construction that moves with you.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL21hZHJpZC10d2VlZF96c2ZheGk=',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
   },
   {
     num: '04',
@@ -36,7 +36,7 @@ const SERVICES = [
     title_en: 'Bespoke Overcoat',
     desc_es: 'Protección elegante contra el frío. Tejidos pesados de las mejores casas inglesas e italianas.',
     desc_en: 'Elegant protection against the cold. Heavy fabrics from the finest English and Italian mills.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL2JsdWUtcGxhaWQtZm9ybV9yZ2tvZGo=',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/blue-plaid-form_rgkodj',
   },
   {
     num: '05',
@@ -44,7 +44,7 @@ const SERVICES = [
     title_en: 'Wedding Suit',
     desc_es: 'El día más importante merece lo mejor. Chaqué, frac, esmoquin — cada detalle pensado para la ocasión.',
     desc_en: 'The most important day deserves the best. Morning coat, tailcoat, tuxedo — every detail considered.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/cGhvdG9zL3dlZGRpbmctbW9ybmluZy1jb2F0X3B0aWJhaA==',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah',
   },
   {
     num: '06',
@@ -52,7 +52,7 @@ const SERVICES = [
     title_en: 'Alterations & Renovation',
     desc_es: 'Damos nueva vida a prendas existentes. Ajustes precisos, reparaciones que duran, modernización con respeto.',
     desc_en: 'We give new life to existing garments. Precise adjustments, lasting repairs, respectful modernization.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797507/cGhvdG9zL3RhaWxvci13b3Jrc2hvcF9yYjBiY3c=',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797507/photos/tailor-workshop_rb0bcw',
   },
 ]
 

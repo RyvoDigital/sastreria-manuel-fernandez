@@ -10,17 +10,17 @@ gsap.registerPlugin(ScrollTrigger)
 /* ─── Step data ──────────────────────────────────────────── */
 const STEP_META = [
   {
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/cGhvdG9zL21lYXN1cmluZy10YXBlX3V1aWNmdw==',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/measuring-tape_uuicfw',
     imageLeft: true,
     bg: '#050C14',
   },
   {
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797440/cGhvdG9zL2NoYWxrLWN1dHRpbmdfamI5Y3pi',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797440/photos/chalk-cutting_jb9czb',
     imageLeft: false,
     bg: '#07101A',
   },
   {
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/cGhvdG9zL21hZHJpZC1zdWl0LXN0cmVldF9zbHNpbmU=',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/photos/madrid-suit-street_slsine',
     imageLeft: true,
     bg: '#050C14',
   },
