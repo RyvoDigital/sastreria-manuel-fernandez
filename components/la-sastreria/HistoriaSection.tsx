@@ -175,7 +175,7 @@ export function HistoriaSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={photoImgRef}
-            src="/photos/maestro-cutting-table.jpg"
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797458/cGhvdG9zL21hZXN0cm8tY3V0dGluZy10YWJsZV9xeXRsbXA="
             alt="Manuel Fernández en la mesa de corte"
             style={{
               position:   'absolute',

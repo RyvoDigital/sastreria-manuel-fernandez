@@ -96,6 +96,8 @@
   },
   "editorial": {
     "label": "Editorial Inspiration",
+    "title": "The Cut as Language",
+    "read_more": "Read More",
     "articles": [
       {
         "category": "Suit Culture",
@@ -114,7 +116,7 @@
       },
       {
         "category": "The Cut",
-        "title": "The pattern: the tailor's first language",
+        "title": "The cut as language",
         "excerpt": "Before a single stitch, the pattern already speaks. Chalk lines on blue cloth: the cartography of a unique suit."
       },
       {

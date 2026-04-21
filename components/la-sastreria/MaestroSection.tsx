@@ -75,7 +75,7 @@ export function MaestroSection() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/photos/fitting-vest.jpg"
+          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797444/cGhvdG9zL2ZpdHRpbmctdmVzdF9jNnNlaWw="
           alt="Manuel Fernández en su taller"
           style={{
             position:   'absolute', inset: 0,

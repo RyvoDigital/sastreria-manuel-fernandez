@@ -62,13 +62,14 @@ export function SuitShowcaseSection() {
           maxWidth: '800px',
           margin: '0 auto',
           aspectRatio: '4/5',
+          maxHeight: '75vh',
           background: '#F8F8F8',
           borderRadius: '4px',
           boxShadow: '0 40px 100px rgba(0,0,0,0.08)',
         }}>
           {/* Main Image */}
           <Image
-            src="/photos/camel-jacket-form.jpg"
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797518/cGhvdG9zL3Nob3dyb29tLWphY2tldHNfbjU1c2Zr"
             alt="Suit Detail Showcase"
             fill
             style={{

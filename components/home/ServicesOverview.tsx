@@ -152,16 +152,20 @@ export function ServicesOverview() {
           </h2>
         </div>
 
-        {/* Services grid */}
+        {/* Services grid - Modernized layout */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(6, 1fr)',
           gap: '1.5rem',
         }}>
-          {SERVICES.map((service) => {
+          {SERVICES.map((service, index) => {
             const Icon = service.icon
             const label = locale === 'es' ? service.label_es : service.label_en
             const desc = locale === 'es' ? service.desc_es : service.desc_en
+
+            // Dynamic grid spanning for 5 items: 2 wide (3cols each) + 3 standard (2cols each)
+            const isWide = index < 2
+            const gridSpan = isWide ? 'span 3' : 'span 2'
 
             return (
               <Link
@@ -169,50 +173,71 @@ export function ServicesOverview() {
                 href={service.href}
                 className="service-card"
                 style={{
+                  gridColumn: gridSpan,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  padding: '2rem',
-                  background: 'rgba(0,0,0,0.3)',
-                  border: '1px solid rgba(201,168,76,0.15)',
+                  padding: isWide ? '3rem' : '2rem',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(201,168,76,0.1)',
                   textDecoration: 'none',
-                  transition: 'all 0.3s ease',
+                  transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
                   cursor: 'pointer',
                   opacity: 0,
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#C9A84C'
-                  e.currentTarget.style.transform = 'translateY(-4px)'
-                  e.currentTarget.style.background = 'rgba(201,168,76,0.05)'
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.6)'
+                  e.currentTarget.style.transform = 'translateY(-8px)'
+                  e.currentTarget.style.background = 'rgba(201,168,76,0.08)'
+                  const arrow = e.currentTarget.querySelector('.arrow-icon') as HTMLElement
+                  if (arrow) arrow.style.transform = 'translateX(5px)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.15)'
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.1)'
                   e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.background = 'rgba(0,0,0,0.3)'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
+                  const arrow = e.currentTarget.querySelector('.arrow-icon') as HTMLElement
+                  if (arrow) arrow.style.transform = 'translateX(0)'
                 }}
               >
+                {/* Subtle glow effect on hover */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-20%',
+                  right: '-10%',
+                  width: '150px',
+                  height: '150px',
+                  background: 'radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%)',
+                  pointerEvents: 'none',
+                }} />
+
                 {/* Icon */}
                 <div style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '50%',
-                  border: '1px solid #C9A84C',
+                  width: isWide ? '64px' : '48px',
+                  height: isWide ? '64px' : '48px',
+                  borderRadius: '12px',
+                  background: 'rgba(201,168,76,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '1.5rem',
                   color: '#C9A84C',
+                  border: '1px solid rgba(201,168,76,0.2)',
                 }}>
-                  <Icon size={24} strokeWidth={1.5} />
+                  <Icon size={isWide ? 28 : 22} strokeWidth={1.5} />
                 </div>
 
                 {/* Label */}
                 <h3 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.35rem',
+                  fontSize: isWide ? '1.75rem' : '1.25rem',
                   fontWeight: 400,
                   color: '#FFFFFF',
                   margin: '0 0 0.75rem 0',
+                  letterSpacing: '0.02em',
                 }}>
                   {label}
                 </h3>
@@ -220,30 +245,35 @@ export function ServicesOverview() {
                 {/* Description */}
                 <p style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.9rem',
+                  fontSize: isWide ? '1rem' : '0.85rem',
                   fontWeight: 300,
                   lineHeight: 1.6,
-                  color: 'rgba(255,255,255,0.6)',
+                  color: 'rgba(255,255,255,0.7)',
                   margin: 0,
                   flex: 1,
+                  maxWidth: isWide ? '80%' : '100%',
                 }}>
                   {desc}
                 </p>
 
                 {/* Arrow */}
-                <div style={{
-                  marginTop: '1.5rem',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: '#C9A84C',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                }}>
+                <div 
+                  className="arrow-icon"
+                  style={{
+                    marginTop: '2rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.7rem',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: '#C9A84C',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    transition: 'transform 0.3s ease',
+                  }}
+                >
                   {locale === 'es' ? 'Descubrir' : 'Discover'}
-                  <span style={{ fontSize: '1.2rem' }}>→</span>
+                  <span style={{ fontSize: '1.1rem' }}>→</span>
                 </div>
               </Link>
             )

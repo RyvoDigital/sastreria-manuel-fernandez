@@ -9,9 +9,9 @@ import { useI18n } from '@/lib/i18n'
 gsap.registerPlugin(ScrollTrigger)
 
 const CARD_IMAGES = [
-  '/photos/fabric-selection.jpg',
-  '/photos/cutting-tweed.jpg',
-  '/photos/wedding-rome.jpg',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/cGhvdG9zL2ZhYnJpYy1zZWxlY3Rpb25fc3RrYmNm',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/cGhvdG9zL2N1dHRpbmctdHdlZWRfc2drZmlm',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797435/cGhvdG9zL3dlZGRpbmctcm9tZV9xbHFjeHo=',
 ]
 
 // Animated counter component
@@ -133,7 +133,7 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
         overflow: 'hidden',
       }}
     >
-      {/* Background image with Ken Burns */}
+      {/* Background image with Ken Burns - Lightened for better clarity */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
         <div
           ref={imageRef}
@@ -150,17 +150,17 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
             fill
             style={{
               objectFit: 'cover',
-              filter: 'brightness(0.35) saturate(0.6)',
+              filter: 'brightness(0.6) saturate(0.8)',
             }}
           />
         </div>
       </div>
 
-      {/* Dark overlay with gradient */}
+      {/* Dark overlay with gradient - Reduced opacity */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(to bottom, rgba(10,22,40,0.6) 0%, rgba(10,22,40,0.8) 100%)',
+        background: 'linear-gradient(to bottom, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.5) 100%)',
       }} />
 
       {/* Animated number watermark */}

@@ -15,14 +15,14 @@ type QuoteKey =
   | 'quote5' | 'quote6' | 'quote7' | 'quote8'
 
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
-  { src: '/photos/fitting-vest.jpg',         quoteKey: 'quote1' },
-  { src: '/photos/cutting-tweed.jpg',        quoteKey: 'quote2' },
-  { src: '/photos/camel-jacket-form.jpg',    quoteKey: 'quote3' },
-  { src: '/photos/wedding-morning-coat.jpg', quoteKey: 'quote4' },
-  { src: '/photos/fabric-selection.jpg',     quoteKey: 'quote5' },
-  { src: '/photos/blue-plaid-form.jpg',      quoteKey: 'quote6' },
-  { src: '/photos/cutting-fabric-wide.jpg',  quoteKey: 'quote7' },
-  { src: '/photos/wedding-ceremony.jpg',     quoteKey: 'quote8' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797444/cGhvdG9zL2ZpdHRpbmctdmVzdF9jNnNlaWw=',         quoteKey: 'quote1' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/cGhvdG9zL2N1dHRpbmctdHdlZWRfc2drZmlm',        quoteKey: 'quote2' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/cGhvdG9zL2NhbWVsLWphY2tldC1mb3JtX2JjYzc4cQ==',    quoteKey: 'quote3' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/cGhvdG9zL3dlZGRpbmctbW9ybmluZy1jb2F0X3B0aWJhaA==', quoteKey: 'quote4' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/cGhvdG9zL2ZhYnJpYy1zZWxlY3Rpb25fc3RrYmNm',     quoteKey: 'quote5' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL2JsdWUtcGxhaWQtZm9ybV9yZ2tvZGo=',      quoteKey: 'quote6' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/cGhvdG9zL2N1dHRpbmctZmFicmljLXdpZGVfanF3d2p3',  quoteKey: 'quote7' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797426/cGhvdG9zL3dlZGRpbmctY2VyZW1vbnlfd2Y3dHli',     quoteKey: 'quote8' },
 ]
 
 const CSS = `

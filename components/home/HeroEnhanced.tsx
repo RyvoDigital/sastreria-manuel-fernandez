@@ -18,7 +18,7 @@ function GoldParticles() {
     speedY: number
     opacity: number
   }>>([])
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number>(undefined)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -238,144 +238,146 @@ export function HeroEnhanced() {
         </video>
       </div>
 
-      {/* Gradient overlay */}
+      {/* Subtle bottom gradient only */}
       <div style={{
         position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(to bottom, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.7) 100%)',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '40%',
+        background: 'linear-gradient(to top, rgba(10,22,40,0.8) 0%, transparent 100%)',
         zIndex: 1,
       }} />
 
       {/* Gold particles */}
       <GoldParticles />
 
-      {/* Vignette */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(10,22,40,0.8) 100%)',
-        zIndex: 2,
-        pointerEvents: 'none',
-      }} />
 
-      {/* Hero content with parallax */}
+      {/* Hero content - repositioned to bottom layout */}
       <div
         ref={textRef}
         style={{
-          position: 'relative',
+          position: 'absolute',
+          bottom: '10vh',
+          left: 0,
+          right: 0,
           zIndex: 3,
-          textAlign: 'center',
-          maxWidth: '900px',
           padding: '0 var(--container-padding)',
+          maxWidth: 'var(--container-max)',
+          margin: '0 auto',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
           transform: `translate(${mousePosition.x * -0.3}px, ${mousePosition.y * -0.3}px)`,
           transition: 'transform 0.3s ease-out',
           transformStyle: 'preserve-3d',
         }}
       >
-        {/* Label with character animation */}
-        <div 
-          className="animate-in"
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.7rem',
-            letterSpacing: '0.35em',
-            textTransform: 'uppercase',
-            color: '#C9A84C',
-            marginBottom: '1.5rem',
-            opacity: 0,
-          }}
-        >
-          {t.hero.since.split('').map((char, i) => (
-            <span
-              key={i}
+        {/* Left Side: Text Content */}
+        <div style={{ textAlign: 'left', maxWidth: '600px' }}>
+          {/* Label with character animation */}
+          <div 
+            className="animate-in"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.7rem',
+              letterSpacing: '0.35em',
+              textTransform: 'uppercase',
+              color: '#C9A84C',
+              marginBottom: '1rem',
+              opacity: 0,
+            }}
+          >
+            {t.hero.since.split('').map((char, i) => (
+              <span
+                key={i}
+                style={{
+                  display: 'inline-block',
+                  animation: isLoaded ? `fadeInUp 0.6s ease forwards ${0.5 + i * 0.03}s` : 'none',
+                  opacity: 0,
+                }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            ))}
+          </div>
+
+          {/* Main headline with split text */}
+          <h1 style={{ margin: 0, perspective: '500px' }}>
+            <div 
+              className="animate-in"
               style={{
-                display: 'inline-block',
-                animation: isLoaded ? `fadeInUp 0.6s ease forwards ${0.5 + i * 0.03}s` : 'none',
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                fontWeight: 400,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+                color: '#FFFFFF',
+                marginBottom: '0.5rem',
+                opacity: 0,
+                transformStyle: 'preserve-3d',
+              }}
+            >
+              {t.hero.tagline}
+            </div>
+            <div 
+              className="animate-in"
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+                fontWeight: 400,
+                lineHeight: 1.2,
+                fontStyle: 'italic',
+                color: '#C9A84C',
                 opacity: 0,
               }}
             >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
+              {t.hero.tagline2}
+            </div>
+          </h1>
+
+          {/* Subtext */}
+          <p 
+            className="animate-in"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.9rem, 1.2vw, 1.1rem)',
+              fontWeight: 300,
+              lineHeight: 1.6,
+              color: 'rgba(255,255,255,0.85)',
+              marginTop: '1.5rem',
+              maxWidth: '500px',
+              opacity: 0,
+            }}
+          >
+            {t.hero.subtext}
+          </p>
         </div>
 
-        {/* Main headline with split text */}
-        <h1 style={{ margin: 0, perspective: '500px' }}>
-          <div 
-            className="animate-in"
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-              fontWeight: 400,
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              color: '#FFFFFF',
-              marginBottom: '0.5rem',
-              opacity: 0,
-              transformStyle: 'preserve-3d',
-            }}
-          >
-            {t.hero.tagline}
-          </div>
-          <div 
-            className="animate-in"
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-              fontWeight: 400,
-              lineHeight: 1.2,
-              fontStyle: 'italic',
-              color: '#C9A84C',
-              opacity: 0,
-            }}
-          >
-            {t.hero.tagline2}
-          </div>
-        </h1>
-
-        {/* Animated gold line */}
-        <AnimatedGoldLine isVisible={isLoaded} />
-
-        {/* Subtext */}
-        <p 
-          className="animate-in"
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-            fontWeight: 300,
-            lineHeight: 1.6,
-            color: 'rgba(255,255,255,0.85)',
-            marginBottom: '3rem',
-            maxWidth: '600px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            opacity: 0,
-          }}
-        >
-          {t.hero.subtext}
-        </p>
-
-        {/* CTA Buttons with magnetic effect */}
+        {/* Right Side: CTA Buttons */}
         <div 
           className="animate-in"
           style={{
             display: 'flex',
-            flexWrap: 'wrap',
+            flexDirection: 'column',
             gap: '1rem',
-            justifyContent: 'center',
-            alignItems: 'center',
+            alignItems: 'flex-end',
             opacity: 0,
+            paddingBottom: '0.5rem',
           }}
         >
-          <MagneticButton href="/contacto" primary>
-            <Calendar size={16} />
-            {t.hero.cta_book}
-          </MagneticButton>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <MagneticButton href="/contacto" primary>
+              <Calendar size={16} />
+              {t.hero.cta_book}
+            </MagneticButton>
 
-          <MagneticButton href="tel:+34000000000">
-            <Phone size={16} />
-            {t.hero.cta_call}
-          </MagneticButton>
+            <MagneticButton href="tel:+34000000000">
+              <Phone size={16} />
+              {t.hero.cta_call}
+            </MagneticButton>
+          </div>
 
           <MagneticButton href="/contacto" outline>
             <MapPin size={16} />

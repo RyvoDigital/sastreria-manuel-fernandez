@@ -23,10 +23,22 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Manuel Fernández — Sastrería',
+  title: 'Manuel Fernández — Sastrería Artesanal en Madrid desde 1978',
   description:
-    'Sastrería a medida de lujo. No hacemos trajes. Construimos identidad.',
-  keywords: ['sastrería', 'trajes a medida', 'lujo', 'Manuel Fernández'],
+    'Maestros sastres en Madrid expertos en confección artesanal de trajes a medida, chaqués y esmóquines. Alta sastrería tradicional con tejidos exclusivos de las mejores casas europeas.',
+  keywords: [
+    'sastrería artesanal madrid',
+    'trajes a medida madrid',
+    'sastre madrid',
+    'chaqué a medida',
+    'esmoquin a medida',
+    'Manuel Fernández sastre',
+    'alta sastrería',
+    'bespoke tailoring spain'
+  ],
+  icons: {
+    icon: '/logo.png',
+  },
 }
 
 export default function RootLayout({

@@ -100,11 +100,12 @@ function TiltCard({
       href={service.href}
       className="service-card"
       style={{
+        gridColumn: service.key === 'artisan' || service.key === 'weddings' ? 'span 3' : 'span 2',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        padding: '2.5rem',
-        background: 'rgba(0,0,0,0.4)',
+        padding: service.key === 'artisan' || service.key === 'weddings' ? '3rem' : '2.5rem',
+        background: service.key === 'courses' ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0.4)',
         border: '1px solid rgba(201,168,76,0.1)',
         borderRadius: '4px',
         textDecoration: 'none',
@@ -119,11 +120,30 @@ function TiltCard({
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
     >
+      {/* Background image for specific cards (e.g. Courses) to make them stand out */}
+      {service.key === 'courses' && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          opacity: isHovered ? 0.4 : 0.25,
+          transition: 'opacity 0.3s ease',
+        }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797480/cGhvdG9zL2ZhYnJpYy1jb25zdWx0YXRpb25fdnRxam1v" 
+            alt="Courses background" 
+            style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(0.5)' }} 
+          />
+        </div>
+      )}
+
       {/* Glow effect following cursor */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
+          zIndex: 1,
           background: `radial-gradient(circle at ${glowPosition.x}% ${glowPosition.y}%, rgba(201,168,76,0.15) 0%, transparent 50%)`,
           opacity: isHovered ? 1 : 0,
           transition: 'opacity 0.3s ease',
@@ -374,10 +394,10 @@ export function ServicesEnhanced() {
           </h2>
         </div>
 
-        {/* Services grid */}
+        {/* Modernized grid layout (2 large + 3 regular) */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(6, 1fr)',
           gap: '2rem',
           perspective: '1000px',
         }}>

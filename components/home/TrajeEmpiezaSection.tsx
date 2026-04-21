@@ -93,7 +93,7 @@ export function TrajeEmpiezaSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('/photos/camel-jacket-form.jpg')`,
+            backgroundImage: `url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797509/cGhvdG9zL2dyYXktY2hlY2stbWFubmVxdWluX2dhZjFmcA==')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
           }}

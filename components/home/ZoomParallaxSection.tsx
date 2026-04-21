@@ -5,13 +5,14 @@ import { useScroll, useTransform, motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 
 const IMAGES = [
-  '/photos/cutting-table.jpg',
-  '/photos/madrid-tweed.jpg',
-  '/photos/tailor-workshop.jpg',
-  '/photos/sleeve-buttons.jpg',
-  '/photos/velvet-lining.jpg',
-  '/photos/mint-jacket-madrid.jpg',
-  '/photos/blue-plaid-form.jpg',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/cGhvdG9zL2N1dHRpbmctdGFibGVfcGd1Z2tk',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL21hZHJpZC10d2VlZF96c2ZheGk=',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797507/cGhvdG9zL3RhaWxvci13b3Jrc2hvcF9yYjBiY3c=',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797375/cGhvdG9zL2F0ZWxpZXItd29ya3Nob3BfbjV4NmNl',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/cGhvdG9zL3NsZWV2ZS1idXR0b25zX2RyaDJweA==',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/cGhvdG9zL3ZlbHZldC1saW5pbmdfdWtlZmxx',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/cGhvdG9zL21pbnQtamFja2V0LW1hZHJpZF9pZ2Fjamo=',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL2JsdWUtcGxhaWQtZm9ybV9yZ2tvZGo=',
 ]
 
 /*
