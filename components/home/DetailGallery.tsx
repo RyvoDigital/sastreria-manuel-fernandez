@@ -4,21 +4,21 @@ import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const IMAGES = [
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797367/cGhvdG9zL0lNR18wMDA1X3VqYnYxdQ==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797479/cGhvdG9zL0lNR18wMDUxX3BucmdsaQ==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797479/cGhvdG9zL0lNR18wMDU3X3F2YXhscg==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797396/cGhvdG9zL0lNR18wMDYyX3pkbWdqeA==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797426/cGhvdG9zL0lNR18wMDY3X2hscjl5bQ==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797399/cGhvdG9zL0lNR183NDA5X29ya2sxeA==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797517/cGhvdG9zL0lNR183NDE0X21jYzlwaQ==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL0lNR183NTExX2w3dWE0eA==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797357/cGhvdG9zL0lNR183Nzg0X3RkbmtmNg==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797522/cGhvdG9zL0lNR183Nzg5X3oyeTNoaA==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797361/cGhvdG9zL0lNR185NDIzX2JuOGJhcQ==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797363/cGhvdG9zL0lNR185NDM2X3V5ZXRyMA==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797470/cGhvdG9zL0lNR185NjY2X3J2enBlcw==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797468/cGhvdG9zL0lNR185NzAyX2ZyeXpkeA==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797383/cGhvdG9zL0lNR185NzIxX3p4YWh4cA==',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797367/photos/IMG_0005_ujbv1u',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797479/photos/IMG_0051_pnrgli',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797479/photos/IMG_0057_qvaxlr',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797396/photos/IMG_0062_zdmgjx',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797426/photos/IMG_0067_hlr9ym',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797399/photos/IMG_7409_orkk1x',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797517/photos/IMG_7414_mcc9pi',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/IMG_7511_l7ua4x',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797357/photos/IMG_7784_tdnkf6',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797522/photos/IMG_7789_z2y3hh',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797361/photos/IMG_9423_bn8baq',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797363/photos/IMG_9436_uyetr0',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797470/photos/IMG_9666_rvzpes',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797468/photos/IMG_9702_fryzdx',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797383/photos/IMG_9721_zxahxp',
 ]
 
 export function DetailGallery() {

@@ -108,7 +108,7 @@ export function EspacioSection() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797507/cGhvdG9zL3RhaWxvci13b3Jrc2hvcF9yYjBiY3c="
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797507/photos/tailor-workshop_rb0bcw"
               alt="Taller de Sastrería Manuel Fernández"
               style={{
                 width:          '100%',
@@ -133,8 +133,8 @@ export function EspacioSection() {
             gap:           '0.75rem',
           }}>
             {[
-              { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL2JsdWUtcGxhaWQtZm9ybV9yZ2tvZGo=', alt: 'Tejido azul en maniquí' },
-              { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/cGhvdG9zL2ZhYnJpYy1zZWxlY3Rpb25fc3RrYmNm', alt: 'Selección de tejidos' },
+              { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/blue-plaid-form_rgkodj', alt: 'Tejido azul en maniquí' },
+              { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/photos/fabric-selection_stkbcf', alt: 'Selección de tejidos' },
             ].map((photo, i) => (
               <div
                 key={i}

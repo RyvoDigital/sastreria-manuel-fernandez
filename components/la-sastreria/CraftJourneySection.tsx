@@ -9,28 +9,28 @@ export function CraftJourneySection() {
   const sections = [
     {
       id:          'corte',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/cGhvdG9zL2N1dHRpbmctdGFibGVfcGd1Z2tk',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/photos/cutting-table_pgugkd',
       leftLabel:   t.la_sastreria.oficio.cat1,
       title:       'Precisión',
       rightLabel:  '1978',
     },
     {
       id:          'tejido',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/cGhvdG9zL2N1dHRpbmctdHdlZWRfc2drZmlm',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/photos/cutting-tweed_sgkfif',
       leftLabel:   t.la_sastreria.oficio.cat2,
       title:       'Carácter',
       rightLabel:  'Lana & Seda',
     },
     {
       id:          'confeccion',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/cGhvdG9zL3NsZWV2ZS1idXR0b25zX2RyaDJweA==',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/sleeve-buttons_drh2px',
       leftLabel:   t.la_sastreria.oficio.cat3,
       title:       'Paciencia',
       rightLabel:  'A Mano',
     },
     {
       id:          'forro',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/cGhvdG9zL3ZlbHZldC1saW5pbmdfdWtlZmxx',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',
       leftLabel:   t.la_sastreria.oficio.cat4,
       title:       'Perfección',
       rightLabel:  'El Detalle',

@@ -38,7 +38,7 @@ export function ServiciosCTA() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/cGhvdG9zL3NjaXNzb3JzLWN1dHRpbmdfdnl0OW15"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/photos/scissors-cutting_vyt9my"
         alt=""
         aria-hidden
         style={{

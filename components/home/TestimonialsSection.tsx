@@ -5,9 +5,9 @@ import { useScroll, useMotionValueEvent, motion, AnimatePresence } from 'framer-
 import { useI18n } from '@/lib/i18n'
 
 const PHOTOS = [
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL21hZHJpZC10d2VlZF96c2ZheGk=',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/cGhvdG9zL3dlZGRpbmctbW9ybmluZy1jb2F0X3B0aWJhaA==',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/cGhvdG9zL21pbnQtamFja2V0LW1hZHJpZF9pZ2Fjamo=',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/photos/mint-jacket-madrid_igacjj',
 ]
 
 const TOTAL = 3
@@ -62,7 +62,7 @@ export function TestimonialsSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/cGhvdG9zL2N1dHRpbmctZmFicmljLXdpZGVfanF3d2p3')`,
+            backgroundImage: `url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/photos/cutting-fabric-wide_jqwwjw')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.04,

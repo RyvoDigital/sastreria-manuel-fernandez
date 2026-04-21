@@ -30,7 +30,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: 'url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/cGhvdG9zL2N1dHRpbmctZmFicmljLXdpZGVfanF3d2p3')',
+        backgroundImage: "url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/photos/cutting-fabric-wide_jqwwjw')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
@@ -107,28 +107,28 @@ const ParallaxImages = () => {
   return (
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '200px 2rem 0' }}>
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/cGhvdG9zL21lYXN1cmluZy10YXBlX3V1aWNmdw=="
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/measuring-tape_uuicfw"
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
         imgStyle={{ width: '32%' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797480/cGhvdG9zL2ZhYnJpYy1jb25zdWx0YXRpb25fdnRxam1v"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797480/photos/fabric-consultation_vtqjmo"
         alt="Consulta de tejidos"
         start={200}
         end={-250}
         imgStyle={{ width: '60%', margin: '0 auto' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/cGhvdG9zL3NjaXNzb3JzLWN1dHRpbmdfdnl0OW15"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/photos/scissors-cutting_vyt9my"
         alt="Corte con tijeras"
         start={-200}
         end={200}
         imgStyle={{ width: '32%', marginLeft: 'auto' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/cGhvdG9zL3Nob3dyb29tLXN1aXRzX3pxbXNjZA=="
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/showroom-suits_zqmscd"
         alt="Showroom trajes"
         start={0}
         end={-500}

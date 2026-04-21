@@ -8,10 +8,10 @@ import { useI18n } from '@/lib/i18n'
 gsap.registerPlugin(ScrollTrigger)
 
 const PHOTOS = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/cGhvdG9zL2N1dHRpbmctdGFibGVfcGd1Z2tk',  catKey: 'cat1' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/cGhvdG9zL2N1dHRpbmctdHdlZWRfc2drZmlm',  catKey: 'cat2' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/cGhvdG9zL3NsZWV2ZS1idXR0b25zX2RyaDJweA==', catKey: 'cat3' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/cGhvdG9zL3ZlbHZldC1saW5pbmdfdWtlZmxx',  catKey: 'cat4' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/photos/cutting-table_pgugkd',  catKey: 'cat1' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/photos/cutting-tweed_sgkfif',  catKey: 'cat2' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/sleeve-buttons_drh2px', catKey: 'cat3' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',  catKey: 'cat4' as const },
 ]
 
 export function OficioGrid() {
