@@ -96,6 +96,8 @@
   },
   "editorial": {
     "label": "Inspiración editorial",
+    "title": "El corte como lenguaje",
+    "read_more": "Leer más",
     "articles": [
       {
         "category": "Cultura del Traje",
@@ -114,7 +116,7 @@
       },
       {
         "category": "El Corte",
-        "title": "El patrón: primer lenguaje del sastre",
+        "title": "El corte como lenguaje",
         "excerpt": "Antes de una sola puntada, el patrón ya habla. Líneas de tiza sobre paño azul: la cartografía de un traje único."
       },
       {

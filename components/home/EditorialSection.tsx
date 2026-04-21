@@ -1,0 +1,190 @@
+'use client'
+
+import { useRef, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useI18n } from '@/lib/i18n'
+import { ArrowRight, BookOpen } from 'lucide-react'
+
+gsap.registerPlugin(ScrollTrigger)
+
+export function EditorialSection() {
+  const { t } = useI18n()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { y: 30, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 1, 
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+          }
+        }
+      )
+
+      gsap.from('.editorial-card', {
+        y: 40, opacity: 0, duration: 1, ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: '.editorial-grid',
+          start: 'top 80%',
+        }
+      })
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
+  // Dynamic grid spans for 5 articles
+  const spans = [4, 2, 2, 4, 6]
+
+  return (
+    <section 
+      ref={sectionRef}
+      style={{
+        padding: 'clamp(6rem, 12vw, 10rem) var(--container-padding)',
+        background: '#FFFFFF',
+        overflow: 'hidden'
+      }}
+    >
+      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+        {/* Section Header */}
+        <div ref={headerRef} style={{ marginBottom: '4rem', maxWidth: '600px' }}>
+          <div style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.65rem',
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            color: '#C9A84C',
+            marginBottom: '1rem',
+          }}>
+            {t.editorial.label}
+          </div>
+          <h2 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontWeight: 400,
+            color: '#0A1628',
+            lineHeight: 1.1,
+            fontStyle: 'italic',
+          }}>
+            {t.editorial.title}
+          </h2>
+        </div>
+
+        {/* Modernized Bento Grid */}
+        <div 
+          className="editorial-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(6, 1fr)',
+            gap: '1.5rem',
+          }}
+        >
+          {t.editorial.articles.map((article: any, index: number) => (
+            <motion.div
+              key={index}
+              className="editorial-card"
+              whileHover={{ y: -8 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              style={{
+                gridColumn: `span ${spans[index] || 2}`,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.5rem',
+                padding: '3rem 2.5rem',
+                background: index % 2 === 0 ? '#F9F7F2' : '#FFFFFF',
+                border: '1px solid rgba(10,22,40,0.05)',
+                position: 'relative',
+                cursor: 'pointer',
+                borderRadius: '4px',
+                minHeight: index === 4 ? 'auto' : '320px',
+                justifyContent: 'center',
+              }}
+            >
+              {/* Category & Icon */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+                <div style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.55rem',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: '#C9A84C',
+                }}>
+                  {article.category}
+                </div>
+                <BookOpen size={14} style={{ color: 'rgba(201,168,76,0.5)' }} />
+              </div>
+
+              {/* Title */}
+              <h3 style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: spans[index] === 4 ? '1.8rem' : '1.4rem',
+                fontWeight: 400,
+                color: '#0A1628',
+                lineHeight: 1.2,
+                fontStyle: 'italic',
+                margin: 0,
+              }}>
+                {article.title}
+              </h3>
+
+              {/* Excerpt */}
+              <p style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.9rem',
+                lineHeight: 1.7,
+                color: 'rgba(10,22,40,0.6)',
+                margin: 0,
+                maxWidth: '90%',
+              }}>
+                {article.excerpt}
+              </p>
+
+              {/* Read More Link */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                color: '#0A1628',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.65rem',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                marginTop: '1rem',
+              }}>
+                {t.editorial.read_more} <ArrowRight size={12} />
+              </div>
+
+              {/* Background watermark */}
+              <div style={{
+                position: 'absolute',
+                bottom: '1rem',
+                right: '1rem',
+                fontFamily: 'var(--font-serif)',
+                fontSize: '4rem',
+                color: 'rgba(201,168,76,0.03)',
+                pointerEvents: 'none',
+              }}>
+                {index + 1}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

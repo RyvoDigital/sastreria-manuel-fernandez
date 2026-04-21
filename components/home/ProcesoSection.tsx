@@ -10,17 +10,17 @@ gsap.registerPlugin(ScrollTrigger)
 /* ─── Step data ──────────────────────────────────────────── */
 const STEP_META = [
   {
-    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1000&q=85&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/cGhvdG9zL21lYXN1cmluZy10YXBlX3V1aWNmdw==',
     imageLeft: true,
     bg: '#050C14',
   },
   {
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1000&q=85&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797440/cGhvdG9zL2NoYWxrLWN1dHRpbmdfamI5Y3pi',
     imageLeft: false,
     bg: '#07101A',
   },
   {
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1000&q=85&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/cGhvdG9zL21hZHJpZC1zdWl0LXN0cmVldF9zbHNpbmU=',
     imageLeft: true,
     bg: '#050C14',
   },
@@ -71,24 +71,24 @@ function StepBlock({ num, title, body, image, imageLeft, bg }: StepProps) {
         scrollTrigger: { trigger: block, start: 'top bottom', end: 'bottom top', scrub: 1.8 },
       })
 
-      /* Ghost numeral fades in */
+      /* Ghost numeral fades in with a larger scale-down effect */
       gsap.fromTo(ghost,
-        { opacity: 0, y: 20 },
+        { opacity: 0, scale: 1.2, y: 60, rotate: 5 },
         {
-          opacity: 1, y: 0,
-          duration: 1.4, ease: 'power2.out',
-          scrollTrigger: { trigger: block, start: 'top 78%', toggleActions: 'play none none none' },
+          opacity: 1, scale: 1, y: 0, rotate: 0,
+          duration: 1.8, ease: 'expo.out',
+          scrollTrigger: { trigger: block, start: 'top 85%', toggleActions: 'play none none none' },
         }
       )
 
-      /* Text items stagger up */
+      /* Text items stagger up with a wider reveal */
       gsap.fromTo(
         text.querySelectorAll('.si'),
-        { y: 28, opacity: 0 },
+        { y: 40, opacity: 0, letterSpacing: '0.05em' },
         {
-          y: 0, opacity: 1,
-          duration: 1, stagger: 0.13, ease: 'power3.out',
-          scrollTrigger: { trigger: block, start: 'top 65%', toggleActions: 'play none none none' },
+          y: 0, opacity: 1, letterSpacing: '0em',
+          duration: 1.4, stagger: 0.15, ease: 'power4.out',
+          scrollTrigger: { trigger: block, start: 'top 70%', toggleActions: 'play none none none' },
         }
       )
     }, block)

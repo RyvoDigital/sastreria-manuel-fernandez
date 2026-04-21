@@ -30,7 +30,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: 'url(/photos/cutting-fabric-wide.jpg)',
+        backgroundImage: 'url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/cGhvdG9zL2N1dHRpbmctZmFicmljLXdpZGVfanF3d2p3')',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
@@ -107,28 +107,28 @@ const ParallaxImages = () => {
   return (
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '200px 2rem 0' }}>
       <ParallaxImg
-        src="/photos/measuring-tape.jpg"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/cGhvdG9zL21lYXN1cmluZy10YXBlX3V1aWNmdw=="
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
         imgStyle={{ width: '32%' }}
       />
       <ParallaxImg
-        src="/photos/fabric-consultation.jpg"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797480/cGhvdG9zL2ZhYnJpYy1jb25zdWx0YXRpb25fdnRxam1v"
         alt="Consulta de tejidos"
         start={200}
         end={-250}
         imgStyle={{ width: '60%', margin: '0 auto' }}
       />
       <ParallaxImg
-        src="/photos/scissors-cutting.jpg"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/cGhvdG9zL3NjaXNzb3JzLWN1dHRpbmdfdnl0OW15"
         alt="Corte con tijeras"
         start={-200}
         end={200}
         imgStyle={{ width: '32%', marginLeft: 'auto' }}
       />
       <ParallaxImg
-        src="/photos/showroom-suits.jpg"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/cGhvdG9zL3Nob3dyb29tLXN1aXRzX3pxbXNjZA=="
         alt="Showroom trajes"
         start={0}
         end={-500}

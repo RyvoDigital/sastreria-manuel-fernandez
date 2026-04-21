@@ -18,7 +18,7 @@ export function BodasHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/photos/wedding-ceremony.jpg"
+          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797426/cGhvdG9zL3dlZGRpbmctY2VyZW1vbnlfd2Y3dHli"
           alt=""
           style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18 }}
         />
@@ -66,7 +66,7 @@ export function BodasHero() {
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/photos/wedding-morning-coat.jpg"
+          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/cGhvdG9zL3dlZGRpbmctbW9ybmluZy1jb2F0X3B0aWJhaA=="
           alt="Traje de novio a medida — Bodas & Ceremonia"
           style={{
             width: '100%',

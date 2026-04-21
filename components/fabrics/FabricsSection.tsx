@@ -10,10 +10,10 @@ import { Eye, Leaf, Award, Hand } from 'lucide-react'
 gsap.registerPlugin(ScrollTrigger)
 
 const CONTENT_BLOCKS = [
-  { id: 'visual' as const, icon: Eye },
-  { id: 'origins' as const, icon: Leaf },
-  { id: 'grading' as const, icon: Award },
-  { id: 'selection' as const, icon: Hand },
+  { id: 'visual' as const, icon: Eye, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797395/photos/fabrics/fabrics-texture_p2lrcw.jpg', span: 4 },
+  { id: 'origins' as const, icon: Leaf, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776800910/photos/fabrics/fabrics-raw_vd0j7u.jpg', span: 2 },
+  { id: 'grading' as const, icon: Award, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797405/photos/fabrics/fabrics-selection_njildd.png', span: 2 },
+  { id: 'selection' as const, icon: Hand, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/photos/fabrics/fabrics-suit_nqdzkv.png', span: 4 },
 ]
 
 export function FabricsSection() {
@@ -99,8 +99,8 @@ export function FabricsSection() {
         {/* Content Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(6, 1fr)',
+          gap: '1.5rem',
           marginBottom: '3rem',
         }}>
           {CONTENT_BLOCKS.map((block) => {
@@ -111,91 +111,108 @@ export function FabricsSection() {
               <motion.div
                 key={block.id}
                 className="mf-fabrics-block"
-                whileHover={{ 
-                  y: -10,
-                  rotateX: 5,
-                  rotateY: -5,
-                  scale: 1.02,
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
-                }}
+                whileHover={{ y: -8 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 style={{
-                  padding: '2.5rem 2rem',
-                  background: '#FFFFFF',
-                  border: '1px solid rgba(201,168,76,0.15)',
+                  gridColumn: `span ${block.span}`,
+                  minHeight: '380px',
+                  padding: '3rem 2.5rem',
+                  background: '#0B1522',
+                  border: '1px solid rgba(201,168,76,0.1)',
                   position: 'relative',
                   overflow: 'hidden',
-                  cursor: 'default',
-                  perspective: '1000px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                  cursor: 'pointer',
+                  borderRadius: '4px',
                 }}
               >
-                {/* Decorative fabric drape background element (blurred) */}
-                <motion.div
-                  style={{
-                    position: 'absolute',
-                    top: '-20%',
-                    right: '-20%',
-                    width: '150px',
-                    height: '150px',
-                    background: 'radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%)',
-                    borderRadius: '50%',
-                    pointerEvents: 'none',
-                  }}
-                  whileHover={{ scale: 1.5, opacity: 0.1 }}
-                />
+                {/* Background Image */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  zIndex: 0,
+                  transition: 'transform 0.8s cubic-bezier(0.2, 0, 0.2, 1)',
+                }} className="card-bg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={block.image} 
+                    alt={title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: 'brightness(0.4) saturate(0.8)',
+                    }}
+                  />
+                </div>
 
-                {/* Icon */}
-                <motion.div 
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  style={{
-                    width: '64px',
-                    height: '64px',
-                    borderRadius: '4px',
-                    background: 'rgba(201,168,76,0.05)',
+                <style>{`
+                  .mf-fabrics-block:hover .card-bg {
+                    transform: scale(1.08);
+                  }
+                `}</style>
+
+                {/* Content Overlay */}
+                <div style={{ position: 'relative', zIndex: 2 }}>
+                  {/* Icon */}
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'rgba(201,168,76,0.15)',
+                    backdropFilter: 'blur(8px)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginBottom: '2rem',
+                    marginBottom: '1.5rem',
                     color: '#C9A84C',
                     border: '1px solid rgba(201,168,76,0.3)',
-                  }}
-                >
-                  <Icon size={28} strokeWidth={1} />
-                </motion.div>
+                  }}>
+                    <Icon size={22} strokeWidth={1.5} />
+                  </div>
 
-                {/* Title */}
-                <h3 style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: '1.5rem',
-                  fontWeight: 400,
-                  color: '#0A1628',
-                  margin: '0 0 1rem 0',
-                }}>
-                  {title}
-                </h3>
+                  {/* Title */}
+                  <h3 style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: '1.8rem',
+                    fontWeight: 400,
+                    color: '#FFFFFF',
+                    margin: '0 0 1rem 0',
+                    fontStyle: 'italic',
+                  }}>
+                    {title}
+                  </h3>
 
-                {/* Description */}
-                <p style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.95rem',
-                  lineHeight: 1.7,
-                  color: 'rgba(10,22,40,0.6)',
-                  margin: 0,
-                }}>
-                  {desc}
-                </p>
+                  {/* Description */}
+                  <p style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.9rem',
+                    lineHeight: 1.6,
+                    color: 'rgba(255,255,255,0.5)',
+                    margin: 0,
+                    maxWidth: '400px',
+                  }}>
+                    {desc}
+                  </p>
+                </div>
                 
-                {/* Subtle gold accent line revealed on hover */}
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '40px' }}
-                  style={{
-                    height: '2px',
-                    background: '#C9A84C',
-                    marginTop: '1.5rem',
-                  }}
-                />
+                {/* Hover border glow */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  border: '1px solid #C9A84C',
+                  opacity: 0,
+                  transition: 'opacity 0.4s ease',
+                  pointerEvents: 'none',
+                }} className="hover-border" />
+
+                <style>{`
+                  .mf-fabrics-block:hover .hover-border {
+                    opacity: 0.3;
+                  }
+                `}</style>
               </motion.div>
             )
           })}
@@ -203,43 +220,45 @@ export function FabricsSection() {
 
         {/* Values Banner */}
         <div style={{
-          padding: '2rem',
-          background: '#0A1628',
+          padding: '4rem 2rem',
+          background: '#FFFFFF',
           textAlign: 'center',
+          position: 'relative'
         }}>
+          {/* Decorative fibers bg */}
+          {(() => {
+            const DecorativeIcon = Leaf
+            return (
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                right: '10%',
+                opacity: 0.05,
+                userSelect: 'none',
+                pointerEvents: 'none'
+              }}>
+                <DecorativeIcon size={120} color="#C9A84C" strokeWidth={0.5} />
+              </div>
+            )
+          })()}
+
           <p style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+            fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)',
             fontStyle: 'italic',
-            color: '#FFFFFF',
-            margin: '0 0 0.5rem 0',
+            color: '#0A1628',
+            margin: '0 0 1rem 0',
+            maxWidth: '800px',
+            marginInline: 'auto'
           }}>
             {t.fabrics.values}
           </p>
           <div style={{
-            width: '60px',
+            width: '80px',
             height: '2px',
             background: '#C9A84C',
             margin: '0 auto',
           }} />
-        </div>
-
-        {/* Pending Assets Notice */}
-        <div style={{
-          marginTop: '3rem',
-          padding: '1.5rem',
-          border: '1px dashed rgba(201,168,76,0.4)',
-          background: 'rgba(201,168,76,0.03)',
-          textAlign: 'center',
-        }}>
-          <p style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.85rem',
-            color: 'rgba(10,22,40,0.5)',
-            margin: 0,
-          }}>
-            {t.fabrics.pending}
-          </p>
         </div>
       </div>
     </section>

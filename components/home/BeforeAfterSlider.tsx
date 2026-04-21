@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { motion, useSpring, useMotionValue } from 'framer-motion'
+import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { MoveHorizontal } from 'lucide-react'
 
@@ -131,31 +131,40 @@ export function BeforeAfterSlider() {
           onTouchStart={handleMouseDown}
           onTouchEnd={handleMouseUp}
         >
-          {/* Placeholder message */}
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pointerEvents: 'none',
-          }}>
-            <div style={{
-              textAlign: 'center',
-              padding: '2rem',
-              border: '2px dashed rgba(201,168,76,0.3)',
-            }}>
-              <MoveHorizontal size={48} color="rgba(201,168,76,0.5)" style={{ marginBottom: '1rem' }} />
-              <p style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.9rem',
-                color: 'rgba(255,255,255,0.4)',
-                margin: 0,
-              }}>
-                {t.before_after.placeholder}
-              </p>
-            </div>
+          {/* Background Images */}
+          <div style={{ position: 'absolute', inset: 0 }}>
+            {/* After Image (Right side) */}
+            <img
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/cGhvdG9zL2NhbWVsLWphY2tldC1mb3JtX2JjYzc4cQ=="
+              alt="After fitting"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
           </div>
+
+          {/* Before Image with Clipping (Left side) */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 1,
+              overflow: 'hidden',
+              clipPath: useTransform(smoothX, (v: number) => `inset(0 ${100 - v}% 0 0)`),
+            }}
+          >
+            <img
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797444/cGhvdG9zL2ZpdHRpbmctdmVzdF9jNnNlaWw="
+              alt="Before fitting"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+          </motion.div>
 
           {/* Before Label */}
           <div style={{

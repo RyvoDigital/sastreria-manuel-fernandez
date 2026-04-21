@@ -5,9 +5,9 @@ import { useScroll, useMotionValueEvent, motion, AnimatePresence } from 'framer-
 import { useI18n } from '@/lib/i18n'
 
 const PHOTOS = [
-  '/photos/madrid-tweed.jpg',
-  '/photos/wedding-morning-coat.jpg',
-  '/photos/mint-jacket-madrid.jpg',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/cGhvdG9zL21hZHJpZC10d2VlZF96c2ZheGk=',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/cGhvdG9zL3dlZGRpbmctbW9ybmluZy1jb2F0X3B0aWJhaA==',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/cGhvdG9zL21pbnQtamFja2V0LW1hZHJpZF9pZ2Fjamo=',
 ]
 
 const TOTAL = 3
@@ -62,7 +62,7 @@ export function TestimonialsSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('/photos/cutting-fabric-wide.jpg')`,
+            backgroundImage: `url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/cGhvdG9zL2N1dHRpbmctZmFicmljLXdpZGVfanF3d2p3')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.04,

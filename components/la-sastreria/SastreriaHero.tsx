@@ -73,7 +73,7 @@ export function SastreriaHero() {
       }}>
         {/* Photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/cutting-fabric-wide.jpg" alt="" aria-hidden className="mf-sas-hero-photo" />
+        <img src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/cGhvdG9zL2N1dHRpbmctZmFicmljLXdpZGVfanF3d2p3" alt="" aria-hidden className="mf-sas-hero-photo" />
 
         {/* Gradient overlay */}
         <div style={{
