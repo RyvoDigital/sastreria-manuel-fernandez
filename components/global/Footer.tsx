@@ -184,29 +184,72 @@ export function Footer() {
           {t.footer.rights}
         </span>
         <div style={{ display: 'flex', gap: '1.5rem' }}>
-          {['Instagram', 'WhatsApp'].map((social) => (
-            <a
-              key={social}
-              href="#"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.65rem',
-                letterSpacing: '0.12em',
-                color: 'rgba(201, 168, 76, 0.6)',
-                textTransform: 'uppercase',
-                cursor: 'pointer',
-                transition: 'color 0.3s',
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.color = 'var(--color-gold)')
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.color = 'rgba(196, 163, 90, 0.5)')
-              }
-            >
-              {social}
-            </a>
-          ))}
+          <a
+            href="https://www.instagram.com/sastreriamanuelfernandez/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.65rem',
+              letterSpacing: '0.12em',
+              color: 'rgba(201, 168, 76, 0.6)',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              transition: 'color 0.3s',
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = 'var(--color-gold)')
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = 'rgba(196, 163, 90, 0.5)')
+            }
+          >
+            Instagram
+          </a>
+          <a
+            href="https://www.facebook.com/p/Sastreria-Manuel-Fernandez-100051593358323/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.65rem',
+              letterSpacing: '0.12em',
+              color: 'rgba(201, 168, 76, 0.6)',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              transition: 'color 0.3s',
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = 'var(--color-gold)')
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = 'rgba(196, 163, 90, 0.5)')
+            }
+          >
+            Facebook
+          </a>
+          <a
+            href="https://wa.me/34682192944"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.65rem',
+              letterSpacing: '0.12em',
+              color: 'rgba(201, 168, 76, 0.6)',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              transition: 'color 0.3s',
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = 'var(--color-gold)')
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = 'rgba(196, 163, 90, 0.5)')
+            }
+          >
+            WhatsApp
+          </a>
         </div>
       </div>
     </footer>
