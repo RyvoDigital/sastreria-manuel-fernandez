@@ -267,6 +267,7 @@ export function ContactPage() {
           style={{
             flex:          1,
             height:        '100%',
+            minHeight:     '100svh',
             overflowY:     'auto',
             overflowX:     'hidden',
             display:       'flex',
@@ -274,7 +275,7 @@ export function ContactPage() {
             justifyContent: 'flex-start',
             /* Nav clearance + breathing room */
             paddingTop:    `${NAV_H + 28}px`,
-            paddingBottom: '6rem',
+            paddingBottom: '8rem',
             paddingLeft:   'clamp(2.5rem, 4.5vw, 5rem)',
             paddingRight:  'clamp(2.5rem, 4.5vw, 5rem)',
             background:    'var(--color-navy)',
