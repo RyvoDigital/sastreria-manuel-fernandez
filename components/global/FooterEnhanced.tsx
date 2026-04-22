@@ -204,7 +204,7 @@ export function FooterEnhanced() {
           </div>
           
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="#" style={{ 
+            <a href="https://www.instagram.com/sastreriamanuelfernandez/" target="_blank" rel="noopener noreferrer" style={{ 
               fontFamily: 'var(--font-sans)',
               fontSize: '0.75rem',
               color: 'rgba(255,255,255,0.4)', 
@@ -216,6 +216,32 @@ export function FooterEnhanced() {
                onMouseEnter={(e) => e.currentTarget.style.color = '#C9A84C'}
                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
               {t.footer.instagram}
+            </a>
+            <a href="https://www.facebook.com/p/Sastreria-Manuel-Fernandez-100051593358323/" target="_blank" rel="noopener noreferrer" style={{ 
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              color: 'rgba(255,255,255,0.4)', 
+              transition: 'color 0.3s',
+              textDecoration: 'none',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+            }} 
+               onMouseEnter={(e) => e.currentTarget.style.color = '#C9A84C'}
+               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
+              Facebook
+            </a>
+            <a href="https://wa.me/34682192944" target="_blank" rel="noopener noreferrer" style={{ 
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              color: 'rgba(255,255,255,0.4)', 
+              transition: 'color 0.3s',
+              textDecoration: 'none',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+            }} 
+               onMouseEnter={(e) => e.currentTarget.style.color = '#C9A84C'}
+               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
+              WhatsApp
             </a>
             {/* Added subtle separator */}
             <div style={{ width: '1px', height: '12px', background: 'rgba(255,255,255,0.1)' }} />
