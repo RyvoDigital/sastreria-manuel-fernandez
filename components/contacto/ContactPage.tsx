@@ -185,7 +185,7 @@ export function ContactPage() {
           style={{
             position:  'relative',
             width:     '52%',
-            height:    '100%',
+            minHeight: '100svh',
             overflow:  'hidden',
             flexShrink: 0,
           }}
