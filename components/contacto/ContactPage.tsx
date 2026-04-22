@@ -173,8 +173,8 @@ export function ContactPage() {
           display:       'flex',
           flexDirection: 'row',
           width:         '100%',
-          height:        '100svh',
-          overflow:      'hidden',
+          minHeight:     '100svh',
+          overflow:      'visible',
           background:    'var(--color-navy)',
         }}
       >
