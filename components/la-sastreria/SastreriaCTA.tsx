@@ -99,7 +99,7 @@ export function SastreriaCTA() {
 
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/reservar" className="mf-cta-btn" style={{
+          <Link href="/videollamada" className="mf-cta-btn" style={{
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',

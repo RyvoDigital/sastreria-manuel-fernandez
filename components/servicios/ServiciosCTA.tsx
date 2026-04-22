@@ -85,7 +85,7 @@ export function ServiciosCTA() {
         </h2>
 
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/reservar" className="mf-sv-cta-btn" style={{
+          <Link href="/videollamada" className="mf-sv-cta-btn" style={{
             display: 'inline-flex', alignItems: 'center',
             padding: '1rem 2.5rem',
             background: 'var(--color-gold)',

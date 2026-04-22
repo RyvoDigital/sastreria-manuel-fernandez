@@ -274,7 +274,7 @@ export function ContactPage() {
             justifyContent: 'flex-start',
             /* Nav clearance + breathing room */
             paddingTop:    `${NAV_H + 28}px`,
-            paddingBottom: '2.5rem',
+            paddingBottom: '6rem',
             paddingLeft:   'clamp(2.5rem, 4.5vw, 5rem)',
             paddingRight:  'clamp(2.5rem, 4.5vw, 5rem)',
             background:    'var(--color-navy)',
@@ -359,7 +359,7 @@ export function ContactPage() {
           {/* Reservar CTA */}
           <div className="mf-ci" style={{ marginBottom: '1.8rem' }}>
             <Link
-              href="/reservar"
+              href="/videollamada"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
                 padding: '0.75rem 1.8rem',
