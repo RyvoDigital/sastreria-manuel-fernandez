@@ -22,7 +22,7 @@ const NAV_ITEMS = [
 
 // Persistent contact buttons data
 const CONTACT_BUTTONS = {
-  call: { label: 'Llámanos', href: 'tel:+34000000000', icon: Phone },
+  call: { label: 'Llámanos', href: 'tel:+34682192944', icon: Phone },
   location: { label: 'Dónde Estamos', href: '/contacto', icon: MapPin },
 }
 

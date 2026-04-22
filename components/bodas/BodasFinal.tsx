@@ -101,7 +101,7 @@ export function BodasFinal() {
         </h2>
 
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link href="/reservar" style={{
+          <Link href="/videollamada" style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
             padding: '0.85rem 2.2rem',
             background: '#C9A84C',

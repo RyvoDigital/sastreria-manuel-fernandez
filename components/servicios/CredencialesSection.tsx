@@ -154,7 +154,7 @@ export function CredencialesSection() {
 
           {/* CTA Buttons */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link href="/reservar" style={{
+            <Link href="/videollamada" style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
               padding: '0.85rem 2rem',
               background: '#C9A84C',
