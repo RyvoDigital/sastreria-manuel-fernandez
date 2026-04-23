@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
-import { Send } from 'lucide-react'
+import { Send, MessageCircle } from 'lucide-react'
 
 const NAV_COL1 = [
   { key: 'inicio' as const, href: '/' },

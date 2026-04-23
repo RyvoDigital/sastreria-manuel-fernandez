@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
-import { Phone, MapPin } from 'lucide-react'
+import { Phone, MapPin, MessageCircle } from 'lucide-react'
 
 const NAV_ITEMS = [
   { key: 'inicio'        as const, href: '/' },
@@ -217,25 +217,25 @@ export function Navigation() {
             rel="noopener noreferrer"
             aria-label="WhatsApp"
             style={{
-              fontFamily:    'var(--font-sans)',
-              fontSize:      '0.6rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color:          '#25D366',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#25D366',
               textDecoration: 'none',
-              cursor:         'pointer',
-              transition:    'color .25s',
+              cursor: 'pointer',
+              transition: 'opacity .25s',
+              opacity: 0.85,
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.color = '#128C7E'
+              el.style.opacity = '1'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.color = '#25D366'
+              el.style.opacity = '0.85'
             }}
           >
-            WA
+            <MessageCircle size={18} strokeWidth={1.5} />
           </a>
 
           {/* Hamburger */}
