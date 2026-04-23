@@ -302,7 +302,7 @@ export function CredencialesSection() {
                     }} />
                     <span style={{ position: 'relative', display: 'inline-flex', borderRadius: '50%', width: '0.5rem', height: '0.5rem', background: '#22c55e' }} />
                   </span>
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.48rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,240,234,0.6)' }}>Est. 1978</span>
+                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.48rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,240,234,0.6)' }}></span>
                 </div>
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.4rem',

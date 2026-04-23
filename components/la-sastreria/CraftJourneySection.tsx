@@ -12,7 +12,7 @@ export function CraftJourneySection() {
       background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/photos/cutting-table_pgugkd',
       leftLabel:   t.la_sastreria.oficio.cat1,
       title:       'Precisión',
-      rightLabel:  '1978',
+      rightLabel:  'Tradición',
     },
     {
       id:          'tejido',

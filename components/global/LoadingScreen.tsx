@@ -69,36 +69,17 @@ export function LoadingScreen() {
       id="loading-screen"
       style={{ position: 'fixed', inset: 0, zIndex: 9999, background: '#080808', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem' }}
     >
-      {/* Brand mark: M F initials drawn via SVG stroke */}
-      <svg
-        ref={svgRef}
-        width="80"
-        height="60"
-        viewBox="0 0 80 60"
-        fill="none"
-        aria-hidden="true"
-      >
-        {/* M */}
-        <path
-          ref={pathMRef}
-          d="M4 52 L4 8 L22 36 L40 8 L40 52"
-          stroke="#C4A35A"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        {/* F */}
-        <path
-          ref={pathFRef}
-          d="M52 52 L52 8 L76 8 M52 30 L70 30"
-          stroke="#C4A35A"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-      </svg>
+      {/* Brand mark: SMF Logo */}
+      <img
+        src="/logo.png"
+        alt="Sastrería Manuel Fernández"
+        style={{
+          width: '80px',
+          height: 'auto',
+          opacity: 0,
+          animation: 'fadeIn 0.5s ease forwards 0.3s',
+        }}
+      />
 
       <div
         ref={nameRef}

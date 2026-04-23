@@ -11,13 +11,13 @@
     "modelos3d": "3D Models"
   },
   "hero": {
-    "tagline": "Artisan tailoring since 1978",
+    "tagline": "Artisan tailoring ",
     "tagline2": "Everything handmade. No industrial patterns.",
     "subtext": "Each garment built from scratch, no prior fittings.",
     "cta_book": "Book Appointment",
     "cta_call": "Call Us",
     "cta_contact": "Contact",
-    "since": "Since 1978",
+    "since": "",
     "discover": "Discover"
   },
   "zoom_parallax": {
@@ -45,7 +45,7 @@
     "step1_body": "What is the suit for? What do you want to convey? Everything begins with understanding the moment and the person.",
     "step2_num": "02",
     "step2_title": "Sartorial Interpretation",
-    "step2_body": "Every element we choose — lapel, shoulder, fabric, color — communicates something. We do it consciously and precisely.",
+    "step2_body": "Every element we choose, lapel, shoulder, fabric, color — communicates something. We do it consciously and precisely.",
     "step3_num": "03",
     "step3_title": "Result",
     "step3_body": "You won't see a suit. You'll see an elevated version of yourself. That is the difference between clothing and identity."
@@ -128,7 +128,7 @@
   },
   "la_sastreria": {
     "hero": {
-      "label": "Artisan Tailoring · Est. 1978",
+      "label": "Artisan Tailoring",
       "headline_line1": "The Art of",
       "headline_line2": "Dressing Well",
       "subline": "Everything handmade. No industrial patterns. Each garment built from scratch."
@@ -136,8 +136,8 @@
     "historia": {
       "label": "The Story",
       "title": "A Lifelong Vocation",
-      "p1": "In 1978, Manuel Fernández opened his first artisan tailoring shop in the heart of Madrid with a simple conviction: that well-made clothes change the way a man perceives himself.",
-      "p2": "He learned the craft from the great Spanish master tailors, absorbing not only the technique — the English cut, the hand-sewn canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment, built from scratch without industrial patterns.",
+      "p1": "Sastrería Manuel Fernández has dressed, throughout its history, prominent personalities such as members of the Royal Family, politicians, elite athletes and figures from the world of entertainment and television, also participating in major film and theatre productions.",
+      "p2": "He learned the craft from the great Spanish master tailors, absorbing not only the technique, the English cut, the hand-sewn canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment, built from scratch without industrial patterns.",
       "p3": "Years later, nothing has changed. The same respect for the cloth, the same patience with the pattern, the same honest conversation before a single measurement is taken. Each suit is unique, unrepeatable, handmade."
     },
     "maestro": {
@@ -156,7 +156,7 @@
     },
     "cifras": {
       "label": "By the Numbers",
-      "n1": "1978", "l1": "Founded",
+      "n1": " ", "l1": "Founded",
       "n2": "∞",   "l2": "Unique Suits",
       "n3": "Madrid", "l3": "Our City",
       "n4": "By Hand", "l4": "Every Piece"
@@ -194,15 +194,15 @@
       },
       "origins": {
         "title": "Origin",
-        "desc": "How each fibre is obtained: Wool, Cashmere, Silk, Vicuña — emphasis on uniqueness (water, temperature, terrain)."
+        "desc": "How each fibre is obtained: Wool, Cashmere, Silk, Vicuña, emphasis on uniqueness (water, temperature, terrain)."
       },
       "grading": {
         "title": "Grading",
-        "desc": "Explanation of Super 100 / 120 / 150 / 200 — what each means, how it affects quality."
+        "desc": "Explanation of Super 100 / 120 / 150 / 200, what each means, how it affects quality."
       },
       "selection": {
         "title": "Selection",
-        "desc": "How each fibre is hand-selected — artisan approach to material selection."
+        "desc": "How each fibre is hand-selected, artisan approach to material selection."
       }
     }
   },
@@ -251,7 +251,7 @@
       "headline1": "A Legacy of",
       "headline2": "Exceptional Craft",
       "body": "Every suit that leaves the workshop carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
-      "stat1_val": "1978",      "stat1_label": "Since",
+      "stat1_val": " ",      "stat1_label": "Since",
       "stat2_val": "Bespoke",  "stat2_label": "Every Piece",
       "stat3_val": "Madrid",   "stat3_label": "Our City",
       "satisfaction_label": "Satisfied Clients",
@@ -280,7 +280,7 @@
     "phone_label": "Phone",
     "phone": "+34 682 19 29 44",
     "hours_label": "Hours",
-    "hours": "Monday to Saturday · 10:00 – 20:00",
+    "hours": "Monday to Saturday · 10:00 to 20:00",
     "email_label": "Email",
     "email": "sastreriamanuelfernandez@gmail.com",
     "cta_reservar": "Book Appointment",
@@ -352,13 +352,13 @@
       "step1_num": "01", "step1_title": "First Appointment",
       "step1_body": "We talk about the day, the venue, the style. No catalogues, no pressure. We understand who you are and what you need.",
       "step2_num": "02", "step2_title": "Fabric Selection",
-      "step2_body": "Exclusive wools, silks and mohairs. Only the best for the best day. Every fibre hand-selected.",
+      "step2_body": "Exclusive wools, silks, cashmere, vicuña, mohairs, etc. Only the best for the best day. Every fibre hand-selected.",
       "step3_num": "03", "step3_title": "The Fitting",
       "step3_body": "A single fitting session. We build the suit to your exact measurements, with no need for multiple adjustments.",
       "step4_num": "04", "step4_title": "Everything Ready",
       "step4_body": "The client leaves with everything prepared: suit, shirt, tie, shoes and accessories. No stress, no loose ends."
     },
-    "key_message": "The client leaves with everything ready — no stress, no loose ends.",
+    "key_message": "The client leaves with everything ready, no stress, no loose ends.",
     "carousel": { "label": "Wedding Details" },
     "cta": {
       "label": "The Next Step",
@@ -372,7 +372,7 @@
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone": "+34 682 19 29 44",
-    "hours": "Monday to Saturday, 10:00 – 20:00",
+    "hours": "Monday to Saturday, 10:00 to 20:00",
     "cta_title": "Ready for your next suit?",
     "cta_btn": "Book Appointment",
     "instagram": "Instagram",

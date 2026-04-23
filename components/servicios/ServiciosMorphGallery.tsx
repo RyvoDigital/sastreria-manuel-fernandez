@@ -37,11 +37,11 @@ const MAX_SCROLL   = 3000
 
 const SERVICE_NAMES = [
   'Traje a Medida',
-  'Chaqueta Deportiva',
+  'Blazer',
   'Pantalón a Medida',
   'Abrigo a Medida',
   'Traje de Novio',
-  'Arreglos & Renovación',
+  'Arreglos',
 ]
 
 const IMAGES = [

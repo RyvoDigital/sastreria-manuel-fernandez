@@ -71,15 +71,15 @@ export function CursosList() {
 
   const t = {
     es: {
-      title: 'Cursos Disponibles',
-      subtitle: 'Contenido en vídeo - Próximamente',
+      title: 'Cursos Artesanales',
+      subtitle: 'Próximamente',
       lessons: 'lecciones',
       locked: 'Próximamente',
       available: 'Disponible',
     },
     en: {
-      title: 'Available Courses',
-      subtitle: 'Video content - Coming soon',
+      title: 'Artisan Courses',
+      subtitle: 'Coming Soon',
       lessons: 'lessons',
       locked: 'Coming soon',
       available: 'Available',

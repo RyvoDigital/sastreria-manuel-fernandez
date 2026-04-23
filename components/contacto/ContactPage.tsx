@@ -284,7 +284,7 @@ export function ContactPage() {
 
           {/* Section label */}
           <div className="mf-ci" style={{
-            fontFamily: 'var(--font-sans)', fontSize: '0.52rem',
+            fontFamily: 'var(--font-sans)', fontSize: '0.68rem',
             letterSpacing: '0.34em', textTransform: 'uppercase',
             color: 'rgba(196,163,90,0.55)', marginBottom: '0.9rem',
           }}>
@@ -328,7 +328,7 @@ export function ContactPage() {
                 <Icon size={11} strokeWidth={1.5} style={{ color: 'var(--color-gold)', marginTop: '3px', flexShrink: 0, opacity: 0.6 }} />
                 <div>
                   <div style={{
-                    fontFamily: 'var(--font-sans)', fontSize: '0.46rem',
+                    fontFamily: 'var(--font-sans)', fontSize: '0.52rem',
                     letterSpacing: '0.22em', textTransform: 'uppercase',
                     color: 'rgba(196,163,90,0.4)', marginBottom: '2px',
                   }}>
@@ -365,7 +365,7 @@ export function ContactPage() {
                 display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
                 padding: '0.75rem 1.8rem',
                 background: 'var(--color-gold)', color: '#080808',
-                fontFamily: 'var(--font-sans)', fontSize: '0.6rem',
+                fontFamily: 'var(--font-sans)', fontSize: '0.68rem',
                 letterSpacing: '0.2em', textTransform: 'uppercase',
                 textDecoration: 'none',
                 transition: 'background .25s, transform .2s',
@@ -394,7 +394,7 @@ export function ContactPage() {
           {/* Form */}
           <div className="mf-ci">
             <div style={{
-              fontFamily: 'var(--font-sans)', fontSize: '0.5rem',
+              fontFamily: 'var(--font-sans)', fontSize: '0.58rem',
               letterSpacing: '0.28em', textTransform: 'uppercase',
               color: 'rgba(245,240,234,0.25)', marginBottom: '1.4rem',
             }}>
