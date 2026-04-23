@@ -2,13 +2,10 @@
 
 import { useScroll, useTransform, motion } from 'framer-motion'
 import { SastreriaHero }    from './SastreriaHero'
-import { HistoriaSection }  from './HistoriaSection'
-import { MaestroSection }   from './MaestroSection'
-import { OficioFlipSection } from './OficioFlipSection'
-import { CraftJourneySection } from './CraftJourneySection'
-import { ServiciosMorphGallery } from '../servicios/ServiciosMorphGallery'
-import { EspacioSection }   from './EspacioSection'
 import { FilosofiaSection } from './FilosofiaSection'
+import { CraftJourneySection } from './CraftJourneySection'
+import { HistoriaSection }  from './HistoriaSection'
+import { EspacioSection }   from './EspacioSection'
 import { SastreriaCTA }     from './SastreriaCTA'
 
 export function SastreriaLayout() {
@@ -37,13 +34,11 @@ export function SastreriaLayout() {
       />
 
       <SastreriaHero />
-      <HistoriaSection />
-      <MaestroSection />
-      <OficioFlipSection />
-      <CraftJourneySection />
-      <ServiciosMorphGallery />
-      <EspacioSection />
       <FilosofiaSection />
+      <CraftJourneySection />
+      <HistoriaSection />
+      {/* Evelyn section placeholder — awaiting client assets */}
+      <EspacioSection />
       <SastreriaCTA />
     </div>
   )
