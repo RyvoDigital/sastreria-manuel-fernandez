@@ -13,7 +13,7 @@
   "hero": {
     "tagline": "Artisan tailoring ",
     "tagline2": "Everything handmade. No industrial patterns.",
-    "subtext": "Each garment built from scratch, no prior fittings.",
+    "subtext": "",
     "cta_book": "Book Appointment",
     "cta_call": "Call Us",
     "cta_contact": "Contact",
@@ -131,7 +131,7 @@
       "label": "Artisan Tailoring",
       "headline_line1": "The Art of",
       "headline_line2": "Dressing Well",
-      "subline": "Everything handmade. No industrial patterns. Each garment built from scratch."
+      "subline": "Everything handmade. No industrial patterns."
     },
     "historia": {
       "label": "The Story",
@@ -149,10 +149,10 @@
     "oficio": {
       "label": "The Craft",
       "title": "The Discipline of Detail",
-      "cat1": "The Cut",
-      "cat2": "The Cloth",
-      "cat3": "The Construction",
-      "cat4": "The Lining"
+      "cat1": "The Fabric",
+      "cat2": "The Design",
+      "cat3": "The Cut",
+      "cat4": "The Artisan Process"
     },
     "cifras": {
       "label": "By the Numbers",
@@ -208,7 +208,7 @@
   },
   "home_services": {
     "section_label": "Our Services",
-    "section_title": "Everything we offer",
+    "section_title": "Sartorial Experience",
     "discover": "Discover",
     "items": {
       "artisan": {

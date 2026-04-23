@@ -13,7 +13,7 @@
   "hero": {
     "tagline": "Sastrería artesanal ",
     "tagline2": "Todo hecho a mano. Sin patrones industriales.",
-    "subtext": "Cada prenda construida desde cero, sin pruebas previas.",
+    "subtext": "",
     "cta_book": "Reservar Cita",
     "cta_call": "Llámanos",
     "cta_contact": "Contactar",
@@ -131,7 +131,7 @@
       "label": "Sastrería Artesanal",
       "headline_line1": "El Arte de",
       "headline_line2": "Vestir Bien",
-      "subline": "Todo hecho a mano. Sin patrones industriales. Cada prenda construida desde cero."
+      "subline": "Todo hecho a mano. Sin patrones industriales."
     },
     "historia": {
       "label": "La Historia",
@@ -149,10 +149,10 @@
     "oficio": {
       "label": "El Oficio",
       "title": "La Disciplina del Detalle",
-      "cat1": "El Corte",
-      "cat2": "El Tejido",
-      "cat3": "La Confección",
-      "cat4": "El Forro"
+      "cat1": "El Tejido",
+      "cat2": "El Diseño",
+      "cat3": "El Corte",
+      "cat4": "El Proceso Artesanal"
     },
     "cifras": {
       "label": "En Números",
@@ -208,7 +208,7 @@
   },
   "home_services": {
     "section_label": "Nuestros Servicios",
-    "section_title": "Todo lo que ofrecemos",
+    "section_title": "Experiencia Sartorial",
     "discover": "Descubrir",
     "items": {
       "artisan": {

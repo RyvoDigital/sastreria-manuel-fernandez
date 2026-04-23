@@ -134,8 +134,8 @@ export function ServiciosSimple() {
     label: locale === 'es' ? 'Nuestros Servicios' : 'Our Services',
     title: locale === 'es' ? 'El Corte como Lenguaje' : 'The Cut as Language',
     subtitle: locale === 'es'
-      ? 'Todo hecho a mano. Sin patrones industriales. Cada prenda construida desde cero.'
-      : 'All handmade. No industrial patterns. Each garment built from scratch.',
+      ? 'Todo hecho a mano. Sin patrones industriales.'
+      : 'All handmade. No industrial patterns.',
   }
 
   return (

@@ -98,9 +98,13 @@ export function ServicesOverview() {
 
   const t = {
     section_label: locale === 'es' ? 'Nuestros Servicios' : 'Our Services',
-    section_title: locale === 'es' 
-      ? 'Todo lo que ofrecemos' 
-      : 'Everything we offer',
+    section_title: locale === 'es'
+      ? 'Experiencia Sartorial'
+      : locale === 'en'
+      ? 'Sartorial Experience'
+      : locale === 'it'
+      ? 'Esperienza Sartoriale'
+      : 'Expérience Sartoriale',
   }
 
   return (

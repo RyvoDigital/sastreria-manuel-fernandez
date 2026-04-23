@@ -8,28 +8,28 @@ export function CraftJourneySection() {
 
   const sections = [
     {
-      id:          'corte',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/photos/cutting-table_pgugkd',
-      leftLabel:   t.la_sastreria.oficio.cat1,
-      title:       'Precisión',
-      rightLabel:  'Tradición',
-    },
-    {
       id:          'tejido',
       background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/photos/cutting-tweed_sgkfif',
-      leftLabel:   t.la_sastreria.oficio.cat2,
+      leftLabel:   t.la_sastreria.oficio.cat1,
       title:       'Carácter',
       rightLabel:  'Lana & Seda',
     },
     {
-      id:          'confeccion',
+      id:          'diseno',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/photos/cutting-table_pgugkd',
+      leftLabel:   t.la_sastreria.oficio.cat2,
+      title:       'Precisión',
+      rightLabel:  'Tradición',
+    },
+    {
+      id:          'corte',
       background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/sleeve-buttons_drh2px',
       leftLabel:   t.la_sastreria.oficio.cat3,
       title:       'Paciencia',
       rightLabel:  'A Mano',
     },
     {
-      id:          'forro',
+      id:          'proceso',
       background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',
       leftLabel:   t.la_sastreria.oficio.cat4,
       title:       'Perfección',
