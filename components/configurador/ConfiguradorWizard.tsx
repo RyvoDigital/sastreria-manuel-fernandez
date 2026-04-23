@@ -10,33 +10,57 @@ const STEPS = [
   { id: 'waistcoat', label_es: 'Chaleco', label_en: 'Waistcoat', label_it: 'Gilet', label_fr: 'Gilet' },
   { id: 'trousers', label_es: 'Pantalón', label_en: 'Trousers', label_it: 'Pantaloni', label_fr: 'Pantalon' },
   { id: 'occasion', label_es: 'Ocasión', label_en: 'Occasion', label_it: 'Occasione', label_fr: 'Occasion' },
-  { id: 'colorimetry', label_es: 'Colorimetría', label_en: 'Colorimetry', label_it: 'Colorimetria', label_fr: 'Colorimétrie' },
+  { id: 'colour', label_es: 'Color', label_en: 'Colour', label_it: 'Colore', label_fr: 'Couleur' },
+  { id: 'season', label_es: 'Temporada', label_en: 'Season', label_it: 'Stagione', label_fr: 'Saison' },
 ]
 
-const OPTIONS = {
+const COLOUR_OPTIONS = [
+  { name_es: 'Negro', name_en: 'Black', name_it: 'Nero', name_fr: 'Noir', hex: '#1a1a1a' },
+  { name_es: 'Azul marino', name_en: 'Navy', name_it: 'Blu navy', name_fr: 'Bleu marine', hex: '#1a2744' },
+  { name_es: 'Carbón', name_en: 'Charcoal', name_it: 'Carbone', name_fr: 'Anthracite', hex: '#36454F' },
+  { name_es: 'Gris medio', name_en: 'Mid grey', name_it: 'Grigio medio', name_fr: 'Gris moyen', hex: '#7a7a7a' },
+  { name_es: 'Beige', name_en: 'Beige', name_it: 'Beige', name_fr: 'Beige', hex: '#C4A882' },
+  { name_es: 'Burdeos', name_en: 'Burgundy', name_it: 'Bordeaux', name_fr: 'Bordeaux', hex: '#800020' },
+  { name_es: 'Verde botella', name_en: 'Bottle green', name_it: 'Verde bottiglia', name_fr: 'Vert bouteille', hex: '#1a472a' },
+  { name_es: 'Camel', name_en: 'Camel', name_it: 'Cammello', name_fr: 'Camel', hex: '#C19A6B' },
+]
+
+const OPTIONS: Record<string, Record<string, string[]>> = {
   fabrics: {
     es: ['Príncipe de Gales', 'Pata de gallo', 'Raya diplomática', 'Lisos'],
     en: ['Prince of Wales', 'Houndstooth', 'Diplomacy stripe', 'Solids'],
+    it: ['Principe di Galles', 'Pied-de-poule', 'Riga diplomatica', 'Tinta unita'],
+    fr: ['Prince de Galles', 'Pied-de-poule', 'Rayure diplomatique', 'Unis'],
   },
   jacket: {
     es: ['Solapa clásica', 'Solapa pico', '2 botones', 'Doble botonadura', 'Ajustado', 'Confort'],
     en: ['Classic lapel', 'Peak lapel', '2 buttons', 'Double-breasted', 'Slim fit', 'Relaxed fit'],
+    it: ['Revers classico', 'Revers a punta', '2 bottoni', 'Doppiopetto', 'Aderente', 'Comodo'],
+    fr: ['Revers classique', 'Revers pointu', '2 boutons', 'Croisé', 'Ajusté', 'Confort'],
   },
   waistcoat: {
     es: ['Clásico', 'Doble botonadura'],
     en: ['Classic', 'Double-breasted'],
+    it: ['Classico', 'Doppiopetto'],
+    fr: ['Classique', 'Croisé'],
   },
   trousers: {
     es: ['Tiro alto', 'Tiro bajo', 'Cinturón', 'Tirantes', 'Con vuelta', 'Sin vuelta'],
     en: ['High rise', 'Low rise', 'Belt', 'Braces', 'With cuff', 'No cuff'],
+    it: ['Vita alta', 'Vita bassa', 'Cintura', 'Bretelle', 'Con risvolto', 'Senza risvolto'],
+    fr: ['Taille haute', 'Taille basse', 'Ceinture', 'Bretelles', 'Avec revers', 'Sans revers'],
   },
   occasion: {
     es: ['Boda', 'Negocios', 'Ceremonia', 'Casual elegante', 'Imagen clásica', 'Imagen moderna'],
     en: ['Wedding', 'Business', 'Ceremony', 'Smart casual', 'Classic image', 'Modern image'],
+    it: ['Matrimonio', 'Business', 'Cerimonia', 'Casual elegante', 'Immagine classica', 'Immagine moderna'],
+    fr: ['Mariage', 'Business', 'Cérémonie', 'Décontracté chic', 'Image classique', 'Image moderne'],
   },
-  colorimetry: {
-    es: ['Tono claro', 'Tono medio', 'Tono oscuro', 'Primavera/Verano', 'Otoño/Invierno', 'Uso diario', 'Eventos especiales'],
-    en: ['Light tone', 'Medium tone', 'Dark tone', 'Spring/Summer', 'Autumn/Winter', 'Daily use', 'Special events'],
+  season: {
+    es: ['Primavera/Verano', 'Otoño/Invierno', 'Uso diario', 'Eventos especiales'],
+    en: ['Spring/Summer', 'Autumn/Winter', 'Daily use', 'Special events'],
+    it: ['Primavera/Estate', 'Autunno/Inverno', 'Uso quotidiano', 'Eventi speciali'],
+    fr: ['Printemps/Été', 'Automne/Hiver', 'Usage quotidien', 'Événements spéciaux'],
   },
 }
 
@@ -49,10 +73,11 @@ export function ConfiguradorWizard() {
     waistcoat: [],
     trousers: [],
     occasion: [],
-    colorimetry: [],
+    colour: [],
+    season: [],
   })
 
-  const t = {
+  const t: Record<string, { title: string; subtitle: string; next: string; back: string; finish: string; summary: string; submit: string }> = {
     es: {
       title: 'Configura tu Traje',
       subtitle: 'Selecciona tus preferencias paso a paso',
@@ -71,25 +96,42 @@ export function ConfiguradorWizard() {
       summary: 'Summary',
       submit: 'Submit Configuration',
     },
+    it: {
+      title: 'Configura il tuo Abito',
+      subtitle: 'Seleziona le tue preferenze passo dopo passo',
+      next: 'Avanti',
+      back: 'Indietro',
+      finish: 'Termina',
+      summary: 'Riepilogo',
+      submit: 'Invia Configurazione',
+    },
+    fr: {
+      title: 'Configurez votre Costume',
+      subtitle: 'Sélectionnez vos préférences étape par étape',
+      next: 'Suivant',
+      back: 'Précédent',
+      finish: 'Terminer',
+      summary: 'Résumé',
+      submit: 'Envoyer la Configuration',
+    },
   }
 
-  const currentT = t[locale as 'es' | 'en'] || t.es
+  const currentT = t[locale] || t.es
   const currentStepData = STEPS[currentStep]
-  const stepOptions = OPTIONS[currentStepData.id as keyof typeof OPTIONS]
-  const options = stepOptions[locale as 'es' | 'en'] || stepOptions.es
+  const stepId = currentStepData.id
 
   const toggleSelection = (option: string) => {
     setSelections(prev => {
-      const current = prev[currentStepData.id] || []
+      const current = prev[stepId] || []
       if (current.includes(option)) {
-        return { ...prev, [currentStepData.id]: current.filter(o => o !== option) }
+        return { ...prev, [stepId]: current.filter(o => o !== option) }
       }
-      return { ...prev, [currentStepData.id]: [...current, option] }
+      return { ...prev, [stepId]: [...current, option] }
     })
   }
 
   const isSelected = (option: string) => {
-    return selections[currentStepData.id]?.includes(option) || false
+    return selections[stepId]?.includes(option) || false
   }
 
   const handleNext = () => {
@@ -105,6 +147,8 @@ export function ConfiguradorWizard() {
   }
 
   const isLastStep = currentStep === STEPS.length - 1
+
+  const stepLabel = (step: typeof STEPS[0]) => step[`label_${locale}` as keyof typeof step] as string || step.label_es
 
   return (
     <div style={{
@@ -172,9 +216,8 @@ export function ConfiguradorWizard() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
                 color: i === currentStep ? '#C9A84C' : 'rgba(255,255,255,0.4)',
-                display: window?.innerWidth < 600 ? 'none' : 'block',
-              }}>
-                {step[`label_${locale}` as const] || step.label_es}
+              }} className="mf-step-label">
+                {stepLabel(step)}
               </span>
               {i < STEPS.length - 1 && (
                 <div style={{
@@ -197,49 +240,101 @@ export function ConfiguradorWizard() {
           marginBottom: '2rem',
           textAlign: 'center',
         }}>
-          {currentStepData[`label_${locale}` as const] || currentStepData.label_es}
+          {stepLabel(currentStepData)}
         </h2>
 
-        {/* Options Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1rem',
-          marginBottom: '3rem',
-        }}>
-          {options.map((option) => (
-            <button
-              key={option}
-              onClick={() => toggleSelection(option)}
-              style={{
-                padding: '1.5rem',
-                background: isSelected(option) ? 'rgba(201,168,76,0.15)' : 'transparent',
-                border: `1px solid ${isSelected(option) ? '#C9A84C' : 'rgba(255,255,255,0.15)'}`,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                textAlign: 'left',
-              }}
-            >
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-                <span style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.9rem',
-                  color: isSelected(option) ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
-                  fontWeight: isSelected(option) ? 500 : 400,
+        {/* Colour Picker Step */}
+        {stepId === 'colour' ? (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: '1rem',
+            marginBottom: '3rem',
+          }}>
+            {COLOUR_OPTIONS.map((colour) => {
+              const name = colour[`name_${locale}` as keyof typeof colour] as string || colour.name_es
+              const selected = isSelected(name)
+              return (
+                <button
+                  key={colour.hex}
+                  onClick={() => toggleSelection(name)}
+                  style={{
+                    padding: '1.5rem 1rem',
+                    background: selected ? 'rgba(201,168,76,0.15)' : 'transparent',
+                    border: `1px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.15)'}`,
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                  }}
+                >
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: colour.hex,
+                    border: `2px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.3)'}`,
+                    boxShadow: selected ? '0 0 0 3px rgba(201,168,76,0.3)' : 'none',
+                    transition: 'all 0.3s ease',
+                  }} />
+                  <span style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.85rem',
+                    color: selected ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
+                    fontWeight: selected ? 500 : 400,
+                  }}>
+                    {name}
+                  </span>
+                  {selected && <Check size={16} color="#C9A84C" />}
+                </button>
+              )
+            })}
+          </div>
+        ) : (
+          /* Standard Options Grid */
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '1rem',
+            marginBottom: '3rem',
+          }}>
+            {(OPTIONS[stepId]?.[locale] || OPTIONS[stepId]?.es || []).map((option: string) => (
+              <button
+                key={option}
+                onClick={() => toggleSelection(option)}
+                style={{
+                  padding: '1.5rem',
+                  background: isSelected(option) ? 'rgba(201,168,76,0.15)' : 'transparent',
+                  border: `1px solid ${isSelected(option) ? '#C9A84C' : 'rgba(255,255,255,0.15)'}`,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textAlign: 'left',
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
                 }}>
-                  {option}
-                </span>
-                {isSelected(option) && (
-                  <Check size={16} color="#C9A84C" />
-                )}
-              </div>
-            </button>
-          ))}
-        </div>
+                  <span style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.9rem',
+                    color: isSelected(option) ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
+                    fontWeight: isSelected(option) ? 500 : 400,
+                  }}>
+                    {option}
+                  </span>
+                  {isSelected(option) && (
+                    <Check size={16} color="#C9A84C" />
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Navigation */}
         <div style={{
