@@ -110,7 +110,7 @@ export function HeroNew() {
             opacity: isLoaded ? 1 : 0,
           }}
         >
-          Sastrería Artesanal · Desde 1978
+          Sastrería Artesanal
         </div>
 
         {/* Main headline */}
@@ -191,7 +191,7 @@ export function HeroNew() {
         >
           {/* Book Appointment */}
           <Link
-            href="/contacto"
+            href="/videollamada"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -222,7 +222,7 @@ export function HeroNew() {
 
           {/* Call Us */}
           <a
-            href="tel:+34000000000"
+            href="tel:+34682192944"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -256,7 +256,7 @@ export function HeroNew() {
 
           {/* Contact */}
           <Link
-            href="/contacto"
+            href="/videollamada"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

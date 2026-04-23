@@ -1,0 +1,119 @@
+FIXES APPLIED — SASTRERÍA MANUEL FERNÁNDEZ
+Date: April 2026
+Source: Sastreria Final Changes.pdf
+
+================================================================================
+PRIORITY 1 FIXES COMPLETED
+================================================================================
+
+1.01 REMOVE "1978" FROM ALL PAGES
+- Components: HeroNew, HistoriaSection, CraftJourneySection, CredencialesSection, BodasHero
+- Messages: es.json, en.json (all instances removed)
+- Status: ✅ DONE
+
+1.02 REMOVE EM/EN DASHES FROM INLINE TEXT
+- Replaced — with commas/spaces in inline text fragments
+- Files: messages/es.json, messages/en.json
+- Status: ✅ DONE
+
+1.03 AUDIT "EL CORTE COMO LENGUAJE"
+- Found 3 instances (all on Servicios page)
+- Kept on Servicios page as canonical location
+- Renamed "El Repertorio" → "Pure Bespoke" (item 1.20)
+- Status: ✅ DONE
+
+1.04 WHATSAPP BUTTON IN NAVBAR
+- Added WA button next to language switcher
+- Link: https://wa.me/34682192944
+- Status: ✅ DONE
+
+1.05 PROMINENT "RESERVAR CITA" BUTTON
+- Updated hero CTA to link to /videollamada
+- Updated phone number in hero
+- Status: ✅ DONE
+
+1.06 REPLACE HAMBURGER WITH "MENU" TEXT
+- Replaced hamburger icon with "Menu" text label
+- Status: ✅ DONE
+
+1.08 REPLACE LOADING PLACEHOLDER WITH SMF LOGO
+- Replaced SVG stroke animation with /logo.png image
+- Status: ✅ DONE
+
+1.20-1.25 COPY EDITS
+- 1.20: "El Repertorio" → "Pure Bespoke"
+- 1.21: "Cursos Disponibles" → "Cursos Artesanales"
+- 1.22: "Conocer el Taller" → "Conocer la Sastrería"
+- 1.23: "Chaqueta Deportiva" → "Blazer"
+- 1.24: "Arreglos & Renovación" → "Arreglos"
+- 1.25: Added "cashmere, vicuña" before Mohair, ", etc." after
+- Status: ✅ DONE
+
+1.26 CONTACT PAGE FONT SIZE INCREASE
+- Increased section label: 0.52rem → 0.6rem
+- Increased form title: 0.5rem → 0.58rem
+- Increased info items: 0.46rem → 0.52rem
+- Status: ✅ DONE
+
+1.27 HISTORY TEXT REPLACEMENT
+- New text about dressing royalty, politicians, athletes, film/theatre
+- Applied to both ES and EN messages
+- Status: ✅ DONE
+
+1.28 SERVICES NUMBERED LIST 01-10
+- Complete rewrite of services array:
+  01 Frac, 02 Chaqué, 03 Smoking, 04 Traje Artesanal, 05 Abrigo Artesanal
+  06 Blazer, 07 Camisas, 08 Pantalones Sport, 09 Chalecos, 10 Arreglos a Medida
+- Status: ✅ DONE
+
+1.30 GOOGLE 4.9/5 RATING
+- Added "★ 4.9/5 Google Reviews" to testimonials section
+- Status: ✅ DONE
+
+1.31 COURSES COMING SOON
+- Confirmed "Próximamente" / "Coming Soon" labels on locked courses
+- Status: ✅ DONE
+
+B.01-B.02 NAVIGATION ERRORS
+- Added 'use client' to SuitShowcaseSection (was missing)
+- Status: ✅ DONE
+
+================================================================================
+PENDING (NEED CLIENT INPUT OR MORE WORK)
+================================================================================
+
+1.07 ADD ITALIAN AND FRENCH — Need translation files
+1.09-1.10 HERO TITLE/SUBTITLE — Need new copy from client
+1.11 RE-ADJUSTMENT CONCEPT — Need design direction
+1.12 REMOVE LINE — Need to locate exact line
+1.13 RENAME SERVICES SECTION — Need to find "Todo lo que ofrecemos"
+1.14-1.15 SECTION REMOVALS — Need component identification
+1.16-1.19 REORDER STEPS — Need component access
+1.29 CONFIGURADOR COLOUR/SEASONS — Needs UI work
+1.32 STRIPE PAYMENT — Needs Stripe integration
+
+Sastrería Artesanal page reordering — Needs component restructuring
+Evelyn section — Needs client assets (bio, photo, headline)
+
+================================================================================
+FILES MODIFIED
+================================================================================
+
+components/global/Navigation.tsx
+components/global/LoadingScreen.tsx
+components/home/HeroNew.tsx
+components/home/TestimonialsSection.tsx
+components/home/SuitShowcaseSection.tsx
+components/contacto/ContactPage.tsx
+components/servicios/ServiciosSimple.tsx
+components/servicios/ServiciosMorphGallery.tsx
+components/servicios/ServiciosHero.tsx
+components/la-sastreria/HistoriaSection.tsx
+components/la-sastreria/CraftJourneySection.tsx
+components/servicios/CredencialesSection.tsx
+components/bodas/BodasHero.tsx
+components/cursos/CursosList.tsx
+messages/es.json
+messages/en.json
+
+================================================================================

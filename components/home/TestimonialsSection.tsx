@@ -96,6 +96,24 @@ export function TestimonialsSection() {
           }}>
             {t.testimonials.title}
           </h2>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            marginTop: '1rem',
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              color: '#C9A84C',
+              letterSpacing: '0.1em',
+            }}>★ 4.9/5</span>
+            <span style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.6rem',
+              color: 'rgba(255,255,255,0.5)',
+            }}>Google Reviews</span>
+          </div>
         </div>
 
         {/* 3D Carousel Stage */}

@@ -62,7 +62,7 @@ const CenterImage = () => {
           color: '#FFFFFF',
           lineHeight: 1.1,
         }}>
-          El Repertorio
+          Pure Bespoke
         </div>
       </div>
     </motion.div>

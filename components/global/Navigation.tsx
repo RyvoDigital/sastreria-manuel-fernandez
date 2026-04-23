@@ -215,10 +215,38 @@ export function Navigation() {
             {locale === 'es' ? 'EN' : 'ES'}
           </button>
 
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/34682192944"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            style={{
+              fontFamily:    'var(--font-sans)',
+              fontSize:      '0.6rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color:          '#25D366',
+              textDecoration: 'none',
+              cursor:         'pointer',
+              transition:    'color .25s',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.color = '#128C7E'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.color = '#25D366'
+            }}
+          >
+            WA
+          </a>
+
           {/* Hamburger */}
           <button
             onClick={() => setMenuOpen(v => !v)}
-            aria-label="Abrir menú"
+            aria-label="Menu"
             className="mf-hamburger"
             style={{
               background:    'none',
@@ -231,8 +259,8 @@ export function Navigation() {
               gap:           '5px',
             }}
           >
-            <span style={{ display: 'block', width: '22px', height: '1px', background: 'rgba(255,255,255,0.65)' }} />
-            <span style={{ display: 'block', width: '14px', height: '1px', background: 'var(--color-gold)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)' }}>Menu</span>
+            
           </button>
 
         </div>

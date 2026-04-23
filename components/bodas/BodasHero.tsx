@@ -175,7 +175,7 @@ export function BodasHero() {
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.75)',
-          }}>Est. 1978</span>
+          }}></span>
           <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.7 }} />
           <span style={{
             fontFamily: 'var(--font-sans)',
@@ -187,7 +187,7 @@ export function BodasHero() {
         </div>
         <div style={{ height: '1px', background: 'rgba(196,163,90,0.15)', marginBottom: '0.75rem' }} />
         <div style={{ display: 'flex', gap: '1.2rem' }}>
-          {[{ val: '1978', label: 'Est.' }, { val: '100%', label: 'A Mano' }].map((s) => (
+          {[{ val: ' ', label: 'Est.' }, { val: '100%', label: 'A Mano' }].map((s) => (
             <div key={s.label}>
               <div style={{
                 fontFamily: 'var(--font-serif)',

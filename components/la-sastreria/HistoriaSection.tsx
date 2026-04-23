@@ -104,7 +104,7 @@ export function HistoriaSection() {
             userSelect:    'none',
             zIndex:         0,
           }}>
-            1978
+            
           </div>
 
           {/* Label */}

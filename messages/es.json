@@ -11,13 +11,13 @@
     "modelos3d": "Modelos 3D"
   },
   "hero": {
-    "tagline": "Sastrería artesanal desde 1978",
+    "tagline": "Sastrería artesanal ",
     "tagline2": "Todo hecho a mano. Sin patrones industriales.",
     "subtext": "Cada prenda construida desde cero, sin pruebas previas.",
     "cta_book": "Reservar Cita",
     "cta_call": "Llámanos",
     "cta_contact": "Contactar",
-    "since": "Desde 1978",
+    "since": "",
     "discover": "Descubrir"
   },
   "zoom_parallax": {
@@ -128,7 +128,7 @@
   },
   "la_sastreria": {
     "hero": {
-      "label": "Sastrería Artesanal · Est. 1978",
+      "label": "Sastrería Artesanal",
       "headline_line1": "El Arte de",
       "headline_line2": "Vestir Bien",
       "subline": "Todo hecho a mano. Sin patrones industriales. Cada prenda construida desde cero."
@@ -136,7 +136,7 @@
     "historia": {
       "label": "La Historia",
       "title": "Una Vocación de por Vida",
-      "p1": "En 1978, Manuel Fernández abrió su primer sastrería artesanal en el corazón de Madrid con una convicción sencilla: que la ropa bien hecha cambia la forma en que un hombre se percibe a sí mismo.",
+      "p1": "Sastrería Manuel Fernández ha vestido, a lo largo de su historia, a destacadas personalidades como miembros de la Casa Real, políticos, deportistas de élite y figuras del mundo del espectáculo y la televisión, participando además en grandes producciones cinematográficas y teatrales.",
       "p2": "Aprendió el oficio de los grandes maestros sastres españoles, absorbiendo no sólo la técnica —el corte inglés, la entretela cosida a mano, la solapa que cae sola— sino también la filosofía: que cada cliente merece una prenda única, construida desde cero sin patrones industriales.",
       "p3": "Años después, nada ha cambiado. El mismo respeto por el tejido, la misma paciencia con el patrón, la misma conversación honesta antes de tomar una sola medida. Cada traje es único, irrepetible, hecho a mano."
     },
@@ -156,7 +156,7 @@
     },
     "cifras": {
       "label": "En Números",
-      "n1": "1978", "l1": "Fundación",
+      "n1": " ", "l1": "Fundación",
       "n2": "∞",   "l2": "Trajes Únicos",
       "n3": "Madrid", "l3": "Nuestra Ciudad",
       "n4": "A Mano", "l4": "Cada Pieza"
@@ -194,15 +194,15 @@
       },
       "origins": {
         "title": "Origen",
-        "desc": "Cómo se obtiene cada fibra: Lana, Cachemira, Seda, Vicuña — énfasis en singularidad (agua, temperatura, terreno)."
+        "desc": "Cómo se obtiene cada fibra: Lana, Cachemira, Seda, Vicuña, énfasis en singularidad (agua, temperatura, terreno)."
       },
       "grading": {
         "title": "Graduación",
-        "desc": "Explicación de Super 100 / 120 / 150 / 200 — qué significa cada uno, cómo afecta la calidad."
+        "desc": "Explicación de Super 100 / 120 / 150 / 200, qué significa cada uno, cómo afecta la calidad."
       },
       "selection": {
         "title": "Selección",
-        "desc": "Cómo se selecciona cada fibra a mano — enfoque artesanal en la selección de materiales."
+        "desc": "Cómo se selecciona cada fibra a mano, enfoque artesanal en la selección de materiales."
       }
     }
   },
@@ -251,7 +251,7 @@
       "headline1": "Un Legado de",
       "headline2": "Oficio Excepcional",
       "body": "Cada traje que sale del taller lleva consigo décadas de conocimiento, el mejor paño europeo y el rigor de quien hace de la perfección un hábito.",
-      "stat1_val": "1978",      "stat1_label": "Desde",
+      "stat1_val": " ",      "stat1_label": "Desde",
       "stat2_val": "A Medida", "stat2_label": "Cada Pieza",
       "stat3_val": "Madrid",   "stat3_label": "Nuestra Ciudad",
       "satisfaction_label": "Clientes Satisfechos",
@@ -280,7 +280,7 @@
     "phone_label": "Teléfono",
     "phone": "+34 682 19 29 44",
     "hours_label": "Horario",
-    "hours": "Lunes a Sábado · 10:00 – 20:00",
+    "hours": "Lunes a Sábado · 10:00 a 20:00",
     "email_label": "Correo",
     "email": "sastreriamanuelfernandez@gmail.com",
     "cta_reservar": "Reservar Cita",
@@ -352,19 +352,19 @@
       "step1_num": "01", "step1_title": "Primera Cita",
       "step1_body": "Conversamos sobre el día, el lugar, el estilo. Sin catálogos, sin presiones. Entendemos quién eres y qué necesitas.",
       "step2_num": "02", "step2_title": "Selección de Tejido",
-      "step2_body": "Tejidos exclusivos de lana, seda y mohair. Solo lo mejor para el mejor día. Cada fibra seleccionada a mano.",
+      "step2_body": "Tejidos exclusivos de lana, seda, cashmere, vicuña, mohair, etc. Solo lo mejor para el mejor día. Cada fibra seleccionada a mano.",
       "step3_num": "03", "step3_title": "La Prueba",
       "step3_body": "Una única sesión de prueba. Construimos el traje a tu medida exacta, sin necesidad de múltiples ajustes.",
       "step4_num": "04", "step4_title": "Todo Listo",
       "step4_body": "El cliente se lleva todo preparado: traje, camisa, corbata, zapatos y accesorios. Sin estrés, sin cabos sueltos."
     },
-    "key_message": "El cliente se lleva todo listo — sin estrés, sin cabos sueltos.",
+    "key_message": "El cliente se lleva todo listo, sin estrés, sin cabos sueltos.",
     "carousel": { "label": "Detalles Nupciales" },
     "cta": {
       "label": "El Siguiente Paso",
       "headline": "El día más importante de su vida merece un traje único.",
       "btn_primary": "Reservar Cita",
-      "btn_secondary": "Conocer el Taller"
+      "btn_secondary": "Conocer la Sastrería"
     }
   },
   "footer": {
@@ -372,7 +372,7 @@
     "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone": "+34 682 19 29 44",
-    "hours": "Lunes a Sábado, 10:00 – 20:00",
+    "hours": "Lunes a Sábado, 10:00 a 20:00",
     "cta_title": "¿Listo para su próximo traje?",
     "cta_btn": "Solicitar Cita",
     "instagram": "Instagram",
