@@ -1,0 +1,493 @@
+{
+  "nav": {
+    "inicio": "Accueil",
+    "sastreria": "La Tailleur",
+    "servicios": "Services",
+    "bodas": "Mariages",
+    "contacto": "Contact",
+    "configurador": "Configurateur",
+    "cursos": "Cours",
+    "videollamada": "Visioconférence",
+    "modelos3d": "Modèles 3D"
+  },
+  "hero": {
+    "tagline": "Artisan tailoring ",
+    "tagline2": "Everything handmade. No industrial patterns.",
+    "subtext": "Each garment built from scratch, no prior fittings.",
+    "cta_book": "Prendre Rendez-vous",
+    "cta_call": "Appelez-nous",
+    "cta_contact": "Contactez-nous",
+    "since": "",
+    "discover": "Discover",
+    "label": "Tailleur Artisanal",
+    "title": "Tailleur d'aujourd'hui, pensé pour demain.",
+    "subtitle": "Architecture en tissu, sur mesure pour votre essence."
+  },
+  "zoom_parallax": {
+    "alt": "Sastrería Manuel Fernández — image"
+  },
+  "traje_empieza": {
+    "label": "The process",
+    "title": "Your suit begins with you",
+    "body": "Before choosing a fabric or shaping a lapel, we need to know you. Your life moment, your personality, what you want to convey. Every suit we build is born from an honest conversation about who you are and who you want to be."
+  },
+  "before_after": {
+    "label": "Before & After",
+    "title": "The difference of a bespoke suit",
+    "subtitle": "Drag to see the transformation",
+    "before": "Before",
+    "after": "After",
+    "placeholder": "Images pending from client",
+    "instruction": "Drag the slider to compare"
+  },
+  "proceso": {
+    "label": "Our methodology",
+    "step_label": "Step",
+    "step1_num": "01",
+    "step1_title": "Intention",
+    "step1_body": "What is the suit for? What do you want to convey? Everything begins with understanding the moment and the person.",
+    "step2_num": "02",
+    "step2_title": "Sartorial Interpretation",
+    "step2_body": "Every element we choose, lapel, shoulder, fabric, color — communicates something. We do it consciously and precisely.",
+    "step3_num": "03",
+    "step3_title": "Result",
+    "step3_body": "You won't see a suit. You'll see an elevated version of yourself. That is the difference between clothing and identity."
+  },
+  "testimonials": {
+    "label": "Expériences Réelles",
+    "title": "Le mot de ceux qui nous ont choisis",
+    "items": [
+      {
+        "quote": "I never thought a suit could change the way I perceive myself. Manuel understood what I needed before I even knew it myself.",
+        "name": "Carlos M.",
+        "occasion": "CEO, Madrid"
+      },
+      {
+        "quote": "The experience on my wedding day was perfect in every detail. The suit was exactly what I had dreamed of, and the process was an experience in itself.",
+        "name": "Alejandro R.",
+        "occasion": "Wedding, Seville"
+      },
+      {
+        "quote": "Wearing a Manuel Fernández suit is wearing confidence. It's hard to explain, but anyone who has lived it understands.",
+        "name": "Javier L.",
+        "occasion": "Entrepreneur, Barcelona"
+      }
+    ]
+  },
+  "suit_showcase": {
+    "label": "The Anatomy of the Suit",
+    "title": "Details that make the difference",
+    "hint": "Explore the key points of our artisan tailoring",
+    "hotspots": {
+      "lapel": {
+        "title": "Hand-stitched lapel",
+        "desc": "Invisible stitches that provide natural structure and flexibility to the lapel."
+      },
+      "buttons": {
+        "title": "Natural horn buttons",
+        "desc": "Buttons selected one by one for their grain and exceptional durability."
+      },
+      "shoulder": {
+        "title": "Neapolitan shoulder",
+        "desc": "Natural drape without padding for superior comfort and elegant style."
+      },
+      "fabric": {
+        "title": "Super 150s Wool",
+        "desc": "Fine Italian fabric with a natural sheen and silk touch."
+      }
+    }
+  },
+  "editorial": {
+    "label": "Editorial Inspiration",
+    "title": "The Cut as Language",
+    "read_more": "Read More",
+    "articles": [
+      {
+        "category": "Suit Culture",
+        "title": "The lapel as the silent language of power",
+        "excerpt": "Every millimetre counts. The width of a lapel is not an aesthetic decision, it is a statement of intent."
+      },
+      {
+        "category": "Craftsmanship",
+        "title": "The fabric that chooses who you are",
+        "excerpt": "From the English houses of Holland & Sherry to the Italian lanifici, every cloth has a story."
+      },
+      {
+        "category": "Weddings",
+        "title": "The big day starts months before",
+        "excerpt": "How to turn the process of choosing a groom's suit into an experience you will remember for a lifetime."
+      },
+      {
+        "category": "The Cut",
+        "title": "The cut as language",
+        "excerpt": "Before a single stitch, the pattern already speaks. Chalk lines on blue cloth: the cartography of a unique suit."
+      },
+      {
+        "category": "The Client",
+        "title": "A suit begins in conversation",
+        "excerpt": "We don't measure the body first. We measure the person: their story, their purpose, the version of themselves they wish to project."
+      }
+    ]
+  },
+  "la_sastreria": {
+    "hero": {
+      "label": "Artisan Tailoring",
+      "headline_line1": "The Art of",
+      "headline_line2": "Dressing Well",
+      "subline": "Everything handmade. No industrial patterns. Each garment built from scratch."
+    },
+    "historia": {
+      "label": "The Story",
+      "title": "A Lifelong Vocation",
+      "p1": "Sastrería Manuel Fernández has dressed, throughout its history, prominent personalities such as members of the Royal Family, politicians, elite athletes and figures from the world of entertainment and television, also participating in major film and theatre productions.",
+      "p2": "He learned the craft from the great Spanish master tailors, absorbing not only the technique, the English cut, the hand-sewn canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment, built from scratch without industrial patterns.",
+      "p3": "Years later, nothing has changed. The same respect for the cloth, the same patience with the pattern, the same honest conversation before a single measurement is taken. Each suit is unique, unrepeatable, handmade."
+    },
+    "maestro": {
+      "label": "The Master",
+      "quote": "A suit is not finished when the last stitch is sewn. It is finished when the person wearing it recognises in it a better version of themselves.",
+      "attribution": "— Manuel Fernández, Master Tailor",
+      "bio": "With decades dedicated to artisan bespoke tailoring, Manuel Fernández has dressed executives, grooms and men at their most important moments. His tailoring shop in Madrid is, above all, a space for listening where each garment is built from scratch."
+    },
+    "oficio": {
+      "label": "The Craft",
+      "title": "The Discipline of Detail",
+      "cat1": "The Cut",
+      "cat2": "The Cloth",
+      "cat3": "The Construction",
+      "cat4": "The Lining"
+    },
+    "cifras": {
+      "label": "By the Numbers",
+      "n1": " ",
+      "l1": "Founded",
+      "n2": "∞",
+      "l2": "Unique Suits",
+      "n3": "Madrid",
+      "l3": "Our City",
+      "n4": "By Hand",
+      "l4": "Every Piece"
+    },
+    "espacio": {
+      "label": "The Space",
+      "title": "Where the Suit is Born",
+      "description": "A private workshop in Madrid where every visit is an experience as carefully considered as the garment created within it."
+    },
+    "filosofia": {
+      "label": "The Philosophy",
+      "q1": "We don't measure the body.",
+      "q2": "We measure the person.",
+      "q3": "That is the entire difference.",
+      "p1": "At Sastrería Manuel Fernández, the process begins with questions, not measuring tape. We want to understand who you are, what moment you are living, what you want to communicate to the world.",
+      "p2": "The result is never just a suit. It is a tool of identity. A silent declaration. The most authentic version of yourself, sewn by hand."
+    },
+    "cta": {
+      "label": "The Next Step",
+      "headline": "The suit you imagine is one conversation away",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "Our Process"
+    }
+  },
+  "fabrics": {
+    "label": "The Fabrics",
+    "title": "Sensory, educational and aspirational",
+    "subtitle": "We help clients understand and desire the material. Every fibre tells a story of origin, selection and craftsmanship.",
+    "values": "Brand values: Sustainability, artisan selection, material exclusivity",
+    "pending": "Images pending from client",
+    "items": {
+      "visual": {
+        "title": "Visual",
+        "desc": "Macro photographs of fabric textures; natural processes (sheep, goats, raw fibre, spinning)."
+      },
+      "origins": {
+        "title": "Origin",
+        "desc": "How each fibre is obtained: Wool, Cashmere, Silk, Vicuña, emphasis on uniqueness (water, temperature, terrain)."
+      },
+      "grading": {
+        "title": "Grading",
+        "desc": "Explanation of Super 100 / 120 / 150 / 200, what each means, how it affects quality."
+      },
+      "selection": {
+        "title": "Selection",
+        "desc": "How each fibre is hand-selected, artisan approach to material selection."
+      }
+    }
+  },
+  "home_services": {
+    "section_label": "Our Services",
+    "section_title": "Everything we offer",
+    "discover": "Discover",
+    "items": {
+      "artisan": {
+        "label": "Artisan Tailoring",
+        "desc": "Handmade suits from scratch, no industrial patterns."
+      },
+      "weddings": {
+        "label": "Weddings & Ceremony",
+        "desc": "Unique wedding attire: morning coat, tailcoat, tuxedo."
+      },
+      "configurator": {
+        "label": "Garment Configurator",
+        "desc": "Design your suit step by step. Paid access."
+      },
+      "courses": {
+        "label": "Online Courses",
+        "desc": "Learn tailoring techniques with video tutorials."
+      },
+      "videocall": {
+        "label": "Video Consultations",
+        "desc": "Remote personalized advice. 20-25 min."
+      }
+    }
+  },
+  "servicios": {
+    "hero": {
+      "label": "Services · The Repertoire",
+      "headline": "Everything a Master Tailor Can Create"
+    },
+    "services": {
+      "s1_num": "01",
+      "s1_title": "Bespoke Suit",
+      "s1_duration": "Approx. 8–10 weeks",
+      "s2_num": "02",
+      "s2_title": "Sport Coat",
+      "s2_duration": "Approx. 6–8 weeks",
+      "s3_num": "03",
+      "s3_title": "Bespoke Trousers",
+      "s3_duration": "Approx. 3–4 weeks",
+      "s4_num": "04",
+      "s4_title": "Bespoke Overcoat",
+      "s4_duration": "Approx. 8–10 weeks",
+      "s5_num": "05",
+      "s5_title": "Wedding Suit",
+      "s5_duration": "Approx. 10–12 weeks",
+      "s6_num": "06",
+      "s6_title": "Alterations",
+      "s6_duration": "On request"
+    },
+    "credenciales": {
+      "badge": "Trusted Tailoring",
+      "headline1": "A Legacy of",
+      "headline2": "Exceptional Craft",
+      "body": "Every suit that leaves the workshop carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
+      "stat1_val": " ",
+      "stat1_label": "Since",
+      "stat2_val": "Bespoke",
+      "stat2_label": "Every Piece",
+      "stat3_val": "Madrid",
+      "stat3_label": "Our City",
+      "satisfaction_label": "Satisfied Clients",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "The Workshop"
+    },
+    "tejidos": {
+      "label": "Our Clients",
+      "title": "Where We Work with Clients",
+      "p1": "From Madrid, we dress gentlemen worldwide. Miami, Oporto, Lisbon, Paris, London, Rome, Dubai and more. Every suit travels handmade.",
+      "p2": "Artisan tailoring knows no borders. Every client, wherever they are, receives the same dedication and attention to detail."
+    },
+    "cta": {
+      "label": "The Next Step",
+      "headline": "The suit you imagine is one conversation away",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "The Workshop"
+    },
+    "hero_label": "Services",
+    "hero_title": "Pure Bespoke",
+    "hero_subtitle": "Chaque costume raconte une histoire. La vôtre commence ici.",
+    "cta_primary": "Prendre Rendez-vous",
+    "cta_secondary": "Découvrir la Tailleur"
+  },
+  "contacto": {
+    "section_label": "Contact",
+    "headline": "Parlons-en",
+    "subheadline": "Chaque commande commence par une conversation.",
+    "address_label": "Atelier",
+    "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
+    "phone_label": "Téléphone",
+    "phone": "+34 682 19 29 44",
+    "hours_label": "Horaires",
+    "hours": "Lundi au Samedi, 10:00 à 20:00",
+    "email_label": "Email",
+    "email": "sastreriamanuelfernandez@gmail.com",
+    "cta_reservar": "Prendre Rendez-vous",
+    "form_title": "Envoyez-nous un message",
+    "form_name": "Nom",
+    "form_email": "Adresse email",
+    "form_message": "Message",
+    "form_submit": "Envoyer",
+    "form_success": "Message envoyé. Nous vous contacterons bientôt.",
+    "quote1": "The exact measure of the extraordinary.",
+    "quote2": "Every stitch, a conscious decision.",
+    "quote3": "The suit begins before the cloth.",
+    "quote4": "A singular occasion deserves a singular work.",
+    "quote5": "The fabric chooses who you are.",
+    "quote6": "The lapel: the silent language of power.",
+    "quote7": "We build identity, not clothing.",
+    "quote8": "The big day starts months before."
+  },
+  "coleccion": {
+    "hero": {
+      "label": "The Collection · 2025",
+      "title": "The Open Atelier",
+      "body": "Every piece we offer is the result of decades of craft. Browse, enquire, and let us create something unique for you.",
+      "featured_label": "Featured Piece"
+    },
+    "shop": {
+      "filter_all": "All",
+      "filter_trajes": "Suits",
+      "filter_chaquetas": "Jackets",
+      "filter_accesorios": "Accessories",
+      "filter_ceremonias": "Ceremony"
+    },
+    "cta": {
+      "headline": "Have something in mind?",
+      "body": "Every commission begins with a conversation. Tell us what you need and we will make it a reality.",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "Contact Us"
+    }
+  },
+  "bodas": {
+    "hero": {
+      "label": "Sastrería Manuel Fernández · Weddings & Ceremony",
+      "title": "The Suit for the Most Important Day"
+    },
+    "statement": {
+      "label": "Weddings & Ceremony",
+      "headline": "The day that changes everything deserves the suit that expresses everything.",
+      "body": "Every wedding suit is unique, unrepeatable, handmade from scratch without industrial patterns. One appointment, one fitting: the client leaves with everything ready, no stress, no loose ends."
+    },
+    "categorias": {
+      "label": "Ceremony Styles",
+      "cat1": "Morning Coat",
+      "cat1_desc": "The ultimate expression of morning wedding elegance.",
+      "cat2": "Tuxedo",
+      "cat2_desc": "Impecable for the ceremony and evening reception.",
+      "cat3": "Tailcoat",
+      "cat3_desc": "The most formal elegance for unique occasions."
+    },
+    "formal_wear": {
+      "label": "Formal Wear",
+      "title": "From the first appointment",
+      "items": [
+        "Bespoke suit",
+        "Morning coat",
+        "Tailcoat",
+        "Tuxedo"
+      ]
+    },
+    "accesorios": {
+      "label": "Accessories",
+      "title": "Everything included",
+      "items": [
+        "Bespoke ties",
+        "Personalised pocket squares",
+        "Shirts",
+        "Cummerbunds",
+        "Bow ties",
+        "Shoes",
+        "Cufflinks",
+        "Socks"
+      ]
+    },
+    "proceso": {
+      "label": "The Wedding Process",
+      "title": "From the first appointment",
+      "step1_num": "01",
+      "step1_title": "First Appointment",
+      "step1_body": "We talk about the day, the venue, the style. No catalogues, no pressure. We understand who you are and what you need.",
+      "step2_num": "02",
+      "step2_title": "Fabric Selection",
+      "step2_body": "Exclusive wools, silks, cashmere, vicuña, mohairs, etc. Only the best for the best day. Every fibre hand-selected.",
+      "step3_num": "03",
+      "step3_title": "The Fitting",
+      "step3_body": "A single fitting session. We build the suit to your exact measurements, with no need for multiple adjustments.",
+      "step4_num": "04",
+      "step4_title": "Everything Ready",
+      "step4_body": "The client leaves with everything prepared: suit, shirt, tie, shoes and accessories. No stress, no loose ends."
+    },
+    "key_message": "The client leaves with everything ready, no stress, no loose ends.",
+    "carousel": {
+      "label": "Wedding Details"
+    },
+    "cta": {
+      "label": "The Next Step",
+      "headline": "The most important day of your life deserves a unique suit.",
+      "btn_primary": "Book Appointment",
+      "btn_secondary": "Our Story"
+    },
+    "hero_label": "Mariages",
+    "hero_title": "Le jour le plus important mérite le meilleur costume",
+    "hero_subtitle": "Tailleur artisanal pour des mariés qui recherchent l'excellence",
+    "categories_title": "Chaque style de mariage",
+    "formal_title": "Costume Formel",
+    "formal_desc": "Queue-de-pie, jaquette, smoking. L'élégance intemporelle pour les occasions les plus spéciales.",
+    "process_title": "Le Processus",
+    "process_step1": "Première Visite",
+    "process_step2": "Choix du Tissu",
+    "process_step3": "Essais",
+    "process_step4": "Livraison",
+    "final_title": "Commencez votre voyage",
+    "final_cta": "Prendre Rendez-vous"
+  },
+  "footer": {
+    "tagline": "Nous construisons l'identité à travers l'artisanat.",
+    "rights": "© 2026 Tailleur Manuel Fernández. Tous droits réservés.",
+    "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
+    "phone": "+34 682 19 29 44",
+    "hours": "Monday to Saturday, 10:00 to 20:00",
+    "cta_title": "Ready for your next suit?",
+    "cta_btn": "Book Appointment",
+    "instagram": "Instagram",
+    "legal": "Mentions Légales"
+  },
+  "tagline": "Tailleur artisanal",
+  "since": "Depuis ",
+  "cta_book": "Prendre Rendez-vous",
+  "cta_call": "Appelez-nous",
+  "cta_contact": "Contact",
+  "process": {
+    "label": "Le Processus",
+    "title": "Depuis le premier rendez-vous",
+    "step1_title": "Le Tissu",
+    "step1_body": "Nous sélectionnons les meilleurs tissus anglais et italiens. Chaque fibre raconte une histoire d'origine, de sélection et d'artisanat.",
+    "step2_title": "Le Design",
+    "step2_body": "Chaque élément que nous choisissons, revers, épaule, tissu, couleur, communique quelque chose. Nous le faisons de manière consciente et précise.",
+    "step3_title": "La Coupe",
+    "step3_body": "La mesure exacte de l'extraordinaire. Chaque coupe est une décision consciente. Chaque point, un choix précis.",
+    "step4_title": "Le Processus Artisanal",
+    "step4_body": "Couture à la main, canvas traditionnel, finitions impeccables. La différence entre un costume et votre costume."
+  },
+  "services": {
+    "label": "Services",
+    "title": "Expérience Sartoriale",
+    "cta": "Découvrir tous les services"
+  },
+  "cursos": {
+    "title": "Cours Artisanaux",
+    "subtitle": "Apprenez l'art de la tailleur auprès des maîtres",
+    "locked": "Bientôt",
+    "lessons": "leçons"
+  },
+  "videollamada": {
+    "title": "Consultation Vidéo",
+    "subtitle": "Consultation personnalisée depuis le confort de votre domicile",
+    "duration": "Durée: 20-25 minutes",
+    "features": [
+      "Recommandation de tissus",
+      "Conseil couleur",
+      "Guide de style personnalisé"
+    ],
+    "cta": "Prendre Rendez-vous"
+  },
+  "configurador": {
+    "title": "Configurateur de Costumes",
+    "subtitle": "Créez votre costume sur mesure étape par étape",
+    "step1": "Tissu",
+    "step2": "Style",
+    "step3": "Coupe",
+    "step4": "Détails",
+    "step5": "Récapitulatif",
+    "cta": "Commencer la Configuration"
+  }
+}

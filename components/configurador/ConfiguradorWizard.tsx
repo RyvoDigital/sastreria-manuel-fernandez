@@ -5,12 +5,12 @@ import { useI18n } from '@/lib/i18n'
 import { ChevronRight, ChevronLeft, Check } from 'lucide-react'
 
 const STEPS = [
-  { id: 'fabrics', label_es: 'Tejidos', label_en: 'Fabrics' },
-  { id: 'jacket', label_es: 'Chaqueta', label_en: 'Jacket' },
-  { id: 'waistcoat', label_es: 'Chaleco', label_en: 'Waistcoat' },
-  { id: 'trousers', label_es: 'Pantalón', label_en: 'Trousers' },
-  { id: 'occasion', label_es: 'Ocasión', label_en: 'Occasion' },
-  { id: 'colorimetry', label_es: 'Colorimetría', label_en: 'Colorimetry' },
+  { id: 'fabrics', label_es: 'Tejidos', label_en: 'Fabrics', label_it: 'Tessuti', label_fr: 'Tissus' },
+  { id: 'jacket', label_es: 'Chaqueta', label_en: 'Jacket', label_it: 'Giacca', label_fr: 'Veste' },
+  { id: 'waistcoat', label_es: 'Chaleco', label_en: 'Waistcoat', label_it: 'Gilet', label_fr: 'Gilet' },
+  { id: 'trousers', label_es: 'Pantalón', label_en: 'Trousers', label_it: 'Pantaloni', label_fr: 'Pantalon' },
+  { id: 'occasion', label_es: 'Ocasión', label_en: 'Occasion', label_it: 'Occasione', label_fr: 'Occasion' },
+  { id: 'colorimetry', label_es: 'Colorimetría', label_en: 'Colorimetry', label_it: 'Colorimetria', label_fr: 'Colorimétrie' },
 ]
 
 const OPTIONS = {

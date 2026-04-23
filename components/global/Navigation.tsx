@@ -27,7 +27,7 @@ const CONTACT_BUTTONS = {
 }
 
 export function Navigation() {
-  const { t, locale, toggleLocale } = useI18n()
+  const { t, locale, toggleLocale, setLocale } = useI18n()
   const pathname   = usePathname()
   const [scrolled, setScrolled]   = useState(false)
   const [menuOpen, setMenuOpen]   = useState(false)
@@ -184,36 +184,31 @@ export function Navigation() {
             {CONTACT_BUTTONS.location.label}
           </Link>
 
-          {/* Language toggle */}
-          <button
-            onClick={toggleLocale}
-            aria-label="Toggle language"
-            style={{
-              background:    'none',
-              border:        'none',
-              padding:       '2px 0',
-              fontFamily:    'var(--font-sans)',
-              fontSize:      '0.6rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color:          'rgba(201,168,76,0.5)',
-              cursor:         'pointer',
-              transition:    'color .25s',
-              borderBottom:  '1px solid transparent',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.color            = 'var(--color-gold)'
-              el.style.borderBottomColor = 'rgba(201,168,76,0.35)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.color            = 'rgba(201,168,76,0.5)'
-              el.style.borderBottomColor = 'transparent'
-            }}
-          >
-            {locale === 'es' ? 'EN' : 'ES'}
-          </button>
+          {/* Language selector */}
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            {(['es', 'en', 'it', 'fr'] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLocale(l)}
+                aria-label={`Switch to ${l}`}
+                style={{
+                  background:    'none',
+                  border:        'none',
+                  padding:       '2px 4px',
+                  fontFamily:    'var(--font-sans)',
+                  fontSize:      '0.55rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color:          locale === l ? 'var(--color-gold)' : 'rgba(201,168,76,0.4)',
+                  cursor:         'pointer',
+                  transition:    'color .25s',
+                  borderBottom:  locale === l ? '1px solid var(--color-gold)' : '1px solid transparent',
+                }}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
 
           {/* WhatsApp */}
           <a
@@ -425,22 +420,26 @@ export function Navigation() {
           marginBottom: '1.5rem',
         }} />
 
-        <button
-          onClick={toggleLocale}
-          style={{
-            background: 'none',
-            border:     '1px solid rgba(201,168,76,0.25)',
-            color:       'rgba(201,168,76,0.6)',
-            fontFamily: 'var(--font-sans)',
-            fontSize:   '0.6rem',
-            letterSpacing: '0.22em',
-            padding:    '0.5rem 1.25rem',
-            cursor:      'pointer',
-            marginTop:   '1rem',
-          }}
-        >
-          {locale === 'es' ? 'EN' : 'ES'}
-        </button>
+        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+          {(['es', 'en', 'it', 'fr'] as const).map((l) => (
+            <button
+              key={l}
+              onClick={() => setLocale(l)}
+              style={{
+                background: locale === l ? 'rgba(201,168,76,0.15)' : 'none',
+                border:     '1px solid rgba(201,168,76,0.25)',
+                color:       locale === l ? 'var(--color-gold)' : 'rgba(201,168,76,0.6)',
+                fontFamily: 'var(--font-sans)',
+                fontSize:   '0.6rem',
+                letterSpacing: '0.22em',
+                padding:    '0.5rem 1rem',
+                cursor:      'pointer',
+              }}
+            >
+              {l.toUpperCase()}
+            </button>
+          ))}
+        </div>
       </div>
     </>
   )
