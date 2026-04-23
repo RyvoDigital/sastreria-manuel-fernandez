@@ -1,0 +1,98 @@
+CLIENT FEEDBACK REQUIRED
+Sastreria Manuel Fernandez — Final Changes
+Items that need client response before development can proceed
+
+================================================================================
+
+ITEM 1: "EL CORTE COMO LENGUAJE" AUDIT
+Reference: Item 1.03, Page 3 of PDF
+
+What we need from client:
+- Confirmation of which single page/location should keep the title "El Corte como Lenguaje"
+- All other instances will be removed or renamed
+
+What we will deliver:
+- Complete list of every page where "El Corte como Lenguaje" currently appears
+- Recommendation for canonical location
+
+Status: BLOCKING item 1.03 and section removal on Sastrería Artesanal page
+
+================================================================================
+
+ITEM 2: HERO TITLE AND SUBTITLE
+Reference: Items 1.09 and 1.10, Page 3 of PDF
+
+Current hero title: "Sastrería de hoy, pensada para el mañana."
+Current hero subtitle: "Arquitectura en tela, hecha a la medida de tu esencia."
+
+What we need from client:
+- New approved hero title text
+- New approved hero subtitle text (the yellow text)
+
+Status: BLOCKING hero section update
+
+================================================================================
+
+ITEM 3: EVELYN SECTION ASSETS
+Reference: Section 05, Page 8 of PDF
+
+What we need from client:
+- Evelyn's biography copy/text
+- Section headline/title
+- Final portrait photograph of Evelyn
+
+What we will do in meantime:
+- Build placeholder section structure matching Manuel's section layout
+- Position it after La Historia (section 04) on Sastrería Artesanal page
+
+Status: BLOCKING full completion of Sastrería Artesanal page
+
+================================================================================
+
+ITEM 4: LORO PIANA EFAbrICS FEASIBILITY
+Reference: Item 2.03, Page 11 of PDF
+
+What we need from client:
+- Access credentials or documentation for Loro Piana eFabrics app
+- Confirmation of which eFabrics features they want integrated
+
+What we will deliver:
+- Full technical audit of eFabrics capabilities
+- Feasibility report on what can be implemented
+- Scope recommendations before finalising build
+
+Status: BLOCKING Loro Piana integration (Priority 2)
+
+================================================================================
+
+ITEM 5: PROJECT DEADLINE COMMITMENT
+Reference: Page 12 of PDF
+
+What client is requesting:
+- Realistic deadline for entire remaining project
+- Must account for: Quick-fix batch + QA pass + Priority 2 work
+
+What we need to calculate:
+- Time estimate for all Priority 1 items (32 tasks)
+- Time estimate for full QA pass across all pages and languages
+- Time estimate for Priority 2: 3D model, Loro Piana, Tienda + shipping
+
+Status: NEEDED before next client update
+
+================================================================================
+
+SUMMARY OF BLOCKERS
+
+| # | Item | Blocking |
+|---|------|----------|
+| 1 | "El Corte como Lenguaje" location | Items 1.03, 1.15, section removals |
+| 2 | Hero title/subtitle copy | Item 1.09, 1.10 |
+| 3 | Evelyn bio, headline, photo | Sastrería Artesanal page completion |
+| 4 | Loro Piana eFabrics access | Priority 2 configurator integration |
+| 5 | Deadline commitment | Project planning and client communication |
+
+================================================================================
+
+ACTION: Send this list to client and request responses for items 1–4.
+Item 5 (deadline) is for internal team to calculate and present.
+
