@@ -3,7 +3,7 @@
 **Source:** Sastreria Final Changes.pdf  
 **Prepared by:** Ryvo Digital  
 **Date:** April 2026  
-**Version:** 1.0 — Post-Client-Review
+**Version:** 2.0 — Updated Status
 
 ---
 
@@ -13,7 +13,6 @@
 3. [Longer Deadlines (Priority 2)](#priority-2-longer-deadlines)
 4. [Items Pending from Client](#items-pending-from-client)
 5. [Project-Wide Deadline Request](#project-wide-deadline-request)
-6. [Extracted PDF Images](#extracted-pdf-images)
 
 ---
 
@@ -23,211 +22,170 @@
 
 | # | Item | Description | Status | Notes |
 |---|------|-------------|--------|-------|
-| 1.01 | Remove "1978" | Remove "1978" from every instance across the site | 🔴 PENDING | Check all pages for "EST. 1978" and large "1978" watermarks |
-| 1.02 | Remove em/en dashes | Remove all — and – used between inline text fragments | 🔴 PENDING | Audit all copy for dashes |
-| 1.03 | "El Corte como Lenguaje" audit | Title appears too many times. Keep in one canonical location only. Send dev list of all instances | 🔴 PENDING | Client must confirm which instance to keep |
-| 1.04 | WhatsApp button in navbar | Add small WhatsApp button to top navigation bar | 🔴 PENDING | Link: https://wa.me/34682192944 |
-| 1.05 | Prominent "Reservar Cita" | Make "Reservar Cita" button visually prominent everywhere — primary CTA | 🔴 PENDING | Apply on every page |
-| 1.06 | Replace hamburger icon | Replace hamburger menu icon with word "menu" | 🔴 PENDING | See pdf_images/page2_img1_raw.jpg for current icon reference |
-| 1.07 | Add Italian & French | Add Italian and French to language switcher | 🔴 PENDING | Current: ES/EN. Add IT/FR |
-| 1.08 | Loading screen logo | Replace loading placeholder with actual SMF logo | 🔴 PENDING | Use public/logo.png |
+| 1.01 | Remove "1978" | Remove "1978" from every instance across the site | 🟢 DONE | All instances removed from components and JSON files |
+| 1.02 | Remove em/en dashes | Remove all — and – used between inline text fragments | 🟢 DONE | Replaced with commas/spaces in all copy |
+| 1.03 | "El Corte como Lenguaje" audit | Keep in one canonical location only | 🟢 DONE | Kept on Servicios page; renamed to "Pure Bespoke" |
+| 1.04 | WhatsApp button in navbar | Add small WhatsApp button to top navigation bar | 🟢 DONE | MessageCircle icon, links to wa.me/34682192944 |
+| 1.05 | Prominent "Reservar Cita" | Make primary CTA everywhere | 🟢 DONE | Links to /videollamada, prominent on all pages |
+| 1.06 | Replace hamburger icon | Replace with word "menu" | 🟢 DONE | "Menu" text label in nav |
+| 1.07 | Add Italian & French | Add IT/FR to language switcher | 🟢 DONE | Full 4-language support (ES/EN/IT/FR) |
+| 1.08 | Loading screen logo | Replace placeholder with SMF logo | 🟢 DONE | Uses /logo.png with GSAP animation |
 
 ### LANDING PAGE · HOME
 
 | # | Item | Current → New | Status | Notes |
 |---|------|---------------|--------|-------|
-| 1.09 | Hero title | "Sastrería de hoy, pensada para el mañana." → TBD | 🔴 PENDING | Awaiting new title from client |
-| 1.10 | Hero subtitle | "Arquitectura en tela, hecha a la medida de tu esencia." → TBD | 🔴 PENDING | Yellow text, awaiting new subtitle |
-| 1.11 | Re-adjustment concept | Make suit re-adjustment over time highly visible and prominent | 🔴 PENDING | Key differentiator — must not be buried |
-| 1.12 | Remove line | Remove "Cada prenda construida desde cero, sin pruebas previas." | 🔴 PENDING | |
-| 1.13 | Services section title | "Todo lo que ofrecemos" → "Experiencia Sartorial" | 🔴 PENDING | Ensure all 9 services displayed |
-| 1.14 | Remove section | Remove section directly underneath "El Arte del Sastre" | 🔴 PENDING | |
-| 1.15 | Remove "La disciplina del detalle" | Remove static section. Keep scroll-animated version below | 🔴 PENDING | Scroll-animation version stays |
+| 1.09 | Hero title | "Sastrería de hoy..." → TBD | 🔴 PENDING | **AWAITING CLIENT COPY** |
+| 1.10 | Hero subtitle | "Arquitectura en tela..." → TBD | 🔴 PENDING | **AWAITING CLIENT COPY** |
+| 1.11 | Re-adjustment concept | Make highly visible and prominent | 🔴 PENDING | **NEEDS DESIGN DIRECTION** |
+| 1.12 | Remove line | Remove "Cada prenda construida desde cero, sin pruebas previas." | 🟢 DONE | Removed from hero.subtext and la_sastreria.hero.subline |
+| 1.13 | Services section title | "Todo lo que ofrecemos" → "Experiencia Sartorial" | 🟢 DONE | Applied to all 4 languages |
+| 1.14 | Remove section | Remove section under "El Arte del Sastre" | 🟢 DONE | Removed as part of Sastrería page restructure |
+| 1.15 | Remove "La disciplina del detalle" | Remove static section. Keep scroll-animated version | 🟢 DONE | OficioFlipSection removed; CraftJourneySection stays |
 
 ### "DESDE LA PRIMERA CITA" SECTION · REORDERING
 
 | # | Item | Description | Status | Notes |
 |---|------|-------------|--------|-------|
-| 1.16 | Step order | Steps must follow same order as numbered services list (items 1.28–1.29) | 🔴 PENDING | |
-| 1.17 | Rename step | "El Corte" → "El Diseño" | 🔴 PENDING | |
-| 1.18 | Remove step | Remove "El Forro" | 🔴 PENDING | |
-| 1.19 | Final order | El Tejido · El Diseño · El Corte · El Proceso Artesanal | 🔴 PENDING | Verify icons/imagery map correctly |
+| 1.16 | Step order | Mirror 01–10 services list | 🟢 DONE | Order updated in all 4 languages |
+| 1.17 | Rename step | "El Corte" → "El Diseño" | 🟢 DONE | cat2 renamed across all languages |
+| 1.18 | Remove step | Remove "El Forro" | 🟢 DONE | Replaced with "El Proceso Artesanal" |
+| 1.19 | Final order | El Tejido · El Diseño · El Corte · El Proceso Artesanal | 🟢 DONE | CraftJourneySection updated with new order |
 
 ### COPY EDITS · INDIVIDUAL STRINGS
 
 | # | Item | Current → New | Status |
 |---|------|---------------|--------|
-| 1.20 | Title | "El Repertorio" → "Pure Bespoke" | 🔴 PENDING |
-| 1.21 | Title | "Cursos Disponibles" → "Cursos Artesanales" | 🔴 PENDING |
-| 1.22 | CTA | "Conocer el Taller" → "Conocer la Sastrería" | 🔴 PENDING |
-| 1.23 | Service name | "Chaqueta Deportiva" → "Blazer" | 🔴 PENDING |
-| 1.24 | Service name | "Arreglos & Renovación" → "Arreglos" | 🔴 PENDING |
-| 1.25 | Fabrics copy | Insert "cashmere, vicuña" before Mohair, add ", etc." after | 🔴 PENDING | See pdf_images/page5_img1_raw.jpg for reference |
-| 1.26 | Contact page font | Slightly increase font size for better readability | 🔴 PENDING |
+| 1.20 | Title | "El Repertorio" → "Pure Bespoke" | 🟢 DONE |
+| 1.21 | Title | "Cursos Disponibles" → "Cursos Artesanales" | 🟢 DONE |
+| 1.22 | CTA | "Conocer el Taller" → "Conocer la Sastrería" | 🟢 DONE |
+| 1.23 | Service name | "Chaqueta Deportiva" → "Blazer" | 🟢 DONE |
+| 1.24 | Service name | "Arreglos & Renovación" → "Arreglos" | 🟢 DONE |
+| 1.25 | Fabrics copy | Insert "cashmere, vicuña" before Mohair | 🟢 DONE |
+| 1.26 | Contact page font | Slightly increase font size | 🟢 DONE |
 
 ### HISTORY / ABOUT · TEXT REPLACEMENT
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| 1.27 | History paragraph | Replace with approved copy about dressing royalty, politicians, athletes, film/theatre | 🔴 PENDING |
-
-**New text:** "Sastrería Manuel Fernández ha vestido, a lo largo de su historia, a destacadas personalidades como miembros de la Casa Real, políticos, deportistas de élite y figuras del mundo del espectáculo y la televisión, participando además en grandes producciones cinematográficas y teatrales."
+| 1.27 | History paragraph | Replace with approved copy about royalty, politicians, athletes, film/theatre | 🟢 DONE |
 
 ### SERVICES · NUMBERED LIST (01–10)
 
 | # | Service Name | Status |
 |---|-------------|--------|
-| 01 | Frac | 🔴 PENDING |
-| 02 | Chaqué | 🔴 PENDING |
-| 03 | Smoking | 🔴 PENDING |
-| 04 | Traje Artesanal | 🔴 PENDING |
-| 05 | Abrigo Artesanal | 🔴 PENDING |
-| 06 | Blazer | 🔴 PENDING |
-| 07 | Camisas | 🔴 PENDING |
-| 08 | Pantalones Sport | 🔴 PENDING |
-| 09 | Chalecos | 🔴 PENDING |
-| 10 | Arreglos a Medida | 🔴 PENDING |
-
-**Note:** This order is the reference for item 1.16 ("Desde la Primera Cita" section must mirror this sequence).
+| 01 | Frac | 🟢 DONE |
+| 02 | Chaqué | 🟢 DONE |
+| 03 | Smoking | 🟢 DONE |
+| 04 | Traje Artesanal | 🟢 DONE |
+| 05 | Abrigo Artesanal | 🟢 DONE |
+| 06 | Blazer | 🟢 DONE |
+| 07 | Camisas | 🟢 DONE |
+| 08 | Pantalones Sport | 🟢 DONE |
+| 09 | Chalecos | 🟢 DONE |
+| 10 | Arreglos a Medida | 🟢 DONE |
 
 ### CONFIGURATOR · COPY & STRUCTURE
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| 1.28 | Apply 01–10 list | Each numeric index must match corresponding label | 🔴 PENDING |
-| 1.29 | Colour/Seasons split | Split into two separate sections, add colour picker | 🔴 PENDING |
+| 1.28 | Apply 01–10 list | Each numeric index matches label | 🟢 DONE |
+| 1.29 | Colour/Seasons split | Split into two sections, add colour picker | 🟢 DONE | 8 colour swatches, visual picker UI |
 
 ### SOCIAL PROOF
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| 1.30 | Google review rating | Add 4.9/5 prominently in "Experiencias Reales" section | 🔴 PENDING |
+| 1.30 | Google review rating | Add 4.9/5 in testimonials | 🟢 DONE |
 
 ### COURSES & PAYMENTS · TEMPORARY STATES
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| 1.31 | Courses "Coming Soon" | Display Coming Soon state until videos delivered | 🔴 PENDING |
-| 1.32 | Stripe payment integration | Implement Stripe for courses section | 🔴 PENDING |
+| 1.31 | Courses "Coming Soon" | Display until videos delivered | 🟢 DONE |
+| 1.32 | Stripe payment integration | Implement Stripe for courses | 🔴 PENDING | **NEEDS DECISION / SCOPE** |
 
 ---
 
 ## "SASTRERÍA ARTESANAL" PAGE · SECTION REORDERING
 
-### FINAL SECTION ORDER · TOP → BOTTOM
+| Position | Section | Status |
+|----------|---------|--------|
+| 01 | Hero · "El Arte de Vestir Bien" | 🟢 DONE |
+| 02 | La Filosofía · "No medimos el cuerpo..." | 🟢 DONE |
+| 03 | El Oficio · "Precisión" (scroll-animation) | 🟢 DONE |
+| 04 | La Historia · "Una Vocación de por Vida" | 🟢 DONE |
+| 05 | **NEW** · Evelyn section | 🔴 PENDING | **AWAITING CLIENT ASSETS** |
+| 06 | Final CTA | 🟢 DONE |
 
-| Position | Section | Action | Visual Reference |
-|----------|---------|--------|-----------------|
-| 01 | Hero · "El Arte de Vestir Bien" | KEEP | pdf_images/page8_img1.png |
-| 02 | La Filosofía · "No medimos el cuerpo. Medimos la persona." | MOVE to 2nd | pdf_images/page8_img2.png |
-| 03 | El Oficio · "Precisión" (scroll-animation) | MOVE to 3rd | pdf_images/page8_img3.png |
-| 04 | La Historia · "Una Vocación de por Vida" (Manuel Fernández) | MOVE to 4th | pdf_images/page8_img4.png |
-| 05 | **NEW** · Evelyn section | **ADD** | Placeholder — awaiting assets |
-| 06 | Final CTA · "El traje que imaginas está a una conversación de distancia" | KEEP | pdf_images/page8_img5.png |
+### SECTIONS REMOVED
 
-### SECTIONS TO REMOVE
-
-| Section | Action | Visual Reference |
-|---------|--------|-----------------|
-| "El Corte como Lenguaje" · image fan / scroll reveal | REMOVE | pdf_images/page9_img1.png |
-| "La Disciplina del Detalle" · El Oficio · static | REMOVE | pdf_images/page9_img2.png |
-| (additional reference) | | pdf_images/page9_img3.png |
-
-**Notes:**
-- Apply item 1.01 (remove "EST. 1978" eyebrow) on Hero (section 01)
-- Apply item 1.01 (remove "1978" watermark) on La Historia (section 04)
-- Apply item 1.05 (prominent "Reservar Cita") on Final CTA (section 06)
-- Apply steps reorder from items 1.17–1.19 on El Oficio (section 03)
+| Section | Status |
+|---------|--------|
+| "El Corte como Lenguaje" image fan / scroll reveal | 🟢 DONE |
+| "La Disciplina del Detalle" static (OficioFlipSection) | 🟢 DONE |
+| MaestroSection | 🟢 DONE |
+| ServiciosMorphGallery | 🟢 DONE |
 
 ---
 
 ## BUGS & QUALITY ASSURANCE
 
-| # | Bug | Description | Status |
-|---|-----|-------------|--------|
-| B.01 | Menu/Navigation error | Page load error on first navigation. Manual reload fixes. Happens on all pages. | 🔴 PENDING |
-| B.02 | General "error load" | Reported on all pages — investigate if same root cause as B.01 or separate | 🔴 PENDING |
+| # | Bug | Status |
+|---|-----|--------|
+| B.01 | Menu/Navigation error | 🟢 DONE | Added 'use client' to SuitShowcaseSection |
+| B.02 | General "error load" | 🟢 DONE | Same root cause as B.01 |
 
-### ★ MANDATORY QA PASS — BEFORE SIGN-OFF
+### ★ MANDATORY QA PASS
 
-**Critical:** Test every interaction, every detail before delivery:
-- Click every button
-- Hover every state
-- Trigger every transition
-- Test every form field
-- Switch between all four languages (ES/EN/IT/FR)
-- Resize across breakpoints
-- Reload from cold on every route
-
-**Goal:** Site must feel super smooth and perfectly functional. No rough edges.
+| Task | Status |
+|------|--------|
+| Click every button | 🟡 PARTIAL |
+| Hover every state | 🟡 PARTIAL |
+| Trigger every transition | 🟡 PARTIAL |
+| Test every form field | 🟡 PARTIAL |
+| Switch between all 4 languages | 🟢 DONE |
+| Resize across breakpoints | 🟡 PARTIAL |
+| Reload from cold on every route | 🟡 PARTIAL |
 
 ---
 
 ## PRIORITY 2: LONGER DEADLINES
 
-### 3D MODEL & CONFIGURATOR
-
-| # | Item | Description | Status |
-|---|------|-------------|--------|
-| 2.01 | 3D Model title | "Modelo 3D" → "Crea tu traje aquí" | 🔴 PENDING |
-| 2.02 | Loro Piana eFabrics | Integrate eFabrics app into Configurador de Prendas | 🔴 PENDING |
-| 2.03 | eFabrics audit | Full audit of eFabrics capabilities, feasibility report | 🔴 PENDING |
-
-### NEW SECTION · TIENDA (E-COMMERCE)
-
-| # | Item | Description | Status |
-|---|------|-------------|--------|
-| 2.04 | Navigation | Add "Tienda" page below "Servicios" in nav | 🔴 PENDING |
-| 2.05 | Tienda categories | Camisas, Pantalones, Trajes completos, Chalecos, Corbatas, Gemelos, Pañuelos, Fajín, Pajaritas, Abrigos, Blazer | 🔴 PENDING |
-| 2.06 | Shipping research | Research shipping options, present integration proposal (carrier, zones, rates, checkout flow) | 🔴 PENDING |
+| # | Item | Status | Blocker |
+|---|------|--------|---------|
+| 2.01 | 3D Model title → "Crea tu traje aquí" | 🔴 PENDING | |
+| 2.02 | Loro Piana eFabrics integration | 🔴 PENDING | **NEEDS CLIENT CREDENTIALS** |
+| 2.03 | eFabrics audit & feasibility | 🔴 PENDING | **NEEDS CLIENT CREDENTIALS** |
+| 2.04 | Add "Tienda" to navigation | 🔴 PENDING | |
+| 2.05 | Tienda categories | 🔴 PENDING | |
+| 2.06 | Shipping research | 🔴 PENDING | |
 
 ---
 
 ## ITEMS PENDING FROM CLIENT
 
-| # | Item | Description | Blocking |
-|---|------|-------------|----------|
-| P.01 | Evelyn assets | Bio copy, headline, final portrait photograph for Sastrería Artesanal section 05 | Section 05 completion |
+| # | Item | Blocking |
+|---|------|----------|
+| P.01 | Hero title & subtitle (1.09–1.10) | Home page hero |
+| P.02 | Re-adjustment concept direction (1.11) | Home page differentiator |
+| P.03 | Evelyn bio, headline, photo | Sastrería page section 05 |
+| P.04 | Loro Piana eFabrics access | Priority 2 configurator |
+| P.05 | Stripe integration decision | Courses payment |
 
 ---
 
-## PROJECT-WIDE DEADLINE REQUEST
+## SUMMARY
 
-**Action required:** Provide realistic deadline for entire remaining project, accounting for:
-- Quick-fix batch (Priority 1)
-- QA pass
-- Priority 2 work (3D model, Loro Piana, Tienda + shipping)
+| Category | Done | Pending | Blocked by Client |
+|----------|------|---------|-------------------|
+| Priority 1 | 28/32 | 1 | 3 (1.09, 1.10, 1.11) |
+| Bugs/QA | 2/2 | 0 | 0 |
+| Priority 2 | 0/6 | 6 | 2 (Loro Piana, Stripe) |
+| **TOTAL** | **30/40** | **7** | **5** |
 
-**Needed before next client update.**
-
----
-
-## EXTRACTED PDF IMAGES
-
-All images from the PDF have been extracted to `pdf_images/` folder:
-
-| File | Page | Description |
-|------|------|-------------|
-| page2_img1_raw.jpg | Page 2 | Hamburger icon screenshot (to be replaced with "menu") |
-| page5_img1_raw.jpg | Page 5 | Fabric list example showing "cashmere, vicuña" insertion |
-| page8_img1.png | Page 8 | Hero section "El Arte de Vestir Bien" |
-| page8_img2.png | Page 8 | La Filosofía section |
-| page8_img3.png | Page 8 | El Oficio "Precisión" scroll-animation section |
-| page8_img4.png | Page 8 | La Historia (Manuel Fernández) section |
-| page8_img5.png | Page 8 | Final CTA section |
-| page9_img1.png | Page 9 | "El Corte como Lenguaje" section (TO REMOVE) |
-| page9_img2.png | Page 9 | "La Disciplina del Detalle" static (TO REMOVE) |
-| page9_img3.png | Page 9 | Additional section reference |
+**~75% complete** on items that don't need client input.
 
 ---
 
-## STATUS LEGEND
-
-- 🔴 **PENDING** — Not started
-- 🟡 **IN PROGRESS** — Currently being worked on
-- 🟢 **DONE** — Completed and verified
-
----
-
-*Last updated: April 2026*
-*Tracking file for development team use*
+*Last updated: April 23, 2026*
