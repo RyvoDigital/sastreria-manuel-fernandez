@@ -248,25 +248,6 @@ const ServiciosList = () => {
         {t.servicios.hero.label}
       </motion.p>
 
-      {/* Editorial anchor heading */}
-      <motion.h2
-        initial={{ y: 32, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.55 }}
-        viewport={{ once: true }}
-        style={{
-          fontFamily: 'var(--font-serif)',
-          fontStyle: 'italic',
-          fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
-          fontWeight: 400,
-          color: '#FFFFFF',
-          lineHeight: 1.15,
-          marginBottom: 'clamp(2rem, 4vh, 3.5rem)',
-        }}
-      >
-        El Arte del Sastre
-      </motion.h2>
-
       <ServiceItem num={s.s1_num} title={s.s1_title} duration={s.s1_duration} index={0} />
       <ServiceItem num={s.s2_num} title={s.s2_title} duration={s.s2_duration} index={1} />
       <ServiceItem num={s.s3_num} title={s.s3_title} duration={s.s3_duration} index={2} />
