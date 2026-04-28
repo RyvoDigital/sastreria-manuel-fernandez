@@ -32,8 +32,8 @@ export default function Modelos3DPage() {
 
   const t = {
     es: {
-      title: 'Modelos 3D',
-      subtitle: 'Explora nuestras prendas en un entorno tridimensional interactivo.',
+      title: 'Crea tu traje aquí',
+      subtitle: 'Diseña y visualiza tu traje a medida en 3D antes de que lo confeccionemos.',
       launch3D: 'Abrir Visualizador 3D',
       close: 'Cerrar',
       selectModel: 'Seleccionar modelo',
@@ -43,8 +43,8 @@ export default function Modelos3DPage() {
       explore: 'Explorar',
     },
     en: {
-      title: '3D Models',
-      subtitle: 'Explore our garments in an interactive 3D environment.',
+      title: 'Create your suit here',
+      subtitle: 'Design and visualise your bespoke suit in 3D before we craft it.',
       launch3D: 'Open 3D Viewer',
       close: 'Close',
       selectModel: 'Select model',
@@ -53,9 +53,31 @@ export default function Modelos3DPage() {
       viewIn3D: 'View in 3D',
       explore: 'Explore',
     },
+    it: {
+      title: 'Crea il tuo abito qui',
+      subtitle: 'Disegna e visualizza il tuo abito su misura in 3D prima che lo confezioniamo.',
+      launch3D: 'Apri Visualizzatore 3D',
+      close: 'Chiudi',
+      selectModel: 'Seleziona modello',
+      male: 'Maschile',
+      female: 'Femminile',
+      viewIn3D: 'Vedi in 3D',
+      explore: 'Esplora',
+    },
+    fr: {
+      title: 'Créez votre costume ici',
+      subtitle: 'Concevez et visualisez votre costume sur mesure en 3D avant que nous le confectionnions.',
+      launch3D: 'Ouvrir le Visualiseur 3D',
+      close: 'Fermer',
+      selectModel: 'Sélectionner le modèle',
+      male: 'Masculin',
+      female: 'Féminin',
+      viewIn3D: 'Voir en 3D',
+      explore: 'Explorer',
+    },
   }
 
-  const currentT = t[locale as 'es' | 'en'] || t.es
+  const currentT = t[locale as keyof typeof t] || t.es
 
   const handleOpenViewer = (modelType: 'male' | 'female') => {
     setSelectedModel(modelType)
