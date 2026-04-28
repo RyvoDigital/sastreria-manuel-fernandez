@@ -24,7 +24,7 @@
     "subtitle": "Architettura in tessuto, su misura per la tua essenza."
   },
   "zoom_parallax": {
-    "alt": "Sastrería Manuel Fernández — immagine"
+    "alt": "Sastrería Manuel Fernández, immagine"
   },
   "traje_empieza": {
     "label": "Il Processo",
@@ -99,7 +99,7 @@
   },
   "editorial": {
     "label": "Ispirazione Editoriale",
-    "title": "Il Taglio come Linguaggio",
+    "title": "Ispirazione Editoriale",
     "read_more": "Leggi di Più",
     "articles": [
       {
@@ -119,7 +119,7 @@
       },
       {
         "category": "Il Taglio",
-        "title": "Il taglio come linguaggio",
+        "title": "La precisione come linguaggio",
         "excerpt": "Prima di un singolo punto, il cartamodello parla già. Linee di gesso su tessuto blu: la cartografia di un abito unico."
       },
       {
@@ -146,7 +146,7 @@
     "maestro": {
       "label": "Il Maestro",
       "quote": "Un abito non è finito quando viene cucito l'ultimo punto. È finito quando la persona che lo indossa vi riconosce una versione migliore di sé.",
-      "attribution": "— Manuel Fernández, Maestro Sarto",
+      "attribution": "Manuel Fernández, Maestro Sarto",
       "bio": "Con decenni dedicati alla sartoria artigianale su misura, Manuel Fernández ha vestito dirigenti, sposi e uomini nei loro momenti più importanti. La sua sartoria a Madrid è, soprattutto, uno spazio di ascolto dove ogni capo viene costruito da zero."
     },
     "oficio": {
@@ -247,23 +247,35 @@
     },
     "services": {
       "s1_num": "01",
-      "s1_title": "Abito Su Misura",
+      "s1_title": "Frac",
       "s1_duration": "Circa 8–10 settimane",
       "s2_num": "02",
-      "s2_title": "Giacca Sportiva",
+      "s2_title": "Chaqué",
       "s2_duration": "Circa 6–8 settimane",
       "s3_num": "03",
-      "s3_title": "Pantaloni Su Misura",
+      "s3_title": "Smoking",
       "s3_duration": "Circa 3–4 settimane",
       "s4_num": "04",
-      "s4_title": "Soprabito Su Misura",
+      "s4_title": "Abito Artigianale",
       "s4_duration": "Circa 8–10 settimane",
       "s5_num": "05",
-      "s5_title": "Abito da Matrimonio",
+      "s5_title": "Soprabito Artigianale",
       "s5_duration": "Circa 10–12 settimane",
       "s6_num": "06",
-      "s6_title": "Ritocchi",
-      "s6_duration": "Su richiesta"
+      "s6_title": "Blazer",
+      "s6_duration": "Circa 6–8 settimane",
+      "s7_num": "07",
+      "s7_title": "Camicie",
+      "s7_duration": "Circa 3–4 settimane",
+      "s8_num": "08",
+      "s8_title": "Pantaloni Sport",
+      "s8_duration": "Circa 3–4 settimane",
+      "s9_num": "09",
+      "s9_title": "Gilet",
+      "s9_duration": "Circa 4–6 settimane",
+      "s10_num": "10",
+      "s10_title": "Ritocchi su Misura",
+      "s10_duration": "Su richiesta"
     },
     "credenciales": {
       "badge": "Sartoria di Fiducia",

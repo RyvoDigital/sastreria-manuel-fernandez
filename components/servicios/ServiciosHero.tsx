@@ -254,6 +254,10 @@ const ServiciosList = () => {
       <ServiceItem num={s.s4_num} title={s.s4_title} duration={s.s4_duration} index={3} />
       <ServiceItem num={s.s5_num} title={s.s5_title} duration={s.s5_duration} index={4} />
       <ServiceItem num={s.s6_num} title={s.s6_title} duration={s.s6_duration} index={5} />
+      <ServiceItem num={s.s7_num} title={s.s7_title} duration={s.s7_duration} index={6} />
+      <ServiceItem num={s.s8_num} title={s.s8_title} duration={s.s8_duration} index={7} />
+      <ServiceItem num={s.s9_num} title={s.s9_title} duration={s.s9_duration} index={8} />
+      <ServiceItem num={s.s10_num} title={s.s10_title} duration={s.s10_duration} index={9} />
     </section>
   )
 }
