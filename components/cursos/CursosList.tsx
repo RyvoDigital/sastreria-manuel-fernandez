@@ -157,7 +157,7 @@ export function CursosList() {
   const c = t[locale as keyof typeof t] || t.es;
 
   return (
-    <section id="cursos" className="py-24 px-6 bg-[#0A1628]">
+    <section id="cursos" style={{ padding: 'clamp(5rem, 10vh, 8rem) var(--container-padding)', background: '#0A1628' }}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -201,8 +201,8 @@ export function CursosList() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "2rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "clamp(1.5rem, 3vw, 2.5rem)",
           }}
         >
           {COURSES.map((course, index) => {
@@ -227,7 +227,7 @@ export function CursosList() {
                 className="group relative bg-[#0D1D30] rounded-lg overflow-hidden border border-white/5 hover:border-[#C9A96E]/30 transition-all duration-500"
               >
                 {/* Thumbnail */}
-                <div className="aspect-[16/10] relative overflow-hidden bg-[#050A10]">
+                <div style={{ position: 'relative', overflow: 'hidden', background: '#050A10', aspectRatio: '16/10' }}>
                   <Image
                     src={course.image}
                     alt={title}
@@ -273,7 +273,7 @@ export function CursosList() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div style={{ padding: 'clamp(1.25rem, 2vw, 1.75rem)' }}>
                   <h3 className="text-lg font-serif text-white mb-2 group-hover:text-[#C9A96E] transition-colors duration-300">
                     {title}
                   </h3>
