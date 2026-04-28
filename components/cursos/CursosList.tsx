@@ -16,7 +16,7 @@ const COURSES = [
     desc_fr: 'Fondements et philosophie du costume fait main.',
     duration: '45 min',
     lessons: 3,
-    locked: false,
+    locked: true,
   },
   {
     id: 'canvas',
