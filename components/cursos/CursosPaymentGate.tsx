@@ -2,18 +2,27 @@
 
 import { useState } from 'react'
 import { useI18n } from '@/lib/i18n'
-import { Play, Check, CreditCard, GraduationCap, Clock } from 'lucide-react'
+import { Play, Lock, CreditCard, GraduationCap, Clock, ArrowRight } from 'lucide-react'
+import { loadStripe } from '@stripe/stripe-js'
 
 interface CursosPaymentGateProps {
   onAccessGranted: () => void
   title: string
   subtitle: string
+  courseId?: string
+  courseName?: string
+  price?: number
 }
 
-export function CursosPaymentGate({ 
-  onAccessGranted, 
-  title, 
-  subtitle 
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '')
+
+export function CursosPaymentGate({
+  onAccessGranted,
+  title,
+  subtitle,
+  courseId = 'default',
+  courseName = 'Curso de Sastrería Artesanal',
+  price = 9900,
 }: CursosPaymentGateProps) {
   const { locale } = useI18n()
   const [isProcessing, setIsProcessing] = useState(false)
@@ -30,10 +39,10 @@ export function CursosPaymentGate({
         'Acabados profesionales',
         'Acceso ilimitado',
       ],
-      pricing: 'Precio a confirmar',
-      cta: 'Acceder a Cursos',
-      secure: 'Pago seguro',
-      note: 'Los vídeos serán subidos por el cliente una vez construida la estructura',
+      price: '99 €',
+      cta: 'Comprar Acceso',
+      secure: 'Pago seguro con Stripe',
+      note: 'Acceso inmediato tras la compra. Devolución garantizada en 14 días.',
       duration: 'Duración aprox: 10-15 horas',
     },
     en: {
@@ -47,22 +56,75 @@ export function CursosPaymentGate({
         'Professional finishes',
         'Unlimited access',
       ],
-      pricing: 'Price to be confirmed',
-      cta: 'Access Courses',
-      secure: 'Secure payment',
-      note: 'Videos will be uploaded by client once structure is built',
+      price: '€99',
+      cta: 'Buy Access',
+      secure: 'Secure payment with Stripe',
+      note: 'Immediate access after purchase. 14-day money-back guarantee.',
       duration: 'Approx duration: 10-15 hours',
+    },
+    it: {
+      badge: 'Accesso ai Corsi',
+      description: 'Accedi alla nostra libreria di corsi video sulle tecniche di sartoria artigianale. Impara da qualsiasi luogo, al tuo ritmo.',
+      features: [
+        'Tecniche di canvas a mano',
+        'Costruzione del revers',
+        'Tasche della giacca',
+        'Confezione delle asole',
+        'Finiture professionali',
+        'Accesso illimitato',
+      ],
+      price: '99 €',
+      cta: 'Acquista Accesso',
+      secure: 'Pagamento sicuro con Stripe',
+      note: 'Accesso immediato dopo l\'acquisto. Rimborso garantito in 14 giorni.',
+      duration: 'Durata appross: 10-15 ore',
+    },
+    fr: {
+      badge: 'Accès aux Cours',
+      description: 'Accédez à notre bibliothèque de cours vidéo sur les techniques de tailleur artisanal. Apprenez de n\'importe où, à votre rythme.',
+      features: [
+        'Techniques de canvas à la main',
+        'Construction du revers',
+        'Poches de la veste',
+        'Confection des boutonnières',
+        'Finitions professionnelles',
+        'Accès illimité',
+      ],
+      price: '99 €',
+      cta: 'Acheter l\'Accès',
+      secure: 'Paiement sécurisé avec Stripe',
+      note: 'Accès immédiat après l\'achat. Remboursement garanti sous 14 jours.',
+      duration: 'Durée approx: 10-15 heures',
     },
   }
 
-  const currentT = t[locale as 'es' | 'en'] || t.es
+  const currentT = t[locale as keyof typeof t] || t.es
 
-  const handleRequestAccess = () => {
+  const handleCheckout = async () => {
     setIsProcessing(true)
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/stripe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          courseId,
+          courseName,
+          price,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        console.error('No checkout URL returned')
+        setIsProcessing(false)
+      }
+    } catch (error) {
+      console.error('Checkout error:', error)
       setIsProcessing(false)
-      onAccessGranted()
-    }, 1500)
+    }
   }
 
   return (
@@ -168,7 +230,7 @@ export function CursosPaymentGate({
               alignItems: 'center',
               gap: '0.75rem',
             }}>
-              <Check size={16} color="#C9A84C" />
+              <Lock size={16} color="#C9A84C" />
               <span style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.9rem',
@@ -200,23 +262,20 @@ export function CursosPaymentGate({
 
         {/* Price */}
         <div style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '0.8rem',
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
+          fontFamily: 'var(--font-serif)',
+          fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+          fontWeight: 400,
+          fontStyle: 'italic',
           color: '#C9A84C',
-          marginBottom: '1.5rem',
-          padding: '0.75rem 1.5rem',
-          border: '1px solid rgba(201,168,76,0.3)',
-          display: 'inline-block',
+          marginBottom: '0.5rem',
         }}>
-          {currentT.pricing}
+          {currentT.price}
         </div>
 
-        {/* CTA */}
+        {/* CTA Button */}
         <div style={{ marginBottom: '1.5rem' }}>
           <button
-            onClick={handleRequestAccess}
+            onClick={handleCheckout}
             disabled={isProcessing}
             style={{
               display: 'inline-flex',
@@ -227,25 +286,37 @@ export function CursosPaymentGate({
               color: '#000000',
               fontFamily: 'var(--font-sans)',
               fontSize: '0.75rem',
-              fontWeight: 500,
+              fontWeight: 600,
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
               border: 'none',
               cursor: isProcessing ? 'wait' : 'pointer',
               opacity: isProcessing ? 0.7 : 1,
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              if (!isProcessing) {
+                e.currentTarget.style.background = '#E8D5A3'
+                e.currentTarget.style.transform = 'translateY(-2px)'
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#C9A84C'
+              e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
             <CreditCard size={16} />
             {isProcessing ? '...' : currentT.cta}
+            <ArrowRight size={16} />
           </button>
         </div>
 
         {/* Note */}
         <p style={{
           fontFamily: 'var(--font-sans)',
-          fontSize: '0.7rem',
-          color: 'rgba(255,255,255,0.35)',
-          fontStyle: 'italic',
+          fontSize: '0.75rem',
+          color: 'rgba(255,255,255,0.4)',
+          marginBottom: '1.5rem',
         }}>
           {currentT.note}
         </p>
@@ -256,7 +327,6 @@ export function CursosPaymentGate({
           alignItems: 'center',
           justifyContent: 'center',
           gap: '0.5rem',
-          marginTop: '2rem',
         }}>
           <span style={{
             fontFamily: 'var(--font-sans)',
