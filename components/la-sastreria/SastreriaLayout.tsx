@@ -6,6 +6,7 @@ import { FilosofiaSection } from './FilosofiaSection'
 import { CraftJourneySection } from './CraftJourneySection'
 import { HistoriaSection }  from './HistoriaSection'
 import { EspacioSection }   from './EspacioSection'
+import { EvelynSection }    from './EvelynSection'
 import { SastreriaCTA }     from './SastreriaCTA'
 
 export function SastreriaLayout() {
@@ -37,7 +38,7 @@ export function SastreriaLayout() {
       <FilosofiaSection />
       <CraftJourneySection />
       <HistoriaSection />
-      {/* Evelyn section placeholder — awaiting client assets */}
+      <EvelynSection />
       <EspacioSection />
       <SastreriaCTA />
     </div>
