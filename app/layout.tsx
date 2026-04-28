@@ -23,7 +23,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Manuel Fernández — Sastrería Artesanal en Madrid desde 1978',
+  title: 'Manuel Fernández — Sastrería Artesanal en Madrid',
   description:
     'Maestros sastres en Madrid expertos en confección artesanal de trajes a medida, chaqués y esmóquines. Alta sastrería tradicional con tejidos exclusivos de las mejores casas europeas.',
   keywords: [

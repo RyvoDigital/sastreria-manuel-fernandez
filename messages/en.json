@@ -21,7 +21,7 @@
     "discover": "Discover"
   },
   "zoom_parallax": {
-    "alt": "Sastrería Manuel Fernández — image"
+    "alt": "Sastrería Manuel Fernández, image"
   },
   "traje_empieza": {
     "label": "The process",
@@ -116,7 +116,7 @@
       },
       {
         "category": "The Cut",
-        "title": "The cut as language",
+        "title": "Editorial Inspiration",
         "excerpt": "Before a single stitch, the pattern already speaks. Chalk lines on blue cloth: the cartography of a unique suit."
       },
       {
@@ -143,7 +143,7 @@
     "maestro": {
       "label": "The Master",
       "quote": "A suit is not finished when the last stitch is sewn. It is finished when the person wearing it recognises in it a better version of themselves.",
-      "attribution": "— Manuel Fernández, Master Tailor",
+      "attribution": "Manuel Fernández, Master Tailor",
       "bio": "With decades dedicated to artisan bespoke tailoring, Manuel Fernández has dressed executives, grooms and men at their most important moments. His tailoring shop in Madrid is, above all, a space for listening where each garment is built from scratch."
     },
     "oficio": {
@@ -239,12 +239,16 @@
       "headline": "Everything a Master Tailor Can Create"
     },
     "services": {
-      "s1_num": "01", "s1_title": "Bespoke Suit",          "s1_duration": "Approx. 8–10 weeks",
-      "s2_num": "02", "s2_title": "Sport Coat",            "s2_duration": "Approx. 6–8 weeks",
-      "s3_num": "03", "s3_title": "Bespoke Trousers",      "s3_duration": "Approx. 3–4 weeks",
-      "s4_num": "04", "s4_title": "Bespoke Overcoat",      "s4_duration": "Approx. 8–10 weeks",
-      "s5_num": "05", "s5_title": "Wedding Suit",          "s5_duration": "Approx. 10–12 weeks",
-      "s6_num": "06", "s6_title": "Alterations",           "s6_duration": "On request"
+      "s1_num": "01", "s1_title": "Tailcoat",              "s1_duration": "Approx. 8–10 weeks",
+      "s2_num": "02", "s2_title": "Morning Coat",          "s2_duration": "Approx. 6–8 weeks",
+      "s3_num": "03", "s3_title": "Tuxedo",                "s3_duration": "Approx. 3–4 weeks",
+      "s4_num": "04", "s4_title": "Artisan Suit",          "s4_duration": "Approx. 8–10 weeks",
+      "s5_num": "05", "s5_title": "Artisan Overcoat",      "s5_duration": "Approx. 10–12 weeks",
+      "s6_num": "06", "s6_title": "Blazer",                "s6_duration": "Approx. 6–8 weeks",
+      "s7_num": "07", "s7_title": "Shirts",                "s7_duration": "Approx. 3–4 weeks",
+      "s8_num": "08", "s8_title": "Sport Trousers",        "s8_duration": "Approx. 3–4 weeks",
+      "s9_num": "09", "s9_title": "Waistcoats",            "s9_duration": "Approx. 4–6 weeks",
+      "s10_num": "10", "s10_title": "Bespoke Alterations", "s10_duration": "On request"
     },
     "credenciales": {
       "badge": "Trusted Tailoring",

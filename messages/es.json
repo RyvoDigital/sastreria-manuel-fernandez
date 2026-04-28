@@ -21,7 +21,7 @@
     "discover": "Descubrir"
   },
   "zoom_parallax": {
-    "alt": "Sastrería Manuel Fernández — imagen"
+    "alt": "Sastrería Manuel Fernández, imagen"
   },
   "traje_empieza": {
     "label": "El proceso",
@@ -96,7 +96,7 @@
   },
   "editorial": {
     "label": "Inspiración editorial",
-    "title": "El corte como lenguaje",
+    "title": "Inspiración Editorial",
     "read_more": "Leer más",
     "articles": [
       {
@@ -116,7 +116,7 @@
       },
       {
         "category": "El Corte",
-        "title": "El corte como lenguaje",
+        "title": "La precisión como lenguaje",
         "excerpt": "Antes de una sola puntada, el patrón ya habla. Líneas de tiza sobre paño azul: la cartografía de un traje único."
       },
       {
@@ -137,13 +137,13 @@
       "label": "La Historia",
       "title": "Una Vocación de por Vida",
       "p1": "Sastrería Manuel Fernández ha vestido, a lo largo de su historia, a destacadas personalidades como miembros de la Casa Real, políticos, deportistas de élite y figuras del mundo del espectáculo y la televisión, participando además en grandes producciones cinematográficas y teatrales.",
-      "p2": "Aprendió el oficio de los grandes maestros sastres españoles, absorbiendo no sólo la técnica —el corte inglés, la entretela cosida a mano, la solapa que cae sola— sino también la filosofía: que cada cliente merece una prenda única, construida desde cero sin patrones industriales.",
+      "p2": "Aprendió el oficio de los grandes maestros sastres españoles, absorbiendo no sólo la técnica, el corte inglés, la entretela cosida a mano, la solapa que cae sola, sino también la filosofía: que cada cliente merece una prenda única, construida desde cero sin patrones industriales.",
       "p3": "Años después, nada ha cambiado. El mismo respeto por el tejido, la misma paciencia con el patrón, la misma conversación honesta antes de tomar una sola medida. Cada traje es único, irrepetible, hecho a mano."
     },
     "maestro": {
       "label": "El Maestro",
       "quote": "Un traje no se termina cuando se cose la última puntada. Se termina cuando la persona que lo lleva reconoce en él una versión mejor de sí misma.",
-      "attribution": "— Manuel Fernández, Maestro Sastre",
+      "attribution": "Manuel Fernández, Maestro Sastre",
       "bio": "Con décadas dedicadas al traje a medida artesanal, Manuel Fernández ha vestido a directivos, novios y hombres en sus momentos más importantes. Su sastrería en Madrid es, ante todo, un espacio de escucha donde cada prenda se construye desde cero."
     },
     "oficio": {
@@ -239,12 +239,16 @@
       "headline": "Todo lo Que Puede Crear un Sastre"
     },
     "services": {
-      "s1_num": "01", "s1_title": "Traje a Medida",        "s1_duration": "Aprox. 8–10 semanas",
-      "s2_num": "02", "s2_title": "Chaqueta Deportiva",    "s2_duration": "Aprox. 6–8 semanas",
-      "s3_num": "03", "s3_title": "Pantalón a Medida",     "s3_duration": "Aprox. 3–4 semanas",
-      "s4_num": "04", "s4_title": "Abrigo a Medida",       "s4_duration": "Aprox. 8–10 semanas",
-      "s5_num": "05", "s5_title": "Traje de Novio",        "s5_duration": "Aprox. 10–12 semanas",
-      "s6_num": "06", "s6_title": "Arreglos & Renovación", "s6_duration": "A consultar"
+      "s1_num": "01", "s1_title": "Frac",                  "s1_duration": "Aprox. 8–10 semanas",
+      "s2_num": "02", "s2_title": "Chaqué",                 "s2_duration": "Aprox. 6–8 semanas",
+      "s3_num": "03", "s3_title": "Smoking",                "s3_duration": "Aprox. 3–4 semanas",
+      "s4_num": "04", "s4_title": "Traje Artesanal",        "s4_duration": "Aprox. 8–10 semanas",
+      "s5_num": "05", "s5_title": "Abrigo Artesanal",       "s5_duration": "Aprox. 10–12 semanas",
+      "s6_num": "06", "s6_title": "Blazer",                 "s6_duration": "Aprox. 6–8 semanas",
+      "s7_num": "07", "s7_title": "Camisas",                "s7_duration": "Aprox. 3–4 semanas",
+      "s8_num": "08", "s8_title": "Pantalones Sport",       "s8_duration": "Aprox. 3–4 semanas",
+      "s9_num": "09", "s9_title": "Chalecos",               "s9_duration": "Aprox. 4–6 semanas",
+      "s10_num": "10", "s10_title": "Arreglos a Medida",    "s10_duration": "A consultar"
     },
     "credenciales": {
       "badge": "Sastrería de Confianza",

@@ -24,7 +24,7 @@
     "subtitle": "Architecture en tissu, sur mesure pour votre essence."
   },
   "zoom_parallax": {
-    "alt": "Sastrería Manuel Fernández — image"
+    "alt": "Sastrería Manuel Fernández, image"
   },
   "traje_empieza": {
     "label": "Le Processus",
@@ -99,7 +99,7 @@
   },
   "editorial": {
     "label": "Inspiration Éditoriale",
-    "title": "La Coupe comme Langage",
+    "title": "Inspiration Éditoriale",
     "read_more": "Lire la Suite",
     "articles": [
       {
@@ -119,7 +119,7 @@
       },
       {
         "category": "La Coupe",
-        "title": "La coupe comme langage",
+        "title": "La précision comme langage",
         "excerpt": "Avant un seul point, le patron parle déjà. Des lignes de craie sur du drap bleu : la cartographie d'un costume unique."
       },
       {
@@ -146,7 +146,7 @@
     "maestro": {
       "label": "Le Maître",
       "quote": "Un costume n'est pas fini quand le dernier point est cousu. Il est fini quand la personne qui le porte y reconnaît une meilleure version d'elle-même.",
-      "attribution": "— Manuel Fernández, Maître Tailleur",
+      "attribution": "Manuel Fernández, Maître Tailleur",
       "bio": "Avec des décennies consacrées à la tailleur artisanale sur mesure, Manuel Fernández a habillé des dirigeants, des mariés et des hommes lors de leurs moments les plus importants. Son atelier de tailleur à Madrid est, avant tout, un espace d'écoute où chaque vêtement est construit de toutes pièces."
     },
     "oficio": {
@@ -247,23 +247,35 @@
     },
     "services": {
       "s1_num": "01",
-      "s1_title": "Costume Sur Mesure",
+      "s1_title": "Frac",
       "s1_duration": "Env. 8–10 semaines",
       "s2_num": "02",
-      "s2_title": "Veste de Sport",
+      "s2_title": "Chaqué",
       "s2_duration": "Env. 6–8 semaines",
       "s3_num": "03",
-      "s3_title": "Pantalon Sur Mesure",
+      "s3_title": "Smoking",
       "s3_duration": "Env. 3–4 semaines",
       "s4_num": "04",
-      "s4_title": "Pardessus Sur Mesure",
+      "s4_title": "Costume Artisanal",
       "s4_duration": "Env. 8–10 semaines",
       "s5_num": "05",
-      "s5_title": "Costume de Mariage",
+      "s5_title": "Pardessus Artisanal",
       "s5_duration": "Env. 10–12 semaines",
       "s6_num": "06",
-      "s6_title": "Retouches",
-      "s6_duration": "Sur demande"
+      "s6_title": "Blazer",
+      "s6_duration": "Env. 6–8 semaines",
+      "s7_num": "07",
+      "s7_title": "Chemises",
+      "s7_duration": "Env. 3–4 semaines",
+      "s8_num": "08",
+      "s8_title": "Pantalons Sport",
+      "s8_duration": "Env. 3–4 semaines",
+      "s9_num": "09",
+      "s9_title": "Gilets",
+      "s9_duration": "Env. 4–6 semaines",
+      "s10_num": "10",
+      "s10_title": "Retouches à Mesure",
+      "s10_duration": "Sur demande"
     },
     "credenciales": {
       "badge": "Tailleur de Confiance",
