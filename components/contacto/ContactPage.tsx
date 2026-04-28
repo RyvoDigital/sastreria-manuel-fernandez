@@ -365,8 +365,9 @@ export function ContactPage() {
                 display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
                 padding: '0.75rem 1.8rem',
                 background: 'var(--color-gold)', color: '#080808',
-                fontFamily: 'var(--font-sans)', fontSize: '0.68rem',
-                letterSpacing: '0.2em', textTransform: 'uppercase',
+                fontFamily: 'var(--font-sans)', fontSize: '0.72rem',
+                letterSpacing: '0.22em', textTransform: 'uppercase',
+                fontWeight: 600,
                 textDecoration: 'none',
                 transition: 'background .25s, transform .2s',
               }}
