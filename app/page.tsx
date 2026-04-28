@@ -4,7 +4,6 @@ import { DetailGallery }         from '@/components/home/DetailGallery'
 import { TrajeEmpiezaSection }   from '@/components/home/TrajeEmpiezaSection'
 import { ProcesoSection }        from '@/components/home/ProcesoSection'
 import { ZoomParallaxSection }   from '@/components/home/ZoomParallaxSection'
-import { ServiciosMorphGallery } from '@/components/servicios/ServiciosMorphGallery'
 import { ProcessCardsEnhanced }  from '@/components/home/ProcessCardsEnhanced'
 import { EditorialSection }      from '@/components/home/EditorialSection'
 import { TestimonialsSection }   from '@/components/home/TestimonialsSection'
@@ -21,7 +20,6 @@ export default function HomePage() {
       <TrajeEmpiezaSection />
       <ProcesoSection />
       <ZoomParallaxSection />
-      <ServiciosMorphGallery />
       <ProcessCardsEnhanced />
       <EditorialSection />
       <TestimonialsSection />
