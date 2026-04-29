@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { MapPin, Phone, Clock, Mail, ArrowRight } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 /* ─── Nav height constant (1.6rem top + 1.6rem bottom + ~44px logo) ─── */
 const NAV_H = 76
@@ -116,6 +117,7 @@ const CSS = `
 
 export function ContactPage() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const [photoIndex, setPhotoIndex] = useState(0)
   const [submitted, setSubmitted]   = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
@@ -276,8 +278,8 @@ export function ContactPage() {
             /* Nav clearance + breathing room */
             paddingTop:    `${NAV_H + 28}px`,
             paddingBottom: '8rem',
-            paddingLeft:   'clamp(2.5rem, 4.5vw, 5rem)',
-            paddingRight:  'clamp(2.5rem, 4.5vw, 5rem)',
+            paddingLeft:   isMobile ? '1.5rem' : 'clamp(2.5rem, 4.5vw, 5rem)',
+            paddingRight:  isMobile ? '1.5rem' : 'clamp(2.5rem, 4.5vw, 5rem)',
             background:    'var(--color-navy)',
           }}
         >
@@ -319,7 +321,7 @@ export function ContactPage() {
           {/* Contact details — 2-column grid */}
           <div className="mf-ci" style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
             gap: '0.9rem 1.5rem',
             marginBottom: '1.8rem',
           }}>
@@ -417,7 +419,7 @@ export function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit}>
                 {/* Name + Email side by side on desktop */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 1.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0 1.5rem' }}>
                   <div className="mf-cf-field">
                     <input type="text"  name="nombre" id="mf-cn" placeholder=" " required className="mf-cf-input" />
                     <label htmlFor="mf-cn" className="mf-cf-label">{t.contacto.form_name}</label>

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,6 +17,7 @@ const PHOTOS = [
 
 export function OficioGrid() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const sectionRef = useRef<HTMLElement>(null)
   const gridRef    = useRef<HTMLDivElement>(null)
 
@@ -103,9 +105,9 @@ export function OficioGrid() {
           ref={gridRef}
           style={{
             display:             'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gridTemplateRows:    '55vh 45vh',
-            gap:                 '0.75rem',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+            gridTemplateRows:    isMobile ? 'repeat(4, 40vh)' : '55vh 45vh',
+            gap:                 isMobile ? '0.5rem' : '0.75rem',
           }}
         >
           {PHOTOS.map((photo, i) => (
@@ -116,8 +118,8 @@ export function OficioGrid() {
                 position:   'relative',
                 overflow:   'hidden',
                 // Asymmetry: odd photos start from top, even from bottom
-                alignSelf:  i % 2 === 0 ? 'stretch' : (i === 1 ? 'end' : 'start'),
-                height:     i === 1 ? '78%' : i === 2 ? '72%' : '100%',
+                alignSelf:  isMobile ? 'stretch' : (i % 2 === 0 ? 'stretch' : (i === 1 ? 'end' : 'start')),
+                height:     isMobile ? '100%' : (i === 1 ? '78%' : i === 2 ? '72%' : '100%'),
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -6,6 +6,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -69,6 +70,7 @@ const SERVICES = [
 
 export function ServicesEnhanced() {
   const { t, locale } = useI18n()
+  const isMobile = useIsMobile()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
@@ -184,11 +186,11 @@ export function ServicesEnhanced() {
           </h2>
         </div>
 
-        {/* 3x3 Grid of image cards */}
+        {/* 3x3 Grid of image cards — stacks on mobile */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1.25rem',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+          gap: isMobile ? '1rem' : '1.25rem',
         }}>
           {SERVICES.map((service) => {
             const Icon = service.icon
@@ -231,7 +233,7 @@ export function ServicesEnhanced() {
                 <div style={{
                   position: 'relative',
                   width: '100%',
-                  aspectRatio: '16/10',
+                  aspectRatio: isMobile ? '16/9' : '16/10',
                   overflow: 'hidden',
                   background: '#050A10',
                 }}>
