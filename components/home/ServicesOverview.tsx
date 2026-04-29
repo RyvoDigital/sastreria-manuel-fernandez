@@ -3,59 +3,69 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
-import { Scissors, Heart, Settings, GraduationCap, Video } from 'lucide-react'
+import { Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import Image from 'next/image'
 
 const SERVICES = [
   {
-    key: 'artisan',
+    key: 'inicio',
+    icon: Home,
+    href: '/',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
+  },
+  {
+    key: 'sastreria',
     icon: Scissors,
     href: '/la-sastreria',
-    label_es: 'Sastrería Artesanal',
-    label_en: 'Artisan Tailoring',
-    desc_es: 'Trajes hechos a mano desde cero, sin patrones industriales.',
-    desc_en: 'Handmade suits from scratch, no industrial patterns.',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797375/photos/atelier-workshop_n5x6ce',
   },
   {
-    key: 'weddings',
+    key: 'bodas',
     icon: Heart,
     href: '/bodas-y-ceremonia',
-    label_es: 'Bodas y Ceremonia',
-    label_en: 'Weddings & Ceremony',
-    desc_es: 'Trajes nupciales únicos: chaqué, frac, esmoquin.',
-    desc_en: 'Unique wedding attire: morning coat, tailcoat, tuxedo.',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah',
   },
   {
-    key: 'configurator',
+    key: 'servicios',
+    icon: Briefcase,
+    href: '/servicios',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797507/photos/tailor-workshop_rb0bcw',
+  },
+  {
+    key: 'modelos3d',
+    icon: Box,
+    href: '/modelos-3d',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471090/photos/others/IMG_3083_pi1nbb',
+  },
+  {
+    key: 'configurador',
     icon: Settings,
     href: '/configurador',
-    label_es: 'Configurador de Prendas',
-    label_en: 'Garment Configurator',
-    desc_es: 'Diseña tu traje paso a paso. Acceso con pago.',
-    desc_en: 'Design your suit step by step. Paid access.',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/blue-plaid-form_rgkodj',
   },
   {
-    key: 'courses',
+    key: 'cursos',
     icon: GraduationCap,
     href: '/cursos',
-    label_es: 'Cursos Online',
-    label_en: 'Online Courses',
-    desc_es: 'Aprende técnicas de sastrería con video tutoriales.',
-    desc_en: 'Learn tailoring techniques with video tutorials.',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797389/photos/atelier-tools_clirtk',
   },
   {
-    key: 'videocall',
+    key: 'videollamada',
     icon: Video,
     href: '/videollamada',
-    label_es: 'Videollamadas',
-    label_en: 'Video Consultations',
-    desc_es: 'Asesoramiento personalizado a distancia. 20-25 min.',
-    desc_en: 'Remote personalized advice. 20-25 min.',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471082/photos/others/IMG_4288_rnjpvh',
+  },
+  {
+    key: 'contacto',
+    icon: Mail,
+    href: '/contacto',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797458/photos/maestro-cutting-table_qytlmp',
   },
 ]
 
 export function ServicesOverview() {
-  const { locale } = useI18n()
+  const { locale, t } = useI18n()
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -70,7 +80,7 @@ export function ServicesOverview() {
           observer.disconnect()
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
 
     observer.observe(el)
@@ -84,28 +94,32 @@ export function ServicesOverview() {
     if (cards) {
       gsap.fromTo(
         cards,
-        { y: 60, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
+          duration: 0.7,
+          stagger: 0.08,
           ease: 'power3.out',
         }
       )
     }
   }, [isVisible])
 
-  const t = {
-    section_label: locale === 'es' ? 'Nuestros Servicios' : 'Our Services',
-    section_title: locale === 'es'
-      ? 'Experiencia Sartorial'
-      : locale === 'en'
-      ? 'Sartorial Experience'
-      : locale === 'it'
-      ? 'Esperienza Sartoriale'
-      : 'Expérience Sartoriale',
+  const getLabel = (key: string) => {
+    return (t.nav as Record<string, string>)[key] || key
   }
+
+  const sectionTitle = locale === 'es'
+    ? 'Experiencia Sartorial'
+    : locale === 'en'
+    ? 'Sartorial Experience'
+    : locale === 'it'
+    ? 'Esperienza Sartoriale'
+    : 'Expérience Sartoriale'
+
+  const sectionLabel = locale === 'es' ? 'Nuestros Servicios' : 'Our Services'
+  const discoverLabel = locale === 'es' ? 'Descubrir' : 'Discover'
 
   return (
     <section
@@ -116,7 +130,7 @@ export function ServicesOverview() {
         position: 'relative',
       }}
     >
-      {/* Decorative background element */}
+      {/* Decorative top line */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -126,15 +140,9 @@ export function ServicesOverview() {
         background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)',
       }} />
 
-      <div style={{
-        maxWidth: 'var(--container-max)',
-        margin: '0 auto',
-      }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Section header */}
-        <div style={{
-          textAlign: 'center',
-          marginBottom: 'clamp(3rem, 6vw, 5rem)',
-        }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 5vw, 4rem)' }}>
           <div style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '0.7rem',
@@ -143,7 +151,7 @@ export function ServicesOverview() {
             color: '#C9A84C',
             marginBottom: '1rem',
           }}>
-            {t.section_label}
+            {sectionLabel}
           </div>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
@@ -152,24 +160,19 @@ export function ServicesOverview() {
             color: '#FFFFFF',
             margin: 0,
           }}>
-            {t.section_title}
+            {sectionTitle}
           </h2>
         </div>
 
-        {/* Services grid - Modernized layout */}
+        {/* 3x3 Grid of cards with images */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(6, 1fr)',
-          gap: '1.5rem',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '1.25rem',
         }}>
-          {SERVICES.map((service, index) => {
+          {SERVICES.map((service) => {
             const Icon = service.icon
-            const label = locale === 'es' ? service.label_es : service.label_en
-            const desc = locale === 'es' ? service.desc_es : service.desc_en
-
-            // Dynamic grid spanning for 5 items: 2 wide (3cols each) + 3 standard (2cols each)
-            const isWide = index < 2
-            const gridSpan = isWide ? 'span 3' : 'span 2'
+            const label = getLabel(service.key)
 
             return (
               <Link
@@ -177,113 +180,126 @@ export function ServicesOverview() {
                 href={service.href}
                 className="service-card"
                 style={{
-                  gridColumn: gridSpan,
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  padding: isWide ? '3rem' : '2rem',
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(201,168,76,0.1)',
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(201,168,76,0.08)',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
                   textDecoration: 'none',
                   transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
                   cursor: 'pointer',
                   opacity: 0,
                   position: 'relative',
-                  overflow: 'hidden',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.6)'
-                  e.currentTarget.style.transform = 'translateY(-8px)'
-                  e.currentTarget.style.background = 'rgba(201,168,76,0.08)'
-                  const arrow = e.currentTarget.querySelector('.arrow-icon') as HTMLElement
-                  if (arrow) arrow.style.transform = 'translateX(5px)'
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.35)'
+                  e.currentTarget.style.transform = 'translateY(-6px)'
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.25)'
+                  const img = e.currentTarget.querySelector('.service-img') as HTMLElement
+                  if (img) img.style.transform = 'scale(1.08)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.1)'
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.08)'
                   e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
-                  const arrow = e.currentTarget.querySelector('.arrow-icon') as HTMLElement
-                  if (arrow) arrow.style.transform = 'translateX(0)'
+                  e.currentTarget.style.boxShadow = 'none'
+                  const img = e.currentTarget.querySelector('.service-img') as HTMLElement
+                  if (img) img.style.transform = 'scale(1)'
                 }}
               >
-                {/* Subtle glow effect on hover */}
+                {/* Image */}
                 <div style={{
-                  position: 'absolute',
-                  top: '-20%',
-                  right: '-10%',
-                  width: '150px',
-                  height: '150px',
-                  background: 'radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%)',
-                  pointerEvents: 'none',
-                }} />
-
-                {/* Icon */}
-                <div style={{
-                  width: isWide ? '64px' : '48px',
-                  height: isWide ? '64px' : '48px',
-                  borderRadius: '12px',
-                  background: 'rgba(201,168,76,0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.5rem',
-                  color: '#C9A84C',
-                  border: '1px solid rgba(201,168,76,0.2)',
+                  position: 'relative',
+                  width: '100%',
+                  aspectRatio: '16/10',
+                  overflow: 'hidden',
+                  background: '#050A10',
                 }}>
-                  <Icon size={isWide ? 28 : 22} strokeWidth={1.5} />
-                </div>
+                  <Image
+                    src={service.image}
+                    alt={label}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{
+                      objectFit: 'cover',
+                      transition: 'transform 0.7s ease',
+                    }}
+                    className="service-img"
+                  />
+                  {/* Gradient overlay */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.2) 50%, transparent 100%)',
+                  }} />
 
-                {/* Label */}
-                <h3 style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: isWide ? '1.75rem' : '1.25rem',
-                  fontWeight: 400,
-                  color: '#FFFFFF',
-                  margin: '0 0 0.75rem 0',
-                  letterSpacing: '0.02em',
-                }}>
-                  {label}
-                </h3>
-
-                {/* Description */}
-                <p style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: isWide ? '1rem' : '0.85rem',
-                  fontWeight: 300,
-                  lineHeight: 1.6,
-                  color: 'rgba(255,255,255,0.7)',
-                  margin: 0,
-                  flex: 1,
-                  maxWidth: isWide ? '80%' : '100%',
-                }}>
-                  {desc}
-                </p>
-
-                {/* Arrow */}
-                <div 
-                  className="arrow-icon"
-                  style={{
-                    marginTop: '2rem',
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.7rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: '#C9A84C',
+                  {/* Icon badge */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    left: '1rem',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: 'rgba(10,22,40,0.7)',
+                    backdropFilter: 'blur(8px)',
+                    border: '1px solid rgba(201,168,76,0.25)',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
-                    transition: 'transform 0.3s ease',
-                  }}
-                >
-                  {locale === 'es' ? 'Descubrir' : 'Discover'}
-                  <span style={{ fontSize: '1.1rem' }}>→</span>
+                    justifyContent: 'center',
+                    color: '#C9A84C',
+                  }}>
+                    <Icon size={18} strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div style={{ padding: '1.25rem 1.5rem 1.5rem' }}>
+                  <h3 style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: '1.15rem',
+                    fontWeight: 400,
+                    color: '#FFFFFF',
+                    margin: '0 0 0.5rem 0',
+                    letterSpacing: '0.02em',
+                  }}>
+                    {label}
+                  </h3>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.7rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: '#C9A84C',
+                    transition: 'gap 0.3s ease',
+                  }} className="discover-text">
+                    {discoverLabel}
+                    <span style={{ fontSize: '0.9rem', transition: 'transform 0.3s ease' }} className="arrow-icon">→</span>
+                  </div>
                 </div>
               </Link>
             )
           })}
         </div>
       </div>
+
+      <style jsx>{`
+        .service-card:hover .arrow-icon {
+          transform: translateX(4px);
+        }
+        .service-card:hover .discover-text {
+          gap: 0.6rem;
+        }
+        @media (max-width: 768px) {
+          .service-card {
+            grid-column: span 3 !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }
