@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { useScroll, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { useScroll, useMotionValueEvent, motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 
 const PHOTOS = [
@@ -16,7 +16,17 @@ export function TestimonialsSection() {
   const { t } = useI18n()
   const sectionRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
-  const [isHovered, setIsHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    const checkMotion = () => setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+    checkMobile()
+    checkMotion()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -32,6 +42,18 @@ export function TestimonialsSection() {
   })
 
   const items = t.testimonials.items
+
+  // Mobile: smaller offsets, no 3D rotation. Reduced motion: disable animations.
+  const cardTranslateX = reducedMotion ? 0 : isMobile ? 110 : 350
+  const cardRotationY = reducedMotion ? 0 : isMobile ? 0 : 45
+  const cardTranslateZ = reducedMotion ? 0 : isMobile ? 0 : -300
+  const stageHeight = isMobile ? '50vh' : '60vh'
+  const cardPadding = isMobile ? '1.5rem' : '3rem'
+  const cardWidth = isMobile ? 'min(320px, 88vw)' : 'min(500px, 85vw)'
+  const cardGap = isMobile ? '1rem' : '2rem'
+  const photoSize = isMobile ? 48 : 64
+  const springStiffness = reducedMotion ? 300 : isMobile ? 140 : 100
+  const springDamping = reducedMotion ? 30 : isMobile ? 25 : 20
 
   return (
     <div
@@ -54,7 +76,7 @@ export function TestimonialsSection() {
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
-          perspective: '1200px',
+          perspective: isMobile ? 'none' : '1200px',
         }}
       >
         {/* Subtle fabric texture overlay */}
@@ -73,9 +95,10 @@ export function TestimonialsSection() {
         {/* Section Header */}
         <div style={{
           position: 'absolute',
-          top: '10vh',
+          top: isMobile ? '6vh' : '10vh',
           textAlign: 'center',
           zIndex: 10,
+          padding: '0 1rem',
         }}>
           <div style={{
             fontFamily: 'var(--font-sans)',
@@ -83,34 +106,41 @@ export function TestimonialsSection() {
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
             color: '#C9A84C',
-            marginBottom: '1.5rem',
+            marginBottom: '1rem',
           }}>
             {t.testimonials.label}
           </div>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+            fontSize: 'clamp(1.6rem, 5vw, 3.5rem)',
             fontWeight: 400,
             color: '#FFFFFF',
             margin: 0,
+            lineHeight: 1.2,
           }}>
             {t.testimonials.title}
           </h2>
+          {/* Google Reviews badge */}
           <div style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',
-            marginTop: '1rem',
+            marginTop: '0.75rem',
+            padding: '0.4rem 0.9rem',
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(201,168,76,0.2)',
+            borderRadius: '9999px',
           }}>
             <span style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.75rem',
+              fontSize: '0.8rem',
               color: '#C9A84C',
-              letterSpacing: '0.1em',
+              letterSpacing: '0.05em',
+              fontWeight: 600,
             }}>★ 4.9/5</span>
             <span style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.6rem',
+              fontSize: '0.65rem',
               color: 'rgba(255,255,255,0.5)',
             }}>Google Reviews</span>
           </div>
@@ -121,21 +151,19 @@ export function TestimonialsSection() {
           style={{
             position: 'relative',
             width: '100%',
-            height: '60vh',
+            height: stageHeight,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transformStyle: 'preserve-3d',
+            transformStyle: isMobile ? 'flat' : 'preserve-3d',
           }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
         >
-          {items.map((item, i) => {
-            const isActive = active === i
-            const rotationY = (i - active) * 45 // 45 degree separation
-            const translateZ = isActive ? 0 : -300
-            const translateX = (i - active) * 350
-            const opacity = isActive ? 1 : 0.3
+          {items.map((item: { name: string; occasion: string; quote: string }, i: number) => {
+            const isActiveCard = active === i
+            const rotationY = (i - active) * cardRotationY
+            const translateZ = isActiveCard ? 0 : cardTranslateZ
+            const translateX = (i - active) * cardTranslateX
+            const opacity = isActiveCard ? 1 : isMobile ? 0 : 0.3
 
             return (
               <motion.div
@@ -146,36 +174,42 @@ export function TestimonialsSection() {
                   z: translateZ,
                   x: translateX,
                   opacity: opacity,
-                  scale: isActive ? 1 : 0.8,
+                  scale: isActiveCard ? 1 : 0.85,
                 }}
                 transition={{
                   type: 'spring',
-                  stiffness: 100,
-                  damping: 20,
+                  stiffness: springStiffness,
+                  damping: springDamping,
                 }}
                 style={{
                   position: 'absolute',
-                  width: 'min(500px, 85vw)',
-                  background: 'rgba(5, 12, 20, 0.85)',
+                  width: cardWidth,
+                  background: 'rgba(5, 12, 20, 0.9)',
                   backdropFilter: 'blur(12px)',
-                  border: `1px solid ${isActive ? 'rgba(201,168,76,0.3)' : 'rgba(255,255,255,0.05)'}`,
+                  border: `1px solid ${isActiveCard ? 'rgba(201,168,76,0.3)' : 'rgba(255,255,255,0.05)'}`,
                   borderRadius: '12px',
-                  padding: '3rem',
+                  padding: cardPadding,
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '2rem',
-                  boxShadow: isActive ? '0 30px 60px rgba(0,0,0,0.5)' : 'none',
-                  backfaceVisibility: 'hidden',
+                  gap: cardGap,
+                  boxShadow: isActiveCard ? '0 30px 60px rgba(0,0,0,0.5)' : 'none',
+                  backfaceVisibility: isMobile ? 'visible' : 'hidden',
                 }}
               >
                 {/* Photo and Name */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  flexWrap: 'wrap',
+                }}>
                   <div style={{
-                    width: '64px',
-                    height: '64px',
+                    width: `${photoSize}px`,
+                    height: `${photoSize}px`,
                     borderRadius: '50%',
                     overflow: 'hidden',
                     border: '1.5px solid #C9A84C',
+                    flexShrink: 0,
                   }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -184,19 +218,19 @@ export function TestimonialsSection() {
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                   </div>
-                  <div>
+                  <div style={{ minWidth: 0 }}>
                     <div style={{
                       fontFamily: 'var(--font-sans)',
-                      fontSize: '1rem',
+                      fontSize: isMobile ? '0.9rem' : '1rem',
                       fontWeight: 500,
                       color: '#C9A84C',
-                      marginBottom: '0.2rem',
+                      marginBottom: '0.15rem',
                     }}>
                       {item.name}
                     </div>
                     <div style={{
                       fontFamily: 'var(--font-sans)',
-                      fontSize: '0.65rem',
+                      fontSize: '0.6rem',
                       textTransform: 'uppercase',
                       letterSpacing: '0.15em',
                       color: 'rgba(255,255,255,0.4)',
@@ -209,30 +243,31 @@ export function TestimonialsSection() {
                 {/* Quote */}
                 <blockquote style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(1.1rem, 1.5vw, 1.4rem)',
+                  fontSize: isMobile ? '1rem' : 'clamp(1.1rem, 1.5vw, 1.4rem)',
                   lineHeight: 1.6,
                   color: '#FFFFFF',
                   fontStyle: 'italic',
                   margin: 0,
                   position: 'relative',
+                  paddingLeft: isMobile ? '1rem' : '0',
                 }}>
                   <span style={{
                     position: 'absolute',
-                    top: '-1rem',
-                    left: '-1.5rem',
-                    fontSize: '4rem',
+                    top: isMobile ? '-0.5rem' : '-1rem',
+                    left: isMobile ? '-0.3rem' : '-1.5rem',
+                    fontSize: isMobile ? '2rem' : '4rem',
                     color: 'rgba(201,168,76,0.1)',
                     lineHeight: 1,
                   }}>"</span>
                   {item.quote}
                 </blockquote>
 
-                {/* Decorative Author accent */}
+                {/* Decorative accent */}
                 <div style={{
                   width: '30px',
                   height: '1px',
                   background: 'rgba(201,168,76,0.4)',
-                  marginTop: '1rem',
+                  marginTop: '0.5rem',
                 }} />
               </motion.div>
             )
@@ -242,16 +277,16 @@ export function TestimonialsSection() {
         {/* Progress Navigation */}
         <div style={{
           position: 'absolute',
-          bottom: '8vh',
+          bottom: isMobile ? '5vh' : '8vh',
           display: 'flex',
           alignItems: 'center',
-          gap: '2rem',
+          gap: '1rem',
         }}>
-          {items.map((_, i) => (
+          {items.map((_: unknown, i: number) => (
             <div
               key={i}
               style={{
-                width: i === active ? '40px' : '8px',
+                width: i === active ? '32px' : '8px',
                 height: '4px',
                 borderRadius: '4px',
                 background: i === active ? '#C9A84C' : 'rgba(255,255,255,0.1)',
