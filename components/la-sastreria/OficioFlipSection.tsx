@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 import { FlipGallery } from '@/components/ui/flip-gallery'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -20,6 +21,7 @@ const CSS = `
 
 export function OficioFlipSection() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const sectionRef = useRef<HTMLElement>(null)
   const [activeIdx, setActiveIdx] = useState(0)
 
@@ -79,8 +81,8 @@ export function OficioFlipSection() {
         maxWidth:            'var(--container-max)',
         margin:              '0 auto',
         display:             'grid',
-        gridTemplateColumns: '42fr 58fr',
-        gap:                 'clamp(3rem, 6vw, 7rem)',
+        gridTemplateColumns: isMobile ? '1fr' : '42fr 58fr',
+        gap:                 isMobile ? '2.5rem' : 'clamp(3rem, 6vw, 7rem)',
         alignItems:          'center',
         position:            'relative',
         zIndex:               1,
@@ -218,8 +220,8 @@ export function OficioFlipSection() {
             <FlipGallery
               images={images}
               id="mf-oficio-flip"
-              width={440}
-              height={680}
+              width={isMobile ? 320 : 440}
+              height={isMobile ? 480 : 680}
               onIndexChange={setActiveIdx}
             />
           </div>

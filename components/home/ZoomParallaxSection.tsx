@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { useScroll, useTransform, motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 const IMAGES = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797447/photos/cutting-table_pgugkd',
@@ -15,34 +16,28 @@ const IMAGES = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471081/photos/others/IMG_7034_urbpjv',
 ]
 
-/*
- * Absolute positions calculated from the original component's flex-center + offset model:
- *   natural_top  = (100vh - height) / 2   (flex vertical center)
- *   natural_left = (100vw - width)  / 2   (flex horizontal center)
- *   final        = natural + per-index offset from original Tailwind classes
- *
- * Index 0 center lands exactly at (50vw, 50vh) — the scale transform-origin —
- * so it stays centered and grows toward the viewer while all others fly off-screen.
- */
-const IMAGE_LAYOUT: React.CSSProperties[] = [
-  /* 0 — CENTER zoom target: natural (37.5vh, 37.5vw), no offset */
+/* Desktop: scattered collage layout */
+const DESKTOP_LAYOUT: React.CSSProperties[] = [
   { position: 'absolute', top: '37.5vh', left: '37.5vw', width: '25vw', height: '25vh' },
-  /* 1 — top-center-right: natural (35vh, 32.5vw) + offset (-30vh, +5vw) */
   { position: 'absolute', top: '5vh',    left: '37.5vw', width: '35vw', height: '30vh' },
-  /* 2 — left-mid: natural (27.5vh, 40vw) + offset (-10vh, -25vw) */
   { position: 'absolute', top: '17.5vh', left: '15vw',   width: '20vw', height: '45vh' },
-  /* 3 — right-center: natural (37.5vh, 37.5vw) + offset (0, +27.5vw) */
   { position: 'absolute', top: '37.5vh', left: '65vw',   width: '25vw', height: '25vh' },
-  /* 4 — bottom-center-right: natural (37.5vh, 40vw) + offset (+27.5vh, +5vw) */
   { position: 'absolute', top: '65vh',   left: '45vw',   width: '20vw', height: '25vh' },
-  /* 5 — bottom-left: natural (37.5vh, 35vw) + offset (+27.5vh, -22.5vw) */
   { position: 'absolute', top: '65vh',   left: '12.5vw', width: '30vw', height: '25vh' },
-  /* 6 — bottom-right: natural (42.5vh, 42.5vw) + offset (+22.5vh, +25vw) */
   { position: 'absolute', top: '65vh',   left: '67.5vw', width: '15vw', height: '15vh' },
+]
+
+/* Mobile: simple 2x2 grid, fewer images */
+const MOBILE_LAYOUT: React.CSSProperties[] = [
+  { position: 'absolute', top: '10vh', left: '5vw',  width: '42vw', height: '30vh' },
+  { position: 'absolute', top: '10vh', left: '53vw', width: '42vw', height: '30vh' },
+  { position: 'absolute', top: '48vh', left: '5vw',  width: '42vw', height: '30vh' },
+  { position: 'absolute', top: '48vh', left: '53vw', width: '42vw', height: '30vh' },
 ]
 
 export function ZoomParallaxSection() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const container = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -53,17 +48,20 @@ export function ZoomParallaxSection() {
   const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4])
   const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5])
   const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6])
-  const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8])
-  const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9])
 
-  const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9]
+  const scales = isMobile
+    ? [scale4, scale4, scale4, scale4]
+    : [scale4, scale5, scale6, scale5, scale6, scale4, scale4]
+
+  const images = isMobile ? IMAGES.slice(0, 4) : IMAGES
+  const layout = isMobile ? MOBILE_LAYOUT : DESKTOP_LAYOUT
 
   return (
     <div
       ref={container}
       style={{
         position:   'relative',
-        height:     '300vh',
+        height:     isMobile ? '150vh' : '300vh',
         background: '#0A1628',
       }}
     >
@@ -76,8 +74,7 @@ export function ZoomParallaxSection() {
       }}>
 
         {/* Image layers */}
-        {IMAGES.map((src, index) => {
-          // Floating animation constants based on index
+        {images.map((src, index) => {
           const floatingDelay = index * 0.5
           const floatingDuration = 3 + (index % 3)
           
@@ -91,17 +88,17 @@ export function ZoomParallaxSection() {
                 display:  'flex',
                 alignItems:     'center',
                 justifyContent: 'center',
-                zIndex: index === 0 ? 5 : 1, // Center image stays prominent
+                zIndex: index === 0 ? 5 : 1,
               }}
             >
               <motion.div 
-                style={IMAGE_LAYOUT[index]}
-                animate={{
+                style={layout[index]}
+                animate={isMobile ? undefined : {
                   y: [0, -15, 0],
                   x: [0, 5, 0],
                   rotate: [0, 1, 0]
                 }}
-                transition={{
+                transition={isMobile ? undefined : {
                   duration: floatingDuration,
                   repeat: Infinity,
                   delay: floatingDelay,
@@ -113,7 +110,7 @@ export function ZoomParallaxSection() {
                   height: '100%',
                   position: 'relative',
                   overflow: 'hidden',
-                  borderRadius: '4px',
+                  borderRadius: isMobile ? '8px' : '4px',
                   boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
                 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -135,7 +132,7 @@ export function ZoomParallaxSection() {
           )
         })}
 
-        {/* Dark vignette overlay — sits above images */}
+        {/* Dark vignette overlay */}
         <div style={{
           position:   'absolute',
           inset:       0,
@@ -144,7 +141,7 @@ export function ZoomParallaxSection() {
           zIndex:      10,
         }} />
 
-        {/* Edge darkening for cinematic frame */}
+        {/* Edge darkening */}
         <div style={{
           position:   'absolute',
           inset:       0,

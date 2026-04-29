@@ -5,11 +5,13 @@ import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function BodasProceso() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const c = t.bodas.proceso
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -117,7 +119,7 @@ export function BodasProceso() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
           gap: 'clamp(1.5rem, 3vw, 3rem)',
         }}>
           {steps.map((step, i) => (

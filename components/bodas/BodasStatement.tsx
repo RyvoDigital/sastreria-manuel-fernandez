@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 export function BodasStatement() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const c = t.bodas.statement
 
   return (
@@ -16,7 +18,7 @@ export function BodasStatement() {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: '38fr 62fr',
+        gridTemplateColumns: isMobile ? '1fr' : '38fr 62fr',
         gap: 'clamp(3rem, 6vw, 8rem)',
         alignItems: 'center',
       }}>

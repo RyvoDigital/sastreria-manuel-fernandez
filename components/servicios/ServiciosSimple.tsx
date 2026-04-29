@@ -217,10 +217,10 @@ export function ServiciosSimple() {
                 onMouseEnter={() => setActiveIndex(index)}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'auto 1fr auto',
-                  gap: '2rem',
+                  gridTemplateColumns: isMobile ? 'auto 1fr' : 'auto 1fr auto',
+                  gap: isMobile ? '1rem' : '2rem',
                   alignItems: 'center',
-                  padding: '2rem',
+                  padding: isMobile ? '1.25rem' : '2rem',
                   background: isActive ? 'rgba(201,168,76,0.05)' : 'transparent',
                   border: '1px solid rgba(201,168,76,0.15)',
                   borderLeft: isActive ? '3px solid #C9A84C' : '1px solid rgba(201,168,76,0.15)',

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -37,6 +38,7 @@ interface StepProps {
 }
 
 function StepBlock({ num, title, body, image, imageLeft, bg }: StepProps) {
+  const isMobile = useIsMobile()
   const blockRef  = useRef<HTMLDivElement>(null)
   const imgWrap   = useRef<HTMLDivElement>(null)
   const imgInner  = useRef<HTMLDivElement>(null)
@@ -102,8 +104,8 @@ function StepBlock({ num, title, body, image, imageLeft, bg }: StepProps) {
       style={{
         position:  'relative',
         display:   'grid',
-        gridTemplateColumns: '1fr 1fr',
-        minHeight: '88vh',
+        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+        minHeight: isMobile ? 'auto' : '88vh',
         background: bg,
         overflow:  'hidden',
       }}
@@ -132,10 +134,10 @@ function StepBlock({ num, title, body, image, imageLeft, bg }: StepProps) {
       <div
         ref={imgWrap}
         style={{
-          order:     imageLeft ? 1 : 2,
+          order:     isMobile ? 1 : (imageLeft ? 1 : 2),
           position:  'relative',
           overflow:  'hidden',
-          minHeight: '88vh',
+          minHeight: isMobile ? '40vh' : '88vh',
           clipPath:  'inset(0 0 100% 0)',
         }}
       >
@@ -178,13 +180,13 @@ function StepBlock({ num, title, body, image, imageLeft, bg }: StepProps) {
       <div
         ref={textRef}
         style={{
-          order:         imageLeft ? 2 : 1,
+          order:         isMobile ? 2 : (imageLeft ? 2 : 1),
           position:      'relative',
           zIndex:         2,
           display:       'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding:       `clamp(4rem, 7vw, 7rem) clamp(3rem, 5vw, 6rem)`,
+          padding:       isMobile ? '2.5rem var(--container-padding)' : `clamp(4rem, 7vw, 7rem) clamp(3rem, 5vw, 6rem)`,
         }}
       >
         {/* Small step label */}
