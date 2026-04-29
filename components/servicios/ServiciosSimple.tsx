@@ -12,7 +12,7 @@ const SERVICES = [
     title_en: 'Tailcoat',
     desc_es: 'La máxima expresión de la elegancia ceremonial. Confección artesanal para las ocasiones más formales.',
     desc_en: 'The ultimate expression of ceremonial elegance. Artisan construction for the most formal occasions.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471223/photos/others/IMG_0387_hqnum4',
   },
   {
     num: '02',
@@ -20,7 +20,7 @@ const SERVICES = [
     title_en: 'Morning Coat',
     desc_es: 'El traje de día por excelencia. Elegancia clásica para bodas matutinas y eventos de alto standing.',
     desc_en: 'The quintessential day suit. Classic elegance for morning weddings and high-standing events.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/showroom-suits_zqmscd',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471120/photos/others/IMG_1044_dkkcri',
   },
   {
     num: '03',
@@ -28,7 +28,7 @@ const SERVICES = [
     title_en: 'Tuxedo',
     desc_es: 'Elegancia nocturna sin concesiones. Para cenas de gala, ópera y eventos donde solo lo excepcional basta.',
     desc_en: 'Uncompromising evening elegance. For gala dinners, opera, and events where only the exceptional will do.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/blue-plaid-form_rgkodj',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471209/photos/others/IMG_1316_ivo6wg',
   },
   {
     num: '04',
@@ -36,7 +36,7 @@ const SERVICES = [
     title_en: 'Bespoke Suit',
     desc_es: 'Cada traje construido desde cero, sin patrones industriales. Entretela cosida a mano, solapa que cae sola, ajuste perfecto.',
     desc_en: 'Each suit built from scratch, no industrial patterns. Hand-sewn canvas, natural lapel fall, perfect fit.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/photos/camel-jacket-form_bcc78q',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471166/photos/others/IMG_0121_jbgi0j',
   },
   {
     num: '05',
@@ -44,7 +44,7 @@ const SERVICES = [
     title_en: 'Bespoke Overcoat',
     desc_es: 'Protección elegante contra el frío. Tejidos pesados de las mejores casas inglesas e italianas.',
     desc_en: 'Elegant protection against the cold. Heavy fabrics from the finest English and Italian mills.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471159/photos/others/IMG_0096_d9ctv7',
   },
   {
     num: '06',
@@ -52,7 +52,7 @@ const SERVICES = [
     title_en: 'Blazer',
     desc_es: 'Versatilidad sin compromiso. Tejidos exclusivos para cada ocasión, desde lo más casual hasta lo semi-formal.',
     desc_en: 'Versatility without compromise. Exclusive fabrics for every occasion, from casual to semi-formal.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797472/photos/wedding-groom-detail_akayli',
   },
   {
     num: '07',
@@ -60,7 +60,7 @@ const SERVICES = [
     title_en: 'Shirts',
     desc_es: 'La segunda piel del caballero. Confección a medida con telas de las mejores hilanderías del mundo.',
     desc_en: "The gentleman's second skin. Bespoke construction with fabrics from the world's finest mills.",
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/photos/scissors-cutting_vyt9my',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471144/photos/others/IMG_6589_khncrc',
   },
   {
     num: '08',
@@ -68,7 +68,7 @@ const SERVICES = [
     title_en: 'Sport Trousers',
     desc_es: 'El complemento esencial. Corte preciso, caída perfecta, confección que respira con el movimiento.',
     desc_en: 'The essential complement. Precise cut, perfect drape, construction that moves with you.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797507/photos/tailor-workshop_rb0bcw',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471174/photos/others/IMG_0694_gcpuv3',
   },
   {
     num: '09',
@@ -76,7 +76,7 @@ const SERVICES = [
     title_en: 'Waistcoats',
     desc_es: 'La capa intermedia que eleva cualquier conjunto. Tejidos exclusivos, forros personalizados, ajuste impecable.',
     desc_en: 'The middle layer that elevates any ensemble. Exclusive fabrics, custom linings, impeccable fit.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797509/photos/gray-check-mannequin_gaf1fp',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471138/photos/others/IMG_0139_pkwt80',
   },
   {
     num: '10',
@@ -84,7 +84,7 @@ const SERVICES = [
     title_en: 'Bespoke Alterations',
     desc_es: 'Damos nueva vida a prendas existentes. Ajustes precisos, reparaciones que duran, modernización con respeto.',
     desc_en: 'We give new life to existing garments. Precise adjustments, lasting repairs, respectful modernization.',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797440/photos/chalk-cutting_jb9czb',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471155/photos/others/IMG_9461_nskjt7',
   },
 ]
 

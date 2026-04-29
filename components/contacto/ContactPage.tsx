@@ -15,13 +15,13 @@ type QuoteKey =
   | 'quote5' | 'quote6' | 'quote7' | 'quote8'
 
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797444/photos/fitting-vest_c6seil',         quoteKey: 'quote1' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/photos/cutting-tweed_sgkfif',        quoteKey: 'quote2' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797493/photos/camel-jacket-form_bcc78q',    quoteKey: 'quote3' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah', quoteKey: 'quote4' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/photos/fabric-selection_stkbcf',     quoteKey: 'quote5' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/blue-plaid-form_rgkodj',      quoteKey: 'quote6' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/photos/cutting-fabric-wide_jqwwjw',  quoteKey: 'quote7' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471156/photos/others/IMG_9503_wwqizp',         quoteKey: 'quote1' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471227/photos/others/IMG_1729_a7o3ej',        quoteKey: 'quote2' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471166/photos/others/IMG_0078_fcvvhk',    quoteKey: 'quote3' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471219/photos/others/IMG_1477_bx8bwn', quoteKey: 'quote4' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471223/photos/others/IMG_1701_ojirsx',     quoteKey: 'quote5' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471208/photos/others/IMG_0734_ug3baf',      quoteKey: 'quote6' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471211/photos/others/IMG_1658_ghlyyk',  quoteKey: 'quote7' },
   { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797426/photos/wedding-ceremony_wf7tyb',     quoteKey: 'quote8' },
 ]
 

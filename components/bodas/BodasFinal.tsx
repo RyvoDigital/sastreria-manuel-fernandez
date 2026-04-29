@@ -41,7 +41,7 @@ export function BodasFinal() {
       {/* Background photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797426/photos/wedding-ceremony_wf7tyb"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471148/photos/others/IMG_1002_axan1y"
         alt=""
         style={{
           position: 'absolute', inset: 0,

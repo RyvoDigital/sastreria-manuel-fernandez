@@ -20,7 +20,7 @@ const COURSES = [
     lessons: 3,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1776797375/photos/atelier-workshop_n5x6ce.jpg",
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1777471145/photos/others/IMG_7054_i3pxr2.jpg",
   },
   {
     id: "canvas",
@@ -36,7 +36,7 @@ const COURSES = [
     lessons: 5,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/photos/cutting-fabric-wide_jqwwjw.jpg",
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1777471217/photos/others/IMG_0737_doppqy.jpg",
   },
   {
     id: "lapel",
@@ -52,7 +52,7 @@ const COURSES = [
     lessons: 4,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1776797440/photos/chalk-cutting_jb9czb.jpg",
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1777471156/photos/others/IMG_7060_jxzg1e.jpg",
   },
   {
     id: "pockets",
@@ -68,7 +68,7 @@ const COURSES = [
     lessons: 6,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq.jpg",
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1776797408/photos/Captura_de_pantalla_2025-11-27_a_las_11.28.42_ervyup.jpg",
   },
   {
     id: "buttonholes",
@@ -84,7 +84,7 @@ const COURSES = [
     lessons: 3,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/sleeve-buttons_drh2px.jpg",
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1776797494/photos/Caballero_con_traje_gris_en_probador_pvi9oz.jpg",
   },
   {
     id: "finishes",

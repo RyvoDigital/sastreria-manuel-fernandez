@@ -5,13 +5,13 @@ import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 
 const CARDS = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/sleeve-buttons_drh2px',        caption: 'Los Botones' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',         caption: 'El Forro' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471231/photos/others/IMG_1717_dj3hya',        caption: 'Los Botones' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797484/photos/Traje_a_medida_con_corbata_roja_h4s5oq',         caption: 'El Forro' },
   { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797508/photos/purple-lining-interior_krylkv',caption: 'El Interior' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/photos/fabric-selection_stkbcf',      caption: 'Los Tejidos' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471223/photos/others/IMG_0631_zra1ms',      caption: 'Los Tejidos' },
   { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797470/photos/wedding-church_uct3rm',        caption: 'La Ceremonia' },
   { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797341/photos/wedding-couple_hk4ppu',        caption: 'El Momento' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797435/photos/wedding-rome_qlqcxz',          caption: 'El Destino' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471202/photos/others/IMG_0960_gdaptm',          caption: 'El Destino' },
 ]
 
 const CARD_W = 260

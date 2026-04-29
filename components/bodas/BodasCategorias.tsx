@@ -8,9 +8,9 @@ import { useI18n } from '@/lib/i18n'
 gsap.registerPlugin(ScrollTrigger)
 
 const CATS = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah', height: '46vh', key: 'cat1' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471218/photos/others/IMG_1664_al7160', height: '46vh', key: 'cat1' as const },
   { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797363/photos/wedding-tuxedo_rv21ou',       height: '63vh', key: 'cat2' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797435/photos/wedding-rome_qlqcxz',         height: '46vh', key: 'cat3' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471199/photos/others/IMG_5506_fp7jhp',         height: '46vh', key: 'cat3' as const },
 ]
 
 export function BodasCategorias() {

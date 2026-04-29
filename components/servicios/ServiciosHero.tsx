@@ -30,7 +30,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: "url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/photos/cutting-fabric-wide_jqwwjw')",
+        backgroundImage: "url('https://res.cloudinary.com/dwruvre6o/image/upload/v1777471216/photos/others/IMG_1261_zlo3zc')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
@@ -107,14 +107,14 @@ const ParallaxImages = () => {
   return (
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '200px 2rem 0' }}>
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/measuring-tape_uuicfw"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471119/photos/others/IMG_1435_brue5b"
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
         imgStyle={{ width: '32%' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797480/photos/fabric-consultation_vtqjmo"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471137/photos/others/IMG_0884_vcpsgb"
         alt="Consulta de tejidos"
         start={200}
         end={-250}
