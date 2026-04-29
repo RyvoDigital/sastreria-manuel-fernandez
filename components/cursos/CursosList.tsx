@@ -158,51 +158,82 @@ export function CursosList() {
 
   return (
     <section id="cursos" style={{ padding: 'clamp(5rem, 10vh, 8rem) var(--container-padding)', background: '#0A1628' }}>
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-[#C9A96E] text-xs tracking-[0.25em] uppercase mb-4 font-sans"
-          >
-            {c.subtitle}
-          </motion.p>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* Header - centered */}
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 6vh, 4.5rem)' }}>
+          {/* Title first */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-5xl font-serif text-white mb-6"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontWeight: 400,
+              color: '#FFFFFF',
+              marginBottom: '1rem',
+              lineHeight: 1.1,
+            }}
           >
             {c.title}
           </motion.h2>
+          {/* Subtitle below title */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.75rem, 1.5vw, 0.9rem)',
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: '#C9A96E',
+              marginBottom: '1.5rem',
+              fontWeight: 500,
+            }}
+          >
+            {c.subtitle}
+          </motion.p>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-16 h-px bg-[#C9A96E] mx-auto mb-6"
+            style={{
+              width: '48px',
+              height: '1px',
+              background: '#C9A96E',
+              margin: '0 auto 1.5rem',
+              opacity: 0.6,
+            }}
           />
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-white/50 max-w-xl mx-auto text-sm leading-relaxed"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              color: 'rgba(255,255,255,0.5)',
+              maxWidth: '560px',
+              margin: '0 auto',
+              fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+              lineHeight: 1.7,
+            }}
           >
             {c.description}
           </motion.p>
         </div>
 
-        {/* Cards Grid */}
+        {/* Cards Grid - centered, better columns */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
             gap: "clamp(1.5rem, 3vw, 2.5rem)",
+            justifyContent: 'center',
           }}
         >
           {COURSES.map((course, index) => {
@@ -224,7 +255,15 @@ export function CursosList() {
                   delay: index * 0.1,
                   ease: "easeOut",
                 }}
-                className="group relative bg-[#0D1D30] rounded-lg overflow-hidden border border-white/5 hover:border-[#C9A96E]/30 transition-all duration-500"
+                style={{
+                  position: 'relative',
+                  background: '#0D1D30',
+                  borderRadius: '14px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  transition: 'all 0.5s ease',
+                }}
+                className="course-card"
               >
                 {/* Thumbnail */}
                 <div style={{ position: 'relative', overflow: 'hidden', background: '#050A10', aspectRatio: '16/10' }}>
@@ -234,68 +273,188 @@ export function CursosList() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     style={{ objectFit: "cover" }}
-                    className="group-hover:scale-105 transition-transform duration-700 opacity-50 group-hover:opacity-70"
+                    className="course-card-img"
                   />
 
                   {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1D30] via-transparent to-transparent" />
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, #0D1D30, transparent, transparent)',
+                  }} />
 
                   {/* Center icon */}
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
                     {course.locked ? (
-                      <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm">
+                      <div style={{
+                        width: '64px',
+                        height: '64px',
+                        borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.06)',
+                        border: '1px solid rgba(255,255,255,0.12)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backdropFilter: 'blur(8px)',
+                      }}>
                         <Lock
-                          className="w-6 h-6 text-white/40"
+                          size={26}
                           strokeWidth={1.5}
+                          style={{ color: 'rgba(255,255,255,0.4)' }}
                         />
                       </div>
                     ) : (
-                      <div className="w-16 h-16 rounded-full bg-[#C9A96E]/20 border border-[#C9A96E]/30 flex items-center justify-center backdrop-blur-sm">
+                      <div style={{
+                        width: '64px',
+                        height: '64px',
+                        borderRadius: '50%',
+                        background: 'rgba(201,169,110,0.15)',
+                        border: '1px solid rgba(201,169,110,0.3)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backdropFilter: 'blur(8px)',
+                      }}>
                         <Play
-                          className="w-6 h-6 text-[#C9A96E]"
+                          size={26}
                           strokeWidth={1.5}
+                          style={{ color: '#C9A96E' }}
                         />
                       </div>
                     )}
                   </div>
 
-                  {/* Badge */}
+                  {/* Badge - BIGGER */}
                   {course.locked && (
-                    <div className="absolute top-4 right-4 px-3 py-1.5 bg-[#0A1628]/80 backdrop-blur-sm rounded-full border border-[#C9A96E]/20 text-[#C9A96E] text-[10px] tracking-[0.2em] uppercase font-medium">
+                    <div style={{
+                      position: 'absolute',
+                      top: '1rem',
+                      right: '1rem',
+                      padding: '0.5rem 1.25rem',
+                      background: 'rgba(10,22,40,0.85)',
+                      backdropFilter: 'blur(8px)',
+                      borderRadius: '9999px',
+                      border: '1px solid rgba(201,169,110,0.25)',
+                      color: '#C9A96E',
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      fontWeight: 600,
+                      fontFamily: 'var(--font-sans)',
+                    }}>
                       {c.locked}
                     </div>
                   )}
                   {!course.locked && (
-                    <div className="absolute top-4 right-4 px-3 py-1.5 bg-[#C9A96E] rounded-full text-[#0A1628] text-[10px] tracking-[0.2em] uppercase font-semibold">
+                    <div style={{
+                      position: 'absolute',
+                      top: '1rem',
+                      right: '1rem',
+                      padding: '0.5rem 1.25rem',
+                      background: '#C9A96E',
+                      borderRadius: '9999px',
+                      color: '#0A1628',
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      fontWeight: 600,
+                      fontFamily: 'var(--font-sans)',
+                    }}>
                       {c.available}
                     </div>
                   )}
                 </div>
 
                 {/* Content */}
-                <div style={{ padding: 'clamp(1.25rem, 2vw, 1.75rem)' }}>
-                  <h3 className="text-lg font-serif text-white mb-2 group-hover:text-[#C9A96E] transition-colors duration-300">
+                <div style={{ padding: 'clamp(1.5rem, 2.5vw, 2rem)' }}>
+                  <h3 style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 'clamp(1.1rem, 1.5vw, 1.25rem)',
+                    fontWeight: 400,
+                    color: '#FFFFFF',
+                    marginBottom: '0.6rem',
+                    lineHeight: 1.3,
+                    transition: 'color 0.3s',
+                  }}>
                     {title}
                   </h3>
-                  <p className="text-sm text-white/50 mb-5 leading-relaxed">
+                  <p style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.9rem',
+                    color: 'rgba(255,255,255,0.45)',
+                    marginBottom: '1.25rem',
+                    lineHeight: 1.6,
+                  }}>
                     {desc}
                   </p>
 
-                  <div className="flex items-center gap-5 text-xs text-white/40">
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" strokeWidth={1.5} />
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1.5rem',
+                    fontSize: '0.8rem',
+                    color: 'rgba(255,255,255,0.35)',
+                    fontFamily: 'var(--font-sans)',
+                    marginBottom: course.locked ? '0' : '1.25rem',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Clock size={15} strokeWidth={1.5} />
                       <span>{course.duration}</span>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <BookOpen className="w-3.5 h-3.5" strokeWidth={1.5} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <BookOpen size={15} strokeWidth={1.5} />
                       <span>
                         {course.lessons} {c.lessons}
                       </span>
                     </div>
                   </div>
 
-                  {!course.locked && (
-                    <button className="mt-5 w-full py-3 bg-[#C9A96E] text-[#0A1628] text-xs tracking-[0.15em] uppercase font-medium rounded hover:bg-[#b89a5e] transition-colors duration-300">
+                  {/* BIGGER button for locked courses too */}
+                  {course.locked ? (
+                    <button
+                      disabled
+                      style={{
+                        marginTop: '1.25rem',
+                        width: '100%',
+                        padding: '0.9rem 1.5rem',
+                        background: 'transparent',
+                        color: 'rgba(201,169,110,0.5)',
+                        border: '1px solid rgba(201,169,110,0.2)',
+                        borderRadius: '8px',
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '0.8rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        fontWeight: 500,
+                        cursor: 'not-allowed',
+                        transition: 'all 0.3s',
+                      }}
+                    >
+                      {c.locked}
+                    </button>
+                  ) : (
+                    <button style={{
+                      marginTop: '1.25rem',
+                      width: '100%',
+                      padding: '0.9rem 1.5rem',
+                      background: '#C9A96E',
+                      color: '#0A1628',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.8rem',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'all 0.3s',
+                    }}>
                       {c.watch}
                     </button>
                   )}
@@ -305,6 +464,25 @@ export function CursosList() {
           })}
         </div>
       </div>
+
+      <style jsx>{`
+        .course-card:hover {
+          border-color: rgba(201, 169, 110, 0.2) !important;
+          transform: translateY(-4px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .course-card:hover h3 {
+          color: #C9A96E !important;
+        }
+        .course-card-img {
+          opacity: 0.5;
+          transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .course-card:hover .course-card-img {
+          opacity: 0.7;
+          transform: scale(1.05);
+        }
+      `}</style>
     </section>
   );
 }
