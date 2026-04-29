@@ -12,7 +12,7 @@ const IMAGES = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/sleeve-buttons_drh2px',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471107/photos/others/IMG_0945_tkw7o1',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/blue-plaid-form_rgkodj',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471081/photos/others/IMG_7034_urbpjv',
 ]
 
 /*
