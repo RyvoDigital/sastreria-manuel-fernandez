@@ -42,7 +42,7 @@ const SERVICES = [
     key: 'configurador',
     icon: Settings,
     href: '/configurador',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/blue-plaid-form_rgkodj',
+    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471082/photos/others/IMG_0577_nokw47',
   },
   {
     key: 'cursos',
