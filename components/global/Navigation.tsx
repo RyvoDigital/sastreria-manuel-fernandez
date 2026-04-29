@@ -6,18 +6,18 @@ import { usePathname } from 'next/navigation'
 
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
-import { Phone, MapPin, MessageCircle } from 'lucide-react'
+import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
 
 const NAV_ITEMS = [
-  { key: 'inicio'        as const, href: '/' },
-  { key: 'sastreria'     as const, href: '/la-sastreria' },
-  { key: 'bodas'         as const, href: '/bodas-y-ceremonia' },
-  { key: 'servicios'     as const, href: '/servicios' },
-  { key: 'modelos3d'     as const, href: '/modelos-3d' },
-  { key: 'configurador'  as const, href: '/configurador' },
-  { key: 'cursos'        as const, href: '/cursos' },
-  { key: 'videollamada'  as const, href: '/videollamada' },
-  { key: 'contacto'      as const, href: '/contacto' },
+  { key: 'inicio'        as const, href: '/',               icon: Home },
+  { key: 'sastreria'     as const, href: '/la-sastreria',   icon: Scissors },
+  { key: 'bodas'         as const, href: '/bodas-y-ceremonia', icon: Heart },
+  { key: 'servicios'     as const, href: '/servicios',      icon: Briefcase },
+  { key: 'modelos3d'     as const, href: '/modelos-3d',     icon: Box },
+  { key: 'configurador'  as const, href: '/configurador',   icon: Settings },
+  { key: 'cursos'        as const, href: '/cursos',         icon: GraduationCap },
+  { key: 'videollamada'  as const, href: '/videollamada',   icon: Video },
+  { key: 'contacto'      as const, href: '/contacto',       icon: Mail },
 ]
 
 // Persistent contact buttons data
@@ -32,7 +32,7 @@ export function Navigation() {
   const [scrolled, setScrolled]   = useState(false)
   const [menuOpen, setMenuOpen]   = useState(false)
   const overlayRef     = useRef<HTMLDivElement>(null)
-  const mobileItemRefs = useRef<HTMLLIElement[]>([])
+  const mobileItemRefs = useRef<HTMLAnchorElement[]>([])
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
@@ -62,8 +62,8 @@ export function Navigation() {
       )
       gsap.fromTo(
         mobileItemRefs.current.filter(Boolean),
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.055, ease: 'power3.out', delay: 0.12 }
+        { opacity: 0, y: 30, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out', delay: 0.15 }
       )
     } else {
       document.body.style.overflow = ''
@@ -281,164 +281,232 @@ export function Navigation() {
           zIndex:          990,
           background:     '#0A1628',
           flexDirection:  'column',
-          alignItems:     'center',
-          justifyContent: 'center',
+          overflowY:      'auto',
         }}
       >
-        {/* close */}
-        <button
-          onClick={() => setMenuOpen(false)}
-          aria-label="Cerrar menú"
-          style={{
-            position:   'absolute',
-            top:        '1.6rem',
-            right:      'var(--container-padding)',
-            background: 'none',
-            border:     'none',
-            color:       'rgba(196,163,90,0.45)',
-            fontSize:    '1.1rem',
-            lineHeight:   1,
-            cursor:      'pointer',
-          }}
-        >
-          ✕
-        </button>
-
-        {/* logo */}
+        {/* Header bar */}
         <div style={{
-          position:   'absolute',
-          top:        '1.2rem',
-          left:       'var(--container-padding)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '1.2rem var(--container-padding)',
+          flexShrink: 0,
         }}>
           <img 
             src="/logo.png" 
             alt="Sastrería Manuel Fernández"
             style={{
-              height: '40px',
+              height: '36px',
               width: 'auto',
               objectFit: 'contain',
               opacity: 0.9,
             }}
           />
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Cerrar menú"
+            style={{
+              background: 'none',
+              border:     'none',
+              color:       'rgba(196,163,90,0.6)',
+              fontSize:    '1.2rem',
+              lineHeight:   1,
+              cursor:      'pointer',
+              padding: '0.5rem',
+            }}
+          >
+            ✕
+          </button>
         </div>
 
-        {/* decorative line */}
+        {/* Main content - grid of tiles */}
         <div style={{
-          width:     '1px',
-          height:    '36px',
-          background: 'linear-gradient(to bottom, transparent, rgba(196,163,90,0.25))',
-          marginBottom: '2rem',
-        }} />
-
-        {/* links */}
-        <ul style={{ listStyle: 'none', textAlign: 'center', padding: 0, margin: 0 }}>
-          {NAV_ITEMS.map(({ key, href }, i) => (
-            <li
-              key={key}
-              ref={el => { if (el) mobileItemRefs.current[i] = el as HTMLLIElement }}
-              style={{ marginBottom: '1.1rem' }}
-            >
-              <Link
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  fontFamily:    'var(--font-sans)',
-                  fontSize:      'clamp(0.85rem, 3vw, 1rem)',
-                  fontWeight:     400,
-                  letterSpacing: '0.25em',
-                  textTransform: 'uppercase',
-                  color:          isActive(href)
-                    ? 'var(--color-gold)'
-                    : 'rgba(255,255,255,0.7)',
-                  textDecoration: 'none',
-                  display:       'block',
-                  transition:    'color .2s',
-                }}
-              >
-                {t.nav[key]}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {/* Mobile contact buttons */}
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: '1rem', 
-          marginTop: '2rem',
-          alignItems: 'center' 
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '1rem var(--container-padding) 2rem',
         }}>
-          <a
-            href={CONTACT_BUTTONS.call.href}
-            onClick={() => setMenuOpen(false)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: 'var(--color-gold)',
-              textDecoration: 'none',
-              padding: '0.75rem 1.5rem',
-              border: '1px solid var(--color-gold)',
-            }}
-          >
-            <Phone size={16} />
-            {CONTACT_BUTTONS.call.label}
-          </a>
-          <Link
-            href={CONTACT_BUTTONS.location.href}
-            onClick={() => setMenuOpen(false)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: 'var(--color-white)',
-              textDecoration: 'none',
-              padding: '0.75rem 1.5rem',
-              border: '1px solid rgba(255,255,255,0.3)',
-            }}
-          >
-            <MapPin size={16} />
-            {CONTACT_BUTTONS.location.label}
-          </Link>
-        </div>
+          {/* Grid of square nav tiles */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 'clamp(0.75rem, 2vw, 1.25rem)',
+            maxWidth: '520px',
+            width: '100%',
+            margin: '0 auto',
+          }}>
+            {NAV_ITEMS.map(({ key, href, icon: Icon }, i) => {
+              const active = isActive(href)
+              return (
+                <Link
+                  key={key}
+                  href={href}
+                  ref={el => { if (el) mobileItemRefs.current[i] = el as HTMLAnchorElement }}
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.75rem',
+                    aspectRatio: '1',
+                    background: active 
+                      ? 'rgba(201,168,76,0.12)' 
+                      : 'rgba(255,255,255,0.03)',
+                    border: active 
+                      ? '1px solid rgba(201,168,76,0.35)' 
+                      : '1px solid rgba(255,255,255,0.06)',
+                    borderRadius: '12px',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    padding: '1rem',
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.background = 'rgba(201,168,76,0.1)'
+                    el.style.borderColor = 'rgba(201,168,76,0.3)'
+                    el.style.transform = 'translateY(-2px)'
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.background = active 
+                      ? 'rgba(201,168,76,0.12)' 
+                      : 'rgba(255,255,255,0.03)'
+                    el.style.borderColor = active 
+                      ? 'rgba(201,168,76,0.35)' 
+                      : 'rgba(255,255,255,0.06)'
+                    el.style.transform = 'translateY(0)'
+                  }}
+                >
+                  <Icon 
+                    size={24} 
+                    strokeWidth={1.5}
+                    style={{ 
+                      color: active ? 'var(--color-gold)' : 'rgba(255,255,255,0.5)',
+                      transition: 'color 0.3s',
+                    }}
+                  />
+                  <span style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 'clamp(0.6rem, 1.8vw, 0.75rem)',
+                    fontWeight: 500,
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    color: active ? 'var(--color-gold)' : 'rgba(255,255,255,0.7)',
+                    textAlign: 'center',
+                    lineHeight: 1.3,
+                    transition: 'color 0.3s',
+                  }}>
+                    {t.nav[key]}
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
 
-        {/* bottom accent */}
-        <div style={{
-          width:     '1px',
-          height:    '36px',
-          background: 'linear-gradient(to top, transparent, rgba(196,163,90,0.25))',
-          marginTop:  '2rem',
-          marginBottom: '1.5rem',
-        }} />
-
-        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-          {(['es', 'en', 'it', 'fr'] as const).map((l) => (
-            <button
-              key={l}
-              onClick={() => setLocale(l)}
+          {/* Contact buttons row */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center',
+            gap: '1rem', 
+            marginTop: '2.5rem',
+            flexWrap: 'wrap',
+          }}>
+            <a
+              href={CONTACT_BUTTONS.call.href}
+              onClick={() => setMenuOpen(false)}
               style={{
-                background: locale === l ? 'rgba(201,168,76,0.15)' : 'none',
-                border:     '1px solid rgba(201,168,76,0.25)',
-                color:       locale === l ? 'var(--color-gold)' : 'rgba(201,168,76,0.6)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.6rem',
                 fontFamily: 'var(--font-sans)',
-                fontSize:   '0.6rem',
-                letterSpacing: '0.22em',
-                padding:    '0.5rem 1rem',
-                cursor:      'pointer',
+                fontSize: '0.7rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'var(--color-gold)',
+                textDecoration: 'none',
+                padding: '0.8rem 1.75rem',
+                border: '1px solid var(--color-gold)',
+                borderRadius: '4px',
+                transition: 'all 0.25s ease',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.background = 'var(--color-gold)'
+                el.style.color = '#0A1628'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.background = 'transparent'
+                el.style.color = 'var(--color-gold)'
               }}
             >
-              {l.toUpperCase()}
-            </button>
-          ))}
+              <Phone size={15} strokeWidth={1.5} />
+              {CONTACT_BUTTONS.call.label}
+            </a>
+            <Link
+              href={CONTACT_BUTTONS.location.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.7rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.8)',
+                textDecoration: 'none',
+                padding: '0.8rem 1.75rem',
+                border: '1px solid rgba(255,255,255,0.25)',
+                borderRadius: '4px',
+                transition: 'all 0.25s ease',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(255,255,255,0.5)'
+                el.style.background = 'rgba(255,255,255,0.05)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(255,255,255,0.25)'
+                el.style.background = 'transparent'
+              }}
+            >
+              <MapPin size={15} strokeWidth={1.5} />
+              {CONTACT_BUTTONS.location.label}
+            </Link>
+          </div>
+
+          {/* Language selector */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center',
+            gap: '0.75rem', 
+            marginTop: '2rem',
+          }}>
+            {(['es', 'en', 'it', 'fr'] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLocale(l)}
+                style={{
+                  background: locale === l ? 'rgba(201,168,76,0.15)' : 'none',
+                  border:     '1px solid rgba(201,168,76,0.25)',
+                  color:       locale === l ? 'var(--color-gold)' : 'rgba(201,168,76,0.6)',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize:   '0.65rem',
+                  letterSpacing: '0.22em',
+                  padding:    '0.6rem 1.25rem',
+                  cursor:      'pointer',
+                  borderRadius: '4px',
+                  transition: 'all 0.25s',
+                }}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </>
