@@ -47,7 +47,7 @@ export function TestimonialsSection() {
   const cardTranslateX = reducedMotion ? 0 : isMobile ? 110 : 350
   const cardRotationY = reducedMotion ? 0 : isMobile ? 0 : 45
   const cardTranslateZ = reducedMotion ? 0 : isMobile ? 0 : -300
-  const stageHeight = isMobile ? '50vh' : '60vh'
+  const stageHeight = isMobile ? '42vh' : '48vh'
   const cardPadding = isMobile ? '1.5rem' : '3rem'
   const cardWidth = isMobile ? 'min(320px, 88vw)' : 'min(500px, 85vw)'
   const cardGap = isMobile ? '1rem' : '2rem'
@@ -95,10 +95,10 @@ export function TestimonialsSection() {
         {/* Section Header */}
         <div style={{
           position: 'absolute',
-          top: isMobile ? '6vh' : '10vh',
+          top: isMobile ? '5vh' : '7vh',
           textAlign: 'center',
           zIndex: 10,
-          padding: '0 1rem',
+          padding: '0 1rem 2rem',
         }}>
           <div style={{
             fontFamily: 'var(--font-sans)',
