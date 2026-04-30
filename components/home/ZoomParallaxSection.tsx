@@ -14,30 +14,18 @@ const IMAGES = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471107/photos/others/IMG_0945_tkw7o1',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471081/photos/others/IMG_7034_urbpjv',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471079/photos/others/IMG_0612_fhnhix',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471071/photos/others/IMG_1325_ocotwb',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471069/photos/others/IMG_1709_xnuf0e',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471068/photos/others/IMG_0416_brafs7',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471067/photos/others/IMG_1243_inl6ua',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471066/photos/others/IMG_0808_oo35om',
 ]
 
-/* Desktop: scattered collage layout — 14 images spread across viewport */
+/* Desktop: scattered collage layout — 8 images */
 const DESKTOP_LAYOUT: React.CSSProperties[] = [
-  { position: 'absolute', top: '32vh', left: '35vw', width: '22vw', height: '22vh' },
-  { position: 'absolute', top: '5vh',  left: '40vw', width: '28vw', height: '26vh' },
-  { position: 'absolute', top: '15vh', left: '8vw',  width: '18vw', height: '38vh' },
-  { position: 'absolute', top: '35vh', left: '62vw', width: '22vw', height: '22vh' },
-  { position: 'absolute', top: '62vh', left: '42vw', width: '18vw', height: '22vh' },
-  { position: 'absolute', top: '60vh', left: '10vw', width: '26vw', height: '22vh' },
-  { position: 'absolute', top: '62vh', left: '68vw', width: '14vw', height: '18vh' },
-  { position: 'absolute', top: '12vh', left: '72vw', width: '16vw', height: '28vh' },
-  { position: 'absolute', top: '42vh', left: '18vw', width: '16vw', height: '16vh' },
-  { position: 'absolute', top: '8vh',  left: '22vw', width: '14vw', height: '20vh' },
-  { position: 'absolute', top: '48vh', left: '82vw', width: '12vw', height: '18vh' },
-  { position: 'absolute', top: '78vh', left: '55vw', width: '18vw', height: '14vh' },
-  { position: 'absolute', top: '25vh', left: '52vw', width: '12vw', height: '14vh' },
-  { position: 'absolute', top: '78vh', left: '28vw', width: '16vw', height: '14vh' },
+  { position: 'absolute', top: '32vh', left: '35vw', width: '25vw', height: '25vh' },
+  { position: 'absolute', top: '5vh',  left: '38vw', width: '32vw', height: '28vh' },
+  { position: 'absolute', top: '15vh', left: '8vw',  width: '20vw', height: '40vh' },
+  { position: 'absolute', top: '35vh', left: '65vw', width: '22vw', height: '22vh' },
+  { position: 'absolute', top: '62vh', left: '42vw', width: '20vw', height: '22vh' },
+  { position: 'absolute', top: '60vh', left: '10vw', width: '28vw', height: '22vh' },
+  { position: 'absolute', top: '62vh', left: '68vw', width: '16vw', height: '18vh' },
+  { position: 'absolute', top: '10vh', left: '72vw', width: '18vw', height: '30vh' },
 ]
 
 /* Mobile: 6 images in scattered layout */
@@ -66,7 +54,7 @@ export function ZoomParallaxSection() {
 
   const scales = isMobile
     ? [scale4, scale4, scale4, scale4, scale4, scale4]
-    : [scale4, scale5, scale6, scale5, scale6, scale4, scale4, scale5, scale6, scale4, scale5, scale4, scale6, scale4]
+    : [scale4, scale5, scale6, scale5, scale6, scale4, scale4, scale5]
 
   const images = isMobile ? IMAGES.slice(0, 6) : IMAGES
   const layout = isMobile ? MOBILE_LAYOUT : DESKTOP_LAYOUT
