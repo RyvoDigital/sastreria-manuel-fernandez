@@ -14,25 +14,40 @@ const IMAGES = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797382/photos/velvet-lining_ukeflq',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471107/photos/others/IMG_0945_tkw7o1',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471081/photos/others/IMG_7034_urbpjv',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471079/photos/others/IMG_0612_fhnhix',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471071/photos/others/IMG_1325_ocotwb',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471069/photos/others/IMG_1709_xnuf0e',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471068/photos/others/IMG_0416_brafs7',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471067/photos/others/IMG_1243_inl6ua',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471066/photos/others/IMG_0808_oo35om',
 ]
 
-/* Desktop: scattered collage layout */
+/* Desktop: scattered collage layout — 14 images spread across viewport */
 const DESKTOP_LAYOUT: React.CSSProperties[] = [
-  { position: 'absolute', top: '37.5vh', left: '37.5vw', width: '25vw', height: '25vh' },
-  { position: 'absolute', top: '5vh',    left: '37.5vw', width: '35vw', height: '30vh' },
-  { position: 'absolute', top: '17.5vh', left: '15vw',   width: '20vw', height: '45vh' },
-  { position: 'absolute', top: '37.5vh', left: '65vw',   width: '25vw', height: '25vh' },
-  { position: 'absolute', top: '65vh',   left: '45vw',   width: '20vw', height: '25vh' },
-  { position: 'absolute', top: '65vh',   left: '12.5vw', width: '30vw', height: '25vh' },
-  { position: 'absolute', top: '65vh',   left: '67.5vw', width: '15vw', height: '15vh' },
+  { position: 'absolute', top: '32vh', left: '35vw', width: '22vw', height: '22vh' },
+  { position: 'absolute', top: '5vh',  left: '40vw', width: '28vw', height: '26vh' },
+  { position: 'absolute', top: '15vh', left: '8vw',  width: '18vw', height: '38vh' },
+  { position: 'absolute', top: '35vh', left: '62vw', width: '22vw', height: '22vh' },
+  { position: 'absolute', top: '62vh', left: '42vw', width: '18vw', height: '22vh' },
+  { position: 'absolute', top: '60vh', left: '10vw', width: '26vw', height: '22vh' },
+  { position: 'absolute', top: '62vh', left: '68vw', width: '14vw', height: '18vh' },
+  { position: 'absolute', top: '12vh', left: '72vw', width: '16vw', height: '28vh' },
+  { position: 'absolute', top: '42vh', left: '18vw', width: '16vw', height: '16vh' },
+  { position: 'absolute', top: '8vh',  left: '22vw', width: '14vw', height: '20vh' },
+  { position: 'absolute', top: '48vh', left: '82vw', width: '12vw', height: '18vh' },
+  { position: 'absolute', top: '78vh', left: '55vw', width: '18vw', height: '14vh' },
+  { position: 'absolute', top: '25vh', left: '52vw', width: '12vw', height: '14vh' },
+  { position: 'absolute', top: '78vh', left: '28vw', width: '16vw', height: '14vh' },
 ]
 
-/* Mobile: simple 2x2 grid, fewer images */
+/* Mobile: 6 images in scattered layout */
 const MOBILE_LAYOUT: React.CSSProperties[] = [
-  { position: 'absolute', top: '10vh', left: '5vw',  width: '42vw', height: '30vh' },
-  { position: 'absolute', top: '10vh', left: '53vw', width: '42vw', height: '30vh' },
-  { position: 'absolute', top: '48vh', left: '5vw',  width: '42vw', height: '30vh' },
-  { position: 'absolute', top: '48vh', left: '53vw', width: '42vw', height: '30vh' },
+  { position: 'absolute', top: '8vh',  left: '4vw',  width: '44vw', height: '26vh' },
+  { position: 'absolute', top: '8vh',  left: '52vw', width: '44vw', height: '26vh' },
+  { position: 'absolute', top: '38vh', left: '4vw',  width: '44vw', height: '26vh' },
+  { position: 'absolute', top: '38vh', left: '52vw', width: '44vw', height: '26vh' },
+  { position: 'absolute', top: '68vh', left: '15vw', width: '70vw', height: '22vh' },
+  { position: 'absolute', top: '22vh', left: '30vw', width: '40vw', height: '20vh' },
 ]
 
 export function ZoomParallaxSection() {
@@ -50,10 +65,10 @@ export function ZoomParallaxSection() {
   const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6])
 
   const scales = isMobile
-    ? [scale4, scale4, scale4, scale4]
-    : [scale4, scale5, scale6, scale5, scale6, scale4, scale4]
+    ? [scale4, scale4, scale4, scale4, scale4, scale4]
+    : [scale4, scale5, scale6, scale5, scale6, scale4, scale4, scale5, scale6, scale4, scale5, scale4, scale6, scale4]
 
-  const images = isMobile ? IMAGES.slice(0, 4) : IMAGES
+  const images = isMobile ? IMAGES.slice(0, 6) : IMAGES
   const layout = isMobile ? MOBILE_LAYOUT : DESKTOP_LAYOUT
 
   return (
