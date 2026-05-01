@@ -151,7 +151,7 @@ export function EvelynSection() {
             marginBottom:  '1.2rem',
             opacity:        0.85,
           }}>
-            El Taller
+            {t.la_sastreria.evelyn.label}
           </div>
 
           {/* Gold rule */}
@@ -175,7 +175,6 @@ export function EvelynSection() {
             Evelyn
           </h2>
 
-          {/* Placeholder paragraphs — awaiting client copy */}
           <p className="mf-ev-p" style={{
             position:   'relative', zIndex: 1,
             fontFamily: 'var(--font-sans)',
@@ -185,7 +184,7 @@ export function EvelynSection() {
             marginBottom: '1.4rem',
             maxWidth:   '58ch',
           }}>
-            Biografía de Evelyn en preparación. Próximamente.
+            {t.la_sastreria.evelyn.p1}
           </p>
 
           <p className="mf-ev-p" style={{
@@ -197,7 +196,19 @@ export function EvelynSection() {
             marginBottom: '1.4rem',
             maxWidth:   '58ch',
           }}>
-            Evelyn&rsquo;s biography is being prepared. Coming soon.
+            {t.la_sastreria.evelyn.p2}
+          </p>
+
+          <p className="mf-ev-p" style={{
+            position:   'relative', zIndex: 1,
+            fontFamily: 'var(--font-sans)',
+            fontSize:   'clamp(0.88rem, 1.3vw, 1.02rem)',
+            lineHeight:  1.88,
+            color:      'rgba(255,255,255,0.75)',
+            marginBottom: '1.4rem',
+            maxWidth:   '58ch',
+          }}>
+            {t.la_sastreria.evelyn.p3}
           </p>
         </div>
       </div>

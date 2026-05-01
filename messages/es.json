@@ -144,7 +144,14 @@
       "label": "El Maestro",
       "quote": "Un traje no se termina cuando se cose la última puntada. Se termina cuando la persona que lo lleva reconoce en él una versión mejor de sí misma.",
       "attribution": "Manuel Fernández, Maestro Sastre",
-      "bio": "Con décadas dedicadas al traje a medida artesanal, Manuel Fernández ha vestido a directivos, novios y hombres en sus momentos más importantes. Su sastrería en Madrid es, ante todo, un espacio de escucha donde cada prenda se construye desde cero."
+      "p1": "Manuel Fernández cuenta con más de 40 años de experiencia en sastrería artesanal, dedicados al diseño y confección de todo tipo de prendas a medida bespoke. Especializado en prendas de ceremonia, su estilo se distingue por un corte preciso, personal y reconocible, donde la elegancia clásica se interpreta con carácter propio.",
+      "p2": "Su trabajo refleja un savoir-faire heredado y perfeccionado a lo largo de toda una vida, combinado con una mirada contemporánea que proyecta la sastrería hacia el futuro. Cada prenda nace desde el conocimiento profundo del oficio, la proporción y el detalle, logrando piezas únicas que equilibran tradición, innovación y excelencia."
+    },
+    "evelyn": {
+      "label": "El Taller",
+      "p1": "Evelyn Fernández, formada en Publicidad en la Universidad Complutense de Madrid y especializada en el universo del lujo a través del programa en Dirección y Gestión Estratégica del Lujo del IE Business School, ha desarrollado su trayectoria entre Madrid y París en proyectos vinculados a la moda, el branding y el cliente premium.",
+      "p2": "Con una visión internacional y una marcada sensibilidad estética, ha impulsado diferentes iniciativas empresariales dentro del sector lifestyle y lujo, consolidando un enfoque orientado a la exclusividad, la experiencia y el detalle.",
+      "p3": "Actualmente lidera Sastrería Manuel Fernández, posicionándola como un referente en sastrería artesanal de alto nivel, dirigida a un cliente exigente y global, con atención en español, inglés y francés."
     },
     "oficio": {
       "label": "El Oficio",

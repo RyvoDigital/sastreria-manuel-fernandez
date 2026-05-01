@@ -147,7 +147,14 @@
       "label": "Il Maestro",
       "quote": "Un abito non è finito quando viene cucito l'ultimo punto. È finito quando la persona che lo indossa vi riconosce una versione migliore di sé.",
       "attribution": "Manuel Fernández, Maestro Sarto",
-      "bio": "Con decenni dedicati alla sartoria artigianale su misura, Manuel Fernández ha vestito dirigenti, sposi e uomini nei loro momenti più importanti. La sua sartoria a Madrid è, soprattutto, uno spazio di ascolto dove ogni capo viene costruito da zero."
+      "p1": "Manuel Fernández vanta più di 40 anni di esperienza nella sartoria artigianale, dedicati alla progettazione e confezione di ogni tipo di capo su misura bespoke. Specializzato in abiti da cerimonia, il suo stile si distingue per un taglio preciso, personale e riconoscibile, dove l'eleganza classica viene interpretata con carattere proprio.",
+      "p2": "Il suo lavoro riflette un savoir-faire ereditato e perfezionato nel corso di tutta una vita, combinato con uno sguardo contemporaneo che proietta la sartoria verso il futuro. Ogni capo nasce dalla conoscenza profonda del mestiere, della proporzione e del dettaglio, ottenendo pezzi unici che equilibrano tradizione, innovazione ed eccellenza."
+    },
+    "evelyn": {
+      "label": "Il Laboratorio",
+      "p1": "Evelyn Fernández, formata in Pubblicità all'Università Complutense di Madrid e specializzata nell'universo del lusso attraverso il programma in Direzione e Gestione Strategica del Lusso dell'IE Business School, ha sviluppato la sua carriera tra Madrid e Parigi in progetti legati alla moda, al branding e al cliente premium.",
+      "p2": "Con una visione internazionale e una marcata sensibilità estetica, ha promosso diverse iniziative imprenditoriali all'interno del settore lifestyle e lusso, consolidando un approccio orientato all'esclusività, all'esperienza e al dettaglio.",
+      "p3": "Attualmente guida la Sastrería Manuel Fernández, posizionandola come un punto di riferimento nella sartoria artigianale di alto livello, rivolta a una clientela esigente e globale, con attenzione in spagnolo, inglese e francese."
     },
     "oficio": {
       "label": "Il Mestiere",

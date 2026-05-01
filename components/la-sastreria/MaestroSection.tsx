@@ -166,9 +166,19 @@ export function MaestroSection() {
           lineHeight:  1.85,
           color:      'rgba(255,255,255,0.65)',
           maxWidth:   '45ch',
+          margin:      '0 0 1.2rem 0',
+        }}>
+          {t.la_sastreria.maestro.p1}
+        </p>
+        <p className="mf-mae-bio" style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize:   'clamp(0.85rem, 1.3vw, 1rem)',
+          lineHeight:  1.85,
+          color:      'rgba(255,255,255,0.65)',
+          maxWidth:   '45ch',
           margin:      0,
         }}>
-          {t.la_sastreria.maestro.bio}
+          {t.la_sastreria.maestro.p2}
         </p>
       </div>
     </section>
