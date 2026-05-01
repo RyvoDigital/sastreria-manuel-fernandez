@@ -188,7 +188,9 @@
     "espacio": {
       "label": "L'Espace",
       "title": "Là où le Costume Naît",
-      "description": "Un atelier privé à Madrid où chaque visite est une expérience aussi soigneusement pensée que le vêtement créé à l'intérieur."
+      "description": "Un atelier privé à Madrid où chaque visite est une expérience aussi soigneusement pensée que le vêtement créé à l'intérieur.",
+      "subtitle": "Tailleur",
+      "body": "Vous découvrirez un lieu plein de tradition, d'élégance, de distinction et d'innovation. Ici, nous vous ferons découvrir la passion du sur-mesure."
     },
     "filosofia": {
       "label": "La Philosophie",
@@ -380,6 +382,11 @@
     "hero": {
       "label": "Sastrería Manuel Fernández · Mariages & Cérémonie",
       "title": "Le Costume pour le Jour le Plus Important"
+    },
+    "te_casas": {
+      "label": "VOUS VOUS MARIEZ ?",
+      "p1": "Nous savons que vous venez avec la plus grande émotion pour créer vos vêtements pour la photo qui ornira votre maison toute une vie, celle que vos petits-enfants verront et que vos amis apprécieront.",
+      "p2": "C'est pourquoi nous voulons vous accompagner dans ce processus, le rendre agréable et vous laisser, tout simplement, profiter."
     },
     "statement": {
       "label": "Mariages & Cérémonie",
