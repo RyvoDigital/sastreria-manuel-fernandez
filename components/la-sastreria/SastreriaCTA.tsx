@@ -99,7 +99,7 @@ export function SastreriaCTA() {
 
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/videollamada" className="mf-cta-btn" style={{
+          <Link href="/videollamada" className="mf-cta-btn mf-cta-btn-primary" style={{
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',
@@ -112,24 +112,24 @@ export function SastreriaCTA() {
             fontWeight:     600,
             textDecoration: 'none',
             border:         '1px solid #C9A84C',
-            transition:     'background .25s, transform .2s',
+            transition:     'background .25s, box-shadow .2s',
           }}
           onMouseEnter={e => {
             const el = e.currentTarget as HTMLElement
             el.style.background = '#E8D5A3'
             el.style.borderColor = '#E8D5A3'
-            el.style.transform = 'translateY(-2px)'
+            el.style.boxShadow = '0 8px 24px rgba(201,168,76,0.35)'
           }}
           onMouseLeave={e => {
             const el = e.currentTarget as HTMLElement
             el.style.background = '#C9A84C'
             el.style.borderColor = '#C9A84C'
-            el.style.transform = 'translateY(0)'
+            el.style.boxShadow = 'none'
           }}>
             {t.la_sastreria.cta.btn_primary}
           </Link>
 
-          <Link href="/experiencia" className="mf-cta-btn" style={{
+          <Link href="/experiencia" className="mf-cta-btn mf-cta-btn-secondary" style={{
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',
@@ -141,19 +141,19 @@ export function SastreriaCTA() {
             textTransform:  'uppercase',
             textDecoration: 'none',
             border:         '1px solid rgba(255,255,255,0.3)',
-            transition:     'border-color .25s, color .25s, transform .2s',
+            transition:     'border-color .25s, color .25s, box-shadow .2s',
           }}
           onMouseEnter={e => {
             const el = e.currentTarget as HTMLElement
             el.style.borderColor = 'rgba(255,255,255,0.7)'
             el.style.color = '#FFFFFF'
-            el.style.transform = 'translateY(-2px)'
+            el.style.boxShadow = '0 8px 24px rgba(255,255,255,0.08)'
           }}
           onMouseLeave={e => {
             const el = e.currentTarget as HTMLElement
             el.style.borderColor = 'rgba(255,255,255,0.3)'
-            el.style.color = 'rgba(255,255,255,0.8)'
-            el.style.transform = 'translateY(0)'
+            el.style.color = 'rgba(255,255,255,0.85)'
+            el.style.boxShadow = 'none'
           }}>
             {t.la_sastreria.cta.btn_secondary}
           </Link>

@@ -55,19 +55,29 @@
     "title": "Experiencias Reales",
     "items": [
       {
-        "quote": "Nunca pensé que un traje pudiera cambiar la forma en que me percibo a mí mismo. Manuel entendió lo que yo necesitaba antes de que yo mismo lo supiera.",
-        "name": "Carlos M.",
-        "occasion": "Director General, Madrid"
+        "quote": "Una experiencia única. Manuel supo entender exactamente lo que necesitaba para mi evento. El traje quedó impecable, con un corte que realza la figura de una forma elegante y natural. Sin duda, la mejor sastrería de Madrid.",
+        "name": "Manuel Vale",
+        "occasion": "Cliente frecuente, Madrid"
       },
       {
-        "quote": "La experiencia del día de mi boda fue perfecta en cada detalle. El traje era exactamente lo que había soñado, y el proceso fue una experiencia en sí misma.",
-        "name": "Alejandro R.",
-        "occasion": "Boda, Sevilla"
+        "quote": "Llevaba años buscando un sastre que entendiera mi estilo. Desde la primera prueba supe que había acertado. La calidad del tejido, la precisión del corte y el trato personalizado son incomparables.",
+        "name": "Roberto S.",
+        "occasion": "Ejecutivo, Bilbao"
       },
       {
-        "quote": "Llevar un traje de Manuel Fernández es llevar confianza. Es difícil explicarlo, pero quien lo ha vivido lo entiende.",
-        "name": "Javier L.",
-        "occasion": "Empresario, Barcelona"
+        "quote": "Mi traje de boda fue una obra de arte. Cada detalle estaba cuidado al milímetro. Mi familia y mis invitados no dejaron de preguntarme dónde lo había hecho.",
+        "name": "Andrés G.",
+        "occasion": "Boda, Valencia"
+      },
+      {
+        "quote": "Profesionalidad, elegancia y un savoir-faire que ya no se encuentra. Manuel Fernández es un maestro en el verdadero sentido de la palabra. Volveré siempre.",
+        "name": "Luis F.",
+        "occasion": "Empresario, Marbella"
+      },
+      {
+        "quote": "El servicio de videollamada para clientes internacionales es excepcional. Me hicieron un traje a distancia con la misma perfección que si hubiera estado allí.",
+        "name": "Diego M.",
+        "occasion": "Cliente internacional, Londres"
       }
     ]
   },

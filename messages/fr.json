@@ -58,19 +58,29 @@
     "title": "Le mot de ceux qui nous ont choisis",
     "items": [
       {
-        "quote": "Je n'aurais jamais pensé qu'un costume puisse changer ma façon de me percevoir. Manuel a compris ce dont j'avais besoin avant même que je le sache moi-même.",
-        "name": "Carlos M.",
-        "occasion": "PDG, Madrid"
+        "quote": "Une expérience unique. Manuel a su comprendre exactement ce dont j'avais besoin pour mon événement. Le costume était impeccable, avec une coupe qui met en valeur la silhouette de façon élégante et naturelle. Sans aucun doute la meilleure tailleur de Madrid.",
+        "name": "Manuel Vale",
+        "occasion": "Client régulier, Madrid"
       },
       {
-        "quote": "L'expérience de mon jour de mariage était parfaite dans chaque détail. Le costume était exactement ce dont j'avais rêvé, et le processus était une expérience en soi.",
-        "name": "Alejandro R.",
-        "occasion": "Mariage, Séville"
+        "quote": "Je cherchais depuis des années un tailleur qui comprenne mon style. Dès le premier essayage, j'ai su que j'avais fait le bon choix. La qualité du tissu, la précision de la coupe et le service personnalisé sont inégalés.",
+        "name": "Roberto S.",
+        "occasion": "Cadre, Bilbao"
       },
       {
-        "quote": "Porter un costume Manuel Fernández, c'est porter la confiance. C'est difficile à expliquer, mais quiconque l'a vécu comprend.",
-        "name": "Javier L.",
-        "occasion": "Entrepreneur, Barcelone"
+        "quote": "Mon costume de mariage était une œuvre d'art. Chaque détail était soigné au millimètre. Ma famille et mes invités n'ont cessé de me demander où je l'avais fait faire.",
+        "name": "Andrés G.",
+        "occasion": "Mariage, Valence"
+      },
+      {
+        "quote": "Professionnalisme, élégance et un savoir-faire qu'on ne trouve plus. Manuel Fernández est un maître dans le vrai sens du terme. Je reviendrai toujours.",
+        "name": "Luis F.",
+        "occasion": "Entrepreneur, Marbella"
+      },
+      {
+        "quote": "Le service de visioconférence pour les clients internationaux est exceptionnel. Ils m'ont fait un costume à distance avec la même perfection que si j'avais été là.",
+        "name": "Diego M.",
+        "occasion": "Client international, Londres"
       }
     ]
   },

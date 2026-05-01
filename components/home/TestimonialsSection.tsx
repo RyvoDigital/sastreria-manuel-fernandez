@@ -8,9 +8,11 @@ const PHOTOS = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah',
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/photos/mint-jacket-madrid_igacjj',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471066/photos/others/IMG_0808_oo35om',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471068/photos/others/IMG_0416_brafs7',
 ]
 
-const TOTAL = 3
+const TOTAL = 5
 
 export function TestimonialsSection() {
   const { t } = useI18n()
@@ -137,7 +139,7 @@ export function TestimonialsSection() {
               color: '#C9A84C',
               letterSpacing: '0.05em',
               fontWeight: 600,
-            }}>★ 4.9/5</span>
+            }}>★ 5.0/5</span>
             <span style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.65rem',
