@@ -139,7 +139,7 @@ export function TestimonialsSection() {
               color: '#C9A84C',
               letterSpacing: '0.05em',
               fontWeight: 600,
-            }}>★ 5.0/5</span>
+            }}>★ 4.9/5</span>
             <span style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.65rem',
