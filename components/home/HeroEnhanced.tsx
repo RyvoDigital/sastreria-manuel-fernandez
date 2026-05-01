@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 import { Phone, MapPin, Calendar } from 'lucide-react'
 
 // Floating gold particles
@@ -127,6 +128,7 @@ function AnimatedGoldLine({ isVisible }: { isVisible: boolean }) {
 
 export function HeroEnhanced() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const heroRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -266,16 +268,16 @@ export function HeroEnhanced() {
           maxWidth: 'var(--container-max)',
           margin: '0 auto',
           display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
+          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isMobile ? 'flex-start' : 'flex-end',
+          justifyContent: isMobile ? 'flex-end' : 'space-between',
           transform: `translate(${mousePosition.x * -0.3}px, ${mousePosition.y * -0.3}px)`,
           transition: 'transform 0.3s ease-out',
           transformStyle: 'preserve-3d',
         }}
       >
         {/* Left Side: Text Content */}
-        <div style={{ textAlign: 'left', maxWidth: '600px' }}>
+        <div style={{ textAlign: 'left', maxWidth: '600px', marginBottom: isMobile ? '1.5rem' : 0 }}>
           {/* Label with character animation */}
           <div 
             className="animate-in"
@@ -362,12 +364,12 @@ export function HeroEnhanced() {
             display: 'flex',
             flexDirection: 'column',
             gap: '1rem',
-            alignItems: 'flex-end',
+            alignItems: isMobile ? 'flex-start' : 'flex-end',
             opacity: 0,
             paddingBottom: '0.5rem',
           }}
         >
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <MagneticButton href="/contacto" primary>
               <Calendar size={16} />
               {t.hero.cta_book}

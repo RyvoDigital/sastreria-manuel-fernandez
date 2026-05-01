@@ -78,7 +78,7 @@ export function TrajeEmpiezaSection() {
       style={{
         background: '#FFFFFF',
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: '45fr 55fr',
         minHeight: '90vh',
         overflow: 'hidden',
       }}

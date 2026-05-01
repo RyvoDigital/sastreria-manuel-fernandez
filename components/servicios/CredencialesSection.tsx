@@ -6,6 +6,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, Star, Target, Crown, Scissors, Gem, Layers, Sparkles, Ruler } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -48,6 +49,7 @@ const StatItem = ({ value, label }: { value: string; label: string }) => (
 
 export function CredencialesSection() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const c = t.servicios.credenciales
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -91,7 +93,7 @@ export function CredencialesSection() {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+        gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1fr) minmax(0, 1fr)',
         gap: 'clamp(2.5rem, 5vw, 6rem)',
         alignItems: 'center',
         position: 'relative', zIndex: 1,

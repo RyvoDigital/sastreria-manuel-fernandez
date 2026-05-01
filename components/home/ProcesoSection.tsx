@@ -104,7 +104,7 @@ function StepBlock({ num, title, body, image, imageLeft, bg }: StepProps) {
       style={{
         position:  'relative',
         display:   'grid',
-        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+        gridTemplateColumns: isMobile ? '1fr' : '45fr 55fr',
         minHeight: isMobile ? 'auto' : '88vh',
         background: bg,
         overflow:  'hidden',
