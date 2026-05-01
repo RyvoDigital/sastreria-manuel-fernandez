@@ -188,7 +188,9 @@
     "espacio": {
       "label": "Lo Spazio",
       "title": "Dove Nasce l'Abito",
-      "description": "Un laboratorio privato a Madrid dove ogni visita è un'esperienza curata con la stessa attenzione del capo creato al suo interno."
+      "description": "Un laboratorio privato a Madrid dove ogni visita è un'esperienza curata con la stessa attenzione del capo creato al suo interno.",
+      "subtitle": "Sartoria",
+      "body": "Scoprirai un luogo pieno di tradizione, eleganza, distinzione e innovazione. Qui, ti faremo scoprire la passione dell'abbigliamento su misura."
     },
     "filosofia": {
       "label": "La Filosofia",
@@ -380,6 +382,11 @@
     "hero": {
       "label": "Sastrería Manuel Fernández · Matrimoni & Cerimonie",
       "title": "L'Abito per il Giorno Più Importante"
+    },
+    "te_casas": {
+      "label": "TI SPOSI?",
+      "p1": "Sappiamo che arrivi con la massima emozione per creare i tuoi capi per la foto che appendi in casa per tutta la vita, quella che i tuoi nipoti vedranno e i tuoi amici apprezzeranno.",
+      "p2": "Per questo vogliamo accompagnarti in questo processo, renderlo piacevole e farti godere, semplicemente."
     },
     "statement": {
       "label": "Matrimoni & Cerimonie",

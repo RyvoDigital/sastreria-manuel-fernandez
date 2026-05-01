@@ -181,7 +181,9 @@
     "espacio": {
       "label": "The Space",
       "title": "Where the Suit is Born",
-      "description": "A private workshop in Madrid where every visit is an experience as carefully considered as the garment created within it."
+      "description": "A private workshop in Madrid where every visit is an experience as carefully considered as the garment created within it.",
+      "subtitle": "Tailoring",
+      "body": "You will discover a place full of tradition, elegance, distinction and innovation. Here, we will make you discover the passion of bespoke dressing."
     },
     "filosofia": {
       "label": "The Philosophy",
@@ -345,6 +347,11 @@
     "hero": {
       "label": "Sastrería Manuel Fernández · Weddings & Ceremony",
       "title": "The Suit for the Most Important Day"
+    },
+    "te_casas": {
+      "label": "ARE YOU GETTING MARRIED?",
+      "p1": "We know you come with the greatest excitement to create your garments for the photo that will hang in your home for a lifetime, the one your grandchildren will see and your friends will appreciate.",
+      "p2": "That's why we want to accompany you in this process, make it pleasant, and let you simply enjoy."
     },
     "statement": {
       "label": "Weddings & Ceremony",

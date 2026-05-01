@@ -181,7 +181,9 @@
     "espacio": {
       "label": "El Espacio",
       "title": "Donde Nace el Traje",
-      "description": "Un taller privado en Madrid donde cada visita es una experiencia tan cuidada como la prenda que se crea en él."
+      "description": "Un taller privado en Madrid donde cada visita es una experiencia tan cuidada como la prenda que se crea en él.",
+      "subtitle": "Sastrería",
+      "body": "Descubrirás un lugar lleno de tradición, elegancia, distinción e innovación. Aquí, te haremos descubrir la pasión de vestir a medida."
     },
     "filosofia": {
       "label": "La Filosofía",
@@ -345,6 +347,11 @@
     "hero": {
       "label": "Sastrería Manuel Fernández · Bodas & Ceremonia",
       "title": "El Traje del Día Más Importante"
+    },
+    "te_casas": {
+      "label": "¿TE CASAS?",
+      "p1": "Sabemos que vienes con la mayor ilusión para crear tus prendas para la foto que colgará en tu casa durante toda la vida, la que verán tus nietos y apreciarán tus amigos.",
+      "p2": "Por eso, queremos acompañarte en este proceso, hacerlo placentero y que tú, solo disfrutes."
     },
     "statement": {
       "label": "Bodas & Ceremonia",

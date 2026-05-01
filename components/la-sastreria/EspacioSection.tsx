@@ -173,9 +173,30 @@ export function EspacioSection() {
             fontSize:   'clamp(0.85rem, 1.3vw, 1rem)',
             lineHeight:  1.85,
             color:      'rgba(255,255,255,0.6)',
-            margin:      0,
+            margin:      '0 0 1.6rem',
           }}>
             {t.la_sastreria.espacio.description}
+          </p>
+
+          <p className="mf-esp-text" style={{
+            fontFamily: 'var(--font-serif)',
+            fontStyle: 'italic',
+            fontSize:   'clamp(1.1rem, 1.6vw, 1.35rem)',
+            lineHeight:  1.6,
+            color:      '#C9A84C',
+            margin:      '0 0 0.6rem',
+          }}>
+            {t.la_sastreria.espacio.subtitle}
+          </p>
+
+          <p className="mf-esp-text" style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize:   'clamp(0.85rem, 1.3vw, 1rem)',
+            lineHeight:  1.85,
+            color:      'rgba(255,255,255,0.6)',
+            margin:      0,
+          }}>
+            {t.la_sastreria.espacio.body}
           </p>
         </div>
       </div>
