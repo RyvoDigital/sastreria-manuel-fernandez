@@ -58,7 +58,7 @@ export function BodasHero() {
       {/* Layer 2: Central garment photo — OVER the huge background text */}
       <div style={{
         position: 'absolute',
-        top: '8%',
+        top: 'clamp(100px, 14vh, 160px)',
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 2,
