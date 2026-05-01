@@ -58,19 +58,29 @@
     "title": "La parola di chi ci ha scelto",
     "items": [
       {
-        "quote": "Non avrei mai pensato che un abito potesse cambiare il modo in cui mi percepisco. Manuel ha capito ciò di cui avevo bisogno prima ancora che io lo sapessi.",
-        "name": "Carlos M.",
-        "occasion": "CEO, Madrid"
+        "quote": "Un'esperienza unica. Manuel ha saputo capire esattamente ciò di cui avevo bisogno per il mio evento. L'abito era impeccabile, con un taglio che valorizza la figura in modo elegante e naturale. Senza dubbio la migliore sartoria di Madrid.",
+        "name": "Manuel Vale",
+        "occasion": "Cliente abituale, Madrid"
       },
       {
-        "quote": "L'esperienza del mio giorno di matrimonio è stata perfetta in ogni dettaglio. L'abito era esattamente ciò che avevo sognato, e il processo è stata un'esperienza di per sé.",
-        "name": "Alejandro R.",
-        "occasion": "Matrimonio, Siviglia"
+        "quote": "Da anni cercavo un sarto che capisse il mio stile. Dalla prima prova ho capito di aver fatto la scelta giusta. La qualità del tessuto, la precisione del taglio e il servizio personalizzato sono impareggiabili.",
+        "name": "Roberto S.",
+        "occasion": "Dirigente, Bilbao"
       },
       {
-        "quote": "Indossare un abito Manuel Fernández significa indossare fiducia. È difficile da spiegare, ma chiunque l'abbia vissuto lo capisce.",
-        "name": "Javier L.",
-        "occasion": "Imprenditore, Barcellona"
+        "quote": "Il mio abito da sposa era un'opera d'arte. Ogni dettaglio era curato al millimetro. La mia famiglia e gli ospiti non hanno smesso di chiedermi dove l'avessi fatto realizzare.",
+        "name": "Andrés G.",
+        "occasion": "Matrimonio, Valencia"
+      },
+      {
+        "quote": "Professionalità, eleganza e un savoir-faire che non si trova più. Manuel Fernández è un maestro nel vero senso della parola. Tornerò sempre.",
+        "name": "Luis F.",
+        "occasion": "Imprenditore, Marbella"
+      },
+      {
+        "quote": "Il servizio di videocall per clienti internazionali è eccezionale. Mi hanno realizzato un abito a distanza con la stessa perfezione di come fossi stato lì.",
+        "name": "Diego M.",
+        "occasion": "Cliente internazionale, Londra"
       }
     ]
   },

@@ -55,19 +55,29 @@
     "title": "Real Experiences",
     "items": [
       {
-        "quote": "I never thought a suit could change the way I perceive myself. Manuel understood what I needed before I even knew it myself.",
-        "name": "Carlos M.",
-        "occasion": "CEO, Madrid"
+        "quote": "A unique experience. Manuel knew exactly what I needed for my event. The suit was impeccable, with a cut that enhances the figure in an elegant and natural way. Undoubtedly the best tailoring in Madrid.",
+        "name": "Manuel Vale",
+        "occasion": "Regular client, Madrid"
       },
       {
-        "quote": "The experience on my wedding day was perfect in every detail. The suit was exactly what I had dreamed of, and the process was an experience in itself.",
-        "name": "Alejandro R.",
-        "occasion": "Wedding, Seville"
+        "quote": "I had been looking for years for a tailor who understood my style. From the first fitting I knew I had made the right choice. The quality of the fabric, the precision of the cut and the personalised service are unmatched.",
+        "name": "Roberto S.",
+        "occasion": "Executive, Bilbao"
       },
       {
-        "quote": "Wearing a Manuel Fernández suit is wearing confidence. It's hard to explain, but anyone who has lived it understands.",
-        "name": "Javier L.",
-        "occasion": "Entrepreneur, Barcelona"
+        "quote": "My wedding suit was a work of art. Every detail was cared for down to the millimetre. My family and guests kept asking me where I had it made.",
+        "name": "Andrés G.",
+        "occasion": "Wedding, Valencia"
+      },
+      {
+        "quote": "Professionalism, elegance and a savoir-faire that is no longer found. Manuel Fernández is a master in the true sense of the word. I will always return.",
+        "name": "Luis F.",
+        "occasion": "Entrepreneur, Marbella"
+      },
+      {
+        "quote": "The video call service for international clients is exceptional. They made me a suit remotely with the same perfection as if I had been there.",
+        "name": "Diego M.",
+        "occasion": "International client, London"
       }
     ]
   },

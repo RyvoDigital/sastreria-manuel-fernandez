@@ -71,7 +71,7 @@ export function SuitShowcaseSection() {
         }}>
           {/* Main Image */}
           <Image
-            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797518/photos/showroom-jackets_n55sfk"
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471067/photos/others/IMG_1243_inl6ua.jpg"
             alt="Suit Detail Showcase"
             fill
             style={{
