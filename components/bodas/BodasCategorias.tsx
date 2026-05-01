@@ -80,7 +80,7 @@ export function BodasCategorias() {
               borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
               overflow: 'hidden',
               cursor: 'default',
-              transition: 'transform 0.4s ease, box-shadow 0.4s ease',
+              transition: 'box-shadow 0.4s ease',
               boxShadow: '0 20px 60px rgba(10,22,40,0.15)',
             }}
             onMouseEnter={e => {

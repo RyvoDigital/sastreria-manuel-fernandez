@@ -53,9 +53,9 @@ const CSS = `
     border-bottom: 1px solid rgba(196,163,90,0.18);
     color: var(--color-offwhite);
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 300;
-    padding: 1.2rem 0 0.45rem;
+    padding: 1.4rem 0 0.55rem;
     outline: none;
     transition: border-color 0.3s cubic-bezier(0.16,1,0.3,1);
     letter-spacing: 0.03em;
@@ -64,9 +64,9 @@ const CSS = `
   .mf-cf-input:focus { border-bottom-color: var(--color-gold); }
   .mf-cf-label {
     position: absolute;
-    left: 0; top: 1.2rem;
+    left: 0; top: 1.4rem;
     font-family: var(--font-sans);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(245,240,234,0.28);
@@ -78,7 +78,7 @@ const CSS = `
   }
   .mf-cf-input:focus + .mf-cf-label,
   .mf-cf-input:not(:placeholder-shown) + .mf-cf-label {
-    top: 0; font-size: 0.48rem; color: var(--color-gold);
+    top: 0; font-size: 0.58rem; color: var(--color-gold);
   }
   .mf-cf-textarea { resize: none; min-height: 64px; }
 
@@ -88,10 +88,10 @@ const CSS = `
     border: 1px solid rgba(196,163,90,0.28);
     color: rgba(245,240,234,0.55);
     font-family: var(--font-sans);
-    font-size: 0.58rem;
+    font-size: 0.78rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding: 0.72rem 2rem;
+    padding: 0.85rem 2.2rem;
     cursor: pointer;
     transition: border-color .25s, color .25s, transform .2s;
   }
@@ -237,7 +237,7 @@ export function ContactPage() {
               style={{
                 position: 'absolute', bottom: '5.2rem', left: '2.2rem', right: '3rem',
                 zIndex: 3, pointerEvents: 'none',
-                fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
+                fontFamily: 'var(--font-serif)', fontSize: 'clamp(1rem, 1.2vw, 1.15rem)',
                 fontStyle: 'italic', lineHeight: 1.65, color: 'rgba(245,240,234,0.42)',
               }}
             >
@@ -252,11 +252,11 @@ export function ContactPage() {
             fontFamily: 'var(--font-sans)', fontVariantNumeric: 'tabular-nums',
             pointerEvents: 'none',
           }}>
-            <span style={{ color: 'var(--color-gold)', fontSize: '0.8rem' }}>
+            <span style={{ color: 'var(--color-gold)', fontSize: '0.95rem' }}>
               {String(photoIndex + 1).padStart(2, '0')}
             </span>
-            <span style={{ color: 'rgba(196,163,90,0.25)', fontSize: '0.58rem', margin: '0 0.15rem' }}>/</span>
-            <span style={{ color: 'rgba(245,240,234,0.22)', fontSize: '0.65rem' }}>
+            <span style={{ color: 'rgba(196,163,90,0.25)', fontSize: '0.72rem', margin: '0 0.15rem' }}>/</span>
+            <span style={{ color: 'rgba(245,240,234,0.22)', fontSize: '0.78rem' }}>
               {String(PHOTOS.length).padStart(2, '0')}
             </span>
           </div>
@@ -286,7 +286,7 @@ export function ContactPage() {
 
           {/* Section label */}
           <div className="mf-ci" style={{
-            fontFamily: 'var(--font-sans)', fontSize: '0.68rem',
+            fontFamily: 'var(--font-sans)', fontSize: '0.82rem',
             letterSpacing: '0.34em', textTransform: 'uppercase',
             color: 'rgba(196,163,90,0.55)', marginBottom: '0.9rem',
           }}>
@@ -311,7 +311,7 @@ export function ContactPage() {
 
           {/* Subheadline */}
           <p className="mf-ci" style={{
-            fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.8rem, 1vw, 0.92rem)',
+            fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.05rem, 1.3vw, 1.2rem)',
             fontStyle: 'italic', lineHeight: 1.7, color: 'rgba(245,240,234,0.4)',
             marginBottom: '1.8rem',
           }}>
@@ -330,7 +330,7 @@ export function ContactPage() {
                 <Icon size={11} strokeWidth={1.5} style={{ color: 'var(--color-gold)', marginTop: '3px', flexShrink: 0, opacity: 0.6 }} />
                 <div>
                   <div style={{
-                    fontFamily: 'var(--font-sans)', fontSize: '0.52rem',
+                    fontFamily: 'var(--font-sans)', fontSize: '0.7rem',
                     letterSpacing: '0.22em', textTransform: 'uppercase',
                     color: 'rgba(196,163,90,0.4)', marginBottom: '2px',
                   }}>
@@ -338,7 +338,7 @@ export function ContactPage() {
                   </div>
                   {href ? (
                     <a href={href} style={{
-                      fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 300,
+                      fontFamily: 'var(--font-sans)', fontSize: '0.95rem', fontWeight: 300,
                       color: 'rgba(245,240,234,0.58)', textDecoration: 'none',
                       transition: 'color .2s',
                     }}
@@ -348,7 +348,7 @@ export function ContactPage() {
                     </a>
                   ) : (
                     <span style={{
-                      fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 300,
+                      fontFamily: 'var(--font-sans)', fontSize: '0.95rem', fontWeight: 300,
                       color: 'rgba(245,240,234,0.58)',
                     }}>
                       {value}
@@ -367,7 +367,7 @@ export function ContactPage() {
                 display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
                 padding: '0.75rem 1.8rem',
                 background: 'var(--color-gold)', color: '#080808',
-                fontFamily: 'var(--font-sans)', fontSize: '0.72rem',
+                fontFamily: 'var(--font-sans)', fontSize: '0.88rem',
                 letterSpacing: '0.22em', textTransform: 'uppercase',
                 fontWeight: 600,
                 textDecoration: 'none',
@@ -397,7 +397,7 @@ export function ContactPage() {
           {/* Form */}
           <div className="mf-ci">
             <div style={{
-              fontFamily: 'var(--font-sans)', fontSize: '0.58rem',
+              fontFamily: 'var(--font-sans)', fontSize: '0.78rem',
               letterSpacing: '0.28em', textTransform: 'uppercase',
               color: 'rgba(245,240,234,0.25)', marginBottom: '1.4rem',
             }}>
@@ -410,7 +410,7 @@ export function ContactPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 style={{
-                  fontFamily: 'var(--font-serif)', fontSize: '0.95rem',
+                  fontFamily: 'var(--font-serif)', fontSize: '1.1rem',
                   fontStyle: 'italic', color: 'var(--color-gold)', lineHeight: 1.7,
                 }}
               >
