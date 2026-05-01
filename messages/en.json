@@ -144,7 +144,14 @@
       "label": "The Master",
       "quote": "A suit is not finished when the last stitch is sewn. It is finished when the person wearing it recognises in it a better version of themselves.",
       "attribution": "Manuel Fernández, Master Tailor",
-      "bio": "With decades dedicated to artisan bespoke tailoring, Manuel Fernández has dressed executives, grooms and men at their most important moments. His tailoring shop in Madrid is, above all, a space for listening where each garment is built from scratch."
+      "p1": "Manuel Fernández has more than 40 years of experience in artisan tailoring, dedicated to the design and making of all types of bespoke garments. Specialised in ceremonial attire, his style is distinguished by a precise, personal and recognisable cut, where classic elegance is interpreted with its own character.",
+      "p2": "His work reflects a savoir-faire inherited and perfected throughout a lifetime, combined with a contemporary outlook that projects tailoring towards the future. Each garment is born from a deep knowledge of the craft, proportion and detail, achieving unique pieces that balance tradition, innovation and excellence."
+    },
+    "evelyn": {
+      "label": "The Workshop",
+      "p1": "Evelyn Fernández, trained in Advertising at the Complutense University of Madrid and specialised in the luxury universe through the Luxury Direction and Strategic Management programme at IE Business School, has developed her career between Madrid and Paris in projects linked to fashion, branding and the premium client.",
+      "p2": "With an international vision and a marked aesthetic sensitivity, she has driven different business initiatives within the lifestyle and luxury sector, consolidating an approach focused on exclusivity, experience and detail.",
+      "p3": "She currently leads Sastrería Manuel Fernández, positioning it as a benchmark in high-level artisan tailoring, aimed at a demanding and global clientele, with service in Spanish, English and French."
     },
     "oficio": {
       "label": "The Craft",

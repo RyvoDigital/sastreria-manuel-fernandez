@@ -147,7 +147,14 @@
       "label": "Le Maître",
       "quote": "Un costume n'est pas fini quand le dernier point est cousu. Il est fini quand la personne qui le porte y reconnaît une meilleure version d'elle-même.",
       "attribution": "Manuel Fernández, Maître Tailleur",
-      "bio": "Avec des décennies consacrées à la tailleur artisanale sur mesure, Manuel Fernández a habillé des dirigeants, des mariés et des hommes lors de leurs moments les plus importants. Son atelier de tailleur à Madrid est, avant tout, un espace d'écoute où chaque vêtement est construit de toutes pièces."
+      "p1": "Manuel Fernández compte plus de 40 ans d'expérience en tailleur artisanal, consacrés à la conception et à la confection de tous types de vêtements sur mesure bespoke. Spécialisé dans les tenues de cérémonie, son style se distingue par une coupe précise, personnelle et reconnaissable, où l'élégance classique est interprétée avec un caractère propre.",
+      "p2": "Son travail reflète un savoir-faire hérité et perfectionné tout au long d'une vie, combiné à un regard contemporain qui projette la tailleur vers l'avenir. Chaque vêtement naît d'une connaissance profonde du métier, de la proportion et du détail, réalisant des pièces uniques qui équilibrent tradition, innovation et excellence."
+    },
+    "evelyn": {
+      "label": "L'Atelier",
+      "p1": "Evelyn Fernández, formée en Publicité à l'Université Complutense de Madrid et spécialisée dans l'univers du luxe via le programme en Direction et Gestion Stratégique du Luxe de l'IE Business School, a développé sa carrière entre Madrid et Paris dans des projets liés à la mode, au branding et au client premium.",
+      "p2": "Avec une vision internationale et une sensibilité esthétique marquée, elle a impulsé différentes initiatives entrepreneuriales au sein du secteur lifestyle et luxe, consolidant une approche orientée vers l'exclusivité, l'expérience et le détail.",
+      "p3": "Elle dirige actuellement la Sastrería Manuel Fernández, la positionnant comme une référence en tailleur artisanal de haut niveau, destinée à une clientèle exigeante et globale, avec service en espagnol, anglais et français."
     },
     "oficio": {
       "label": "Le Métier",
