@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 export function BodasHero() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const c = t.bodas.hero
 
   return (
@@ -58,11 +60,11 @@ export function BodasHero() {
       {/* Layer 2: Central garment photo — OVER the huge background text */}
       <div style={{
         position: 'absolute',
-        top: 'clamp(100px, 14vh, 160px)',
+        top: isMobile ? 'clamp(80px, 18vh, 140px)' : 'clamp(100px, 14vh, 160px)',
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 2,
-        width: 'clamp(220px, 32vw, 420px)',
+        width: isMobile ? 'clamp(180px, 55vw, 280px)' : 'clamp(220px, 32vw, 420px)',
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -171,7 +173,7 @@ export function BodasHero() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
           <span style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: '0.52rem',
+            fontSize: isMobile ? '0.45rem' : '0.52rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.75)',
@@ -179,7 +181,7 @@ export function BodasHero() {
           <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.7 }} />
           <span style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: '0.52rem',
+            fontSize: isMobile ? '0.45rem' : '0.52rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.75)',
@@ -192,13 +194,13 @@ export function BodasHero() {
               <div style={{
                 fontFamily: 'var(--font-serif)',
                 fontStyle: 'italic',
-                fontSize: '1.3rem',
+                fontSize: isMobile ? '1rem' : '1.3rem',
                 color: 'var(--color-offwhite)',
                 lineHeight: 1,
               }}>{s.val}</div>
               <div style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.45rem',
+                fontSize: isMobile ? '0.4rem' : '0.45rem',
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
                 color: 'rgba(196,163,90,0.5)',

@@ -4,11 +4,13 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function MaestroSection() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const sectionRef = useRef<HTMLElement>(null)
   const photoRef   = useRef<HTMLDivElement>(null)
 
@@ -60,8 +62,8 @@ export function MaestroSection() {
         background: '#0A1628',
         overflow:   'hidden',
         display:    'grid',
-        gridTemplateColumns: '45fr 55fr',
-        minHeight:  '100vh',
+        gridTemplateColumns: isMobile ? '1fr' : '45fr 55fr',
+        minHeight:  isMobile ? 'auto' : '100vh',
       }}
     >
       {/* ── PHOTO — LEFT ── */}
@@ -70,7 +72,7 @@ export function MaestroSection() {
         style={{
           position:   'relative',
           overflow:   'hidden',
-          minHeight:  '600px',
+          minHeight:  isMobile ? '50vh' : '600px',
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -96,7 +98,7 @@ export function MaestroSection() {
         display:        'flex',
         flexDirection:  'column',
         justifyContent: 'center',
-        padding:        'clamp(5rem, 10vh, 9rem) clamp(3rem, 6vw, 7rem)',
+        padding:        isMobile ? '3rem var(--container-padding)' : 'clamp(5rem, 10vh, 9rem) clamp(3rem, 6vw, 7rem)',
       }}>
 
         {/* Label */}

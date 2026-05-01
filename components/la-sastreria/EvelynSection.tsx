@@ -4,11 +4,13 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function EvelynSection() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const sectionRef  = useRef<HTMLElement>(null)
   const photoRef    = useRef<HTMLDivElement>(null)
   const photoImgRef = useRef<HTMLImageElement>(null)
@@ -81,7 +83,7 @@ export function EvelynSection() {
         maxWidth:            'var(--container-max)',
         margin:              '0 auto',
         display:             'grid',
-        gridTemplateColumns: '35fr 65fr',
+        gridTemplateColumns: isMobile ? '1fr' : '45fr 55fr',
         gap:                 'clamp(3rem, 6vw, 7rem)',
         alignItems:          'start',
       }}>
@@ -91,7 +93,7 @@ export function EvelynSection() {
           ref={photoRef}
           style={{
             position:   'relative',
-            height:     'clamp(28rem, 55vw, 52rem)',
+            height:     isMobile ? '50vh' : 'clamp(28rem, 55vw, 52rem)',
             overflow:   'hidden',
             clipPath:   'inset(0 0 0% 0)',
           }}
