@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { MoveHorizontal } from 'lucide-react'
@@ -9,33 +9,61 @@ export function BeforeAfterSlider() {
   const { t } = useI18n()
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  
-  // Motion values for smooth inertia
+
   const xPercent = useMotionValue(50)
   const springConfig = { stiffness: 300, damping: 30, restDelta: 0.01 }
   const smoothX = useSpring(xPercent, springConfig)
-  
+
+  /* Pre-compute the clipPath transform so it's not recreated every render */
+  const clipPathValue = useTransform(smoothX, (v: number) => `inset(0 ${100 - v}% 0 0)`)
+
   const lastInteractTime = useRef(Date.now())
 
-
-  const handleMove = (clientX: number) => {
+  const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return
     const rect = containerRef.current.getBoundingClientRect()
     const x = clientX - rect.left
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
     xPercent.set(percentage)
     lastInteractTime.current = Date.now()
-  }
+  }, [xPercent])
 
-  const handleMouseDown = () => setIsDragging(true)
-  const handleMouseUp = () => setIsDragging(false)
-  
-  // Auto-sliding effect when idle
+  const handleMouseDown = useCallback(() => setIsDragging(true), [])
+  const handleMouseUp = useCallback(() => setIsDragging(false), [])
+
+  /* Global mouse + touch handlers */
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => {
+      if (isDragging) handleMove(e.clientX)
+    }
+    const onTouchMove = (e: TouchEvent) => {
+      if (isDragging && e.touches[0]) {
+        e.preventDefault()
+        handleMove(e.touches[0].clientX)
+      }
+    }
+    const onEnd = () => setIsDragging(false)
+
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mouseup', onEnd)
+    window.addEventListener('touchmove', onTouchMove, { passive: false })
+    window.addEventListener('touchend', onEnd)
+    window.addEventListener('touchcancel', onEnd)
+
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseup', onEnd)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onEnd)
+      window.removeEventListener('touchcancel', onEnd)
+    }
+  }, [isDragging, handleMove])
+
+  /* Auto-sliding effect when idle */
   useEffect(() => {
     const interval = setInterval(() => {
       const idleTime = Date.now() - lastInteractTime.current
       if (idleTime > 5000 && !isDragging) {
-        // Subtle ping-pong animation
         const time = Date.now() / 2000
         const autoPos = 50 + Math.sin(time) * 15
         xPercent.set(autoPos)
@@ -43,20 +71,6 @@ export function BeforeAfterSlider() {
     }, 50)
     return () => clearInterval(interval)
   }, [isDragging, xPercent])
-
-  useEffect(() => {
-    const handleGlobalMouseUp = () => setIsDragging(false)
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      if (isDragging) handleMove(e.clientX)
-    }
-    
-    window.addEventListener('mouseup', handleGlobalMouseUp)
-    window.addEventListener('mousemove', handleGlobalMouseMove)
-    return () => {
-      window.removeEventListener('mouseup', handleGlobalMouseUp)
-      window.removeEventListener('mousemove', handleGlobalMouseMove)
-    }
-  }, [isDragging])
 
   return (
     <section style={{
@@ -125,11 +139,15 @@ export function BeforeAfterSlider() {
             overflow: 'hidden',
             background: 'rgba(0,0,0,0.3)',
             border: '1px solid rgba(201,168,76,0.2)',
+            touchAction: 'none',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
           }}
           onMouseDown={handleMouseDown}
-          onTouchMove={(e) => handleMove(e.touches[0].clientX)}
-          onTouchStart={handleMouseDown}
-          onTouchEnd={handleMouseUp}
+          onTouchStart={(e) => {
+            handleMouseDown()
+            if (e.touches[0]) handleMove(e.touches[0].clientX)
+          }}
         >
           {/* Background Images */}
           <div style={{ position: 'absolute', inset: 0 }}>
@@ -141,7 +159,9 @@ export function BeforeAfterSlider() {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                pointerEvents: 'none',
               }}
+              draggable={false}
             />
           </div>
 
@@ -152,7 +172,7 @@ export function BeforeAfterSlider() {
               inset: 0,
               zIndex: 1,
               overflow: 'hidden',
-              clipPath: useTransform(smoothX, (v: number) => `inset(0 ${100 - v}% 0 0)`),
+              clipPath: clipPathValue,
             }}
           >
             <img
@@ -162,7 +182,9 @@ export function BeforeAfterSlider() {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                pointerEvents: 'none',
               }}
+              draggable={false}
             />
           </motion.div>
 
@@ -179,6 +201,7 @@ export function BeforeAfterSlider() {
             textTransform: 'uppercase',
             color: '#FFFFFF',
             zIndex: 2,
+            pointerEvents: 'none',
           }}>
             {t.before_after.before}
           </div>
@@ -196,6 +219,7 @@ export function BeforeAfterSlider() {
             textTransform: 'uppercase',
             color: '#000000',
             zIndex: 2,
+            pointerEvents: 'none',
           }}>
             {t.before_after.after}
           </div>
@@ -208,9 +232,10 @@ export function BeforeAfterSlider() {
             left: smoothX,
             width: '2px',
             background: '#C9A84C',
-            transform: 'translateX(-50%)',
+            x: '-50%',
             zIndex: 3,
             boxShadow: '0 0 15px rgba(201,168,76,0.6)',
+            pointerEvents: 'none',
           }}>
             {/* Slider Handle */}
             <div style={{
@@ -218,15 +243,27 @@ export function BeforeAfterSlider() {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              width: '40px',
-              height: '40px',
+              width: '44px',
+              height: '44px',
               borderRadius: '50%',
               background: '#C9A84C',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-            }}>
+              pointerEvents: 'auto',
+              cursor: isDragging ? 'grabbing' : 'grab',
+            }}
+            onMouseDown={(e) => {
+              e.stopPropagation()
+              handleMouseDown()
+            }}
+            onTouchStart={(e) => {
+              e.stopPropagation()
+              handleMouseDown()
+              if (e.touches[0]) handleMove(e.touches[0].clientX)
+            }}
+            >
               <MoveHorizontal size={20} color="#000000" />
             </div>
           </motion.div>
