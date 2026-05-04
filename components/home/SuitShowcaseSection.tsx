@@ -90,7 +90,14 @@ export function SuitShowcaseSection() {
           />
 
           {/* Desktop Hotspots */}
-          {!isMobile && HOTSPOTS.map((spot) => (
+          {!isMobile && HOTSPOTS.map((spot) => {
+            const xPct = parseFloat(spot.x)
+            // Right-side hotspots: shift card left so it stays inside container
+            const isRight = xPct > 62
+            const isLeft  = xPct < 38
+            const cardWidth = 240
+
+            return (
             <div
               key={spot.id}
               style={{
@@ -145,7 +152,7 @@ export function SuitShowcaseSection() {
                 )}
               </motion.button>
 
-              {/* Detail Card */}
+              {/* Detail Card — shifts left/right to stay inside image */}
               <AnimatePresence>
                 {activeId === spot.id && hs[spot.id] && (
                   <motion.div
@@ -155,9 +162,10 @@ export function SuitShowcaseSection() {
                     style={{
                       position: 'absolute',
                       top: '40px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      width: '240px',
+                      left: isRight ? 'auto' : isLeft ? '0' : '50%',
+                      right: isRight ? '0' : 'auto',
+                      transform: isRight || isLeft ? 'none' : 'translateX(-50%)',
+                      width: `${cardWidth}px`,
                       background: '#FFFFFF',
                       padding: '1.25rem',
                       borderRadius: '8px',
@@ -188,8 +196,9 @@ export function SuitShowcaseSection() {
                     <div style={{
                       position: 'absolute',
                       top: '-6px',
-                      left: '50%',
-                      transform: 'translateX(-50%) rotate(45deg)',
+                      left: isRight ? 'auto' : isLeft ? '18px' : '50%',
+                      right: isRight ? '18px' : 'auto',
+                      transform: isRight || isLeft ? 'rotate(45deg)' : 'translateX(-50%) rotate(45deg)',
                       width: '12px',
                       height: '12px',
                       background: '#FFFFFF',
@@ -198,7 +207,8 @@ export function SuitShowcaseSection() {
                 )}
               </AnimatePresence>
             </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Mobile: stacked detail cards */}
