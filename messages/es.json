@@ -86,21 +86,29 @@
     "title": "Detalles que marcan la diferencia",
     "hint": "Explora los puntos clave de nuestra confección artesanal",
     "hotspots": {
+      "lining": {
+        "title": "Forro personalizado",
+        "desc": "Un forro único, elegido por el cliente, que solo él conoce. Un secreto de lujo escondido a la vista."
+      },
+      "label": {
+        "title": "Etiqueta artesano",
+        "desc": "La insignia Loro Piana Master Artisan que certifica cada puntada hecha a mano."
+      },
+      "waistcoat": {
+        "title": "Chaleco a medida",
+        "desc": "Confeccionado desde cero para ajustarse perfectamente al torso, sin costuras apresuradas."
+      },
+      "pocket": {
+        "title": "Pañuelo de bolsillo",
+        "desc": "El detalle final que eleva el conjunto. Puro lino o seda, doblado con intención."
+      },
       "lapel": {
         "title": "Solapa cosida a mano",
         "desc": "Puntadas invisibles que dan estructura y flexibilidad natural a la solapa."
       },
-      "buttons": {
-        "title": "Botones de asta natural",
-        "desc": "Botones seleccionados uno a uno por su veteado y durabilidad excepcional."
-      },
-      "shoulder": {
-        "title": "Hombro napolitano",
-        "desc": "Caída natural sin hombreras para una comodidad superior y estilo elegante."
-      },
       "fabric": {
-        "title": "Lana Super 150s",
-        "desc": "Tejido italiano de máxima finura con un brillo natural y tacto seda."
+        "title": "Tejido premium",
+        "desc": "Lana de las mejores casas europeas, seleccionada por su caída, brillo y durabilidad."
       }
     }
   },

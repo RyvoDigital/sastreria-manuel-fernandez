@@ -89,21 +89,29 @@
     "title": "Des détails qui font la différence",
     "hint": "Explorez les points clés de notre tailleur artisanal",
     "hotspots": {
+      "lining": {
+        "title": "Doublure personnalisée",
+        "desc": "Une doublure unique, choisie par le client, connue de lui seul. Un secret de luxe caché."
+      },
+      "label": {
+        "title": "Étiquette artisan",
+        "desc": "Le badge Loro Piana Master Artisan qui certifie chaque point cousu main."
+      },
+      "waistcoat": {
+        "title": "Gilet sur mesure",
+        "desc": "Conçu sur mesure pour s'ajuster parfaitement au torse, sans coutures précipitées."
+      },
+      "pocket": {
+        "title": "Pochette de costume",
+        "desc": "La touche finale qui élève l'ensemble. Pur lin ou soie, plié avec intention."
+      },
       "lapel": {
         "title": "Revers cousu main",
         "desc": "Points invisibles qui donnent une structure naturelle et une flexibilité au revers."
       },
-      "buttons": {
-        "title": "Boutons en corne naturelle",
-        "desc": "Boutons sélectionnés un par un pour leur grain et leur durabilité exceptionnelle."
-      },
-      "shoulder": {
-        "title": "Épaule napolitaine",
-        "desc": "Drapé naturel sans rembourrage pour un confort supérieur et un style élégant."
-      },
       "fabric": {
-        "title": "Laine Super 150s",
-        "desc": "Tissu italien fin avec un éclat naturel et une touche soyeuse."
+        "title": "Tissu premium",
+        "desc": "Laine des meilleures filatures européennes, sélectionnée pour sa tenue, son éclat et sa durabilité."
       }
     }
   },
