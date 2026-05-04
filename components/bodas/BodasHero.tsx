@@ -91,7 +91,7 @@ export function BodasHero() {
               style={{
                 width: '100%',
                 height: '100%',
-                maxHeight: '60vh',
+                maxHeight: '72vh',
                 objectFit: 'cover',
                 objectPosition: 'top center',
                 borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
