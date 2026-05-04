@@ -93,7 +93,7 @@ export function CredencialesSection() {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+        gridTemplateColumns: isMobile ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) minmax(0, 1fr)',
         gap: 'clamp(2.5rem, 5vw, 6rem)',
         alignItems: 'center',
         position: 'relative', zIndex: 1,
