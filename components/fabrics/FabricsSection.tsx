@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -19,6 +19,14 @@ const CONTENT_BLOCKS = [
 export function FabricsSection() {
   const { t } = useI18n()
   const sectionRef = useRef<HTMLElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   useEffect(() => {
     const el = sectionRef.current
@@ -99,8 +107,8 @@ export function FabricsSection() {
         {/* Content Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(6, 1fr)',
-          gap: '1.5rem',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(6, 1fr)',
+          gap: isMobile ? '1rem' : '1.5rem',
           marginBottom: '3rem',
         }}>
           {CONTENT_BLOCKS.map((block) => {
@@ -114,9 +122,9 @@ export function FabricsSection() {
                 whileHover={{ y: -8 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 style={{
-                  gridColumn: `span ${block.span}`,
-                  minHeight: '380px',
-                  padding: '3rem 2.5rem',
+                  gridColumn: isMobile ? 'span 1' : `span ${block.span}`,
+                  minHeight: isMobile ? '280px' : '380px',
+                  padding: isMobile ? '2rem 1.5rem' : '3rem 2.5rem',
                   background: '#0B1522',
                   border: '1px solid rgba(201,168,76,0.1)',
                   position: 'relative',
@@ -176,7 +184,7 @@ export function FabricsSection() {
                   {/* Title */}
                   <h3 style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.8rem',
+                    fontSize: isMobile ? '1.5rem' : '1.8rem',
                     fontWeight: 400,
                     color: '#FFFFFF',
                     margin: '0 0 1rem 0',
@@ -188,7 +196,7 @@ export function FabricsSection() {
                   {/* Description */}
                   <p style={{
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '0.9rem',
+                    fontSize: isMobile ? '0.85rem' : '0.9rem',
                     lineHeight: 1.6,
                     color: 'rgba(255,255,255,0.5)',
                     margin: 0,

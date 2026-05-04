@@ -49,11 +49,12 @@ export function TestimonialsSection() {
   const cardTranslateX = reducedMotion ? 0 : isMobile ? 110 : 350
   const cardRotationY = reducedMotion ? 0 : isMobile ? 0 : 45
   const cardTranslateZ = reducedMotion ? 0 : isMobile ? 0 : -300
-  const stageHeight = isMobile ? '42vh' : '48vh'
-  const cardPadding = isMobile ? '1.5rem' : '3rem'
-  const cardWidth = isMobile ? 'min(320px, 88vw)' : 'min(500px, 85vw)'
-  const cardGap = isMobile ? '1rem' : '2rem'
-  const photoSize = isMobile ? 48 : 64
+  const stageHeight = isMobile ? '46vh' : '52vh'
+  const cardPadding = isMobile ? '1.5rem' : '2.5rem'
+  const cardWidth = isMobile ? 'min(360px, 92vw)' : 'min(580px, 55vw)'
+  const cardHeight = isMobile ? '380px' : '440px'
+  const cardGap = isMobile ? '0.875rem' : '1.25rem'
+  const photoSize = isMobile ? 44 : 56
   const springStiffness = reducedMotion ? 300 : isMobile ? 140 : 100
   const springDamping = reducedMotion ? 30 : isMobile ? 25 : 20
 
@@ -186,6 +187,7 @@ export function TestimonialsSection() {
                 style={{
                   position: 'absolute',
                   width: cardWidth,
+                  height: cardHeight,
                   background: 'rgba(5, 12, 20, 0.9)',
                   backdropFilter: 'blur(12px)',
                   border: `1px solid ${isActiveCard ? 'rgba(201,168,76,0.3)' : 'rgba(255,255,255,0.05)'}`,
@@ -196,6 +198,7 @@ export function TestimonialsSection() {
                   gap: cardGap,
                   boxShadow: isActiveCard ? '0 30px 60px rgba(0,0,0,0.5)' : 'none',
                   backfaceVisibility: isMobile ? 'visible' : 'hidden',
+                  overflow: 'hidden',
                 }}
               >
                 {/* Photo and Name */}
@@ -242,34 +245,60 @@ export function TestimonialsSection() {
                   </div>
                 </div>
 
-                {/* Quote */}
-                <blockquote style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: isMobile ? '1rem' : 'clamp(1.1rem, 1.5vw, 1.4rem)',
-                  lineHeight: 1.6,
-                  color: '#FFFFFF',
-                  fontStyle: 'italic',
-                  margin: 0,
+                {/* Quote — scrollable with fixed card height */}
+                <div style={{
+                  flex: 1,
+                  minHeight: 0,
                   position: 'relative',
-                  paddingLeft: isMobile ? '1rem' : '0',
+                  overflowY: 'auto',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
                 }}>
-                  <span style={{
-                    position: 'absolute',
-                    top: isMobile ? '-0.5rem' : '-1rem',
-                    left: isMobile ? '-0.3rem' : '-1.5rem',
-                    fontSize: isMobile ? '2rem' : '4rem',
-                    color: 'rgba(201,168,76,0.1)',
-                    lineHeight: 1,
-                  }}>"</span>
-                  {item.quote}
-                </blockquote>
+                  <style>{`
+                    .testimonial-quote::-webkit-scrollbar { display: none; }
+                  `}</style>
+                  <blockquote
+                    className="testimonial-quote"
+                    style={{
+                      fontFamily: 'var(--font-serif)',
+                      fontSize: isMobile ? '0.95rem' : 'clamp(1rem, 1.3vw, 1.25rem)',
+                      lineHeight: 1.6,
+                      color: '#FFFFFF',
+                      fontStyle: 'italic',
+                      margin: 0,
+                      position: 'relative',
+                      paddingLeft: isMobile ? '1rem' : '0',
+                    }}
+                  >
+                    <span style={{
+                      position: 'absolute',
+                      top: isMobile ? '-0.4rem' : '-0.8rem',
+                      left: isMobile ? '-0.3rem' : '-1.2rem',
+                      fontSize: isMobile ? '1.8rem' : '3rem',
+                      color: 'rgba(201,168,76,0.1)',
+                      lineHeight: 1,
+                    }}>"</span>
+                    {item.quote}
+                  </blockquote>
+                  {/* Fade gradient to indicate scrollable content */}
+                  <div style={{
+                    position: 'sticky',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: '28px',
+                    background: 'linear-gradient(to top, rgba(5,12,20,0.95), transparent)',
+                    pointerEvents: 'none',
+                    marginTop: '-28px',
+                  }} />
+                </div>
 
                 {/* Decorative accent */}
                 <div style={{
                   width: '30px',
                   height: '1px',
                   background: 'rgba(201,168,76,0.4)',
-                  marginTop: '0.5rem',
+                  flexShrink: 0,
                 }} />
               </motion.div>
             )

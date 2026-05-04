@@ -189,7 +189,7 @@ export function BodasHero() {
         </div>
         <div style={{ height: '1px', background: 'rgba(196,163,90,0.15)', marginBottom: '0.75rem' }} />
         <div style={{ display: 'flex', gap: '1.2rem' }}>
-          {[{ val: ' ', label: 'Est.' }, { val: '100%', label: 'A Mano' }].map((s) => (
+          {[{ val: '1', label: 'Exclusivo' }, { val: '100%', label: 'A Mano' }].map((s) => (
             <div key={s.label}>
               <div style={{
                 fontFamily: 'var(--font-serif)',
