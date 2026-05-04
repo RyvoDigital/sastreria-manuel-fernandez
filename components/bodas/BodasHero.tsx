@@ -79,11 +79,9 @@ export function BodasHero() {
             transition={{ duration: 0.9, delay: 0.4 }}
             style={{
               width: '100%',
-              maxWidth: '320px',
               margin: '0 auto',
               flex: 1,
-              display: 'flex',
-              alignItems: 'center',
+              minHeight: 0,
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -92,8 +90,8 @@ export function BodasHero() {
               alt="Traje de novio a medida — Bodas & Ceremonia"
               style={{
                 width: '100%',
-                height: 'auto',
-                maxHeight: '50vh',
+                height: '100%',
+                maxHeight: '60vh',
                 objectFit: 'cover',
                 objectPosition: 'top center',
                 borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
