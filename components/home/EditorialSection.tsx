@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -13,6 +13,14 @@ export function EditorialSection() {
   const { t } = useI18n()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -85,8 +93,8 @@ export function EditorialSection() {
           className="editorial-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(6, 1fr)',
-            gap: '1.5rem',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(6, 1fr)',
+            gap: isMobile ? '1rem' : '1.5rem',
           }}
         >
           {t.editorial.articles.map((article: any, index: number) => (
@@ -96,17 +104,17 @@ export function EditorialSection() {
               whileHover={{ y: -8 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               style={{
-                gridColumn: `span ${spans[index] || 2}`,
+                gridColumn: isMobile ? 'span 1' : `span ${spans[index] || 2}`,
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.5rem',
-                padding: '3rem 2.5rem',
+                gap: isMobile ? '1rem' : '1.5rem',
+                padding: isMobile ? '1.75rem 1.5rem' : '3rem 2.5rem',
                 background: index % 2 === 0 ? '#F9F7F2' : '#FFFFFF',
                 border: '1px solid rgba(10,22,40,0.05)',
                 position: 'relative',
                 cursor: 'pointer',
                 borderRadius: '4px',
-                minHeight: index === 4 ? 'auto' : '320px',
+                minHeight: isMobile ? 'auto' : index === 4 ? 'auto' : '320px',
                 justifyContent: 'center',
               }}
             >
@@ -118,20 +126,20 @@ export function EditorialSection() {
               }}>
                 <div style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.55rem',
+                  fontSize: isMobile ? '0.6rem' : '0.55rem',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   color: '#C9A84C',
                 }}>
                   {article.category}
                 </div>
-                <BookOpen size={14} style={{ color: 'rgba(201,168,76,0.5)' }} />
+                <BookOpen size={isMobile ? 16 : 14} style={{ color: 'rgba(201,168,76,0.5)' }} />
               </div>
 
               {/* Title */}
               <h3 style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: spans[index] === 4 ? '1.8rem' : '1.4rem',
+                fontSize: isMobile ? '1.3rem' : spans[index] === 4 ? '1.8rem' : '1.4rem',
                 fontWeight: 400,
                 color: '#0A1628',
                 lineHeight: 1.2,
@@ -144,7 +152,7 @@ export function EditorialSection() {
               {/* Excerpt */}
               <p style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.9rem',
+                fontSize: isMobile ? '0.85rem' : '0.9rem',
                 lineHeight: 1.7,
                 color: 'rgba(10,22,40,0.6)',
                 margin: 0,
@@ -160,11 +168,11 @@ export function EditorialSection() {
                 gap: '0.5rem',
                 color: '#0A1628',
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.65rem',
+                fontSize: isMobile ? '0.7rem' : '0.65rem',
                 fontWeight: 600,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                marginTop: '1rem',
+                marginTop: isMobile ? '0.5rem' : '1rem',
               }}>
                 {t.editorial.read_more} <ArrowRight size={12} />
               </div>
@@ -175,7 +183,7 @@ export function EditorialSection() {
                 bottom: '1rem',
                 right: '1rem',
                 fontFamily: 'var(--font-serif)',
-                fontSize: '4rem',
+                fontSize: isMobile ? '3rem' : '4rem',
                 color: 'rgba(201,168,76,0.03)',
                 pointerEvents: 'none',
               }}>

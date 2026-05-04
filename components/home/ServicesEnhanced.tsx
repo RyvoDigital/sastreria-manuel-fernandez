@@ -312,11 +312,6 @@ export function ServicesEnhanced() {
         .service-card:hover .arrow-icon {
           transform: translateX(4px);
         }
-        @media (max-width: 768px) {
-          .service-card {
-            grid-column: span 3 !important;
-          }
-        }
       `}</style>
     </section>
   )

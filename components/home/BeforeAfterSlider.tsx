@@ -16,6 +16,7 @@ export function BeforeAfterSlider() {
 
   /* Pre-compute the clipPath transform so it's not recreated every render */
   const clipPathValue = useTransform(smoothX, (v: number) => `inset(0 ${100 - v}% 0 0)`)
+  const leftPercent = useTransform(smoothX, (v: number) => `${v}%`)
 
   const lastInteractTime = useRef(Date.now())
 
@@ -229,7 +230,7 @@ export function BeforeAfterSlider() {
             position: 'absolute',
             top: 0,
             bottom: 0,
-            left: smoothX,
+            left: leftPercent,
             width: '2px',
             background: '#C9A84C',
             x: '-50%',
