@@ -4,11 +4,13 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function TrajeEmpiezaSection() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
@@ -78,15 +80,15 @@ export function TrajeEmpiezaSection() {
       style={{
         background: '#FFFFFF',
         display: 'grid',
-        gridTemplateColumns: '45fr 55fr',
-        minHeight: '90vh',
+        gridTemplateColumns: isMobile ? '1fr' : '45fr 55fr',
+        minHeight: isMobile ? 'auto' : '90vh',
         overflow: 'hidden',
       }}
     >
       {/* Image side */}
       <div
         ref={imageRef}
-        style={{ position: 'relative', overflow: 'hidden' }}
+        style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '45vh' : 'auto', order: isMobile ? 1 : 0 }}
       >
         <div
           className="parallax-img"
@@ -125,11 +127,12 @@ export function TrajeEmpiezaSection() {
       <div
         ref={textRef}
         style={{
-          padding: 'clamp(4rem, 8vw, 8rem) clamp(3rem, 6vw, 6rem)',
+          padding: isMobile ? 'clamp(2.5rem, 6vw, 4rem) var(--container-padding)' : 'clamp(4rem, 8vw, 8rem) clamp(3rem, 6vw, 6rem)',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
           background: '#FFFFFF',
+          order: isMobile ? 2 : 0,
         }}
       >
         {/* Label */}
@@ -195,17 +198,7 @@ export function TrajeEmpiezaSection() {
         </div>
       </div>
 
-      {/* Mobile: stack vertically */}
-      <style>{`
-        @media (max-width: 768px) {
-          section[data-section="traje"] {
-            grid-template-columns: 1fr;
-          }
-          section[data-section="traje"] > div:first-child {
-            min-height: 50vh;
-          }
-        }
-      `}</style>
+
     </section>
   )
 }
