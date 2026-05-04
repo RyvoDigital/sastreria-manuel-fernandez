@@ -110,7 +110,7 @@ export function Navigation() {
         </Link>
 
         {/* ── RIGHT CLUSTER ────────────────────────────────── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.5rem, 2vw, 1.25rem)', flexShrink: 0, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
 
           {/* CALL US BUTTON — Desktop only, persistent on all pages */}
           <a
@@ -483,6 +483,7 @@ export function Navigation() {
           <div style={{ 
             display: 'flex', 
             justifyContent: 'center',
+            flexWrap: 'wrap',
             gap: '0.75rem', 
             marginTop: '2rem',
           }}>

@@ -164,13 +164,19 @@ const CSS = `
   .mf-fx-fin { transform: rotate(90deg); color: rgba(245,240,234,0.08); font-family: var(--font-sans, sans-serif); font-size: 0.6rem; letter-spacing: 0.3em; }
 
   @media (max-width: 900px) {
+    .mf-fx-grid { padding: 0 1rem; }
     .mf-fx-content {
       grid-template-columns: 1fr; row-gap: 3vh;
       place-items: center;
+      padding: 0 1rem;
     }
-    .mf-fx-left, .mf-fx-right, .mf-fx-center { height: auto; }
+    .mf-fx-left, .mf-fx-right, .mf-fx-center { height: auto; overflow: visible; }
     .mf-fx-left, .mf-fx-right { justify-items: center; }
     .mf-fx-track { transform: none !important; }
+    .mf-fx-featured-title { font-size: clamp(2rem, 9vw, 3.5rem); }
+    .mf-fx-footer-title { font-size: clamp(1.8rem, 8vw, 3rem); }
+    .mf-fx-left-item.active,
+    .mf-fx-right-item.active { transform: none; padding-left: 0; padding-right: 0; }
   }
 `
 

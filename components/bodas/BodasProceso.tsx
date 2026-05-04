@@ -106,16 +106,18 @@ export function BodasProceso() {
         margin: '0 auto',
         position: 'relative',
       }}>
-        {/* Horizontal connector line */}
-        <div style={{
-          position: 'absolute',
-          top: '1.75rem',
-          left: '12.5%',
-          right: '12.5%',
-          height: '1px',
-          background: 'rgba(201,168,76,0.2)',
-          pointerEvents: 'none',
-        }} />
+        {/* Horizontal connector line (hidden on mobile 2-column layout) */}
+        {!isMobile && (
+          <div style={{
+            position: 'absolute',
+            top: '1.75rem',
+            left: '12.5%',
+            right: '12.5%',
+            height: '1px',
+            background: 'rgba(201,168,76,0.2)',
+            pointerEvents: 'none',
+          }} />
+        )}
 
         <div style={{
           display: 'grid',
