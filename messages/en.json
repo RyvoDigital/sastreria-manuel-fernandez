@@ -395,6 +395,39 @@
       "btn_secondary": "Our Story"
     }
   },
+  "configurador": {
+    "hero": {
+      "label": "Configurator",
+      "title": "Design the Suit You Are",
+      "subtitle": "Seven decisions. One irrepeatable garment. Our configurator guides you step by step to build the suit that expresses exactly who you are.",
+      "scroll": "Scroll"
+    },
+    "value": {
+      "label": "The Experience",
+      "title": "More than a form, a conversation with fabric.",
+      "body": "Every selection you make in the configurator has real consequences on the pattern, drape and character of your suit. From lapel to colour, every detail is designed so the result is an extension of your personality.",
+      "features": [
+        "7 steps covering every detail of the suit",
+        "Recommendations based on your occasion and style",
+        "Visual summary of all your choices",
+        "Personalised quote upon completion"
+      ]
+    },
+    "steps": {
+      "label": "The Process",
+      "title": "From idea to garment",
+      "subtitle": "Seven steps that transform your vision into a suit made to your measure.",
+      "descriptions": [
+        "Choose from exclusive fabrics: Prince of Wales, diplomacy stripe, solids and more.",
+        "Define the lapel, cut and fit of your jacket.",
+        "Classic or double-breasted: the waistcoat that completes your look.",
+        "Rise, belt, cuff: the details that make the difference.",
+        "Wedding, business or ceremony: the suit adapts to the moment.",
+        "From classic navy to bold burgundy.",
+        "Spring, winter or all year round: choose the ideal weight."
+      ]
+    }
+  },
   "footer": {
     "tagline": "Building identity through craftsmanship.",
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
