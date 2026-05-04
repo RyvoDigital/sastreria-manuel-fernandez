@@ -36,14 +36,14 @@ const DESKTOP_LAYOUT: React.CSSProperties[] = [
   { position: 'absolute', top: '8vh',    left: '72vw',   width: '18vw', height: '30vh' },
 ]
 
-/* Mobile: 6 images in scattered layout */
+/* Mobile: 1 center image + 5 orbit images */
 const MOBILE_LAYOUT: React.CSSProperties[] = [
-  { position: 'absolute', top: '8vh',  left: '4vw',  width: '44vw', height: '26vh' },
-  { position: 'absolute', top: '8vh',  left: '52vw', width: '44vw', height: '26vh' },
-  { position: 'absolute', top: '38vh', left: '4vw',  width: '44vw', height: '26vh' },
-  { position: 'absolute', top: '38vh', left: '52vw', width: '44vw', height: '26vh' },
-  { position: 'absolute', top: '68vh', left: '15vw', width: '70vw', height: '22vh' },
-  { position: 'absolute', top: '22vh', left: '30vw', width: '40vw', height: '20vh' },
+  { position: 'absolute', top: '20vh', left: '10vw', width: '80vw', height: '60vh' },  // 0: center/main
+  { position: 'absolute', top: '6vh',  left: '6vw',  width: '38vw', height: '20vh' },  // 1: top left
+  { position: 'absolute', top: '6vh',  left: '56vw', width: '38vw', height: '20vh' },  // 2: top right
+  { position: 'absolute', top: '82vh', left: '20vw', width: '60vw', height: '16vh' },  // 3: bottom
+  { position: 'absolute', top: '34vh', left: '4vw',  width: '28vw', height: '28vh' },  // 4: left
+  { position: 'absolute', top: '34vh', left: '68vw', width: '28vw', height: '28vh' },  // 5: right
 ]
 
 export function ZoomParallaxSection() {
