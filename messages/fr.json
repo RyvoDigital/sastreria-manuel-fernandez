@@ -539,14 +539,54 @@
     "lessons": "leçons"
   },
   "videollamada": {
-    "title": "Consultation Vidéo",
-    "subtitle": "Consultation personnalisée depuis le confort de votre domicile",
-    "duration": "Durée: 20-25 minutes",
-    "features": [
-      "Recommandation de tissus",
-      "Conseil couleur",
-      "Guide de style personnalisé"
-    ],
-    "cta": "Prendre Rendez-vous"
+    "hero": {
+      "label": "Visioconférence",
+      "title": "La Tailleur dans votre Salon",
+      "subtitle": "Une consultation personnalisée de 20 minutes avec nos experts. Du choix du tissu à la coupe finale, sans quitter votre domicile.",
+      "scroll": "Défiler"
+    },
+    "value": {
+      "label": "La Consultation",
+      "title": "La même excellence, maintenant à distance.",
+      "body": "Notre visioconférence n'est pas un substitut à l'expérience en personne : c'en est une extension. En 20 minutes, nos tailleurs évaluent votre silhouette, votre style et vos besoins avec la même précision que dans l'atelier.",
+      "features": [
+        "Évaluation silhouette et posture en temps réel",
+        "Recommandation de tissus selon occasion et climat",
+        "Conseil en colorimétrie personnalisé",
+        "Devis détaillé à la fin de la session"
+      ]
+    },
+    "how": {
+      "label": "Comment Ça Marche",
+      "title": "Trois étapes, un costume",
+      "subtitle": "Réservez, connectez-vous et recevez votre proposition personnalisée.",
+      "steps": [
+        "Réservez votre créneau horaire préféré.",
+        "Connectez-vous via Zoom ou Google Meet avec notre tailleur.",
+        "Recevez votre proposition et devis sous 24 heures."
+      ]
+    },
+    "gate": {
+      "badge": "Consultation Premium",
+      "description": "Recevez des conseils de tailleur personnalisés de n'importe où. Une visioconférence de 20-25 minutes avec nos professionnels qualifiés.",
+      "features": ["Recommandation de tissus", "Conseil couleur", "Guide de style personnalisé"],
+      "duration": "Durée: 20-25 minutes",
+      "cta": "Prendre Rendez-vous",
+      "secure": "Paiement sécurisé crypté",
+      "contact": "Vous préférez nous rendre visite?",
+      "contact_cta": "Prendre rendez-vous en atelier"
+    },
+    "booking": {
+      "title": "Prendre Rendez-vous",
+      "selectDate": "Sélectionnez une date",
+      "selectTime": "Sélectionnez une heure",
+      "duration": "20-25 minutes",
+      "platform": "Zoom / Google Meet",
+      "next": "Suivant",
+      "back": "Retour",
+      "confirmBooking": "Confirmer le Rendez-vous",
+      "success": "Rendez-vous confirmé!",
+      "successMessage": "Vous recevrez un email avec les détails de la visioconférence."
+    }
   }
 }

@@ -428,6 +428,57 @@
       ]
     }
   },
+  "videollamada": {
+    "hero": {
+      "label": "Videollamada",
+      "title": "La Sastrería en tu Salón",
+      "subtitle": "Una consulta personalizada de 20 minutos con nuestros expertos. Desde la elección del tejido hasta el corte final, sin moverte de casa.",
+      "scroll": "Desplazar"
+    },
+    "value": {
+      "label": "La Consulta",
+      "title": "La misma excelencia, ahora a distancia.",
+      "body": "Nuestra videollamada no es un sustituto de la experiencia presencial: es una extensión de ella. En 20 minutos, nuestros sastres evalúan tu silueta, tu estilo y tus necesidades con la misma precisión que en el taller.",
+      "features": [
+        "Evaluación de silueta y postura en tiempo real",
+        "Recomendación de tejidos según ocasión y clima",
+        "Asesoramiento de colorimetría personalizado",
+        "Presupuesto detallado al finalizar la sesión"
+      ]
+    },
+    "how": {
+      "label": "Cómo Funciona",
+      "title": "Tres pasos, un traje",
+      "subtitle": "Reserva, conecta y recibe tu propuesta personalizada.",
+      "steps": [
+        "Reserva tu franja horaria preferida.",
+        "Conéctate por Zoom o Google Meet con nuestro sastre.",
+        "Recibe tu propuesta y presupuesto en 24 horas."
+      ]
+    },
+    "gate": {
+      "badge": "Consulta Premium",
+      "description": "Recibe asesoramiento personalizado de sastrería desde cualquier lugar. Una videollamada de 20-25 minutos con nuestros profesionales cualificados.",
+      "features": ["Recomendación de tejidos", "Asesoramiento de color", "Guía de estilo personalizado"],
+      "duration": "Duración: 20-25 minutos",
+      "cta": "Reservar Videollamada",
+      "secure": "Pago seguro encriptado",
+      "contact": "¿Prefieres visitarnos?",
+      "contact_cta": "Reservar cita presencial"
+    },
+    "booking": {
+      "title": "Reservar Videollamada",
+      "selectDate": "Selecciona una fecha",
+      "selectTime": "Selecciona una hora",
+      "duration": "20-25 minutos",
+      "platform": "Zoom / Google Meet",
+      "next": "Siguiente",
+      "back": "Atrás",
+      "confirmBooking": "Confirmar Reserva",
+      "success": "¡Reserva confirmada!",
+      "successMessage": "Recibirás un email con los detalles de la videollamada."
+    }
+  },
   "footer": {
     "tagline": "Construimos identidad desde la artesanía.",
     "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",

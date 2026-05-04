@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
-import { Calendar, Clock, Video, Check, ChevronLeft } from 'lucide-react'
+import { Calendar, Clock, Video, Check, ChevronLeft, Loader2 } from 'lucide-react'
 
 const TIME_SLOTS = [
   '10:00', '10:30', '11:00', '11:30', '12:00',
@@ -10,45 +11,14 @@ const TIME_SLOTS = [
 ]
 
 export function VideollamadaBooking() {
-  const { locale } = useI18n()
+  const { t, locale } = useI18n()
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [step, setStep] = useState<'date' | 'time' | 'confirm'>('date')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const t = {
-    es: {
-      title: 'Reservar Videollamada',
-      selectDate: 'Selecciona una fecha',
-      selectTime: 'Selecciona una hora',
-      confirm: 'Confirmar reserva',
-      duration: '20-25 minutos',
-      platform: 'Plataforma: Zoom / Meet',
-      next: 'Siguiente',
-      back: 'Atrás',
-      confirmBooking: 'Confirmar Reserva',
-      selected: 'Seleccionado',
-      success: '¡Reserva confirmada!',
-      successMessage: 'Recibirás un email con los detalles de la videollamada.',
-    },
-    en: {
-      title: 'Book Video Call',
-      selectDate: 'Select a date',
-      selectTime: 'Select a time',
-      confirm: 'Confirm booking',
-      duration: '20-25 minutes',
-      platform: 'Platform: Zoom / Meet',
-      next: 'Next',
-      back: 'Back',
-      confirmBooking: 'Confirm Booking',
-      selected: 'Selected',
-      success: 'Booking confirmed!',
-      successMessage: 'You will receive an email with the video call details.',
-    },
-  }
+  const c = t.videollamada.booking
 
-  const currentT = t[locale as 'es' | 'en'] || t.es
-
-  // Generate next 7 days
   const dates = Array.from({ length: 7 }, (_, i) => {
     const date = new Date()
     date.setDate(date.getDate() + i + 1)
@@ -56,276 +26,468 @@ export function VideollamadaBooking() {
   })
 
   const handleConfirm = () => {
-    setStep('confirm')
+    setIsSubmitting(true)
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setStep('confirm')
+    }, 1200)
   }
 
-  if (step === 'confirm') {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2rem',
-      }}>
-        <div style={{
-          textAlign: 'center',
-          maxWidth: '400px',
-        }}>
-          <div style={{
-            width: '80px',
-            height: '80px',
-            borderRadius: '50%',
-            background: 'rgba(201,168,76,0.1)',
-            border: '2px solid #C9A84C',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 2rem',
-          }}>
-            <Check size={32} color="#C9A84C" />
-          </div>
-          <h2 style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '2rem',
-            fontWeight: 400,
-            fontStyle: 'italic',
-            color: '#FFFFFF',
-            marginBottom: '1rem',
-          }}>
-            {currentT.success}
-          </h2>
-          <p style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '1rem',
-            color: 'rgba(255,255,255,0.6)',
-          }}>
-            {currentT.successMessage}
-          </p>
-          <div style={{
-            marginTop: '2rem',
-            padding: '1.5rem',
-            background: 'rgba(201,168,76,0.05)',
-            border: '1px solid rgba(201,168,76,0.2)',
-          }}>
-            <p style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.9rem',
-              color: '#C9A84C',
-              margin: '0 0 0.5rem 0',
-            }}>
-              {selectedDate} · {selectedTime}
-            </p>
-            <p style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.8rem',
-              color: 'rgba(255,255,255,0.5)',
-              margin: 0,
-            }}>
-              {currentT.duration}
-            </p>
-          </div>
-        </div>
-      </div>
+  const formatDate = (dateStr: string) => {
+    return new Date(dateStr).toLocaleDateString(
+      locale === 'es' ? 'es-ES' : locale === 'it' ? 'it-IT' : locale === 'fr' ? 'fr-FR' : 'en-GB',
+      { weekday: 'short', day: 'numeric', month: 'short' }
     )
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      padding: '6rem var(--container-padding) 4rem',
-    }}>
-      <div style={{
-        maxWidth: '600px',
-        margin: '0 auto',
-      }}>
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h1 style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            fontWeight: 400,
-            fontStyle: 'italic',
-            color: '#FFFFFF',
-            marginBottom: '0.5rem',
-          }}>
-            {currentT.title}
-          </h1>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '1rem',
-            marginTop: '1rem',
-          }}>
-            <span style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.3rem',
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.75rem',
-              color: 'rgba(255,255,255,0.5)',
-            }}>
-              <Clock size={14} />
-              {currentT.duration}
-            </span>
-            <span style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.3rem',
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.75rem',
-              color: 'rgba(255,255,255,0.5)',
-            }}>
-              <Video size={14} />
-              {currentT.platform}
-            </span>
-          </div>
-        </div>
+    <div
+      style={{
+        minHeight: '100vh',
+        padding: 'clamp(5rem, 10vh, 7rem) var(--container-padding) 4rem',
+        background: `
+          radial-gradient(ellipse at 15% 85%, rgba(201,168,76,0.03) 0%, transparent 50%),
+          radial-gradient(ellipse at 85% 15%, rgba(201,168,76,0.03) 0%, transparent 50%),
+          #0A1628
+        `,
+        position: 'relative',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '1px',
+          background:
+            'linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)',
+        }}
+      />
 
-        {step === 'date' ? (
-          <>
-            <h2 style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.8rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: '#C9A84C',
-              marginBottom: '1.5rem',
-              textAlign: 'center',
-            }}>
-              {currentT.selectDate}
-            </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-              gap: '1rem',
-              marginBottom: '2rem',
-            }}>
-              {dates.map((date) => (
-                <button
-                  key={date}
-                  onClick={() => {
-                    setSelectedDate(date)
-                    setStep('time')
-                  }}
-                  style={{
-                    padding: '1.5rem 1rem',
-                    background: selectedDate === date ? 'rgba(201,168,76,0.15)' : 'transparent',
-                    border: `1px solid ${selectedDate === date ? '#C9A84C' : 'rgba(255,255,255,0.15)'}`,
-                    cursor: 'pointer',
-                  }}
-                >
-                  <Calendar size={20} color="#C9A84C" style={{ marginBottom: '0.5rem' }} />
-                  <div style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.8rem',
-                    color: '#FFFFFF',
-                  }}>
-                    {new Date(date).toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-GB', {
-                      weekday: 'short',
-                      day: 'numeric',
-                      month: 'short',
-                    })}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </>
-        ) : (
-          <>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              marginBottom: '1.5rem',
-            }}>
-              <button
-                onClick={() => setStep('date')}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  background: 'transparent',
-                  border: 'none',
-                  color: 'rgba(255,255,255,0.5)',
-                  cursor: 'pointer',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.8rem',
-                }}
-              >
-                <ChevronLeft size={16} />
-                {currentT.back}
-              </button>
-              <span style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.8rem',
+      <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            background: 'rgba(255,255,255,0.02)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(201,168,76,0.12)',
+            borderRadius: '16px',
+            padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.25)',
+          }}
+        >
+          {/* Header */}
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '48px',
+                height: '48px',
+                borderRadius: '12px',
+                background: 'rgba(201,168,76,0.1)',
+                border: '1px solid rgba(201,168,76,0.2)',
+                marginBottom: '1rem',
                 color: '#C9A84C',
-              }}>
-                {selectedDate}
-              </span>
+              }}
+            >
+              <Video size={22} strokeWidth={1.5} />
             </div>
-
-            <h2 style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.8rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: '#C9A84C',
-              marginBottom: '1.5rem',
-              textAlign: 'center',
-            }}>
-              {currentT.selectTime}
-            </h2>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
-              gap: '1rem',
-              marginBottom: '2rem',
-            }}>
-              {TIME_SLOTS.map((time) => (
-                <button
-                  key={time}
-                  onClick={() => setSelectedTime(time)}
-                  style={{
-                    padding: '1rem',
-                    background: selectedTime === time ? 'rgba(201,168,76,0.15)' : 'transparent',
-                    border: `1px solid ${selectedTime === time ? '#C9A84C' : 'rgba(255,255,255,0.15)'}`,
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.9rem',
-                    color: selectedTime === time ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
-                  }}
-                >
-                  {time}
-                </button>
-              ))}
-            </div>
-
-            {selectedTime && (
-              <button
-                onClick={handleConfirm}
+            <h1
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                fontWeight: 400,
+                fontStyle: 'italic',
+                color: '#FFFFFF',
+                marginBottom: '0.75rem',
+                lineHeight: 1.2,
+              }}
+            >
+              {c.title}
+            </h1>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '1rem',
+                flexWrap: 'wrap',
+              }}
+            >
+              <span
                 style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: '#C9A84C',
-                  border: 'none',
-                  color: '#000000',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.75rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer',
+                  color: 'rgba(255,255,255,0.5)',
+                  padding: '0.35rem 0.8rem',
+                  background: 'rgba(255,255,255,0.03)',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(255,255,255,0.08)',
                 }}
               >
-                {currentT.confirmBooking}
-              </button>
+                <Clock size={13} />
+                {c.duration}
+              </span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.75rem',
+                  color: 'rgba(255,255,255,0.5)',
+                  padding: '0.35rem 0.8rem',
+                  background: 'rgba(255,255,255,0.03)',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                }}
+              >
+                <Video size={13} />
+                {c.platform}
+              </span>
+            </div>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {step === 'confirm' ? (
+              <motion.div
+                key="confirm"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                style={{ textAlign: 'center' }}
+              >
+                <div
+                  style={{
+                    width: '72px',
+                    height: '72px',
+                    borderRadius: '50%',
+                    background: 'rgba(201,168,76,0.1)',
+                    border: '1.5px solid #C9A84C',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 1.5rem',
+                  }}
+                >
+                  <Check size={32} color="#C9A84C" strokeWidth={2} />
+                </div>
+                <h2
+                  style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)',
+                    fontWeight: 400,
+                    fontStyle: 'italic',
+                    color: '#FFFFFF',
+                    marginBottom: '0.75rem',
+                  }}
+                >
+                  {c.success}
+                </h2>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.9rem',
+                    color: 'rgba(255,255,255,0.55)',
+                    marginBottom: '2rem',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {c.successMessage}
+                </p>
+                <div
+                  style={{
+                    padding: '1.25rem 1.5rem',
+                    background: 'rgba(201,168,76,0.06)',
+                    border: '1px solid rgba(201,168,76,0.15)',
+                    borderRadius: '12px',
+                    display: 'inline-block',
+                    textAlign: 'left',
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.85rem',
+                      color: '#C9A84C',
+                      margin: '0 0 0.25rem 0',
+                      fontWeight: 500,
+                    }}
+                  >
+                    {selectedDate && formatDate(selectedDate)} · {selectedTime}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.75rem',
+                      color: 'rgba(255,255,255,0.4)',
+                      margin: 0,
+                    }}
+                  >
+                    {c.duration}
+                  </p>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, x: step === 'date' ? 20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              >
+                {/* Step indicator */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    marginBottom: '2rem',
+                  }}
+                >
+                  {['date', 'time'].map((s, i) => (
+                    <div key={s} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1 }}>
+                      <div
+                        style={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          background: (step === s) || (step === 'time' && s === 'date') ? '#C9A84C' : 'transparent',
+                          border: `1.5px solid ${(step === s) || (step === 'time' && s === 'date') ? '#C9A84C' : 'rgba(255,255,255,0.15)'}`,
+                          color: (step === s) || (step === 'time' && s === 'date') ? '#000000' : 'rgba(255,255,255,0.4)',
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: '0.7rem',
+                          fontWeight: 600,
+                          flexShrink: 0,
+                        }}
+                      >
+                        {s === 'date' && step === 'time' ? <Check size={12} strokeWidth={2.5} /> : i + 1}
+                      </div>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: '0.65rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.08em',
+                          color: step === s ? '#C9A84C' : 'rgba(255,255,255,0.3)',
+                          fontWeight: step === s ? 500 : 400,
+                        }}
+                      >
+                        {s === 'date' ? c.selectDate : c.selectTime}
+                      </span>
+                      {i === 0 && (
+                        <div
+                          style={{
+                            flex: 1,
+                            height: '2px',
+                            borderRadius: '1px',
+                            background: step === 'time' ? '#C9A84C' : 'rgba(255,255,255,0.1)',
+                          }}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {step === 'date' ? (
+                  <>
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))',
+                        gap: '0.75rem',
+                        marginBottom: '2rem',
+                      }}
+                    >
+                      {dates.map((date) => (
+                        <button
+                          key={date}
+                          onClick={() => {
+                            setSelectedDate(date)
+                            setStep('time')
+                          }}
+                          style={{
+                            padding: '1.25rem 0.75rem',
+                            background:
+                              selectedDate === date
+                                ? 'rgba(201,168,76,0.12)'
+                                : 'rgba(255,255,255,0.02)',
+                            border: `1.5px solid ${selectedDate === date ? '#C9A84C' : 'rgba(255,255,255,0.1)'}`,
+                            borderRadius: '10px',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            boxShadow:
+                              selectedDate === date
+                                ? '0 0 0 3px rgba(201,168,76,0.15)'
+                                : 'none',
+                          }}
+                          onMouseEnter={(e) => {
+                            if (selectedDate !== date) {
+                              e.currentTarget.style.borderColor = 'rgba(201,168,76,0.35)'
+                              e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (selectedDate !== date) {
+                              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+                              e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                            }
+                          }}
+                        >
+                          <Calendar size={18} color="#C9A84C" />
+                          <div
+                            style={{
+                              fontFamily: 'var(--font-sans)',
+                              fontSize: '0.78rem',
+                              color: '#FFFFFF',
+                              textAlign: 'center',
+                              lineHeight: 1.3,
+                            }}
+                          >
+                            {formatDate(date)}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => {
+                        setStep('date')
+                        setSelectedTime(null)
+                      }}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'rgba(255,255,255,0.5)',
+                        cursor: 'pointer',
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '0.8rem',
+                        marginBottom: '1.5rem',
+                        padding: 0,
+                      }}
+                    >
+                      <ChevronLeft size={16} />
+                      {c.back}
+                    </button>
+
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(90px, 1fr))',
+                        gap: '0.75rem',
+                        marginBottom: '2rem',
+                      }}
+                    >
+                      {TIME_SLOTS.map((time) => (
+                        <button
+                          key={time}
+                          onClick={() => setSelectedTime(time)}
+                          style={{
+                            padding: '0.875rem 0.5rem',
+                            background:
+                              selectedTime === time
+                                ? 'rgba(201,168,76,0.12)'
+                                : 'rgba(255,255,255,0.02)',
+                            border: `1.5px solid ${selectedTime === time ? '#C9A84C' : 'rgba(255,255,255,0.1)'}`,
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '0.85rem',
+                            color: selectedTime === time ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
+                            fontWeight: selectedTime === time ? 500 : 400,
+                            boxShadow:
+                              selectedTime === time
+                                ? '0 0 0 3px rgba(201,168,76,0.15)'
+                                : 'none',
+                          }}
+                          onMouseEnter={(e) => {
+                            if (selectedTime !== time) {
+                              e.currentTarget.style.borderColor = 'rgba(201,168,76,0.35)'
+                              e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (selectedTime !== time) {
+                              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+                              e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                            }
+                          }}
+                        >
+                          {time}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={handleConfirm}
+                      disabled={!selectedTime || isSubmitting}
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        background: selectedTime && !isSubmitting ? '#C9A84C' : 'rgba(201,168,76,0.2)',
+                        border: 'none',
+                        borderRadius: '8px',
+                        color: '#000000',
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        cursor: selectedTime && !isSubmitting ? 'pointer' : 'not-allowed',
+                        opacity: selectedTime ? 1 : 0.5,
+                        transition: 'all 0.25s ease',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.5rem',
+                      }}
+                    >
+                      {isSubmitting ? (
+                        <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} />
+                      ) : null}
+                      {c.confirmBooking}
+                    </button>
+                  </>
+                )}
+              </motion.div>
             )}
-          </>
-        )}
+          </AnimatePresence>
+        </motion.div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </div>
   )
 }
