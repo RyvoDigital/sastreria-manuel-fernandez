@@ -539,14 +539,54 @@
     "lessons": "lezioni"
   },
   "videollamada": {
-    "title": "Consulenza Video",
-    "subtitle": "Consulenza personalizzata dalla comodità di casa tua",
-    "duration": "Durata: 20-25 minuti",
-    "features": [
-      "Raccomandazione tessuti",
-      "Consiglio colore",
-      "Guida stile personalizzata"
-    ],
-    "cta": "Prenota Videochiamata"
+    "hero": {
+      "label": "Videochiamata",
+      "title": "La Sartoria nel tuo Soggiorno",
+      "subtitle": "Una consulenza personalizzata di 20 minuti con i nostri esperti. Dalla scelta del tessuto al taglio finale, senza uscire di casa.",
+      "scroll": "Scorrere"
+    },
+    "value": {
+      "label": "La Consulenza",
+      "title": "La stessa eccellenza, ora a distanza.",
+      "body": "La nostra videochiamata non è un sostituto dell'esperienza di persona: è un'estensione di essa. In 20 minuti, i nostri sarti valutano la tua silhouette, il tuo stile e le tue esigenze con la stessa precisione che nell'atelier.",
+      "features": [
+        "Valutazione silhouette e postura in tempo reale",
+        "Raccomandazione tessuti in base a occasione e clima",
+        "Consulenza cromatica personalizzata",
+        "Preventivo dettagliato al termine della sessione"
+      ]
+    },
+    "how": {
+      "label": "Come Funziona",
+      "title": "Tre passi, un abito",
+      "subtitle": "Prenota, connettiti e ricevi la tua proposta personalizzata.",
+      "steps": [
+        "Prenota la tua fascia oraria preferita.",
+        "Connettiti via Zoom o Google Meet con il nostro sarto.",
+        "Ricevi la tua proposta e preventivo entro 24 ore."
+      ]
+    },
+    "gate": {
+      "badge": "Consulenza Premium",
+      "description": "Ricevi consulenza di sartoria personalizzata da qualsiasi luogo. Una videochiamata di 20-25 minuti con i nostri professionisti qualificati.",
+      "features": ["Raccomandazione tessuti", "Consiglio colore", "Guida stile personalizzata"],
+      "duration": "Durata: 20-25 minuti",
+      "cta": "Prenota Videochiamata",
+      "secure": "Pagamento sicuro crittografato",
+      "contact": "Preferisci visitarci?",
+      "contact_cta": "Prenota appuntamento in sede"
+    },
+    "booking": {
+      "title": "Prenota Videochiamata",
+      "selectDate": "Seleziona una data",
+      "selectTime": "Seleziona un orario",
+      "duration": "20-25 minuti",
+      "platform": "Zoom / Google Meet",
+      "next": "Avanti",
+      "back": "Indietro",
+      "confirmBooking": "Conferma Prenotazione",
+      "success": "Prenotazione confermata!",
+      "successMessage": "Riceverai un'email con i dettagli della videochiamata."
+    }
   }
 }

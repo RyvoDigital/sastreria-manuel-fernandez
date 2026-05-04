@@ -428,6 +428,57 @@
       ]
     }
   },
+  "videollamada": {
+    "hero": {
+      "label": "Video Call",
+      "title": "Tailoring in your Living Room",
+      "subtitle": "A 20-minute personalised consultation with our experts. From fabric selection to final cut, without leaving your home.",
+      "scroll": "Scroll"
+    },
+    "value": {
+      "label": "The Consultation",
+      "title": "The same excellence, now at a distance.",
+      "body": "Our video call is not a substitute for the in-person experience: it is an extension of it. In 20 minutes, our tailors assess your silhouette, style and needs with the same precision as in the atelier.",
+      "features": [
+        "Real-time silhouette and posture evaluation",
+        "Fabric recommendations based on occasion and climate",
+        "Personalised colourimetry advice",
+        "Detailed quote at the end of the session"
+      ]
+    },
+    "how": {
+      "label": "How it Works",
+      "title": "Three steps, one suit",
+      "subtitle": "Book, connect and receive your personalised proposal.",
+      "steps": [
+        "Book your preferred time slot.",
+        "Connect via Zoom or Google Meet with our tailor.",
+        "Receive your proposal and quote within 24 hours."
+      ]
+    },
+    "gate": {
+      "badge": "Premium Consultation",
+      "description": "Receive personalised tailoring advice from anywhere. A 20-25 minute video call with our qualified professionals.",
+      "features": ["Fabric recommendations", "Colour advice", "Personalised style guidance"],
+      "duration": "Duration: 20-25 minutes",
+      "cta": "Book Video Call",
+      "secure": "Encrypted secure payment",
+      "contact": "Prefer to visit us?",
+      "contact_cta": "Book an in-person appointment"
+    },
+    "booking": {
+      "title": "Book Video Call",
+      "selectDate": "Select a date",
+      "selectTime": "Select a time",
+      "duration": "20-25 minutes",
+      "platform": "Zoom / Google Meet",
+      "next": "Next",
+      "back": "Back",
+      "confirmBooking": "Confirm Booking",
+      "success": "Booking confirmed!",
+      "successMessage": "You will receive an email with the video call details."
+    }
+  },
   "footer": {
     "tagline": "Building identity through craftsmanship.",
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
