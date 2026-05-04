@@ -86,21 +86,29 @@
     "title": "Details that make the difference",
     "hint": "Explore the key points of our artisan tailoring",
     "hotspots": {
+      "lining": {
+        "title": "Custom Lining",
+        "desc": "A unique lining chosen by the client, known only to him. A hidden luxury secret."
+      },
+      "label": {
+        "title": "Artisan Label",
+        "desc": "The Loro Piana Master Artisan badge certifying every hand-stitched detail."
+      },
+      "waistcoat": {
+        "title": "Bespoke Waistcoat",
+        "desc": "Built from scratch to fit the torso perfectly, without rushed seams."
+      },
+      "pocket": {
+        "title": "Pocket Square",
+        "desc": "The final touch that elevates the ensemble. Pure linen or silk, folded with intent."
+      },
       "lapel": {
-        "title": "Hand-stitched lapel",
+        "title": "Hand-stitched Lapel",
         "desc": "Invisible stitches that provide natural structure and flexibility to the lapel."
       },
-      "buttons": {
-        "title": "Natural horn buttons",
-        "desc": "Buttons selected one by one for their grain and exceptional durability."
-      },
-      "shoulder": {
-        "title": "Neapolitan shoulder",
-        "desc": "Natural drape without padding for superior comfort and elegant style."
-      },
       "fabric": {
-        "title": "Super 150s Wool",
-        "desc": "Fine Italian fabric with a natural sheen and silk touch."
+        "title": "Premium Fabric",
+        "desc": "Wool from the finest European mills, selected for its drape, sheen and durability."
       }
     }
   },

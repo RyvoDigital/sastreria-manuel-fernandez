@@ -89,21 +89,29 @@
     "title": "Dettagli che fanno la differenza",
     "hint": "Esplora i punti chiave della nostra sartoria artigianale",
     "hotspots": {
+      "lining": {
+        "title": "Fodro personalizzato",
+        "desc": "Una fodra unica, scelta dal cliente, conosciuta solo da lui. Un segreto di lusso nascosto."
+      },
+      "label": {
+        "title": "Etichetta artigiano",
+        "desc": "Il distintivo Loro Piana Master Artisan che certifica ogni punto fatto a mano."
+      },
+      "waistcoat": {
+        "title": "Gilet su misura",
+        "desc": "Realizzato da zero per adattarsi perfettamente al torso, senza cuciture affrettate."
+      },
+      "pocket": {
+        "title": "Fazzoletto da taschino",
+        "desc": "Il tocco finale che eleva l'insieme. Puro lino o seta, piegato con intenzione."
+      },
       "lapel": {
         "title": "Reverso cucito a mano",
         "desc": "Punti invisibili che conferiscono struttura naturale e flessibilità al reverso."
       },
-      "buttons": {
-        "title": "Bottoni in corno naturale",
-        "desc": "Bottoni selezionati uno per uno per la loro venatura e durata eccezionale."
-      },
-      "shoulder": {
-        "title": "Spalla napoletana",
-        "desc": "Caduta naturale senza imbottitura per un comfort superiore e uno stile elegante."
-      },
       "fabric": {
-        "title": "Lana Super 150s",
-        "desc": "Tessuto italiano fine con una lucentezza naturale e una morbidezza setosa."
+        "title": "Tessuto premium",
+        "desc": "Lana dalle migliori filature europee, selezionata per la sua caduta, lucentezza e durabilità."
       }
     }
   },
