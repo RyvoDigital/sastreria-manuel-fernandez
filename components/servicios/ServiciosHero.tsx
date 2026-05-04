@@ -8,6 +8,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 const SECTION_HEIGHT = 1500
 
@@ -103,36 +104,36 @@ const ParallaxImg = ({ imgStyle, alt, src, start, end }: ParallaxImgProps) => {
   )
 }
 
-const ParallaxImages = () => {
+const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
   return (
-    <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '200px 2rem 0' }}>
+    <div style={{ maxWidth: '72rem', margin: '0 auto', padding: isMobile ? '80px 1rem 0' : '200px 2rem 0' }}>
       <ParallaxImg
         src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471119/photos/others/IMG_1435_brue5b"
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
-        imgStyle={{ width: '32%' }}
+        imgStyle={{ width: isMobile ? '85%' : '32%' }}
       />
       <ParallaxImg
         src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471137/photos/others/IMG_0884_vcpsgb"
         alt="Consulta de tejidos"
         start={200}
         end={-250}
-        imgStyle={{ width: '60%', margin: '0 auto' }}
+        imgStyle={{ width: isMobile ? '90%' : '60%', margin: '0 auto' }}
       />
       <ParallaxImg
         src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/photos/scissors-cutting_vyt9my"
         alt="Corte con tijeras"
         start={-200}
         end={200}
-        imgStyle={{ width: '32%', marginLeft: 'auto' }}
+        imgStyle={{ width: isMobile ? '85%' : '32%', marginLeft: 'auto' }}
       />
       <ParallaxImg
         src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/showroom-suits_zqmscd"
         alt="Showroom trajes"
         start={0}
         end={-500}
-        imgStyle={{ width: '40%', marginLeft: '8rem' }}
+        imgStyle={{ width: isMobile ? '90%' : '40%', marginLeft: isMobile ? '0' : '8rem' }}
       />
     </div>
   )
@@ -265,13 +266,15 @@ const ServiciosList = () => {
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function ServiciosHero() {
+  const isMobile = useIsMobile()
   return (
     <div style={{ background: '#0A1628' }}>
       <div style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)`, position: 'relative', width: '100%' }}>
         <CenterImage />
-        <ParallaxImages />
+        <ParallaxImages isMobile={isMobile} />
         <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0, height: '24rem',
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          height: isMobile ? '10rem' : '24rem',
           background: 'linear-gradient(to bottom, rgba(10,22,40,0) 0%, #0A1628 100%)',
         }} />
       </div>

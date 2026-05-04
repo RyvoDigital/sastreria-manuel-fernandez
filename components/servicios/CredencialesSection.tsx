@@ -93,7 +93,7 @@ export function CredencialesSection() {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1fr) minmax(0, 1fr)',
+        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
         gap: 'clamp(2.5rem, 5vw, 6rem)',
         alignItems: 'center',
         position: 'relative', zIndex: 1,
@@ -123,24 +123,28 @@ export function CredencialesSection() {
           </div>
 
           {/* Heading */}
-          <h2 style={{ marginBottom: '1.8rem' }}>
+          <h2 style={{ marginBottom: '1.8rem', minWidth: 0 }}>
             <span style={{
               display: 'block',
               fontFamily: 'var(--font-sans)',
-              fontSize: 'clamp(2.2rem, 4vw, 3.8rem)',
+              fontSize: 'clamp(2rem, 4vw, 3.8rem)',
               fontWeight: 300,
               letterSpacing: '-0.02em',
               color: '#FFFFFF',
               lineHeight: 1.05,
+              overflowWrap: 'break-word',
+              wordBreak: 'break-word',
             }}>{c.headline1}</span>
             <span style={{
               display: 'block',
               fontFamily: 'var(--font-serif)',
               fontStyle: 'italic',
-              fontSize: 'clamp(2.4rem, 4.2vw, 4.2rem)',
+              fontSize: 'clamp(2.2rem, 4.2vw, 4.2rem)',
               fontWeight: 400,
               color: '#C9A84C',
               lineHeight: 1.05,
+              overflowWrap: 'break-word',
+              wordBreak: 'break-word',
             }}>{c.headline2}</span>
           </h2>
 
