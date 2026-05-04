@@ -78,7 +78,7 @@ export function BodasCategorias() {
             className="mf-bodas-cat-card"
             style={{
               flex: isMobile ? 'none' : key === 'cat2' ? '1.2' : '1',
-              height: isMobile ? '360px' : height,
+              height: isMobile ? '480px' : height,
               position: 'relative',
               borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
               overflow: 'hidden',
