@@ -101,7 +101,7 @@ export function BodasCategorias() {
             <img
               src={src}
               alt={labels[key]}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
             />
             {/* Gradient overlay */}
             <div style={{
