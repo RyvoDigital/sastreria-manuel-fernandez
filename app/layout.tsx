@@ -6,6 +6,7 @@ import { LenisProvider } from '@/lib/lenis-provider'
 import { LoadingScreen } from '@/components/global/LoadingScreen'
 import { Navigation } from '@/components/global/Navigation'
 import { FooterEnhanced } from '@/components/global/FooterEnhanced'
+import { ScrollToTop } from '@/components/global/ScrollToTop'
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
@@ -53,6 +54,7 @@ export default function RootLayout({
           <LenisProvider>
             <LoadingScreen />
             <Navigation />
+            <ScrollToTop />
             <main>{children}</main>
             <FooterEnhanced />
           </LenisProvider>
