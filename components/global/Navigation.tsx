@@ -97,20 +97,21 @@ export function Navigation() {
       >
 
         {/* ── LOGO ─────────────────────────────────────────── */}
-        <Link href="/" style={{ textDecoration: 'none', flexShrink: 0, lineHeight: 1 }}>
+        <Link href="/" style={{ textDecoration: 'none', flexShrink: 0, lineHeight: 1, maxWidth: 'min(40vw, 140px)' }}>
           <img 
             src="/logo.png" 
             alt="Sastrería Manuel Fernández"
             style={{
-              height: 'clamp(40px, 5vh, 56px)',
+              height: 'clamp(28px, 5vh, 56px)',
               width: 'auto',
+              maxWidth: '100%',
               objectFit: 'contain',
             }}
           />
         </Link>
 
         {/* ── RIGHT CLUSTER ────────────────────────────────── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.5rem, 2vw, 1.25rem)', flexShrink: 0, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.25rem, 1vw, 1.25rem)', flexShrink: 0, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
 
           {/* CALL US BUTTON — Desktop only, persistent on all pages */}
           <a
@@ -185,7 +186,7 @@ export function Navigation() {
           </Link>
 
           {/* Language selector */}
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'center' }}>
             {(['es', 'en', 'it', 'fr'] as const).map((l) => (
               <button
                 key={l}
@@ -196,8 +197,8 @@ export function Navigation() {
                   border:        'none',
                   padding:       '2px 4px',
                   fontFamily:    'var(--font-sans)',
-                  fontSize:      '0.55rem',
-                  letterSpacing: '0.15em',
+                  fontSize:      '0.45rem',
+                  letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                   color:          locale === l ? 'var(--color-gold)' : 'rgba(201,168,76,0.4)',
                   cursor:         'pointer',
@@ -247,15 +248,19 @@ export function Navigation() {
               background:    'none',
               border:        'none',
               cursor:         'pointer',
-              padding:       '4px 0',
+              padding:       '6px',
               display:       'flex',
               flexDirection: 'column',
-              alignItems:    'flex-end',
-              gap:           '5px',
+              alignItems:    'center',
+              justifyContent: 'center',
+              gap:           '4px',
+              width:         '32px',
+              height:        '32px',
             }}
           >
-            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)' }}>Menu</span>
-            
+            <span style={{ display: 'block', width: '18px', height: '1.5px', background: 'rgba(255,255,255,0.65)', borderRadius: '1px' }} />
+            <span style={{ display: 'block', width: '18px', height: '1.5px', background: 'rgba(255,255,255,0.65)', borderRadius: '1px' }} />
+            <span style={{ display: 'block', width: '14px', height: '1.5px', background: 'rgba(255,255,255,0.65)', borderRadius: '1px' }} />
           </button>
 
         </div>
@@ -282,6 +287,7 @@ export function Navigation() {
           background:     '#0A1628',
           flexDirection:  'column',
           overflowY:      'auto',
+          overflowX:      'hidden',
         }}
       >
         {/* Header bar */}
@@ -331,8 +337,8 @@ export function Navigation() {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 'clamp(0.75rem, 2vw, 1.25rem)',
-            maxWidth: '520px',
+            gap: 'clamp(0.4rem, 1.5vw, 0.75rem)',
+            maxWidth: '480px',
             width: '100%',
             margin: '0 auto',
           }}>
@@ -349,7 +355,7 @@ export function Navigation() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.75rem',
+                    gap: '0.4rem',
                     aspectRatio: '1',
                     background: active 
                       ? 'rgba(201,168,76,0.12)' 
@@ -357,10 +363,11 @@ export function Navigation() {
                     border: active 
                       ? '1px solid rgba(201,168,76,0.35)' 
                       : '1px solid rgba(255,255,255,0.06)',
-                    borderRadius: '12px',
+                    borderRadius: '8px',
                     textDecoration: 'none',
                     transition: 'all 0.3s ease',
-                    padding: '1rem',
+                    padding: '0.4rem',
+                    overflow: 'hidden',
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLElement
@@ -380,7 +387,7 @@ export function Navigation() {
                   }}
                 >
                   <Icon 
-                    size={24} 
+                    size={18} 
                     strokeWidth={1.5}
                     style={{ 
                       color: active ? 'var(--color-gold)' : 'rgba(255,255,255,0.5)',
@@ -389,14 +396,15 @@ export function Navigation() {
                   />
                   <span style={{
                     fontFamily: 'var(--font-sans)',
-                    fontSize: 'clamp(0.6rem, 1.8vw, 0.75rem)',
+                    fontSize: 'clamp(0.48rem, 1.4vw, 0.65rem)',
                     fontWeight: 500,
-                    letterSpacing: '0.08em',
+                    letterSpacing: '0.04em',
                     textTransform: 'uppercase',
                     color: active ? 'var(--color-gold)' : 'rgba(255,255,255,0.7)',
                     textAlign: 'center',
-                    lineHeight: 1.3,
+                    lineHeight: 1.25,
                     transition: 'color 0.3s',
+                    wordBreak: 'break-word',
                   }}>
                     {t.nav[key]}
                   </span>
@@ -409,8 +417,8 @@ export function Navigation() {
           <div style={{ 
             display: 'flex', 
             justifyContent: 'center',
-            gap: '1rem', 
-            marginTop: '2.5rem',
+            gap: '0.75rem', 
+            marginTop: '2rem',
             flexWrap: 'wrap',
           }}>
             <a
@@ -421,12 +429,12 @@ export function Navigation() {
                 alignItems: 'center',
                 gap: '0.6rem',
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.7rem',
-                letterSpacing: '0.15em',
+                fontSize: '0.6rem',
+                letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 color: 'var(--color-gold)',
                 textDecoration: 'none',
-                padding: '0.8rem 1.75rem',
+                padding: '0.65rem 1.25rem',
                 border: '1px solid var(--color-gold)',
                 borderRadius: '4px',
                 transition: 'all 0.25s ease',
@@ -453,12 +461,12 @@ export function Navigation() {
                 alignItems: 'center',
                 gap: '0.6rem',
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.7rem',
-                letterSpacing: '0.15em',
+                fontSize: '0.6rem',
+                letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 color: 'rgba(255,255,255,0.8)',
                 textDecoration: 'none',
-                padding: '0.8rem 1.75rem',
+                padding: '0.65rem 1.25rem',
                 border: '1px solid rgba(255,255,255,0.25)',
                 borderRadius: '4px',
                 transition: 'all 0.25s ease',
