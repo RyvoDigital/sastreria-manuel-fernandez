@@ -225,7 +225,7 @@ export function CredencialesSection() {
             borderRadius: '1.5rem',
             border: '1px solid rgba(201,168,76,0.15)',
             background: 'rgba(255,255,255,0.04)',
-            padding: '2rem',
+            padding: isMobile ? '1.25rem' : '2rem',
             backdropFilter: 'blur(16px)',
             boxShadow: '0 25px 60px rgba(10,22,40,0.6)',
           }}>
@@ -255,7 +255,7 @@ export function CredencialesSection() {
                   <div style={{
                     fontFamily: 'var(--font-serif)',
                     fontStyle: 'italic',
-                    fontSize: '2.2rem',
+                    fontSize: 'clamp(1.6rem, 5vw, 2.2rem)',
                     fontWeight: 400,
                     color: '#FFFFFF',
                     lineHeight: 1,
@@ -284,7 +284,7 @@ export function CredencialesSection() {
               <div style={{ height: '1px', background: 'rgba(196,163,90,0.1)', marginBottom: '1.25rem' }} />
 
               {/* Mini stats */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr)', alignItems: 'center', textAlign: 'center' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr)', alignItems: 'center', textAlign: 'center', minWidth: 0 }}>
                 <StatItem value={c.stat1_val} label={c.stat1_label} />
                 <div style={{ width: '1px', height: '2.5rem', background: 'rgba(196,163,90,0.12)' }} />
                 <StatItem value={c.stat2_val} label={c.stat2_label} />
@@ -331,7 +331,7 @@ export function CredencialesSection() {
             borderRadius: '1.5rem',
             border: '1px solid rgba(201,168,76,0.15)',
             background: 'rgba(255,255,255,0.04)',
-            padding: '1.5rem 0',
+            padding: isMobile ? '1.25rem 0' : '1.5rem 0',
             backdropFilter: 'blur(16px)',
           }}>
             <p style={{
@@ -340,7 +340,7 @@ export function CredencialesSection() {
               letterSpacing: '0.22em',
               textTransform: 'uppercase',
               color: 'rgba(201,168,76,0.4)',
-              paddingLeft: '2rem',
+              paddingLeft: isMobile ? '1.25rem' : '2rem',
               marginBottom: '1.25rem',
             }}>
               Casas de tejido con las que trabajamos
