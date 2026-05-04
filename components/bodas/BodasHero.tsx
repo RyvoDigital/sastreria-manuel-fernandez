@@ -9,6 +9,154 @@ export function BodasHero() {
   const isMobile = useIsMobile()
   const c = t.bodas.hero
 
+  if (isMobile) {
+    return (
+      <section style={{
+        position: 'relative',
+        minHeight: '100vh',
+        background: '#0A1628',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+        {/* Background */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471151/photos/others/IMG_0900_ytqe2w"
+            alt=""
+            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12 }}
+          />
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(135deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.8) 50%, rgba(10,22,40,0.95) 100%)',
+          }} />
+        </div>
+
+        {/* Stacked content */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          padding: 'clamp(5rem, 15vh, 7rem) var(--container-padding) clamp(2rem, 5vh, 3rem)',
+          gap: '1.5rem',
+        }}>
+          {/* Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          >
+            <p style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.6rem',
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: 'rgba(201,168,76,0.7)',
+              marginBottom: '0.75rem',
+            }}>
+              {c.label}
+            </p>
+            <h1 style={{
+              fontFamily: 'var(--font-serif)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(2rem, 8vw, 3rem)',
+              fontWeight: 400,
+              color: '#FFFFFF',
+              lineHeight: 1.1,
+              letterSpacing: '-0.01em',
+            }}>
+              {c.title}
+            </h1>
+          </motion.div>
+
+          {/* Garment photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.4 }}
+            style={{
+              width: '100%',
+              maxWidth: '320px',
+              margin: '0 auto',
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471219/photos/others/IMG_0975_qepzxr"
+              alt="Traje de novio a medida — Bodas & Ceremonia"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '50vh',
+                objectFit: 'cover',
+                objectPosition: 'top center',
+                borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
+                boxShadow: '0 30px 60px rgba(10,22,40,0.6), 0 0 0 1px rgba(201,168,76,0.15)',
+                display: 'block',
+              }}
+            />
+          </motion.div>
+
+          {/* Glass card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            style={{
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(201,168,76,0.2)',
+              borderRadius: '1rem',
+              padding: '1.25rem 1.5rem',
+              alignSelf: 'flex-start',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
+              <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.7 }} />
+              <span style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.5rem',
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.75)',
+              }}>Madrid</span>
+            </div>
+            <div style={{ height: '1px', background: 'rgba(196,163,90,0.15)', marginBottom: '0.75rem' }} />
+            <div style={{ display: 'flex', gap: '1.5rem' }}>
+              {[{ val: '1', label: 'Exclusivo' }, { val: '100%', label: 'A Mano' }].map((s) => (
+                <div key={s.label}>
+                  <div style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontStyle: 'italic',
+                    fontSize: '1.1rem',
+                    color: 'var(--color-offwhite)',
+                    lineHeight: 1,
+                  }}>{s.val}</div>
+                  <div style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.45rem',
+                    letterSpacing: '0.16em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(196,163,90,0.5)',
+                    marginTop: '0.2rem',
+                  }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
+
+  /* ─── Desktop — keep absolute positioning ─── */
   return (
     <section style={{
       position: 'relative',
@@ -30,7 +178,7 @@ export function BodasHero() {
         }} />
       </div>
 
-      {/* Layer 1: Massive "Bodas" text — sits BEHIND the garment photo */}
+      {/* Layer 1: Massive "Bodas" text */}
       <div style={{
         position: 'absolute',
         bottom: '2%',
@@ -57,14 +205,14 @@ export function BodasHero() {
         </span>
       </div>
 
-      {/* Layer 2: Central garment photo — OVER the huge background text */}
+      {/* Layer 2: Central garment photo */}
       <div style={{
         position: 'absolute',
-        top: isMobile ? 'clamp(80px, 18vh, 140px)' : 'clamp(100px, 14vh, 160px)',
+        top: 'clamp(100px, 14vh, 160px)',
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 2,
-        width: isMobile ? 'clamp(180px, 55vw, 280px)' : 'clamp(220px, 32vw, 420px)',
+        width: 'clamp(220px, 32vw, 420px)',
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -171,17 +319,10 @@ export function BodasHero() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
-          <span style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: isMobile ? '0.45rem' : '0.52rem',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.75)',
-          }}></span>
           <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.7 }} />
           <span style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: isMobile ? '0.45rem' : '0.52rem',
+            fontSize: '0.52rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.75)',
@@ -194,13 +335,13 @@ export function BodasHero() {
               <div style={{
                 fontFamily: 'var(--font-serif)',
                 fontStyle: 'italic',
-                fontSize: isMobile ? '1rem' : '1.3rem',
+                fontSize: '1.3rem',
                 color: 'var(--color-offwhite)',
                 lineHeight: 1,
               }}>{s.val}</div>
               <div style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: isMobile ? '0.4rem' : '0.45rem',
+                fontSize: '0.45rem',
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
                 color: 'rgba(196,163,90,0.5)',

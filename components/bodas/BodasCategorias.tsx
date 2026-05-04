@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,6 +16,7 @@ const CATS = [
 
 export function BodasCategorias() {
   const { t } = useI18n()
+  const isMobile = useIsMobile()
   const c = t.bodas.categorias
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -61,26 +63,27 @@ export function BodasCategorias() {
         </p>
       </div>
 
-      {/* Photos row */}
+      {/* Photos — stack on mobile, row on desktop */}
       <div style={{
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
         gap: 'clamp(1rem, 2vw, 1.5rem)',
-        alignItems: 'flex-end',
+        alignItems: isMobile ? 'stretch' : 'flex-end',
       }}>
         {CATS.map(({ src, height, key }) => (
           <div
             key={key}
             className="mf-bodas-cat-card"
             style={{
-              flex: key === 'cat2' ? '1.2' : '1',
-              height,
+              flex: isMobile ? 'none' : key === 'cat2' ? '1.2' : '1',
+              height: isMobile ? '280px' : height,
               position: 'relative',
               borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
               overflow: 'hidden',
               cursor: 'default',
-              transition: 'box-shadow 0.4s ease',
+              transition: 'box-shadow 0.4s ease, transform 0.4s ease',
               boxShadow: '0 20px 60px rgba(10,22,40,0.15)',
             }}
             onMouseEnter={e => {
@@ -108,11 +111,11 @@ export function BodasCategorias() {
             {/* Text */}
             <div style={{
               position: 'absolute', bottom: 0, left: 0, right: 0,
-              padding: '1.5rem 1.25rem',
+              padding: isMobile ? '1.25rem 1rem' : '1.5rem 1.25rem',
             }}>
               <p style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.5rem',
+                fontSize: isMobile ? '0.55rem' : '0.5rem',
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
                 color: '#C9A84C',
@@ -123,7 +126,7 @@ export function BodasCategorias() {
               <p style={{
                 fontFamily: 'var(--font-serif)',
                 fontStyle: 'italic',
-                fontSize: 'clamp(0.85rem, 1.2vw, 1.05rem)',
+                fontSize: isMobile ? '1rem' : 'clamp(0.85rem, 1.2vw, 1.05rem)',
                 color: 'rgba(255,255,255,0.85)',
                 lineHeight: 1.4,
               }}>
