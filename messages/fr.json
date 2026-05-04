@@ -466,6 +466,39 @@
     "final_title": "Commencez votre voyage",
     "final_cta": "Prendre Rendez-vous"
   },
+  "configurador": {
+    "hero": {
+      "label": "Configurateur",
+      "title": "Concevez le Costume que Vous Êtes",
+      "subtitle": "Sept décisions. Un vêtement irrépétable. Notre configurateur vous guide étape par étape pour construire le costume qui exprime exactement qui vous êtes.",
+      "scroll": "Défiler"
+    },
+    "value": {
+      "label": "L'Expérience",
+      "title": "Plus qu'un formulaire, une conversation avec le tissu.",
+      "body": "Chaque sélection que vous faites dans le configurateur a des conséquences réelles sur le patron, la chute et le caractère de votre costume. Du revers à la couleur, chaque détail est pensé pour que le résultat soit une extension de votre personnalité.",
+      "features": [
+        "7 étapes couvrant chaque détail du costume",
+        "Recommandations basées sur votre occasion et style",
+        "Résumé visuel de tous vos choix",
+        "Devis personnalisé à la fin"
+      ]
+    },
+    "steps": {
+      "label": "Le Processus",
+      "title": "De l'idée au vêtement",
+      "subtitle": "Sept étapes qui transforment votre vision en un costume fait sur mesure.",
+      "descriptions": [
+        "Choisissez parmi des tissus exclusifs : Prince de Galles, rayure diplomatique, unis et plus.",
+        "Définissez le revers, la coupe et l'ajustement de votre veste.",
+        "Classique ou croisé : le gilet qui complète votre look.",
+        "Taille, ceinture, revers : les détails qui font la différence.",
+        "Mariage, business ou cérémonie : le costume s'adapte au moment.",
+        "Du bleu marine classique au bordeaux audacieux.",
+        "Printemps, hiver ou toute l'année : choisissez le poids idéal."
+      ]
+    }
+  },
   "footer": {
     "tagline": "Nous construisons l'identité à travers l'artisanat.",
     "rights": "© 2026 Tailleur Manuel Fernández. Tous droits réservés.",
@@ -515,15 +548,5 @@
       "Guide de style personnalisé"
     ],
     "cta": "Prendre Rendez-vous"
-  },
-  "configurador": {
-    "title": "Configurateur de Costumes",
-    "subtitle": "Créez votre costume sur mesure étape par étape",
-    "step1": "Tissu",
-    "step2": "Style",
-    "step3": "Coupe",
-    "step4": "Détails",
-    "step5": "Récapitulatif",
-    "cta": "Commencer la Configuration"
   }
 }

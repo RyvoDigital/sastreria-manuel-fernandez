@@ -395,6 +395,39 @@
       "btn_secondary": "Conocer la Sastrería"
     }
   },
+  "configurador": {
+    "hero": {
+      "label": "Configurador",
+      "title": "Diseña el Traje que Eres",
+      "subtitle": "Siete decisiones. Una prenda irrepetible. Nuestro configurador te guía paso a paso para construir el traje que expresa exactamente quién eres.",
+      "scroll": "Desplazar"
+    },
+    "value": {
+      "label": "La Experiencia",
+      "title": "Más que un formulario, una conversación con el tejido.",
+      "body": "Cada selección que haces en el configurador tiene consecuencia real en el patrón, la caída y el carácter de tu traje. Desde la solapa hasta el color, cada detalle está pensado para que el resultado sea una extensión de tu personalidad.",
+      "features": [
+        "7 pasos que cubren cada detalle del traje",
+        "Recomendaciones basadas en tu ocasión y estilo",
+        "Resumen visual de todas tus elecciones",
+        "Presupuesto personalizado al finalizar"
+      ]
+    },
+    "steps": {
+      "label": "El Proceso",
+      "title": "De la idea a la prenda",
+      "subtitle": "Siete pasos que transforman tu visión en un traje hecho a tu medida.",
+      "descriptions": [
+        "Elige entre tejidos exclusivos: Príncipe de Gales, raya diplomática, lisos y más.",
+        "Define la solapa, el corte y el ajuste de tu chaqueta.",
+        "Clásico o cruzado: el chaleco que completa tu look.",
+        "Tiro, cinturón, vuelta: los detalles que marcan la diferencia.",
+        "Boda, negocios o ceremonia: el traje se adapta al momento.",
+        "Desde el clásico azul marino hasta el audaz burdeos.",
+        "Primavera, invierno o todo el año: elige el peso ideal."
+      ]
+    }
+  },
   "footer": {
     "tagline": "Construimos identidad desde la artesanía.",
     "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",

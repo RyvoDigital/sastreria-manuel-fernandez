@@ -466,6 +466,39 @@
     "final_title": "Inizia il tuo viaggio",
     "final_cta": "Prenota Appuntamento"
   },
+  "configurador": {
+    "hero": {
+      "label": "Configuratore",
+      "title": "Disegna l'Abito che Sei",
+      "subtitle": "Sette decisioni. Un capo irrepetibile. Il nostro configuratore ti guida passo dopo passo per costruire l'abito che esprime esattamente chi sei.",
+      "scroll": "Scorrere"
+    },
+    "value": {
+      "label": "L'Esperienza",
+      "title": "Più di un modulo, una conversazione con il tessuto.",
+      "body": "Ogni selezione che fai nel configuratore ha conseguenze reali sul cartamodello, la caduta e il carattere del tuo abito. Dal rever al colore, ogni dettaglio è pensato perché il risultato sia un'estensione della tua personalità.",
+      "features": [
+        "7 passi che coprono ogni dettaglio dell'abito",
+        "Raccomandazioni basate sulla tua occasione e stile",
+        "Riepilogo visivo di tutte le tue scelte",
+        "Preventivo personalizzato al termine"
+      ]
+    },
+    "steps": {
+      "label": "Il Processo",
+      "title": "Dall'idea al capo",
+      "subtitle": "Sette passi che trasformano la tua visione in un abito fatto su misura.",
+      "descriptions": [
+        "Scegli tra tessuti esclusivi: Principe di Galles, riga diplomatica, tinta unita e altro.",
+        "Definisci il rever, il taglio e la vestibilità della tua giacca.",
+        "Classico o doppiopetto: il gilet che completa il tuo look.",
+        "Vita, cintura, risvolto: i dettagli che fanno la differenza.",
+        "Matrimonio, business o cerimonia: l'abito si adatta al momento.",
+        "Dal blu navy classico all'audace bordeaux.",
+        "Primavera, inverno o tutto l'anno: scegli il peso ideale."
+      ]
+    }
+  },
   "footer": {
     "tagline": "Costruiamo identità attraverso l'artigianato.",
     "rights": "© 2026 Sartoria Manuel Fernández. Tutti i diritti riservati.",
@@ -515,15 +548,5 @@
       "Guida stile personalizzata"
     ],
     "cta": "Prenota Videochiamata"
-  },
-  "configurador": {
-    "title": "Configuratore di Abiti",
-    "subtitle": "Crea il tuo abito su misura passo dopo passo",
-    "step1": "Tessuto",
-    "step2": "Stile",
-    "step3": "Taglio",
-    "step4": "Dettagli",
-    "step5": "Riepilogo",
-    "cta": "Inizia Configurazione"
   }
 }
