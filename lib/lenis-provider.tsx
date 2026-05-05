@@ -5,6 +5,11 @@ import Lenis from 'lenis'
 
 export function LenisProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
+    // Lenis smooth scroll causes crashes on mobile by fighting native
+    // touch momentum and creating scroll conflicts with GSAP / Framer Motion.
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+    if (isMobile) return
+
     const lenis = new Lenis({
       duration: 1.4,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
