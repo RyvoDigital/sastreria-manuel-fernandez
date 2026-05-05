@@ -7,11 +7,11 @@ import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
 const HOTSPOTS = [
-  { id: 'lining',     x: '20%', y: '52%' },
-  { id: 'label',      x: '30%', y: '64%' },
-  { id: 'waistcoat',  x: '45%', y: '55%' },
+  { id: 'lining',     x: '22%', y: '50%' },
+  { id: 'label',      x: '30%', y: '62%' },
+  { id: 'waistcoat',  x: '46%', y: '56%' },
   { id: 'pocket',     x: '75%', y: '49%' },
-  { id: 'lapel',      x: '62%', y: '38%' },
+  { id: 'lapel',      x: '60%', y: '36%' },
   { id: 'fabric',     x: '82%', y: '66%' },
 ]
 
@@ -135,6 +135,7 @@ export function SuitShowcaseSection() {
                 position: 'absolute',
                 top: spot.y,
                 left: spot.x,
+                transform: 'translate(-50%, -50%)',
                 zIndex: activeId === spot.id ? 20 : 10,
               }}
             >
