@@ -119,7 +119,8 @@ export function Globe({
       const width = canvas.offsetWidth
       if (width === 0 || globe) return
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const isMobile = window.innerWidth <= 900
+      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2)
       let phi = 0
 
       globe = createGlobe(canvas, {
