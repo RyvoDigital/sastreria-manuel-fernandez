@@ -167,11 +167,12 @@ const CSS = `
     .mf-fx-grid { padding: 0 1rem; }
     .mf-fx-content {
       grid-template-columns: 1fr; row-gap: 3vh;
-      place-items: center;
+      place-items: start;
       padding: 0 1rem;
     }
     .mf-fx-left, .mf-fx-right, .mf-fx-center { height: auto; overflow: visible; }
-    .mf-fx-left, .mf-fx-right { justify-items: center; }
+    .mf-fx-left, .mf-fx-right { justify-items: start; }
+    .mf-fx-center { place-items: start; text-align: left; }
     .mf-fx-track { transform: none !important; }
     .mf-fx-featured-title { font-size: clamp(2rem, 9vw, 3.5rem); }
     .mf-fx-footer-title { font-size: clamp(1.8rem, 8vw, 3rem); }
