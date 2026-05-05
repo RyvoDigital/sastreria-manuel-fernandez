@@ -7,12 +7,12 @@ import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
 const HOTSPOTS = [
-  { id: 'lining',     x: '26%', y: '64%' },
-  { id: 'label',      x: '30%', y: '57%' },
+  { id: 'lining',     x: '22%', y: '70%' },
+  { id: 'label',      x: '32%', y: '58%' },
   { id: 'waistcoat',  x: '44%', y: '54%' },
   { id: 'pocket',     x: '74%', y: '49%' },
-  { id: 'lapel',      x: '56%', y: '40%' },
-  { id: 'fabric',     x: '80%', y: '66%' },
+  { id: 'lapel',      x: '50%', y: '36%' },
+  { id: 'fabric',     x: '82%', y: '66%' },
 ]
 
 export function SuitShowcaseSection() {
