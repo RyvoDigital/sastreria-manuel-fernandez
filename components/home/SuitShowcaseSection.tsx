@@ -7,11 +7,11 @@ import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
 const HOTSPOTS = [
-  { id: 'lining',     x: '22%', y: '70%' },
-  { id: 'label',      x: '32%', y: '58%' },
-  { id: 'waistcoat',  x: '44%', y: '54%' },
-  { id: 'pocket',     x: '74%', y: '49%' },
-  { id: 'lapel',      x: '50%', y: '36%' },
+  { id: 'lining',     x: '20%', y: '52%' },
+  { id: 'label',      x: '30%', y: '64%' },
+  { id: 'waistcoat',  x: '45%', y: '55%' },
+  { id: 'pocket',     x: '75%', y: '49%' },
+  { id: 'lapel',      x: '62%', y: '38%' },
   { id: 'fabric',     x: '82%', y: '66%' },
 ]
 
