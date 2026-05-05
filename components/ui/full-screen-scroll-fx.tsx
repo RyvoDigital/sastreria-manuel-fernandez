@@ -311,6 +311,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     const isAnimatingRef  = useRef(false)
     const isSnappingRef   = useRef(false)
     const sectionTopRef   = useRef<number[]>([])
+    const lastUpdateTimeRef = useRef(0)
 
     const prefersReduced = useMemo(() => {
       if (typeof window === 'undefined') return false
@@ -402,17 +403,27 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       computePositions()
       measureAndCenterLists(index, false)
 
+      // Reduce resize thrashing on mobile
+      ScrollTrigger.config({ ignoreMobileResize: true })
+
+      const isMobileViewport = window.innerWidth <= 900
+
       const st = ScrollTrigger.create({
         trigger:    fs,
         start:      'top top',
         end:        'bottom bottom',
         pin:        fixed,
         pinSpacing: true,
+        fastScrollEnd: true,
         onUpdate: (self) => {
           if (motionOff || isSnappingRef.current) return
+          // Throttle rapid updates during fast scrolling on mobile
+          const now = Date.now()
+          if (isMobileViewport && now - lastUpdateTimeRef.current < 150) return
           const prog   = self.progress
           const target = Math.min(total - 1, Math.floor(prog * total))
           if (target !== lastIndexRef.current && !isAnimatingRef.current) {
+            lastUpdateTimeRef.current = now
             const next = lastIndexRef.current + (target > lastIndexRef.current ? 1 : -1)
             goTo(next, false)
           }
@@ -449,6 +460,9 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       const from = lastIndexRef.current
       const down = to > from
       isAnimatingRef.current = true
+
+      const isMobileViewport = typeof window !== 'undefined' && window.innerWidth <= 900
+      const effectiveParallax = isMobileViewport ? Math.min(parallaxAmount, 1.5) : parallaxAmount
 
       if (!isControlled) setLocalIndex(to)
       onIndexChange?.(to)
@@ -493,7 +507,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           gsap.to(newBg, { opacity: 1, scale: 1, yPercent: 0, duration: D, ease: 'power2.out' })
         }
         if (prevBg) {
-          gsap.to(prevBg, { opacity: 0, yPercent: down ? -parallaxAmount : parallaxAmount, duration: D, ease: 'power2.out' })
+          gsap.to(prevBg, { opacity: 0, yPercent: down ? -effectiveParallax : effectiveParallax, duration: D, ease: 'power2.out' })
         }
       } else {
         if (newBg) {
