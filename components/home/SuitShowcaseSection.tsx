@@ -89,6 +89,37 @@ export function SuitShowcaseSection() {
             }}
           />
 
+          {/* Mobile Numbered Badges — pinned to image so cards below correspond */}
+          {isMobile && HOTSPOTS.map((spot, i) => (
+            <div
+              key={`mobile-${spot.id}`}
+              style={{
+                position: 'absolute',
+                top: spot.y,
+                left: spot.x,
+                transform: 'translate(-50%, -50%)',
+                zIndex: 10,
+              }}
+            >
+              <span style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '22px',
+                height: '22px',
+                borderRadius: '50%',
+                background: '#C9A84C',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.6rem',
+                fontWeight: 700,
+                color: '#FFFFFF',
+                boxShadow: '0 0 10px rgba(201,168,76,0.7)',
+              }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+            </div>
+          ))}
+
           {/* Desktop Hotspots */}
           {!isMobile && HOTSPOTS.map((spot) => {
             const xPct = parseFloat(spot.x)
