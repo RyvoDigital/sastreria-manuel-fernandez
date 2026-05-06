@@ -59,11 +59,13 @@ export function TejidosMundoSection() {
         stagger: 0.12,
         scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none none' },
       })
-      gsap.from('.mf-tj-globe', {
-        scale: 0.9, opacity: 0, duration: 1.2, ease: 'power3.out',
-        delay: 0.2,
-        scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none none' },
-      })
+      if (!isMobile) {
+        gsap.from('.mf-tj-globe', {
+          scale: 0.9, opacity: 0, duration: 1.2, ease: 'power3.out',
+          delay: 0.2,
+          scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none none' },
+        })
+      }
     }, el)
     return () => ctx.revert()
   }, [isMobile])
@@ -176,41 +178,43 @@ export function TejidosMundoSection() {
           </div>
         </div>
 
-        {/* Right: Globe */}
-        <div className="mf-tj-globe" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          {/* Gold glow halo behind the globe */}
-          <div style={{ position: 'relative', width: '100%', maxWidth: '540px' }}>
-            <div style={{
-              position: 'absolute',
-              inset: '-10%',
-              borderRadius: '50%',
-              background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 50%, transparent 70%)',
-              pointerEvents: 'none',
-              zIndex: 0,
-            }} />
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <Globe
-                markers={MARKERS}
-                arcs={ARCS}
-                dark={1}
-                markerColor={[0.77, 0.64, 0.35]}
-                arcColor={[0.77, 0.64, 0.35]}
-                baseColor={[0.20, 0.15, 0.07]}
-                glowColor={[0.77, 0.64, 0.35]}
-                mapBrightness={5}
-                mapSamples={isMobile ? 4000 : 20000}
-                speed={0.004}
-                theta={0.38}
-                diffuse={1.8}
-                markerSize={0.05}
-                markerElevation={0.015}
-                arcWidth={0.5}
-                arcHeight={0.35}
-                className="w-full"
-              />
+        {/* Right: Globe (desktop only) */}
+        {!isMobile && (
+          <div className="mf-tj-globe" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Gold glow halo behind the globe */}
+            <div style={{ position: 'relative', width: '100%', maxWidth: '540px' }}>
+              <div style={{
+                position: 'absolute',
+                inset: '-10%',
+                borderRadius: '50%',
+                background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 50%, transparent 70%)',
+                pointerEvents: 'none',
+                zIndex: 0,
+              }} />
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <Globe
+                  markers={MARKERS}
+                  arcs={ARCS}
+                  dark={1}
+                  markerColor={[0.77, 0.64, 0.35]}
+                  arcColor={[0.77, 0.64, 0.35]}
+                  baseColor={[0.20, 0.15, 0.07]}
+                  glowColor={[0.77, 0.64, 0.35]}
+                  mapBrightness={5}
+                  mapSamples={20000}
+                  speed={0.004}
+                  theta={0.38}
+                  diffuse={1.8}
+                  markerSize={0.05}
+                  markerElevation={0.015}
+                  arcWidth={0.5}
+                  arcHeight={0.35}
+                  className="w-full"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
       </div>
     </section>
