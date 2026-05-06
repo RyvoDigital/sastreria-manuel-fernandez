@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
-import { useIsMobile } from '@/lib/use-mobile'
+import { useIsIPhone } from '@/lib/use-iphone'
 import { Globe, type GlobeMarker, type GlobeArc } from '@/components/ui/globe'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -46,7 +46,7 @@ const ARCS: GlobeArc[] = [
 
 export function TejidosMundoSection() {
   const { t } = useI18n()
-  const isMobile = useIsMobile()
+  const isIPhone = useIsIPhone()
   const tj = t.servicios.tejidos
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -59,7 +59,7 @@ export function TejidosMundoSection() {
         stagger: 0.12,
         scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none none' },
       })
-      if (!isMobile) {
+      if (!isIPhone) {
         gsap.from('.mf-tj-globe', {
           scale: 0.9, opacity: 0, duration: 1.2, ease: 'power3.out',
           delay: 0.2,
@@ -68,7 +68,7 @@ export function TejidosMundoSection() {
       }
     }, el)
     return () => ctx.revert()
-  }, [isMobile])
+  }, [isIPhone])
 
   return (
     <section
@@ -90,7 +90,7 @@ export function TejidosMundoSection() {
         maxWidth: 'var(--container-max)',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: isMobile ? '1fr' : '45fr 55fr',
+        gridTemplateColumns: isIPhone ? '1fr' : '45fr 55fr',
         gap: 'clamp(3rem, 5vw, 6rem)',
         alignItems: 'center',
         position: 'relative', zIndex: 1,
@@ -179,7 +179,7 @@ export function TejidosMundoSection() {
         </div>
 
         {/* Right: Globe (desktop only) */}
-        {!isMobile && (
+        {!isIPhone && (
           <div className="mf-tj-globe" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {/* Gold glow halo behind the globe */}
             <div style={{ position: 'relative', width: '100%', maxWidth: '540px' }}>

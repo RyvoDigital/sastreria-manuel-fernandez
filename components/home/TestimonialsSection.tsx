@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { useScroll, useMotionValueEvent, motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useIsIPhone } from '@/lib/use-iphone'
 
 const PHOTOS = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
@@ -14,8 +15,121 @@ const PHOTOS = [
 
 const TOTAL = 5
 
+/* ─── iPhone: simple stacked cards — no sticky, no scroll-driven transforms ─── */
+function TestimonialsSimple({ items }: { items: { name: string; occasion: string; quote: string }[] }) {
+  const { t } = useI18n()
+
+  return (
+    <section style={{ background: '#0A1628', padding: 'clamp(4rem, 10vh, 7rem) 1rem' }}>
+      {/* Header */}
+      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.65rem',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          color: '#C9A84C',
+          marginBottom: '1rem',
+        }}>
+          {t.testimonials.label}
+        </div>
+        <h2 style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: 'clamp(1.6rem, 5vw, 3rem)',
+          fontWeight: 400,
+          color: '#FFFFFF',
+          margin: 0,
+          lineHeight: 1.2,
+        }}>
+          {t.testimonials.title}
+        </h2>
+      </div>
+
+      {/* Cards */}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        maxWidth: '480px',
+        margin: '0 auto',
+      }}>
+        {items.map((item, i) => (
+          <div key={i} style={{
+            background: 'rgba(5, 12, 20, 0.85)',
+            border: '1px solid rgba(201,168,76,0.15)',
+            borderRadius: '12px',
+            padding: '1.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+          }}>
+            {/* Photo and Name */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: '1.5px solid #C9A84C',
+                flexShrink: 0,
+              }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={PHOTOS[i]}
+                  alt={item.name}
+                  loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+              <div>
+                <div style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.9rem',
+                  fontWeight: 500,
+                  color: '#C9A84C',
+                }}>
+                  {item.name}
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.6rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.15em',
+                  color: 'rgba(255,255,255,0.4)',
+                }}>
+                  {item.occasion}
+                </div>
+              </div>
+            </div>
+
+            {/* Quote */}
+            <blockquote style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: '0.95rem',
+              lineHeight: 1.6,
+              color: '#FFFFFF',
+              fontStyle: 'italic',
+              margin: 0,
+            }}>
+              {item.quote}
+            </blockquote>
+
+            <div style={{
+              width: '30px',
+              height: '1px',
+              background: 'rgba(201,168,76,0.4)',
+            }} />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/* ─── Desktop/Android: sticky scroll-driven 3D carousel ─── */
 export function TestimonialsSection() {
   const { t } = useI18n()
+  const isIPhone = useIsIPhone()
   const sectionRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
@@ -30,6 +144,13 @@ export function TestimonialsSection() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  const items = t.testimonials.items
+
+  // iPhone: render simple stacked cards
+  if (isIPhone) {
+    return <TestimonialsSimple items={items} />
+  }
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
@@ -42,8 +163,6 @@ export function TestimonialsSection() {
       setActive(next)
     }
   })
-
-  const items = t.testimonials.items
 
   // Mobile: smaller offsets, no 3D rotation. Reduced motion: disable animations.
   const cardTranslateX = reducedMotion ? 0 : isMobile ? 110 : 350

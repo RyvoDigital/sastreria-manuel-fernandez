@@ -6,6 +6,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
+import { useIsIPhone } from '@/lib/use-iphone'
 import { Phone, MapPin, Calendar } from 'lucide-react'
 
 // Floating gold particles
@@ -129,6 +130,7 @@ function AnimatedGoldLine({ isVisible }: { isVisible: boolean }) {
 export function HeroEnhanced() {
   const { t } = useI18n()
   const isMobile = useIsMobile()
+  const isIPhone = useIsIPhone()
   const heroRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -148,7 +150,7 @@ export function HeroEnhanced() {
   }, [handleMouseMove])
 
   useEffect(() => {
-    if (!heroRef.current || !textRef.current) return
+    if (isIPhone || !heroRef.current || !textRef.current) return
 
     const ctx = gsap.context(() => {
       // Fade and shrink on scroll
@@ -167,7 +169,7 @@ export function HeroEnhanced() {
     })
 
     return () => ctx.revert()
-  }, [])
+  }, [isIPhone])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -216,8 +218,8 @@ export function HeroEnhanced() {
           position: 'absolute',
           inset: '-5%',
           zIndex: 0,
-          transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px) scale(1.1)`,
-          transition: 'transform 0.3s ease-out',
+          transform: isIPhone ? 'scale(1.1)' : `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px) scale(1.1)`,
+          transition: isIPhone ? undefined : 'transform 0.3s ease-out',
         }}
       >
         <video
@@ -251,8 +253,8 @@ export function HeroEnhanced() {
         zIndex: 1,
       }} />
 
-      {/* Gold particles */}
-      <GoldParticles />
+      {/* Gold particles — disabled on iPhone (Canvas RAF loop crashes iOS WebKit) */}
+      {!isIPhone && <GoldParticles />}
 
 
       {/* Hero content - repositioned to bottom layout */}
@@ -271,9 +273,9 @@ export function HeroEnhanced() {
           flexDirection: isMobile ? 'column' : 'row',
           alignItems: isMobile ? 'flex-start' : 'flex-end',
           justifyContent: isMobile ? 'flex-end' : 'space-between',
-          transform: `translate(${mousePosition.x * -0.3}px, ${mousePosition.y * -0.3}px)`,
-          transition: 'transform 0.3s ease-out',
-          transformStyle: 'preserve-3d',
+          transform: isIPhone ? undefined : `translate(${mousePosition.x * -0.3}px, ${mousePosition.y * -0.3}px)`,
+          transition: isIPhone ? undefined : 'transform 0.3s ease-out',
+          transformStyle: isIPhone ? undefined : 'preserve-3d',
         }}
       >
         {/* Left Side: Text Content */}

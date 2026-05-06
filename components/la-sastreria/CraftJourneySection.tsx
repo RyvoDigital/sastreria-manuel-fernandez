@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
-import { useIsMobile } from '@/lib/use-mobile'
+import { useIsIPhone } from '@/lib/use-iphone'
 import { FullScreenScrollFX } from '@/components/ui/full-screen-scroll-fx'
 
 const CSS = `
@@ -20,7 +20,7 @@ const CSS = `
 
 export function CraftJourneySection() {
   const { t } = useI18n()
-  const isMobile = useIsMobile()
+  const isIPhone = useIsIPhone()
   const [mounted, setMounted] = useState(false)
   const cardsRef = useRef<HTMLDivElement[]>([])
 
@@ -29,7 +29,7 @@ export function CraftJourneySection() {
   }, [])
 
   useEffect(() => {
-    if (!isMobile || cardsRef.current.length === 0) return
+    if (!isIPhone || cardsRef.current.length === 0) return
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -45,7 +45,7 @@ export function CraftJourneySection() {
       if (card) observer.observe(card)
     })
     return () => observer.disconnect()
-  }, [isMobile, mounted])
+  }, [isIPhone, mounted])
 
   const sections = [
     {
@@ -98,7 +98,7 @@ export function CraftJourneySection() {
     )
   }
 
-  if (isMobile) {
+  if (isIPhone) {
     return (
       <section style={{ background: '#0A1628' }}>
         <style>{CSS}</style>
