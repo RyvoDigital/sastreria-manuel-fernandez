@@ -1,12 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef } from 'react'
 import { useI18n } from '@/lib/i18n'
-
-gsap.registerPlugin(ScrollTrigger)
+import { useIsMobile } from '@/lib/use-mobile'
 
 const CARD_IMAGES = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/photos/fabric-selection_stkbcf',
@@ -14,39 +11,18 @@ const CARD_IMAGES = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797435/photos/wedding-rome_qlqcxz',
 ]
 
-// Animated counter component
-function AnimatedNumber({ value, isActive }: { value: string; isActive: boolean }) {
-  const [displayValue, setDisplayValue] = useState('00')
-  const numberRef = useRef<HTMLSpanElement>(null)
-
-  useEffect(() => {
-    if (!isActive) return
-    
-    const targetNum = parseInt(value)
-    let currentNum = 0
-    const duration = 1500
-    const startTime = Date.now()
-
-    const animate = () => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      
-      // Ease out cubic
-      const easeProgress = 1 - Math.pow(1 - progress, 3)
-      currentNum = Math.floor(easeProgress * targetNum)
-      
-      setDisplayValue(currentNum.toString().padStart(2, '0'))
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate)
-      }
-    }
-
-    animate()
-  }, [isActive, value])
-
-  return <span ref={numberRef}>{displayValue}</span>
-}
+const CSS = `
+  @keyframes mf-pc-fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .mf-pc-card {
+    opacity: 0;
+  }
+  .mf-pc-card.visible {
+    animation: mf-pc-fade-up 0.7s ease-out forwards;
+  }
+`
 
 interface CardProps {
   num: string
@@ -54,154 +30,92 @@ interface CardProps {
   body: string
   image: string
   index: number
-  isActive: boolean
 }
 
-function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
-  const { t } = useI18n()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
+function SimpleProcessCard({ num, title, body, image, index }: CardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!imageRef.current) return
-
-    // Ken Burns effect - slow zoom and pan
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        imageRef.current,
-        { scale: 1, x: 0 },
-        {
-          scale: 1.15,
-          x: '5%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        }
-      )
-
-      // Exit animation: fade and shrink as the next card comes up
-      gsap.to(contentRef.current, {
-        opacity: 0,
-        scale: 0.9,
-        y: -50,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'bottom bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      })
-    })
-
-    return () => ctx.revert()
+    const card = cardRef.current
+    if (!card) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+    observer.observe(card)
+    return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    if (!textRef.current || !isActive) return
-
-    // Text reveal animation when card becomes active
-    const lines = textRef.current.querySelectorAll('.reveal-line')
-    gsap.fromTo(
-      lines,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-      }
-    )
-  }, [isActive])
-
   return (
-    <div 
-      ref={containerRef}
+    <div
+      ref={cardRef}
+      className="mf-pc-card"
       style={{
-        position: 'sticky',
-        top: 0,
-        height: '100vh',
-        width: '100%',
-        zIndex: index + 1,
+        position: 'relative',
+        minHeight: '85vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         overflow: 'hidden',
+        background: '#0A1628',
       }}
     >
-      {/* Background image with Ken Burns - Lightened for better clarity */}
-      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-        <div
-          ref={imageRef}
+      {/* Background image */}
+      <div style={{ position: 'absolute', inset: 0 }}>
+        <Image
+          src={image}
+          alt={title}
+          fill
+          loading={index > 0 ? 'lazy' : 'eager'}
           style={{
-            position: 'absolute',
-            inset: '-10%',
-            width: '120%',
-            height: '120%',
+            objectFit: 'cover',
+            filter: 'brightness(0.45) saturate(0.6)',
           }}
-        >
-          <Image
-            src={image}
-            alt={title}
-            fill
-            style={{
-              objectFit: 'cover',
-              filter: 'brightness(0.6) saturate(0.8)',
-            }}
-          />
-        </div>
+        />
       </div>
 
-      {/* Dark overlay with gradient - Reduced opacity */}
+      {/* Overlay */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(to bottom, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.5) 100%)',
+        background: 'linear-gradient(to bottom, rgba(10,22,40,0.35) 0%, rgba(10,22,40,0.6) 100%)',
       }} />
 
-      {/* Animated number watermark */}
+      {/* Ghost numeral */}
       <div style={{
         position: 'absolute',
         bottom: '-0.05em',
         right: '-0.02em',
         fontFamily: 'var(--font-serif)',
-        fontSize: 'clamp(14rem, 28vw, 30rem)',
+        fontSize: 'clamp(10rem, 30vw, 22rem)',
         lineHeight: 1,
         fontWeight: 400,
         letterSpacing: '-0.04em',
-        color: 'rgba(201,168,76,0.08)',
+        color: 'rgba(201,168,76,0.07)',
         userSelect: 'none',
         pointerEvents: 'none',
         zIndex: 1,
       }}>
-        <AnimatedNumber value={num} isActive={isActive} />
+        {num}
       </div>
 
       {/* Content */}
-      <div
-        ref={contentRef}
-        style={{ width: '100%', height: '100%', position: 'relative', zIndex: 2 }}
-      >
-        <div
-          ref={textRef}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-            width: 'min(600px, 85vw)',
-          }}
-        >
+      <div style={{
+        position: 'relative',
+        zIndex: 2,
+        textAlign: 'center',
+        width: 'min(520px, 85vw)',
+        padding: '2rem 0',
+      }}>
         {/* Step label */}
-        <div className="reveal-line" style={{
+        <div style={{
           fontFamily: 'var(--font-sans)',
           fontSize: '0.55rem',
           letterSpacing: '0.32em',
@@ -210,21 +124,21 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
           marginBottom: '1.4rem',
           opacity: 0.8,
         }}>
-          {t.proceso.step_label} <AnimatedNumber value={num} isActive={isActive} />
+          Paso {num}
         </div>
 
         {/* Gold rule */}
-        <div className="reveal-line" style={{
+        <div style={{
           width: '40px',
           height: '1px',
           background: 'rgba(196,163,90,0.4)',
-          marginBottom: '2rem',
+          margin: '0 auto 2rem',
         }} />
 
-        {/* Title with split animation */}
-        <h2 className="reveal-line" style={{
+        {/* Title */}
+        <h2 style={{
           fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+          fontSize: 'clamp(2.4rem, 8vw, 4rem)',
           fontWeight: 400,
           lineHeight: 1.05,
           letterSpacing: '-0.01em',
@@ -235,21 +149,23 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
           {title}
         </h2>
 
-        {/* Body text */}
-        <p className="reveal-line" style={{
+        {/* Body */}
+        <p style={{
           fontFamily: 'var(--font-sans)',
           fontSize: 'clamp(0.85rem, 1.1vw, 1rem)',
           fontWeight: 300,
           lineHeight: 1.9,
           color: 'rgba(255,255,255,0.7)',
-          maxWidth: '450px',
+          maxWidth: '420px',
+          margin: '0 auto',
         }}>
           {body}
         </p>
 
-        {/* Step indicator dots */}
-        <div className="reveal-line" style={{
+        {/* Step dots */}
+        <div style={{
           display: 'flex',
+          justifyContent: 'center',
           gap: '0.75rem',
           marginTop: '3rem',
         }}>
@@ -267,9 +183,8 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
           ))}
         </div>
       </div>
-      </div>
 
-      {/* Bottom edge gold accent */}
+      {/* Bottom accent */}
       <div style={{
         position: 'absolute',
         bottom: 0,
@@ -284,7 +199,7 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
       <div style={{
         position: 'absolute',
         bottom: '2.5rem',
-        right: 'clamp(2rem, 4vw, 4rem)',
+        right: 'clamp(1.5rem, 4vw, 4rem)',
         fontFamily: 'var(--font-sans)',
         fontSize: '0.52rem',
         letterSpacing: '0.25em',
@@ -292,10 +207,10 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
         zIndex: 3,
         textTransform: 'uppercase',
       }}>
-        <AnimatedNumber value={num} isActive={isActive} /> / 03
+        {num} / 03
       </div>
 
-      {/* Progress bar at bottom */}
+      {/* Progress bar */}
       <div style={{
         position: 'absolute',
         bottom: 0,
@@ -304,7 +219,6 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
         background: '#C9A84C',
         width: `${(parseInt(num) / 3) * 100}%`,
         zIndex: 4,
-        transition: 'width 0.5s ease',
       }} />
     </div>
   )
@@ -312,8 +226,7 @@ function ProcessCard({ num, title, body, image, index, isActive }: CardProps) {
 
 export function ProcessCardsEnhanced() {
   const { t } = useI18n()
-  const sectionRef = useRef<HTMLElement>(null)
-  const [activeCard, setActiveCard] = useState(0)
+  const isMobile = useIsMobile()
 
   const steps = [
     { num: t.proceso.step1_num, title: t.proceso.step1_title, body: t.proceso.step1_body },
@@ -321,34 +234,17 @@ export function ProcessCardsEnhanced() {
     { num: t.proceso.step3_num, title: t.proceso.step3_title, body: t.proceso.step3_body },
   ]
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Track which card is currently sticky
-      steps.forEach((_, index) => {
-        ScrollTrigger.create({
-          trigger: sectionRef.current?.children[index] as Element,
-          start: 'top top',
-          end: 'bottom top',
-          onEnter: () => setActiveCard(index),
-          onEnterBack: () => setActiveCard(index),
-        })
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section ref={sectionRef} style={{ background: '#0A1628' }}>
+    <section style={{ background: '#0A1628' }}>
+      <style>{CSS}</style>
       {steps.map((step, i) => (
-        <ProcessCard
+        <SimpleProcessCard
           key={i}
           num={step.num}
           title={step.title}
           body={step.body}
           image={CARD_IMAGES[i]}
           index={i}
-          isActive={activeCard === i}
         />
       ))}
     </section>
