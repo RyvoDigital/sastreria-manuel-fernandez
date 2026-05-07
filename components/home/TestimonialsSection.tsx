@@ -146,23 +146,25 @@ export function TestimonialsSection() {
 
   const items = t.testimonials.items
 
-  // iPhone: render simple stacked cards
-  if (isIPhone) {
-    return <TestimonialsSimple items={items} />
-  }
-
+  // Call hooks unconditionally to avoid React error #300 when isIPhone toggles
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
   })
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    if (isIPhone) return
     const raw = v * TOTAL
     const next = Math.min(Math.floor(raw), TOTAL - 1)
     if (next !== active) {
       setActive(next)
     }
   })
+
+  // iPhone: render simple stacked cards
+  if (isIPhone) {
+    return <TestimonialsSimple items={items} />
+  }
 
   // Mobile: smaller offsets, no 3D rotation. Reduced motion: disable animations.
   const cardTranslateX = reducedMotion ? 0 : isMobile ? 110 : 350
