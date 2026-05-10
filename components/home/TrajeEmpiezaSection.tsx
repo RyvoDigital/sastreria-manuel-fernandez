@@ -95,7 +95,7 @@ export function TrajeEmpiezaSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797509/photos/gray-check-mannequin_gaf1fp')`,
+            backgroundImage: `url('https://res.cloudinary.com/dwruvre6o/image/upload/v1778242094/photos/web_lista_images/home-the-result_l9d5tm')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
           }}

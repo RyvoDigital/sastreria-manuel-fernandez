@@ -9,9 +9,10 @@ import { useIsMobile } from '@/lib/use-mobile'
 gsap.registerPlugin(ScrollTrigger)
 
 const CATS = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471218/photos/others/IMG_1664_al7160', height: '46vh', key: 'cat1' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797363/photos/wedding-tuxedo_rv21ou',       height: '63vh', key: 'cat2' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471199/photos/others/IMG_5506_fp7jhp',         height: '46vh', key: 'cat3' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241981/photos/web_lista_images/bodas-morning-coat_wfh4yl', height: '46vh', key: 'cat1' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241966/photos/web_lista_images/bodas-stroller_c82kor',    height: '63vh', key: 'cat2' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242110/photos/web_lista_images/producto-tuxedo_wozaya',   height: '46vh', key: 'cat3' as const },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241948/photos/web_lista_images/bodas-suit_m8cqj3',        height: '46vh', key: 'cat4' as const },
 ]
 
 export function BodasCategorias() {
@@ -33,8 +34,8 @@ export function BodasCategorias() {
     return () => ctx.revert()
   }, [])
 
-  const labels: Record<string, string> = { cat1: c.cat1, cat2: c.cat2, cat3: c.cat3 }
-  const descs: Record<string, string> = { cat1: c.cat1_desc, cat2: c.cat2_desc, cat3: c.cat3_desc }
+  const labels: Record<string, string> = { cat1: c.cat1, cat2: c.cat2, cat3: c.cat3, cat4: c.cat4 }
+  const descs: Record<string, string> = { cat1: c.cat1_desc, cat2: c.cat2_desc, cat3: c.cat3_desc, cat4: c.cat4_desc }
 
   return (
     <section

@@ -31,7 +31,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: "url('https://res.cloudinary.com/dwruvre6o/image/upload/v1777471216/photos/others/IMG_1261_zlo3zc')",
+        backgroundImage: "url('https://res.cloudinary.com/dwruvre6o/image/upload/v1778241942/photos/web_lista_images/servicios-hero_ywyf2j')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}

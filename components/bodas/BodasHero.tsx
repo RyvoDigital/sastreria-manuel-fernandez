@@ -23,7 +23,7 @@ export function BodasHero() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471151/photos/others/IMG_0900_ytqe2w"
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778241960/photos/web_lista_images/bodas-hero_oothaw"
             alt=""
             style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12 }}
           />
@@ -86,7 +86,7 @@ export function BodasHero() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471219/photos/others/IMG_0975_qepzxr"
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778241960/photos/web_lista_images/bodas-hero_oothaw"
               alt="Traje de novio a medida — Bodas & Ceremonia"
               style={{
                 width: '100%',
@@ -100,54 +100,6 @@ export function BodasHero() {
             />
           </motion.div>
 
-          {/* Glass card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            style={{
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(201,168,76,0.2)',
-              borderRadius: '1rem',
-              padding: '1.25rem 1.5rem',
-              alignSelf: 'flex-start',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
-              <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.7 }} />
-              <span style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.5rem',
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.75)',
-              }}>Madrid</span>
-            </div>
-            <div style={{ height: '1px', background: 'rgba(196,163,90,0.15)', marginBottom: '0.75rem' }} />
-            <div style={{ display: 'flex', gap: '1.5rem' }}>
-              {[{ val: '1', label: 'Exclusivo' }, { val: '100%', label: 'A Mano' }].map((s) => (
-                <div key={s.label}>
-                  <div style={{
-                    fontFamily: 'var(--font-serif)',
-                    fontStyle: 'italic',
-                    fontSize: '1.1rem',
-                    color: 'var(--color-offwhite)',
-                    lineHeight: 1,
-                  }}>{s.val}</div>
-                  <div style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.45rem',
-                    letterSpacing: '0.16em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(196,163,90,0.5)',
-                    marginTop: '0.2rem',
-                  }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
     )
@@ -165,7 +117,7 @@ export function BodasHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471151/photos/others/IMG_0900_ytqe2w"
+          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778241960/photos/web_lista_images/bodas-hero_oothaw"
           alt=""
           style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18 }}
         />
@@ -213,7 +165,7 @@ export function BodasHero() {
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471219/photos/others/IMG_0975_qepzxr"
+          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778241960/photos/web_lista_images/bodas-hero_oothaw"
           alt="Traje de novio a medida — Bodas & Ceremonia"
           style={{
             width: '100%',
@@ -296,58 +248,7 @@ export function BodasHero() {
         </p>
       </motion.div>
 
-      {/* Layer 4: Glassmorphism card — bottom left */}
-      <motion.div
-        initial={{ opacity: 0, x: -24 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.6 }}
-        style={{
-          position: 'absolute',
-          bottom: '8%',
-          left: 'var(--container-padding)',
-          zIndex: 4,
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(201,168,76,0.2)',
-          borderRadius: '1rem',
-          padding: '1.25rem 1.5rem',
-          minWidth: '180px',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
-          <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--color-gold)', opacity: 0.7 }} />
-          <span style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.52rem',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.75)',
-          }}>Madrid</span>
-        </div>
-        <div style={{ height: '1px', background: 'rgba(196,163,90,0.15)', marginBottom: '0.75rem' }} />
-        <div style={{ display: 'flex', gap: '1.2rem' }}>
-          {[{ val: '1', label: 'Exclusivo' }, { val: '100%', label: 'A Mano' }].map((s) => (
-            <div key={s.label}>
-              <div style={{
-                fontFamily: 'var(--font-serif)',
-                fontStyle: 'italic',
-                fontSize: '1.3rem',
-                color: 'var(--color-offwhite)',
-                lineHeight: 1,
-              }}>{s.val}</div>
-              <div style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.45rem',
-                letterSpacing: '0.16em',
-                textTransform: 'uppercase',
-                color: 'rgba(196,163,90,0.5)',
-                marginTop: '0.2rem',
-              }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
+
     </section>
   )
 }

@@ -8,6 +8,7 @@ import { Navigation } from '@/components/global/Navigation'
 import { FooterEnhanced } from '@/components/global/FooterEnhanced'
 import { ScrollToTop } from '@/components/global/ScrollToTop'
 import { ScrollToTopButton } from '@/components/global/ScrollToTopButton'
+import { HtmlLang } from '@/components/global/HtmlLang'
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     'bespoke tailoring spain'
   ],
   icons: {
-    icon: '/logo.png',
+    icon: '/favicon.ico',
   },
 }
 
@@ -52,6 +53,7 @@ export default function RootLayout({
     <html lang="es" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
         <LanguageProvider>
+          <HtmlLang />
           <LenisProvider>
             <LoadingScreen />
             <Navigation />

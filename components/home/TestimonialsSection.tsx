@@ -13,7 +13,7 @@ const PHOTOS = [
   'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471068/photos/others/IMG_0416_brafs7',
 ]
 
-const TOTAL = 5
+// TOTAL is now derived dynamically from items.length to stay in sync with translations
 
 /* ─── iPhone: simple stacked cards — no sticky, no scroll-driven transforms ─── */
 function TestimonialsSimple({ items }: { items: { name: string; occasion: string; quote: string }[] }) {
@@ -145,6 +145,7 @@ export function TestimonialsSection() {
   }, [])
 
   const items = t.testimonials.items
+  const TOTAL = items.length
 
   // Call hooks unconditionally to avoid React error #300 when isIPhone toggles
   const { scrollYProgress } = useScroll({

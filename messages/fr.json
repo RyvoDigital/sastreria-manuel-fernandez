@@ -58,11 +58,6 @@
     "title": "Le mot de ceux qui nous ont choisis",
     "items": [
       {
-        "quote": "Expérience fantastique avec Manuel Fernández, très professionnel et très attentif. Ils se sont assurés que chaque détail soit correct et soigné, je ne pourrais pas être plus heureux de mon costume. C'est exactement comme je l'avais imaginé sans une seule faute. En plus du grand service, il m'a également été livré à la main à Majorque.",
-        "name": "Josh Nicholas",
-        "occasion": "Avis Google vérifié"
-      },
-      {
         "quote": "Travailler avec Manuel pour mon costume a été un plaisir à chaque étape. J'avais clairement en tête que pour mon mariage je voulais quelque chose d'extra spécial, un costume ordinaire ne suffirait pas, ce que je voulais vraiment était un frac. Manuel était plus qu'à la hauteur.",
         "name": "Lucas Fox",
         "occasion": "Avis Google vérifié"
@@ -95,7 +90,7 @@
       },
       "label": {
         "title": "Étiquette artisan",
-        "desc": "Le badge Loro Piana Master Artisan qui certifie chaque point cousu main."
+        "desc": "Le badge Loro Piana Master Artisan qui certifie chaque détail fait main."
       },
       "waistcoat": {
         "title": "Gilet sur mesure",
@@ -106,7 +101,7 @@
         "desc": "La touche finale qui élève l'ensemble. Pur lin ou soie, plié avec intention."
       },
       "lapel": {
-        "title": "Revers cousu main",
+        "title": "Revers fait main",
         "desc": "Points invisibles qui donnent une structure naturelle et une flexibilité au revers."
       },
       "fabric": {
@@ -152,13 +147,13 @@
       "label": "Tailleur Artisanal",
       "headline_line1": "L'Art de",
       "headline_line2": "Bien S'habiller",
-      "subline": "Tout fait à la main. Sans patrons industriels."
+      "subline": "Tout fait à la main."
     },
     "historia": {
       "label": "L'Histoire",
       "title": "Une Vocation de Toute une Vie",
       "p1": "La Sastrería Manuel Fernández a habillé, tout au long de son histoire, des personnalités éminentes telles que des membres de la Famille Royale, des politiciens, des athlètes d'élite et des figures du monde du spectacle et de la télévision, participant également à de grandes productions cinématographiques et théâtrales.",
-      "p2": "Il a appris le métier des grands maîtres tailleurs espagnols, absorbant non seulement la technique, la coupe anglaise, la toile cousue main, le revers qui tombe de lui-même — mais aussi la philosophie : que chaque client mérite un vêtement unique, construit de toutes pièces sans patrons industriels.",
+      "p2": "Manuel a absorbé non seulement la technique, la coupe anglaise, la toile faite main, le revers qui tombe de lui-même — mais aussi la philosophie : que chaque client mérite un vêtement unique, construit de toutes pièces.",
       "p3": "Des années plus tard, rien n'a changé. Le même respect pour l'étoffe, la même patience avec le patron, la même conversation honnête avant qu'une seule mesure ne soit prise. Chaque costume est unique, irrépétable, fait main."
     },
     "maestro": {
@@ -247,7 +242,7 @@
     "items": {
       "artisan": {
         "label": "Tailleur Artisanal",
-        "desc": "Costumes faits main de toutes pièces, sans patrons industriels."
+        "desc": "Costumes faits main de toutes pièces."
       },
       "weddings": {
         "label": "Mariages & Cérémonie",
@@ -310,7 +305,7 @@
       "headline2": "Artisanat Exceptionnel",
       "body": "Chaque costume qui quitte l'atelier porte avec lui des décennies de savoir, les plus beaux draps européens, et la rigueur de quelqu'un pour qui la perfection est une habitude.",
       "stat1_val": "40+",
-      "stat1_label": "Années de Métier",
+      "stat1_label": "Années d'Expérience",
       "stat2_val": "Sur Mesure",
       "stat2_label": "Chaque Pièce",
       "stat3_val": "Madrid",
@@ -323,7 +318,7 @@
       "label": "Nos Clients",
       "title": "Où Nous Travaillons avec les Clients",
       "p1": "Depuis Madrid, nous habillons des gentlemen du monde entier. Miami, Porto, Lisbonne, Paris, Londres, Rome, Dubaï et plus. Chaque costume voyage fait main.",
-      "p2": "Le tailleur artisanal ne connaît pas de frontières. Chaque client, où qu'il soit, reçoit la même dévotion et attention aux détails."
+      "p2": "Le tailleur artisanal ne connaît pas de frontières. Chaque client, où qu'il soit, reçoit la même dévotion et attention aux détails. Nous offrons le service DHL EXPRESS. Nous travaillons avec les meilleures maisons textiles : Reda, Luvit, Carnet, Harrison, Fox Brothers et Zegna."
     },
     "cta": {
       "label": "La Prochaine Étape",
@@ -399,7 +394,7 @@
     "statement": {
       "label": "Mariages & Cérémonie",
       "headline": "Le jour qui change tout mérite le costume qui exprime tout.",
-      "body": "Chaque costume de mariage est unique, irrépétable, fait main de toutes pièces sans patrons industriels. Un rendez-vous, un essayage : le client repart avec tout prêt, sans stress, sans détails en suspens."
+      "body": "Chaque costume de mariage est unique, irrépétable, fait main de toutes pièces. Un rendez-vous, un essayage : le client repart avec tout prêt, sans stress, sans détails en suspens."
     },
     "categorias": {
       "label": "Styles de Cérémonie",
@@ -408,16 +403,18 @@
       "cat2": "Smoking",
       "cat2_desc": "Impeccable pour la cérémonie et la réception du soir.",
       "cat3": "Queue-de-pie",
-      "cat3_desc": "L'élégance la plus formelle pour des occasions uniques."
+      "cat3_desc": "L'élégance la plus formelle pour des occasions uniques.",
+      "cat4": "Costume Artisanal",
+      "cat4_desc": "Élégance personnalisée pour toute occasion spéciale."
     },
     "formal_wear": {
       "label": "Tenue Formelle",
       "title": "Dès le premier rendez-vous",
       "items": [
-        "Costume sur mesure",
         "Redingote",
-        "Queue-de-pie",
-        "Smoking"
+        "Chaqué",
+        "Smoking",
+        "Costume sur mesure"
       ]
     },
     "accesorios": {
@@ -478,7 +475,7 @@
     "hero": {
       "label": "Configurateur",
       "title": "Concevez le Costume que Vous Êtes",
-      "subtitle": "Sept décisions. Un vêtement irrépétable. Notre configurateur vous guide étape par étape pour construire le costume qui exprime exactement qui vous êtes.",
+      "subtitle": "Un vêtement sur mesure construit selon votre vision exacte. Notre configurateur vous guide étape par étape pour construire le costume qui exprime exactement qui vous êtes.",
       "scroll": "Défiler"
     },
     "value": {
@@ -486,7 +483,7 @@
       "title": "Plus qu'un formulaire, une conversation avec le tissu.",
       "body": "Chaque sélection que vous faites dans le configurateur a des conséquences réelles sur le patron, la chute et le caractère de votre costume. Du revers à la couleur, chaque détail est pensé pour que le résultat soit une extension de votre personnalité.",
       "features": [
-        "7 étapes couvrant chaque détail du costume",
+        "Un processus sur mesure couvrant chaque détail du costume",
         "Recommandations basées sur votre occasion et style",
         "Résumé visuel de tous vos choix",
         "Devis personnalisé à la fin"
@@ -517,6 +514,21 @@
     "cta_btn": "Prendre Rendez-vous",
     "instagram": "Instagram",
     "legal": "Mentions Légales"
+  },
+  "legal": {
+    "title": "Mentions Légales",
+    "owner_title": "Propriétaire",
+    "owner_name": "Sastrería Manuel Fernández",
+    "address_title": "Adresse",
+    "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
+    "email_title": "Email",
+    "email": "sastreriamanuelfernandez@gmail.com",
+    "phone_title": "Téléphone",
+    "phone": "+34 682 19 29 44",
+    "disclaimer_title": "Responsabilité",
+    "disclaimer": "Le contenu de ce site web est à titre informatif uniquement. Sastrería Manuel Fernández décline toute responsabilité quant aux informations provenant de liens tiers. L'accès et l'utilisation de ce site web impliquent l'acceptation des conditions énoncées ci-présent.",
+    "copyright_title": "Propriété intellectuelle",
+    "copyright": "Tous les contenus de ce site web, y compris les textes, images, logos et designs, sont la propriété de Sastrería Manuel Fernández ou de leurs titulaires respectifs, et sont protégés par les lois sur la propriété intellectuelle et industrielle."
   },
   "tagline": "Tailleur artisanal",
   "since": "Depuis ",
@@ -549,7 +561,7 @@
   "videollamada": {
     "hero": {
       "label": "Visioconférence",
-      "title": "La Tailleur dans votre Salon",
+      "title": "La Tailleur dans votre Espace",
       "subtitle": "Une consultation personnalisée de 20 minutes avec nos experts. Du choix du tissu à la coupe finale, sans quitter votre domicile.",
       "scroll": "Défiler"
     },
@@ -590,6 +602,7 @@
       "selectTime": "Sélectionnez une heure",
       "duration": "20-25 minutes",
       "platform": "Zoom / Google Meet",
+      "hours": "Lun–Ven 10:00–14:00 et 17:00–20:00; Sam 10:00–13:00",
       "next": "Suivant",
       "back": "Retour",
       "confirmBooking": "Confirmer le Rendez-vous",

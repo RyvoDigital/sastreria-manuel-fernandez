@@ -55,11 +55,6 @@
     "title": "Experiencias Reales",
     "items": [
       {
-        "quote": "Experiencia fantástica con Manuel Fernández, muy profesional y muy atento. Se aseguraron de que cada detalle fuera correcto y cuidado, no podría estar más feliz con mi traje. Es exactamente como lo imaginé sin un solo defecto. Además del gran servicio, también me lo entregaron a mano en Mallorca.",
-        "name": "Josh Nicholas",
-        "occasion": "Reseña verificada en Google"
-      },
-      {
         "quote": "Trabajar con Manuel para mi traje fue un placer en cada paso del camino. Tenía claro que para mi boda quería algo extra especial, un traje normal no bastaría, lo que realmente quería era un frac. Manuel estuvo a la altura.",
         "name": "Lucas Fox",
         "occasion": "Reseña verificada en Google"
@@ -92,7 +87,7 @@
       },
       "label": {
         "title": "Etiqueta artesano",
-        "desc": "La insignia Loro Piana Master Artisan que certifica cada puntada hecha a mano."
+        "desc": "La insignia Loro Piana Master Artisan que certifica cada detalle hecho a mano."
       },
       "waistcoat": {
         "title": "Chaleco a medida",
@@ -103,7 +98,7 @@
         "desc": "El detalle final que eleva el conjunto. Puro lino o seda, doblado con intención."
       },
       "lapel": {
-        "title": "Solapa cosida a mano",
+        "title": "Solapa hecha a mano",
         "desc": "Puntadas invisibles que dan estructura y flexibilidad natural a la solapa."
       },
       "fabric": {
@@ -149,13 +144,13 @@
       "label": "Sastrería Artesanal",
       "headline_line1": "El Arte de",
       "headline_line2": "Vestir Bien",
-      "subline": "Todo hecho a mano. Sin patrones industriales."
+      "subline": "Todo hecho a mano."
     },
     "historia": {
       "label": "La Historia",
       "title": "Una Vocación de por Vida",
       "p1": "Sastrería Manuel Fernández ha vestido, a lo largo de su historia, a destacadas personalidades como miembros de la Casa Real, políticos, deportistas de élite y figuras del mundo del espectáculo y la televisión, participando además en grandes producciones cinematográficas y teatrales.",
-      "p2": "Aprendió el oficio de los grandes maestros sastres españoles, absorbiendo no sólo la técnica, el corte inglés, la entretela cosida a mano, la solapa que cae sola, sino también la filosofía: que cada cliente merece una prenda única, construida desde cero sin patrones industriales.",
+      "p2": "Manuel absorbió no sólo la técnica, el corte inglés, la entretela hecha a mano, la solapa que cae sola, sino también la filosofía: que cada cliente merece una prenda única, construida desde cero.",
       "p3": "Años después, nada ha cambiado. El mismo respeto por el tejido, la misma paciencia con el patrón, la misma conversación honesta antes de tomar una sola medida. Cada traje es único, irrepetible, hecho a mano."
     },
     "maestro": {
@@ -240,7 +235,7 @@
     "items": {
       "artisan": {
         "label": "Sastrería Artesanal",
-        "desc": "Trajes hechos a mano desde cero, sin patrones industriales."
+        "desc": "Trajes hechos a mano desde cero."
       },
       "weddings": {
         "label": "Bodas y Ceremonia",
@@ -282,7 +277,7 @@
       "headline1": "Un Legado de",
       "headline2": "Oficio Excepcional",
       "body": "Cada traje que sale del taller lleva consigo décadas de conocimiento, el mejor paño europeo y el rigor de quien hace de la perfección un hábito.",
-      "stat1_val": "40+",      "stat1_label": "Años de Oficio",
+      "stat1_val": "40+",      "stat1_label": "Años de Experiencia",
       "stat2_val": "A Medida", "stat2_label": "Cada Pieza",
       "stat3_val": "Madrid",   "stat3_label": "Nuestra Ciudad",
       "satisfaction_label": "Clientes Satisfechos",
@@ -293,7 +288,7 @@
       "label": "Nuestros Clientes",
       "title": "Donde Trabajamos con Clientes",
       "p1": "Desde Madrid, vestimos a caballeros en todo el mundo. Miami, Oporto, Lisboa, París, Londres, Roma, Dubái y más. Cada traje viaja hecho a mano.",
-      "p2": "La sastrería artesanal no conoce fronteras. Cada cliente, donde esté, recibe la misma dedicación y atención al detalle."
+      "p2": "La sastrería artesanal no conoce fronteras. Cada cliente, donde esté, recibe la misma dedicación y atención al detalle. Ofrecemos servicio DHL EXPRESS. Trabajamos con las mejores casas textiles: Reda, Luvit, Carnet, Harrison, Fox Brothers y Zegna."
     },
     "cta": {
       "label": "El Siguiente Paso",
@@ -364,18 +359,19 @@
     "statement": {
       "label": "Bodas & Ceremonia",
       "headline": "El día que lo cambia todo merece el traje que lo expresa todo.",
-      "body": "Cada traje nupcial es único, irrepetible, construido a mano desde cero sin patrones industriales. Un solo encuentro, una sola prueba: el cliente se lleva todo listo, sin estrés, sin cabos sueltos."
+      "body": "Cada traje nupcial es único, irrepetible, construido a mano desde cero. Un solo encuentro, una sola prueba: el cliente se lleva todo listo, sin estrés, sin cabos sueltos."
     },
     "categorias": {
       "label": "Estilos de Ceremonia",
       "cat1": "Chaqué",  "cat1_desc": "La máxima expresión de la elegancia nupcial de mañana.",
       "cat2": "Esmoquin",  "cat2_desc": "Impecable para la ceremonia y la velada.",
-      "cat3": "Frac",      "cat3_desc": "La elegancia más formal para ocasiones únicas."
+      "cat3": "Frac",      "cat3_desc": "La elegancia más formal para ocasiones únicas.",
+      "cat4": "Traje Artesanal", "cat4_desc": "Elegancia personalizada para cualquier ocasión especial."
     },
     "formal_wear": {
       "label": "Vestimenta Formal",
       "title": "Desde la primera cita",
-      "items": ["Traje a medida", "Chaqué", "Frac", "Esmoquin"]
+      "items": ["Frac", "Chaqué", "Esmoquin", "Traje a medida"]
     },
     "accesorios": {
       "label": "Complementos",
@@ -407,7 +403,7 @@
     "hero": {
       "label": "Configurador",
       "title": "Diseña el Traje que Eres",
-      "subtitle": "Siete decisiones. Una prenda irrepetible. Nuestro configurador te guía paso a paso para construir el traje que expresa exactamente quién eres.",
+      "subtitle": "Una prenda a medida construida según tu visión exacta. Nuestro configurador te guía paso a paso para construir el traje que expresa exactamente quién eres.",
       "scroll": "Desplazar"
     },
     "value": {
@@ -415,7 +411,7 @@
       "title": "Más que un formulario, una conversación con el tejido.",
       "body": "Cada selección que haces en el configurador tiene consecuencia real en el patrón, la caída y el carácter de tu traje. Desde la solapa hasta el color, cada detalle está pensado para que el resultado sea una extensión de tu personalidad.",
       "features": [
-        "7 pasos que cubren cada detalle del traje",
+        "Un proceso a medida que cubre cada detalle del traje",
         "Recomendaciones basadas en tu ocasión y estilo",
         "Resumen visual de todas tus elecciones",
         "Presupuesto personalizado al finalizar"
@@ -439,7 +435,7 @@
   "videollamada": {
     "hero": {
       "label": "Videollamada",
-      "title": "La Sastrería en tu Salón",
+      "title": "La Sastrería en tu Espacio",
       "subtitle": "Una consulta personalizada de 20 minutos con nuestros expertos. Desde la elección del tejido hasta el corte final, sin moverte de casa.",
       "scroll": "Desplazar"
     },
@@ -480,6 +476,7 @@
       "selectTime": "Selecciona una hora",
       "duration": "20-25 minutos",
       "platform": "Zoom / Google Meet",
+      "hours": "Lun–Vie 10:00–14:00 y 17:00–20:00; Sáb 10:00–13:00",
       "next": "Siguiente",
       "back": "Atrás",
       "confirmBooking": "Confirmar Reserva",
@@ -497,5 +494,20 @@
     "cta_btn": "Solicitar Cita",
     "instagram": "Instagram",
     "legal": "Aviso Legal"
+  },
+  "legal": {
+    "title": "Aviso Legal",
+    "owner_title": "Titular",
+    "owner_name": "Sastrería Manuel Fernández",
+    "address_title": "Dirección",
+    "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
+    "email_title": "Correo electrónico",
+    "email": "sastreriamanuelfernandez@gmail.com",
+    "phone_title": "Teléfono",
+    "phone": "+34 682 19 29 44",
+    "disclaimer_title": "Responsabilidad",
+    "disclaimer": "El contenido de este sitio web tiene fines exclusivamente informativos. Sastrería Manuel Fernández no se responsabiliza de la información proveniente de enlaces a terceros. El acceso y uso de este sitio web implica la aceptación de las condiciones aquí expuestas.",
+    "copyright_title": "Propiedad intelectual",
+    "copyright": "Todos los contenidos de este sitio web, incluyendo textos, imágenes, logotipos y diseños, son propiedad de Sastrería Manuel Fernández o de sus respectivos titulares, y están protegidos por las leyes de propiedad intelectual e industrial."
   }
 }

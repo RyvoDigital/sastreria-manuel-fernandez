@@ -23,7 +23,7 @@ const NAV_ITEMS = [
 // Persistent contact buttons data
 const CONTACT_BUTTONS = {
   call: { label: 'Llámanos', href: 'tel:+34682192944', icon: Phone },
-  location: { label: 'Dónde Estamos', href: '/contacto', icon: MapPin },
+  location: { label: 'Dónde Estamos', href: 'https://www.google.com/maps/search/?api=1&query=Sastrería+Manuel+Fernández,+C.+de+Jorge+Juan,+41,+Salamanca,+28001+Madrid', icon: MapPin },
 }
 
 export function Navigation() {
@@ -150,8 +150,10 @@ export function Navigation() {
           </a>
 
           {/* WHERE WE ARE BUTTON — Desktop only, persistent on all pages */}
-          <Link
+          <a
             href={CONTACT_BUTTONS.location.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mf-contact-btn"
             style={{
               display:        'none',
@@ -183,7 +185,7 @@ export function Navigation() {
           >
             <MapPin size={14} strokeWidth={1.5} />
             {CONTACT_BUTTONS.location.label}
-          </Link>
+          </a>
 
           {/* Language selector */}
           <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'center' }}>
@@ -453,8 +455,10 @@ export function Navigation() {
               <Phone size={15} strokeWidth={1.5} />
               {CONTACT_BUTTONS.call.label}
             </a>
-            <Link
+            <a
               href={CONTACT_BUTTONS.location.href}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               style={{
                 display: 'flex',
@@ -484,7 +488,7 @@ export function Navigation() {
             >
               <MapPin size={15} strokeWidth={1.5} />
               {CONTACT_BUTTONS.location.label}
-            </Link>
+            </a>
           </div>
 
           {/* Language selector */}
