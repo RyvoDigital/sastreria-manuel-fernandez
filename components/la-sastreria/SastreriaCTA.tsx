@@ -51,7 +51,7 @@ export function SastreriaCTA() {
       {/* Photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471106/photos/others/IMG_0880_dnsrqo"
+        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778242141/photos/web_lista_images/sastreria-next-step_n1teoq"
         alt=""
         aria-hidden
         className="mf-sas-cta-photo"
@@ -99,7 +99,7 @@ export function SastreriaCTA() {
 
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/videollamada" className="mf-cta-btn mf-cta-btn-primary" style={{
+          <Link href="/contacto" className="mf-cta-btn mf-cta-btn-primary" style={{
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',

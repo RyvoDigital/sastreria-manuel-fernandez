@@ -16,14 +16,14 @@ type QuoteKey =
   | 'quote5' | 'quote6' | 'quote7' | 'quote8'
 
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471156/photos/others/IMG_9503_wwqizp',         quoteKey: 'quote1' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471227/photos/others/IMG_1729_a7o3ej',        quoteKey: 'quote2' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471166/photos/others/IMG_0078_fcvvhk',    quoteKey: 'quote3' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471219/photos/others/IMG_1477_bx8bwn', quoteKey: 'quote4' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471223/photos/others/IMG_1701_ojirsx',     quoteKey: 'quote5' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471208/photos/others/IMG_0734_ug3baf',      quoteKey: 'quote6' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471211/photos/others/IMG_1658_ghlyyk',  quoteKey: 'quote7' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797426/photos/wedding-ceremony_wf7tyb',     quoteKey: 'quote8' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241918/photos/web_lista_images/contacto-page_s9mfnn', quoteKey: 'quote1' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241985/photos/web_lista_images/contacto-section_kj0rgk', quoteKey: 'quote2' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471156/photos/others/IMG_9503_wwqizp',         quoteKey: 'quote3' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471227/photos/others/IMG_1729_a7o3ej',        quoteKey: 'quote4' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471166/photos/others/IMG_0078_fcvvhk',    quoteKey: 'quote5' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471219/photos/others/IMG_1477_bx8bwn', quoteKey: 'quote6' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471223/photos/others/IMG_1701_ojirsx',     quoteKey: 'quote7' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471208/photos/others/IMG_0734_ug3baf',      quoteKey: 'quote8' },
 ]
 
 const CSS = `
@@ -362,7 +362,7 @@ export function ContactPage() {
           {/* Reservar CTA */}
           <div className="mf-ci" style={{ marginBottom: '1.8rem' }}>
             <Link
-              href="/videollamada"
+              href="/contacto"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
                 padding: '0.75rem 1.8rem',

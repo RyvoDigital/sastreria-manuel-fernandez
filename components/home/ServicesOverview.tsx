@@ -3,17 +3,11 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
-import { Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
+import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import Image from 'next/image'
 
 const SERVICES = [
-  {
-    key: 'inicio',
-    icon: Home,
-    href: '/',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
-  },
   {
     key: 'sastreria',
     icon: Scissors,

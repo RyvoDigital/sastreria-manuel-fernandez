@@ -6,9 +6,9 @@ import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
 const CARD_IMAGES = [
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/photos/fabric-selection_stkbcf',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797423/photos/cutting-tweed_sgkfif',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797435/photos/wedding-rome_qlqcxz',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242036/photos/web_lista_images/home-selection_vsmq3j',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242003/photos/web_lista_images/home-sartorial-interpretation_sdszvu',
+  'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242094/photos/web_lista_images/home-the-result_l9d5tm',
 ]
 
 const CSS = `

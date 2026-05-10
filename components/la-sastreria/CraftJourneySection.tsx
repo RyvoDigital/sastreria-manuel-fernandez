@@ -50,28 +50,28 @@ export function CraftJourneySection() {
   const sections = [
     {
       id:          'tejido',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471227/photos/others/IMG_7104_ndueh5',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242117/photos/web_lista_images/sastreria-overview_viyqaa',
       leftLabel:   t.la_sastreria.oficio.cat1,
       title:       'Carácter',
       rightLabel:  'Lana & Seda',
     },
     {
       id:          'diseno',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471206/photos/others/IMG_0395_sy6wko',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242117/photos/web_lista_images/sastreria-overview_viyqaa',
       leftLabel:   t.la_sastreria.oficio.cat2,
       title:       'Precisión',
       rightLabel:  'Tradición',
     },
     {
       id:          'corte',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797497/photos/ChatGPT_Image_13_abr_2026_10_52_40_kegrpt',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241926/photos/web_lista_images/sastreria-cut-by-hand_tiomh8',
       leftLabel:   t.la_sastreria.oficio.cat3,
       title:       'Paciencia',
       rightLabel:  'A Mano',
     },
     {
       id:          'proceso',
-      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797445/photos/ChatGPT_Image_10_abr_2026_11_48_37_opyl4v',
+      background:  'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241913/photos/web_lista_images/sastreria-artisan-detail_hfozse',
       leftLabel:   t.la_sastreria.oficio.cat4,
       title:       'Perfección',
       rightLabel:  'El Detalle',

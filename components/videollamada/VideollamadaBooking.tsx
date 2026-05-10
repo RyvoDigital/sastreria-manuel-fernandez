@@ -7,8 +7,10 @@ import { Calendar, Clock, Video, Check, ChevronLeft, Loader2 } from 'lucide-reac
 
 const TIME_SLOTS = [
   '10:00', '10:30', '11:00', '11:30', '12:00',
-  '16:00', '16:30', '17:00', '17:30', '18:00', '18:30',
+  '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
 ]
+
+const SATURDAY_SLOTS = ['10:00', '10:30', '11:00', '11:30', '12:00']
 
 export function VideollamadaBooking() {
   const { t, locale } = useI18n()
@@ -24,6 +26,13 @@ export function VideollamadaBooking() {
     date.setDate(date.getDate() + i + 1)
     return date.toISOString().split('T')[0]
   })
+
+  const getAvailableSlots = (dateStr: string | null) => {
+    if (!dateStr) return TIME_SLOTS
+    const day = new Date(dateStr).getDay()
+    const isSaturday = day === 6
+    return isSaturday ? SATURDAY_SLOTS : TIME_SLOTS
+  }
 
   const handleConfirm = () => {
     setIsSubmitting(true)
@@ -400,7 +409,7 @@ export function VideollamadaBooking() {
                         marginBottom: '2rem',
                       }}
                     >
-                      {TIME_SLOTS.map((time) => (
+                      {getAvailableSlots(selectedDate).map((time) => (
                         <button
                           key={time}
                           onClick={() => setSelectedTime(time)}

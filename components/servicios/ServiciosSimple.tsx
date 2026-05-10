@@ -307,7 +307,7 @@ export function ServiciosSimple() {
             margin: '0 0 1rem 0',
           }}>
             {locale === 'es'
-              ? 'We are a real artisan tailor — everything handmade, no industrial patterns, no prior fitting, each garment built from scratch'
+              ? 'Somos un sastre artesano de verdad — todo hecho a mano, sin patrones industriales, sin pruebas previas, cada prenda construida desde cero'
               : 'We are a real artisan tailor — everything handmade, no industrial patterns, no prior fitting, each garment built from scratch'}
           </p>
           <div style={{

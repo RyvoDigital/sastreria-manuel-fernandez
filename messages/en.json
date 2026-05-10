@@ -55,11 +55,6 @@
     "title": "Real Experiences",
     "items": [
       {
-        "quote": "Fantastic experience with Manuel Fernandez, very professional and very attentive! They made sure every detail was correct and taken care of, I could not be happier with my suit. It is exactly how I imagined it without a single fault. On top of the great service it was also hand delivered to me in Mallorca.",
-        "name": "Josh Nicholas",
-        "occasion": "Verified Google Review"
-      },
-      {
         "quote": "Working with Manuel for my suit was a pleasure every step of the way. I was clear that for my wedding I wanted something extra special, a regular suit would not suffice, what I really wanted was a tailcoat.",
         "name": "Lucas Fox",
         "occasion": "Verified Google Review"
@@ -92,7 +87,7 @@
       },
       "label": {
         "title": "Artisan Label",
-        "desc": "The Loro Piana Master Artisan badge certifying every hand-stitched detail."
+        "desc": "The Loro Piana Master Artisan badge certifying every handmade detail."
       },
       "waistcoat": {
         "title": "Bespoke Waistcoat",
@@ -103,7 +98,7 @@
         "desc": "The final touch that elevates the ensemble. Pure linen or silk, folded with intent."
       },
       "lapel": {
-        "title": "Hand-stitched Lapel",
+        "title": "Handmade Lapel",
         "desc": "Invisible stitches that provide natural structure and flexibility to the lapel."
       },
       "fabric": {
@@ -134,7 +129,7 @@
       },
       {
         "category": "The Cut",
-        "title": "Editorial Inspiration",
+        "title": "Precision as Language",
         "excerpt": "Before a single stitch, the pattern already speaks. Chalk lines on blue cloth: the cartography of a unique suit."
       },
       {
@@ -149,13 +144,13 @@
       "label": "Artisan Tailoring",
       "headline_line1": "The Art of",
       "headline_line2": "Dressing Well",
-      "subline": "Everything handmade. No industrial patterns."
+      "subline": "Everything handmade."
     },
     "historia": {
       "label": "The Story",
       "title": "A Lifelong Vocation",
       "p1": "Sastrería Manuel Fernández has dressed, throughout its history, prominent personalities such as members of the Royal Family, politicians, elite athletes and figures from the world of entertainment and television, also participating in major film and theatre productions.",
-      "p2": "He learned the craft from the great Spanish master tailors, absorbing not only the technique, the English cut, the hand-sewn canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment, built from scratch without industrial patterns.",
+      "p2": "Manuel absorbed not only the technique, the English cut, the handmade canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment, built from scratch.",
       "p3": "Years later, nothing has changed. The same respect for the cloth, the same patience with the pattern, the same honest conversation before a single measurement is taken. Each suit is unique, unrepeatable, handmade."
     },
     "maestro": {
@@ -240,7 +235,7 @@
     "items": {
       "artisan": {
         "label": "Artisan Tailoring",
-        "desc": "Handmade suits from scratch, no industrial patterns."
+        "desc": "Handmade suits from scratch."
       },
       "weddings": {
         "label": "Weddings & Ceremony",
@@ -282,7 +277,7 @@
       "headline1": "A Legacy of",
       "headline2": "Exceptional Craft",
       "body": "Every suit that leaves the workshop carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
-      "stat1_val": "40+",      "stat1_label": "Years of Craft",
+      "stat1_val": "40+",      "stat1_label": "Years of Experience",
       "stat2_val": "Bespoke",  "stat2_label": "Every Piece",
       "stat3_val": "Madrid",   "stat3_label": "Our City",
       "satisfaction_label": "Satisfied Clients",
@@ -293,7 +288,7 @@
       "label": "Our Clients",
       "title": "Where We Work with Clients",
       "p1": "From Madrid, we dress gentlemen worldwide. Miami, Oporto, Lisbon, Paris, London, Rome, Dubai and more. Every suit travels handmade.",
-      "p2": "Artisan tailoring knows no borders. Every client, wherever they are, receives the same dedication and attention to detail."
+      "p2": "Artisan tailoring knows no borders. Every client, wherever they are, receives the same dedication and attention to detail. We offer DHL EXPRESS service. We work with the finest textile houses: Reda, Luvit, Carnet, Harrison, Fox Brothers, and Zegna."
     },
     "cta": {
       "label": "The Next Step",
@@ -364,18 +359,19 @@
     "statement": {
       "label": "Weddings & Ceremony",
       "headline": "The day that changes everything deserves the suit that expresses everything.",
-      "body": "Every wedding suit is unique, unrepeatable, handmade from scratch without industrial patterns. One appointment, one fitting: the client leaves with everything ready, no stress, no loose ends."
+      "body": "Every wedding suit is unique, unrepeatable, handmade from scratch. One appointment, one fitting: the client leaves with everything ready, no stress, no loose ends."
     },
     "categorias": {
       "label": "Ceremony Styles",
       "cat1": "Morning Coat",    "cat1_desc": "The ultimate expression of morning wedding elegance.",
       "cat2": "Tuxedo","cat2_desc": "Impecable for the ceremony and evening reception.",
-      "cat3": "Tailcoat",       "cat3_desc": "The most formal elegance for unique occasions."
+      "cat3": "Tailcoat",       "cat3_desc": "The most formal elegance for unique occasions.",
+      "cat4": "Artisan Suit",    "cat4_desc": "Personalised elegance for any special occasion."
     },
     "formal_wear": {
       "label": "Formal Wear",
       "title": "From the first appointment",
-      "items": ["Bespoke suit", "Morning coat", "Tailcoat", "Tuxedo"]
+      "items": ["Morning coat", "Stroller", "Tuxedo", "Bespoke suit"]
     },
     "accesorios": {
       "label": "Accessories",
@@ -407,7 +403,7 @@
     "hero": {
       "label": "Configurator",
       "title": "Design the Suit You Are",
-      "subtitle": "Seven decisions. One irrepeatable garment. Our configurator guides you step by step to build the suit that expresses exactly who you are.",
+      "subtitle": "A bespoke garment built to your exact vision. Our configurator guides you step by step to build the suit that expresses exactly who you are.",
       "scroll": "Scroll"
     },
     "value": {
@@ -415,7 +411,7 @@
       "title": "More than a form, a conversation with fabric.",
       "body": "Every selection you make in the configurator has real consequences on the pattern, drape and character of your suit. From lapel to colour, every detail is designed so the result is an extension of your personality.",
       "features": [
-        "7 steps covering every detail of the suit",
+        "A tailored process covering every detail of the suit",
         "Recommendations based on your occasion and style",
         "Visual summary of all your choices",
         "Personalised quote upon completion"
@@ -439,7 +435,7 @@
   "videollamada": {
     "hero": {
       "label": "Video Call",
-      "title": "Tailoring in your Living Room",
+      "title": "Tailoring in your Space",
       "subtitle": "A 20-minute personalised consultation with our experts. From fabric selection to final cut, without leaving your home.",
       "scroll": "Scroll"
     },
@@ -480,6 +476,7 @@
       "selectTime": "Select a time",
       "duration": "20-25 minutes",
       "platform": "Zoom / Google Meet",
+      "hours": "Mon–Fri 10:00–14:00 & 17:00–20:00; Sat 10:00–13:00",
       "next": "Next",
       "back": "Back",
       "confirmBooking": "Confirm Booking",
@@ -497,5 +494,20 @@
     "cta_btn": "Book Appointment",
     "instagram": "Instagram",
     "legal": "Legal Notice"
+  },
+  "legal": {
+    "title": "Legal Notice",
+    "owner_title": "Owner",
+    "owner_name": "Sastrería Manuel Fernández",
+    "address_title": "Address",
+    "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
+    "email_title": "Email",
+    "email": "sastreriamanuelfernandez@gmail.com",
+    "phone_title": "Phone",
+    "phone": "+34 682 19 29 44",
+    "disclaimer_title": "Liability",
+    "disclaimer": "The content of this website is for informational purposes only. Sastrería Manuel Fernández is not responsible for information from third-party links. Accessing and using this website implies acceptance of the conditions stated herein.",
+    "copyright_title": "Intellectual Property",
+    "copyright": "All content on this website, including text, images, logos and designs, is the property of Sastrería Manuel Fernández or their respective owners, and is protected by intellectual and industrial property laws."
   }
 }

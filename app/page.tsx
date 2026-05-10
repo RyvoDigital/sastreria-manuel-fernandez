@@ -2,7 +2,7 @@ import { HeroEnhanced }          from '@/components/home/HeroEnhanced'
 import { ServicesEnhanced }      from '@/components/home/ServicesEnhanced'
 import { DetailGallery }         from '@/components/home/DetailGallery'
 import { TrajeEmpiezaSection }   from '@/components/home/TrajeEmpiezaSection'
-import { ProcesoSection }        from '@/components/home/ProcesoSection'
+
 import { ZoomParallaxSection }   from '@/components/home/ZoomParallaxSection'
 import { ProcessCardsEnhanced }  from '@/components/home/ProcessCardsEnhanced'
 import { EditorialSection }      from '@/components/home/EditorialSection'
@@ -18,7 +18,6 @@ export default function HomePage() {
       <ServicesEnhanced />
       <DetailGallery />
       <TrajeEmpiezaSection />
-      <ProcesoSection />
       <ZoomParallaxSection />
       <ProcessCardsEnhanced />
       <EditorialSection />

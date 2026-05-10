@@ -63,7 +63,7 @@ export function ConfiguradorValueProp() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797462/photos/fabric-selection_stkbcf"
+              src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778241954/photos/web_lista_images/configurador-overview_e9k0ap"
               alt=""
               style={{
                 width: '100%',

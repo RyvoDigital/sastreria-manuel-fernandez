@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
+import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import Image from 'next/image'
@@ -12,12 +12,6 @@ import Image from 'next/image'
 gsap.registerPlugin(ScrollTrigger)
 
 const SERVICES = [
-  {
-    key: 'inicio' as const,
-    icon: Home,
-    href: '/',
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
-  },
   {
     key: 'sastreria' as const,
     icon: Scissors,

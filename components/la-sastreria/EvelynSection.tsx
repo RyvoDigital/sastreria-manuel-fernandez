@@ -101,7 +101,7 @@ export function EvelynSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={photoImgRef}
-            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797341/photos/wedding-couple_hk4ppu.jpg"
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778242124/photos/web_lista_images/sastreria-evelyn-fernandez_wwlkgw"
             alt="Evelyn — Sastrería Manuel Fernández"
             style={{
               position:   'absolute',
@@ -168,13 +168,13 @@ export function EvelynSection() {
           <h2 className="mf-ev-title" style={{
             position:      'relative', zIndex: 1,
             fontFamily:    'var(--font-serif)',
-            fontSize:      'clamp(2.4rem, 4.5vw, 4.2rem)',
+            fontSize:      'clamp(2.8rem, 5vw, 4.8rem)',
             fontWeight:     400,
             lineHeight:     1.1,
             color:         '#FFFFFF',
             marginBottom:  'clamp(2rem, 4vh, 3rem)',
           }}>
-            Evelyn
+            Evelyn Fernández
           </h2>
 
           <p className="mf-ev-p" style={{

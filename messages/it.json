@@ -58,11 +58,6 @@
     "title": "La parola di chi ci ha scelto",
     "items": [
       {
-        "quote": "Esperienza fantastica con Manuel Fernández, molto professionale e molto attento. Si sono assicurati che ogni dettaglio fosse corretto e curato, non potrei essere più felice del mio abito. È esattamente come lo avevo immaginato senza un solo difetto. Oltre al grande servizio, me l'hanno consegnato a mano a Maiorca.",
-        "name": "Josh Nicholas",
-        "occasion": "Recensione Google verificata"
-      },
-      {
         "quote": "Lavorare con Manuel per il mio abito è stato un piacere ad ogni passo. Ero chiaro sul fatto che per il mio matrimonio volevo qualcosa di extra speciale, un abito normale non sarebbe bastato, quello che volevo davvero era un tight. Manuel era più che all'altezza.",
         "name": "Lucas Fox",
         "occasion": "Recensione Google verificata"
@@ -95,7 +90,7 @@
       },
       "label": {
         "title": "Etichetta artigiano",
-        "desc": "Il distintivo Loro Piana Master Artisan che certifica ogni punto fatto a mano."
+        "desc": "Il distintivo Loro Piana Master Artisan che certifica ogni dettaglio fatto a mano."
       },
       "waistcoat": {
         "title": "Gilet su misura",
@@ -106,7 +101,7 @@
         "desc": "Il tocco finale che eleva l'insieme. Puro lino o seta, piegato con intenzione."
       },
       "lapel": {
-        "title": "Reverso cucito a mano",
+        "title": "Reverso fatto a mano",
         "desc": "Punti invisibili che conferiscono struttura naturale e flessibilità al reverso."
       },
       "fabric": {
@@ -152,13 +147,13 @@
       "label": "Sartoria Artigianale",
       "headline_line1": "L'Arte del",
       "headline_line2": "Vestire Bene",
-      "subline": "Tutto fatto a mano. Senza modelli industriali."
+      "subline": "Tutto fatto a mano."
     },
     "historia": {
       "label": "La Storia",
       "title": "Una Vocazione di Tutta una Vita",
       "p1": "La Sastrería Manuel Fernández ha vestito, nel corso della sua storia, personalità di spicco come membri della Famiglia Reale, politici, atleti d'élite e figure del mondo dello spettacolo e della televisione, partecipando anche a importanti produzioni cinematografiche e teatrali.",
-      "p2": "Ha imparato il mestiere dai grandi maestri sarti spagnoli, assorbendo non solo la tecnica, il taglio inglese, la tela cucita a mano, il reverso che cade da solo — ma anche la filosofia: che ogni cliente meriti un capo unico, costruito da zero senza modelli industriali.",
+      "p2": "Manuel ha assorbito non solo la tecnica, il taglio inglese, la tela fatta a mano, il reverso che cade da solo — ma anche la filosofia: che ogni cliente meriti un capo unico, costruito da zero.",
       "p3": "Anni dopo, nulla è cambiato. Lo stesso rispetto per il tessuto, la stessa pazienza con il cartamodello, la stessa conversazione onesta prima che venga presa una sola misura. Ogni abito è unico, irripetibile, fatto a mano."
     },
     "maestro": {
@@ -247,7 +242,7 @@
     "items": {
       "artisan": {
         "label": "Sartoria Artigianale",
-        "desc": "Abiti fatti a mano da zero, senza modelli industriali."
+        "desc": "Abiti fatti a mano da zero."
       },
       "weddings": {
         "label": "Matrimoni & Cerimonie",
@@ -310,7 +305,7 @@
       "headline2": "Artigianato Eccezionale",
       "body": "Ogni abito che lascia il laboratorio porta con sé decenni di conoscenza, i migliori tessuti europei, e la rigorosità di qualcuno per cui la perfezione è un'abitudine.",
       "stat1_val": "40+",
-      "stat1_label": "Anni di Mestiere",
+      "stat1_label": "Anni di Esperienza",
       "stat2_val": "Su Misura",
       "stat2_label": "Ogni Pezzo",
       "stat3_val": "Madrid",
@@ -323,7 +318,7 @@
       "label": "I Nostri Clienti",
       "title": "Dove Lavoriamo con i Clienti",
       "p1": "Da Madrid, vestiamo gentlemen in tutto il mondo. Miami, Porto, Lisbona, Parigi, Londra, Roma, Dubai e oltre. Ogni abito viaggia fatto a mano.",
-      "p2": "La sartoria artigianale non conosce confini. Ogni cliente, ovunque si trovi, riceve la stessa dedizione e attenzione ai dettagli."
+      "p2": "La sartoria artigianale non conosce confini. Ogni cliente, ovunque si trovi, riceve la stessa dedizione e attenzione ai dettagli. Offriamo il servizio DHL EXPRESS. Lavoriamo con le migliori case tessili: Reda, Luvit, Carnet, Harrison, Fox Brothers e Zegna."
     },
     "cta": {
       "label": "Il Prossimo Passo",
@@ -399,7 +394,7 @@
     "statement": {
       "label": "Matrimoni & Cerimonie",
       "headline": "Il giorno che cambia tutto merita l'abito che esprime tutto.",
-      "body": "Ogni abito da matrimonio è unico, irripetibile, fatto a mano da zero senza modelli industriali. Un appuntamento, una prova: il cliente se ne va con tutto pronto, senza stress, senza dettagli in sospeso."
+      "body": "Ogni abito da matrimonio è unico, irripetibile, fatto a mano da zero. Un appuntamento, una prova: il cliente se ne va con tutto pronto, senza stress, senza dettagli in sospeso."
     },
     "categorias": {
       "label": "Stili di Cerimonia",
@@ -408,16 +403,18 @@
       "cat2": "Smoking",
       "cat2_desc": "Impeccabile per la cerimonia e il ricevimento serale.",
       "cat3": "Frac",
-      "cat3_desc": "L'eleganza più formale per occasioni uniche."
+      "cat3_desc": "L'eleganza più formale per occasioni uniche.",
+      "cat4": "Abito Artigianale",
+      "cat4_desc": "Eleganza personalizzata per qualsiasi occasione speciale."
     },
     "formal_wear": {
       "label": "Abito Formale",
       "title": "Dal primo appuntamento",
       "items": [
-        "Abito su misura",
         "Redingote",
-        "Frac",
-        "Smoking"
+        "Chaqué",
+        "Smoking",
+        "Abito su misura"
       ]
     },
     "accesorios": {
@@ -478,7 +475,7 @@
     "hero": {
       "label": "Configuratore",
       "title": "Disegna l'Abito che Sei",
-      "subtitle": "Sette decisioni. Un capo irrepetibile. Il nostro configuratore ti guida passo dopo passo per costruire l'abito che esprime esattamente chi sei.",
+      "subtitle": "Un capo su misura costruito secondo la tua visione esatta. Il nostro configuratore ti guida passo dopo passo per costruire l'abito che esprime esattamente chi sei.",
       "scroll": "Scorrere"
     },
     "value": {
@@ -486,7 +483,7 @@
       "title": "Più di un modulo, una conversazione con il tessuto.",
       "body": "Ogni selezione che fai nel configuratore ha conseguenze reali sul cartamodello, la caduta e il carattere del tuo abito. Dal rever al colore, ogni dettaglio è pensato perché il risultato sia un'estensione della tua personalità.",
       "features": [
-        "7 passi che coprono ogni dettaglio dell'abito",
+        "Un processo su misura che copre ogni dettaglio dell'abito",
         "Raccomandazioni basate sulla tua occasione e stile",
         "Riepilogo visivo di tutte le tue scelte",
         "Preventivo personalizzato al termine"
@@ -517,6 +514,21 @@
     "cta_btn": "Prenota Appuntamento",
     "instagram": "Instagram",
     "legal": "Note Legali"
+  },
+  "legal": {
+    "title": "Note Legali",
+    "owner_title": "Titolare",
+    "owner_name": "Sastrería Manuel Fernández",
+    "address_title": "Indirizzo",
+    "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
+    "email_title": "Email",
+    "email": "sastreriamanuelfernandez@gmail.com",
+    "phone_title": "Telefono",
+    "phone": "+34 682 19 29 44",
+    "disclaimer_title": "Responsabilità",
+    "disclaimer": "I contenuti di questo sito web hanno scopo esclusivamente informativo. Sastrería Manuel Fernández non è responsabile delle informazioni provenienti da link di terzi. L'accesso e l'utilizzo di questo sito web implicano l'accettazione delle condizioni qui esposte.",
+    "copyright_title": "Proprietà intellettuale",
+    "copyright": "Tutti i contenuti di questo sito web, inclusi testi, immagini, loghi e design, sono proprietà di Sastrería Manuel Fernández o dei rispettivi titolari, e sono protetti dalle leggi sulla proprietà intellettuale e industriale."
   },
   "tagline": "Sartoria artigianale",
   "since": "Dal ",
@@ -549,7 +561,7 @@
   "videollamada": {
     "hero": {
       "label": "Videochiamata",
-      "title": "La Sartoria nel tuo Soggiorno",
+      "title": "La Sartoria nel tuo Spazio",
       "subtitle": "Una consulenza personalizzata di 20 minuti con i nostri esperti. Dalla scelta del tessuto al taglio finale, senza uscire di casa.",
       "scroll": "Scorrere"
     },
@@ -590,6 +602,7 @@
       "selectTime": "Seleziona un orario",
       "duration": "20-25 minuti",
       "platform": "Zoom / Google Meet",
+      "hours": "Lun–Ven 10:00–14:00 e 17:00–20:00; Sab 10:00–13:00",
       "next": "Avanti",
       "back": "Indietro",
       "confirmBooking": "Conferma Prenotazione",

@@ -5,13 +5,13 @@ import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 
 const CARDS = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471231/photos/others/IMG_1717_dj3hya',        caption: 'Los Botones' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797484/photos/Traje_a_medida_con_corbata_roja_h4s5oq',         caption: 'El Forro' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797508/photos/purple-lining-interior_krylkv',caption: 'El Interior' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471223/photos/others/IMG_0631_zra1ms',      caption: 'Los Tejidos' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797470/photos/wedding-church_uct3rm',        caption: 'La Ceremonia' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797341/photos/wedding-couple_hk4ppu',        caption: 'El Momento' },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471202/photos/others/IMG_0960_gdaptm',          caption: 'El Destino' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241938/photos/web_lista_images/bodas-buttons_xaa5ri',      caption: 'Buttons' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242015/photos/web_lista_images/bodas-lining_nc9flu',       caption: 'Lining' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242059/photos/web_lista_images/bodas-fabrics_vxvboh',      caption: 'Fabrics' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241991/photos/web_lista_images/bodas-ceremony_nixl0g',     caption: 'Ceremony' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241981/photos/web_lista_images/bodas-morning-coat_wfh4yl', caption: 'Morning Coat' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241966/photos/web_lista_images/bodas-stroller_c82kor',    caption: 'Stroller' },
+  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241948/photos/web_lista_images/bodas-suit_m8cqj3',        caption: 'Suit' },
 ]
 
 const CARD_W = 260

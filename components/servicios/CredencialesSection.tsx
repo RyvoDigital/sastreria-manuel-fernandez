@@ -18,6 +18,8 @@ const CSS = `
   .mf-cr-marquee { animation: mf-cr-marquee 40s linear infinite; }
 `
 
+const OVERVIEW_IMAGE = 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242021/photos/web_lista_images/servicios-overview_u2esrq'
+
 const FABRIC_HOUSES = [
   { name: 'Holland & Sherry', icon: Scissors },
   { name: 'Scabal',           icon: Gem       },
@@ -48,7 +50,7 @@ const StatItem = ({ value, label }: { value: string; label: string }) => (
 )
 
 export function CredencialesSection() {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const isMobile = useIsMobile()
   const c = t.servicios.credenciales
   const sectionRef = useRef<HTMLElement>(null)
@@ -187,36 +189,27 @@ export function CredencialesSection() {
               <ArrowRight style={{ width: '0.85rem', height: '0.85rem' }} />
             </Link>
 
-            <Link href="/la-sastreria" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              padding: '0.85rem 2rem',
-              background: 'transparent',
-              color: 'rgba(255,255,255,0.8)',
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.65rem',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              border: '1px solid rgba(255,255,255,0.2)',
-              transition: 'all 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(255,255,255,0.5)'
-              el.style.color = '#FFFFFF'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(255,255,255,0.2)'
-              el.style.color = 'rgba(255,255,255,0.7)'
-            }}>
-              {c.btn_secondary}
-            </Link>
           </div>
         </div>
 
         {/* Right column — cards */}
         <div className="mf-cr-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+
+          {/* Overview image */}
+          <div style={{
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: '1.5rem',
+            border: '1px solid rgba(201,168,76,0.15)',
+            aspectRatio: '16/10',
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={OVERVIEW_IMAGE}
+              alt=""
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
 
           {/* Stats card */}
           <div style={{
@@ -270,17 +263,6 @@ export function CredencialesSection() {
                 </div>
               </div>
 
-              {/* Satisfaction bar */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.62rem', color: 'rgba(245,240,234,0.45)' }}>{c.satisfaction_label}</span>
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.62rem', color: 'var(--color-offwhite)', fontWeight: 500 }}>98%</span>
-                </div>
-                <div style={{ height: '2px', background: 'rgba(255,255,255,0.07)', borderRadius: '9999px', overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: '98%', background: 'linear-gradient(to right, var(--color-gold), var(--color-gold-light))' }} />
-                </div>
-              </div>
-
               <div style={{ height: '1px', background: 'rgba(196,163,90,0.1)', marginBottom: '1.25rem' }} />
 
               {/* Mini stats */}
@@ -318,7 +300,7 @@ export function CredencialesSection() {
                   padding: '0.3rem 0.75rem',
                 }}>
                   <Crown style={{ width: '0.65rem', height: '0.65rem', color: 'var(--color-gold)' }} />
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.48rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,240,234,0.6)' }}>Maestro Sastre</span>
+                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.48rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,240,234,0.6)' }}>{locale === 'es' ? 'Maestro Sastre' : 'Master Tailor'}</span>
                 </div>
               </div>
             </div>
@@ -343,7 +325,7 @@ export function CredencialesSection() {
               paddingLeft: isMobile ? '1.25rem' : '2rem',
               marginBottom: '1.25rem',
             }}>
-              Casas de tejido con las que trabajamos
+              {locale === 'es' ? 'Casas de tejido con las que trabajamos' : 'Fabric houses we work with'}
             </p>
 
             <div style={{

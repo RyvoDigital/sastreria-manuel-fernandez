@@ -22,7 +22,7 @@ export function VideollamadaHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/IMG_7511_l7ua4x"
+          src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778241998/photos/web_lista_images/videollamada-overview_cxoxtp"
           alt=""
           style={{
             width: '100%',

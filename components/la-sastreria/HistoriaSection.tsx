@@ -135,13 +135,13 @@ export function HistoriaSection() {
           <h2 className="mf-hist-title" style={{
             position:      'relative', zIndex: 1,
             fontFamily:    'var(--font-serif)',
-            fontSize:      'clamp(2.4rem, 4.5vw, 4.2rem)',
+            fontSize:      'clamp(2.8rem, 5vw, 4.8rem)',
             fontWeight:     400,
             lineHeight:     1.1,
             color:         '#0A1628',
             marginBottom:  'clamp(2rem, 4vh, 3rem)',
           }}>
-            {t.la_sastreria.historia.title}
+            Manuel Fernández
           </h2>
 
           {/* Paragraphs */}
@@ -177,7 +177,7 @@ export function HistoriaSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={photoImgRef}
-            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797458/photos/maestro-cutting-table_qytlmp"
+            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778242136/photos/web_lista_images/sastreria-manuel-fernandez_muk5sb"
             alt="Manuel Fernández en la mesa de corte"
             style={{
               position:   'absolute',
