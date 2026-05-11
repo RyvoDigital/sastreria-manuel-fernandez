@@ -35,11 +35,24 @@ export function VideollamadaBooking() {
   }
 
   const handleConfirm = () => {
+    if (!selectedDate || !selectedTime) return
     setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setStep('confirm')
-    }, 1200)
+
+    const dateStr = formatDate(selectedDate)
+    const subject = encodeURIComponent(`Solicitud de Videollamada - ${dateStr} ${selectedTime}`)
+    const body = encodeURIComponent(
+      `Hola equipo de Sastrería Manuel Fernández,\n\n` +
+      `Me gustaría reservar una videollamada para el día ${dateStr} a las ${selectedTime}.\n\n` +
+      `Preferencia de plataforma: Zoom / Google Meet\n` +
+      `Duración estimada: 20-25 minutos\n\n` +
+      `Saludos cordiales`
+    )
+
+    // Open email client with pre-filled booking details
+    window.open(`mailto:info@sastreriamanuelfernandez.com?subject=${subject}&body=${body}`, '_blank')
+
+    setIsSubmitting(false)
+    setStep('confirm')
   }
 
   const formatDate = (dateStr: string) => {

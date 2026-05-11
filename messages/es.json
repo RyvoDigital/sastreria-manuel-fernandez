@@ -481,7 +481,7 @@
       "back": "Atrás",
       "confirmBooking": "Confirmar Reserva",
       "success": "¡Reserva confirmada!",
-      "successMessage": "Recibirás un email con los detalles de la videollamada."
+      "successMessage": "Hemos preparado un email con los detalles de tu reserva. Por favor, envíalo para confirmar tu cita."
     }
   },
   "footer": {

@@ -481,7 +481,7 @@
       "back": "Back",
       "confirmBooking": "Confirm Booking",
       "success": "Booking confirmed!",
-      "successMessage": "You will receive an email with the video call details."
+      "successMessage": "We have prepared an email with your booking details. Please send it to confirm your appointment."
     }
   },
   "footer": {
