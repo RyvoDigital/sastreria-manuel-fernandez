@@ -15,8 +15,7 @@ export function BodasFormalWear() {
   // Get the formal wear and accessories from translations
   const fw = (t.bodas as Record<string, unknown>)?.formal_wear as { label: string; title: string; items: string[] } | undefined
   const acc = (t.bodas as Record<string, unknown>)?.accesorios as { label: string; title: string; items: string[] } | undefined
-  const keyMessage = ((t.bodas as Record<string, unknown>)?.key_message as string) || 
-    (locale === 'es' ? 'El cliente se lleva todo listo — sin estrés, sin cabos sueltos.' : 'The client leaves with everything ready — no stress, no loose ends.')
+  const keyMessage = ((t.bodas as Record<string, unknown>)?.key_message as string) || ''
 
   useEffect(() => {
     const el = sectionRef.current
