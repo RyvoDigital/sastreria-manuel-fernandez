@@ -246,16 +246,29 @@ export function TestimonialsSection() {
             {t.testimonials.title}
           </h2>
           {/* Google Reviews badge */}
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            marginTop: '0.75rem',
-            padding: '0.4rem 0.9rem',
-            background: 'rgba(255,255,255,0.05)',
-            border: '1px solid rgba(201,168,76,0.2)',
-            borderRadius: '9999px',
-          }}>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Sastrería+Manuel+Fernández,+C.+de+Jorge+Juan,+41,+Salamanca,+28001+Madrid"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              marginTop: '0.75rem',
+              padding: '0.4rem 0.9rem',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(201,168,76,0.2)',
+              borderRadius: '9999px',
+              textDecoration: 'none',
+              transition: 'background 0.25s ease',
+            }}
+            onMouseEnter={(e) => {
+              ;(e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.1)'
+            }}
+            onMouseLeave={(e) => {
+              ;(e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)'
+            }}
+          >
             <span style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.8rem',
@@ -268,7 +281,7 @@ export function TestimonialsSection() {
               fontSize: '0.65rem',
               color: 'rgba(255,255,255,0.5)',
             }}>Google Reviews</span>
-          </div>
+          </a>
         </div>
 
         {/* 3D Carousel Stage */}

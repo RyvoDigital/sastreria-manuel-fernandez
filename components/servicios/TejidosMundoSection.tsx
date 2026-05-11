@@ -1,11 +1,21 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
-import { Globe, type GlobeMarker, type GlobeArc } from '@/components/ui/globe'
+import type { GlobeMarker, GlobeArc } from '@/components/ui/globe'
+
+const Globe = dynamic(() => import('@/components/ui/globe').then((m) => m.Globe), {
+  ssr: false,
+  loading: () => (
+    <div style={{ width: '100%', maxWidth: '540px', aspectRatio: '1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C', animation: 'spin 1s linear infinite' }} />
+    </div>
+  ),
+})
 
 gsap.registerPlugin(ScrollTrigger)
 

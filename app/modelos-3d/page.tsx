@@ -3,6 +3,7 @@
 import { useState, Suspense } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { Modelo3DViewer } from '@/components/modelos-3d/Modelo3DViewer'
+import { ErrorBoundary } from '@/components/ui/error-boundary'
 import { Rotate3D, User, X } from 'lucide-react'
 
 // Clothing items for the gallery
@@ -405,7 +406,9 @@ export default function Modelos3DPage() {
                 </div>
               </div>
             }>
-              <Modelo3DViewer />
+              <ErrorBoundary>
+                <Modelo3DViewer />
+              </ErrorBoundary>
             </Suspense>
           </div>
         </div>
