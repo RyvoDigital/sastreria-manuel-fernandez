@@ -40,3 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 public/hero.mp4
+/web_lista_images
+/web_lista_temp

@@ -48,7 +48,7 @@
     "step1_body": "À quoi sert le costume ? Que voulez-vous transmettre ? Tout commence par comprendre le moment et la personne.",
     "step2_num": "02",
     "step2_title": "Interprétation Sartoriale",
-    "step2_body": "Chaque élément que nous choisissons, revers, épaule, tissu, couleur — communique quelque chose. Nous le faisons consciemment et précisément.",
+    "step2_body": "Chaque élément que nous choisissons, revers, épaule, tissu, couleur, communique quelque chose. Nous le faisons consciemment et précisément.",
     "step3_num": "03",
     "step3_title": "Résultat",
     "step3_body": "Vous ne verrez pas un costume. Vous verrez une version élevée de vous-même. C'est la différence entre un vêtement et une identité."
@@ -73,7 +73,7 @@
         "occasion": "Avis Google vérifié"
       },
       {
-        "quote": "Je suis un jeune homme et j'ai récemment eu ma première expérience avec la tailleur artisanale chez Sastrería Manuel Fernández — et ça n'aurait pas pu être mieux. Dès la première consultation de style, j'ai senti un accompagnement très proche et professionnel. L'équipe m'a guidé dans chaque détail : tissus, coupe, couleurs... toujours avec beaucoup de goût et d'attention à ce qui me convenait vraiment et à l'occasion. Le service était impeccable, très soigné et personnalisé, quelque chose de difficile à trouver de nos jours. Tout au long du processus, j'ai senti qu'ils créaient quelque chose d'unique pour moi — pas seulement un costume, mais une pièce avec identité. Le résultat final a dépassé mes attentes. J'ai choisi ce costume pour ma remise de diplômes et, sans aucun doute, ce sera le premier de nombreux costumes sur mesure. Je recommande à 100% à quiconque valorise l'élégance, la qualité et un véritable service artisanal.",
+        "quote": "Je suis un jeune homme et j'ai récemment eu ma première expérience avec la tailleur artisanale chez Sastrería Manuel Fernández, et ça n'aurait pas pu être mieux. Dès la première consultation de style, j'ai senti un accompagnement très proche et professionnel. L'équipe m'a guidé dans chaque détail : tissus, coupe, couleurs... toujours avec beaucoup de goût et d'attention à ce qui me convenait vraiment et à l'occasion. Le service était impeccable, très soigné et personnalisé, quelque chose de difficile à trouver de nos jours. Tout au long du processus, j'ai senti qu'ils créaient quelque chose d'unique pour moi, pas seulement un costume, mais une pièce avec identité. Le résultat final a dépassé mes attentes. J'ai choisi ce costume pour ma remise de diplômes et, sans aucun doute, ce sera le premier de nombreux costumes sur mesure. Je recommande à 100% à quiconque valorise l'élégance, la qualité et un véritable service artisanal.",
         "name": "Manuel Vale",
         "occasion": "Avis Google vérifié"
       }
@@ -153,7 +153,7 @@
       "label": "L'Histoire",
       "title": "Une Vocation de Toute une Vie",
       "p1": "La Sastrería Manuel Fernández a habillé, tout au long de son histoire, des personnalités éminentes telles que des membres de la Famille Royale, des politiciens, des athlètes d'élite et des figures du monde du spectacle et de la télévision, participant également à de grandes productions cinématographiques et théâtrales.",
-      "p2": "Manuel a absorbé non seulement la technique, la coupe anglaise, la toile faite main, le revers qui tombe de lui-même — mais aussi la philosophie : que chaque client mérite un vêtement unique, construit de toutes pièces.",
+      "p2": "Manuel a absorbé non seulement la technique, la coupe anglaise, la toile faite main, le revers qui tombe de lui-même, mais aussi la philosophie : que chaque client mérite un vêtement unique, construit de toutes pièces.",
       "p3": "Des années plus tard, rien n'a changé. Le même respect pour l'étoffe, la même patience avec le patron, la même conversation honnête avant qu'une seule mesure ne soit prise. Chaque costume est unique, irrépétable, fait main."
     },
     "maestro": {
@@ -270,34 +270,24 @@
     "services": {
       "s1_num": "01",
       "s1_title": "Frac",
-      "s1_duration": "Env. 8–10 semaines",
       "s2_num": "02",
       "s2_title": "Chaqué",
-      "s2_duration": "Env. 6–8 semaines",
       "s3_num": "03",
       "s3_title": "Smoking",
-      "s3_duration": "Env. 3–4 semaines",
       "s4_num": "04",
       "s4_title": "Costume Artisanal",
-      "s4_duration": "Env. 8–10 semaines",
       "s5_num": "05",
       "s5_title": "Pardessus Artisanal",
-      "s5_duration": "Env. 10–12 semaines",
       "s6_num": "06",
       "s6_title": "Blazer",
-      "s6_duration": "Env. 6–8 semaines",
       "s7_num": "07",
       "s7_title": "Chemises",
-      "s7_duration": "Env. 3–4 semaines",
       "s8_num": "08",
       "s8_title": "Pantalons Sport",
-      "s8_duration": "Env. 3–4 semaines",
       "s9_num": "09",
       "s9_title": "Gilets",
-      "s9_duration": "Env. 4–6 semaines",
       "s10_num": "10",
-      "s10_title": "Retouches à Mesure",
-      "s10_duration": "Sur demande"
+      "s10_title": "Retouches à Mesure"
     },
     "credenciales": {
       "badge": "Tailleur de Confiance",

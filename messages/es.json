@@ -45,7 +45,7 @@
     "step1_body": "¿Para qué es el traje? ¿Qué quieres transmitir? Todo comienza comprendiendo el momento y la persona.",
     "step2_num": "02",
     "step2_title": "Interpretación Sartorial",
-    "step2_body": "Cada elemento que elegimos —solapa, hombro, tejido, color— comunica algo. Lo hacemos de forma consciente y precisa.",
+    "step2_body": "Cada elemento que elegimos, solapa, hombro, tejido, color, comunica algo. Lo hacemos de forma consciente y precisa.",
     "step3_num": "03",
     "step3_title": "Resultado",
     "step3_body": "No verás un traje. Verás una versión mejorada de ti mismo. Esa es la diferencia entre ropa y identidad."
@@ -70,7 +70,7 @@
         "occasion": "Reseña verificada en Google"
       },
       {
-        "quote": "Soy un chico joven y recientemente tuve mi primera experiencia con la sastrería artesanal en Sastrería Manuel Fernández — y no podría haber sido mejor. Desde la primera consulta de estilo, sentí un acompañamiento muy cercano y profesional. El equipo me orientó en cada detalle: tejidos, corte, colores... siempre con muy buen gusto y atención a lo que realmente combinaba conmigo y con la ocasión. La atención fue impecable, muy cuidada y personalizada, algo difícil de encontrar hoy en día. Durante todo el proceso sentí que estaban creando algo único para mí — no solo un traje, sino una pieza con identidad. El resultado final superó mis expectativas. Elegí este traje para mi graduación y, sin duda, será el primero de muchos hechos a medida. Recomiendo al 100% a quien valora elegancia, calidad y un verdadero servicio artesanal.",
+        "quote": "Soy un chico joven y recientemente tuve mi primera experiencia con la sastrería artesanal en Sastrería Manuel Fernández, y no podría haber sido mejor. Desde la primera consulta de estilo, sentí un acompañamiento muy cercano y profesional. El equipo me orientó en cada detalle: tejidos, corte, colores... siempre con muy buen gusto y atención a lo que realmente combinaba conmigo y con la ocasión. La atención fue impecable, muy cuidada y personalizada, algo difícil de encontrar hoy en día. Durante todo el proceso sentí que estaban creando algo único para mí, no solo un traje, sino una pieza con identidad. El resultado final superó mis expectativas. Elegí este traje para mi graduación y, sin duda, será el primero de muchos hechos a medida. Recomiendo al 100% a quien valora elegancia, calidad y un verdadero servicio artesanal.",
         "name": "Manuel Vale",
         "occasion": "Reseña verificada en Google"
       }
@@ -261,16 +261,16 @@
       "headline": "Todo lo Que Puede Crear un Sastre"
     },
     "services": {
-      "s1_num": "01", "s1_title": "Frac",                  "s1_duration": "Aprox. 8–10 semanas",
-      "s2_num": "02", "s2_title": "Chaqué",                 "s2_duration": "Aprox. 6–8 semanas",
-      "s3_num": "03", "s3_title": "Smoking",                "s3_duration": "Aprox. 3–4 semanas",
-      "s4_num": "04", "s4_title": "Traje Artesanal",        "s4_duration": "Aprox. 8–10 semanas",
-      "s5_num": "05", "s5_title": "Abrigo Artesanal",       "s5_duration": "Aprox. 10–12 semanas",
-      "s6_num": "06", "s6_title": "Blazer",                 "s6_duration": "Aprox. 6–8 semanas",
-      "s7_num": "07", "s7_title": "Camisas",                "s7_duration": "Aprox. 3–4 semanas",
-      "s8_num": "08", "s8_title": "Pantalones Sport",       "s8_duration": "Aprox. 3–4 semanas",
-      "s9_num": "09", "s9_title": "Chalecos",               "s9_duration": "Aprox. 4–6 semanas",
-      "s10_num": "10", "s10_title": "Arreglos a Medida",    "s10_duration": "A consultar"
+      "s1_num": "01", "s1_title": "Frac",
+      "s2_num": "02", "s2_title": "Chaqué",
+      "s3_num": "03", "s3_title": "Smoking",
+      "s4_num": "04", "s4_title": "Traje Artesanal",
+      "s5_num": "05", "s5_title": "Abrigo Artesanal",
+      "s6_num": "06", "s6_title": "Blazer",
+      "s7_num": "07", "s7_title": "Camisas",
+      "s8_num": "08", "s8_title": "Pantalones Sport",
+      "s9_num": "09", "s9_title": "Chalecos",
+      "s10_num": "10", "s10_title": "Arreglos a Medida"
     },
     "credenciales": {
       "badge": "Sastrería de Confianza",
