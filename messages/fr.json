@@ -597,7 +597,7 @@
       "back": "Retour",
       "confirmBooking": "Confirmer le Rendez-vous",
       "success": "Rendez-vous confirmé!",
-      "successMessage": "Vous recevrez un email avec les détails de la visioconférence."
+      "successMessage": "Nous avons préparé un email avec les détails de votre rendez-vous. Veuillez l'envoyer pour confirmer."
     }
   }
 }

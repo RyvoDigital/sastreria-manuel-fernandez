@@ -6,6 +6,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useI18n } from '@/lib/i18n'
 import { ArrowRight, BookOpen } from 'lucide-react'
+import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -112,7 +113,7 @@ export function EditorialSection() {
                 background: index % 2 === 0 ? '#F9F7F2' : '#FFFFFF',
                 border: '1px solid rgba(10,22,40,0.05)',
                 position: 'relative',
-                cursor: 'pointer',
+                cursor: 'default',
                 borderRadius: '4px',
                 minHeight: isMobile ? 'auto' : index === 4 ? 'auto' : '320px',
                 justifyContent: 'center',
@@ -162,20 +163,31 @@ export function EditorialSection() {
               </p>
 
               {/* Read More Link */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                color: '#0A1628',
-                fontFamily: 'var(--font-sans)',
-                fontSize: isMobile ? '0.7rem' : '0.65rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                marginTop: isMobile ? '0.5rem' : '1rem',
-              }}>
+              <Link
+                href="/contacto"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: '#0A1628',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: isMobile ? '0.7rem' : '0.65rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  marginTop: isMobile ? '0.5rem' : '1rem',
+                  textDecoration: 'none',
+                  transition: 'color 0.25s ease',
+                }}
+                onMouseEnter={(e) => {
+                  ;(e.currentTarget as HTMLElement).style.color = '#C9A84C'
+                }}
+                onMouseLeave={(e) => {
+                  ;(e.currentTarget as HTMLElement).style.color = '#0A1628'
+                }}
+              >
                 {t.editorial.read_more} <ArrowRight size={12} />
-              </div>
+              </Link>
 
               {/* Background watermark */}
               <div style={{
