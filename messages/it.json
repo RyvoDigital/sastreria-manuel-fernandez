@@ -48,7 +48,7 @@
     "step1_body": "A cosa serve l'abito? Cosa vuoi trasmettere? Tutto inizia dalla comprensione del momento e della persona.",
     "step2_num": "02",
     "step2_title": "Interpretazione Sartoriale",
-    "step2_body": "Ogni elemento che scegliamo, reverso, spalla, tessuto, colore — comunica qualcosa. Lo facciamo in modo consapevole e preciso.",
+    "step2_body": "Ogni elemento che scegliamo, reverso, spalla, tessuto, colore, comunica qualcosa. Lo facciamo in modo consapevole e preciso.",
     "step3_num": "03",
     "step3_title": "Risultato",
     "step3_body": "Non vedrai un abito. Vedrai una versione elevata di te stesso. Questa è la differenza tra un vestito e un'identità."
@@ -73,7 +73,7 @@
         "occasion": "Recensione Google verificata"
       },
       {
-        "quote": "Sono un ragazzo giovane e recentemente ho avuto la mia prima esperienza con la sartoria artigianale presso la Sastrería Manuel Fernández — e non potrebbe essere stato meglio. Dalla prima consulenza di stile, ho sentito un accompagnamento molto vicino e professionale. Il team mi ha guidato in ogni dettaglio: tessuti, taglio, colori... sempre con molto buon gusto e attenzione a ciò che realmente si adattava a me e all'occasione. Il servizio è stato impeccabile, molto curato e personalizzato, qualcosa di difficile da trovare al giorno d'oggi. Durante tutto il processo ho sentito che stavano creando qualcosa di unico per me — non solo un abito, ma un pezzo con identità. Il risultato finale ha superato le mie aspettative. Ho scelto questo abito per la mia laurea e, senza dubbio, sarà il primo di molti su misura. Raccomando al 100% a chiunque valorizzi eleganza, qualità e un vero servizio artigianale.",
+        "quote": "Sono un ragazzo giovane e recentemente ho avuto la mia prima esperienza con la sartoria artigianale presso la Sastrería Manuel Fernández, e non potrebbe essere stato meglio. Dalla prima consulenza di stile, ho sentito un accompagnamento molto vicino e professionale. Il team mi ha guidato in ogni dettaglio: tessuti, taglio, colori... sempre con molto buon gusto e attenzione a ciò che realmente si adattava a me e all'occasione. Il servizio è stato impeccabile, molto curato e personalizzato, qualcosa di difficile da trovare al giorno d'oggi. Durante tutto il processo ho sentito che stavano creando qualcosa di unico per me, non solo un abito, ma un pezzo con identità. Il risultato finale ha superato le mie aspettative. Ho scelto questo abito per la mia laurea e, senza dubbio, sarà il primo di molti su misura. Raccomando al 100% a chiunque valorizzi eleganza, qualità e un vero servizio artigianale.",
         "name": "Manuel Vale",
         "occasion": "Recensione Google verificata"
       }
@@ -153,7 +153,7 @@
       "label": "La Storia",
       "title": "Una Vocazione di Tutta una Vita",
       "p1": "La Sastrería Manuel Fernández ha vestito, nel corso della sua storia, personalità di spicco come membri della Famiglia Reale, politici, atleti d'élite e figure del mondo dello spettacolo e della televisione, partecipando anche a importanti produzioni cinematografiche e teatrali.",
-      "p2": "Manuel ha assorbito non solo la tecnica, il taglio inglese, la tela fatta a mano, il reverso che cade da solo — ma anche la filosofia: che ogni cliente meriti un capo unico, costruito da zero.",
+      "p2": "Manuel ha assorbito non solo la tecnica, il taglio inglese, la tela fatta a mano, il reverso che cade da solo, ma anche la filosofia: che ogni cliente meriti un capo unico, costruito da zero.",
       "p3": "Anni dopo, nulla è cambiato. Lo stesso rispetto per il tessuto, la stessa pazienza con il cartamodello, la stessa conversazione onesta prima che venga presa una sola misura. Ogni abito è unico, irripetibile, fatto a mano."
     },
     "maestro": {
@@ -270,34 +270,24 @@
     "services": {
       "s1_num": "01",
       "s1_title": "Frac",
-      "s1_duration": "Circa 8–10 settimane",
       "s2_num": "02",
       "s2_title": "Chaqué",
-      "s2_duration": "Circa 6–8 settimane",
       "s3_num": "03",
       "s3_title": "Smoking",
-      "s3_duration": "Circa 3–4 settimane",
       "s4_num": "04",
       "s4_title": "Abito Artigianale",
-      "s4_duration": "Circa 8–10 settimane",
       "s5_num": "05",
       "s5_title": "Soprabito Artigianale",
-      "s5_duration": "Circa 10–12 settimane",
       "s6_num": "06",
       "s6_title": "Blazer",
-      "s6_duration": "Circa 6–8 settimane",
       "s7_num": "07",
       "s7_title": "Camicie",
-      "s7_duration": "Circa 3–4 settimane",
       "s8_num": "08",
       "s8_title": "Pantaloni Sport",
-      "s8_duration": "Circa 3–4 settimane",
       "s9_num": "09",
       "s9_title": "Gilet",
-      "s9_duration": "Circa 4–6 settimane",
       "s10_num": "10",
-      "s10_title": "Ritocchi su Misura",
-      "s10_duration": "Su richiesta"
+      "s10_title": "Ritocchi su Misura"
     },
     "credenciales": {
       "badge": "Sartoria di Fiducia",

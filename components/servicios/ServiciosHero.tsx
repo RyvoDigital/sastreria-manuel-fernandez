@@ -142,8 +142,8 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
 // ─── Services list with hover animations ─────────────────────────────────────
 
 const ServiceItem = ({
-  num, title, duration, index,
-}: { num: string; title: string; duration: string; index: number }) => {
+  num, title, index,
+}: { num: string; title: string; index: number }) => {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -196,15 +196,6 @@ const ServiceItem = ({
           width: hovered ? '4rem' : '0',
           overflow: 'hidden',
         }} />
-        <span style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '0.58rem',
-          letterSpacing: '0.14em',
-          textTransform: 'uppercase',
-          color: hovered ? '#C9A84C' : 'rgba(201,168,76,0.6)',
-          whiteSpace: 'nowrap',
-          transition: 'color 0.3s ease',
-        }}>{duration}</span>
       </div>
     </motion.div>
   )
@@ -249,16 +240,16 @@ const ServiciosList = () => {
         {t.servicios.hero.label}
       </motion.p>
 
-      <ServiceItem num={s.s1_num} title={s.s1_title} duration={s.s1_duration} index={0} />
-      <ServiceItem num={s.s2_num} title={s.s2_title} duration={s.s2_duration} index={1} />
-      <ServiceItem num={s.s3_num} title={s.s3_title} duration={s.s3_duration} index={2} />
-      <ServiceItem num={s.s4_num} title={s.s4_title} duration={s.s4_duration} index={3} />
-      <ServiceItem num={s.s5_num} title={s.s5_title} duration={s.s5_duration} index={4} />
-      <ServiceItem num={s.s6_num} title={s.s6_title} duration={s.s6_duration} index={5} />
-      <ServiceItem num={s.s7_num} title={s.s7_title} duration={s.s7_duration} index={6} />
-      <ServiceItem num={s.s8_num} title={s.s8_title} duration={s.s8_duration} index={7} />
-      <ServiceItem num={s.s9_num} title={s.s9_title} duration={s.s9_duration} index={8} />
-      <ServiceItem num={s.s10_num} title={s.s10_title} duration={s.s10_duration} index={9} />
+      <ServiceItem num={s.s1_num} title={s.s1_title} index={0} />
+      <ServiceItem num={s.s2_num} title={s.s2_title} index={1} />
+      <ServiceItem num={s.s3_num} title={s.s3_title} index={2} />
+      <ServiceItem num={s.s4_num} title={s.s4_title} index={3} />
+      <ServiceItem num={s.s5_num} title={s.s5_title} index={4} />
+      <ServiceItem num={s.s6_num} title={s.s6_title} index={5} />
+      <ServiceItem num={s.s7_num} title={s.s7_title} index={6} />
+      <ServiceItem num={s.s8_num} title={s.s8_title} index={7} />
+      <ServiceItem num={s.s9_num} title={s.s9_title} index={8} />
+      <ServiceItem num={s.s10_num} title={s.s10_title} index={9} />
     </section>
   )
 }

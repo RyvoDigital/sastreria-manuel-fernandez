@@ -45,7 +45,7 @@
     "step1_body": "What is the suit for? What do you want to convey? Everything begins with understanding the moment and the person.",
     "step2_num": "02",
     "step2_title": "Sartorial Interpretation",
-    "step2_body": "Every element we choose, lapel, shoulder, fabric, color — communicates something. We do it consciously and precisely.",
+    "step2_body": "Every element we choose, lapel, shoulder, fabric, color, communicates something. We do it consciously and precisely.",
     "step3_num": "03",
     "step3_title": "Result",
     "step3_body": "You won't see a suit. You'll see an elevated version of yourself. That is the difference between clothing and identity."
@@ -65,12 +65,12 @@
         "occasion": "Verified Google Review"
       },
       {
-        "quote": "I am very happy with a suit, which was made by Manuel. When I tried it on — I felt a different person. It is elegant, perfect fit and just timeless. I am very grateful to Evelina for helping me with choosing a fabric colour and pattern.",
+        "quote": "I am very happy with a suit, which was made by Manuel. When I tried it on, I felt a different person. It is elegant, perfect fit and just timeless. I am very grateful to Evelina for helping me with choosing a fabric colour and pattern.",
         "name": "Tamara Smerechynska",
         "occasion": "Verified Google Review"
       },
       {
-        "quote": "I'm a young man and recently had my first experience with artisan tailoring at Sastrería Manuel Fernández — and it couldn't have been better. From the very first style consultation, I felt very close and professional accompaniment. The team guided me through every detail: fabrics, cut, colours... always with very good taste and attention to what really suited me and the occasion. The service was impeccable, very careful and personalised, something hard to find nowadays. Throughout the whole process I felt they were creating something unique for me — not just a suit, but a piece with identity. The final result exceeded my expectations. I chose this suit for my graduation and, without a doubt, it will be the first of many bespoke pieces. I recommend 100% to anyone who values elegance, quality and true artisan service.",
+        "quote": "I'm a young man and recently had my first experience with artisan tailoring at Sastrería Manuel Fernández, and it couldn't have been better. From the very first style consultation, I felt very close and professional accompaniment. The team guided me through every detail: fabrics, cut, colours... always with very good taste and attention to what really suited me and the occasion. The service was impeccable, very careful and personalised, something hard to find nowadays. Throughout the whole process I felt they were creating something unique for me, not just a suit, but a piece with identity. The final result exceeded my expectations. I chose this suit for my graduation and, without a doubt, it will be the first of many bespoke pieces. I recommend 100% to anyone who values elegance, quality and true artisan service.",
         "name": "Manuel Vale",
         "occasion": "Verified Google Review"
       }
@@ -150,7 +150,7 @@
       "label": "The Story",
       "title": "A Lifelong Vocation",
       "p1": "Sastrería Manuel Fernández has dressed, throughout its history, prominent personalities such as members of the Royal Family, politicians, elite athletes and figures from the world of entertainment and television, also participating in major film and theatre productions.",
-      "p2": "Manuel absorbed not only the technique, the English cut, the handmade canvas, the lapel that falls on its own — but also the philosophy: that every client deserves a unique garment, built from scratch.",
+      "p2": "Manuel absorbed not only the technique, the English cut, the handmade canvas, the lapel that falls on its own, but also the philosophy: that every client deserves a unique garment, built from scratch.",
       "p3": "Years later, nothing has changed. The same respect for the cloth, the same patience with the pattern, the same honest conversation before a single measurement is taken. Each suit is unique, unrepeatable, handmade."
     },
     "maestro": {
@@ -261,16 +261,16 @@
       "headline": "Everything a Master Tailor Can Create"
     },
     "services": {
-      "s1_num": "01", "s1_title": "Tailcoat",              "s1_duration": "Approx. 8–10 weeks",
-      "s2_num": "02", "s2_title": "Morning Coat",          "s2_duration": "Approx. 6–8 weeks",
-      "s3_num": "03", "s3_title": "Tuxedo",                "s3_duration": "Approx. 3–4 weeks",
-      "s4_num": "04", "s4_title": "Artisan Suit",          "s4_duration": "Approx. 8–10 weeks",
-      "s5_num": "05", "s5_title": "Artisan Overcoat",      "s5_duration": "Approx. 10–12 weeks",
-      "s6_num": "06", "s6_title": "Blazer",                "s6_duration": "Approx. 6–8 weeks",
-      "s7_num": "07", "s7_title": "Shirts",                "s7_duration": "Approx. 3–4 weeks",
-      "s8_num": "08", "s8_title": "Sport Trousers",        "s8_duration": "Approx. 3–4 weeks",
-      "s9_num": "09", "s9_title": "Waistcoats",            "s9_duration": "Approx. 4–6 weeks",
-      "s10_num": "10", "s10_title": "Bespoke Alterations", "s10_duration": "On request"
+      "s1_num": "01", "s1_title": "Tailcoat",
+      "s2_num": "02", "s2_title": "Morning Coat",
+      "s3_num": "03", "s3_title": "Tuxedo",
+      "s4_num": "04", "s4_title": "Artisan Suit",
+      "s5_num": "05", "s5_title": "Artisan Overcoat",
+      "s6_num": "06", "s6_title": "Blazer",
+      "s7_num": "07", "s7_title": "Shirts",
+      "s8_num": "08", "s8_title": "Sport Trousers",
+      "s9_num": "09", "s9_title": "Waistcoats",
+      "s10_num": "10", "s10_title": "Bespoke Alterations"
     },
     "credenciales": {
       "badge": "Trusted Tailoring",

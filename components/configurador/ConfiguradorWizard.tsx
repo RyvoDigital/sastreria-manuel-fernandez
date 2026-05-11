@@ -9,6 +9,7 @@ import {
   Check,
   AlertCircle,
   Scissors,
+  Ruler,
   Shirt,
   Layers,
   PersonStanding,
@@ -18,17 +19,26 @@ import {
   Sparkles,
 } from 'lucide-react'
 
+/* ─── 3 main steps ─────────────────────────────────────────────────────────── */
+
 const STEPS = [
-  { id: 'fabrics', label_es: 'Tejidos', label_en: 'Fabrics', label_it: 'Tessuti', label_fr: 'Tissus' },
-  { id: 'jacket', label_es: 'Chaqueta', label_en: 'Jacket', label_it: 'Giacca', label_fr: 'Veste' },
-  { id: 'waistcoat', label_es: 'Chaleco', label_en: 'Waistcoat', label_it: 'Gilet', label_fr: 'Gilet' },
-  { id: 'trousers', label_es: 'Pantalón', label_en: 'Trousers', label_it: 'Pantaloni', label_fr: 'Pantalon' },
-  { id: 'occasion', label_es: 'Ocasión', label_en: 'Occasion', label_it: 'Occasione', label_fr: 'Occasion' },
-  { id: 'colour', label_es: 'Color', label_en: 'Colour', label_it: 'Colore', label_fr: 'Couleur' },
-  { id: 'season', label_es: 'Temporada', label_en: 'Season', label_it: 'Stagione', label_fr: 'Saison' },
+  { id: 'fabrics',     label_es: 'Tejidos',      label_en: 'Fabrics',           label_it: 'Tessuti',        label_fr: 'Tissus' },
+  { id: 'measurements', label_es: 'Medidas',      label_en: 'Measurements',      label_it: 'Misure',         label_fr: 'Mesures' },
+  { id: 'design',      label_es: 'Diseño',       label_en: 'Design',            label_it: 'Design',         label_fr: 'Design' },
 ]
 
-const STEP_ICONS = [Scissors, Shirt, Layers, PersonStanding, CalendarDays, Palette, Sun]
+const STEP_ICONS = [Scissors, Ruler, Shirt]
+
+/* ─── Design sub-categories (shown inside step 3) ──────────────────────────── */
+
+const DESIGN_CATEGORIES = [
+  { id: 'jacket',    label_es: 'Chaqueta',   label_en: 'Jacket',    label_it: 'Giacca',   label_fr: 'Veste',    icon: Shirt },
+  { id: 'waistcoat', label_es: 'Chaleco',    label_en: 'Waistcoat', label_it: 'Gilet',    label_fr: 'Gilet',    icon: Layers },
+  { id: 'trousers',  label_es: 'Pantalón',   label_en: 'Trousers',  label_it: 'Pantaloni', label_fr: 'Pantalon', icon: PersonStanding },
+  { id: 'occasion',  label_es: 'Ocasión',    label_en: 'Occasion',  label_it: 'Occasione', label_fr: 'Occasion', icon: CalendarDays },
+  { id: 'colour',    label_es: 'Color',      label_en: 'Colour',    label_it: 'Colore',   label_fr: 'Couleur',  icon: Palette },
+  { id: 'season',    label_es: 'Temporada',  label_en: 'Season',    label_it: 'Stagione', label_fr: 'Saison',   icon: Sun },
+]
 
 const COLOUR_OPTIONS = [
   { name_es: 'Negro', name_en: 'Black', name_it: 'Nero', name_fr: 'Noir', hex: '#1a1a1a' },
@@ -80,7 +90,16 @@ const OPTIONS: Record<string, Record<string, string[]>> = {
   },
 }
 
-const tAll: Record<string, { title: string; subtitle: string; next: string; back: string; finish: string; summary: string; submit: string; step_of: string; validation: string }> = {
+/* ─── Measurement labels by locale ─────────────────────────────────────────── */
+
+const MEASURE_LABELS: Record<string, { height: string; chest: string; waist: string; sleeve: string; hint: string }> = {
+  es: { height: 'Altura (cm)', chest: 'Pecho (cm)', waist: 'Cintura (cm)', sleeve: 'Largo manga (cm)', hint: 'Introduzca sus medidas corporales para un ajuste preciso' },
+  en: { height: 'Height (cm)', chest: 'Chest (cm)', waist: 'Waist (cm)', sleeve: 'Sleeve length (cm)', hint: 'Enter your body measurements for a precise fit' },
+  it: { height: 'Altezza (cm)', chest: 'Petto (cm)', waist: 'Vita (cm)', sleeve: 'Lunghezza manica (cm)', hint: 'Inserisci le tue misure corporee per una vestibilità precisa' },
+  fr: { height: 'Taille (cm)', chest: 'Poitrine (cm)', waist: 'Taille (cm)', sleeve: 'Longueur manche (cm)', hint: 'Entrez vos mesures corporelles pour un ajustement précis' },
+}
+
+const tAll: Record<string, { title: string; subtitle: string; next: string; back: string; finish: string; summary: string; submit: string; step_of: string; validation: string; measurements_validation: string }> = {
   es: {
     title: 'Configura tu Traje',
     subtitle: 'Selecciona tus preferencias paso a paso',
@@ -91,6 +110,7 @@ const tAll: Record<string, { title: string; subtitle: string; next: string; back
     submit: 'Enviar Configuración',
     step_of: 'Paso {current} de {total}',
     validation: 'Selecciona al menos una opción para continuar',
+    measurements_validation: 'Completa todas las medidas para continuar',
   },
   en: {
     title: 'Configure your Suit',
@@ -102,6 +122,7 @@ const tAll: Record<string, { title: string; subtitle: string; next: string; back
     submit: 'Submit Configuration',
     step_of: 'Step {current} of {total}',
     validation: 'Select at least one option to continue',
+    measurements_validation: 'Complete all measurements to continue',
   },
   it: {
     title: 'Configura il tuo Abito',
@@ -113,6 +134,7 @@ const tAll: Record<string, { title: string; subtitle: string; next: string; back
     submit: 'Invia Configurazione',
     step_of: 'Passo {current} di {total}',
     validation: 'Seleziona almeno un\'opzione per continuare',
+    measurements_validation: 'Completa tutte le misure per continuare',
   },
   fr: {
     title: 'Configurez votre Costume',
@@ -124,8 +146,13 @@ const tAll: Record<string, { title: string; subtitle: string; next: string; back
     submit: 'Envoyer la Configuration',
     step_of: 'Étape {current} sur {total}',
     validation: 'Sélectionnez au moins une option pour continuer',
+    measurements_validation: 'Complétez toutes les mesures pour continuer',
   },
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   Main Wizard
+   ════════════════════════════════════════════════════════════════════════════ */
 
 export function ConfiguradorWizard() {
   const { locale } = useI18n()
@@ -139,32 +166,59 @@ export function ConfiguradorWizard() {
     colour: [],
     season: [],
   })
+  const [measurements, setMeasurements] = useState({
+    height: '',
+    chest: '',
+    waist: '',
+    sleeve: '',
+  })
   const [showValidation, setShowValidation] = useState(false)
 
   const currentT = tAll[locale] || tAll.es
   const currentStepData = STEPS[currentStep]
   const stepId = currentStepData.id
 
-  const toggleSelection = useCallback((option: string) => {
+  const toggleSelection = useCallback((option: string, catId?: string) => {
+    const key = catId || stepId
     setSelections((prev) => {
-      const current = prev[stepId] || []
+      const current = prev[key] || []
       if (current.includes(option)) {
-        return { ...prev, [stepId]: current.filter((o) => o !== option) }
+        return { ...prev, [key]: current.filter((o) => o !== option) }
       }
-      return { ...prev, [stepId]: [...current, option] }
+      return { ...prev, [key]: [...current, option] }
     })
     setShowValidation(false)
   }, [stepId])
 
   const isSelected = useCallback(
-    (option: string) => selections[stepId]?.includes(option) || false,
+    (option: string, catId?: string) => {
+      const key = catId || stepId
+      return selections[key]?.includes(option) || false
+    },
     [selections, stepId]
   )
 
   const hasSelection = (selections[stepId] || []).length > 0
 
+  const measurementsComplete =
+    measurements.height.trim() !== '' &&
+    measurements.chest.trim() !== '' &&
+    measurements.waist.trim() !== '' &&
+    measurements.sleeve.trim() !== ''
+
+  const designHasSelection = DESIGN_CATEGORIES.some(
+    (cat) => (selections[cat.id] || []).length > 0
+  )
+
+  const isStepValid = () => {
+    if (currentStep === 0) return hasSelection
+    if (currentStep === 1) return measurementsComplete
+    if (currentStep === 2) return designHasSelection
+    return false
+  }
+
   const handleNext = () => {
-    if (!hasSelection) {
+    if (!isStepValid()) {
       setShowValidation(true)
       return
     }
@@ -185,6 +239,9 @@ export function ConfiguradorWizard() {
 
   const stepLabel = (step: (typeof STEPS)[0]) =>
     (step[`label_${locale}` as keyof typeof step] as string) || step.label_es
+
+  const designLabel = (cat: (typeof DESIGN_CATEGORIES)[0]) =>
+    (cat[`label_${locale}` as keyof typeof cat] as string) || cat.label_es
 
   const StepIcon = STEP_ICONS[currentStep]
 
@@ -398,7 +455,9 @@ export function ConfiguradorWizard() {
                 }}
               >
                 <AlertCircle size={14} />
-                {currentT.validation}
+                {currentStep === 1
+                  ? currentT.measurements_validation
+                  : currentT.validation}
               </motion.div>
             )}
           </AnimatePresence>
@@ -412,196 +471,279 @@ export function ConfiguradorWizard() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
-              {/* Step Title */}
-              <h2
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(1.3rem, 2.5vw, 1.7rem)',
-                  fontWeight: 400,
-                  color: '#FFFFFF',
-                  marginBottom: '1.75rem',
-                  textAlign: 'center',
-                  fontStyle: 'italic',
-                }}
-              >
-                {stepLabel(currentStepData)}
-              </h2>
+              {/* ── Step 1: Fabric Selection ───────────────────────── */}
+              {currentStep === 0 && (
+                <>
+                  <h2
+                    style={{
+                      fontFamily: 'var(--font-serif)',
+                      fontSize: 'clamp(1.3rem, 2.5vw, 1.7rem)',
+                      fontWeight: 400,
+                      color: '#FFFFFF',
+                      marginBottom: '1.75rem',
+                      textAlign: 'center',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    {stepLabel(currentStepData)}
+                  </h2>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                      gap: '0.875rem',
+                      marginBottom: '2.5rem',
+                    }}
+                  >
+                    {(
+                      OPTIONS.fabrics?.[locale] ||
+                      OPTIONS.fabrics?.es ||
+                      []
+                    ).map((option: string) => {
+                      const selected = isSelected(option, 'fabrics')
+                      return (
+                        <OptionButton
+                          key={option}
+                          option={option}
+                          selected={selected}
+                          onClick={() => toggleSelection(option, 'fabrics')}
+                        />
+                      )
+                    })}
+                  </div>
+                </>
+              )}
 
-              {/* Colour Picker Step */}
-              {stepId === 'colour' ? (
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-                    gap: '1rem',
-                    marginBottom: '2.5rem',
-                  }}
-                >
-                  {COLOUR_OPTIONS.map((colour) => {
-                    const name =
-                      (colour[`name_${locale}` as keyof typeof colour] as string) || colour.name_es
-                    const selected = isSelected(name)
-                    return (
-                      <button
-                        key={colour.hex}
-                        onClick={() => toggleSelection(name)}
-                        style={{
-                          padding: '1.25rem 1rem',
-                          background: selected
-                            ? 'rgba(201,168,76,0.12)'
-                            : 'rgba(255,255,255,0.02)',
-                          border: `1.5px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.1)'}`,
-                          borderRadius: '12px',
-                          cursor: 'pointer',
-                          transition: 'all 0.25s ease',
-                          textAlign: 'center',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          gap: '0.75rem',
-                          boxShadow: selected
-                            ? '0 0 0 3px rgba(201,168,76,0.15)'
-                            : 'none',
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!selected) {
-                            e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
-                            e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!selected) {
-                            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
-                            e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
-                          }
-                        }}
-                      >
-                        <div
+              {/* ── Step 2: Measurements ───────────────────────────── */}
+              {currentStep === 1 && (
+                <>
+                  <h2
+                    style={{
+                      fontFamily: 'var(--font-serif)',
+                      fontSize: 'clamp(1.3rem, 2.5vw, 1.7rem)',
+                      fontWeight: 400,
+                      color: '#FFFFFF',
+                      marginBottom: '1rem',
+                      textAlign: 'center',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    {stepLabel(currentStepData)}
+                  </h2>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.85rem',
+                      color: 'rgba(255,255,255,0.4)',
+                      textAlign: 'center',
+                      marginBottom: '2rem',
+                    }}
+                  >
+                    {MEASURE_LABELS[locale]?.hint || MEASURE_LABELS.en.hint}
+                  </p>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                      gap: '1.25rem',
+                      marginBottom: '2.5rem',
+                    }}
+                  >
+                    {(
+                      [
+                        { key: 'height', label: MEASURE_LABELS[locale]?.height || MEASURE_LABELS.en.height },
+                        { key: 'chest', label: MEASURE_LABELS[locale]?.chest || MEASURE_LABELS.en.chest },
+                        { key: 'waist', label: MEASURE_LABELS[locale]?.waist || MEASURE_LABELS.en.waist },
+                        { key: 'sleeve', label: MEASURE_LABELS[locale]?.sleeve || MEASURE_LABELS.en.sleeve },
+                      ] as const
+                    ).map(({ key, label }) => (
+                      <div key={key} style={{ position: 'relative' }}>
+                        <label
                           style={{
-                            width: '44px',
-                            height: '44px',
-                            borderRadius: '50%',
-                            background: colour.hex,
-                            border: `2.5px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.25)'}`,
-                            boxShadow: selected
-                              ? '0 0 0 4px rgba(201,168,76,0.25), inset 0 2px 4px rgba(255,255,255,0.15)'
-                              : 'inset 0 2px 4px rgba(255,255,255,0.1)',
-                            transition: 'all 0.25s ease',
-                            position: 'relative',
+                            display: 'block',
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '0.6rem',
+                            letterSpacing: '0.18em',
+                            textTransform: 'uppercase',
+                            color: 'rgba(196,163,90,0.6)',
+                            marginBottom: '0.5rem',
                           }}
                         >
-                          {selected && (
-                            <div
+                          {label}
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          value={measurements[key as keyof typeof measurements]}
+                          onChange={(e) =>
+                            setMeasurements((prev) => ({
+                              ...prev,
+                              [key]: e.target.value,
+                            }))
+                          }
+                          onFocus={() => setShowValidation(false)}
+                          style={{
+                            width: '100%',
+                            background: 'rgba(255,255,255,0.03)',
+                            border: `1px solid ${
+                              measurements[key as keyof typeof measurements]
+                                ? 'rgba(201,168,76,0.35)'
+                                : 'rgba(255,255,255,0.1)'
+                            }`,
+                            borderRadius: '10px',
+                            padding: '0.85rem 1rem',
+                            color: '#FFFFFF',
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '0.95rem',
+                            outline: 'none',
+                            transition: 'border-color 0.25s ease',
+                          }}
+                          onFocusCapture={(e) => {
+                            ;(e.target as HTMLInputElement).style.borderColor = 'rgba(201,168,76,0.6)'
+                          }}
+                          onBlurCapture={(e) => {
+                            const val = (e.target as HTMLInputElement).value
+                            ;(e.target as HTMLInputElement).style.borderColor = val
+                              ? 'rgba(201,168,76,0.35)'
+                              : 'rgba(255,255,255,0.1)'
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* ── Step 3: Design & Customization ─────────────────── */}
+              {currentStep === 2 && (
+                <>
+                  <h2
+                    style={{
+                      fontFamily: 'var(--font-serif)',
+                      fontSize: 'clamp(1.3rem, 2.5vw, 1.7rem)',
+                      fontWeight: 400,
+                      color: '#FFFFFF',
+                      marginBottom: '0.5rem',
+                      textAlign: 'center',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    {stepLabel(currentStepData)}
+                  </h2>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.85rem',
+                      color: 'rgba(255,255,255,0.4)',
+                      textAlign: 'center',
+                      marginBottom: '2rem',
+                    }}
+                  >
+                    Personalice cada detalle de su prenda
+                  </p>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '2rem',
+                      marginBottom: '2.5rem',
+                      maxHeight: '55vh',
+                      overflowY: 'auto',
+                      paddingRight: '0.5rem',
+                    }}
+                  >
+                    {DESIGN_CATEGORIES.map((cat) => {
+                      const CatIcon = cat.icon
+                      const isColour = cat.id === 'colour'
+                      const opts =
+                        OPTIONS[cat.id]?.[locale] ||
+                        OPTIONS[cat.id]?.es ||
+                        []
+
+                      return (
+                        <div
+                          key={cat.id}
+                          style={{
+                            padding: '1.25rem',
+                            background: 'rgba(255,255,255,0.015)',
+                            border: '1px solid rgba(255,255,255,0.06)',
+                            borderRadius: '12px',
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.5rem',
+                              marginBottom: '1rem',
+                            }}
+                          >
+                            <CatIcon size={14} color="rgba(201,168,76,0.6)" />
+                            <span
                               style={{
-                                position: 'absolute',
-                                inset: 0,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
+                                fontFamily: 'var(--font-sans)',
+                                fontSize: '0.65rem',
+                                letterSpacing: '0.14em',
+                                textTransform: 'uppercase',
+                                color: 'rgba(201,168,76,0.7)',
+                                fontWeight: 500,
                               }}
                             >
-                              <Check size={16} color="#C9A84C" strokeWidth={3} />
+                              {designLabel(cat)}
+                            </span>
+                          </div>
+
+                          {isColour ? (
+                            <div
+                              style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+                                gap: '0.75rem',
+                              }}
+                            >
+                              {COLOUR_OPTIONS.map((colour) => {
+                                const name =
+                                  (colour[`name_${locale}` as keyof typeof colour] as string) ||
+                                  colour.name_es
+                                const selected = isSelected(name, 'colour')
+                                return (
+                                  <ColourButton
+                                    key={colour.hex}
+                                    colour={colour}
+                                    name={name}
+                                    selected={selected}
+                                    onClick={() => toggleSelection(name, 'colour')}
+                                  />
+                                )
+                              })}
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+                                gap: '0.625rem',
+                              }}
+                            >
+                              {opts.map((option: string) => {
+                                const selected = isSelected(option, cat.id)
+                                return (
+                                  <OptionButton
+                                    key={option}
+                                    option={option}
+                                    selected={selected}
+                                    onClick={() => toggleSelection(option, cat.id)}
+                                    compact
+                                  />
+                                )
+                              })}
                             </div>
                           )}
                         </div>
-                        <span
-                          style={{
-                            fontFamily: 'var(--font-sans)',
-                            fontSize: '0.8rem',
-                            color: selected ? '#FFFFFF' : 'rgba(255,255,255,0.65)',
-                            fontWeight: selected ? 500 : 400,
-                          }}
-                        >
-                          {name}
-                        </span>
-                      </button>
-                    )
-                  })}
-                </div>
-              ) : (
-                /* Standard Options Grid */
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-                    gap: '0.875rem',
-                    marginBottom: '2.5rem',
-                  }}
-                >
-                  {(
-                    OPTIONS[stepId]?.[locale] ||
-                    OPTIONS[stepId]?.es ||
-                    []
-                  ).map((option: string) => {
-                    const selected = isSelected(option)
-                    return (
-                      <button
-                        key={option}
-                        onClick={() => toggleSelection(option)}
-                        style={{
-                          padding: '1.25rem 1.25rem',
-                          background: selected
-                            ? 'rgba(201,168,76,0.12)'
-                            : 'rgba(255,255,255,0.02)',
-                          border: `1.5px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.1)'}`,
-                          borderRadius: '10px',
-                          cursor: 'pointer',
-                          transition: 'all 0.25s ease',
-                          textAlign: 'left',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          gap: '0.75rem',
-                          boxShadow: selected
-                            ? '0 0 0 3px rgba(201,168,76,0.15)'
-                            : 'none',
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!selected) {
-                            e.currentTarget.style.borderColor = 'rgba(201,168,76,0.35)'
-                            e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
-                            e.currentTarget.style.transform = 'translateY(-2px)'
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!selected) {
-                            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
-                            e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
-                            e.currentTarget.style.transform = 'translateY(0)'
-                          }
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: 'var(--font-sans)',
-                            fontSize: '0.88rem',
-                            color: selected ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
-                            fontWeight: selected ? 500 : 400,
-                            lineHeight: 1.4,
-                          }}
-                        >
-                          {option}
-                        </span>
-                        {selected && (
-                          <div
-                            style={{
-                              width: '22px',
-                              height: '22px',
-                              borderRadius: '50%',
-                              background: '#C9A84C',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              flexShrink: 0,
-                            }}
-                          >
-                            <Check size={13} color="#000000" strokeWidth={2.5} />
-                          </div>
-                        )}
-                      </button>
-                    )
-                  })}
-                </div>
+                      )
+                    })}
+                  </div>
+                </>
               )}
             </motion.div>
           </AnimatePresence>
@@ -633,7 +775,7 @@ export function ConfiguradorWizard() {
         </motion.div>
 
         {/* Summary sidebar */}
-        <SummaryPanel selections={selections} locale={locale} />
+        <SummaryPanel selections={selections} measurements={measurements} locale={locale} />
       </div>
 
       {/* Mobile: stack summary below */}
@@ -645,6 +787,175 @@ export function ConfiguradorWizard() {
         }
       `}</style>
     </div>
+  )
+}
+
+/* ─── Option Button ────────────────────────────────────────────────────────── */
+
+function OptionButton({
+  option,
+  selected,
+  onClick,
+  compact,
+}: {
+  option: string
+  selected: boolean
+  onClick: () => void
+  compact?: boolean
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        padding: compact ? '0.9rem 1rem' : '1.25rem 1.25rem',
+        background: selected
+          ? 'rgba(201,168,76,0.12)'
+          : 'rgba(255,255,255,0.02)',
+        border: `1.5px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.1)'}`,
+        borderRadius: '10px',
+        cursor: 'pointer',
+        transition: 'all 0.25s ease',
+        textAlign: 'left',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '0.75rem',
+        boxShadow: selected
+          ? '0 0 0 3px rgba(201,168,76,0.15)'
+          : 'none',
+      }}
+      onMouseEnter={(e) => {
+        if (!selected) {
+          e.currentTarget.style.borderColor = 'rgba(201,168,76,0.35)'
+          e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
+          e.currentTarget.style.transform = 'translateY(-2px)'
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!selected) {
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+          e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+          e.currentTarget.style.transform = 'translateY(0)'
+        }
+      }}
+    >
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: compact ? '0.82rem' : '0.88rem',
+          color: selected ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
+          fontWeight: selected ? 500 : 400,
+          lineHeight: 1.4,
+        }}
+      >
+        {option}
+      </span>
+      {selected && (
+        <div
+          style={{
+            width: '22px',
+            height: '22px',
+            borderRadius: '50%',
+            background: '#C9A84C',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+          }}
+        >
+          <Check size={13} color="#000000" strokeWidth={2.5} />
+        </div>
+      )}
+    </button>
+  )
+}
+
+/* ─── Colour Button ────────────────────────────────────────────────────────── */
+
+function ColourButton({
+  colour,
+  name,
+  selected,
+  onClick,
+}: {
+  colour: (typeof COLOUR_OPTIONS)[0]
+  name: string
+  selected: boolean
+  onClick: () => void
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        padding: '1rem 0.75rem',
+        background: selected
+          ? 'rgba(201,168,76,0.12)'
+          : 'rgba(255,255,255,0.02)',
+        border: `1.5px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.1)'}`,
+        borderRadius: '10px',
+        cursor: 'pointer',
+        transition: 'all 0.25s ease',
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.6rem',
+        boxShadow: selected
+          ? '0 0 0 3px rgba(201,168,76,0.15)'
+          : 'none',
+      }}
+      onMouseEnter={(e) => {
+        if (!selected) {
+          e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
+          e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!selected) {
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+          e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+        }
+      }}
+    >
+      <div
+        style={{
+          width: '36px',
+          height: '36px',
+          borderRadius: '50%',
+          background: colour.hex,
+          border: `2.5px solid ${selected ? '#C9A84C' : 'rgba(255,255,255,0.25)'}`,
+          boxShadow: selected
+            ? '0 0 0 3px rgba(201,168,76,0.25), inset 0 2px 4px rgba(255,255,255,0.15)'
+            : 'inset 0 2px 4px rgba(255,255,255,0.1)',
+          transition: 'all 0.25s ease',
+          position: 'relative',
+        }}
+      >
+        {selected && (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Check size={14} color="#C9A84C" strokeWidth={3} />
+          </div>
+        )}
+      </div>
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.75rem',
+          color: selected ? '#FFFFFF' : 'rgba(255,255,255,0.65)',
+          fontWeight: selected ? 500 : 400,
+        }}
+      >
+        {name}
+      </span>
+    </button>
   )
 }
 
@@ -712,18 +1023,25 @@ function NavButton({
 
 function SummaryPanel({
   selections,
+  measurements,
   locale,
 }: {
   selections: Record<string, string[]>
+  measurements: { height: string; chest: string; waist: string; sleeve: string }
   locale: string
 }) {
-  const hasAny = Object.values(selections).some((arr) => arr.length > 0)
+  const hasAnyDesign = DESIGN_CATEGORIES.some(
+    (cat) => (selections[cat.id] || []).length > 0
+  )
+  const hasFabrics = (selections.fabrics || []).length > 0
+  const hasMeasurements = Object.values(measurements).some((v) => v.trim() !== '')
+  const hasAny = hasFabrics || hasMeasurements || hasAnyDesign
 
   const t = {
-    es: { title: 'Tu selección', empty: 'Aún no has seleccionado nada' },
-    en: { title: 'Your selection', empty: 'You have not selected anything yet' },
-    it: { title: 'La tua selezione', empty: 'Non hai ancora selezionato nulla' },
-    fr: { title: 'Votre sélection', empty: "Vous n'avez encore rien sélectionné" },
+    es: { title: 'Tu selección', empty: 'Aún no has seleccionado nada', fabrics: 'Tejidos', measurements: 'Medidas', design: 'Diseño' },
+    en: { title: 'Your selection', empty: 'You have not selected anything yet', fabrics: 'Fabrics', measurements: 'Measurements', design: 'Design' },
+    it: { title: 'La tua selezione', empty: 'Non hai ancora selezionato nulla', fabrics: 'Tessuti', measurements: 'Misure', design: 'Design' },
+    fr: { title: 'Votre sélection', empty: "Vous n'avez encore rien sélectionné", fabrics: 'Tissus', measurements: 'Mesures', design: 'Design' },
   }
   const currentT = t[locale as keyof typeof t] || t.es
 
@@ -779,45 +1097,50 @@ function SummaryPanel({
           {currentT.empty}
         </p>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          {STEPS.map((step, i) => {
-            const selected = selections[step.id] || []
-            if (selected.length === 0) return null
-            const label =
-              (step[`label_${locale}` as keyof typeof step] as string) || step.label_es
-            const Icon = STEP_ICONS[i]
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+          {/* Fabrics */}
+          {hasFabrics && (
+            <SummaryGroup
+              icon={<Scissors size={12} color="rgba(201,168,76,0.6)" />}
+              label={currentT.fabrics}
+              items={selections.fabrics}
+            />
+          )}
 
-            return (
-              <div key={step.id}>
-                <div
+          {/* Measurements */}
+          {hasMeasurements && (
+            <div>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  marginBottom: '0.4rem',
+                }}
+              >
+                <Ruler size={12} color="rgba(201,168,76,0.6)" />
+                <span
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    marginBottom: '0.4rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.6rem',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(201,168,76,0.7)',
+                    fontWeight: 500,
                   }}
                 >
-                  <Icon size={12} color="rgba(201,168,76,0.6)" />
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.6rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(201,168,76,0.7)',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {label}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                  {selected.map((item) => (
+                  {currentT.measurements}
+                </span>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                {Object.entries(measurements)
+                  .filter(([, v]) => v.trim() !== '')
+                  .map(([k, v]) => (
                     <span
-                      key={item}
+                      key={k}
                       style={{
                         fontFamily: 'var(--font-sans)',
-                        fontSize: '0.78rem',
+                        fontSize: '0.75rem',
                         color: 'rgba(255,255,255,0.8)',
                         padding: '0.3rem 0.6rem',
                         background: 'rgba(201,168,76,0.08)',
@@ -826,15 +1149,90 @@ function SummaryPanel({
                         lineHeight: 1.3,
                       }}
                     >
-                      {item}
+                      {k}: {v}cm
                     </span>
                   ))}
-                </div>
               </div>
+            </div>
+          )}
+
+          {/* Design categories */}
+          {DESIGN_CATEGORIES.map((cat) => {
+            const selected = selections[cat.id] || []
+            if (selected.length === 0) return null
+            const label =
+              (cat[`label_${locale}` as keyof typeof cat] as string) || cat.label_es
+            const CatIcon = cat.icon
+
+            return (
+              <SummaryGroup
+                key={cat.id}
+                icon={<CatIcon size={12} color="rgba(201,168,76,0.6)" />}
+                label={label}
+                items={selected}
+              />
             )
           })}
         </div>
       )}
     </motion.div>
+  )
+}
+
+/* ─── Summary Group helper ─────────────────────────────────────────────────── */
+
+function SummaryGroup({
+  icon,
+  label,
+  items,
+}: {
+  icon: React.ReactNode
+  label: string
+  items: string[]
+}) {
+  return (
+    <div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.4rem',
+          marginBottom: '0.4rem',
+        }}
+      >
+        {icon}
+        <span
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.6rem',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'rgba(201,168,76,0.7)',
+            fontWeight: 500,
+          }}
+        >
+          {label}
+        </span>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+        {items.map((item) => (
+          <span
+            key={item}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.78rem',
+              color: 'rgba(255,255,255,0.8)',
+              padding: '0.3rem 0.6rem',
+              background: 'rgba(201,168,76,0.08)',
+              border: '1px solid rgba(201,168,76,0.15)',
+              borderRadius: '6px',
+              lineHeight: 1.3,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
