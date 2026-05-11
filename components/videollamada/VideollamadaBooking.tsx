@@ -39,14 +39,48 @@ export function VideollamadaBooking() {
     setIsSubmitting(true)
 
     const dateStr = formatDate(selectedDate)
-    const subject = encodeURIComponent(`Solicitud de Videollamada - ${dateStr} ${selectedTime}`)
-    const body = encodeURIComponent(
-      `Hola equipo de Sastrería Manuel Fernández,\n\n` +
-      `Me gustaría reservar una videollamada para el día ${dateStr} a las ${selectedTime}.\n\n` +
-      `Preferencia de plataforma: Zoom / Google Meet\n` +
-      `Duración estimada: 20-25 minutos\n\n` +
-      `Saludos cordiales`
-    )
+    const mailContent: Record<string, { subject: string; body: string }> = {
+      es: {
+        subject: `Solicitud de Videollamada - ${dateStr} ${selectedTime}`,
+        body:
+          `Hola equipo de Sastrería Manuel Fernández,\n\n` +
+          `Me gustaría reservar una videollamada para el día ${dateStr} a las ${selectedTime}.\n\n` +
+          `Preferencia de plataforma: Zoom / Google Meet\n` +
+          `Duración estimada: 20-25 minutos\n\n` +
+          `Saludos cordiales`,
+      },
+      en: {
+        subject: `Video Call Request - ${dateStr} ${selectedTime}`,
+        body:
+          `Hello Sastrería Manuel Fernández team,\n\n` +
+          `I would like to book a video call for ${dateStr} at ${selectedTime}.\n\n` +
+          `Platform preference: Zoom / Google Meet\n` +
+          `Estimated duration: 20-25 minutes\n\n` +
+          `Best regards`,
+      },
+      it: {
+        subject: `Richiesta di Videochiamata - ${dateStr} ${selectedTime}`,
+        body:
+          `Salve team di Sastrería Manuel Fernández,\n\n` +
+          `Vorrei prenotare una videochiamata per il giorno ${dateStr} alle ${selectedTime}.\n\n` +
+          `Preferenza piattaforma: Zoom / Google Meet\n` +
+          `Durata stimata: 20-25 minuti\n\n` +
+          `Cordiali saluti`,
+      },
+      fr: {
+        subject: `Demande de Visioconférence - ${dateStr} ${selectedTime}`,
+        body:
+          `Bonjour équipe de Sastrería Manuel Fernández,\n\n` +
+          `Je souhaiterais réserver une visioconférence pour le ${dateStr} à ${selectedTime}.\n\n` +
+          `Préférence de plateforme: Zoom / Google Meet\n` +
+          `Durée estimée: 20-25 minutes\n\n` +
+          `Cordialement`,
+      },
+    }
+
+    const content = mailContent[locale] || mailContent.es
+    const subject = encodeURIComponent(content.subject)
+    const body = encodeURIComponent(content.body)
 
     // Open email client with pre-filled booking details
     window.open(`mailto:info@sastreriamanuelfernandez.com?subject=${subject}&body=${body}`, '_blank')

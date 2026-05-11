@@ -20,10 +20,10 @@ const NAV_ITEMS = [
   { key: 'contacto'      as const, href: '/contacto',       icon: Mail },
 ]
 
-// Persistent contact buttons data
-const CONTACT_BUTTONS = {
-  call: { label: 'Llámanos', href: 'tel:+34682192944', icon: Phone },
-  location: { label: 'Dónde Estamos', href: 'https://www.google.com/maps/search/?api=1&query=Sastrería+Manuel+Fernández,+C.+de+Jorge+Juan,+41,+Salamanca,+28001+Madrid', icon: MapPin },
+// Persistent contact buttons data — labels resolved inside component for i18n
+const CONTACT_BUTTONS_DATA = {
+  call: { href: 'tel:+34682192944', icon: Phone },
+  location: { href: 'https://www.google.com/maps/search/?api=1&query=Sastrería+Manuel+Fernández,+C.+de+Jorge+Juan,+41,+Salamanca,+28001+Madrid', icon: MapPin },
 }
 
 export function Navigation() {
@@ -115,7 +115,7 @@ export function Navigation() {
 
           {/* CALL US BUTTON — Desktop only, persistent on all pages */}
           <a
-            href={CONTACT_BUTTONS.call.href}
+            href={CONTACT_BUTTONS_DATA.call.href}
             className="mf-contact-btn"
             style={{
               display:        'none',
@@ -146,12 +146,12 @@ export function Navigation() {
             }}
           >
             <Phone size={14} strokeWidth={1.5} />
-            {CONTACT_BUTTONS.call.label}
+            {locale === 'es' ? 'Llámanos' : locale === 'it' ? 'Chiamaci' : locale === 'fr' ? 'Appelez-nous' : 'Call Us'}
           </a>
 
           {/* WHERE WE ARE BUTTON — Desktop only, persistent on all pages */}
           <a
-            href={CONTACT_BUTTONS.location.href}
+            href={CONTACT_BUTTONS_DATA.location.href}
             target="_blank"
             rel="noopener noreferrer"
             className="mf-contact-btn"
@@ -184,7 +184,7 @@ export function Navigation() {
             }}
           >
             <MapPin size={14} strokeWidth={1.5} />
-            {CONTACT_BUTTONS.location.label}
+            {locale === 'es' ? 'Dónde Estamos' : locale === 'it' ? 'Dove Siamo' : locale === 'fr' ? 'Où Nous Sommes' : 'Find Us'}
           </a>
 
           {/* Language selector */}
@@ -424,7 +424,7 @@ export function Navigation() {
             flexWrap: 'wrap',
           }}>
             <a
-              href={CONTACT_BUTTONS.call.href}
+              href={CONTACT_BUTTONS_DATA.call.href}
               onClick={() => setMenuOpen(false)}
               style={{
                 display: 'flex',
@@ -453,10 +453,10 @@ export function Navigation() {
               }}
             >
               <Phone size={15} strokeWidth={1.5} />
-              {CONTACT_BUTTONS.call.label}
+              {locale === 'es' ? 'Llámanos' : locale === 'it' ? 'Chiamaci' : locale === 'fr' ? 'Appelez-nous' : 'Call Us'}
             </a>
             <a
-              href={CONTACT_BUTTONS.location.href}
+              href={CONTACT_BUTTONS_DATA.location.href}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
@@ -487,7 +487,7 @@ export function Navigation() {
               }}
             >
               <MapPin size={15} strokeWidth={1.5} />
-              {CONTACT_BUTTONS.location.label}
+              {locale === 'es' ? 'Dónde Estamos' : locale === 'it' ? 'Dove Siamo' : locale === 'fr' ? 'Où Nous Sommes' : 'Find Us'}
             </a>
           </div>
 
