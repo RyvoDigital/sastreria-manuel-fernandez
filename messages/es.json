@@ -365,10 +365,10 @@
     },
     "categorias": {
       "label": "Estilos de Ceremonia",
-      "cat1": "Chaqué",  "cat1_desc": "La máxima expresión de la elegancia nupcial de mañana.",
-      "cat2": "Esmoquin",  "cat2_desc": "Impecable para la ceremonia y la velada.",
-      "cat3": "Frac",      "cat3_desc": "La elegancia más formal para ocasiones únicas.",
-      "cat4": "Traje Artesanal", "cat4_desc": "Elegancia personalizada para cualquier ocasión especial."
+      "cat1": "Frac",  "cat1_desc": "La elegancia más formal para ocasiones únicas.",
+      "cat2": "Chaqué",  "cat2_desc": "La máxima expresión de la elegancia nupcial de mañana.",
+      "cat3": "Esmoquin",      "cat3_desc": "Impecable para la ceremonia y la velada.",
+      "cat4": "Traje a Medida", "cat4_desc": "Elegancia personalizada para cualquier ocasión especial."
     },
     "formal_wear": {
       "label": "Vestimenta Formal",

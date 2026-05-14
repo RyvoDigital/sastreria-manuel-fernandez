@@ -390,13 +390,13 @@
     },
     "categorias": {
       "label": "Styles de Cérémonie",
-      "cat1": "Redingote",
-      "cat1_desc": "L'expression ultime de l'élégance matinale de mariage.",
-      "cat2": "Smoking",
-      "cat2_desc": "Impeccable pour la cérémonie et la réception du soir.",
-      "cat3": "Queue-de-pie",
-      "cat3_desc": "L'élégance la plus formelle pour des occasions uniques.",
-      "cat4": "Costume Artisanal",
+      "cat1": "Queue-de-pie",
+      "cat1_desc": "L'élégance la plus formelle pour des occasions uniques.",
+      "cat2": "Redingote",
+      "cat2_desc": "L'expression ultime de l'élégance matinale de mariage.",
+      "cat3": "Smoking",
+      "cat3_desc": "Impeccable pour la cérémonie et la réception du soir.",
+      "cat4": "Costume Sur Mesure",
       "cat4_desc": "Élégance personnalisée pour toute occasion spéciale."
     },
     "formal_wear": {

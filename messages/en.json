@@ -365,10 +365,10 @@
     },
     "categorias": {
       "label": "Ceremony Styles",
-      "cat1": "Morning Coat",    "cat1_desc": "The ultimate expression of morning wedding elegance.",
-      "cat2": "Tuxedo","cat2_desc": "Impecable for the ceremony and evening reception.",
-      "cat3": "Tailcoat",       "cat3_desc": "The most formal elegance for unique occasions.",
-      "cat4": "Artisan Suit",    "cat4_desc": "Personalised elegance for any special occasion."
+      "cat1": "Morning Coat",    "cat1_desc": "The most formal elegance for unique occasions.",
+      "cat2": "Stroller","cat2_desc": "The ultimate expression of morning wedding elegance.",
+      "cat3": "Tuxedo",       "cat3_desc": "Impecable for the ceremony and evening reception.",
+      "cat4": "Bespoke Suit",    "cat4_desc": "Personalised elegance for any special occasion."
     },
     "formal_wear": {
       "label": "Formal Wear",

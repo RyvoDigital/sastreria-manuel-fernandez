@@ -36,7 +36,7 @@ const COURSES = [
     lessons: 5,
     locked: true,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/purple-lining-interior_krylkv",
   },
   {
     id: "lapel",
@@ -52,7 +52,7 @@ const COURSES = [
     lessons: 4,
     locked: true,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/gray-check-mannequin_gaf1fp",
   },
   {
     id: "pockets",
@@ -68,7 +68,7 @@ const COURSES = [
     lessons: 6,
     locked: true,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/showroom-jackets_n55sfk",
   },
   {
     id: "buttonholes",
@@ -84,7 +84,7 @@ const COURSES = [
     lessons: 3,
     locked: true,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/scissors-cutting_vyt9my",
   },
   {
     id: "finishes",
@@ -100,7 +100,7 @@ const COURSES = [
     lessons: 4,
     locked: true,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9436_uyetr0",
   },
 ];
 

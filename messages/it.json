@@ -390,13 +390,13 @@
     },
     "categorias": {
       "label": "Stili di Cerimonia",
-      "cat1": "Redingote",
-      "cat1_desc": "L'espressione suprema dell'eleganza mattutina nuziale.",
-      "cat2": "Smoking",
-      "cat2_desc": "Impeccabile per la cerimonia e il ricevimento serale.",
-      "cat3": "Frac",
-      "cat3_desc": "L'eleganza più formale per occasioni uniche.",
-      "cat4": "Abito Artigianale",
+      "cat1": "Frac",
+      "cat1_desc": "L'eleganza più formale per occasioni uniche.",
+      "cat2": "Redingote",
+      "cat2_desc": "L'espressione suprema dell'eleganza mattutina nuziale.",
+      "cat3": "Smoking",
+      "cat3_desc": "Impeccabile per la cerimonia e il ricevimento serale.",
+      "cat4": "Abito Su Misura",
       "cat4_desc": "Eleganza personalizzata per qualsiasi occasione speciale."
     },
     "formal_wear": {

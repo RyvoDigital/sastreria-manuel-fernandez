@@ -93,7 +93,7 @@ export function TrajeEmpiezaSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-the-result_l9d5tm')`,
+            backgroundImage: `url('https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/Traje_a_medida_con_corbata_roja_h4s5oq')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
           }}

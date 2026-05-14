@@ -9,46 +9,37 @@ const SERVICE_GROUPS = [
   {
     name: 'Traje a Medida',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0906_xstjfd',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0533_cdimyt',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0647_dwn1or',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-artisan-suit_tccgpr',
     ],
   },
   {
     name: 'Blazer',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0113_zuhjvb',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1740_yxf1hf',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1340_gym6me',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-blazer_ojjfkl',
     ],
   },
   {
     name: 'Pantalón a Medida',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0700_jgiuxf',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1030_yxqooj',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1550_skrrjt',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-shirts_rztcfm',
     ],
   },
   {
     name: 'Abrigo a Medida',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0869_aizdli',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_2700_c0glna',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-artisan-coat_lmffv1',
     ],
   },
   {
     name: 'Traje de Novio',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1534_awbav4',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0111_n3syl0',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-tuxedo_wozaya',
     ],
   },
   {
     name: 'Arreglos',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0529_nlsj3y',
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0923_glk03z',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-stroller_qofut3',
     ],
   },
 ]
