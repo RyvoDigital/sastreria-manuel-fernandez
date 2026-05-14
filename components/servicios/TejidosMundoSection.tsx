@@ -2,8 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import type { GlobeMarker, GlobeArc } from '@/components/ui/globe'
@@ -17,7 +16,6 @@ const Globe = dynamic(() => import('@/components/ui/globe').then((m) => m.Globe)
   ),
 })
 
-gsap.registerPlugin(ScrollTrigger)
 
 // Client locations where we work — Madrid workshop at center
 const MARKERS: GlobeMarker[] = [

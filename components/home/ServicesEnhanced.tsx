@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import Image from 'next/image'
 
-gsap.registerPlugin(ScrollTrigger)
 
 const SERVICES = [
   {

@@ -120,6 +120,8 @@ export function ContactPage() {
   const isMobile = useIsMobile()
   const [photoIndex, setPhotoIndex] = useState(0)
   const [submitted, setSubmitted]   = useState(false)
+  const [loading, setLoading]       = useState(false)
+  const [error, setError]           = useState<string | null>(null)
   const panelRef = useRef<HTMLDivElement>(null)
 
   /* Preload */
@@ -144,17 +146,33 @@ export function ContactPage() {
     return () => { tl.kill() }
   }, [])
 
-  /* Form submit → mailto */
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  /* Form submit → API */
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
+    setError(null)
+
     const f    = e.currentTarget
     const name = (f.elements.namedItem('nombre')  as HTMLInputElement).value
     const mail = (f.elements.namedItem('email')   as HTMLInputElement).value
     const msg  = (f.elements.namedItem('mensaje') as HTMLTextAreaElement).value
-    const subj = encodeURIComponent(`Consulta de ${name}`)
-    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${mail}\n\n${msg}`)
-    window.open(`mailto:${t.contacto.email}?subject=${subj}&body=${body}`, '_blank')
-    setSubmitted(true)
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email: mail, message: msg, type: 'contact' }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || t.contacto.form_error)
+      }
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t.contacto.form_error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const details = [
@@ -421,22 +439,35 @@ export function ContactPage() {
                 {/* Name + Email side by side on desktop */}
                 <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0 1.5rem' }}>
                   <div className="mf-cf-field">
-                    <input type="text"  name="nombre" id="mf-cn" placeholder=" " required className="mf-cf-input" />
+                    <input type="text"  name="nombre" id="mf-cn" placeholder=" " required className="mf-cf-input" disabled={loading} />
                     <label htmlFor="mf-cn" className="mf-cf-label">{t.contacto.form_name}</label>
                   </div>
                   <div className="mf-cf-field">
-                    <input type="email" name="email"  id="mf-ce" placeholder=" " required className="mf-cf-input" />
+                    <input type="email" name="email"  id="mf-ce" placeholder=" " required className="mf-cf-input" disabled={loading} />
                     <label htmlFor="mf-ce" className="mf-cf-label">{t.contacto.form_email}</label>
                   </div>
                 </div>
 
                 <div className="mf-cf-field">
-                  <textarea name="mensaje" id="mf-cm" rows={2} placeholder=" " required className="mf-cf-input mf-cf-textarea" />
+                  <textarea name="mensaje" id="mf-cm" rows={2} placeholder=" " required className="mf-cf-input mf-cf-textarea" disabled={loading} />
                   <label htmlFor="mf-cm" className="mf-cf-label">{t.contacto.form_message}</label>
                 </div>
 
-                <button type="submit" className="mf-cf-submit">
-                  {t.contacto.form_submit}
+                {error && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    style={{
+                      fontFamily: 'var(--font-sans)', fontSize: '0.85rem',
+                      color: '#e57373', marginBottom: '1rem',
+                    }}
+                  >
+                    {error}
+                  </motion.p>
+                )}
+
+                <button type="submit" className="mf-cf-submit" disabled={loading} style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
+                  {loading ? t.contacto.form_sending : t.contacto.form_submit}
                 </button>
               </form>
             )}

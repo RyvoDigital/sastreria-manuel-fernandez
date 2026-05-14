@@ -2,12 +2,10 @@
 
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
-gsap.registerPlugin(ScrollTrigger)
 
 export function BodasProceso() {
   const { t } = useI18n()

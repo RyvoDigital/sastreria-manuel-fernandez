@@ -5,7 +5,7 @@ import Lenis from 'lenis'
 
 export function LenisProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
-    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
     if (isMobile) return
 
     const lenis = new Lenis({

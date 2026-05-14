@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { breakpoints } from './breakpoints'
 
-export function useIsMobile(breakpoint = 768): boolean {
+export function useIsMobile(breakpoint: number = breakpoints.md): boolean {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {

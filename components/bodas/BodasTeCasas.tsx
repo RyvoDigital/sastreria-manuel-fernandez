@@ -1,11 +1,9 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 
-gsap.registerPlugin(ScrollTrigger)
 
 export function BodasTeCasas() {
   const { t } = useI18n()

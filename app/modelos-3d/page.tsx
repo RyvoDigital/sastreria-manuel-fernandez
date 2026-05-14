@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { useState, Suspense, lazy } from 'react'
 import { useI18n } from '@/lib/i18n'
-import { Modelo3DViewer } from '@/components/modelos-3d/Modelo3DViewer'
 import { ErrorBoundary } from '@/components/ui/error-boundary'
 import { Rotate3D, User, X } from 'lucide-react'
+
+const Modelo3DViewer = lazy(() => import('@/components/modelos-3d/Modelo3DViewer').then(m => ({ default: m.Modelo3DViewer })))
 
 // Clothing items for the gallery
 const CLOTHING_ITEMS = [

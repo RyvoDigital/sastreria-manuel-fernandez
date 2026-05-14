@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { useScroll, useMotionValueEvent, motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 
 const PHOTOS = [
@@ -132,16 +133,12 @@ export function TestimonialsSection() {
   const isIPhone = useIsIPhone()
   const sectionRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
+  const isMobile = useIsMobile()
   const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
     const checkMotion = () => setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-    checkMobile()
     checkMotion()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const items = t.testimonials.items

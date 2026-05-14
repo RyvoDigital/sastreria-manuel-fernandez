@@ -316,6 +316,8 @@
     "form_message": "Mensaje",
     "form_submit": "Enviar",
     "form_success": "Mensaje enviado. Nos pondremos en contacto pronto.",
+    "form_sending": "Enviando...",
+    "form_error": "No se pudo enviar. Inténtalo de nuevo.",
     "quote1": "La medida exacta de lo extraordinario.",
     "quote2": "Cada puntada, una decisión consciente.",
     "quote3": "El traje comienza antes del tejido.",
@@ -481,7 +483,9 @@
       "back": "Atrás",
       "confirmBooking": "Confirmar Reserva",
       "success": "¡Reserva confirmada!",
-      "successMessage": "Hemos preparado un email con los detalles de tu reserva. Por favor, envíalo para confirmar tu cita."
+      "successMessage": "Hemos recibido tu solicitud. Nos pondremos en contacto contigo pronto para confirmar la cita.",
+      "error": "Error al confirmar",
+      "errorMessage": "No se pudo enviar la reserva. Inténtalo de nuevo."
     }
   },
   "footer": {

@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
+import { useIsMobile } from '@/lib/use-mobile'
 import { Eye, Leaf, Award, Hand } from 'lucide-react'
 
-gsap.registerPlugin(ScrollTrigger)
 
 const CONTENT_BLOCKS = [
   { id: 'visual' as const, icon: Eye, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242028/photos/web_lista_images/home-visual_xki5xz', span: 4 },
@@ -19,14 +18,7 @@ const CONTENT_BLOCKS = [
 export function FabricsSection() {
   const { t } = useI18n()
   const sectionRef = useRef<HTMLElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const el = sectionRef.current
