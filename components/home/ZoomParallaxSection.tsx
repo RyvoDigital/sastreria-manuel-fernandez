@@ -131,14 +131,13 @@ export function ZoomParallaxSection() {
                 alignItems:     'center',
                 justifyContent: 'center',
                 zIndex: index === 0 ? 5 : 1,
+                willChange: 'transform',
               }}
             >
               <motion.div 
-                style={layout[index]}
+                style={{ ...layout[index], willChange: 'transform' }}
                 animate={isMobile ? undefined : {
-                  y: [0, -15, 0],
-                  x: [0, 5, 0],
-                  rotate: [0, 1, 0]
+                  y: [0, -10, 0],
                 }}
                 transition={isMobile ? undefined : {
                   duration: floatingDuration,

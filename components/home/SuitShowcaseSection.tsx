@@ -76,7 +76,7 @@ export function SuitShowcaseSection() {
           {/* Main Image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-sartorial-interpretation_sdszvu"
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg"
             alt={t.suit_showcase.label}
             style={{
               width: '100%',
@@ -155,13 +155,14 @@ export function SuitShowcaseSection() {
                   color: '#FFFFFF',
                   boxShadow: '0 0 20px rgba(201,168,76,0.6)',
                   position: 'relative',
+                  willChange: 'transform',
                 }}
                 whileHover={{ scale: 1.2 }}
                 animate={{
-                  scale: activeId === spot.id ? 1.2 : [1, 1.1, 1],
+                  scale: activeId === spot.id ? 1.2 : [1, 1.08, 1],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 2.5,
                   repeat: Infinity,
                   ease: 'easeInOut',
                 }}
