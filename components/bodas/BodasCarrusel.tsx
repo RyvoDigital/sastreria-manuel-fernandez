@@ -5,13 +5,21 @@ import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 
 const CARDS = [
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-008-0596',      caption: 'Atelier' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-009-0599',       caption: 'Precision' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-011-0620',      caption: 'Details' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-013-0625',     caption: 'Craft' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli', caption: 'Groom Detail' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-morning-coat_ptibah', caption: 'Morning Coat' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-couple_hk4ppu', caption: 'Couple' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-tuxedo_rv21ou', caption: 'Tuxedo' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-ceremony_wf7tyb', caption: 'Ceremony' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-rome_qlqcxz', caption: 'Rome' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-church_uct3rm', caption: 'Church' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-008-0596', caption: 'Atelier' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-009-0599', caption: 'Precision' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-011-0620', caption: 'Details' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-013-0625', caption: 'Craft' },
   { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-016-0634', caption: 'Fabric' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-017-9305',    caption: 'Handwork' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-001-0657',        caption: 'Process' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-017-9305', caption: 'Handwork' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-001-0657', caption: 'Process' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/screenshot-09', caption: 'Portfolio' },
 ]
 
 const CARD_W = 260

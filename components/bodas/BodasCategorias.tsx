@@ -7,10 +7,10 @@ import { useIsMobile } from '@/lib/use-mobile'
 
 
 const CATS = [
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-003-0684', height: '46vh', key: 'cat1' as const },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-008-0693',    height: '63vh', key: 'cat2' as const },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-009-0640',   height: '46vh', key: 'cat3' as const },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-011-0702',        height: '46vh', key: 'cat4' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-couple_hk4ppu', height: '46vh', key: 'cat1' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-tuxedo_rv21ou',    height: '63vh', key: 'cat2' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-ceremony_wf7tyb',   height: '46vh', key: 'cat3' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-rome_qlqcxz',        height: '46vh', key: 'cat4' as const },
 ]
 
 export function BodasCategorias() {
