@@ -381,7 +381,7 @@ export function HeroEnhanced() {
               {t.hero.cta_book}
             </MagneticButton>
 
-            <MagneticButton href="tel:+34000000000">
+            <MagneticButton href="tel:+34682192944">
               <Phone size={16} />
               {t.hero.cta_call}
             </MagneticButton>
