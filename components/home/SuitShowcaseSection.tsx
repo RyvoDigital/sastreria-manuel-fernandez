@@ -76,7 +76,7 @@ export function SuitShowcaseSection() {
           {/* Main Image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://res.cloudinary.com/dwruvre6o/image/upload/v1778242003/photos/web_lista_images/home-sartorial-interpretation_sdszvu"
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-sartorial-interpretation_sdszvu"
             alt={t.suit_showcase.label}
             style={{
               width: '100%',

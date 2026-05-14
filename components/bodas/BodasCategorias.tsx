@@ -7,10 +7,10 @@ import { useIsMobile } from '@/lib/use-mobile'
 
 
 const CATS = [
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241981/photos/web_lista_images/bodas-morning-coat_wfh4yl', height: '46vh', key: 'cat1' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241966/photos/web_lista_images/bodas-stroller_c82kor',    height: '63vh', key: 'cat2' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242110/photos/web_lista_images/producto-tuxedo_wozaya',   height: '46vh', key: 'cat3' as const },
-  { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778241948/photos/web_lista_images/bodas-suit_m8cqj3',        height: '46vh', key: 'cat4' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-003-0684', height: '46vh', key: 'cat1' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-008-0693',    height: '63vh', key: 'cat2' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-009-0640',   height: '46vh', key: 'cat3' as const },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-011-0702',        height: '46vh', key: 'cat4' as const },
 ]
 
 export function BodasCategorias() {

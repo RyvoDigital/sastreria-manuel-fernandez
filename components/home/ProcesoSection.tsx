@@ -9,17 +9,17 @@ import { useIsMobile } from '@/lib/use-mobile'
 /* ─── Step data ──────────────────────────────────────────── */
 const STEP_META = [
   {
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242036/photos/web_lista_images/home-selection_vsmq3j',
+    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-selection_vsmq3j',
     imageLeft: true,
     bg: '#050C14',
   },
   {
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242003/photos/web_lista_images/home-sartorial-interpretation_sdszvu',
+    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-sartorial-interpretation_sdszvu',
     imageLeft: false,
     bg: '#07101A',
   },
   {
-    image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242094/photos/web_lista_images/home-the-result_l9d5tm',
+    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-the-result_l9d5tm',
     imageLeft: true,
     bg: '#050C14',
   },

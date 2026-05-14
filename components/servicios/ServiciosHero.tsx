@@ -31,7 +31,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: "url('https://res.cloudinary.com/dwruvre6o/image/upload/v1778241942/photos/web_lista_images/servicios-hero_ywyf2j')",
+        backgroundImage: "url('https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/servicios-hero_ywyf2j')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
@@ -108,28 +108,28 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
   return (
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: isMobile ? '80px 1rem 0' : '200px 2rem 0' }}>
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471119/photos/others/IMG_1435_brue5b"
+        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1435_brue5b"
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1777471137/photos/others/IMG_0884_vcpsgb"
+        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0884_vcpsgb"
         alt="Consulta de tejidos"
         start={200}
         end={-250}
         imgStyle={{ width: isMobile ? '90%' : '60%', margin: '0 auto' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797368/photos/scissors-cutting_vyt9my"
+        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/scissors-cutting_vyt9my"
         alt="Corte con tijeras"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%', marginLeft: 'auto' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dwruvre6o/image/upload/v1776797407/photos/showroom-suits_zqmscd"
+        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/showroom-suits_zqmscd"
         alt="Showroom trajes"
         start={0}
         end={-500}

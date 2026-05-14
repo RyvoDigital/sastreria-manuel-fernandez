@@ -24,10 +24,10 @@ export function OficioFlipSection() {
   const [activeIdx, setActiveIdx] = useState(0)
 
   const disciplines = [
-    { label: t.la_sastreria.oficio.cat1, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471208/photos/others/IMG_1504_j2eexd'  },
-    { label: t.la_sastreria.oficio.cat2, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471229/photos/others/IMG_0623_xipoh3'  },
-    { label: t.la_sastreria.oficio.cat3, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797494/photos/Proceso_de_sastrería_en_tela_azul_y03oyr' },
-    { label: t.la_sastreria.oficio.cat4, url: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797419/photos/ChatGPT_Image_10_abr_2026_11_27_13_xjds4g'  },
+    { label: t.la_sastreria.oficio.cat1, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1504_j2eexd'  },
+    { label: t.la_sastreria.oficio.cat2, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0623_xipoh3'  },
+    { label: t.la_sastreria.oficio.cat3, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/Proceso_de_sastrería_en_tela_azul_y03oyr' },
+    { label: t.la_sastreria.oficio.cat4, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/ChatGPT_Image_10_abr_2026_11_27_13_xjds4g'  },
   ]
 
   const images = disciplines.map((d) => ({ title: d.label, url: d.url }))

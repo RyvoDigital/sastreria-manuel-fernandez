@@ -7,11 +7,11 @@ import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 
 const PHOTOS = [
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797485/photos/madrid-tweed_zsfaxi',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797420/photos/wedding-morning-coat_ptibah',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1776797352/photos/mint-jacket-madrid_igacjj',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471066/photos/others/IMG_0808_oo35om',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471068/photos/others/IMG_0416_brafs7',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/madrid-tweed_zsfaxi',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-morning-coat_ptibah',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/mint-jacket-madrid_igacjj',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0808_oo35om',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0416_brafs7',
 ]
 
 // TOTAL is now derived dynamically from items.length to stay in sync with translations
@@ -206,7 +206,7 @@ export function TestimonialsSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('https://res.cloudinary.com/dwruvre6o/image/upload/v1776797394/photos/cutting-fabric-wide_jqwwjw')`,
+            backgroundImage: `url('https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/cutting-fabric-wide_jqwwjw')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.04,
