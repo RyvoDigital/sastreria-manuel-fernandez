@@ -1,0 +1,16 @@
+🔍 Checking what already exists in new Cloudinary account...
+Found 23 existing fotos-web images.
+
+  ⏭️  SKIP (too large: 11.8MB) — atelier-2000-01-01-003-4284.jpg
+  ⏭️  SKIP (too large: 14.0MB) — atelier-2024-03-08-001-0226.jpg
+  ⏭️  SKIP (too large: 45.8MB) — video-atelier.mov
+Local total:    167
+Already uploaded: 23
+Too large (>10MB): 3
+Remaining:      141
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Done! 141 uploaded, 0 failed
+Total in account: 164
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

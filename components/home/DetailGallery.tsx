@@ -4,21 +4,21 @@ import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const IMAGES = [
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_0005_ujbv1u',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_0051_pnrgli',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_0057_qvaxlr',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_0062_zdmgjx',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_0067_hlr9ym',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7409_orkk1x',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7414_mcc9pi',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7511_l7ua4x',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7784_tdnkf6',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7789_z2y3hh',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9423_bn8baq',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9436_uyetr0',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9666_rvzpes',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9702_fryzdx',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9721_zxahxp',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/screenshot-06',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-014-0631',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/02-ai-promo/promo-ai-05',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/screenshot-09',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-006-0582',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-004-0661',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-10-22-001-1550',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-10-01-002-1477',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-08-06-010-0971',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/others/IMG_9650_bffsnb',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/tailor-workshop_rb0bcw',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/atelier-tools_clirtk',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/IMG_7409_orkk1x',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/IMG_7784_tdnkf6',
 ]
 
 export function DetailGallery() {
@@ -53,6 +53,7 @@ export function DetailGallery() {
           style={{
             display: 'flex',
             gap: '1rem',
+            willChange: 'transform',
           }}
         >
           {[...IMAGES, ...IMAGES].map((src, i) => (

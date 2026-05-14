@@ -320,8 +320,8 @@ export function TestimonialsSection() {
                   position: 'absolute',
                   width: cardWidth,
                   height: cardHeight,
-                  background: 'rgba(5, 12, 20, 0.9)',
-                  backdropFilter: 'blur(12px)',
+                  background: 'rgba(5, 12, 20, 0.95)',
+                  backdropFilter: isMobile ? 'none' : 'blur(12px)',
                   border: `1px solid ${isActiveCard ? 'rgba(201,168,76,0.3)' : 'rgba(255,255,255,0.05)'}`,
                   borderRadius: '12px',
                   padding: cardPadding,
@@ -331,6 +331,7 @@ export function TestimonialsSection() {
                   boxShadow: isActiveCard ? '0 30px 60px rgba(0,0,0,0.5)' : 'none',
                   backfaceVisibility: isMobile ? 'visible' : 'hidden',
                   overflow: 'hidden',
+                  willChange: 'transform',
                 }}
               >
                 {/* Photo and Name */}

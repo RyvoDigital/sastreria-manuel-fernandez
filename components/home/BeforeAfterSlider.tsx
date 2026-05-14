@@ -69,7 +69,7 @@ export function BeforeAfterSlider() {
         const autoPos = 50 + Math.sin(time) * 15
         xPercent.set(autoPos)
       }
-    }, 50)
+    }, 100)
     return () => clearInterval(interval)
   }, [isDragging, xPercent])
 
@@ -174,6 +174,7 @@ export function BeforeAfterSlider() {
               zIndex: 1,
               overflow: 'hidden',
               clipPath: clipPathValue,
+              willChange: 'clip-path',
             }}
           >
             <img
@@ -237,6 +238,7 @@ export function BeforeAfterSlider() {
             zIndex: 3,
             boxShadow: '0 0 15px rgba(201,168,76,0.6)',
             pointerEvents: 'none',
+            willChange: 'left',
           }}>
             {/* Slider Handle */}
             <div style={{

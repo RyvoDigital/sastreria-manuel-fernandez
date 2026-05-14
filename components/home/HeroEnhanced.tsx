@@ -25,7 +25,7 @@ function GoldParticles() {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
     const resizeCanvas = () => {
@@ -35,45 +35,49 @@ function GoldParticles() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 
-    // Create particles
-    const particleCount = 25
+    // Create particles — reduced count for performance
+    const particleCount = 12
     particlesRef.current = Array.from({ length: particleCount }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 0.5,
+      size: Math.random() * 1.5 + 0.5,
       speedX: (Math.random() - 0.5) * 0.3,
-      speedY: (Math.random() - 0.5) * 0.3 - 0.1, // Slight upward drift
-      opacity: Math.random() * 0.5 + 0.2,
+      speedY: (Math.random() - 0.5) * 0.3 - 0.1,
+      opacity: Math.random() * 0.4 + 0.2,
     }))
 
+    // Pause when off-screen
+    let isVisible = true
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisible = entry.isIntersecting },
+      { threshold: 0 }
+    )
+    observer.observe(canvas)
+
     const animate = () => {
+      if (!isVisible) {
+        animationRef.current = requestAnimationFrame(animate)
+        return
+      }
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       particlesRef.current.forEach((particle) => {
-        // Update position
         particle.x += particle.speedX
         particle.y += particle.speedY
 
-        // Wrap around screen
         if (particle.x < 0) particle.x = canvas.width
         if (particle.x > canvas.width) particle.x = 0
         if (particle.y < 0) particle.y = canvas.height
         if (particle.y > canvas.height) particle.y = 0
 
-        // Draw particle with glow
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, particle.size * 3
-        )
-        gradient.addColorStop(0, `rgba(201, 168, 76, ${particle.opacity})`)
-        gradient.addColorStop(0.5, `rgba(201, 168, 76, ${particle.opacity * 0.3})`)
-        gradient.addColorStop(1, 'rgba(201, 168, 76, 0)')
-
+        // Simple arc draw — much faster than radial gradients
+        ctx.globalAlpha = particle.opacity
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2)
-        ctx.fillStyle = gradient
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+        ctx.fillStyle = '#C9A84C'
         ctx.fill()
       })
+      ctx.globalAlpha = 1
 
       animationRef.current = requestAnimationFrame(animate)
     }
@@ -82,6 +86,7 @@ function GoldParticles() {
 
     return () => {
       window.removeEventListener('resize', resizeCanvas)
+      observer.disconnect()
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
     }
   }, [])
@@ -225,7 +230,8 @@ export function HeroEnhanced() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
+          poster="/hero-bg.avif"
           style={{
             width: '100%',
             height: '100%',
