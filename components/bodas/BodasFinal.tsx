@@ -39,7 +39,7 @@ export function BodasFinal() {
       {/* Background photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-morning-coat_ptibah"
+        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-lining_nc9flu"
         alt=""
         style={{
           position: 'absolute', inset: 0,

@@ -9,8 +9,8 @@ import { useIsIPhone } from '@/lib/use-iphone'
 const IMAGES = [
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/cutting-table_pgugkd',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0860_vevl7m',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/tailor-workshop_rb0bcw',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7409_orkk1x',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7414_mcc9pi',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/sleeve-buttons_drh2px',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/velvet-lining_ukeflq',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0945_tkw7o1',
