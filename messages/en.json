@@ -316,6 +316,8 @@
     "form_message": "Message",
     "form_submit": "Send",
     "form_success": "Message sent. We'll be in touch shortly.",
+    "form_sending": "Sending...",
+    "form_error": "Could not send. Please try again.",
     "quote1": "The exact measure of the extraordinary.",
     "quote2": "Every stitch, a conscious decision.",
     "quote3": "The suit begins before the cloth.",
@@ -481,7 +483,9 @@
       "back": "Back",
       "confirmBooking": "Confirm Booking",
       "success": "Booking confirmed!",
-      "successMessage": "We have prepared an email with your booking details. Please send it to confirm your appointment."
+      "successMessage": "We have received your request. We'll be in touch shortly to confirm your appointment.",
+      "error": "Booking failed",
+      "errorMessage": "Could not send your booking. Please try again."
     }
   },
   "footer": {

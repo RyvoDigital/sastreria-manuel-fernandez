@@ -2,13 +2,11 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { ArrowRight, Star, Target, Crown, Scissors, Gem, Layers, Sparkles, Ruler } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
-gsap.registerPlugin(ScrollTrigger)
 
 const CSS = `
   @keyframes mf-cr-marquee {

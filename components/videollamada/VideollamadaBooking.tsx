@@ -18,6 +18,7 @@ export function VideollamadaBooking() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [step, setStep] = useState<'date' | 'time' | 'confirm'>('date')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const c = t.videollamada.booking
 
@@ -34,59 +35,37 @@ export function VideollamadaBooking() {
     return isSaturday ? SATURDAY_SLOTS : TIME_SLOTS
   }
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!selectedDate || !selectedTime) return
     setIsSubmitting(true)
+    setError(null)
 
     const dateStr = formatDate(selectedDate)
-    const mailContent: Record<string, { subject: string; body: string }> = {
-      es: {
-        subject: `Solicitud de Videollamada - ${dateStr} ${selectedTime}`,
-        body:
-          `Hola equipo de Sastrería Manuel Fernández,\n\n` +
-          `Me gustaría reservar una videollamada para el día ${dateStr} a las ${selectedTime}.\n\n` +
-          `Preferencia de plataforma: Zoom / Google Meet\n` +
-          `Duración estimada: 20-25 minutos\n\n` +
-          `Saludos cordiales`,
-      },
-      en: {
-        subject: `Video Call Request - ${dateStr} ${selectedTime}`,
-        body:
-          `Hello Sastrería Manuel Fernández team,\n\n` +
-          `I would like to book a video call for ${dateStr} at ${selectedTime}.\n\n` +
-          `Platform preference: Zoom / Google Meet\n` +
-          `Estimated duration: 20-25 minutes\n\n` +
-          `Best regards`,
-      },
-      it: {
-        subject: `Richiesta di Videochiamata - ${dateStr} ${selectedTime}`,
-        body:
-          `Salve team di Sastrería Manuel Fernández,\n\n` +
-          `Vorrei prenotare una videochiamata per il giorno ${dateStr} alle ${selectedTime}.\n\n` +
-          `Preferenza piattaforma: Zoom / Google Meet\n` +
-          `Durata stimata: 20-25 minuti\n\n` +
-          `Cordiali saluti`,
-      },
-      fr: {
-        subject: `Demande de Visioconférence - ${dateStr} ${selectedTime}`,
-        body:
-          `Bonjour équipe de Sastrería Manuel Fernández,\n\n` +
-          `Je souhaiterais réserver une visioconférence pour le ${dateStr} à ${selectedTime}.\n\n` +
-          `Préférence de plateforme: Zoom / Google Meet\n` +
-          `Durée estimée: 20-25 minutes\n\n` +
-          `Cordialement`,
-      },
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Videollamada',
+          email: 'noreply@sastreriamanuelfernandez.com',
+          message: `Solicitud de videollamada para el ${dateStr} a las ${selectedTime}`,
+          type: 'videollamada',
+          date: dateStr,
+          time: selectedTime,
+          locale,
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || c.errorMessage)
+      }
+      setStep('confirm')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : c.errorMessage)
+    } finally {
+      setIsSubmitting(false)
     }
-
-    const content = mailContent[locale] || mailContent.es
-    const subject = encodeURIComponent(content.subject)
-    const body = encodeURIComponent(content.body)
-
-    // Open email client with pre-filled booking details
-    window.open(`mailto:info@sastreriamanuelfernandez.com?subject=${subject}&body=${body}`, '_blank')
-
-    setIsSubmitting(false)
-    setStep('confirm')
   }
 
   const formatDate = (dateStr: string) => {
@@ -496,6 +475,19 @@ export function VideollamadaBooking() {
                         </button>
                       ))}
                     </div>
+
+                    {error && (
+                      <motion.p
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{
+                          fontFamily: 'var(--font-sans)', fontSize: '0.85rem',
+                          color: '#e57373', marginBottom: '1rem', textAlign: 'center',
+                        }}
+                      >
+                        {error}
+                      </motion.p>
+                    )}
 
                     <button
                       onClick={handleConfirm}

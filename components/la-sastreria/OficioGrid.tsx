@@ -1,12 +1,10 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
-gsap.registerPlugin(ScrollTrigger)
 
 const PHOTOS = [
   { src: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471204/photos/others/IMG_7067_xultr4',  catKey: 'cat1' as const },

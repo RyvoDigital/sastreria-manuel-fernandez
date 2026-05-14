@@ -11,12 +11,9 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from '@/lib/gsap-setup'
+import { breakpoints } from '@/lib/breakpoints'
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 // ─── CSS (injected globally; classes prefixed .mf-fx-* to avoid collisions) ───
 const CSS = `
@@ -406,7 +403,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       // Reduce resize thrashing on mobile
       ScrollTrigger.config({ ignoreMobileResize: true })
 
-      const isMobileViewport = window.innerWidth <= 900
+      const isMobileViewport = window.innerWidth <= breakpoints.lg
 
       const st = ScrollTrigger.create({
         trigger:    fs,
@@ -461,7 +458,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       const down = to > from
       isAnimatingRef.current = true
 
-      const isMobileViewport = typeof window !== 'undefined' && window.innerWidth <= 900
+      const isMobileViewport = typeof window !== 'undefined' && window.innerWidth <= breakpoints.lg
       const effectiveParallax = isMobileViewport ? Math.min(parallaxAmount, 1.5) : parallaxAmount
 
       if (!isControlled) setLocalIndex(to)

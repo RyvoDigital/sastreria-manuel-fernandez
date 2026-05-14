@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
@@ -144,7 +143,6 @@ export function HeroEnhanced() {
   }, [])
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [handleMouseMove])
