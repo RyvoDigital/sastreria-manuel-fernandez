@@ -191,7 +191,7 @@ export function HeroNew() {
         >
           {/* Book Appointment */}
           <Link
-            href="/videollamada"
+            href="/contacto"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -256,7 +256,7 @@ export function HeroNew() {
 
           {/* Contact */}
           <Link
-            href="/videollamada"
+            href="/contacto"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

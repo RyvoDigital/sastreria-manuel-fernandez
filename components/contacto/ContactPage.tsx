@@ -379,8 +379,8 @@ export function ContactPage() {
 
           {/* Reservar CTA */}
           <div className="mf-ci" style={{ marginBottom: '1.8rem' }}>
-            <Link
-              href="/contacto"
+            <button
+              onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
                 padding: '0.75rem 1.8rem',
@@ -389,6 +389,8 @@ export function ContactPage() {
                 letterSpacing: '0.22em', textTransform: 'uppercase',
                 fontWeight: 600,
                 textDecoration: 'none',
+                border: 'none',
+                cursor: 'pointer',
                 transition: 'background .25s, transform .2s',
               }}
               onMouseEnter={e => {
@@ -404,7 +406,7 @@ export function ContactPage() {
             >
               {t.contacto.cta_reservar}
               <ArrowRight size={10} strokeWidth={1.5} />
-            </Link>
+            </button>
           </div>
 
           {/* Thin divider */}
@@ -413,7 +415,7 @@ export function ContactPage() {
           }} />
 
           {/* Form */}
-          <div className="mf-ci">
+          <div className="mf-ci" id="contact-form">
             <div style={{
               fontFamily: 'var(--font-sans)', fontSize: '0.78rem',
               letterSpacing: '0.28em', textTransform: 'uppercase',
