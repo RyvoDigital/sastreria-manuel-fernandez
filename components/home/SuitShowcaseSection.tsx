@@ -76,7 +76,7 @@ export function SuitShowcaseSection() {
           {/* Main Image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg"
+            src="/photos/anatomia-traje.png"
             alt={t.suit_showcase.label}
             style={{
               width: '100%',
