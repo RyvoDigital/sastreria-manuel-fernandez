@@ -9,46 +9,46 @@ const SERVICE_GROUPS = [
   {
     name: 'Traje a Medida',
     images: [
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471178/photos/others/IMG_0906_xstjfd',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471148/photos/others/IMG_0533_cdimyt',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471175/photos/others/IMG_0647_dwn1or',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0906_xstjfd',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0533_cdimyt',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0647_dwn1or',
     ],
   },
   {
     name: 'Blazer',
     images: [
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471159/photos/others/IMG_0113_zuhjvb',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471138/photos/others/IMG_1740_yxf1hf',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471112/photos/others/IMG_1340_gym6me',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0113_zuhjvb',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1740_yxf1hf',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1340_gym6me',
     ],
   },
   {
     name: 'Pantalón a Medida',
     images: [
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471131/photos/others/IMG_0700_jgiuxf',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471133/photos/others/IMG_1030_yxqooj',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471118/photos/others/IMG_1550_skrrjt',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0700_jgiuxf',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1030_yxqooj',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1550_skrrjt',
     ],
   },
   {
     name: 'Abrigo a Medida',
     images: [
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471120/photos/others/IMG_0869_aizdli',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471109/photos/others/IMG_2700_c0glna',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0869_aizdli',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_2700_c0glna',
     ],
   },
   {
     name: 'Traje de Novio',
     images: [
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471111/photos/others/IMG_1534_awbav4',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471127/photos/others/IMG_0111_n3syl0',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1534_awbav4',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0111_n3syl0',
     ],
   },
   {
     name: 'Arreglos',
     images: [
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471126/photos/others/IMG_0529_nlsj3y',
-      'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471115/photos/others/IMG_0923_glk03z',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0529_nlsj3y',
+      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0923_glk03z',
     ],
   },
 ]

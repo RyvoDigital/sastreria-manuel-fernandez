@@ -20,7 +20,7 @@ const COURSES = [
     lessons: 3,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1778242096/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
   },
   {
     id: "canvas",
@@ -36,7 +36,7 @@ const COURSES = [
     lessons: 5,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1778242096/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
   },
   {
     id: "lapel",
@@ -52,7 +52,7 @@ const COURSES = [
     lessons: 4,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1778242096/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
   },
   {
     id: "pockets",
@@ -68,7 +68,7 @@ const COURSES = [
     lessons: 6,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1778242096/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
   },
   {
     id: "buttonholes",
@@ -84,7 +84,7 @@ const COURSES = [
     lessons: 3,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1778242096/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
   },
   {
     id: "finishes",
@@ -100,7 +100,7 @@ const COURSES = [
     lessons: 4,
     locked: true,
     image:
-      "https://res.cloudinary.com/dwruvre6o/image/upload/v1778242096/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
   },
 ];
 

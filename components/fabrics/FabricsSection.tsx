@@ -9,10 +9,10 @@ import { Eye, Leaf, Award, Hand } from 'lucide-react'
 
 
 const CONTENT_BLOCKS = [
-  { id: 'visual' as const, icon: Eye, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242028/photos/web_lista_images/home-visual_xki5xz', span: 4 },
-  { id: 'origins' as const, icon: Leaf, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242088/photos/web_lista_images/home-origin_xacgvx', span: 2 },
-  { id: 'grading' as const, icon: Award, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242106/photos/web_lista_images/home-the-process_qjrutl', span: 2 },
-  { id: 'selection' as const, icon: Hand, image: 'https://res.cloudinary.com/dwruvre6o/image/upload/v1778242036/photos/web_lista_images/home-selection_vsmq3j', span: 4 },
+  { id: 'visual' as const, icon: Eye, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-visual_xki5xz', span: 4 },
+  { id: 'origins' as const, icon: Leaf, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-origin_xacgvx', span: 2 },
+  { id: 'grading' as const, icon: Award, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-the-process_qjrutl', span: 2 },
+  { id: 'selection' as const, icon: Hand, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-selection_vsmq3j', span: 4 },
 ]
 
 export function FabricsSection() {

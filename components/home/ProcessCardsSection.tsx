@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { useI18n } from '@/lib/i18n'
 
 const CARD_IMAGES = [
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471226/photos/others/IMG_1648_mthpln',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471229/photos/others/IMG_0150_qzf8st',
-  'https://res.cloudinary.com/dwruvre6o/image/upload/v1777471203/photos/others/IMG_1277_e8nsav',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1648_mthpln',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0150_qzf8st',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1277_e8nsav',
 ]
 
 interface CardProps {
