@@ -22,7 +22,7 @@ export function ConfiguradorHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_1920/photos/web_lista_images/configurador-overview_e9k0ap"
+          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/w_1920/photos/web_lista_images/configurador-overview_e9k0ap"
           alt=""
           style={{
             width: '100%',
