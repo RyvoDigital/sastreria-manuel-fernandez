@@ -19,12 +19,12 @@ const CSS = `
 const OVERVIEW_IMAGE = 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/servicios-overview_u2esrq'
 
 const FABRIC_HOUSES = [
-  { name: 'Holland & Sherry', icon: Scissors },
-  { name: 'Scabal',           icon: Gem       },
-  { name: 'Loro Piana',       icon: Layers    },
-  { name: 'Dormeuil',         icon: Star      },
-  { name: 'VBC',              icon: Sparkles  },
-  { name: 'Drapers',          icon: Ruler     },
+  { name: 'Reda',        icon: Scissors },
+  { name: 'Luvit',       icon: Gem       },
+  { name: 'Carnet',      icon: Layers    },
+  { name: 'Harrison',    icon: Star      },
+  { name: 'Fox Brothers', icon: Sparkles  },
+  { name: 'Zegna',       icon: Ruler     },
 ]
 
 const StatItem = ({ value, label }: { value: string; label: string }) => (

@@ -6,27 +6,29 @@ import { useI18n } from '@/lib/i18n'
 import { Calendar, Clock, Video, Check, ChevronLeft, Loader2 } from 'lucide-react'
 
 const TIME_SLOTS = [
-  '10:00', '10:30', '11:00', '11:30', '12:00',
+  '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
   '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
 ]
 
-const SATURDAY_SLOTS = ['10:00', '10:30', '11:00', '11:30', '12:00']
+const SATURDAY_SLOTS = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00']
 
 export function VideollamadaBooking() {
   const { t, locale } = useI18n()
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
+  const [userName, setUserName] = useState('')
+  const [userEmail, setUserEmail] = useState('')
   const [step, setStep] = useState<'date' | 'time' | 'confirm'>('date')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const c = t.videollamada.booking
 
-  const dates = Array.from({ length: 7 }, (_, i) => {
+  const dates = Array.from({ length: 14 }, (_, i) => {
     const date = new Date()
     date.setDate(date.getDate() + i + 1)
-    return date.toISOString().split('T')[0]
-  })
+    return date
+  }).filter((date) => date.getDay() !== 0).slice(0, 7).map((date) => date.toISOString().split('T')[0])
 
   const getAvailableSlots = (dateStr: string | null) => {
     if (!dateStr) return TIME_SLOTS
@@ -42,13 +44,26 @@ export function VideollamadaBooking() {
 
     const dateStr = formatDate(selectedDate)
 
+    if (!userName.trim() || !userEmail.trim()) {
+      setError(c.fillFields)
+      setIsSubmitting(false)
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(userEmail.trim())) {
+      setError(c.invalidEmail)
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: 'Videollamada',
-          email: 'noreply@sastreriamanuelfernandez.com',
+          name: userName.trim(),
+          email: userEmail.trim(),
           message: `Solicitud de videollamada para el ${dateStr} a las ${selectedTime}`,
           type: 'videollamada',
           date: dateStr,
@@ -474,6 +489,72 @@ export function VideollamadaBooking() {
                           {time}
                         </button>
                       ))}
+                    </div>
+
+                    {/* Name & Email fields */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: '0.7rem',
+                          letterSpacing: '0.08em',
+                          textTransform: 'uppercase',
+                          color: 'rgba(255,255,255,0.5)',
+                          marginBottom: '0.4rem',
+                        }}>{c.yourName}</label>
+                        <input
+                          type="text"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          placeholder={c.namePlaceholder}
+                          style={{
+                            width: '100%',
+                            padding: '0.875rem 1rem',
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '1.5px solid rgba(255,255,255,0.1)',
+                            borderRadius: '8px',
+                            color: '#FFFFFF',
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '0.85rem',
+                            outline: 'none',
+                            transition: 'border-color 0.25s ease',
+                          }}
+                          onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.5)' }}
+                          onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: '0.7rem',
+                          letterSpacing: '0.08em',
+                          textTransform: 'uppercase',
+                          color: 'rgba(255,255,255,0.5)',
+                          marginBottom: '0.4rem',
+                        }}>{c.yourEmail}</label>
+                        <input
+                          type="email"
+                          value={userEmail}
+                          onChange={(e) => setUserEmail(e.target.value)}
+                          placeholder={c.emailPlaceholder}
+                          style={{
+                            width: '100%',
+                            padding: '0.875rem 1rem',
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '1.5px solid rgba(255,255,255,0.1)',
+                            borderRadius: '8px',
+                            color: '#FFFFFF',
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '0.85rem',
+                            outline: 'none',
+                            transition: 'border-color 0.25s ease',
+                          }}
+                          onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.5)' }}
+                          onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)' }}
+                        />
+                      </div>
                     </div>
 
                     {error && (

@@ -5,16 +5,12 @@ import { motion, useInView } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import {
-  Scissors,
-  Shirt,
   Layers,
-  PersonStanding,
-  CalendarDays,
+  Ruler,
   Palette,
-  Sun,
 } from 'lucide-react'
 
-const STEP_ICONS = [Scissors, Shirt, Layers, PersonStanding, CalendarDays, Palette, Sun]
+const STEP_ICONS = [Layers, Ruler, Palette]
 
 export function ConfiguradorSteps() {
   const { t, locale } = useI18n()
@@ -24,10 +20,10 @@ export function ConfiguradorSteps() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   const stepLabels: Record<string, string[]> = {
-    es: ['Tejidos', 'Chaqueta', 'Chaleco', 'Pantalón', 'Ocasión', 'Color', 'Temporada'],
-    en: ['Fabrics', 'Jacket', 'Waistcoat', 'Trousers', 'Occasion', 'Colour', 'Season'],
-    it: ['Tessuti', 'Giacca', 'Gilet', 'Pantaloni', 'Occasione', 'Colore', 'Stagione'],
-    fr: ['Tissus', 'Veste', 'Gilet', 'Pantalon', 'Occasion', 'Couleur', 'Saison'],
+    es: ['Selección de tejidos', 'Medidas', 'Diseño y personalización'],
+    en: ['Fabric selection', 'Measurements', 'Design and customization'],
+    it: ['Selezione dei tessuti', 'Misure', 'Design e personalizzazione'],
+    fr: ['Sélection des tissus', 'Mesures', 'Design et personnalisation'],
   }
 
   const labels = stepLabels[locale] || stepLabels.es
@@ -164,16 +160,7 @@ export function ConfiguradorSteps() {
                   >
                     <Icon size={18} strokeWidth={1.5} />
                   </div>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.7rem',
-                      fontWeight: 600,
-                      color: 'rgba(201,168,76,0.4)',
-                    }}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+
                 </div>
                 <h3
                   style={{

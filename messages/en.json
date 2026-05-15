@@ -425,12 +425,8 @@
       "subtitle": "A tailored process that transforms your vision into a suit made to your measure.",
       "descriptions": [
         "Choose from exclusive fabrics: Prince of Wales, diplomacy stripe, solids and more.",
-        "Define the lapel, cut and fit of your jacket.",
-        "Classic or double-breasted: the waistcoat that completes your look.",
-        "Rise, belt, cuff: the details that make the difference.",
-        "Wedding, business or ceremony: the suit adapts to the moment.",
-        "From classic navy to bold burgundy.",
-        "Spring, winter or all year round: choose the ideal weight."
+        "We take your measurements with precision for a perfect fit.",
+        "Define the lapel, cut, buttons and every detail of your suit."
       ]
     }
   },
@@ -495,6 +491,12 @@
       "confirmBooking": "Confirm Booking",
       "success": "Booking confirmed!",
       "successMessage": "We have received your request. We'll be in touch shortly to confirm your appointment.",
+      "yourName": "Your name",
+      "namePlaceholder": "John Doe",
+      "yourEmail": "Your email",
+      "emailPlaceholder": "john@example.com",
+      "fillFields": "Please fill in all fields",
+      "invalidEmail": "Please enter a valid email",
       "error": "Booking failed",
       "errorMessage": "Could not send your booking. Please try again."
     }

@@ -5,8 +5,7 @@ import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
-import { ArrowRight, BookOpen } from 'lucide-react'
-import Link from 'next/link'
+import { BookOpen } from 'lucide-react'
 
 
 export function EditorialSection() {
@@ -59,16 +58,6 @@ export function EditorialSection() {
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
         {/* Section Header */}
         <div ref={headerRef} style={{ marginBottom: '4rem', maxWidth: '600px' }}>
-          <div style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.65rem',
-            letterSpacing: '0.3em',
-            textTransform: 'uppercase',
-            color: '#C9A84C',
-            marginBottom: '1rem',
-          }}>
-            {t.editorial.label}
-          </div>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
@@ -79,6 +68,16 @@ export function EditorialSection() {
           }}>
             {t.editorial.title}
           </h2>
+          <p style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.9rem',
+            lineHeight: 1.6,
+            color: 'rgba(10,22,40,0.55)',
+            margin: '1rem 0 0 0',
+            maxWidth: '480px',
+          }}>
+            {t.editorial.label}
+          </p>
         </div>
 
         {/* Modernized Bento Grid */}
@@ -153,33 +152,6 @@ export function EditorialSection() {
               }}>
                 {article.excerpt}
               </p>
-
-              {/* Read More Link */}
-              <Link
-                href="/contacto"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  color: '#0A1628',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: isMobile ? '0.7rem' : '0.65rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  marginTop: isMobile ? '0.5rem' : '1rem',
-                  textDecoration: 'none',
-                  transition: 'color 0.25s ease',
-                }}
-                onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLElement).style.color = '#C9A84C'
-                }}
-                onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLElement).style.color = '#0A1628'
-                }}
-              >
-                {t.editorial.read_more} <ArrowRight size={12} />
-              </Link>
 
               {/* Background watermark */}
               <div style={{

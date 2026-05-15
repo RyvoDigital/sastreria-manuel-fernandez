@@ -487,12 +487,8 @@
       "subtitle": "Un processus sur mesure qui transforme votre vision en un costume fait sur mesure.",
       "descriptions": [
         "Choisissez parmi des tissus exclusifs : Prince de Galles, rayure diplomatique, unis et plus.",
-        "Définissez le revers, la coupe et l'ajustement de votre veste.",
-        "Classique ou croisé : le gilet qui complète votre look.",
-        "Taille, ceinture, revers : les détails qui font la différence.",
-        "Mariage, business ou cérémonie : le costume s'adapte au moment.",
-        "Du bleu marine classique au bordeaux audacieux.",
-        "Printemps, hiver ou toute l'année : choisissez le poids idéal."
+        "Nous prenons vos mesures avec précision pour un ajustement parfait.",
+        "Définissez le revers, la coupe, les boutons et chaque détail de votre costume."
       ]
     }
   },
@@ -611,6 +607,12 @@
       "confirmBooking": "Confirmer le Rendez-vous",
       "success": "Rendez-vous confirmé!",
       "successMessage": "Nous avons reçu votre demande. Nous vous contacterons bientôt pour confirmer.",
+      "yourName": "Votre nom",
+      "namePlaceholder": "Nom et prénom",
+      "yourEmail": "Votre email",
+      "emailPlaceholder": "email@exemple.fr",
+      "fillFields": "Veuillez remplir tous les champs",
+      "invalidEmail": "Veuillez entrer un email valide",
       "error": "Échec de la réservation",
       "errorMessage": "Impossible d'envoyer votre réservation. Veuillez réessayer."
     }
