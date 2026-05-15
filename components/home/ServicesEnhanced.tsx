@@ -3,19 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
-import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail, Home } from 'lucide-react'
+import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import Image from 'next/image'
 
 
 const SERVICES = [
-  {
-    key: 'inicio' as const,
-    icon: Home,
-    href: '/',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-the-process_qjrutl',
-  },
   {
     key: 'sastreria' as const,
     icon: Scissors,
@@ -187,7 +181,7 @@ export function ServicesEnhanced() {
         {/* 3x3 Grid of image cards — stacks on mobile */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
           gap: isMobile ? '1rem' : '1.25rem',
         }}>
           {SERVICES.map((service) => {

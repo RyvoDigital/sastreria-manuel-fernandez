@@ -425,12 +425,8 @@
       "subtitle": "Un proceso a medida que transforma tu visión en un traje hecho a tu medida.",
       "descriptions": [
         "Elige entre tejidos exclusivos: Príncipe de Gales, raya diplomática, lisos y más.",
-        "Define la solapa, el corte y el ajuste de tu chaqueta.",
-        "Clásico o cruzado: el chaleco que completa tu look.",
-        "Tiro, cinturón, vuelta: los detalles que marcan la diferencia.",
-        "Boda, negocios o ceremonia: el traje se adapta al momento.",
-        "Desde el clásico azul marino hasta el audaz burdeos.",
-        "Primavera, invierno o todo el año: elige el peso ideal."
+        "Tomamos tus medidas con precisión para un ajuste perfecto.",
+        "Define la solapa, el corte, los botones y cada detalle de tu traje."
       ]
     }
   },
@@ -495,6 +491,12 @@
       "confirmBooking": "Confirmar Reserva",
       "success": "¡Reserva confirmada!",
       "successMessage": "Hemos recibido tu solicitud. Nos pondremos en contacto contigo pronto para confirmar la cita.",
+      "yourName": "Tu nombre",
+      "namePlaceholder": "Nombre y apellidos",
+      "yourEmail": "Tu email",
+      "emailPlaceholder": "correo@ejemplo.com",
+      "fillFields": "Completa todos los campos",
+      "invalidEmail": "Introduce un email válido",
       "error": "Error al confirmar",
       "errorMessage": "No se pudo enviar la reserva. Inténtalo de nuevo."
     }

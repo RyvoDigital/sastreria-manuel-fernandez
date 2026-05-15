@@ -142,8 +142,8 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
 // ─── Services list with hover animations ─────────────────────────────────────
 
 const ServiceItem = ({
-  num, title, index,
-}: { num: string; title: string; index: number }) => {
+  title, image, index,
+}: { title: string; image: string; index: number }) => {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -165,29 +165,21 @@ const ServiceItem = ({
         background: hovered ? 'rgba(201,168,76,0.05)' : 'transparent',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem' }}>
-        <span style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '0.55rem',
-          letterSpacing: '0.18em',
-          color: hovered ? '#C9A84C' : 'rgba(201,168,76,0.5)',
-          transition: 'color 0.3s ease',
-          minWidth: '1.6rem',
-        }}>{num}</span>
-        <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontStyle: 'italic',
-          fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
-          fontWeight: 400,
-          color: hovered ? '#E8D5A3' : '#FFFFFF',
-          letterSpacing: '0.02em',
-          transition: 'color 0.3s ease, transform 0.3s ease',
-          transform: hovered ? 'translateX(6px)' : 'translateX(0)',
-          display: 'inline-block',
-        }}>{title}</span>
-      </div>
+      <span style={{
+        fontFamily: 'var(--font-serif)',
+        fontStyle: 'italic',
+        fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+        fontWeight: 400,
+        color: hovered ? '#E8D5A3' : '#FFFFFF',
+        letterSpacing: '0.02em',
+        transition: 'color 0.3s ease, transform 0.3s ease',
+        transform: hovered ? 'translateX(6px)' : 'translateX(0)',
+        display: 'inline-block',
+        minWidth: 0,
+        overflowWrap: 'break-word',
+      }}>{title}</span>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexShrink: 0 }}>
         {/* Expanding gold rule on hover */}
         <div style={{
           height: '1px',
@@ -196,14 +188,48 @@ const ServiceItem = ({
           width: hovered ? '4rem' : '0',
           overflow: 'hidden',
         }} />
+        {/* Thumbnail */}
+        <div style={{
+          width: 'clamp(3rem, 8vw, 5rem)',
+          aspectRatio: '4/3',
+          borderRadius: '0.5rem',
+          overflow: 'hidden',
+          border: '1px solid rgba(201,168,76,0.15)',
+          opacity: hovered ? 1 : 0.7,
+          transition: 'opacity 0.3s ease, transform 0.3s ease',
+          transform: hovered ? 'scale(1.05)' : 'scale(1)',
+          flexShrink: 0,
+        }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            alt=""
+            loading="lazy"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        </div>
       </div>
     </motion.div>
   )
 }
 
+const SERVICE_IMAGES = [
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-stroller_qofut3',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-morning-coat_kv6syx',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-tuxedo_wozaya',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-artisan-suit_tccgpr',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-artisan-coat_lmffv1',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/mint-jacket-madrid_igacjj',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-shirts_rztcfm',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/madrid-suit-street_slsine',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/tweed-buttons_vse8vw',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/scissors-cutting_vyt9my',
+]
+
 const ServiciosList = () => {
   const { t } = useI18n()
   const s = t.servicios.services
+  const titles = [s.s1_title, s.s2_title, s.s3_title, s.s4_title, s.s5_title, s.s6_title, s.s7_title, s.s8_title, s.s9_title, s.s10_title]
 
   return (
     <section style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 1rem 8rem' }}>
@@ -240,16 +266,9 @@ const ServiciosList = () => {
         {t.servicios.hero.label}
       </motion.p>
 
-      <ServiceItem num={s.s1_num} title={s.s1_title} index={0} />
-      <ServiceItem num={s.s2_num} title={s.s2_title} index={1} />
-      <ServiceItem num={s.s3_num} title={s.s3_title} index={2} />
-      <ServiceItem num={s.s4_num} title={s.s4_title} index={3} />
-      <ServiceItem num={s.s5_num} title={s.s5_title} index={4} />
-      <ServiceItem num={s.s6_num} title={s.s6_title} index={5} />
-      <ServiceItem num={s.s7_num} title={s.s7_title} index={6} />
-      <ServiceItem num={s.s8_num} title={s.s8_title} index={7} />
-      <ServiceItem num={s.s9_num} title={s.s9_title} index={8} />
-      <ServiceItem num={s.s10_num} title={s.s10_title} index={9} />
+      {titles.map((title, i) => (
+        <ServiceItem key={i} title={title} image={SERVICE_IMAGES[i]} index={i} />
+      ))}
     </section>
   )
 }
@@ -260,7 +279,7 @@ export function ServiciosHero() {
   const isMobile = useIsMobile()
   return (
     <div style={{ background: '#0A1628' }}>
-      <div style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)`, position: 'relative', width: '100%' }}>
+      <div style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)`, position: 'relative', width: '100%', overflow: 'hidden' }}>
         <CenterImage />
         <ParallaxImages isMobile={isMobile} />
         <div style={{

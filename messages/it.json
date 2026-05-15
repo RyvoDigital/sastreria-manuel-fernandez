@@ -487,12 +487,8 @@
       "subtitle": "Un processo su misura che trasforma la tua visione in un abito fatto su misura.",
       "descriptions": [
         "Scegli tra tessuti esclusivi: Principe di Galles, riga diplomatica, tinta unita e altro.",
-        "Definisci il rever, il taglio e la vestibilità della tua giacca.",
-        "Classico o doppiopetto: il gilet che completa il tuo look.",
-        "Vita, cintura, risvolto: i dettagli che fanno la differenza.",
-        "Matrimonio, business o cerimonia: l'abito si adatta al momento.",
-        "Dal blu navy classico all'audace bordeaux.",
-        "Primavera, inverno o tutto l'anno: scegli il peso ideale."
+        "Prendiamo le tue misure con precisione per una vestibilità perfetta.",
+        "Definisci il rever, il taglio, i bottoni e ogni dettaglio del tuo abito."
       ]
     }
   },
@@ -611,6 +607,12 @@
       "confirmBooking": "Conferma Prenotazione",
       "success": "Prenotazione confermata!",
       "successMessage": "Abbiamo ricevuto la tua richiesta. Ti contatteremo presto per confermare l'appuntamento.",
+      "yourName": "Il tuo nome",
+      "namePlaceholder": "Nome e cognome",
+      "yourEmail": "La tua email",
+      "emailPlaceholder": "email@esempio.it",
+      "fillFields": "Compila tutti i campi",
+      "invalidEmail": "Inserisci un'email valida",
       "error": "Prenotazione non riuscita",
       "errorMessage": "Impossibile inviare la prenotazione. Riprova."
     }
