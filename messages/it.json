@@ -584,9 +584,20 @@
       "features": ["Raccomandazione tessuti", "Consiglio colore", "Guida stile personalizzata"],
       "duration": "Durata: 20-25 minuti",
       "cta": "Prenota Videochiamata",
-      "secure": "Pagamento sicuro crittografato",
+      "secure": "Pagamento con bonifico bancario",
       "contact": "Preferisci visitarci?",
-      "contact_cta": "Prenota appuntamento in sede"
+      "contact_cta": "Prenota appuntamento in sede",
+      "price_label": "Prezzo della consulenza",
+      "price_value": "€XX",
+      "bank_title": "Dati per bonifico bancario",
+      "iban_label": "IBAN",
+      "iban_value": "ES00 0000 0000 0000 0000 0000",
+      "holder_label": "Intestatario",
+      "holder_value": "Sastrería Manuel Fernández",
+      "reference_label": "Causale",
+      "reference_value": "Videollamada - Il tuo nome",
+      "checkbox_label": "Ho effettuato il bonifico",
+      "continue_btn": "Continua con la prenotazione"
     },
     "booking": {
       "title": "Prenota Videochiamata",

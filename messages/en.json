@@ -468,9 +468,20 @@
       "features": ["Fabric recommendations", "Colour advice", "Personalised style guidance"],
       "duration": "Duration: 20-25 minutes",
       "cta": "Book Video Call",
-      "secure": "Encrypted secure payment",
+      "secure": "Bank transfer payment",
       "contact": "Prefer to visit us?",
-      "contact_cta": "Book an in-person appointment"
+      "contact_cta": "Book an in-person appointment",
+      "price_label": "Consultation price",
+      "price_value": "€XX",
+      "bank_title": "Bank transfer details",
+      "iban_label": "IBAN",
+      "iban_value": "ES00 0000 0000 0000 0000 0000",
+      "holder_label": "Account holder",
+      "holder_value": "Sastrería Manuel Fernández",
+      "reference_label": "Reference",
+      "reference_value": "Videollamada - Your name",
+      "checkbox_label": "I have made the transfer",
+      "continue_btn": "Continue to booking"
     },
     "booking": {
       "title": "Book Video Call",

@@ -584,9 +584,20 @@
       "features": ["Recommandation de tissus", "Conseil couleur", "Guide de style personnalisé"],
       "duration": "Durée: 20-25 minutes",
       "cta": "Prendre Rendez-vous",
-      "secure": "Paiement sécurisé crypté",
+      "secure": "Paiement par virement bancaire",
       "contact": "Vous préférez nous rendre visite?",
-      "contact_cta": "Prendre rendez-vous en atelier"
+      "contact_cta": "Prendre rendez-vous en atelier",
+      "price_label": "Prix de la consultation",
+      "price_value": "€XX",
+      "bank_title": "Coordonnées bancaires",
+      "iban_label": "IBAN",
+      "iban_value": "ES00 0000 0000 0000 0000 0000",
+      "holder_label": "Titulaire",
+      "holder_value": "Sastrería Manuel Fernández",
+      "reference_label": "Motif",
+      "reference_value": "Videollamada - Votre nom",
+      "checkbox_label": "J'ai effectué le virement",
+      "continue_btn": "Continuer la réservation"
     },
     "booking": {
       "title": "Prendre Rendez-vous",
