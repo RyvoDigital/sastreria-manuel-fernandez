@@ -31,10 +31,10 @@ function getOwnerBody(type: string, name: string, email: string, message: string
   if (type === 'videollamada' && date && time) {
     const loc = locale || 'es'
     const map: Record<string, string> = {
-      es: `Hola equipo de Sastrería Manuel Fernández,\n\nMe gustaría reservar una videollamada para el día ${date} a las ${time}.\n\nPreferencia de plataforma: Zoom / Google Meet\nDuración estimada: 20-25 minutos\n\nSaludos cordiales`,
-      en: `Hello Sastrería Manuel Fernández team,\n\nI would like to book a video call for ${date} at ${time}.\n\nPlatform preference: Zoom / Google Meet\nEstimated duration: 20-25 minutes\n\nBest regards`,
-      it: `Salve team di Sastrería Manuel Fernández,\n\nVorrei prenotare una videochiamata per il giorno ${date} alle ${time}.\n\nPreferenza piattaforma: Zoom / Google Meet\nDurata stimata: 20-25 minuti\n\nCordiali saluti`,
-      fr: `Bonjour équipe de Sastrería Manuel Fernández,\n\nJe souhaiterais réserver une visioconférence pour le ${date} à ${time}.\n\nPréférence de plateforme: Zoom / Google Meet\nDurée estimée: 20-25 minutes\n\nCordialement`,
+      es: `Hola equipo de Sastrería Manuel Fernández,\n\nMe gustaría reservar una videollamada para el día ${date} a las ${time}.\n\nPreferencia de plataforma: Zoom / Google Meet\nDuración estimada: 20-25 minutos\n\nMÉTODO DE PAGO: Transferencia bancaria (pendiente de confirmar)\n\nSaludos cordiales`,
+      en: `Hello Sastrería Manuel Fernández team,\n\nI would like to book a video call for ${date} at ${time}.\n\nPlatform preference: Zoom / Google Meet\nEstimated duration: 20-25 minutes\n\nPAYMENT METHOD: Bank transfer (pending confirmation)\n\nBest regards`,
+      it: `Salve team di Sastrería Manuel Fernández,\n\nVorrei prenotare una videochiamata per il giorno ${date} alle ${time}.\n\nPreferenza piattaforma: Zoom / Google Meet\nDurata stimata: 20-25 minuti\n\nMETODO DI PAGAMENTO: Bonifico bancario (in attesa di conferma)\n\nCordiali saluti`,
+      fr: `Bonjour équipe de Sastrería Manuel Fernández,\n\nJe souhaiterais réserver une visioconférence pour le ${date} à ${time}.\n\nPréférence de plateforme: Zoom / Google Meet\nDurée estimée: 20-25 minutes\n\nMODE DE PAIEMENT: Virement bancaire (en attente de confirmation)\n\nCordialement`,
     }
     const text = map[loc] || map.es
     const html = `<pre style="font-family:sans-serif;line-height:1.6">${text.replace(/\n/g, '<br>')}</pre>`

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
-import { Video, Check, CreditCard, Loader2, Clock, Palette, User, Scissors } from 'lucide-react'
+import { Video, Check, Clock, Palette, User, Scissors, Banknote, Copy } from 'lucide-react'
 
 interface VideollamadaPaymentGateProps {
   onAccessGranted: () => void
@@ -13,17 +13,21 @@ const FEATURE_ICONS = [Palette, User, Scissors]
 
 export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPaymentGateProps) {
   const { t, locale } = useI18n()
-  const [isProcessing, setIsProcessing] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
+  const [hasPaid, setHasPaid] = useState(false)
+  const [copied, setCopied] = useState<string | null>(null)
   const c = t.videollamada.gate
 
-  const handleRequestAccess = () => {
-    setIsProcessing(true)
-    setTimeout(() => {
-      setIsProcessing(false)
-      onAccessGranted()
-    }, 1500)
+  const handleCopy = (text: string, key: string) => {
+    navigator.clipboard.writeText(text)
+    setCopied(key)
+    setTimeout(() => setCopied(null), 2000)
   }
+
+  const bankFields = [
+    { label: c.iban_label, value: c.iban_value, key: 'iban' },
+    { label: c.holder_label, value: c.holder_value, key: 'holder' },
+    { label: c.reference_label, value: c.reference_value, key: 'ref' },
+  ]
 
   return (
     <div
@@ -248,25 +252,168 @@ export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPayment
             })}
           </motion.div>
 
-          {/* CTA */}
+          {/* Bank Transfer Section */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.5 }}
+            style={{
+              background: 'rgba(201,168,76,0.04)',
+              border: '1px solid rgba(201,168,76,0.2)',
+              borderRadius: '12px',
+              padding: '1.5rem',
+              marginBottom: '1.5rem',
+              textAlign: 'left',
+            }}
+          >
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              marginBottom: '1rem',
+            }}>
+              <Banknote size={16} color="#C9A84C" />
+              <span style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.7rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: '#C9A84C',
+                fontWeight: 600,
+              }}>
+                {c.bank_title}
+              </span>
+            </div>
+
+            {/* Price */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '0.75rem 0',
+              borderBottom: '1px solid rgba(201,168,76,0.1)',
+            }}>
+              <span style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.8rem',
+                color: 'rgba(255,255,255,0.5)',
+              }}>{c.price_label}</span>
+              <span style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: '1.1rem',
+                fontStyle: 'italic',
+                color: '#C9A84C',
+              }}>{c.price_value}</span>
+            </div>
+
+            {/* Bank fields */}
+            {bankFields.map((field) => (
+              <div key={field.key} style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '0.75rem 0',
+                borderBottom: '1px solid rgba(201,168,76,0.1)',
+                gap: '1rem',
+              }}>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <span style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.35)',
+                    display: 'block',
+                    marginBottom: '0.2rem',
+                  }}>{field.label}</span>
+                  <span style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.85rem',
+                    color: 'rgba(255,255,255,0.85)',
+                    wordBreak: 'break-all',
+                  }}>{field.value}</span>
+                </div>
+                <button
+                  onClick={() => handleCopy(field.value, field.key)}
+                  style={{
+                    background: 'transparent',
+                    border: '1px solid rgba(201,168,76,0.3)',
+                    borderRadius: '6px',
+                    padding: '0.4rem',
+                    cursor: 'pointer',
+                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  title="Copy"
+                >
+                  {copied === field.key ? (
+                    <Check size={14} color="#C9A84C" />
+                  ) : (
+                    <Copy size={14} color="#C9A84C" />
+                  )}
+                </button>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Checkbox */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              marginBottom: '1.5rem',
+              justifyContent: 'center',
+            }}
+          >
+            <button
+              onClick={() => setHasPaid(!hasPaid)}
+              style={{
+                width: '20px',
+                height: '20px',
+                borderRadius: '4px',
+                border: '1px solid rgba(201,168,76,0.4)',
+                background: hasPaid ? '#C9A84C' : 'transparent',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                flexShrink: 0,
+              }}
+            >
+              {hasPaid && <Check size={14} color="#000000" />}
+            </button>
+            <span style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.8rem',
+              color: 'rgba(255,255,255,0.6)',
+            }}>
+              {c.checkbox_label}
+            </span>
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.5 }}
             style={{ marginBottom: '1.25rem' }}
           >
             <button
-              onClick={handleRequestAccess}
-              disabled={isProcessing}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onClick={onAccessGranted}
+              disabled={!hasPaid}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.75rem',
                 padding: '1rem 2.5rem',
-                background: isHovered && !isProcessing ? '#D4B55A' : '#C9A84C',
-                color: '#000000',
+                background: hasPaid ? '#C9A84C' : 'rgba(201,168,76,0.2)',
+                color: hasPaid ? '#000000' : 'rgba(255,255,255,0.3)',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.75rem',
                 fontWeight: 600,
@@ -274,21 +421,11 @@ export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPayment
                 textTransform: 'uppercase',
                 border: 'none',
                 borderRadius: '8px',
-                cursor: isProcessing ? 'wait' : 'pointer',
-                opacity: isProcessing ? 0.8 : 1,
+                cursor: hasPaid ? 'pointer' : 'not-allowed',
                 transition: 'all 0.3s ease',
-                boxShadow: isHovered
-                  ? '0 8px 24px rgba(201,168,76,0.25)'
-                  : '0 4px 12px rgba(201,168,76,0.15)',
-                transform: isHovered && !isProcessing ? 'translateY(-2px)' : 'translateY(0)',
               }}
             >
-              {isProcessing ? (
-                <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} />
-              ) : (
-                <CreditCard size={16} />
-              )}
-              {isProcessing ? '...' : c.cta}
+              {c.continue_btn}
             </button>
           </motion.div>
 
@@ -296,7 +433,7 @@ export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPayment
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.65, duration: 0.5 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -331,7 +468,7 @@ export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPayment
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.5 }}
+            transition={{ delay: 0.75, duration: 0.5 }}
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.75rem',
@@ -360,17 +497,6 @@ export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPayment
           </motion.p>
         </div>
       </motion.div>
-
-      <style jsx>{`
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
     </div>
   )
 }
