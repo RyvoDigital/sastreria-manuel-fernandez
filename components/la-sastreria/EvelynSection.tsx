@@ -81,8 +81,8 @@ export function EvelynSection() {
         maxWidth:            'var(--container-max)',
         margin:              '0 auto',
         display:             'grid',
-        gridTemplateColumns: isMobile ? '1fr' : '45fr 55fr',
-        gap:                 'clamp(3rem, 6vw, 7rem)',
+        gridTemplateColumns: isMobile ? '1fr' : '50fr 50fr',
+        gap:                 'clamp(1.5rem, 3vw, 3rem)',
         alignItems:          'start',
       }}>
 
