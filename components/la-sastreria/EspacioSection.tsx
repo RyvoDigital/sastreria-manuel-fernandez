@@ -106,7 +106,7 @@ export function EspacioSection() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/sastreria-space-01_ucman9"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_1200/photos/web_lista_images/sastreria-space-01_ucman9"
               alt="Taller de Sastrería Manuel Fernández"
               style={{
                 width:          '100%',
@@ -131,8 +131,8 @@ export function EspacioSection() {
             gap:           '0.75rem',
           }}>
             {[
-              { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/sastreria-space-02_wvinrk', alt: 'Taller de Sastrería Manuel Fernández' },
-              { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/sastreria-space-03_eh5jl3', alt: 'Taller de Sastrería Manuel Fernández' },
+              { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_800/photos/web_lista_images/sastreria-space-02_wvinrk', alt: 'Taller de Sastrería Manuel Fernández' },
+              { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_800/photos/web_lista_images/sastreria-space-03_eh5jl3', alt: 'Taller de Sastrería Manuel Fernández' },
             ].map((photo, i) => (
               <div
                 key={i}
