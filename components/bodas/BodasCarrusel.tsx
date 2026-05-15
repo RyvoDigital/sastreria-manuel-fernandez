@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { motion, useAnimationControls } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 
 const CARDS = [
@@ -23,15 +23,54 @@ const CARDS = [
 
 const CARD_W = 260
 const CARD_GAP = 20
+const SCROLL_SPEED = 0.8 // pixels per frame
 
 export function BodasCarrusel() {
   const { t } = useI18n()
   const c = t.bodas.carousel
   const containerRef = useRef<HTMLDivElement>(null)
-  const trackRef     = useRef<HTMLDivElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const xRef = useRef(0)
+  const rafRef = useRef<number | null>(null)
 
-  const trackWidth = CARDS.length * CARD_W + (CARDS.length - 1) * CARD_GAP
+  const singleSetWidth = CARDS.length * CARD_W + (CARDS.length - 1) * CARD_GAP
+
+  // Auto-scroll with RAF
+  useEffect(() => {
+    const animate = () => {
+      if (isDragging) {
+        rafRef.current = requestAnimationFrame(animate)
+        return
+      }
+
+      const containerW = containerRef.current?.clientWidth ?? 800
+      const maxScroll = -(singleSetWidth - containerW + 80)
+
+      xRef.current -= SCROLL_SPEED
+
+      // Loop back to start
+      if (xRef.current < maxScroll) {
+        xRef.current = 0
+      }
+
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translateX(${xRef.current}px)`
+      }
+
+      rafRef.current = requestAnimationFrame(animate)
+    }
+
+    rafRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [isDragging, singleSetWidth])
+
+  // Sync xRef when user drags
+  const handleDrag = (_: unknown, info: { offset: { x: number } }) => {
+    xRef.current = info.offset.x
+  }
 
   return (
     <section style={{
@@ -81,22 +120,25 @@ export function BodasCarrusel() {
           ref={trackRef}
           drag="x"
           dragConstraints={{
-            left: -(trackWidth - (containerRef.current?.clientWidth ?? 800) + 80),
+            left: -(singleSetWidth - (containerRef.current?.clientWidth ?? 800) + 80),
             right: 0,
           }}
           dragElastic={0.12}
           onDragStart={() => setIsDragging(true)}
           onDragEnd={() => setIsDragging(false)}
+          onDrag={handleDrag}
           style={{
             display: 'flex',
             gap: `${CARD_GAP}px`,
             padding: '1rem 5vw',
             width: 'max-content',
+            willChange: 'transform',
           }}
         >
+          {/* Original set */}
           {CARDS.map((card, i) => (
             <div
-              key={i}
+              key={`a-${i}`}
               style={{
                 width: `${CARD_W}px`,
                 height: '360px',
@@ -107,7 +149,6 @@ export function BodasCarrusel() {
                 border: '1px solid rgba(201,168,76,0.15)',
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={card.src}
                 alt={card.caption}
@@ -121,7 +162,6 @@ export function BodasCarrusel() {
                 }}
                 draggable={false}
               />
-              {/* Caption overlay */}
               <div style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0,
                 background: 'linear-gradient(to top, rgba(10,22,40,0.9) 0%, transparent 100%)',
