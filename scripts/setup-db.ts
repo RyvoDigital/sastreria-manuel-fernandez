@@ -1,16 +1,19 @@
 import { Pool } from 'pg'
 
 async function setup() {
-  const databaseUrl = process.env.DATABASE_URL
+  const rawDatabaseUrl = process.env.DATABASE_URL
 
-  if (!databaseUrl) {
+  if (!rawDatabaseUrl) {
     console.log('⚠️  DATABASE_URL not set. Skipping database setup.')
     process.exit(0)
   }
 
+  // Strip sslmode to avoid pg v8 warning + let our explicit ssl config handle it
+  const databaseUrl = rawDatabaseUrl.replace(/\?sslmode=[^&]*/, '').replace(/&sslmode=[^&]*/, '')
+
   const pool = new Pool({
     connectionString: databaseUrl,
-    ssl: databaseUrl.includes('localhost') || databaseUrl.includes('127.0.0.1') || databaseUrl.includes('::1')
+    ssl: rawDatabaseUrl.includes('localhost') || rawDatabaseUrl.includes('127.0.0.1') || rawDatabaseUrl.includes('::1')
       ? false
       : { rejectUnauthorized: false },
   })
