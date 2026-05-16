@@ -1,6 +1,20 @@
-import { pool } from '../lib/db'
+import { Pool } from 'pg'
 
 async function setup() {
+  const databaseUrl = process.env.DATABASE_URL
+
+  if (!databaseUrl) {
+    console.log('⚠️  DATABASE_URL not set. Skipping database setup.')
+    process.exit(0)
+  }
+
+  const pool = new Pool({
+    connectionString: databaseUrl,
+    ssl: databaseUrl.includes('localhost') || databaseUrl.includes('127.0.0.1') || databaseUrl.includes('::1')
+      ? false
+      : { rejectUnauthorized: false },
+  })
+
   try {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS bookings (
