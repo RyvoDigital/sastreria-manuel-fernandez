@@ -312,7 +312,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Error'
-      if (msg.toLowerCase().includes('already booked') || msg.toLowerCase().includes('ya está') || msg.toLowerCase().includes('già prenotata') || msg.toLowerCase().includes('déjà réservé')) {
+      if (msg === 'conflict' || msg.toLowerCase().includes('already booked') || msg.toLowerCase().includes('ya está') || msg.toLowerCase().includes('già prenotata') || msg.toLowerCase().includes('déjà réservé')) {
         setError(l.conflict)
         // Refresh availability to show updated state
         if (selectedDate) {
