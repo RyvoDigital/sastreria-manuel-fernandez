@@ -1,7 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useAnimationControls } from 'framer-motion'
+import { useRef, useEffect } from 'react'
 import { useI18n } from '@/lib/i18n'
 
 const CARDS = [
@@ -30,20 +29,14 @@ export function BodasCarrusel() {
   const c = t.bodas.carousel
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-  const [isDragging, setIsDragging] = useState(false)
   const xRef = useRef(0)
   const rafRef = useRef<number | null>(null)
 
   const singleSetWidth = CARDS.length * CARD_W + (CARDS.length - 1) * CARD_GAP
 
-  // Auto-scroll with RAF
+  // Auto-scroll with RAF only (no manual drag)
   useEffect(() => {
     const animate = () => {
-      if (isDragging) {
-        rafRef.current = requestAnimationFrame(animate)
-        return
-      }
-
       const containerW = containerRef.current?.clientWidth ?? 800
       const maxScroll = -(singleSetWidth - containerW + 80)
 
@@ -65,12 +58,7 @@ export function BodasCarrusel() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [isDragging, singleSetWidth])
-
-  // Sync xRef when user drags
-  const handleDrag = (_: unknown, info: { offset: { x: number } }) => {
-    xRef.current = info.offset.x
-  }
+  }, [singleSetWidth])
 
   return (
     <section style={{
@@ -104,29 +92,19 @@ export function BodasCarrusel() {
         }} />
       </div>
 
-      {/* Drag track */}
+      {/* Auto-scroll track */}
       <div
         ref={containerRef}
         style={{
           position: 'relative',
           width: '100%',
           overflow: 'hidden',
-          cursor: isDragging ? 'grabbing' : 'grab',
           maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
         }}
       >
-        <motion.div
+        <div
           ref={trackRef}
-          drag="x"
-          dragConstraints={{
-            left: -(singleSetWidth - (containerRef.current?.clientWidth ?? 800) + 80),
-            right: 0,
-          }}
-          dragElastic={0.12}
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={() => setIsDragging(false)}
-          onDrag={handleDrag}
           style={{
             display: 'flex',
             gap: `${CARD_GAP}px`,
@@ -135,7 +113,6 @@ export function BodasCarrusel() {
             willChange: 'transform',
           }}
         >
-          {/* Original set */}
           {CARDS.map((card, i) => (
             <div
               key={`a-${i}`}
@@ -179,20 +156,7 @@ export function BodasCarrusel() {
               </div>
             </div>
           ))}
-        </motion.div>
-      </div>
-
-      {/* Hint */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-        <p style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '0.48rem',
-          letterSpacing: '0.22em',
-          textTransform: 'uppercase',
-          color: 'rgba(201,168,76,0.35)',
-        }}>
-          ← Arrastrar →
-        </p>
+        </div>
       </div>
     </section>
   )

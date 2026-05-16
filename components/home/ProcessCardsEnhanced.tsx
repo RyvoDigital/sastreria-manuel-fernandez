@@ -78,6 +78,7 @@ function SimpleProcessCard({ num, title, body, image, index }: CardProps) {
             objectFit: 'cover',
             filter: 'brightness(0.45) saturate(0.6)',
           }}
+          unoptimized
         />
       </div>
 

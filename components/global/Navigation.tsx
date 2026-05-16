@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
-import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
+import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
 
 const NAV_ITEMS = [
   { key: 'inicio'        as const, href: '/',               icon: Home },
@@ -16,7 +16,6 @@ const NAV_ITEMS = [
   { key: 'modelos3d'     as const, href: '/modelos-3d',     icon: Box },
   { key: 'configurador'  as const, href: '/configurador',   icon: Settings },
   { key: 'cursos'        as const, href: '/cursos',         icon: GraduationCap },
-  { key: 'videollamada'  as const, href: '/videollamada',   icon: Video },
   { key: 'contacto'      as const, href: '/contacto',       icon: Mail },
 ]
 
@@ -338,7 +337,7 @@ export function Navigation() {
           {/* Grid of square nav tiles */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(4, 1fr)',
             gap: 'clamp(0.4rem, 1.5vw, 0.75rem)',
             maxWidth: '480px',
             width: '100%',

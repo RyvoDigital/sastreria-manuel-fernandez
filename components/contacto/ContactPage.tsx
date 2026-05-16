@@ -1,14 +1,15 @@
 'use client'
 
-import { useState, useEffect, useRef, FormEvent } from 'react'
-import Link from 'next/link'
+import { useState, useEffect, useRef, FormEvent, Suspense } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
-import { MapPin, Phone, Clock, Mail, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, Clock, Mail, ArrowRight, Calendar, Video, MessageSquare, X } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
+import { BookingCalendar } from '@/components/booking/BookingCalendar'
+import { useSearchParams } from 'next/navigation'
 
-/* ─── Nav height constant (1.6rem top + 1.6rem bottom + ~44px logo) ─── */
+/* ─── Nav height constant ─── */
 const NAV_H = 76
 
 type QuoteKey =
@@ -27,7 +28,6 @@ const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
 ]
 
 const CSS = `
-  /* ── Ken Burns ──────────────────────────────────────────── */
   @keyframes mf-contact-kb {
     0%   { transform: scale(1.0) translate(0px, 0px); }
     100% { transform: scale(1.08) translate(-14px, -8px); }
@@ -43,8 +43,6 @@ const CSS = `
     animation: mf-contact-kb 6500ms ease-in-out forwards;
     will-change: transform;
   }
-
-  /* ── Float labels ───────────────────────────────────────── */
   .mf-cf-field { position: relative; margin-bottom: 1.4rem; }
   .mf-cf-input {
     width: 100%;
@@ -81,8 +79,6 @@ const CSS = `
     top: 0; font-size: 0.58rem; color: var(--color-gold);
   }
   .mf-cf-textarea { resize: none; min-height: 64px; }
-
-  /* ── Submit button ───────────────────────────────────────── */
   .mf-cf-submit {
     background: transparent;
     border: 1px solid rgba(196,163,90,0.28);
@@ -100,13 +96,9 @@ const CSS = `
     color: var(--color-gold);
     transform: translateY(-1px);
   }
-
-  /* ── Scrollbar styling for info panel ───────────────────── */
   .mf-contact-info::-webkit-scrollbar { width: 3px; }
   .mf-contact-info::-webkit-scrollbar-track { background: transparent; }
   .mf-contact-info::-webkit-scrollbar-thumb { background: rgba(196,163,90,0.2); border-radius: 2px; }
-
-  /* ── Mobile ─────────────────────────────────────────────── */
   @media (max-width: 768px) {
     .mf-contact-wrap  { flex-direction: column !important; height: auto !important; min-height: 100svh !important; }
     .mf-contact-photo-col { width: 100% !important; height: 45vh !important; flex-shrink: 0 !important; }
@@ -115,14 +107,41 @@ const CSS = `
   }
 `
 
-export function ContactPage() {
-  const { t } = useI18n()
+type BookingMode = 'none' | 'inperson' | 'videocall'
+
+function ContactPageInner() {
+  const { t, locale } = useI18n()
   const isMobile = useIsMobile()
+  const searchParams = useSearchParams()
   const [photoIndex, setPhotoIndex] = useState(0)
   const [submitted, setSubmitted]   = useState(false)
   const [loading, setLoading]       = useState(false)
   const [error, setError]           = useState<string | null>(null)
+  const [bookingMode, setBookingMode] = useState<BookingMode>('none')
+  const [videocallSuccess, setVideocallSuccess] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
+
+  /* Handle Stripe return */
+  useEffect(() => {
+    const success = searchParams.get('videocall_success')
+    const cancelled = searchParams.get('videocall_cancelled')
+    const sessionId = searchParams.get('session_id')
+
+    if (success && sessionId) {
+      fetch(`/api/stripe/verify?session_id=${sessionId}`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.success) {
+            setVideocallSuccess(true)
+            setBookingMode('videocall')
+          }
+        })
+        .catch(console.error)
+    }
+    if (cancelled) {
+      setBookingMode('videocall')
+    }
+  }, [searchParams])
 
   /* Preload */
   useEffect(() => {
@@ -144,9 +163,9 @@ export function ContactPage() {
     const tl = gsap.timeline({ delay: 0.1 })
     tl.to(items, { y: 0, opacity: 1, duration: 0.75, stagger: 0.08, ease: 'power3.out' })
     return () => { tl.kill() }
-  }, [])
+  }, [bookingMode])
 
-  /* Form submit → API */
+  /* Form submit */
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
@@ -175,6 +194,39 @@ export function ContactPage() {
     }
   }
 
+  const handleFreeBooking = async (data: { name: string; email: string; date: string; time: string }) => {
+    const res = await fetch('/api/booking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...data, type: 'inperson', locale }),
+    })
+    const result = await res.json()
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || 'Error')
+    }
+  }
+
+  const handleStripeCheckout = async (data: { name: string; email: string; date: string; time: string }) => {
+    const res = await fetch('/api/stripe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'videocall',
+        name: data.name,
+        email: data.email,
+        date: data.date,
+        time: data.time,
+        price: 5000,
+      }),
+    })
+    const result = await res.json()
+    if (result.url) {
+      window.location.href = result.url
+    } else {
+      throw new Error(result.error || 'Error')
+    }
+  }
+
   const details = [
     { Icon: MapPin, label: t.contacto.address_label, value: t.contacto.address,  href: undefined },
     { Icon: Phone,  label: t.contacto.phone_label,   value: t.contacto.phone,    href: `tel:${t.contacto.phone.replace(/\s/g,'')}` },
@@ -182,11 +234,90 @@ export function ContactPage() {
     { Icon: Mail,   label: t.contacto.email_label,   value: t.contacto.email,    href: `mailto:${t.contacto.email}` },
   ]
 
+  const bookingHubLabels = {
+    es: {
+      hubTitle: '¿Cómo prefieres contactarnos?',
+      hubSubtitle: 'Elige la opción que mejor se adapte a ti',
+      inperson: 'Cita Presencial',
+      inpersonDesc: 'Visítanos en nuestro taller de Madrid',
+      videocall: 'Videollamada',
+      videocallDesc: 'Consulta personalizada a distancia',
+      message: 'Enviar Mensaje',
+      messageDesc: 'Escríbenos y te responderemos pronto',
+      videocallPaidSuccess: '¡Videollamada confirmada! Hemos recibido tu pago y nos pondremos en contacto contigo.',
+    },
+    en: {
+      hubTitle: 'How would you like to reach us?',
+      hubSubtitle: 'Choose the option that suits you best',
+      inperson: 'In-Person Appointment',
+      inpersonDesc: 'Visit our Madrid atelier',
+      videocall: 'Video Call',
+      videocallDesc: 'Personalized remote consultation',
+      message: 'Send Message',
+      messageDesc: 'Write to us and we will reply soon',
+      videocallPaidSuccess: 'Video call confirmed! We have received your payment and will contact you.',
+    },
+    it: {
+      hubTitle: 'Come preferisci contattarci?',
+      hubSubtitle: 'Scegli l\'opzione più adatta a te',
+      inperson: 'Appuntamento in Sede',
+      inpersonDesc: 'Visita il nostro atelier a Madrid',
+      videocall: 'Videochiamata',
+      videocallDesc: 'Consulenza personalizzata a distanza',
+      message: 'Invia Messaggio',
+      messageDesc: 'Scrivici e ti risponderemo presto',
+      videocallPaidSuccess: 'Videochiamata confermata! Abbiamo ricevuto il pagamento e ti contatteremo.',
+    },
+    fr: {
+      hubTitle: 'Comment préférez-vous nous contacter?',
+      hubSubtitle: 'Choisissez l\'option qui vous convient le mieux',
+      inperson: 'Rendez-vous en Atelier',
+      inpersonDesc: 'Visitez notre atelier à Madrid',
+      videocall: 'Visioconférence',
+      videocallDesc: 'Consultation personnalisée à distance',
+      message: 'Envoyer un Message',
+      messageDesc: 'Écrivez-nous et nous vous répondrons bientôt',
+      videocallPaidSuccess: 'Visioconférence confirmée! Nous avons reçu votre paiement et vous contacterons.',
+    },
+  }
+
+  const bl = bookingHubLabels[locale as keyof typeof bookingHubLabels] || bookingHubLabels.es
+
+  if (bookingMode !== 'none') {
+    return (
+      <div style={{ minHeight: '100vh', background: '#0A1628' }}>
+        {videocallSuccess && bookingMode === 'videocall' && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            style={{
+              position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+              background: 'rgba(201,168,76,0.1)', borderBottom: '1px solid rgba(201,168,76,0.3)',
+              padding: '1rem var(--container-padding)', textAlign: 'center',
+            }}
+          >
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.85rem', color: '#C9A84C', margin: 0 }}>
+              {bl.videocallPaidSuccess}
+            </p>
+          </motion.div>
+        )}
+        <BookingCalendar
+          type={bookingMode}
+          onFreeSubmit={handleFreeBooking}
+          onStripeCheckout={handleStripeCheckout}
+          onBack={() => {
+            setBookingMode('none')
+            setVideocallSuccess(false)
+          }}
+        />
+      </div>
+    )
+  }
+
   return (
     <>
       <style>{CSS}</style>
 
-      {/* ── OUTER WRAPPER ──────────────────────────────────── */}
       <div
         className="mf-contact-wrap"
         style={{
@@ -210,7 +341,6 @@ export function ContactPage() {
             flexShrink: 0,
           }}
         >
-          {/* Cycling photos with crossfade */}
           <AnimatePresence mode="sync">
             <motion.div
               key={photoIndex}
@@ -220,7 +350,6 @@ export function ContactPage() {
               transition={{ duration: 1.0, ease: [0.4, 0, 0.15, 1] }}
               style={{ position: 'absolute', inset: 0 }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={PHOTOS[photoIndex].src}
                 alt=""
@@ -230,13 +359,11 @@ export function ContactPage() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Right bleed gradient — seamlessly blends into navy panel */}
           <div style={{
             position:      'absolute', inset: 0, pointerEvents: 'none', zIndex: 2,
             background:    'linear-gradient(to right, transparent 50%, rgba(5,12,20,0.92) 100%), linear-gradient(to top, rgba(5,12,20,0.72) 0%, transparent 30%)',
           }} />
 
-          {/* Top-left corner bracket */}
           <div style={{
             position: 'absolute', top: NAV_H + 20, left: 28,
             width: 18, height: 18, zIndex: 3, pointerEvents: 'none',
@@ -244,7 +371,6 @@ export function ContactPage() {
             borderLeft: '1px solid rgba(196,163,90,0.2)',
           }} />
 
-          {/* Cycling quote */}
           <AnimatePresence mode="wait">
             <motion.div
               key={photoIndex}
@@ -263,7 +389,6 @@ export function ContactPage() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Photo counter */}
           <div style={{
             position: 'absolute', bottom: '2.2rem', left: '2.2rem', zIndex: 3,
             display: 'flex', alignItems: 'baseline', gap: '0.25rem',
@@ -293,7 +418,6 @@ export function ContactPage() {
             display:       'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
-            /* Nav clearance + breathing room */
             paddingTop:    `${NAV_H + 28}px`,
             paddingBottom: '8rem',
             paddingLeft:   isMobile ? '1.5rem' : 'clamp(2.5rem, 4.5vw, 5rem)',
@@ -336,7 +460,7 @@ export function ContactPage() {
             {t.contacto.subheadline}
           </p>
 
-          {/* Contact details — 2-column grid */}
+          {/* Contact details */}
           <div className="mf-ci" style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
@@ -377,36 +501,119 @@ export function ContactPage() {
             ))}
           </div>
 
-          {/* Reservar CTA */}
-          <div className="mf-ci" style={{ marginBottom: '1.8rem' }}>
-            <button
-              onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
-                padding: '0.75rem 1.8rem',
-                background: 'var(--color-gold)', color: '#080808',
-                fontFamily: 'var(--font-sans)', fontSize: '0.88rem',
-                letterSpacing: '0.22em', textTransform: 'uppercase',
-                fontWeight: 600,
-                textDecoration: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'background .25s, transform .2s',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.background = 'var(--color-gold-light)'
-                el.style.transform  = 'translateY(-1px)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.background = 'var(--color-gold)'
-                el.style.transform  = 'translateY(0)'
-              }}
-            >
-              {t.contacto.cta_reservar}
-              <ArrowRight size={10} strokeWidth={1.5} />
-            </button>
+          {/* ─── BOOKING HUB ─── */}
+          <div className="mf-ci" style={{ marginBottom: '2rem' }}>
+            <p style={{
+              fontFamily: 'var(--font-serif)', fontSize: '1rem', fontStyle: 'italic',
+              color: 'rgba(245,240,234,0.5)', marginBottom: '1rem',
+            }}>
+              {bl.hubTitle}
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+              gap: '0.75rem',
+            }}>
+              {/* In-person */}
+              <button
+                onClick={() => setBookingMode('inperson')}
+                style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
+                  padding: '1.25rem',
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(201,168,76,0.15)',
+                  borderRadius: 12,
+                  cursor: 'pointer',
+                  transition: 'all 0.25s ease',
+                  textAlign: 'left',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
+                  e.currentTarget.style.background = 'rgba(201,168,76,0.04)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.15)'
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                }}
+              >
+                <Calendar size={20} color="#C9A84C" />
+                <div>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                    {bl.inperson}
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                    {bl.inpersonDesc}
+                  </p>
+                </div>
+              </button>
+
+              {/* Video call */}
+              <button
+                onClick={() => setBookingMode('videocall')}
+                style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
+                  padding: '1.25rem',
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(201,168,76,0.15)',
+                  borderRadius: 12,
+                  cursor: 'pointer',
+                  transition: 'all 0.25s ease',
+                  textAlign: 'left',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
+                  e.currentTarget.style.background = 'rgba(201,168,76,0.04)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.15)'
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                }}
+              >
+                <Video size={20} color="#C9A84C" />
+                <div>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                    {bl.videocall}
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                    {bl.videocallDesc}
+                  </p>
+                </div>
+              </button>
+
+              {/* Message */}
+              <button
+                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+                style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
+                  padding: '1.25rem',
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(201,168,76,0.15)',
+                  borderRadius: 12,
+                  cursor: 'pointer',
+                  transition: 'all 0.25s ease',
+                  textAlign: 'left',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
+                  e.currentTarget.style.background = 'rgba(201,168,76,0.04)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.15)'
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                }}
+              >
+                <MessageSquare size={20} color="#C9A84C" />
+                <div>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                    {bl.message}
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                    {bl.messageDesc}
+                  </p>
+                </div>
+              </button>
+            </div>
           </div>
 
           {/* Thin divider */}
@@ -438,7 +645,6 @@ export function ContactPage() {
               </motion.p>
             ) : (
               <form onSubmit={handleSubmit}>
-                {/* Name + Email side by side on desktop */}
                 <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0 1.5rem' }}>
                   <div className="mf-cf-field">
                     <input type="text"  name="nombre" id="mf-cn" placeholder=" " required className="mf-cf-input" disabled={loading} />
@@ -478,5 +684,18 @@ export function ContactPage() {
         </div>
       </div>
     </>
+  )
+}
+
+export function ContactPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ minHeight: '100vh', background: '#0A1628', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 32, height: 32, border: '2px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    }>
+      <ContactPageInner />
+    </Suspense>
   )
 }

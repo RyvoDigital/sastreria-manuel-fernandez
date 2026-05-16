@@ -20,7 +20,7 @@ const COURSES = [
     lessons: 3,
     locked: true,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/cursos-overview_c7zpql",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce",
   },
   {
     id: "canvas",
@@ -266,7 +266,7 @@ export function CursosList() {
                 className="course-card"
               >
                 {/* Thumbnail */}
-                <div style={{ position: 'relative', overflow: 'hidden', background: '#050A10', aspectRatio: '16/10' }}>
+                <div style={{ position: 'relative', overflow: 'hidden', background: '#050A10', width: '100%', aspectRatio: '16/10' }}>
                   <Image
                     src={course.image}
                     alt={title}
@@ -274,6 +274,7 @@ export function CursosList() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     style={{ objectFit: "cover" }}
                     className="course-card-img"
+                    unoptimized
                   />
 
                   {/* Overlay gradient */}

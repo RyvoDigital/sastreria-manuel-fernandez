@@ -1,16 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { ConfiguradorHero } from './ConfiguradorHero'
 import { ConfiguradorValueProp } from './ConfiguradorValueProp'
 import { ConfiguradorSteps } from './ConfiguradorSteps'
 import { ConfiguradorPaymentGate } from './ConfiguradorPaymentGate'
 import { ConfiguradorWizard } from './ConfiguradorWizard'
+import { useSearchParams } from 'next/navigation'
 
-export function ConfiguradorLayout() {
+function ConfiguradorLayoutInner() {
   const { locale } = useI18n()
   const [hasAccess, setHasAccess] = useState(false)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    if (searchParams.get('success') === 'true') {
+      setHasAccess(true)
+    }
+  }, [searchParams])
 
   const t = {
     es: {
@@ -50,5 +58,18 @@ export function ConfiguradorLayout() {
         <ConfiguradorWizard />
       )}
     </div>
+  )
+}
+
+export function ConfiguradorLayout() {
+  return (
+    <Suspense fallback={
+      <div style={{ minHeight: '100vh', background: '#0A1628', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 32, height: 32, border: '2px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    }>
+      <ConfiguradorLayoutInner />
+    </Suspense>
   )
 }

@@ -1,0 +1,211 @@
+IMPLEMENTATION APPROACH FOR SASTRERIA MANUEL FERNANDEZ
+
+This is the business summary to share with Manuel or the studio leadership. No technical jargon, just what we found and what we recommend doing.
+
+
+1. LORO PIANA EFABRICS
+
+What we were asked to do
+Integrate the Loro Piana eFabrics app into the online garment configurator so clients can browse Loro Piana fabrics directly on the website.
+
+What we found after researching the platform
+Loro Piana eFabrics is not a website tool. It is a mobile app made exclusively for iPads and phones, used by tailors during face-to-face appointments in showrooms. It was created by Loro Piana for their own internal B2B network and has no web version, no embed option, and no way to connect it to a website.
+
+Think of it like trying to embed Instagram or WhatsApp directly into a website. It is a closed app, not a web service.
+
+This means we cannot technically place eFabrics inside the configurator page.
+
+What we can do instead
+
+Option A. Partner directly with Loro Piana Textile Division
+- We reach out to Loro Piana as an authorized tailor and request permission to use their digital fabric images and data
+- We build our own fabric gallery inside the configurator using official Loro Piana materials
+- This is the most authentic and professional route
+- Timeline depends on how fast Loro Piana responds, which could be weeks or months
+
+Option B. Build a curated fabric collection now
+- We photograph our own physical fabric swatches or source high-quality images
+- We build a beautiful visual fabric picker inside the configurator immediately
+- We can organize fabrics by collection, show composition and weight, and label them clearly
+- This gives us a working solution today while we pursue the official partnership in parallel
+
+Option C. Use the eFabrics app during videollamadas
+- When a client books a video call, the tailor opens the real eFabrics app on an iPad
+- The client sees the fabrics through the video call
+- The tailor notes the selected fabric code and enters it into the web order manually
+- This works well for high-touch appointments but does not help clients browsing alone on the website
+
+Our recommendation
+Start with Option B immediately so the configurator has a proper fabric gallery with real images. At the same time, begin Option A by contacting Loro Piana Textile Division. This way we are not blocked waiting for a response, and if the partnership comes through later we simply swap in the official assets.
+
+
+2. TIENDA ONLINE
+
+What we are building
+A new online shop called Tienda, added to the website navigation right below Servicios. It will sell accessories and ready-made pieces across eleven categories.
+
+The categories
+- Camisas (Shirts)
+- Pantalones (Trousers)
+- Trajes completos (Complete suits)
+- Chalecos (Vests)
+- Corbatas (Ties)
+- Gemelos (Cufflinks)
+- Panuelos (Pocket squares)
+- Fajin (Cummerbunds)
+- Pajaritas (Bow ties)
+- Abrigos (Overcoats)
+- Blazer (Blazers)
+
+How the shop will work
+- Clients browse categories, click into products, see photos and descriptions, select size or color if applicable, and add to cart
+- A cart drawer slides out from the side showing what they have selected
+- At checkout they enter their address, choose a shipping method, and pay securely via Stripe
+- After payment the order is confirmed by email and the studio receives a notification to pack and ship
+- We now have a proper database to manage products, stock, and orders professionally
+
+Customer experience
+- The shop will look and feel consistent with the rest of the website, same luxury aesthetic
+- Product pages will have multiple photos, sizing information, material descriptions, and care instructions
+- Cart contents are saved even if the client closes the browser and comes back later
+- Checkout is clean and simple, no unnecessary steps
+- Order confirmation emails are sent automatically in the client's language
+
+Admin experience for the studio
+- All orders appear in a centralized dashboard
+- You can see what was ordered, where it ships, whether payment is confirmed, and whether it has been shipped
+- Stock levels are tracked automatically and you get low-stock warnings
+- Shipping labels are generated automatically after payment
+- Tracking numbers are attached to orders and sent to customers
+
+
+3. SHIPPING
+
+What we researched
+We evaluated several shipping platforms that connect online shops to carriers like DHL, UPS, Correos, SEUR, and others. The goal is to offer reliable delivery within Spain, across Europe, and internationally, with transparent pricing and tracking.
+
+Our recommendation: Sendcloud
+
+Why Sendcloud
+- It is built specifically for European businesses and works perfectly for a Spanish-based brand
+- It connects to all the major carriers including Correos, SEUR, DHL, UPS, GLS, and DPD
+- It gives us real-time shipping rates at checkout so customers see exact costs before paying
+- It generates shipping labels automatically when an order is placed
+- It handles customs paperwork for international orders automatically
+- It includes a branded returns portal so customers can request returns easily
+- It starts at 29 euros per month
+- It has excellent developer documentation and integrates cleanly with our website and Stripe payments
+
+How shipping will work for the customer
+- At checkout, the customer enters their address
+- The website instantly calculates shipping options based on their country
+- We show a small number of clear choices, for example:
+  - Standard delivery (3 to 5 days in Europe, 5 to 10 days internationally)
+  - Express delivery (1 to 3 days, higher cost)
+- For international orders outside Europe, we offer Delivery Duty Paid which means all taxes and customs fees are included upfront. The customer pays once and has no surprise charges at the door. This is essential for a luxury brand.
+
+Shipping zones and approximate pricing from Madrid
+- Spain domestic: 5 to 8 euros standard, 10 to 15 euros express. Free shipping for orders over 150 euros.
+- Portugal, France, Italy, Germany, Benelux: 12 to 18 euros
+- Rest of Europe: 15 to 25 euros
+- United Kingdom: 18 to 28 euros
+- USA and Canada: 25 to 45 euros plus
+- Rest of world: 30 to 60 euros plus
+
+These are estimates. Exact prices will be calculated live at checkout based on weight and destination.
+
+Other options we considered
+- Easyship: Strong for USA and Asia markets with excellent duty calculation. Worth considering if the USA becomes a major market later.
+- ShippyPro: Good for omnichannel brands but more expensive at 220 euros per month.
+- Direct DHL Express API: Premium but requires managing multiple carrier relationships separately.
+
+For now, Sendcloud gives us the best coverage, the best price, and the cleanest integration.
+
+
+4. WHAT WE NEED FROM YOU TO START
+
+Products
+- A list of everything you want to sell at launch in each of the eleven categories
+- For each product: name, price, description, available sizes or colors, weight in grams, and country of origin
+- This can start small, even five to ten products per category, and grow over time
+
+Photos
+- Professional product photography for each item
+- Multiple angles per product
+- At least one lifestyle or worn photo per category if possible
+- Fabric swatch photos for the configurator
+
+Loro Piana decision
+- Confirm whether you want us to reach out to Loro Piana Textile Division on your behalf to request a partnership
+- Confirm you are happy for us to build a curated fabric collection in the meantime using your own fabrics and swatches
+
+Business accounts
+- A Sendcloud account so we can connect the shipping API. We can set this up together or you can create it and share the API keys.
+- Stripe products configured for e-commerce. We can walk you through this or handle it directly.
+
+Customer accounts
+- Decide whether clients need to create accounts to buy, or whether guest checkout is fine at launch
+- Guest checkout is faster to build and often converts better for luxury goods
+- Customer accounts can be added later in a second phase
+
+
+5. TIMELINE AND PHASES
+
+Phase 1. Tienda Foundation (approximately 3 weeks)
+- Build the shop structure: category pages, product pages, cart, and checkout
+- Set up the database to manage products and orders
+- Connect Stripe for payments
+- Connect Sendcloud for shipping rates and labels
+- Set up automatic order confirmation emails
+- Launch with an initial product selection
+
+Phase 2. Configurator Upgrade (approximately 2 weeks)
+- Replace the current text-only fabric picker with a visual swatch gallery
+- Add fabric detail popups showing composition, weight, and origin
+- Connect configurator selections to the database so quote requests are saved and emailed to the studio
+- Begin Loro Piana outreach if approved
+
+Phase 3. Scale and Polish (approximately 3 weeks)
+- Build an internal admin dashboard so the studio can manage orders without technical help
+- Add inventory tracking and low-stock alerts
+- Add branded order tracking pages for customers
+- Set up the returns portal
+- Add customer account functionality if desired
+
+Total estimated build time: 8 weeks from kickoff to full feature set.
+
+
+6. ONGOING COSTS
+
+Monthly services needed to run the shop
+- Sendcloud: 29 euros per month
+- Email service: approximately 20 dollars per month
+- Image hosting: approximately 25 dollars per month
+- Database hosting: approximately 15 to 25 dollars per month depending on provider
+- Stripe fees: approximately 1.5 percent plus 0.25 euros per transaction, only charged when you make a sale
+
+Total fixed monthly cost before sales: approximately 90 to 100 euros per month.
+
+
+7. SUMMARY
+
+Loro Piana eFabrics
+- Cannot be embedded into the website. It is a native mobile app.
+- We recommend building a curated fabric gallery now while pursuing an official partnership separately.
+
+Tienda
+- New shop section added to navigation.
+- Eleven categories of accessories and ready-made pieces.
+- Full cart, checkout, payment, and order management.
+
+Shipping
+- Sendcloud recommended as the shipping platform.
+- Covers all major carriers, automatic labels, customs paperwork, and returns.
+- Real-time rates shown at checkout.
+- Delivery Duty Paid offered for international orders.
+
+Next step
+- Review and approve this approach
+- Provide product information and photography
+- Confirm shipping platform choice and create accounts
+- We begin Phase 1 immediately upon approval

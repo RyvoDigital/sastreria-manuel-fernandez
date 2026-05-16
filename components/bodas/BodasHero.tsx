@@ -23,7 +23,7 @@ export function BodasHero() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-hero_oothaw"
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
             alt=""
             style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12 }}
           />
@@ -40,7 +40,7 @@ export function BodasHero() {
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          padding: 'clamp(5rem, 15vh, 7rem) 0 clamp(2rem, 5vh, 3rem)',
+          padding: 'clamp(5rem, 15vh, 7rem) var(--container-padding) clamp(2rem, 5vh, 3rem)',
           gap: '1.5rem',
         }}>
           {/* Text */}
@@ -86,13 +86,15 @@ export function BodasHero() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-hero_oothaw"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
               alt="Traje de novio a medida — Bodas & Ceremonia"
               style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
                 objectPosition: 'top',
+                borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
+                boxShadow: '0 30px 60px rgba(10,22,40,0.6), 0 0 0 1px rgba(201,168,76,0.15)',
                 display: 'block',
               }}
             />
@@ -115,13 +117,13 @@ export function BodasHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-hero_oothaw"
+          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
           alt=""
-          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.45 }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18 }}
         />
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(135deg, rgba(10,22,40,0.75) 0%, rgba(10,22,40,0.45) 50%, rgba(10,22,40,0.75) 100%)',
+          background: 'linear-gradient(135deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.75) 50%, rgba(10,22,40,0.92) 100%)',
         }} />
       </div>
 
@@ -155,22 +157,23 @@ export function BodasHero() {
       {/* Layer 2: Central garment photo */}
       <div style={{
         position: 'absolute',
-        top: 'clamp(80px, 10vh, 120px)',
-        left: 0,
-        right: 0,
+        top: 'clamp(100px, 14vh, 160px)',
+        left: '50%',
+        transform: 'translateX(-50%)',
         zIndex: 2,
-        width: '100%',
-        height: '100%',
+        width: 'clamp(220px, 32vw, 420px)',
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-hero_oothaw"
+          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
           alt="Traje de novio a medida — Bodas & Ceremonia"
           style={{
             width: '100%',
-            height: '100%',
+            height: 'clamp(340px, 72vh, 680px)',
             objectFit: 'cover',
             objectPosition: 'top center',
+            borderRadius: '1.5rem 1.5rem 0.5rem 0.5rem',
+            boxShadow: '0 40px 100px rgba(10,22,40,0.8), 0 0 0 1px rgba(201,168,76,0.18)',
             display: 'block',
           }}
         />
@@ -194,9 +197,8 @@ export function BodasHero() {
           fontSize: '0.55rem',
           letterSpacing: '0.35em',
           textTransform: 'uppercase',
-          color: 'rgba(201,168,76,0.9)',
+          color: 'rgba(201,168,76,0.7)',
           marginBottom: '1.2rem',
-          textShadow: '0 2px 12px rgba(0,0,0,0.7)',
         }}>
           {c.label}
         </p>
@@ -208,7 +210,6 @@ export function BodasHero() {
           color: '#FFFFFF',
           lineHeight: 1.1,
           letterSpacing: '-0.01em',
-          textShadow: '0 4px 24px rgba(0,0,0,0.6)',
         }}>
           {c.title}
         </h1>
@@ -240,9 +241,8 @@ export function BodasHero() {
           fontSize: '0.48rem',
           letterSpacing: '0.25em',
           textTransform: 'uppercase',
-          color: 'rgba(201,168,76,0.8)',
+          color: 'rgba(201,168,76,0.5)',
           writingMode: 'vertical-rl',
-          textShadow: '0 2px 8px rgba(0,0,0,0.6)',
         }}>
           Desplazar
         </p>

@@ -1,419 +1,164 @@
 'use client'
 
-import { useState, Suspense, lazy } from 'react'
 import { useI18n } from '@/lib/i18n'
-import { ErrorBoundary } from '@/components/ui/error-boundary'
-import { Rotate3D, User, X } from 'lucide-react'
-
-const Modelo3DViewer = lazy(() => import('@/components/modelos-3d/Modelo3DViewer').then(m => ({ default: m.Modelo3DViewer })))
-
-// Clothing items for the gallery
-const CLOTHING_ITEMS = [
-  {
-    id: 'traje-clasico',
-    name_es: 'Traje a Medida',
-    name_en: 'Bespoke Suit',
-    category_es: 'Trajes',
-    category_en: 'Suits',
-    modelType: 'male' as const,
-  },
-  {
-    id: 'traje-femenino',
-    name_es: 'Traje Femenino',
-    name_en: 'Women\'s Suit',
-    category_es: 'Trajes',
-    category_en: 'Suits',
-    modelType: 'female' as const,
-  },
-]
+import { Box } from 'lucide-react'
 
 export default function Modelos3DPage() {
   const { locale } = useI18n()
-  const [showViewer, setShowViewer] = useState(false)
-  const [selectedModel, setSelectedModel] = useState<'male' | 'female'>('male')
 
   const t = {
     es: {
-      title: 'Crea tu traje aquí',
-      subtitle: 'Diseña y visualiza tu traje a medida en 3D antes de que lo confeccionemos.',
-      launch3D: 'Abrir Visualizador 3D',
-      close: 'Cerrar',
-      selectModel: 'Seleccionar modelo',
-      male: 'Masculino',
-      female: 'Femenino',
-      viewIn3D: 'Ver en 3D',
-      explore: 'Explorar',
+      title: 'Crea tu Traje',
+      subtitle: 'Visualización 3D',
+      status: 'Próximamente',
+      desc: 'Nuestro probador virtual está en desarrollo. Pronto podrás explorar y personalizar tu traje a medida en un entorno tridimensional interactivo.',
     },
     en: {
-      title: 'Create your suit here',
-      subtitle: 'Design and visualise your bespoke suit in 3D before we craft it.',
-      launch3D: 'Open 3D Viewer',
-      close: 'Close',
-      selectModel: 'Select model',
-      male: 'Male',
-      female: 'Female',
-      viewIn3D: 'View in 3D',
-      explore: 'Explore',
+      title: 'Create your Suit',
+      subtitle: '3D Visualisation',
+      status: 'Coming Soon',
+      desc: 'Our virtual fitting room is under development. Soon you will be able to explore and customise your bespoke suit in an interactive three-dimensional environment.',
     },
     it: {
-      title: 'Crea il tuo abito qui',
-      subtitle: 'Disegna e visualizza il tuo abito su misura in 3D prima che lo confezioniamo.',
-      launch3D: 'Apri Visualizzatore 3D',
-      close: 'Chiudi',
-      selectModel: 'Seleziona modello',
-      male: 'Maschile',
-      female: 'Femminile',
-      viewIn3D: 'Vedi in 3D',
-      explore: 'Esplora',
+      title: 'Crea il tuo Abito',
+      subtitle: 'Visualizzazione 3D',
+      status: 'Prossimamente',
+      desc: 'Il nostro camerino virtuale è in fase di sviluppo. Presto potrai esplorare e personalizzare il tuo abito su misura in un ambiente tridimensionale interattivo.',
     },
     fr: {
-      title: 'Créez votre costume ici',
-      subtitle: 'Concevez et visualisez votre costume sur mesure en 3D avant que nous le confectionnions.',
-      launch3D: 'Ouvrir le Visualiseur 3D',
-      close: 'Fermer',
-      selectModel: 'Sélectionner le modèle',
-      male: 'Masculin',
-      female: 'Féminin',
-      viewIn3D: 'Voir en 3D',
-      explore: 'Explorer',
-    },
+      title: 'Créez votre Costume',
+      subtitle: 'Visualisation 3D',
+      status: 'Bientôt Disponible',
+      desc: 'Notre cabine d\'essayage virtuelle est en développement. Bientôt, vous pourrez explorer et personnaliser votre costume sur mesure dans un environnement tridimensionnel interactif.',
+    }
   }
 
-  const currentT = t[locale as keyof typeof t] || t.es
-
-  const handleOpenViewer = (modelType: 'male' | 'female') => {
-    setSelectedModel(modelType)
-    setShowViewer(true)
-  }
+  const c = t[locale as keyof typeof t] || t.es
 
   return (
-    <main style={{ minHeight: '100vh', paddingTop: '100px' }}>
-      {/* Header */}
+    <main className="flex flex-col bg-[#0A1628]">
+      {/* Cinematic Hero */}
       <section style={{
-        padding: '4rem var(--container-padding)',
-        textAlign: 'center',
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '8rem var(--container-padding) 4rem',
+        background: 'linear-gradient(135deg, #0A1628 0%, #0D1D30 100%)',
+        overflow: 'hidden',
       }}>
-        <span style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '0.7rem',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          color: 'var(--color-gold)',
+        {/* Background image */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
         }}>
-          {locale === 'es' ? 'Colección Virtual' : 'Virtual Collection'}
-        </span>
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-          fontWeight: 400,
-          fontStyle: 'italic',
-          color: '#FFFFFF',
-          margin: '1rem 0',
-        }}>
-          {currentT.title}
-        </h1>
-        <p style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '1rem',
-          color: 'rgba(255,255,255,0.6)',
-          maxWidth: '500px',
-          margin: '0 auto 2rem',
-        }}>
-          {currentT.subtitle}
-        </p>
+          <img
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/madrid-suit-street_slsine"
+            alt="Sastrería Manuel Fernández"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.5,
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, rgba(10,22,40,0.75) 0%, rgba(10,22,40,0.5) 40%, rgba(10,22,40,0.75) 100%)',
+          }} />
+        </div>
 
-        {/* Quick Launch Button */}
-        <button
-          onClick={() => setShowViewer(true)}
-          style={{
+        {/* Subtle glow */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '100vw',
+          height: '100vw',
+          background: 'radial-gradient(circle, rgba(201,168,76,0.05) 0%, rgba(10,22,40,0) 70%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }} />
+
+        <div style={{
+          position: 'relative',
+          maxWidth: '800px',
+          margin: '0 auto',
+          textAlign: 'center',
+          color: '#FFFFFF',
+          zIndex: 10,
+        }}>
+          {/* Status Badge */}
+          <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            padding: '1rem 2rem',
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.75rem',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            background: 'var(--color-gold)',
-            color: '#000',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.02)'
-            e.currentTarget.style.boxShadow = '0 10px 40px rgba(201,168,76,0.3)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)'
-            e.currentTarget.style.boxShadow = 'none'
-          }}
-        >
-          <Rotate3D size={18} />
-          {currentT.launch3D}
-        </button>
-      </section>
-
-      {/* Model Selection Cards */}
-      <section style={{
-        padding: '2rem var(--container-padding) 6rem',
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '2rem',
-          maxWidth: '800px',
-          margin: '0 auto',
-        }}>
-          {/* Male Model Card */}
-          <div
-            onClick={() => handleOpenViewer('male')}
-            style={{
-              position: 'relative',
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--color-gold)'
-              e.currentTarget.style.transform = 'translateY(-4px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
-          >
-            <div style={{
-              aspectRatio: '4/3',
-              background: 'linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(255,255,255,0.02) 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}>
-              <User size={64} color="rgba(201,168,76,0.5)" />
-              <div style={{
-                position: 'absolute',
-                top: '1rem',
-                right: '1rem',
-                padding: '0.4rem 0.8rem',
-                background: 'var(--color-gold)',
-                color: '#000',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.6rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                borderRadius: '2px',
-              }}>
-                3D
-              </div>
-            </div>
-            <div style={{ padding: '1.5rem' }}>
-              <h3 style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '1.25rem',
-                fontWeight: 400,
-                color: '#FFFFFF',
-                marginBottom: '0.5rem',
-              }}>
-                {currentT.male}
-              </h3>
-              <button style={{
-                padding: '0.6rem 1.2rem',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.7rem',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                background: 'transparent',
-                color: 'var(--color-gold)',
-                border: '1px solid var(--color-gold)',
-                cursor: 'pointer',
-              }}>
-                {currentT.viewIn3D}
-              </button>
-            </div>
-          </div>
-
-          {/* Female Model Card */}
-          <div
-            onClick={() => handleOpenViewer('female')}
-            style={{
-              position: 'relative',
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--color-gold)'
-              e.currentTarget.style.transform = 'translateY(-4px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
-          >
-            <div style={{
-              aspectRatio: '4/3',
-              background: 'linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(255,255,255,0.02) 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}>
-              <User size={64} color="rgba(201,168,76,0.5)" />
-              <div style={{
-                position: 'absolute',
-                top: '1rem',
-                right: '1rem',
-                padding: '0.4rem 0.8rem',
-                background: 'var(--color-gold)',
-                color: '#000',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.6rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                borderRadius: '2px',
-              }}>
-                3D
-              </div>
-            </div>
-            <div style={{ padding: '1.5rem' }}>
-              <h3 style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '1.25rem',
-                fontWeight: 400,
-                color: '#FFFFFF',
-                marginBottom: '0.5rem',
-              }}>
-                {currentT.female}
-              </h3>
-              <button style={{
-                padding: '0.6rem 1.2rem',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.7rem',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                background: 'transparent',
-                color: 'var(--color-gold)',
-                border: '1px solid var(--color-gold)',
-                cursor: 'pointer',
-              }}>
-                {currentT.viewIn3D}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Full Screen 3D Viewer Modal */}
-      {showViewer && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 1000,
-          background: '#050C14',
-          display: 'flex',
-          flexDirection: 'column',
-        }}>
-          {/* Modal Header */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '1rem var(--container-padding)',
-            borderBottom: '1px solid rgba(255,255,255,0.1)',
-            background: 'rgba(5,12,20,0.98)',
+            padding: '0.5rem 1.25rem',
+            background: 'rgba(201,168,76,0.1)',
+            border: '1px solid rgba(201,168,76,0.3)',
+            borderRadius: '9999px',
+            marginBottom: '2rem',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <Rotate3D size={24} color="#C9A84C" />
-              <div>
-                <h2 style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: '1.25rem',
-                  fontWeight: 400,
-                  color: '#FFFFFF',
-                }}>
-                  {currentT.title}
-                </h2>
-                <span style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.7rem',
-                  color: 'rgba(255,255,255,0.5)',
-                }}>
-                  {locale === 'es' ? 'Visualizador interactivo' : 'Interactive viewer'}
-                </span>
-              </div>
-            </div>
-            <button
-              onClick={() => setShowViewer(false)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'rgba(255,255,255,0.6)',
-                cursor: 'pointer',
-                padding: '0.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.75rem',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-              }}
-            >
-              <X size={20} />
-              {currentT.close}
-            </button>
+            <Box size={16} color="#C9A84C" />
+            <span style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.65rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#C9A84C',
+              fontWeight: 500,
+            }}>
+              {c.status}
+            </span>
           </div>
 
-          {/* 3D Viewer */}
-          <div style={{ flex: 1, position: 'relative' }}>
-            <Suspense fallback={
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#C9A84C',
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ 
-                    width: '48px', 
-                    height: '48px', 
-                    border: '2px solid rgba(201,168,76,0.2)',
-                    borderTopColor: '#C9A84C',
-                    borderRadius: '50%',
-                    animation: 'spin 1s linear infinite',
-                    margin: '0 auto 1rem'
-                  }} />
-                  <span style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.5)',
-                  }}>
-                    Cargando...
-                  </span>
-                </div>
-              </div>
-            }>
-              <ErrorBoundary>
-                <Modelo3DViewer />
-              </ErrorBoundary>
-            </Suspense>
+          {/* Titles */}
+          <h1 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(3rem, 6vw, 4.5rem)',
+            fontWeight: 400,
+            fontStyle: 'italic',
+            lineHeight: 1.1,
+            marginBottom: '1rem',
+          }}>
+            {c.title}
+          </h1>
+          <div style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.7)',
+            marginBottom: '2.5rem',
+          }}>
+            {c.subtitle}
           </div>
+
+          <div style={{
+            width: '40px',
+            height: '1px',
+            background: '#C9A84C',
+            margin: '0 auto 2.5rem',
+            opacity: 0.5,
+          }} />
+
+          {/* Description */}
+          <p style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '1rem',
+            lineHeight: 1.8,
+            color: 'rgba(255,255,255,0.6)',
+            maxWidth: '600px',
+            margin: '0 auto',
+          }}>
+            {c.desc}
+          </p>
         </div>
-      )}
+      </section>
     </main>
   )
 }
