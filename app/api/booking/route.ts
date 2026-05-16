@@ -191,14 +191,8 @@ export async function POST(req: NextRequest) {
     // Check for conflicts
     const alreadyBooked = await isSlotBooked(date, time)
     if (alreadyBooked) {
-      const conflictMap: Record<string, string> = {
-        es: 'Esta franja horaria ya está reservada. Por favor, elige otra.',
-        en: 'This time slot is already booked. Please choose another.',
-        it: 'Questa fascia oraria è già prenotata. Scegli un\'altra.',
-        fr: 'Ce créneau horaire est déjà réservé. Veuillez en choisir un autre.',
-      }
       return NextResponse.json(
-        { success: false, error: conflictMap[loc] || conflictMap.es },
+        { success: false, error: 'conflict' },
         { status: 409 }
       )
     }
@@ -215,7 +209,7 @@ export async function POST(req: NextRequest) {
 
     if (!bookResult.success) {
       return NextResponse.json(
-        { success: false, error: bookResult.error },
+        { success: false, error: 'conflict' },
         { status: 409 }
       )
     }
@@ -245,7 +239,7 @@ export async function POST(req: NextRequest) {
         })
 
         if (ownerResult.error) {
-          console.error('Resend owner email error:', ownerResult.error)
+          console.error('Resend owner email error:', JSON.stringify(ownerResult.error), { from: fromEmail, to: ownerEmail })
         } else {
           ownerId = ownerResult.data?.id ?? null
         }
@@ -263,7 +257,7 @@ export async function POST(req: NextRequest) {
         })
 
         if (clientResult.error) {
-          console.error('Resend client email error:', clientResult.error)
+          console.error('Resend client email error:', JSON.stringify(clientResult.error), { from: fromEmail, to: email })
         } else {
           clientId = clientResult.data?.id ?? null
         }
