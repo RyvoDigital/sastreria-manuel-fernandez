@@ -1,0 +1,415 @@
+IMPLEMENTATION APPROACH: TIENDA + LORO PIANA EFABRICS
+Updated: 2026-05-15
+Note: PostgreSQL database is now available.
+
+
+1. LORO PIANA EFABRICS -- FEASIBILITY AUDIT
+
+The Reality
+Loro Piana eFabrics is a closed native mobile application for iOS and Android. It is designed for master tailors and personal stylists. It is not a web platform and cannot be embedded into a website.
+
+What Does Not Exist
+- Public REST API
+- JavaScript SDK or React wrapper
+- Embeddable iframe or widget
+- Web component
+- Developer documentation
+- Self-service signup
+
+What eFabrics Actually Is
+- A native iPad and phone app used during showroom appointments
+- Features include 3D fabric browsing, AR garment visualization, real-time stock checks, and order traceability
+- Showcased at VivaTech 2022 by LVMH Innovation
+- Access requires a verified tailoring business relationship with Loro Piana Textile Division
+
+Alternative Approaches
+
+Option A: B2B Partnership Plus Manual Integration (Recommended)
+- Contact Loro Piana Textile Division via loropiana.com/textile/login
+- As an authorized bespoke tailor, negotiate access to digital fabric assets such as swatch images, metadata, and composition data
+- Manually build a Loro Piana Collection section inside your configurator with these assets
+- Use the native eFabrics app during in-person or videollamada appointments as a companion sales tool
+- Pros: Authentic, legally sound, high-quality assets, true brand partnership
+- Cons: Requires business development effort, timeline dependent on Loro Piana response
+
+Option B: Curated Public Collection (Fastest to Implement)
+- Research publicly documented Loro Piana fabric lines such as Wish, Four Seasons, Tasmanian, Australis, and Silk Road
+- Source or photograph your own physical swatches and upload to Cloudinary
+- Build a curated fabric picker with real swatch images, weights, compositions, and prices
+- Link to official Loro Piana references where appropriate
+- Pros: Immediate implementation, fully controlled user experience, works in configurator today
+- Cons: Not officially sourced; requires clear labeling as inspired by or generic naming
+
+Option C: Hybrid Showroom Flow
+- Web configurator handles measurements, design options, and order capture
+- During videollamada appointments, the tailor opens the eFabrics app on a separate iPad or tablet
+- The client sees fabric options via screen share or secondary camera
+- Selected fabric code is manually entered into the web configurator notes
+- Pros: Leverages the actual app for an authentic experience
+- Cons: Not integrated; relies on manual data entry; only works for live appointments
+
+Option D: Deep Linking (Not Recommended)
+- Attempt to reverse-engineer and use an undocumented URL scheme to open the app from the browser
+- Cons: Unsupported, fragile, likely breaks with app updates, poor user experience if app is not installed
+
+Feasibility Matrix
+
+Capability                    eFabrics Direct    Option A        Option B        Option C
+Browse full LP catalog        Not possible       Partial         Curated         Via app
+3D fabric visualization       Not possible       If maps provided Possible         Via app
+Real-time stock check         Not possible       Not possible    Not possible    Via app
+AR garment drape              Not possible       Not possible    Not possible    Via app
+Digital archive               Not possible       Custom build    Custom build    Via app
+Web configurator integration  Not possible       Manual          Full            Manual
+
+Recommendation: Pursue Option A (B2B outreach) in parallel with implementing Option B (curated collection) immediately. This gives you a working fabric picker today while building an authentic partnership for the future.
+
+
+2. TIENDA (E-COMMERCE) -- IMPLEMENTATION APPROACH
+
+Current State Analysis
+Your Next.js 16 project has:
+- Stripe installed but only wired for courses
+- Cloudinary for image CDN
+- Resend for transactional emails
+- i18n for four languages
+- Custom styling system using inline styles and CSS variables
+- PostgreSQL database now available
+- No existing product catalog, cart, or shop infrastructure
+
+Recommended Architecture
+With PostgreSQL available, build a proper relational backend instead of static files or third-party workarounds.
+
+Stack:
+- Database: PostgreSQL with a normalized relational schema
+- ORM: Prisma or Drizzle (Prisma recommended for rapid development)
+- Products: Stored in PostgreSQL with categories, variants, inventory, and translations
+- Cart: Hybrid approach -- Zustand for client state plus server-side cart persistence in PostgreSQL for logged-in users or long-lived sessions
+- Checkout: Stripe Checkout Sessions (extend existing integration)
+- Shipping: Sendcloud (EU-native, 29 euros per month, REST API, best Spain carrier coverage)
+- Orders: Full order lifecycle in PostgreSQL with line items, shipping, and status tracking
+- Admin: Simple internal admin pages or use a tool like Prisma Studio for MVP
+
+Database Schema (Core Tables)
+
+Table: categories
+- id: UUID primary key
+- slug: text unique not null
+- name: JSONB (i18n names for es, en, it, fr)
+- sort_order: integer
+- created_at: timestamp
+
+Table: products
+- id: UUID primary key
+- slug: text unique not null
+- name: JSONB (i18n)
+- description: JSONB (i18n)
+- category_id: UUID foreign key to categories
+- price: integer (cents)
+- compare_at_price: integer (cents, nullable)
+- weight_grams: integer
+- hs_code: text (nullable)
+- origin_country: text (nullable)
+- materials: text (nullable)
+- images: text array (Cloudinary URLs)
+- sku: text unique not null
+- is_active: boolean default true
+- stock_quantity: integer default 0
+- created_at: timestamp
+- updated_at: timestamp
+
+Table: product_variants
+- id: UUID primary key
+- product_id: UUID foreign key to products
+- sku: text unique not null
+- name: text
+- options: JSONB (example: { size: "42", color: "Navy" })
+- price: integer (cents, nullable -- inherits from product if null)
+- stock_quantity: integer default 0
+- is_active: boolean default true
+
+Table: carts
+- id: UUID primary key
+- session_id: text unique (for guest users)
+- user_id: UUID nullable (for future auth)
+- items: JSONB (array of cart items)
+- shipping_address: JSONB nullable
+- created_at: timestamp
+- updated_at: timestamp
+
+Table: orders
+- id: UUID primary key
+- order_number: text unique not null
+- status: text default "pending" (pending, paid, shipped, delivered, cancelled)
+- payment_status: text default "pending"
+- shipping_status: text default "pending"
+- customer_email: text not null
+- customer_name: text
+- shipping_address: JSONB not null
+- billing_address: JSONB nullable
+- subtotal_cents: integer
+- shipping_cents: integer
+- tax_cents: integer
+- total_cents: integer
+- currency: text default "EUR"
+- stripe_checkout_session_id: text
+- stripe_payment_intent_id: text
+- sendcloud_parcel_id: text nullable
+- tracking_number: text nullable
+- tracking_url: text nullable
+- shipping_carrier: text nullable
+- shipping_method_name: text nullable
+- metadata: JSONB nullable
+- created_at: timestamp
+- updated_at: timestamp
+
+Table: order_items
+- id: UUID primary key
+- order_id: UUID foreign key to orders
+- product_id: UUID foreign key to products
+- variant_id: UUID foreign key to product_variants nullable
+- product_name: text not null
+- sku: text not null
+- quantity: integer not null
+- unit_price_cents: integer not null
+- total_price_cents: integer not null
+- image_url: text nullable
+
+Table: configurator_submissions
+- id: UUID primary key
+- status: text default "new"
+- customer_email: text
+- customer_name: text
+- customer_phone: text
+- measurements: JSONB
+- fabric_selections: JSONB
+- design_options: JSONB
+- notes: text
+- created_at: timestamp
+
+Navigation Update
+Add to components/global/Navigation.tsx after servicios:
+- key: tienda
+- href: /tienda
+- icon: ShoppingBag
+
+Add translations to all messages files (es.json, en.json, it.json, fr.json) under nav.tienda.
+
+URL Structure
+/tienda                              Category grid overview
+/tienda/camisas                      Shirt listing
+/tienda/pantalones                   Trousers listing
+/tienda/trajes-completos             Suits listing
+/tienda/chalecos                     Vests listing
+/tienda/corbatas                     Ties listing
+/tienda/gemelos                      Cufflinks listing
+/tienda/panuelos                     Pocket squares listing
+/tienda/fajin                        Cummerbunds listing
+/tienda/pajaritas                    Bow ties listing
+/tienda/abrigos                      Overcoats listing
+/tienda/blazers                      Blazers listing
+/tienda/producto/[slug]              Product detail page
+
+Cart Implementation
+Hybrid client-server approach:
+- Client: Zustand store for immediate UI feedback and localStorage fallback
+- Server: PostgreSQL cart table synced via Server Actions
+- Guest users identified by a signed HTTP-only cookie containing a session ID
+- On page load, hydrate Zustand from the server cart if one exists
+
+Cart item structure:
+- product_id
+- variant_id (nullable)
+- quantity
+- price_at_time_of_add (cents)
+
+Shipping Integration -- Sendcloud (Recommended)
+
+Why Sendcloud:
+- EU-native, built for European merchants
+- Best Spain carrier coverage including DHL, UPS, Correos, SEUR, GLS, DPD, and Mondial Relay
+- Developer-friendly REST API at sendcloud.dev
+- Checkout API for real-time rates at checkout
+- Automatic customs document generation for international shipments
+- Branded returns portal essential for luxury brands
+- Starting price is 29 euros per month
+- Webhook support with HMAC signatures for tracking updates
+
+Integration Architecture:
+- Server Action getShippingRates validates cart, queries Sendcloud API with destination and weight
+- Returns curated options: Standard and Express
+- Server Action createCheckoutSession creates Stripe Checkout Session with product line items plus shipping
+- Stripe metadata stores sendcloud_shipping_method_id and estimated_delivery_days
+- Webhook handler at api/webhooks/stripe listens for checkout.session.completed
+- On payment success, trigger createParcel via Sendcloud API to generate shipping label
+- Update order record in PostgreSQL with tracking number and parcel ID
+
+Checkout Flow:
+1. Cart page with mini shipping estimator
+2. Checkout info page with email and shipping address form
+3. Address validation via Sendcloud address check API
+4. Shipping method selection page showing 2 to 3 curated options based on destination zone
+5. Review and payment page
+6. Server Action creates Stripe Checkout Session
+7. Redirect to Stripe Checkout
+8. Stripe webhook fires on completion
+9. Generate Sendcloud label automatically
+10. Send order confirmation email via Resend
+11. Store complete order in PostgreSQL
+
+Zone and Rate Strategy:
+
+Zone 1 -- Spain Domestic: Mainland Spain and Islands. Correos Express or SEUR. 5 to 8 euros standard, 10 to 15 euros express. Free shipping threshold 150 euros.
+Zone 2 -- Portugal and Near EU: Portugal, France, Italy, Germany, Belgium, Netherlands, Luxembourg. DHL Parcel, GLS, or DPD. 12 to 18 euros.
+Zone 3 -- Rest of EU: Nordics, Austria, Ireland, Eastern EU. DHL or UPS. 15 to 25 euros.
+Zone 4 -- UK: United Kingdom. DHL Express or UPS. 18 to 28 euros. DDP strongly recommended post-Brexit.
+Zone 5 -- USA and Canada: North America. DHL Express. 25 to 45 euros plus.
+Zone 6 -- Rest of World: Asia, Middle East, Latin America. DHL Express or FedEx. 30 to 60 euros plus.
+
+For EU domestic shipments, VAT is already included. For UK and USA shipments, always offer DDP delivery duty paid because surprise duties destroy the luxury experience. The USA de minimis exemption ended in August 2025 so all shipments now attract duties.
+
+Alternatives to Sendcloud:
+- Easyship: Best for USA and Asia focus with DDP duty calculation. Pay per shipment plus subscription.
+- ShippyPro: Omnichannel and advanced analytics. 220 euros per month for Enterprise API plan.
+- ShipStation or ShipEngine: High volume USA-centric. Good Spain carrier access.
+- Direct DHL Express API: Premium international only. Requires contract.
+
+Verdict: Start with Sendcloud. If USA sales exceed 30 percent of revenue, evaluate adding Easyship as a secondary provider for transatlantic DDP.
+
+
+3. CONFIGURATOR -- FABRIC PICKER UPGRADE
+
+Since eFabrics cannot be embedded, rebuild the fabric picker to support rich visual swatches.
+
+Proposed UI Upgrade:
+- Replace text buttons with a swatch grid showing actual fabric thumbnail images
+- Add a detail modal on click showing composition, weight in gsm, origin, and price tier
+- Group fabrics by collection such as Loro Piana Inspired, British Worsted, and Seasonal
+- Show availability status: in stock, made to order, or limited
+
+Technical Changes:
+- Replace hardcoded OPTIONS.fabrics in ConfiguradorWizard.tsx with a data-driven FABRICS array
+- Each fabric object contains id, name, image, composition, weight, origin, price_tier, and in_stock
+- Store selected fabric IDs in state instead of pattern names
+- Add Cloudinary image URLs for each swatch
+- Store completed configurator submissions in the PostgreSQL configurator_submissions table
+- Allow users to request a quote which emails the atelier and saves the configuration to the database
+
+
+4. IMPLEMENTATION PHASES
+
+Phase 1: Database and Tienda Foundation (Weeks 1 to 3)
+- Set up PostgreSQL database
+- Set up Prisma ORM with schema definitions
+- Run initial migrations for all tables
+- Add Tienda to navigation and i18n translations
+- Seed database with product catalog for all 11 categories
+- Build /tienda landing page with category grid
+- Build /tienda/[categoria] listing pages
+- Build /tienda/producto/[slug] detail pages
+- Implement hybrid Zustand plus PostgreSQL cart
+- Create cart drawer UI
+- Extend Stripe API for product checkout
+- Integrate Sendcloud for shipping rate calculation
+- Build checkout flow: address, shipping, Stripe
+- Stripe webhook handler for order completion and label generation
+- Order confirmation emails via Resend
+- Basic admin view for orders using Prisma Studio or simple internal pages
+
+Phase 2: Configurator Enhancement (Weeks 3 to 5)
+- Design and photograph or source fabric swatches
+- Upload swatch images to Cloudinary
+- Rebuild fabric picker with visual swatch grid
+- Add fabric detail modals
+- Implement Option B curated collection immediately
+- Initiate Option A Loro Piana B2B outreach
+- Connect configurator to quote submission API
+- Save configurations to PostgreSQL configurator_submissions table
+- Email quote requests to the atelier
+
+Phase 3: Polish and Scale (Weeks 5 to 8)
+- Admin dashboard for orders built in Next.js
+- Inventory tracking and stock management
+- Branded Sendcloud tracking page
+- Returns portal integration
+- Customer accounts and order history
+- Analytics on popular products and configurations
+- Multi-currency support if needed
+
+
+5. FILE STRUCTURE ADDITIONS
+
+app/
+  tienda/
+    page.tsx
+    [categoria]/
+      page.tsx
+    producto/
+      [slug]/
+        page.tsx
+  checkout/
+    page.tsx
+  admin/
+    orders/
+      page.tsx
+    products/
+      page.tsx
+  api/
+    webhooks/
+      stripe/route.ts
+      sendcloud/route.ts
+    configurator/
+      submit/route.ts
+components/
+  tienda/
+    CategoryGrid.tsx
+    ProductCard.tsx
+    ProductGallery.tsx
+    CartDrawer.tsx
+    CartItem.tsx
+    ShippingSelector.tsx
+    CheckoutForm.tsx
+  admin/
+    OrderTable.tsx
+    OrderDetail.tsx
+lib/
+  db/
+    schema.prisma
+    client.ts
+  cart/
+    store.ts
+  shipping/
+    sendcloud.ts
+    zones.ts
+    rates.ts
+  i18n/
+    product-translations.ts
+prisma/
+  schema.prisma
+  migrations/
+
+
+6. COST ESTIMATE (Monthly Recurring)
+
+Sendcloud: 29 euros per month for shipping rates, labels, tracking, and returns
+Stripe: approximately 1.5 percent plus 0.25 euros per transaction for payment processing
+Resend: approximately 20 dollars per month for 10,000 transactional emails
+Cloudinary: approximately 25 dollars per month for product and swatch images
+PostgreSQL: varies by host. Supabase free tier or approximately 15 to 25 dollars per month for managed PostgreSQL
+Vercel: existing plan should cover Next.js hosting
+Total fixed: approximately 90 to 120 euros per month before transaction fees
+
+
+7. IMMEDIATE NEXT STEPS
+
+1. Confirm this approach including PostgreSQL and Sendcloud choices
+2. Choose PostgreSQL host: Supabase, Vercel Postgres, AWS RDS, or self-hosted
+3. Provide product list for the 11 categories including names, prices, descriptions, sizes, and weights in grams
+4. Confirm whether to pursue Loro Piana B2B partnership while building curated collection
+5. Sign up for Sendcloud account to obtain API keys
+6. Create Stripe products and price objects for e-commerce SKUs
+7. Provide or plan product photography for accessories and ready-made pieces
+8. Confirm whether customer accounts are needed at launch or can be added in Phase 3
+
+
+Document prepared based on codebase audit, Loro Piana eFabrics platform research, EU shipping provider analysis, and updated to reflect PostgreSQL availability.

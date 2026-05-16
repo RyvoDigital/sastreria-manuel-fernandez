@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
-import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
+import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import Image from 'next/image'
@@ -46,12 +46,7 @@ const SERVICES = [
     href: '/cursos',
     image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-tools_clirtk',
   },
-  {
-    key: 'videollamada' as const,
-    icon: Video,
-    href: '/videollamada',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_4288_rnjpvh',
-  },
+
   {
     key: 'contacto' as const,
     icon: Mail,
@@ -239,6 +234,7 @@ export function ServicesEnhanced() {
                       transition: 'transform 0.7s ease',
                     }}
                     className="service-img"
+                    unoptimized
                   />
                   {/* Gradient overlay */}
                   <div style={{

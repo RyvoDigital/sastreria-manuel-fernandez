@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
-import { Lock, Check, CreditCard, Shield, Loader2 } from 'lucide-react'
+import { Lock, Check, Clock, Loader2 } from 'lucide-react'
 
 interface ConfiguradorPaymentGateProps {
   onAccessGranted: () => void
@@ -32,10 +32,11 @@ export function ConfiguradorPaymentGate({
         'Recomendación de estilo personalizado',
         'Presupuesto instantáneo',
       ],
-      cta: 'Solicitar Acceso',
-      secure: 'Pago seguro encriptado',
+      cta: 'Próximamente',
+      secure: 'Pago seguro con Stripe',
       contact: '¿Prefieres hablar con nosotros?',
       contact_cta: 'Reservar cita',
+      comingSoonNote: 'El acceso estará disponible próximamente.',
     },
     en: {
       badge: 'Premium Access',
@@ -48,10 +49,11 @@ export function ConfiguradorPaymentGate({
         'Personalised style recommendation',
         'Instant quote',
       ],
-      cta: 'Request Access',
-      secure: 'Encrypted secure payment',
+      cta: 'Coming Soon',
+      secure: 'Secure payment with Stripe',
       contact: 'Prefer to talk to us?',
       contact_cta: 'Book an appointment',
+      comingSoonNote: 'Access will be available soon.',
     },
     it: {
       badge: 'Accesso Premium',
@@ -64,10 +66,11 @@ export function ConfiguradorPaymentGate({
         'Raccomandazione di stile personalizzata',
         'Preventivo istantaneo',
       ],
-      cta: 'Richiedi Accesso',
-      secure: 'Pagamento sicuro crittografato',
+      cta: 'Prossimamente',
+      secure: 'Pagamento sicuro con Stripe',
       contact: 'Preferisci parlarci?',
       contact_cta: 'Prenota un appuntamento',
+      comingSoonNote: 'L\'accesso sarà disponibile presto.',
     },
     fr: {
       badge: 'Accès Premium',
@@ -80,22 +83,15 @@ export function ConfiguradorPaymentGate({
         'Recommandation de style personnalisée',
         'Devis instantané',
       ],
-      cta: "Demander l'Accès",
-      secure: 'Paiement sécurisé crypté',
+      cta: 'Bientôt',
+      secure: 'Paiement sécurisé avec Stripe',
       contact: 'Vous préférez nous parler?',
       contact_cta: 'Prendre rendez-vous',
+      comingSoonNote: 'L\'accès sera disponible bientôt.',
     },
   }
 
   const currentT = t[locale as keyof typeof t] || t.es
-
-  const handleRequestAccess = () => {
-    setIsProcessing(true)
-    setTimeout(() => {
-      setIsProcessing(false)
-      onAccessGranted()
-    }, 1500)
-  }
 
   return (
     <div
@@ -113,7 +109,6 @@ export function ConfiguradorPaymentGate({
         position: 'relative',
       }}
     >
-      {/* Top gold accent line */}
       <div
         style={{
           position: 'absolute',
@@ -136,7 +131,6 @@ export function ConfiguradorPaymentGate({
           textAlign: 'center',
         }}
       >
-        {/* Glass card */}
         <div
           style={{
             background: 'rgba(255,255,255,0.03)',
@@ -148,7 +142,6 @@ export function ConfiguradorPaymentGate({
             boxShadow: '0 30px 60px rgba(0,0,0,0.3)',
           }}
         >
-          {/* Lock Icon */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -168,7 +161,6 @@ export function ConfiguradorPaymentGate({
             <Lock size={28} color="#C9A84C" strokeWidth={1.5} />
           </motion.div>
 
-          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -184,7 +176,7 @@ export function ConfiguradorPaymentGate({
               background: 'rgba(201,168,76,0.05)',
             }}
           >
-            <Shield size={13} color="#C9A84C" />
+            <Clock size={13} color="#C9A84C" />
             <span
               style={{
                 fontFamily: 'var(--font-sans)',
@@ -199,7 +191,6 @@ export function ConfiguradorPaymentGate({
             </span>
           </motion.div>
 
-          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -232,7 +223,6 @@ export function ConfiguradorPaymentGate({
             {subtitle}
           </motion.p>
 
-          {/* Features */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -289,7 +279,7 @@ export function ConfiguradorPaymentGate({
             ))}
           </motion.div>
 
-          {/* CTA Button */}
+          {/* Coming Soon Button */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -297,17 +287,14 @@ export function ConfiguradorPaymentGate({
             style={{ marginBottom: '1.25rem' }}
           >
             <button
-              onClick={handleRequestAccess}
-              disabled={isProcessing}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              disabled
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.75rem',
                 padding: '1rem 2.5rem',
-                background: isHovered && !isProcessing ? '#D4B55A' : '#C9A84C',
-                color: '#000000',
+                background: 'rgba(201,168,76,0.2)',
+                color: 'rgba(255,255,255,0.3)',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.75rem',
                 fontWeight: 600,
@@ -315,51 +302,30 @@ export function ConfiguradorPaymentGate({
                 textTransform: 'uppercase',
                 border: 'none',
                 borderRadius: '8px',
-                cursor: isProcessing ? 'wait' : 'pointer',
-                opacity: isProcessing ? 0.8 : 1,
+                cursor: 'not-allowed',
+                opacity: 1,
                 transition: 'all 0.3s ease',
-                boxShadow: isHovered
-                  ? '0 8px 24px rgba(201,168,76,0.25)'
-                  : '0 4px 12px rgba(201,168,76,0.15)',
-                transform: isHovered && !isProcessing ? 'translateY(-2px)' : 'translateY(0)',
               }}
             >
-              {isProcessing ? (
-                <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} />
-              ) : (
-                <CreditCard size={16} />
-              )}
-              {isProcessing ? '...' : currentT.cta}
+              <Clock size={16} />
+              {currentT.cta}
             </button>
           </motion.div>
 
-          {/* Secure note */}
-          <motion.div
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.65, duration: 0.5 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              color: 'rgba(255,255,255,0.35)',
               marginBottom: '1.5rem',
             }}
           >
-            <Lock size={11} color="rgba(201,168,76,0.4)" />
-            <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.6rem',
-                color: 'rgba(255,255,255,0.3)',
-                letterSpacing: '0.05em',
-              }}
-            >
-              {currentT.secure}
-            </span>
-          </motion.div>
+            {currentT.comingSoonNote}
+          </motion.p>
 
-          {/* Divider */}
           <div
             style={{
               height: '1px',
@@ -369,7 +335,6 @@ export function ConfiguradorPaymentGate({
             }}
           />
 
-          {/* Contact note */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -402,17 +367,6 @@ export function ConfiguradorPaymentGate({
           </motion.p>
         </div>
       </motion.div>
-
-      <style jsx>{`
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
     </div>
   )
 }

@@ -37,6 +37,7 @@ function ProcessCard({ num, title, body, image, index }: CardProps) {
               objectFit:   'cover',
               filter:      'brightness(0.32) saturate(0.5)',
             }}
+            unoptimized
           />
         </div>
 

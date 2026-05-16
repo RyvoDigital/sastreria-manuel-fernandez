@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
-import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Video, Mail } from 'lucide-react'
+import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import Image from 'next/image'
 
@@ -44,12 +44,7 @@ const SERVICES = [
     href: '/cursos',
     image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-tools_clirtk',
   },
-  {
-    key: 'videollamada',
-    icon: Video,
-    href: '/videollamada',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_4288_rnjpvh',
-  },
+
   {
     key: 'contacto',
     icon: Mail,
@@ -161,7 +156,7 @@ export function ServicesOverview() {
         {/* 3x3 Grid of cards with images */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '1.25rem',
         }}>
           {SERVICES.map((service) => {
@@ -219,6 +214,7 @@ export function ServicesOverview() {
                       transition: 'transform 0.7s ease',
                     }}
                     className="service-img"
+                    unoptimized
                   />
                   {/* Gradient overlay */}
                   <div style={{
@@ -290,7 +286,7 @@ export function ServicesOverview() {
         }
         @media (max-width: 768px) {
           .service-card {
-            grid-column: span 3 !important;
+            grid-column: span 4 !important;
           }
         }
       `}</style>

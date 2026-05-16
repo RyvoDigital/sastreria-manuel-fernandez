@@ -49,6 +49,29 @@ export function CursosLayout() {
         background: 'linear-gradient(135deg, #0A1628 0%, #0D1D30 100%)',
         overflow: 'hidden',
       }}>
+        {/* Background image */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+        }}>
+          <img
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778763721/photos/IMG_9423_bn8baq.jpg"
+            alt="Cursos de Sastrería"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.55,
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(10,22,40,0.45) 40%, rgba(10,22,40,0.72) 100%)',
+          }} />
+        </div>
+
         {/* Subtle Luxury Pattern/Glow */}
         <div style={{
           position: 'absolute',
@@ -59,6 +82,7 @@ export function CursosLayout() {
           height: '100vw',
           background: 'radial-gradient(circle, rgba(201,168,76,0.05) 0%, rgba(10,22,40,0) 70%)',
           pointerEvents: 'none',
+          zIndex: 1,
         }} />
 
         <div style={{
@@ -144,6 +168,7 @@ export function CursosLayout() {
           right: 0,
           height: '100px',
           background: 'linear-gradient(to bottom, transparent, #0A1628)',
+          zIndex: 10,
         }} />
       </section>
 

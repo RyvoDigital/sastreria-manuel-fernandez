@@ -1,0 +1,30 @@
+1. Stripe Integration
+Integrate Stripe payment processing for:
+
+Videocall bookings (pay before booking)
+Configurator
+Online courses
+
+3. Custom Booking System (Instead of Calendly)
+Build a custom calendar/booking UI (matching the reference image) with two flows:
+
+A. "Reservar Cita" — In-Person Appointment (FREE)
+Click → select date → select time → confirm
+No payment required
+Books a physical visit to the tailor shop
+B. "Videollamada" — Video Call Appointment (PAID)
+Click → select date → select time → pay via Stripe → booking confirmed
+Payment happens before the appointment is finalized
+4. Page Structure Decision
+Evaluate and decide between:
+
+Option A: Merge Videollamada page into Contacto page as one unified booking/contact hub (in-person | message | video call)
+Option B: Keep them separate but evaluate if the Configurator page is worth keeping as-is
+
+6. Wedding Page (/bodas-y-ceremonia)
+Keep auto-scroll on the carousel
+Remove manual scrolling for the carousel
+Revert hero section to its previous version (before recent changes)
+
+
+https://res.cloudinary.com/dp3qxlhb4/image/upload/v1778846751/Sastreria_Male_Model_in_Grey_Suit_Scene__xyyqsg.glb

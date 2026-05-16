@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { VideollamadaLayout } from '@/components/videollamada/VideollamadaLayout'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
-  title: 'Videollamada · Sastrería Manuel Fernández',
-  description: 'Consulta de sastrería personalizada por videollamada. 20-25 minutos de asesoramiento profesional.',
+  title: 'Videollamada | Sastrería Manuel Fernández',
+  description: 'Reserva una videollamada de asesoría personalizada con nuestros expertos.',
 }
 
 export default function VideollamadaPage() {
-  return <VideollamadaLayout />
+  redirect('/contacto')
 }
