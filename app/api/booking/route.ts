@@ -220,58 +220,62 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Booking saved — now try to send notification emails (non-critical)
     const apiKey = process.env.RESEND_API_KEY
-    if (!apiKey) {
-      return NextResponse.json(
-        { success: false, error: 'Email service not configured' },
-        { status: 503 }
-      )
-    }
-
-    const resend = new Resend(apiKey)
     const ownerEmail = process.env.CONTACT_EMAIL || 'sastreriamanuelfernandez@gmail.com'
     const fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev'
 
-    const ownerSubject = getOwnerSubject(type, name, date, time, loc)
-    const ownerBody = getOwnerBody(type, name, email, date, time, loc)
+    let ownerId: string | null = null
+    let clientId: string | null = null
 
-    const ownerResult = await resend.emails.send({
-      from: fromEmail,
-      to: ownerEmail,
-      subject: ownerSubject,
-      text: ownerBody.text,
-      html: ownerBody.html,
-      replyTo: email,
-    })
+    if (apiKey) {
+      try {
+        const resend = new Resend(apiKey)
 
-    if (ownerResult.error) {
-      console.error('Resend owner email error:', ownerResult.error)
-      return NextResponse.json(
-        { success: false, error: 'Failed to send booking notification' },
-        { status: 500 }
-      )
-    }
+        const ownerSubject = getOwnerSubject(type, name, date, time, loc)
+        const ownerBody = getOwnerBody(type, name, email, date, time, loc)
 
-    const clientSubject = getClientSubject(type, date, time, loc)
-    const clientBody = getClientBody(type, name, date, time, loc)
+        const ownerResult = await resend.emails.send({
+          from: fromEmail,
+          to: ownerEmail,
+          subject: ownerSubject,
+          text: ownerBody.text,
+          html: ownerBody.html,
+          replyTo: email,
+        })
 
-    const clientResult = await resend.emails.send({
-      from: fromEmail,
-      to: email,
-      subject: clientSubject,
-      text: clientBody.text,
-      html: clientBody.html,
-      replyTo: ownerEmail,
-    })
+        if (ownerResult.error) {
+          console.error('Resend owner email error:', ownerResult.error)
+        } else {
+          ownerId = ownerResult.data?.id ?? null
+        }
 
-    if (clientResult.error) {
-      console.error('Resend client email error:', clientResult.error)
+        const clientSubject = getClientSubject(type, date, time, loc)
+        const clientBody = getClientBody(type, name, date, time, loc)
+
+        const clientResult = await resend.emails.send({
+          from: fromEmail,
+          to: email,
+          subject: clientSubject,
+          text: clientBody.text,
+          html: clientBody.html,
+          replyTo: ownerEmail,
+        })
+
+        if (clientResult.error) {
+          console.error('Resend client email error:', clientResult.error)
+        } else {
+          clientId = clientResult.data?.id ?? null
+        }
+      } catch (emailErr) {
+        console.error('Email sending failed:', emailErr)
+      }
     }
 
     return NextResponse.json({
       success: true,
-      ownerId: ownerResult.data?.id,
-      clientId: clientResult.data?.id ?? null,
+      ownerId,
+      clientId,
     })
   } catch (err) {
     console.error('Booking API error:', err)
