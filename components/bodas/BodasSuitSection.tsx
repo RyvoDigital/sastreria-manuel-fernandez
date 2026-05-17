@@ -14,7 +14,7 @@ export function BodasSuitSection() {
   const label = locale === 'es' ? 'Traje a Medida' : locale === 'en' ? 'Bespoke Suit' : locale === 'fr' ? 'Costume Sur Mesure' : 'Abito Su Misura'
   const title = locale === 'es' ? 'El traje que nace de ti' : locale === 'en' ? 'The suit born from you' : locale === 'fr' ? 'Le costume né de vous' : 'L\'abito nato da te'
   const body = locale === 'es'
-    ? 'Para el novio que busca algo más que un traje. Cada detalle — solapa, botonadura, tejido — se decide contigo. Sin prisas, sin catálogos. Solo tú, tu historia y nuestras manos.'
+    ? 'Para el novio que busca algo más que un traje. Cada detalle, solapa, botonadura, tejido, se decide contigo. Sin prisas, sin catálogos. Solo tú, tu historia y nuestras manos.'
     : locale === 'en'
     ? 'For the groom seeking more than a suit. Every detail — lapel, buttoning, fabric — is decided with you. No rush, no catalogues. Just you, your story, and our hands.'
     : locale === 'fr'

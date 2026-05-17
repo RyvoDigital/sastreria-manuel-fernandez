@@ -87,7 +87,7 @@ export function BodasHero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677.jpg"
-              alt="Traje de novio a medida — Bodas & Ceremonia"
+              alt="Traje de novio a medida · Bodas y Ceremonia"
               style={{
                 width: '100%',
                 height: '100%',
@@ -166,7 +166,7 @@ export function BodasHero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677.jpg"
-          alt="Traje de novio a medida — Bodas & Ceremonia"
+          alt="Traje de novio a medida · Bodas y Ceremonia"
           style={{
             width: '100%',
             height: 'clamp(340px, 72vh, 680px)',
