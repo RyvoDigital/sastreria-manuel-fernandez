@@ -23,7 +23,7 @@ export function BodasHero() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677.jpg"
             alt=""
             style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12 }}
           />
@@ -86,7 +86,7 @@ export function BodasHero() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677.jpg"
               alt="Traje de novio a medida — Bodas & Ceremonia"
               style={{
                 width: '100%',
@@ -117,7 +117,7 @@ export function BodasHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
+          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677.jpg"
           alt=""
           style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18 }}
         />
@@ -165,7 +165,7 @@ export function BodasHero() {
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli"
+          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677.jpg"
           alt="Traje de novio a medida — Bodas & Ceremonia"
           style={{
             width: '100%',
