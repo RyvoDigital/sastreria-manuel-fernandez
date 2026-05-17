@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
     const { default: Stripe } = await import('stripe')
     const stripe = new Stripe(stripeKey, {
-      apiVersion: '2026-04-22.dahlia',
+
     })
 
     const session = await stripe.checkout.sessions.retrieve(sessionId)
