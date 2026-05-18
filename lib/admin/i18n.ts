@@ -521,19 +521,27 @@ const labels: Record<AdminLocale, Record<string, any>> = {
 
 export type AdminLabels = typeof labels.es
 
+// Module-level shared state so all hook instances sync
+const listeners = new Set<(l: AdminLocale) => void>()
+let currentLocale: AdminLocale = 'es'
+
+if (typeof window !== 'undefined') {
+  const saved = localStorage.getItem('admin-lang') as AdminLocale | null
+  if (saved && labels[saved]) currentLocale = saved
+}
+
 export function useAdminI18n() {
-  const [locale, setLocaleState] = useState<AdminLocale>('es')
+  const [locale, setLocaleState] = useState<AdminLocale>(currentLocale)
 
   useEffect(() => {
-    const saved = typeof window !== 'undefined'
-      ? (localStorage.getItem('admin-lang') as AdminLocale | null)
-      : null
-    if (saved && labels[saved]) setLocaleState(saved)
+    listeners.add(setLocaleState)
+    return () => { listeners.delete(setLocaleState) }
   }, [])
 
   const setLocale = useCallback((l: AdminLocale) => {
     if (typeof window !== 'undefined') localStorage.setItem('admin-lang', l)
-    setLocaleState(l)
+    currentLocale = l
+    listeners.forEach((fn) => fn(l))
   }, [])
 
   return { t: labels[locale] as AdminLabels, locale, setLocale }
