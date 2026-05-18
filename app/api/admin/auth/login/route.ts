@@ -7,16 +7,25 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { email, password } = body
 
+    console.log('[login] Attempt:', email)
+
     if (!email || !password) {
       return NextResponse.json({ error: 'Email and password required' }, { status: 400 })
     }
 
     const admin = await getAdminByEmail(email)
+    console.log('[login] Admin found:', !!admin)
+
     if (!admin) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 
+    console.log('[login] Hash length:', admin.password_hash?.length)
+    console.log('[login] Hash prefix:', admin.password_hash?.substring(0, 30))
+
     const valid = await verifyPassword(password, admin.password_hash)
+    console.log('[login] Password valid:', valid)
+
     if (!valid) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
@@ -39,7 +48,7 @@ export async function POST(request: NextRequest) {
       },
     })
   } catch (error) {
-    console.error('Login error:', error)
+    console.error('[login] Error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
