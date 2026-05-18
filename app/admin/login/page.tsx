@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
 export default function AdminLogin() {
@@ -9,6 +9,25 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const switcherRef = useRef<HTMLDivElement>(null)
+
+  // Native DOM event listeners — bypass React synthetic events
+  useEffect(() => {
+    const container = switcherRef.current
+    if (!container) return
+    const buttons = container.querySelectorAll('button[data-lang]')
+    const handlers: Array<() => void> = []
+    buttons.forEach((btn) => {
+      const lang = btn.getAttribute('data-lang') as 'es' | 'en' | 'it' | 'fr'
+      const handler = () => {
+        console.log('[login] NATIVE click:', lang)
+        setLocale(lang)
+      }
+      btn.addEventListener('click', handler)
+      handlers.push(() => btn.removeEventListener('click', handler))
+    })
+    return () => handlers.forEach((fn) => fn())
+  }, [setLocale])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -35,17 +54,16 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        {/* Inline language switcher — uses SAME hook instance */}
-        <div className="mb-6 flex items-center justify-center gap-1">
+        {/* Locale display + switcher */}
+        <div ref={switcherRef} className="mb-6 flex items-center justify-center gap-2">
+          <span className="text-xs text-gray-500">{locale.toUpperCase()}</span>
           {(['es', 'en', 'it', 'fr'] as const).map((l) => (
             <button
               key={l}
               type="button"
-              onClick={() => {
-                console.log('[login] button clicked:', l)
-                setLocale(l)
-              }}
-              className={`px-2 py-1 text-xs rounded transition-colors ${
+              data-lang={l}
+              onClick={() => console.log('[login] REACT click:', l)}
+              className={`px-2 py-1 text-xs rounded transition-colors cursor-pointer ${
                 locale === l
                   ? 'bg-[#C9A84C] text-[#0A1628] font-medium'
                   : 'text-gray-400 hover:text-white hover:bg-[#1E3A5F]/50'
