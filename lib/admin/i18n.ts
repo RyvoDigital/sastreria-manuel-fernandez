@@ -521,27 +521,30 @@ const labels: Record<AdminLocale, Record<string, any>> = {
 
 export type AdminLabels = typeof labels.es
 
-// Module-level shared state so all hook instances sync
-const listeners = new Set<(l: AdminLocale) => void>()
-let currentLocale: AdminLocale = 'es'
-
-if (typeof window !== 'undefined') {
+function getSavedLocale(): AdminLocale {
+  if (typeof window === 'undefined') return 'es'
   const saved = localStorage.getItem('admin-lang') as AdminLocale | null
-  if (saved && labels[saved]) currentLocale = saved
+  return saved && labels[saved] ? saved : 'es'
 }
 
 export function useAdminI18n() {
-  const [locale, setLocaleState] = useState<AdminLocale>(currentLocale)
+  const [locale, setLocaleState] = useState<AdminLocale>(getSavedLocale)
 
   useEffect(() => {
-    listeners.add(setLocaleState)
-    return () => { listeners.delete(setLocaleState) }
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as AdminLocale
+      if (detail && labels[detail]) setLocaleState(detail)
+    }
+    window.addEventListener('admin-lang-change', handler)
+    return () => window.removeEventListener('admin-lang-change', handler)
   }, [])
 
   const setLocale = useCallback((l: AdminLocale) => {
-    if (typeof window !== 'undefined') localStorage.setItem('admin-lang', l)
-    currentLocale = l
-    listeners.forEach((fn) => fn(l))
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('admin-lang', l)
+      window.dispatchEvent(new CustomEvent('admin-lang-change', { detail: l }))
+    }
+    setLocaleState(l)
   }, [])
 
   return { t: labels[locale] as AdminLabels, locale, setLocale }
