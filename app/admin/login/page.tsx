@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import AdminLangSwitcher from '@/components/admin/AdminLangSwitcher'
 
 export default function AdminLogin() {
   const { t } = useAdminI18n()
@@ -34,55 +35,60 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4">
-      <div className="w-full max-w-md p-8 bg-[#0F1D2E] rounded-xl border border-[#1E3A5F]">
-        <div className="text-center mb-8">
-          <h1 className="text-xl font-serif text-white mb-2">{t.login.title}</h1>
-          <p className="text-gray-400 text-sm">{t.login.subtitle}</p>
+      <div className="w-full max-w-md">
+        <div className="mb-6">
+          <AdminLangSwitcher />
         </div>
-
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block text-sm text-gray-300 mb-2">{t.login.email}</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white focus:outline-none focus:border-[#C9A84C] transition-colors"
-              required
-            />
+        <div className="p-8 bg-[#0F1D2E] rounded-xl border border-[#1E3A5F]">
+          <div className="text-center mb-8">
+            <h1 className="text-xl font-serif text-white mb-2">{t.login.title}</h1>
+            <p className="text-gray-400 text-sm">{t.login.subtitle}</p>
           </div>
 
-          <div>
-            <label className="block text-sm text-gray-300 mb-2">{t.login.password}</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white focus:outline-none focus:border-[#C9A84C] transition-colors"
-              required
-            />
-          </div>
-
-          {error && (
-            <div className="text-red-400 text-sm bg-red-900/20 px-4 py-2 rounded-lg">
-              {error}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm text-gray-300 mb-2">{t.login.email}</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white focus:outline-none focus:border-[#C9A84C] transition-colors"
+                required
+              />
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] transition-colors disabled:opacity-50"
-          >
-            {loading ? t.login.signingIn : t.login.signIn}
-          </button>
+            <div>
+              <label className="block text-sm text-gray-300 mb-2">{t.login.password}</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white focus:outline-none focus:border-[#C9A84C] transition-colors"
+                required
+              />
+            </div>
 
-          <div className="text-center">
-            <a href="/admin/forgot-password" className="text-sm text-gray-400 hover:text-[#C9A84C]">
-              {t.login.forgotPassword}
-            </a>
-          </div>
-        </form>
+            {error && (
+              <div className="text-red-400 text-sm bg-red-900/20 px-4 py-2 rounded-lg">
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] transition-colors disabled:opacity-50"
+            >
+              {loading ? t.login.signingIn : t.login.signIn}
+            </button>
+
+            <div className="text-center">
+              <a href="/admin/forgot-password" className="text-sm text-gray-400 hover:text-[#C9A84C]">
+                {t.login.forgotPassword}
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   )

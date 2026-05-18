@@ -37,6 +37,8 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       send: 'Enviar enlace',
       sending: 'Enviando…',
       backToLogin: 'Volver al acceso',
+      successMsg: 'Revisa tu correo para el enlace de restablecimiento.',
+      invalidToken: 'Token inválido o faltante.',
     },
     resetPassword: {
       title: 'Nueva contraseña',
@@ -163,6 +165,8 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       send: 'Send link',
       sending: 'Sending…',
       backToLogin: 'Back to login',
+      successMsg: 'Check your email for the reset link.',
+      invalidToken: 'Invalid or missing token.',
     },
     resetPassword: {
       title: 'New Password',
@@ -289,6 +293,8 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       send: 'Invia link',
       sending: 'Invio in corso…',
       backToLogin: 'Torna all\'accesso',
+      successMsg: 'Controlla la tua email per il link di reimpostazione.',
+      invalidToken: 'Token non valido o mancante.',
     },
     resetPassword: {
       title: 'Nuova password',
@@ -415,6 +421,8 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       send: 'Envoyer le lien',
       sending: 'Envoi en cours…',
       backToLogin: 'Retour à la connexion',
+      successMsg: 'Vérifiez votre email pour le lien de réinitialisation.',
+      invalidToken: 'Token invalide ou manquant.',
     },
     resetPassword: {
       title: 'Nouveau mot de passe',
