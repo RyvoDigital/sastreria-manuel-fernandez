@@ -539,27 +539,44 @@ interface AdminI18nContextValue {
   setLocale: (l: AdminLocale) => void
 }
 
-const AdminI18nContext = createContext<AdminI18nContextValue | null>(null)
+const AdminI18nContext = createContext<AdminI18nContextValue>({
+  t: labels.es,
+  locale: 'es',
+  setLocale: () => {},
+})
 
 export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<AdminLocale>(() => {
-    if (typeof window === 'undefined') return 'es'
-    const saved = localStorage.getItem('admin-lang') as AdminLocale | null
-    return saved && labels[saved] ? saved : 'es'
-  })
+  const [locale, setLocaleState] = useState<AdminLocale>('es')
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('admin-lang') as AdminLocale | null
+      if (saved && labels[saved]) {
+        console.log('[i18n] loaded saved locale:', saved)
+        setLocaleState(saved)
+      }
+    } catch {
+      // ignore
+    }
+  }, [])
 
   const setLocale = useCallback((l: AdminLocale) => {
-    if (typeof window !== 'undefined') {
+    console.log('[i18n] setLocale called:', l)
+    try {
       localStorage.setItem('admin-lang', l)
+    } catch {
+      // ignore
     }
     setLocaleState(l)
   }, [])
 
-  const value: AdminI18nContextValue = {
+  const value = {
     t: labels[locale],
     locale,
     setLocale,
   }
+
+  console.log('[i18n] Provider render, locale:', locale)
 
   return (
     <AdminI18nContext.Provider value={value}>
@@ -569,9 +586,5 @@ export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useAdminI18n() {
-  const ctx = useContext(AdminI18nContext)
-  if (!ctx) {
-    throw new Error('useAdminI18n must be used within AdminI18nProvider')
-  }
-  return ctx
+  return useContext(AdminI18nContext)
 }
