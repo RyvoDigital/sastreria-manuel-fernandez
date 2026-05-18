@@ -13,7 +13,7 @@ export default async function AdminLayout({
   if (!isLoggedIn) {
     return (
       <AdminI18nProvider>
-        <div className="min-h-screen bg-[#0A1628]">
+        <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4 py-8">
           {children}
         </div>
       </AdminI18nProvider>

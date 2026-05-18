@@ -561,7 +561,6 @@ export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const setLocale = useCallback((l: AdminLocale) => {
-    console.log('[i18n] setLocale called:', l)
     try {
       localStorage.setItem('admin-lang', l)
     } catch {
@@ -575,8 +574,6 @@ export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
     locale,
     setLocale,
   }
-
-  console.log('[i18n] Provider render, locale:', locale)
 
   return (
     <AdminI18nContext.Provider value={value}>
