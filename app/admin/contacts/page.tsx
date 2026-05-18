@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Mail, Eye } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 interface Contact {
   id: number
@@ -15,6 +16,7 @@ interface Contact {
 }
 
 export default function ContactsPage() {
+  const { t } = useAdminI18n()
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -41,12 +43,12 @@ export default function ContactsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-serif text-white mb-8">Contact Inbox</h1>
+      <h1 className="text-2xl font-serif text-white mb-8">{t.sidebar.contacts}</h1>
 
       {loading ? (
-        <div className="text-gray-400">Loading...</div>
+        <div className="text-gray-400">{t.common.loading}</div>
       ) : contacts.length === 0 ? (
-        <div className="text-gray-400">No contact submissions yet.</div>
+        <div className="text-gray-400">{t.common.noData}</div>
       ) : (
         <div className="space-y-4">
           {contacts.map((c) => (
@@ -75,13 +77,13 @@ export default function ContactsPage() {
                       className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1E3A5F]/50 text-gray-300 rounded-lg text-xs hover:bg-[#1E3A5F]"
                     >
                       <Eye size={14} />
-                      Mark read
+                      {t.common.markRead}
                     </button>
                   )}
                 </div>
               </div>
               <p className="text-gray-300 text-sm whitespace-pre-wrap">{c.message}</p>
-              <div className="mt-3 text-xs text-gray-500">Language: {c.locale.toUpperCase()}</div>
+              <div className="mt-3 text-xs text-gray-500">{t.common.language}: {c.locale.toUpperCase()}</div>
             </div>
           ))}
         </div>

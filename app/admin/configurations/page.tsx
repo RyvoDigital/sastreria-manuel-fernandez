@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Shirt, CheckCircle } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 interface Configuration {
   id: number
@@ -16,6 +17,7 @@ interface Configuration {
 }
 
 export default function ConfigurationsPage() {
+  const { t } = useAdminI18n()
   const [configs, setConfigs] = useState<Configuration[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -42,12 +44,12 @@ export default function ConfigurationsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-serif text-white mb-8">Configurator Orders</h1>
+      <h1 className="text-2xl font-serif text-white mb-8">{t.sidebar.configurations}</h1>
 
       {loading ? (
-        <div className="text-gray-400">Loading...</div>
+        <div className="text-gray-400">{t.common.loading}</div>
       ) : configs.length === 0 ? (
-        <div className="text-gray-400">No configuration submissions yet.</div>
+        <div className="text-gray-400">{t.common.noData}</div>
       ) : (
         <div className="space-y-4">
           {configs.map((c) => (
@@ -79,30 +81,30 @@ export default function ConfigurationsPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div className="bg-[#1E3A5F]/20 rounded-lg p-4">
-                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Fabric</div>
-                  <div className="text-white">{c.fabric || 'Not selected'}</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">{t.common.fabric}</div>
+                  <div className="text-white">{c.fabric || t.common.notSelected}</div>
                 </div>
                 <div className="bg-[#1E3A5F]/20 rounded-lg p-4">
-                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Measurements</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">{t.common.measurements}</div>
                   <div className="text-white text-sm">
                     {c.measurements ? Object.entries(c.measurements).map(([k, v]) => (
                       <div key={k}>{k}: {String(v)}</div>
-                    )) : 'None'}
+                    )) : t.common.none}
                   </div>
                 </div>
                 <div className="bg-[#1E3A5F]/20 rounded-lg p-4">
-                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Design</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">{t.common.design}</div>
                   <div className="text-white text-sm">
                     {c.design_options ? Object.entries(c.design_options).map(([k, v]) => (
                       <div key={k}>{k}: {String(v)}</div>
-                    )) : 'None'}
+                    )) : t.common.none}
                   </div>
                 </div>
               </div>
 
               {c.notes && (
                 <div className="text-sm text-gray-300 mb-4 bg-[#1E3A5F]/10 p-3 rounded-lg">
-                  <span className="text-gray-400">Notes:</span> {c.notes}
+                  <span className="text-gray-400">{t.common.notes}:</span> {c.notes}
                 </div>
               )}
 
@@ -112,7 +114,7 @@ export default function ConfigurationsPage() {
                     onClick={() => updateStatus(c.id, 'quote_sent')}
                     className="px-3 py-1.5 bg-blue-900/30 text-blue-300 rounded-lg text-xs hover:bg-blue-900/50"
                   >
-                    Mark: Quote Sent
+                    {t.common.markQuoteSent}
                   </button>
                 )}
                 {c.status !== 'in_production' && (
@@ -120,7 +122,7 @@ export default function ConfigurationsPage() {
                     onClick={() => updateStatus(c.id, 'in_production')}
                     className="px-3 py-1.5 bg-purple-900/30 text-purple-300 rounded-lg text-xs hover:bg-purple-900/50"
                   >
-                    Mark: In Production
+                    {t.common.markInProduction}
                   </button>
                 )}
                 {c.status !== 'completed' && (
@@ -129,7 +131,7 @@ export default function ConfigurationsPage() {
                     className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-900/30 text-emerald-300 rounded-lg text-xs hover:bg-emerald-900/50"
                   >
                     <CheckCircle size={14} />
-                    Mark: Completed
+                    {t.common.markCompleted}
                   </button>
                 )}
               </div>

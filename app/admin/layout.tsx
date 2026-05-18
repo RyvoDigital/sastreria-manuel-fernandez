@@ -9,10 +9,18 @@ export default async function AdminLayout({
   const session = await getSession()
   const isLoggedIn = !!session
 
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-[#0A1628]">
+        {children}
+      </div>
+    )
+  }
+
   return (
     <div className="flex min-h-screen bg-[#0F1D2E]">
-      {isLoggedIn && <AdminSidebar />}
-      <main className={`flex-1 overflow-auto ${isLoggedIn ? 'p-8' : ''}`}>
+      <AdminSidebar />
+      <main className="flex-1 p-6 md:p-8 overflow-auto">
         {children}
       </main>
     </div>

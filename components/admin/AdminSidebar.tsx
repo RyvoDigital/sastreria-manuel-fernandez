@@ -15,22 +15,24 @@ import {
   LogOut,
   KeyRound,
 } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 const navItems = [
-  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/bookings', label: 'Bookings', icon: Calendar },
-  { href: '/admin/contacts', label: 'Contacts', icon: Mail },
-  { href: '/admin/payments', label: 'Payments', icon: CreditCard },
-  { href: '/admin/configurations', label: 'Configurations', icon: Shirt },
-  { href: '/admin/customers', label: 'Customers', icon: Users },
-  { href: '/admin/content', label: 'Content', icon: FileText },
-  { href: '/admin/settings', label: 'Settings', icon: Settings },
-  { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
-  { href: '/admin/change-password', label: 'Password', icon: KeyRound },
+  { href: '/admin', icon: LayoutDashboard, key: 'dashboard' },
+  { href: '/admin/bookings', icon: Calendar, key: 'bookings' },
+  { href: '/admin/contacts', icon: Mail, key: 'contacts' },
+  { href: '/admin/payments', icon: CreditCard, key: 'payments' },
+  { href: '/admin/configurations', icon: Shirt, key: 'configurations' },
+  { href: '/admin/customers', icon: Users, key: 'customers' },
+  { href: '/admin/content', icon: FileText, key: 'content' },
+  { href: '/admin/settings', icon: Settings, key: 'settings' },
+  { href: '/admin/analytics', icon: BarChart3, key: 'analytics' },
+  { href: '/admin/change-password', icon: KeyRound, key: 'password' },
 ]
 
 export default function AdminSidebar() {
   const pathname = usePathname()
+  const { t, locale, setLocale } = useAdminI18n()
 
   async function handleLogout() {
     await fetch('/api/admin/auth/logout', { method: 'POST' })
@@ -40,8 +42,8 @@ export default function AdminSidebar() {
   return (
     <aside className="w-64 min-h-screen bg-[#0A1628] border-r border-[#1E3A5F] flex flex-col">
       <div className="p-6 border-b border-[#1E3A5F]">
-        <h1 className="text-lg font-serif text-[#C9A84C] tracking-wide">Sastrería Admin</h1>
-        <p className="text-xs text-gray-400 mt-1">Manuel Fernández</p>
+        <h1 className="text-lg font-serif text-[#C9A84C] tracking-wide">{t.sidebar.title}</h1>
+        <p className="text-xs text-gray-400 mt-1">{t.sidebar.subtitle}</p>
       </div>
 
       <nav className="flex-1 p-4 space-y-1">
@@ -58,19 +60,35 @@ export default function AdminSidebar() {
               }`}
             >
               <item.icon size={18} />
-              {item.label}
+              {/* @ts-ignore */}
+              {t.sidebar[item.key]}
             </Link>
           )
         })}
       </nav>
 
-      <div className="p-4 border-t border-[#1E3A5F]">
+      <div className="p-4 border-t border-[#1E3A5F] space-y-3">
+        <div className="flex items-center justify-center gap-1">
+          {(['es', 'en', 'it', 'fr'] as const).map((l) => (
+            <button
+              key={l}
+              onClick={() => setLocale(l)}
+              className={`px-2 py-1 text-xs rounded transition-colors ${
+                locale === l
+                  ? 'bg-[#C9A84C] text-[#0A1628] font-medium'
+                  : 'text-gray-400 hover:text-white hover:bg-[#1E3A5F]/50'
+              }`}
+            >
+              {l.toUpperCase()}
+            </button>
+          ))}
+        </div>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-sm text-gray-300 hover:bg-red-900/20 hover:text-red-400 transition-colors"
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-gray-400 hover:bg-red-900/20 hover:text-red-300 transition-colors"
         >
           <LogOut size={18} />
-          Logout
+          {t.sidebar.logout}
         </button>
       </div>
     </aside>

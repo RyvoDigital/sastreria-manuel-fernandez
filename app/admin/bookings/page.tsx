@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CheckCircle, XCircle, Calendar } from 'lucide-react'
+import { CheckCircle, XCircle } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 interface Booking {
   id: number
@@ -16,6 +17,7 @@ interface Booking {
 }
 
 export default function BookingsPage() {
+  const { t } = useAdminI18n()
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
@@ -46,33 +48,33 @@ export default function BookingsPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-serif text-white">Bookings</h1>
+        <h1 className="text-2xl font-serif text-white">{t.sidebar.bookings}</h1>
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           className="px-4 py-2 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm"
         >
-          <option value="all">All Types</option>
-          <option value="inperson">In-Person</option>
-          <option value="videocall">Videocall</option>
+          <option value="all">{t.common.allTypes}</option>
+          <option value="inperson">{t.common.inPerson}</option>
+          <option value="videocall">{t.common.videocall}</option>
         </select>
       </div>
 
       {loading ? (
-        <div className="text-gray-400">Loading...</div>
+        <div className="text-gray-400">{t.common.loading}</div>
       ) : bookings.length === 0 ? (
-        <div className="text-gray-400">No bookings found.</div>
+        <div className="text-gray-400">{t.common.noData}</div>
       ) : (
         <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl overflow-hidden">
           <table className="w-full text-left text-sm">
             <thead className="bg-[#1E3A5F]/30 text-gray-300 uppercase text-xs tracking-wider">
               <tr>
-                <th className="px-6 py-4">Date</th>
-                <th className="px-6 py-4">Time</th>
-                <th className="px-6 py-4">Client</th>
-                <th className="px-6 py-4">Type</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Actions</th>
+                <th className="px-6 py-4">{t.common.date}</th>
+                <th className="px-6 py-4">{t.common.time}</th>
+                <th className="px-6 py-4">{t.common.client}</th>
+                <th className="px-6 py-4">{t.common.type}</th>
+                <th className="px-6 py-4">{t.common.status}</th>
+                <th className="px-6 py-4">{t.common.actions}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#1E3A5F]/50">
@@ -106,7 +108,7 @@ export default function BookingsPage() {
                         <button
                           onClick={() => updateStatus(b.id, 'confirmed')}
                           className="p-1.5 bg-emerald-900/30 text-emerald-300 rounded hover:bg-emerald-900/50"
-                          title="Confirm"
+                          title={t.common.confirm}
                         >
                           <CheckCircle size={16} />
                         </button>
@@ -115,7 +117,7 @@ export default function BookingsPage() {
                         <button
                           onClick={() => updateStatus(b.id, 'cancelled')}
                           className="p-1.5 bg-red-900/30 text-red-300 rounded hover:bg-red-900/50"
-                          title="Cancel"
+                          title={t.common.cancel}
                         >
                           <XCircle size={16} />
                         </button>
