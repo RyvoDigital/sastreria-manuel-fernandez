@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { Resend } from 'resend'
+import { createContact } from '@/lib/admin/db'
+import { rateLimit } from '@/lib/rate-limit'
+
+const contactLimiter = rateLimit({ name: 'contact', maxRequests: 5, windowMs: 60_000 })
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
@@ -177,6 +181,11 @@ function getClientVideollamadaBody(name: string, date: string, time: string, loc
 /* ─── Route handler ───────────────────────────────────────────── */
 
 export async function POST(req: NextRequest) {
+  const limit = contactLimiter(req)
+  if (!limit.success) {
+    return NextResponse.json({ success: false, error: 'Too many requests. Please try again later.' }, { status: 429 })
+  }
+
   try {
     const body = await req.json()
     const parsed = contactSchema.safeParse(body)
@@ -190,6 +199,13 @@ export async function POST(req: NextRequest) {
 
     const { name, email, message, type, date, time, locale } = parsed.data
     const loc = locale || 'es'
+
+    // Save to admin database
+    try {
+      await createContact({ name, email, type, message, locale: loc })
+    } catch (dbErr) {
+      console.error('Failed to save contact submission:', dbErr)
+    }
 
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {

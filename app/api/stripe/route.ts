@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimit } from '@/lib/rate-limit'
+
+const stripeLimiter = rateLimit({ name: 'stripe', maxRequests: 10, windowMs: 60_000 })
 
 export async function POST(req: NextRequest) {
+  const limit = stripeLimiter(req)
+  if (!limit.success) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 })
+  }
+
   try {
     const stripeKey = process.env.STRIPE_SECRET_KEY
     
