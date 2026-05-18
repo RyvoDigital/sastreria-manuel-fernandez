@@ -1,40 +1,102 @@
 'use client'
 
+import { useState, useEffect, Suspense } from 'react'
 import { useI18n } from '@/lib/i18n'
-import { GraduationCap } from 'lucide-react'
+import { GraduationCap, CheckCircle, ArrowLeft } from 'lucide-react'
 import { CursosList } from './CursosList'
+import { CursosPaymentGate } from './CursosPaymentGate'
+import { useSearchParams } from 'next/navigation'
 
-export function CursosLayout() {
+function CursosLayoutInner() {
   const { locale } = useI18n()
+  const searchParams = useSearchParams()
+  const [selectedCourse, setSelectedCourse] = useState<{
+    id: string
+    title: string
+    price: number
+  } | null>(null)
+  const [purchaseSuccess, setPurchaseSuccess] = useState(false)
+
+  useEffect(() => {
+    if (searchParams.get('success') === 'true') {
+      setPurchaseSuccess(true)
+    }
+  }, [searchParams])
 
   const t = {
     es: {
       title: 'Cursos Online',
       subtitle: 'Sastrería Artesanal',
-      status: 'Próximamente',
-      desc: 'Nuestra academia digital está en construcción. Pronto podrás acceder a masterclasses detalladas sobre las técnicas tradicionales que definen nuestro estilo.',
+      desc: 'Nuestra academia digital ofrece masterclasses detalladas sobre las técnicas tradicionales que definen nuestro estilo. Aprende desde cualquier lugar, a tu ritmo.',
+      back: 'Volver a cursos',
+      successTitle: '¡Compra exitosa!',
+      successMsg: 'Gracias por tu compra. Pronto tendrás acceso completo al curso.',
     },
     en: {
       title: 'Online Courses',
       subtitle: 'Artisan Tailoring',
-      status: 'Coming Soon',
-      desc: 'Our digital academy is under construction. Soon you will be able to access detailed masterclasses on the traditional techniques that define our style.',
+      desc: 'Our digital academy offers detailed masterclasses on the traditional techniques that define our style. Learn from anywhere, at your own pace.',
+      back: 'Back to courses',
+      successTitle: 'Purchase successful!',
+      successMsg: 'Thank you for your purchase. You will soon have full access to the course.',
     },
     it: {
       title: 'Corsi Online',
       subtitle: 'Sartoria Artigianale',
-      status: 'Prossimamente',
-      desc: 'La nostra accademia digitale è in costruzione. Presto potrai accedere a masterclass dettagliate sulle tecniche tradizionali che definiscono il nostro stile.',
+      desc: 'La nostra accademia digitale offre masterclass dettagliate sulle tecniche tradizionali che definiscono il nostro stile. Impara da qualsiasi luogo, al tuo ritmo.',
+      back: 'Torna ai corsi',
+      successTitle: 'Acquisto riuscito!',
+      successMsg: 'Grazie per il tuo acquisto. Presto avrai accesso completo al corso.',
     },
     fr: {
       title: 'Cours en Ligne',
       subtitle: 'Tailleur Artisanale',
-      status: 'Bientôt Disponible',
-      desc: 'Notre académie numérique est en construction. Bientôt, vous pourrez accéder à des masterclasses détaillées sur les techniques traditionnelles qui définissent notre style.',
+      desc: 'Notre académie numérique propose des masterclasses détaillées sur les techniques traditionnelles qui définissent notre style. Apprenez de n\'importe où, à votre rythme.',
+      back: 'Retour aux cours',
+      successTitle: 'Achat réussi !',
+      successMsg: 'Merci pour votre achat. Vous aurez bientôt un accès complet au cours.',
     }
   }
 
   const c = t[locale as keyof typeof t] || t.es
+
+  if (purchaseSuccess) {
+    return (
+      <div className="flex flex-col bg-[#0A1628] min-h-screen items-center justify-center px-6">
+        <div className="text-center max-w-md">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-900/20 rounded-full mb-6">
+            <CheckCircle size={32} className="text-emerald-400" />
+          </div>
+          <h1 className="text-2xl font-serif text-white mb-3">{c.successTitle}</h1>
+          <p className="text-gray-400 mb-8">{c.successMsg}</p>
+          <button
+            onClick={() => {
+              setPurchaseSuccess(false)
+              setSelectedCourse(null)
+              window.history.replaceState({}, '', '/cursos')
+            }}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] transition-colors"
+          >
+            <ArrowLeft size={16} />
+            {c.back}
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  if (selectedCourse) {
+    return (
+      <CursosPaymentGate
+        onAccessGranted={() => setSelectedCourse(null)}
+        title={selectedCourse.title}
+        subtitle={c.subtitle}
+        courseId={selectedCourse.id}
+        courseName={selectedCourse.title}
+        price={selectedCourse.price}
+      />
+    )
+  }
 
   return (
     <div className="flex flex-col bg-[#0A1628]">
@@ -113,7 +175,7 @@ export function CursosLayout() {
               color: '#C9A84C',
               fontWeight: 500,
             }}>
-              {c.status}
+              Online Academy
             </span>
           </div>
 
@@ -174,7 +236,14 @@ export function CursosLayout() {
 
       {/* The List of upcoming modules */}
       <div style={{ position: 'relative', zIndex: 20, marginTop: '2rem' }}>
-        <CursosList />
+        <CursosList onSelectCourse={(course) => {
+          const title = (course[`title_${locale}` as keyof typeof course] as string) || course.title_es
+          setSelectedCourse({
+            id: course.id,
+            title,
+            price: course.price || 9900,
+          })
+        }} />
       </div>
 
       {/* Seamless transition to dark footer */}
@@ -185,5 +254,18 @@ export function CursosLayout() {
         zIndex: 10,
       }} />
     </div>
+  )
+}
+
+export function CursosLayout() {
+  return (
+    <Suspense fallback={
+      <div style={{ minHeight: '100vh', background: '#0A1628', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 32, height: 32, border: '2px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    }>
+      <CursosLayoutInner />
+    </Suspense>
   )
 }

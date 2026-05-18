@@ -44,6 +44,49 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Sastrería Manuel Fernández',
+  description: 'Maestros sastres en Madrid expertos en confección artesanal de trajes a medida, chaqués y esmóquines.',
+  url: 'https://sastreria-five.vercel.app',
+  telephone: '+34 682 192 944',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Calle de Jorge Juan, 41',
+    addressLocality: 'Madrid',
+    postalCode: '28001',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 40.4258,
+    longitude: -3.6868,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '10:00',
+      closes: '14:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '17:00',
+      closes: '20:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '10:00',
+      closes: '13:00',
+    },
+  ],
+  priceRange: '€€€',
+  image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,6 +95,10 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <LanguageProvider>
           <HtmlLang />
           <LenisProvider>

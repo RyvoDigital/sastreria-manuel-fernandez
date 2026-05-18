@@ -1,14 +1,14 @@
 import { Pool } from 'pg'
+import bcrypt from 'bcryptjs'
 
 async function setup() {
   const rawDatabaseUrl = process.env.DATABASE_URL
 
   if (!rawDatabaseUrl) {
-    console.log('⚠️  DATABASE_URL not set. Skipping database setup.')
+    console.log('DATABASE_URL not set. Skipping database setup.')
     process.exit(0)
   }
 
-  // Strip sslmode to avoid pg v8 warning + let our explicit ssl config handle it
   const databaseUrl = rawDatabaseUrl.replace(/\?sslmode=[^&]*/, '').replace(/&sslmode=[^&]*/, '')
 
   const pool = new Pool({
@@ -19,6 +19,7 @@ async function setup() {
   })
 
   try {
+    // Existing bookings table
     await pool.query(`
       CREATE TABLE IF NOT EXISTS bookings (
         id SERIAL PRIMARY KEY,
@@ -27,6 +28,8 @@ async function setup() {
         type VARCHAR(20) NOT NULL DEFAULT 'inperson',
         name VARCHAR(100) NOT NULL,
         email VARCHAR(200) NOT NULL,
+        status VARCHAR(50) DEFAULT 'confirmed',
+        notes TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `)
@@ -36,9 +39,86 @@ async function setup() {
       ON bookings (date, time)
     `)
 
-    console.log('✅ Bookings table ready')
+    // Admin users
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS admins (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(200) NOT NULL UNIQUE,
+        password_hash VARCHAR(255) NOT NULL,
+        role VARCHAR(20) NOT NULL DEFAULT 'manager',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Contact form submissions
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS contact_submissions (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(200) NOT NULL,
+        type VARCHAR(50) DEFAULT 'contact',
+        message TEXT,
+        locale VARCHAR(10) DEFAULT 'es',
+        read BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Configurator submissions
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS configurations (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(200) NOT NULL,
+        fabric VARCHAR(100),
+        measurements JSONB,
+        design_options JSONB,
+        status VARCHAR(50) DEFAULT 'new',
+        notes TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Customer notes
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS customer_notes (
+        id SERIAL PRIMARY KEY,
+        email VARCHAR(200) NOT NULL,
+        name VARCHAR(100),
+        notes TEXT,
+        measurements JSONB,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Editable content
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS editable_content (
+        id VARCHAR(100) PRIMARY KEY,
+        value TEXT NOT NULL,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Seed default admin if none exists and ADMIN_PASSWORD is set
+    const adminPassword = process.env.ADMIN_PASSWORD
+    if (adminPassword) {
+      const existing = await pool.query(`SELECT id FROM admins WHERE email = 'admin@sastreria.com'`)
+      if (existing.rowCount === 0) {
+        const hash = await bcrypt.hash(adminPassword, 12)
+        await pool.query(
+          `INSERT INTO admins (name, email, password_hash, role) VALUES ($1, $2, $3, $4)`,
+          ['Admin', 'admin@sastreria.com', hash, 'owner']
+        )
+        console.log('Default admin created: admin@sastreria.com')
+      }
+    }
+
+    console.log('Database setup complete')
   } catch (err) {
-    console.error('❌ Failed to set up database:', err)
+    console.error('Failed to set up database:', err)
     process.exit(1)
   } finally {
     await pool.end()

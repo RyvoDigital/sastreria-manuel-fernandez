@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
-import { Lock, Check, Clock, Loader2 } from 'lucide-react'
+import { Lock, Check, Clock, Loader2, CreditCard, ArrowRight } from 'lucide-react'
 
 interface ConfiguradorPaymentGateProps {
   onAccessGranted: () => void
@@ -18,7 +18,6 @@ export function ConfiguradorPaymentGate({
 }: ConfiguradorPaymentGateProps) {
   const { locale } = useI18n()
   const [isProcessing, setIsProcessing] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
 
   const t = {
     es: {
@@ -32,11 +31,11 @@ export function ConfiguradorPaymentGate({
         'Recomendación de estilo personalizado',
         'Presupuesto instantáneo',
       ],
-      cta: 'Próximamente',
+      cta: 'Comprar Acceso — €29',
       secure: 'Pago seguro con Stripe',
       contact: '¿Prefieres hablar con nosotros?',
       contact_cta: 'Reservar cita',
-      comingSoonNote: 'El acceso estará disponible próximamente.',
+      comingSoonNote: 'Acceso inmediato tras la compra. Devolución garantizada en 14 días.',
     },
     en: {
       badge: 'Premium Access',
@@ -49,11 +48,11 @@ export function ConfiguradorPaymentGate({
         'Personalised style recommendation',
         'Instant quote',
       ],
-      cta: 'Coming Soon',
+      cta: 'Buy Access — €29',
       secure: 'Secure payment with Stripe',
       contact: 'Prefer to talk to us?',
       contact_cta: 'Book an appointment',
-      comingSoonNote: 'Access will be available soon.',
+      comingSoonNote: 'Immediate access after purchase. 14-day money-back guarantee.',
     },
     it: {
       badge: 'Accesso Premium',
@@ -66,11 +65,11 @@ export function ConfiguradorPaymentGate({
         'Raccomandazione di stile personalizzata',
         'Preventivo istantaneo',
       ],
-      cta: 'Prossimamente',
+      cta: 'Acquista Accesso — €29',
       secure: 'Pagamento sicuro con Stripe',
       contact: 'Preferisci parlarci?',
       contact_cta: 'Prenota un appuntamento',
-      comingSoonNote: 'L\'accesso sarà disponibile presto.',
+      comingSoonNote: 'Accesso immediato dopo l\'acquisto. Rimborso garantito in 14 giorni.',
     },
     fr: {
       badge: 'Accès Premium',
@@ -83,11 +82,11 @@ export function ConfiguradorPaymentGate({
         'Recommandation de style personnalisée',
         'Devis instantané',
       ],
-      cta: 'Bientôt',
+      cta: 'Acheter l\'Accès — €29',
       secure: 'Paiement sécurisé avec Stripe',
       contact: 'Vous préférez nous parler?',
       contact_cta: 'Prendre rendez-vous',
-      comingSoonNote: 'L\'accès sera disponible bientôt.',
+      comingSoonNote: 'Accès immédiat après l\'achat. Remboursement garanti sous 14 jours.',
     },
   }
 
@@ -279,7 +278,7 @@ export function ConfiguradorPaymentGate({
             ))}
           </motion.div>
 
-          {/* Coming Soon Button */}
+          {/* Stripe Checkout Button */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -287,14 +286,32 @@ export function ConfiguradorPaymentGate({
             style={{ marginBottom: '1.25rem' }}
           >
             <button
-              disabled
+              onClick={async () => {
+                setIsProcessing(true)
+                try {
+                  const res = await fetch('/api/stripe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type: 'configurator' }),
+                  })
+                  const data = await res.json()
+                  if (data.url) {
+                    window.location.href = data.url
+                  } else {
+                    setIsProcessing(false)
+                  }
+                } catch {
+                  setIsProcessing(false)
+                }
+              }}
+              disabled={isProcessing}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.75rem',
                 padding: '1rem 2.5rem',
-                background: 'rgba(201,168,76,0.2)',
-                color: 'rgba(255,255,255,0.3)',
+                background: '#C9A84C',
+                color: '#000000',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.75rem',
                 fontWeight: 600,
@@ -302,13 +319,14 @@ export function ConfiguradorPaymentGate({
                 textTransform: 'uppercase',
                 border: 'none',
                 borderRadius: '8px',
-                cursor: 'not-allowed',
-                opacity: 1,
+                cursor: isProcessing ? 'wait' : 'pointer',
+                opacity: isProcessing ? 0.7 : 1,
                 transition: 'all 0.3s ease',
               }}
             >
-              <Clock size={16} />
-              {currentT.cta}
+              <CreditCard size={16} />
+              {isProcessing ? '...' : currentT.cta}
+              <ArrowRight size={16} />
             </button>
           </motion.div>
 

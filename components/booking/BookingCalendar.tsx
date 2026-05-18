@@ -57,6 +57,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const [cancelled, setCancelled] = useState(false)
+  const [isCancelling, setIsCancelling] = useState(false)
+  const [cancelError, setCancelError] = useState<string | null>(null)
   const [bookedSlots, setBookedSlots] = useState<string[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
 
@@ -96,7 +99,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Consulta personalizada de 20-25 minutos por videollamada con nuestros expertos.'
         : 'Visita a nuestro taller en Madrid para tomar medidas y conocernos.',
       duration: isVideocall ? '20-25 minutos' : '45-60 minutos',
-      price: isVideocall ? '€XX' : 'Gratis',
+      price: isVideocall ? '€50' : 'Gratis',
       location: 'Madrid',
     },
     en: {
@@ -125,7 +128,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Personalized 20-25 minute video call consultation with our experts.'
         : 'Visit our atelier in Madrid for measurements and to meet us.',
       duration: isVideocall ? '20-25 minutes' : '45-60 minutes',
-      price: isVideocall ? '€XX' : 'Free',
+      price: isVideocall ? '€50' : 'Free',
       location: 'Madrid',
     },
     it: {
@@ -154,7 +157,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Consulenza personalizzata di 20-25 minuti in videochiamata con i nostri esperti.'
         : 'Visita il nostro atelier a Madrid per le misure e conoscerci.',
       duration: isVideocall ? '20-25 minuti' : '45-60 minuti',
-      price: isVideocall ? '€XX' : 'Gratuito',
+      price: isVideocall ? '€50' : 'Gratuito',
       location: 'Madrid',
     },
     fr: {
@@ -183,7 +186,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Consultation personnalisée de 20-25 minutes par visioconférence avec nos experts.'
         : 'Visitez notre atelier à Madrid pour les mesures et nous rencontrer.',
       duration: isVideocall ? '20-25 minutes' : '45-60 minutes',
-      price: isVideocall ? '€XX' : 'Gratuit',
+      price: isVideocall ? '€50' : 'Gratuit',
       location: 'Madrid',
     },
   }
@@ -340,6 +343,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
 
   const handleCloseSuccess = () => {
     setSuccess(false)
+    setCancelled(false)
+    setCancelError(null)
     setStep('calendar')
     setSelectedDate(null)
     setSelectedTime(null)
@@ -347,6 +352,33 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     setEmail('')
     setBookedSlots([])
     setError(null)
+  }
+
+  const handleCancel = async () => {
+    if (!selectedDate || !selectedTime || !email) return
+    setIsCancelling(true)
+    setCancelError(null)
+    try {
+      const res = await fetch('/api/booking', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          date: selectedDate.toISOString().split('T')[0],
+          time: selectedTime,
+        }),
+      })
+      if (res.ok) {
+        setCancelled(true)
+      } else {
+        const data = await res.json()
+        setCancelError(data.error || 'Failed to cancel')
+      }
+    } catch {
+      setCancelError('Network error')
+    } finally {
+      setIsCancelling(false)
+    }
   }
 
   return (
@@ -913,6 +945,53 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                   </p>
                 </div>
               )}
+
+              {/* Cancel Booking */}
+              {!isVideocall && !cancelled && (
+                <div style={{ marginBottom: '1.5rem' }}>
+                  {cancelError && (
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#e57373', marginBottom: '0.5rem' }}>
+                      {cancelError}
+                    </p>
+                  )}
+                  <button
+                    onClick={handleCancel}
+                    disabled={isCancelling}
+                    style={{
+                      padding: '0.6rem 1.25rem',
+                      background: 'transparent',
+                      border: '1px solid rgba(255,255,255,0.15)',
+                      borderRadius: '8px',
+                      color: 'rgba(255,255,255,0.5)',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.75rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      cursor: isCancelling ? 'wait' : 'pointer',
+                      transition: 'all 0.25s ease',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,100,100,0.4)'; e.currentTarget.style.color = 'rgba(255,100,100,0.7)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)' }}
+                  >
+                    {isCancelling ? 'Cancelling...' : 'Cancel this booking'}
+                  </button>
+                </div>
+              )}
+              {cancelled && (
+                <div style={{
+                  padding: '0.75rem 1.25rem',
+                  background: 'rgba(255,100,100,0.08)',
+                  border: '1px solid rgba(255,100,100,0.2)',
+                  borderRadius: '8px',
+                  marginBottom: '1.5rem',
+                }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: 'rgba(255,150,150,0.8)', margin: 0 }}>
+                    Booking cancelled successfully
+                  </p>
+                </div>
+              )}
+
               <button
                 onClick={handleCloseSuccess}
                 style={{

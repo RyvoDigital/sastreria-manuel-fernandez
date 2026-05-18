@@ -5,7 +5,24 @@ import { motion } from "framer-motion";
 import { Play, Lock, Clock, BookOpen } from "lucide-react";
 import Image from "next/image";
 
-const COURSES = [
+interface Course {
+  id: string
+  title_es: string
+  title_en: string
+  title_it: string
+  title_fr: string
+  desc_es: string
+  desc_en: string
+  desc_it: string
+  desc_fr: string
+  duration: string
+  lessons: number
+  locked: boolean
+  image: string
+  price?: number
+}
+
+const COURSES: Course[] = [
   {
     id: "intro",
     title_es: "Introducción a la Sastrería Artesanal",
@@ -18,7 +35,8 @@ const COURSES = [
     desc_fr: "Fondements et philosophie du costume fait main.",
     duration: "45 min",
     lessons: 3,
-    locked: true,
+    locked: false,
+    price: 9900,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce",
   },
@@ -34,7 +52,8 @@ const COURSES = [
     desc_fr: "Techniques de couture de la toile canvas.",
     duration: "2h 30min",
     lessons: 5,
-    locked: true,
+    locked: false,
+    price: 9900,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/purple-lining-interior_krylkv",
   },
@@ -50,7 +69,8 @@ const COURSES = [
     desc_fr: "Types de revers et construction étape par étape.",
     duration: "1h 45min",
     lessons: 4,
-    locked: true,
+    locked: false,
+    price: 9900,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/gray-check-mannequin_gaf1fp",
   },
@@ -66,7 +86,8 @@ const COURSES = [
     desc_fr: "Poches passepoilées, à patch et à rabat.",
     duration: "2h 15min",
     lessons: 6,
-    locked: true,
+    locked: false,
+    price: 9900,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/showroom-jackets_n55sfk",
   },
@@ -82,7 +103,8 @@ const COURSES = [
     desc_fr: "Technique du point de boutonnière.",
     duration: "1h 30min",
     lessons: 3,
-    locked: true,
+    locked: false,
+    price: 9900,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/scissors-cutting_vyt9my",
   },
@@ -98,13 +120,18 @@ const COURSES = [
     desc_fr: "Détails qui font la différence.",
     duration: "2h",
     lessons: 4,
-    locked: true,
+    locked: false,
+    price: 9900,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9436_uyetr0",
   },
 ];
 
-export function CursosList() {
+interface CursosListProps {
+  onSelectCourse?: (course: Course) => void
+}
+
+export function CursosList({ onSelectCourse }: CursosListProps) {
   const { locale } = useI18n();
 
   const t = {
@@ -416,31 +443,10 @@ export function CursosList() {
                     </div>
                   </div>
 
-                  {/* BIGGER button for locked courses too */}
-                  {course.locked ? (
-                    <button
-                      disabled
-                      style={{
-                        marginTop: '1.25rem',
-                        width: '100%',
-                        padding: '0.9rem 1.5rem',
-                        background: 'transparent',
-                        color: 'rgba(201,169,110,0.5)',
-                        border: '1px solid rgba(201,169,110,0.2)',
-                        borderRadius: '8px',
-                        fontFamily: 'var(--font-sans)',
-                        fontSize: '0.8rem',
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        fontWeight: 500,
-                        cursor: 'not-allowed',
-                        transition: 'all 0.3s',
-                      }}
-                    >
-                      {c.locked}
-                    </button>
-                  ) : (
-                    <button style={{
+                  {/* Course action button */}
+                  <button
+                    onClick={() => onSelectCourse?.(course)}
+                    style={{
                       marginTop: '1.25rem',
                       width: '100%',
                       padding: '0.9rem 1.5rem',
@@ -455,10 +461,10 @@ export function CursosList() {
                       fontWeight: 600,
                       cursor: 'pointer',
                       transition: 'all 0.3s',
-                    }}>
-                      {c.watch}
-                    </button>
-                  )}
+                    }}
+                  >
+                    {course.locked ? c.locked : c.watch}
+                  </button>
                 </div>
               </motion.div>
             );

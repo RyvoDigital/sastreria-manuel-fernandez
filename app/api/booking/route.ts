@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { Resend } from 'resend'
 import { bookSlot, isSlotBooked } from '@/lib/bookings'
+import { query } from '@/lib/db'
+import { rateLimit } from '@/lib/rate-limit'
+
+const bookingLimiter = rateLimit({ name: 'booking', maxRequests: 3, windowMs: 60_000 })
 
 const bookingSchema = z.object({
   name: z.string().min(1).max(100),
@@ -174,6 +178,11 @@ function getClientBody(type: string, name: string, date: string, time: string, l
 }
 
 export async function POST(req: NextRequest) {
+  const limit = bookingLimiter(req)
+  if (!limit.success) {
+    return NextResponse.json({ success: false, error: 'Too many requests. Please try again later.' }, { status: 429 })
+  }
+
   try {
     const body = await req.json()
     const parsed = bookingSchema.safeParse(body)
@@ -273,6 +282,40 @@ export async function POST(req: NextRequest) {
     })
   } catch (err) {
     console.error('Booking API error:', err)
+    return NextResponse.json(
+      { success: false, error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const body = await req.json()
+    const { email, date, time } = body
+
+    if (!email || !date || !time) {
+      return NextResponse.json(
+        { success: false, error: 'Email, date and time required' },
+        { status: 400 }
+      )
+    }
+
+    const result = await query(
+      `DELETE FROM bookings WHERE email = $1 AND date = $2 AND time = $3 RETURNING *`,
+      [email, date, time]
+    )
+
+    if (result.rowCount === 0) {
+      return NextResponse.json(
+        { success: false, error: 'Booking not found' },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({ success: true, booking: result.rows[0] })
+  } catch (err) {
+    console.error('Booking delete error:', err)
     return NextResponse.json(
       { success: false, error: 'Internal server error' },
       { status: 500 }
