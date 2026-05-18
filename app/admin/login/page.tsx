@@ -2,10 +2,9 @@
 
 import { useState } from 'react'
 import { useAdminI18n } from '@/lib/admin/i18n'
-import AdminLangSwitcher from '@/components/admin/AdminLangSwitcher'
 
 export default function AdminLogin() {
-  const { t } = useAdminI18n()
+  const { t, locale, setLocale } = useAdminI18n()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -36,9 +35,27 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="mb-6">
-          <AdminLangSwitcher />
+        {/* Inline language switcher — uses SAME hook instance */}
+        <div className="mb-6 flex items-center justify-center gap-1">
+          {(['es', 'en', 'it', 'fr'] as const).map((l) => (
+            <button
+              key={l}
+              type="button"
+              onClick={() => {
+                console.log('[login] button clicked:', l)
+                setLocale(l)
+              }}
+              className={`px-2 py-1 text-xs rounded transition-colors ${
+                locale === l
+                  ? 'bg-[#C9A84C] text-[#0A1628] font-medium'
+                  : 'text-gray-400 hover:text-white hover:bg-[#1E3A5F]/50'
+              }`}
+            >
+              {l.toUpperCase()}
+            </button>
+          ))}
         </div>
+
         <div className="p-8 bg-[#0F1D2E] rounded-xl border border-[#1E3A5F]">
           <div className="text-center mb-8">
             <h1 className="text-xl font-serif text-white mb-2">{t.login.title}</h1>
