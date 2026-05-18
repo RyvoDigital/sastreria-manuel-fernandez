@@ -1,5 +1,6 @@
 import { getSession } from '@/lib/admin/auth'
 import AdminSidebar from '@/components/admin/AdminSidebar'
+import { AdminI18nProvider } from '@/lib/admin/i18n'
 
 export default async function AdminLayout({
   children,
@@ -11,18 +12,22 @@ export default async function AdminLayout({
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-[#0A1628]">
-        {children}
-      </div>
+      <AdminI18nProvider>
+        <div className="min-h-screen bg-[#0A1628]">
+          {children}
+        </div>
+      </AdminI18nProvider>
     )
   }
 
   return (
-    <div className="flex min-h-screen bg-[#0F1D2E]">
-      <AdminSidebar />
-      <main className="flex-1 p-6 md:p-8 overflow-auto">
-        {children}
-      </main>
-    </div>
+    <AdminI18nProvider>
+      <div className="flex min-h-screen bg-[#0F1D2E]">
+        <AdminSidebar />
+        <main className="flex-1 p-6 md:p-8 overflow-auto">
+          {children}
+        </main>
+      </div>
+    </AdminI18nProvider>
   )
 }

@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback, useEffect } from 'react'
 
 export type AdminLocale = 'es' | 'en' | 'it' | 'fr'
 
-const labels: Record<AdminLocale, Record<string, any>> = {
+const labels = {
   es: {
     sidebar: {
       title: 'Panel Admin',
@@ -50,6 +50,9 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       success: 'Contraseña actualizada correctamente.',
       goToLogin: 'Ir al acceso',
       backToLogin: 'Volver al acceso',
+      mismatch: 'Las contraseñas no coinciden.',
+      minLength: 'La contraseña debe tener al menos 6 caracteres.',
+      failed: 'Error al actualizar la contraseña.',
     },
     dashboard: {
       title: 'Panel de control',
@@ -178,6 +181,9 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       success: 'Password updated successfully.',
       goToLogin: 'Go to login',
       backToLogin: 'Back to login',
+      mismatch: 'New passwords do not match.',
+      minLength: 'Password must be at least 6 characters.',
+      failed: 'Failed to update password.',
     },
     dashboard: {
       title: 'Dashboard',
@@ -306,6 +312,9 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       success: 'Password aggiornata con successo.',
       goToLogin: 'Vai all\'accesso',
       backToLogin: 'Torna all\'accesso',
+      mismatch: 'Le nuove password non coincidono.',
+      minLength: 'La password deve contenere almeno 6 caratteri.',
+      failed: 'Errore nell\'aggiornamento della password.',
     },
     dashboard: {
       title: 'Pannello di controllo',
@@ -434,6 +443,9 @@ const labels: Record<AdminLocale, Record<string, any>> = {
       success: 'Mot de passe mis à jour avec succès.',
       goToLogin: 'Aller à la connexion',
       backToLogin: 'Retour à la connexion',
+      mismatch: 'Les nouveaux mots de passe ne correspondent pas.',
+      minLength: 'Le mot de passe doit contenir au moins 6 caractères.',
+      failed: 'Échec de la mise à jour du mot de passe.',
     },
     dashboard: {
       title: 'Tableau de bord',
@@ -521,31 +533,45 @@ const labels: Record<AdminLocale, Record<string, any>> = {
 
 export type AdminLabels = typeof labels.es
 
-function getSavedLocale(): AdminLocale {
-  if (typeof window === 'undefined') return 'es'
-  const saved = localStorage.getItem('admin-lang') as AdminLocale | null
-  return saved && labels[saved] ? saved : 'es'
+interface AdminI18nContextValue {
+  t: AdminLabels
+  locale: AdminLocale
+  setLocale: (l: AdminLocale) => void
 }
 
-export function useAdminI18n() {
-  const [locale, setLocaleState] = useState<AdminLocale>(getSavedLocale)
+const AdminI18nContext = createContext<AdminI18nContextValue | null>(null)
 
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail as AdminLocale
-      if (detail && labels[detail]) setLocaleState(detail)
-    }
-    window.addEventListener('admin-lang-change', handler)
-    return () => window.removeEventListener('admin-lang-change', handler)
-  }, [])
+export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
+  const [locale, setLocaleState] = useState<AdminLocale>(() => {
+    if (typeof window === 'undefined') return 'es'
+    const saved = localStorage.getItem('admin-lang') as AdminLocale | null
+    return saved && labels[saved] ? saved : 'es'
+  })
 
   const setLocale = useCallback((l: AdminLocale) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('admin-lang', l)
-      window.dispatchEvent(new CustomEvent('admin-lang-change', { detail: l }))
     }
     setLocaleState(l)
   }, [])
 
-  return { t: labels[locale] as AdminLabels, locale, setLocale }
+  const value: AdminI18nContextValue = {
+    t: labels[locale],
+    locale,
+    setLocale,
+  }
+
+  return (
+    <AdminI18nContext.Provider value={value}>
+      {children}
+    </AdminI18nContext.Provider>
+  )
+}
+
+export function useAdminI18n() {
+  const ctx = useContext(AdminI18nContext)
+  if (!ctx) {
+    throw new Error('useAdminI18n must be used within AdminI18nProvider')
+  }
+  return ctx
 }
