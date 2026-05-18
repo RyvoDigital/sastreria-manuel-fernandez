@@ -1,12 +1,12 @@
 'use client'
 
-export const dynamic = 'force-dynamic'
-
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { KeyRound, ArrowLeft } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 export default function ResetPassword() {
+  const { t } = useAdminI18n()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
 
@@ -18,7 +18,7 @@ export default function ResetPassword() {
 
   useEffect(() => {
     if (!token) {
-      setError('Invalid or missing reset token')
+      setError('Token inválido o faltante')
     }
   }, [token])
 
@@ -27,12 +27,12 @@ export default function ResetPassword() {
     setError('')
 
     if (newPassword !== confirmPassword) {
-      setError('Passwords do not match')
+      setError(t.resetPassword.mismatch)
       return
     }
 
     if (newPassword.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError(t.resetPassword.minLength)
       return
     }
 
@@ -47,7 +47,7 @@ export default function ResetPassword() {
     const data = await res.json()
 
     if (!res.ok) {
-      setError(data.error || 'Reset failed')
+      setError(data.error || t.resetPassword.failed)
       setLoading(false)
       return
     }
@@ -57,32 +57,32 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A1628] flex items-center justify-center">
+    <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4">
       <div className="w-full max-w-md p-8 bg-[#0F1D2E] rounded-xl border border-[#1E3A5F]">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-[#C9A84C]/10 rounded-full mb-4">
             <KeyRound size={20} className="text-[#C9A84C]" />
           </div>
-          <h1 className="text-xl font-serif text-white mb-2">New Password</h1>
-          <p className="text-gray-400 text-sm">Create a new password for your account</p>
+          <h1 className="text-xl font-serif text-white mb-2">{t.resetPassword.title}</h1>
+          <p className="text-gray-400 text-sm">{t.resetPassword.subtitle}</p>
         </div>
 
         {success ? (
           <div className="text-center space-y-4">
             <div className="p-4 bg-emerald-900/20 border border-emerald-800 rounded-lg text-emerald-300 text-sm">
-              Your password has been updated successfully.
+              {t.resetPassword.success}
             </div>
             <a
               href="/admin/login"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] text-sm"
             >
-              Go to login
+              {t.resetPassword.goToLogin}
             </a>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm text-gray-300 mb-2">New Password</label>
+              <label className="block text-sm text-gray-300 mb-2">{t.resetPassword.newPassword}</label>
               <input
                 type="password"
                 value={newPassword}
@@ -94,7 +94,7 @@ export default function ResetPassword() {
             </div>
 
             <div>
-              <label className="block text-sm text-gray-300 mb-2">Confirm Password</label>
+              <label className="block text-sm text-gray-300 mb-2">{t.resetPassword.confirmPassword}</label>
               <input
                 type="password"
                 value={confirmPassword}
@@ -116,13 +116,13 @@ export default function ResetPassword() {
               disabled={loading || !token}
               className="w-full py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] transition-colors disabled:opacity-50"
             >
-              {loading ? 'Updating...' : 'Update Password'}
+              {loading ? t.resetPassword.updating : t.resetPassword.update}
             </button>
 
             <div className="text-center">
               <a href="/admin/login" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#C9A84C]">
                 <ArrowLeft size={16} />
-                Back to login
+                {t.resetPassword.backToLogin}
               </a>
             </div>
           </form>

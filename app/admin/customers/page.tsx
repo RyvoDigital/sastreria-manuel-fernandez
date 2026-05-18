@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Users, Search, Save } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 interface Customer {
   email: string
@@ -14,6 +15,7 @@ interface Customer {
 }
 
 export default function CustomersPage() {
+  const { t } = useAdminI18n()
   const [customers, setCustomers] = useState<Customer[]>([])
   const [filtered, setFiltered] = useState<Customer[]>([])
   const [loading, setLoading] = useState(true)
@@ -54,13 +56,13 @@ export default function CustomersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-serif text-white mb-8">Customer Directory</h1>
+      <h1 className="text-2xl font-serif text-white mb-8">{t.sidebar.customers}</h1>
 
       <div className="relative mb-6">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
         <input
           type="text"
-          placeholder="Search by name or email..."
+          placeholder={t.common.searchPlaceholder}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-12 pr-4 py-3 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#C9A84C]"
@@ -68,9 +70,9 @@ export default function CustomersPage() {
       </div>
 
       {loading ? (
-        <div className="text-gray-400">Loading...</div>
+        <div className="text-gray-400">{t.common.loading}</div>
       ) : filtered.length === 0 ? (
-        <div className="text-gray-400">No customers found.</div>
+        <div className="text-gray-400">{t.common.noData}</div>
       ) : (
         <div className="space-y-4">
           {filtered.map((c) => (
@@ -81,15 +83,15 @@ export default function CustomersPage() {
                     <Users size={18} className="text-[#C9A84C]" />
                   </div>
                   <div>
-                    <div className="text-white font-medium">{c.name || 'Unknown'}</div>
+                    <div className="text-white font-medium">{c.name || t.common.unknown}</div>
                     <div className="text-gray-400 text-sm">{c.email}</div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-white font-medium">{c.booking_count} bookings</div>
+                  <div className="text-white font-medium">{c.booking_count} {t.common.bookings}</div>
                   {c.last_booking && (
                     <div className="text-xs text-gray-500">
-                      Last: {new Date(c.last_booking).toLocaleDateString()}
+                      {t.common.last}: {new Date(c.last_booking).toLocaleDateString()}
                     </div>
                   )}
                 </div>
@@ -97,7 +99,7 @@ export default function CustomersPage() {
 
               {c.measurements && Object.keys(c.measurements).length > 0 && (
                 <div className="bg-[#1E3A5F]/20 rounded-lg p-4 mb-4">
-                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">Measurements on File</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">{t.common.measurementsOnFile}</div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm text-white">
                     {Object.entries(c.measurements).map(([k, v]) => (
                       <div key={k}>{k}: {String(v)}</div>
@@ -111,7 +113,7 @@ export default function CustomersPage() {
                   <textarea
                     value={editNotes}
                     onChange={(e) => setEditNotes(e.target.value)}
-                    placeholder="Add notes about this client..."
+                    placeholder={t.common.notes}
                     className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm focus:outline-none focus:border-[#C9A84C]"
                     rows={3}
                   />
@@ -121,13 +123,13 @@ export default function CustomersPage() {
                       className="flex items-center gap-1.5 px-4 py-2 bg-[#C9A84C] text-[#0A1628] rounded-lg text-sm font-medium hover:bg-[#D4B76A]"
                     >
                       <Save size={14} />
-                      Save Notes
+                      {t.common.saveNotes}
                     </button>
                     <button
                       onClick={() => setEditing(null)}
                       className="px-4 py-2 bg-[#1E3A5F]/50 text-gray-300 rounded-lg text-sm hover:bg-[#1E3A5F]"
                     >
-                      Cancel
+                      {t.common.cancel}
                     </button>
                   </div>
                 </div>
@@ -142,7 +144,7 @@ export default function CustomersPage() {
                     onClick={() => { setEditing(c.email); setEditNotes(c.notes || '') }}
                     className="text-sm text-[#C9A84C] hover:text-[#D4B76A]"
                   >
-                    {c.notes ? 'Edit notes' : 'Add notes'}
+                    {c.notes ? t.common.editNotes : t.common.addNotes}
                   </button>
                 </div>
               )}

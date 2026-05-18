@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState('admin@sastreria.com')
+  const { t } = useAdminI18n()
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -22,7 +24,7 @@ export default function AdminLogin() {
     const data = await res.json()
 
     if (!res.ok) {
-      setError(data.error || 'Login failed')
+      setError(data.error || 'Error')
       setLoading(false)
       return
     }
@@ -31,16 +33,16 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A1628] flex items-center justify-center">
+    <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4">
       <div className="w-full max-w-md p-8 bg-[#0F1D2E] rounded-xl border border-[#1E3A5F]">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-serif text-[#C9A84C] mb-2">Sastrería Admin</h1>
-          <p className="text-gray-400 text-sm">Sign in to manage your business</p>
+          <h1 className="text-xl font-serif text-white mb-2">{t.login.title}</h1>
+          <p className="text-gray-400 text-sm">{t.login.subtitle}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-gray-300 mb-2">Email</label>
+            <label className="block text-sm text-gray-300 mb-2">{t.login.email}</label>
             <input
               type="email"
               value={email}
@@ -51,7 +53,7 @@ export default function AdminLogin() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-300 mb-2">Password</label>
+            <label className="block text-sm text-gray-300 mb-2">{t.login.password}</label>
             <input
               type="password"
               value={password}
@@ -72,12 +74,12 @@ export default function AdminLogin() {
             disabled={loading}
             className="w-full py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] transition-colors disabled:opacity-50"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? t.login.signingIn : t.login.signIn}
           </button>
 
           <div className="text-center">
-            <a href="/admin/forgot-password" className="text-sm text-[#C9A84C] hover:text-[#D4B76A]">
-              Forgot password?
+            <a href="/admin/forgot-password" className="text-sm text-gray-400 hover:text-[#C9A84C]">
+              {t.login.forgotPassword}
             </a>
           </div>
         </form>

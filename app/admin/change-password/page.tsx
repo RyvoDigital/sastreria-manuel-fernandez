@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import { KeyRound, Save } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 export default function ChangePassword() {
+  const { t } = useAdminI18n()
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -17,12 +19,12 @@ export default function ChangePassword() {
     setSuccess(false)
 
     if (newPassword !== confirmPassword) {
-      setError('New passwords do not match')
+      setError(t.changePassword.mismatch)
       return
     }
 
     if (newPassword.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError(t.changePassword.minLength)
       return
     }
 
@@ -37,7 +39,7 @@ export default function ChangePassword() {
     const data = await res.json()
 
     if (!res.ok) {
-      setError(data.error || 'Failed to update password')
+      setError(data.error || t.changePassword.failed)
       setLoading(false)
       return
     }
@@ -51,7 +53,7 @@ export default function ChangePassword() {
 
   return (
     <div>
-      <h1 className="text-2xl font-serif text-white mb-8">Change Password</h1>
+      <h1 className="text-2xl font-serif text-white mb-8">{t.changePassword.title}</h1>
 
       <div className="max-w-lg bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-8">
         <div className="flex items-center gap-3 mb-6">
@@ -59,14 +61,14 @@ export default function ChangePassword() {
             <KeyRound size={20} className="text-[#C9A84C]" />
           </div>
           <div>
-            <h2 className="text-white font-medium">Update Your Password</h2>
-            <p className="text-gray-400 text-sm">You must know your current password to change it</p>
+            <h2 className="text-white font-medium">{t.changePassword.subtitle}</h2>
+            <p className="text-gray-400 text-sm">{t.changePassword.description}</p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-gray-300 mb-2">Current Password</label>
+            <label className="block text-sm text-gray-300 mb-2">{t.changePassword.currentPassword}</label>
             <input
               type="password"
               value={currentPassword}
@@ -77,7 +79,7 @@ export default function ChangePassword() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-300 mb-2">New Password</label>
+            <label className="block text-sm text-gray-300 mb-2">{t.changePassword.newPassword}</label>
             <input
               type="password"
               value={newPassword}
@@ -89,7 +91,7 @@ export default function ChangePassword() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-300 mb-2">Confirm New Password</label>
+            <label className="block text-sm text-gray-300 mb-2">{t.changePassword.confirmPassword}</label>
             <input
               type="password"
               value={confirmPassword}
@@ -108,7 +110,7 @@ export default function ChangePassword() {
 
           {success && (
             <div className="text-emerald-400 text-sm bg-emerald-900/20 px-4 py-3 rounded-lg">
-              Password updated successfully
+              {t.changePassword.success}
             </div>
           )}
 
@@ -118,7 +120,7 @@ export default function ChangePassword() {
             className="flex items-center gap-2 px-6 py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] transition-colors disabled:opacity-50"
           >
             <Save size={18} />
-            {loading ? 'Updating...' : 'Update Password'}
+            {loading ? t.changePassword.updating : t.changePassword.update}
           </button>
         </form>
       </div>

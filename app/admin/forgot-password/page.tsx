@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, ArrowLeft } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState('admin@sastreria.com')
+  const { t } = useAdminI18n()
+  const [email, setEmail] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -23,7 +25,7 @@ export default function ForgotPassword() {
     const data = await res.json()
 
     if (!res.ok) {
-      setError(data.error || 'Request failed')
+      setError(data.error || 'Error')
       setLoading(false)
       return
     }
@@ -33,33 +35,27 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A1628] flex items-center justify-center">
+    <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4">
       <div className="w-full max-w-md p-8 bg-[#0F1D2E] rounded-xl border border-[#1E3A5F]">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-[#C9A84C]/10 rounded-full mb-4">
-            <Mail size={20} className="text-[#C9A84C]" />
-          </div>
-          <h1 className="text-xl font-serif text-white mb-2">Reset Password</h1>
-          <p className="text-gray-400 text-sm">Enter your email and we will send you a reset link</p>
+          <h1 className="text-xl font-serif text-white mb-2">{t.forgotPassword.title}</h1>
+          <p className="text-gray-400 text-sm">{t.forgotPassword.subtitle}</p>
         </div>
 
         {success ? (
           <div className="text-center space-y-4">
             <div className="p-4 bg-emerald-900/20 border border-emerald-800 rounded-lg text-emerald-300 text-sm">
-              If an account exists for this email, you will receive a password reset link shortly.
+              Revisa tu correo para el enlace de restablecimiento.
             </div>
-            <a
-              href="/admin/login"
-              className="inline-flex items-center gap-2 text-[#C9A84C] hover:text-[#D4B76A] text-sm"
-            >
+            <a href="/admin/login" className="inline-flex items-center gap-2 text-sm text-[#C9A84C] hover:text-[#D4B76A]">
               <ArrowLeft size={16} />
-              Back to login
+              {t.forgotPassword.backToLogin}
             </a>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm text-gray-300 mb-2">Email</label>
+              <label className="block text-sm text-gray-300 mb-2">{t.forgotPassword.email}</label>
               <input
                 type="email"
                 value={email}
@@ -80,13 +76,13 @@ export default function ForgotPassword() {
               disabled={loading}
               className="w-full py-3 bg-[#C9A84C] text-[#0A1628] font-medium rounded-lg hover:bg-[#D4B76A] transition-colors disabled:opacity-50"
             >
-              {loading ? 'Sending...' : 'Send Reset Link'}
+              {loading ? t.forgotPassword.sending : t.forgotPassword.send}
             </button>
 
             <div className="text-center">
               <a href="/admin/login" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#C9A84C]">
                 <ArrowLeft size={16} />
-                Back to login
+                {t.forgotPassword.backToLogin}
               </a>
             </div>
           </form>

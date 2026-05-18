@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CreditCard } from 'lucide-react'
+import { useAdminI18n } from '@/lib/admin/i18n'
 
 interface Payment {
   id: string
@@ -14,6 +14,7 @@ interface Payment {
 }
 
 export default function PaymentsPage() {
+  const { t } = useAdminI18n()
   const [payments, setPayments] = useState<Payment[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -30,10 +31,10 @@ export default function PaymentsPage() {
         setLoading(false)
       })
       .catch(() => {
-        setError('Failed to load payments')
+        setError(t.common.failedToLoad)
         setLoading(false)
       })
-  }, [])
+  }, [t.common.failedToLoad])
 
   function formatAmount(amount: number | null, currency: string) {
     if (!amount) return '-'
@@ -45,7 +46,7 @@ export default function PaymentsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-serif text-white mb-8">Payments</h1>
+      <h1 className="text-2xl font-serif text-white mb-8">{t.sidebar.payments}</h1>
 
       {error && (
         <div className="mb-6 p-4 bg-red-900/20 border border-red-800 rounded-lg text-red-300 text-sm">
@@ -54,19 +55,19 @@ export default function PaymentsPage() {
       )}
 
       {loading ? (
-        <div className="text-gray-400">Loading...</div>
+        <div className="text-gray-400">{t.common.loading}</div>
       ) : payments.length === 0 ? (
-        <div className="text-gray-400">No payments found.</div>
+        <div className="text-gray-400">{t.common.noData}</div>
       ) : (
         <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl overflow-hidden">
           <table className="w-full text-left text-sm">
             <thead className="bg-[#1E3A5F]/30 text-gray-300 uppercase text-xs tracking-wider">
               <tr>
-                <th className="px-6 py-4">Date</th>
-                <th className="px-6 py-4">Customer</th>
-                <th className="px-6 py-4">Amount</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Type</th>
+                <th className="px-6 py-4">{t.common.date}</th>
+                <th className="px-6 py-4">{t.common.customer}</th>
+                <th className="px-6 py-4">{t.common.amount}</th>
+                <th className="px-6 py-4">{t.common.status}</th>
+                <th className="px-6 py-4">{t.common.type}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#1E3A5F]/50">
@@ -75,7 +76,7 @@ export default function PaymentsPage() {
                   <td className="px-6 py-4 text-white">
                     {new Date(p.created * 1000).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4 text-white">{p.customer || 'Unknown'}</td>
+                  <td className="px-6 py-4 text-white">{p.customer || t.common.unknown}</td>
                   <td className="px-6 py-4 text-white font-medium">
                     {formatAmount(p.amount, p.currency)}
                   </td>
