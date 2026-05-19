@@ -77,6 +77,7 @@ export function Navigation() {
     <>
       {/* ─── NAVBAR ──────────────────────────────────────────── */}
       <nav
+        id="public-navigation"
         role="navigation"
         aria-label="Navegación principal"
         style={{
@@ -279,6 +280,7 @@ export function Navigation() {
 
       {/* ─── MOBILE OVERLAY ─────────────────────────────────── */}
       <div
+        id="public-nav-overlay"
         ref={overlayRef}
         style={{
           display:        'none',
