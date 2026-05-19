@@ -225,3 +225,30 @@ export async function updateAdminPassword(email: string, passwordHash: string) {
   )
   return result.rows[0] || null
 }
+
+// Settings
+export async function getSettings() {
+  const result = await query(`SELECT id, name, enabled, price FROM settings ORDER BY name`)
+  return result.rows
+}
+
+export async function updateSetting(id: string, data: { enabled?: boolean; price?: number | null }) {
+  const fields: string[] = []
+  const params: unknown[] = []
+  let i = 1
+
+  if (data.enabled !== undefined) {
+    fields.push(`enabled = $${i++}`)
+    params.push(data.enabled)
+  }
+  if (data.price !== undefined) {
+    fields.push(`price = $${i++}`)
+    params.push(data.price)
+  }
+
+  if (fields.length === 0) return null
+  params.push(id)
+  const sql = `UPDATE settings SET ${fields.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $${i} RETURNING *`
+  const result = await query(sql, params)
+  return result.rows[0] || null
+}

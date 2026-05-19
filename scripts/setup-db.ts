@@ -106,6 +106,36 @@ async function setup() {
       )
     `)
 
+    // Service settings
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS settings (
+        id VARCHAR(50) PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        enabled BOOLEAN DEFAULT TRUE,
+        price INTEGER,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Seed default settings
+    const defaultSettings = [
+      { id: 'bodas', name: 'Bodas y Ceremonia', enabled: true, price: null },
+      { id: 'trajes', name: 'Trajes a Medida', enabled: true, price: 1200 },
+      { id: 'configurador', name: 'Configurador 3D', enabled: true, price: null },
+      { id: 'cursos', name: 'Cursos de Sastrería', enabled: true, price: 350 },
+      { id: 'videollamada', name: 'Videollamada', enabled: true, price: 50 },
+      { id: 'modelos3d', name: 'Modelos 3D', enabled: true, price: null },
+      { id: 'contacto', name: 'Formulario de Contacto', enabled: true, price: null },
+    ]
+
+    for (const s of defaultSettings) {
+      await pool.query(
+        `INSERT INTO settings (id, name, enabled, price) VALUES ($1, $2, $3, $4)
+         ON CONFLICT (id) DO NOTHING`,
+        [s.id, s.name, s.enabled, s.price]
+      )
+    }
+
     // Seed default admin if none exists and ADMIN_PASSWORD is set
     const adminPassword = process.env.ADMIN_PASSWORD
     if (adminPassword) {
