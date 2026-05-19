@@ -5,11 +5,13 @@ import { useEffect } from 'react'
 export default function HidePublicUI() {
   useEffect(() => {
     const hide = () => {
-      const ids = ['public-navigation', 'public-nav-overlay', 'loading-screen']
-      ids.forEach((id) => {
-        const el = document.getElementById(id)
-        if (el) el.style.display = 'none'
-      })
+      // Public nav by role + aria-label
+      const nav = document.querySelector('nav[role="navigation"][aria-label="Navegación principal"]') as HTMLElement | null
+      if (nav) nav.style.display = 'none'
+
+      // Loading screen
+      const loader = document.getElementById('loading-screen')
+      if (loader) loader.style.display = 'none'
     }
     hide()
     const id = setInterval(hide, 100)
