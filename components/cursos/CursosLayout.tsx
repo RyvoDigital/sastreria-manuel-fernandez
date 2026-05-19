@@ -241,7 +241,7 @@ function CursosLayoutInner() {
           setSelectedCourse({
             id: course.id,
             title,
-            price: course.price || 9900,
+            price: course.price || 35000,
           })
         }} />
       </div>

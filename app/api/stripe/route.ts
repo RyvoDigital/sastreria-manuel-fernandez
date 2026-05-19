@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
                 name: courseName || 'Curso de Sastrería',
                 description: 'Acceso completo al curso de sastrería artesanal',
               },
-              unit_amount: price || 9900,
+              unit_amount: price || 35000,
             },
             quantity: 1,
           },

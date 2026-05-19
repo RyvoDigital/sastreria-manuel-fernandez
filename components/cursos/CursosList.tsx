@@ -36,7 +36,7 @@ const COURSES: Course[] = [
     duration: "45 min",
     lessons: 3,
     locked: false,
-    price: 9900,
+    price: 35000,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce",
   },
@@ -53,7 +53,7 @@ const COURSES: Course[] = [
     duration: "2h 30min",
     lessons: 5,
     locked: false,
-    price: 9900,
+    price: 35000,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/purple-lining-interior_krylkv",
   },
@@ -70,7 +70,7 @@ const COURSES: Course[] = [
     duration: "1h 45min",
     lessons: 4,
     locked: false,
-    price: 9900,
+    price: 35000,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/gray-check-mannequin_gaf1fp",
   },
@@ -87,7 +87,7 @@ const COURSES: Course[] = [
     duration: "2h 15min",
     lessons: 6,
     locked: false,
-    price: 9900,
+    price: 35000,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/showroom-jackets_n55sfk",
   },
@@ -104,7 +104,7 @@ const COURSES: Course[] = [
     duration: "1h 30min",
     lessons: 3,
     locked: false,
-    price: 9900,
+    price: 35000,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/scissors-cutting_vyt9my",
   },
@@ -121,7 +121,7 @@ const COURSES: Course[] = [
     duration: "2h",
     lessons: 4,
     locked: false,
-    price: 9900,
+    price: 35000,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9436_uyetr0",
   },

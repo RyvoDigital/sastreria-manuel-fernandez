@@ -22,7 +22,7 @@ export function CursosPaymentGate({
   subtitle,
   courseId = 'default',
   courseName = 'Curso de Sastrería Artesanal',
-  price = 9900,
+  price = 35000,
 }: CursosPaymentGateProps) {
   const { locale } = useI18n()
   const [isProcessing, setIsProcessing] = useState(false)
@@ -39,7 +39,7 @@ export function CursosPaymentGate({
         'Acabados profesionales',
         'Acceso ilimitado',
       ],
-      price: '99 €',
+      price: '350 €',
       cta: 'Comprar Acceso',
       secure: 'Pago seguro con Stripe',
       note: 'Acceso inmediato tras la compra. Devolución garantizada en 14 días.',
@@ -56,7 +56,7 @@ export function CursosPaymentGate({
         'Professional finishes',
         'Unlimited access',
       ],
-      price: '€99',
+      price: '€350',
       cta: 'Buy Access',
       secure: 'Secure payment with Stripe',
       note: 'Immediate access after purchase. 14-day money-back guarantee.',
