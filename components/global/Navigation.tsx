@@ -73,6 +73,9 @@ export function Navigation() {
     }
   }, [menuOpen])
 
+  /* Hide on admin routes */
+  if (pathname?.startsWith('/admin')) return null
+
   return (
     <>
       {/* ─── NAVBAR ──────────────────────────────────────────── */}

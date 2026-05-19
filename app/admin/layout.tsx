@@ -10,19 +10,9 @@ export default async function AdminLayout({
   const session = await getSession()
   const isLoggedIn = !!session
 
-  const hidePublicUI = (
-    <style dangerouslySetInnerHTML={{
-      __html: `
-        nav[role="navigation"][aria-label="Navegación principal"] { display: none !important; }
-        #loading-screen { display: none !important; }
-      `
-    }} />
-  )
-
   if (!isLoggedIn) {
     return (
       <AdminI18nProvider>
-        {hidePublicUI}
         <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4 py-8">
           {children}
         </div>
@@ -32,7 +22,6 @@ export default async function AdminLayout({
 
   return (
     <AdminI18nProvider>
-      {hidePublicUI}
       <div className="flex min-h-screen bg-[#0F1D2E]">
         <AdminSidebar />
         <main className="flex-1 p-6 md:p-8 overflow-auto">
