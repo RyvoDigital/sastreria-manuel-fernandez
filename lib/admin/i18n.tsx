@@ -65,6 +65,7 @@ const labels = {
       title: 'Configuración de servicios',
       save: 'Guardar ajustes',
       saved: 'Ajustes guardados correctamente.',
+      price: 'Precio (EUR)',
     },
     changePassword: {
       title: 'Cambiar contraseña',
@@ -196,6 +197,7 @@ const labels = {
       title: 'Service Settings',
       save: 'Save Settings',
       saved: 'Settings saved successfully.',
+      price: 'Price (EUR)',
     },
     changePassword: {
       title: 'Change Password',
@@ -327,6 +329,7 @@ const labels = {
       title: 'Impostazioni servizi',
       save: 'Salva impostazioni',
       saved: 'Impostazioni salvate con successo.',
+      price: 'Prezzo (EUR)',
     },
     changePassword: {
       title: 'Cambia password',
@@ -458,6 +461,7 @@ const labels = {
       title: 'Paramètres des services',
       save: 'Enregistrer',
       saved: 'Paramètres enregistrés avec succès.',
+      price: 'Prix (EUR)',
     },
     changePassword: {
       title: 'Changer le mot de passe',

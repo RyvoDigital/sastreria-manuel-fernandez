@@ -74,7 +74,7 @@ export default function SettingsPage() {
 
               {s.price !== null && (
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-gray-400">Price (EUR)</span>
+                  <span className="text-sm text-gray-400">{t.settings.price}</span>
                   <input
                     type="number"
                     value={s.price}
