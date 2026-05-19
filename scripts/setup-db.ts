@@ -39,6 +39,10 @@ async function setup() {
       ON bookings (date, time)
     `)
 
+    // Add missing columns if table was created before these existed
+    await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'confirmed'`)
+    await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS type VARCHAR(20) DEFAULT 'inperson'`)
+
     // Admin users
     await pool.query(`
       CREATE TABLE IF NOT EXISTS admins (
