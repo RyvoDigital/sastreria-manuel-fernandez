@@ -1,6 +1,7 @@
 import { getSession } from '@/lib/admin/auth'
 import AdminSidebar from '@/components/admin/AdminSidebar'
 import { AdminI18nProvider } from '@/lib/admin/i18n'
+import HidePublicUI from '@/components/admin/HidePublicUI'
 
 export default async function AdminLayout({
   children,
@@ -13,6 +14,7 @@ export default async function AdminLayout({
   if (!isLoggedIn) {
     return (
       <AdminI18nProvider>
+        <HidePublicUI />
         <div className="min-h-screen bg-[#0A1628] flex items-center justify-center px-4 py-8">
           {children}
         </div>
@@ -22,6 +24,7 @@ export default async function AdminLayout({
 
   return (
     <AdminI18nProvider>
+      <HidePublicUI />
       <div className="flex min-h-screen bg-[#0F1D2E]">
         <AdminSidebar />
         <main className="flex-1 p-6 md:p-8 overflow-auto">

@@ -4,8 +4,11 @@ import './globals.css'
 import { LanguageProvider } from '@/lib/i18n'
 import { LenisProvider } from '@/lib/lenis-provider'
 import { LoadingScreen } from '@/components/global/LoadingScreen'
+import { Navigation } from '@/components/global/Navigation'
+import { FooterEnhanced } from '@/components/global/FooterEnhanced'
+import { ScrollToTop } from '@/components/global/ScrollToTop'
+import { ScrollToTopButton } from '@/components/global/ScrollToTopButton'
 import { HtmlLang } from '@/components/global/HtmlLang'
-import PublicSiteChrome from '@/components/global/PublicSiteChrome'
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
@@ -100,7 +103,11 @@ export default function RootLayout({
           <HtmlLang />
           <LenisProvider>
             <LoadingScreen />
-            <PublicSiteChrome>{children}</PublicSiteChrome>
+            <Navigation />
+            <ScrollToTop />
+            <ScrollToTopButton />
+            <main>{children}</main>
+            <FooterEnhanced />
           </LenisProvider>
         </LanguageProvider>
       </body>
