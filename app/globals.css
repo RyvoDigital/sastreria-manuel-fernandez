@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@source "../app";
+@source "../components";
+@source "../lib";
 
 /* ============================================
    DESIGN SYSTEM — SASTRERÍA MANUEL FERNÁNDEZ

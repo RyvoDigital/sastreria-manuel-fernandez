@@ -53,6 +53,7 @@ export default function AdminDashboard() {
             href="/admin/bookings"
             className="block p-4 bg-[#1E3A5F]/20 rounded-lg hover:bg-[#1E3A5F]/30 transition-colors"
           >
+            <p className='border bg-amber-200 p-20'>holla</p>
             <h3 className="text-[#C9A84C] font-medium mb-1">{t.dashboard.viewBookings}</h3>
             <p className="text-gray-400 text-sm">{stats?.totalBookings ?? 0} total</p>
           </a>
