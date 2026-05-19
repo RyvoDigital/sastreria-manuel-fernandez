@@ -34,7 +34,7 @@ export default function AdminDashboard() {
     <div>
       <h1 className="text-2xl font-serif text-white mb-8">{t.dashboard.title}</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-10">
         {cards.map((card) => (
           <div key={card.label} className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
             <div className="flex items-center gap-3 mb-3">
