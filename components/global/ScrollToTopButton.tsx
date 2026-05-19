@@ -1,11 +1,15 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 
 export function ScrollToTopButton() {
+  const pathname = usePathname()
   const [visible, setVisible] = useState(false)
+
+  if (pathname?.startsWith('/admin')) return null
 
   const checkScroll = useCallback(() => {
     setVisible(window.scrollY > 500)

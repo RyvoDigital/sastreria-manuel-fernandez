@@ -1,13 +1,17 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
 
 export function LoadingScreen() {
+  const pathname = usePathname()
   const screenRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLImageElement>(null)
   const nameRef = useRef<HTMLDivElement>(null)
   const [hidden, setHidden] = useState(false)
+
+  if (pathname?.startsWith('/admin')) return null
 
   useEffect(() => {
     const screen = screenRef.current

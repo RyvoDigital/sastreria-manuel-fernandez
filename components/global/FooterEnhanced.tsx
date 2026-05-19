@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { usePathname } from 'next/navigation'
 import { Send, MessageCircle } from 'lucide-react'
 
 const NAV_COL1 = [
@@ -20,6 +21,9 @@ const NAV_COL2 = [
 
 export function FooterEnhanced() {
   const { t } = useI18n()
+  const pathname = usePathname()
+
+  if (pathname?.startsWith('/admin')) return null
 
   return (
     <footer style={{
