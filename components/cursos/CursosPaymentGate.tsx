@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { Play, Lock, CreditCard, GraduationCap, Clock, ArrowRight } from 'lucide-react'
 import { loadStripe } from '@stripe/stripe-js'
@@ -26,6 +26,10 @@ export function CursosPaymentGate({
 }: CursosPaymentGateProps) {
   const { locale } = useI18n()
   const [isProcessing, setIsProcessing] = useState(false)
+
+  useEffect(() => {
+    setIsProcessing(false)
+  }, [])
 
   const t = {
     es: {
@@ -73,7 +77,7 @@ export function CursosPaymentGate({
         'Finiture professionali',
         'Accesso illimitato',
       ],
-      price: '99 €',
+      price: '350 €',
       cta: 'Acquista Accesso',
       secure: 'Pagamento sicuro con Stripe',
       note: 'Accesso immediato dopo l\'acquisto. Rimborso garantito in 14 giorni.',
@@ -90,7 +94,7 @@ export function CursosPaymentGate({
         'Finitions professionnelles',
         'Accès illimité',
       ],
-      price: '99 €',
+      price: '350 €',
       cta: 'Acheter l\'Accès',
       secure: 'Paiement sécurisé avec Stripe',
       note: 'Accès immédiat après l\'achat. Remboursement garanti sous 14 jours.',

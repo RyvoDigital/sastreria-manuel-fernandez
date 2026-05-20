@@ -243,6 +243,7 @@ function CursosLayoutInner() {
             title,
             price: course.price || 35000,
           })
+          window.scrollTo({ top: 0, behavior: 'instant' })
         }} />
       </div>
 
