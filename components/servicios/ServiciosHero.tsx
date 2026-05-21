@@ -214,8 +214,8 @@ const ServiceItem = ({
 }
 
 const SERVICE_IMAGES = [
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-stroller_qofut3',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-morning-coat_kv6syx',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-stroller_qofut3',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-tuxedo_wozaya',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-artisan-suit_tccgpr',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-artisan-coat_lmffv1',

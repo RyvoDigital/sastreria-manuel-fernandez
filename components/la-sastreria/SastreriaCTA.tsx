@@ -127,7 +127,7 @@ export function SastreriaCTA() {
             {t.la_sastreria.cta.btn_primary}
           </Link>
 
-          <Link href="/experiencia" className="mf-cta-btn mf-cta-btn-secondary" style={{
+          <Link href="/la-sastreria" className="mf-cta-btn mf-cta-btn-secondary" style={{
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',
