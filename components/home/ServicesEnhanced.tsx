@@ -14,7 +14,7 @@ const SERVICES = [
     key: 'sastreria' as const,
     icon: Scissors,
     href: '/la-sastreria',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce',
+    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765778/fotos-web/01-atelier-canon/atelier-2026-04-24-005-0682.jpg',
   },
   {
     key: 'bodas' as const,
@@ -32,7 +32,7 @@ const SERVICES = [
     key: 'modelos3d' as const,
     icon: Box,
     href: '/modelos-3d',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_3083_pi1nbb',
+    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778764139/photos/IMG_0067_hlr9ym.jpg',
   },
   {
     key: 'configurador' as const,

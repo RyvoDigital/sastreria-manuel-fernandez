@@ -222,7 +222,7 @@ const SERVICE_IMAGES = [
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/mint-jacket-madrid_igacjj',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-shirts_rztcfm',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/madrid-suit-street_slsine',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/tweed-buttons_vse8vw',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765609/fotos-web/01-atelier-canon/atelier-2012-09-15-007-1325.jpg',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/scissors-cutting_vyt9my',
 ]
 

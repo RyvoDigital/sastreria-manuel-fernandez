@@ -76,6 +76,7 @@ function SimpleProcessCard({ num, title, body, image, index }: CardProps) {
           loading={index > 0 ? 'lazy' : 'eager'}
           style={{
             objectFit: 'cover',
+            objectPosition: index === 1 ? 'bottom' : 'center',
             filter: 'brightness(0.45) saturate(0.6)',
           }}
           unoptimized
