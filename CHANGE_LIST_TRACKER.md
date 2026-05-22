@@ -22,11 +22,10 @@ These items require new Cloudinary image URLs. The PDF shows current + new photo
 
 | # | Item | File(s) | Current Photo | Action Needed |
 |---|------|---------|---------------|---------------|
-| 1 | **"Sastrería Artesanal" card — change photo** | `components/home/ServicesEnhanced.tsx` | `atelier-workshop_n5x6ce` | Replace with new photo URL |
-| 2 | **"Crea tu Traje" card — change photo** | `components/home/ServicesEnhanced.tsx` | `IMG_3083_pi1nbb` (modelos3d card) | Replace with new photo URL (cut pattern pieces on table) |
-| 8 | **Before / After slider — add photos** | `components/home/BeforeAfterSlider.tsx` | Placeholder PNGs | Needs BEFORE (half-made jacket, white basting threads) and AFTER (finished grey herringbone jacket on mannequin) URLs |
-| 15 | **"Blazer" thumbnail photo** | `components/servicios/ServiciosHero.tsx` | `mint-jacket-madrid_igacjj` (index 6) | Replace with navy blazer + gold buttons on mannequin |
-| 16 | **"Chalecos" thumbnail photo** | `components/servicios/ServiciosHero.tsx` | `tweed-buttons_vse8vw` (index 8) | Replace with man adjusting navy tie, light grey waistcoat |
+| 1 | **"Sastrería Artesanal" card — change photo** | ✅ Done | `components/home/ServicesEnhanced.tsx` + `ServicesOverview.tsx` | `atelier-workshop_n5x6ce` → `atelier-2026-04-24-005-0682.jpg` |
+| 2 | **"Crea tu Traje" card — change photo** | ✅ Done | `components/home/ServicesEnhanced.tsx` + `ServicesOverview.tsx` | `IMG_3083_pi1nbb` → `IMG_0067_hlr9ym.jpg` |
+| 8 | **Before / After slider — add photos** | ✅ Done | `components/home/BeforeAfterSlider.tsx` | BEFORE: `25ED7BDA..._wsfocs.png` (half-made jacket) / AFTER: `screenshot-11.png` (grey herringbone) |
+| 16 | **"Chalecos" thumbnail photo** | ✅ Done | `components/servicios/ServiciosHero.tsx` | `tweed-buttons_vse8vw` → `atelier-2012-09-15-007-1325.jpg` |
 
 ---
 
@@ -34,8 +33,8 @@ These items require new Cloudinary image URLs. The PDF shows current + new photo
 
 | # | Item | File(s) | Action Needed |
 |---|------|---------|---------------|
-| 3 | **"La Experiencia" section — crop photo tighter** | `components/la-sastreria/EspacioSection.tsx` | Adjust `backgroundPosition` or add `object-fit: cover` with tighter cropping on the main photo (`sastreria-manuel-fernandez_muk5sb`) |
-| 4 | **"Paso 02 — Interpretación Sartorial" — lower crop** | `components/home/ProcessCardsEnhanced.tsx` | Change `objectPosition` on `CARD_IMAGES[1]` (`home-sartorial-interpretation_sdszvu`) from default to `bottom` so hands/fabric are visible, not face |
+| 3 | **"La Experiencia" section — crop photo tighter** | ✅ Done | `components/la-sastreria/EspacioSection.tsx` | Added `transform: 'scale(1.15)'` to zoom in and crop top blue curtain + bottom empty space |
+| 4 | **"Paso 02 — Interpretación Sartorial" — lower crop** | ✅ Done | `components/home/ProcessCardsEnhanced.tsx` | Added `objectPosition: 'bottom'` to CARD_IMAGES[1] so hands/fabric are visible instead of face |
 
 ---
 
