@@ -38,7 +38,7 @@ const COURSES: Course[] = [
     locked: false,
     price: 35000,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at_02.34.21_xacsg5.png",
   },
   {
     id: "canvas",
@@ -55,7 +55,7 @@ const COURSES: Course[] = [
     locked: false,
     price: 35000,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/purple-lining-interior_krylkv",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779673071/WhatsApp_Image_2026-05-24_at_00.37.28_ztx6kh.jpg",
   },
   {
     id: "lapel",
@@ -72,7 +72,7 @@ const COURSES: Course[] = [
     locked: false,
     price: 35000,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/gray-check-mannequin_gaf1fp",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg",
   },
   {
     id: "pockets",
@@ -106,7 +106,7 @@ const COURSES: Course[] = [
     locked: false,
     price: 35000,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/scissors-cutting_vyt9my",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672947/Screenshot_2026-05-25_at_02.32.56_yziv1n.png",
   },
   {
     id: "finishes",
@@ -123,7 +123,7 @@ const COURSES: Course[] = [
     locked: false,
     price: 35000,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9436_uyetr0",
+      "/photos/anatomia-traje.png",
   },
 ];
 

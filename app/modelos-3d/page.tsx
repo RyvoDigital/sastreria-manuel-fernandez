@@ -55,7 +55,7 @@ export default function Modelos3DPage() {
           zIndex: 0,
         }}>
           <img
-            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/madrid-suit-street_slsine"
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at_02.33.52_kkbpez.png"
             alt="Sastrería Manuel Fernández"
             style={{
               width: '100%',

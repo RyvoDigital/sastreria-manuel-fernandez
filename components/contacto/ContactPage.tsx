@@ -17,14 +17,10 @@ type QuoteKey =
   | 'quote5' | 'quote6' | 'quote7' | 'quote8'
 
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/contacto-page_s9mfnn', quoteKey: 'quote1' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/contacto-section_kj0rgk', quoteKey: 'quote2' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_9503_wwqizp',         quoteKey: 'quote3' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1729_a7o3ej',        quoteKey: 'quote4' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0078_fcvvhk',    quoteKey: 'quote5' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1477_bx8bwn', quoteKey: 'quote6' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1701_ojirsx',     quoteKey: 'quote7' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0734_ug3baf',      quoteKey: 'quote8' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765850/fotos-web/01-atelier-canon/atelier-unknown-014-0631.jpg', quoteKey: 'quote1' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765799/fotos-web/01-atelier-canon/atelier-unknown-001-0350.jpg', quoteKey: 'quote2' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765846/fotos-web/01-atelier-canon/atelier-unknown-012-0621.jpg', quoteKey: 'quote3' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765781/fotos-web/01-atelier-canon/atelier-2026-04-24-006-0648.jpg', quoteKey: 'quote4' },
 ]
 
 const CSS = `
