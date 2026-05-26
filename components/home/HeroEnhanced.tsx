@@ -194,7 +194,7 @@ export function HeroEnhanced() {
           }
         )
       }
-    }, 3500)
+    }, 100)
 
     return () => clearTimeout(timer)
   }, [])
@@ -450,7 +450,7 @@ export function HeroEnhanced() {
   )
 }
 
-// Magnetic button component
+// Hero CTA button — color change only, no movement
 function MagneticButton({ 
   href, 
   children, 
@@ -462,23 +462,6 @@ function MagneticButton({
   primary?: boolean
   outline?: boolean
 }) {
-  const buttonRef = useRef<HTMLAnchorElement>(null)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const button = buttonRef.current
-    if (!button) return
-    
-    const rect = button.getBoundingClientRect()
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.3
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.3
-    setPosition({ x, y })
-  }
-
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 })
-  }
-
   const baseStyles = {
     display: 'inline-flex',
     alignItems: 'center',
@@ -491,7 +474,6 @@ function MagneticButton({
     textTransform: 'uppercase',
     textDecoration: 'none',
     transition: 'all 0.3s cubic-bezier(0.23, 1, 0.32, 1)',
-    transform: `translate(${position.x}px, ${position.y}px)`,
   }
 
   const primaryStyles = primary ? {
@@ -510,13 +492,9 @@ function MagneticButton({
 
   return (
     <Link
-      ref={buttonRef}
       href={href}
       style={{ ...baseStyles, ...primaryStyles }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = `translate(${position.x}px, ${position.y}px) scale(1.05)`
         if (primary) e.currentTarget.style.background = '#E8D5A3'
         if (outline) {
           e.currentTarget.style.background = '#C9A84C'
@@ -525,6 +503,17 @@ function MagneticButton({
         if (!primary && !outline) {
           e.currentTarget.style.borderColor = '#C9A84C'
           e.currentTarget.style.color = '#C9A84C'
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (primary) e.currentTarget.style.background = '#C9A84C'
+        if (outline) {
+          e.currentTarget.style.background = 'transparent'
+          e.currentTarget.style.color = '#C9A84C'
+        }
+        if (!primary && !outline) {
+          e.currentTarget.style.borderColor = '#FFFFFF'
+          e.currentTarget.style.color = '#FFFFFF'
         }
       }}
     >

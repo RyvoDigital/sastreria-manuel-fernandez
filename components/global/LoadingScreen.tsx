@@ -45,7 +45,7 @@ export function LoadingScreen() {
         duration: 0.5,
         ease: 'power2.out',
       }, '-=0.2')
-      .to({}, { duration: 1.2 }) // Hold
+      .to({}, { duration: 0.6 }) // Hold
   }, [])
 
   if (hidden) return null

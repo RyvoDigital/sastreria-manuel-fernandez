@@ -33,7 +33,7 @@ export function HeroNew() {
           }
         )
       }
-    }, 3500)
+    }, 100)
 
     return () => clearTimeout(timer)
   }, [])
@@ -209,11 +209,9 @@ export function HeroNew() {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#E8D5A3'
-              e.currentTarget.style.transform = 'translateY(-2px)'
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = '#C9A84C'
-              e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
             <Calendar size={16} />
