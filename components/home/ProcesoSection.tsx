@@ -19,7 +19,7 @@ const STEP_META = [
     bg: '#07101A',
   },
   {
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-the-result_l9d5tm',
+    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto:best/photos/web_lista_images/home-the-result_l9d5tm',
     imageLeft: true,
     bg: '#050C14',
   },

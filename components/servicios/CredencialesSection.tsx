@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
-import { ArrowRight, Star, Target, Crown, Scissors, Gem, Layers, Sparkles, Ruler } from 'lucide-react'
+import { ArrowRight, Star, Crown, Scissors, Gem, Layers, Sparkles, Ruler } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
@@ -231,38 +231,6 @@ export function CredencialesSection() {
             }} />
 
             <div style={{ position: 'relative', zIndex: 1 }}>
-              {/* Top row */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                <div style={{
-                  width: '3rem', height: '3rem',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  borderRadius: '0.75rem',
-                  background: 'rgba(201,168,76,0.1)',
-                  border: '1px solid rgba(196,163,90,0.2)',
-                }}>
-                  <Target style={{ width: '1.4rem', height: '1.4rem', color: 'var(--color-gold)' }} />
-                </div>
-                <div>
-                  <div style={{
-                    fontFamily: 'var(--font-serif)',
-                    fontStyle: 'italic',
-                    fontSize: 'clamp(1.6rem, 5vw, 2.2rem)',
-                    fontWeight: 400,
-                    color: '#FFFFFF',
-                    lineHeight: 1,
-                  }}>{c.stat1_val}</div>
-                  <div style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.62rem',
-                    letterSpacing: '0.12em',
-                    color: 'rgba(201,168,76,0.5)',
-                    marginTop: '0.15rem',
-                  }}>{c.stat1_label}</div>
-                </div>
-              </div>
-
-              <div style={{ height: '1px', background: 'rgba(196,163,90,0.1)', marginBottom: '1.25rem' }} />
-
               {/* Mini stats */}
               <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr)', alignItems: 'center', textAlign: 'center', minWidth: 0 }}>
                 <StatItem value={c.stat1_val} label={c.stat1_label} />
@@ -273,13 +241,13 @@ export function CredencialesSection() {
               </div>
 
               {/* Tag pills */}
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                   borderRadius: '9999px',
                   border: '1px solid rgba(201,168,76,0.2)',
                   background: 'rgba(201,168,76,0.06)',
-                  padding: '0.3rem 0.75rem',
+                  padding: '0.3rem 0.5rem',
                 }}>
                   <span style={{ position: 'relative', display: 'inline-flex', width: '0.5rem', height: '0.5rem' }}>
                     <span style={{
@@ -288,7 +256,6 @@ export function CredencialesSection() {
                     }} />
                     <span style={{ position: 'relative', display: 'inline-flex', borderRadius: '50%', width: '0.5rem', height: '0.5rem', background: '#22c55e' }} />
                   </span>
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.48rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,240,234,0.6)' }}></span>
                 </div>
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.4rem',

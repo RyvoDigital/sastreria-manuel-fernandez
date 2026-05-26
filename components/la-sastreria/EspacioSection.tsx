@@ -115,7 +115,7 @@ export function EspacioSection() {
                 objectPosition: 'center',
                 filter:         'brightness(0.85) saturate(0.72)',
                 display:        'block',
-                transform:      'scale(1.15)',
+                transform:      'rotate(90deg) scale(1.15)',
               }}
             />
             {/* Bottom gradient */}

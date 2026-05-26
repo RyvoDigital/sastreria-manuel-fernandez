@@ -169,7 +169,7 @@ export function TestimonialsSection() {
     return <TestimonialsSimple items={items} />
   }
 
-  const cardTranslateX = reducedMotion ? 0 : isMobile ? 110 : 350
+  const cardTranslateX = reducedMotion ? 0 : isMobile ? 140 : 420
   const cardRotationY = reducedMotion ? 0 : isMobile ? 0 : 45
   const cardTranslateZ = reducedMotion ? 0 : isMobile ? 0 : -300
   const stageHeight = isMobile ? '46vh' : '52vh'
@@ -290,7 +290,7 @@ export function TestimonialsSection() {
           const rotationY = (i - active) * cardRotationY
           const translateZ = isActiveCard ? 0 : cardTranslateZ
           const translateX = (i - active) * cardTranslateX
-          const opacity = isActiveCard ? 1 : isMobile ? 0 : 0.3
+          const opacity = isActiveCard ? 1 : isMobile ? 0 : 0.1
 
           return (
             <motion.div
@@ -301,7 +301,7 @@ export function TestimonialsSection() {
                 z: translateZ,
                 x: translateX,
                 opacity: opacity,
-                scale: isActiveCard ? 1 : 0.85,
+                scale: isActiveCard ? 1 : 0.8,
               }}
               transition={{
                 type: 'spring',
