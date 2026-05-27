@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import { Play, Lock, CreditCard, GraduationCap, Clock, ArrowRight } from 'lucide-react'
 import { loadStripe } from '@stripe/stripe-js'
 
@@ -22,9 +23,11 @@ export function CursosPaymentGate({
   subtitle,
   courseId = 'default',
   courseName = 'Curso de Sastrería Artesanal',
-  price = 35000,
+  price: propPrice,
 }: CursosPaymentGateProps) {
   const { locale } = useI18n()
+  const { getPrice } = useSettings()
+  const price = propPrice || getPrice('cursos') || 35000
   const [isProcessing, setIsProcessing] = useState(false)
 
   useEffect(() => {
@@ -43,7 +46,7 @@ export function CursosPaymentGate({
         'Acabados profesionales',
         'Acceso ilimitado',
       ],
-      price: '350 €',
+      price: `${(price / 100).toLocaleString('es-ES')} €`,
       cta: 'Comprar Acceso',
       secure: 'Pago seguro con Stripe',
       note: 'Acceso inmediato tras la compra. Devolución garantizada en 14 días.',
@@ -60,7 +63,7 @@ export function CursosPaymentGate({
         'Professional finishes',
         'Unlimited access',
       ],
-      price: '€350',
+      price: `€${(price / 100).toLocaleString('en-GB')}`,
       cta: 'Buy Access',
       secure: 'Secure payment with Stripe',
       note: 'Immediate access after purchase. 14-day money-back guarantee.',
@@ -77,7 +80,7 @@ export function CursosPaymentGate({
         'Finiture professionali',
         'Accesso illimitato',
       ],
-      price: '350 €',
+      price: `${(price / 100).toLocaleString('it-IT')} €`,
       cta: 'Acquista Accesso',
       secure: 'Pagamento sicuro con Stripe',
       note: 'Accesso immediato dopo l\'acquisto. Rimborso garantito in 14 giorni.',
@@ -94,7 +97,7 @@ export function CursosPaymentGate({
         'Finitions professionnelles',
         'Accès illimité',
       ],
-      price: '350 €',
+      price: `${(price / 100).toLocaleString('fr-FR')} €`,
       cta: 'Acheter l\'Accès',
       secure: 'Paiement sécurisé avec Stripe',
       note: 'Accès immédiat après l\'achat. Remboursement garanti sous 14 jours.',
