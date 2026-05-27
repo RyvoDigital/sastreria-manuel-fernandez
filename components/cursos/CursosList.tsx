@@ -1,6 +1,7 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n";
+import { useSettings } from "@/lib/settings-provider";
 import { motion } from "framer-motion";
 import { Play, Lock, Clock, BookOpen } from "lucide-react";
 import Image from "next/image";
@@ -36,7 +37,7 @@ const COURSES: Course[] = [
     duration: "45 min",
     lessons: 3,
     locked: false,
-    price: 35000,
+    price: undefined,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at_02.34.21_xacsg5.png",
   },
@@ -53,7 +54,7 @@ const COURSES: Course[] = [
     duration: "2h 30min",
     lessons: 5,
     locked: false,
-    price: 35000,
+    price: undefined,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779673071/WhatsApp_Image_2026-05-24_at_00.37.28_ztx6kh.jpg",
   },
@@ -70,7 +71,7 @@ const COURSES: Course[] = [
     duration: "1h 45min",
     lessons: 4,
     locked: false,
-    price: 35000,
+    price: undefined,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg",
   },
@@ -87,7 +88,7 @@ const COURSES: Course[] = [
     duration: "2h 15min",
     lessons: 6,
     locked: false,
-    price: 35000,
+    price: undefined,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/showroom-jackets_n55sfk",
   },
@@ -104,7 +105,7 @@ const COURSES: Course[] = [
     duration: "1h 30min",
     lessons: 3,
     locked: false,
-    price: 35000,
+    price: undefined,
     image:
       "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672947/Screenshot_2026-05-25_at_02.32.56_yziv1n.png",
   },
@@ -121,7 +122,7 @@ const COURSES: Course[] = [
     duration: "2h",
     lessons: 4,
     locked: false,
-    price: 35000,
+    price: undefined,
     image:
       "/photos/anatomia-traje.png",
   },
@@ -133,6 +134,8 @@ interface CursosListProps {
 
 export function CursosList({ onSelectCourse }: CursosListProps) {
   const { locale } = useI18n();
+  const { getPrice } = useSettings();
+  const coursePrice = getPrice('cursos') || 35000;
 
   const t = {
     es: {
@@ -445,7 +448,7 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
 
                   {/* Course action button */}
                   <button
-                    onClick={() => onSelectCourse?.(course)}
+                    onClick={() => onSelectCourse?.({ ...course, price: coursePrice })}
                     style={{
                       marginTop: '1.25rem',
                       width: '100%',

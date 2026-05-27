@@ -3,6 +3,8 @@ import { Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/i18n'
 import { LenisProvider } from '@/lib/lenis-provider'
+import { SettingsProvider } from '@/lib/settings-provider'
+import { ContentProvider } from '@/lib/content-provider'
 import { LoadingScreen } from '@/components/global/LoadingScreen'
 import { Navigation } from '@/components/global/Navigation'
 import { FooterEnhanced } from '@/components/global/FooterEnhanced'
@@ -101,14 +103,18 @@ export default function RootLayout({
         />
         <LanguageProvider>
           <HtmlLang />
-          <LenisProvider>
-            <LoadingScreen />
-            <Navigation />
-            <ScrollToTop />
-            <ScrollToTopButton />
-            <main>{children}</main>
-            <FooterEnhanced />
-          </LenisProvider>
+          <SettingsProvider>
+            <ContentProvider>
+              <LenisProvider>
+                <LoadingScreen />
+                <Navigation />
+                <ScrollToTop />
+                <ScrollToTopButton />
+                <main>{children}</main>
+                <FooterEnhanced />
+              </LenisProvider>
+            </ContentProvider>
+          </SettingsProvider>
         </LanguageProvider>
       </body>
     </html>

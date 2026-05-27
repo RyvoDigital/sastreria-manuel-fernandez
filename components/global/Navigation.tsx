@@ -6,17 +6,18 @@ import { usePathname } from 'next/navigation'
 
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
 
-const NAV_ITEMS = [
-  { key: 'inicio'        as const, href: '/',               icon: Home },
-  { key: 'sastreria'     as const, href: '/la-sastreria',   icon: Scissors },
-  { key: 'bodas'         as const, href: '/bodas-y-ceremonia', icon: Heart },
-  { key: 'servicios'     as const, href: '/servicios',      icon: Briefcase },
-  { key: 'modelos3d'     as const, href: '/modelos-3d',     icon: Box },
-  { key: 'configurador'  as const, href: '/configurador',   icon: Settings },
-  { key: 'cursos'        as const, href: '/cursos',         icon: GraduationCap },
-  { key: 'contacto'      as const, href: '/contacto',       icon: Mail },
+const ALL_NAV_ITEMS = [
+  { key: 'inicio'        as const, href: '/',               icon: Home, settingId: null },
+  { key: 'sastreria'     as const, href: '/la-sastreria',   icon: Scissors, settingId: null },
+  { key: 'bodas'         as const, href: '/bodas-y-ceremonia', icon: Heart, settingId: 'bodas' },
+  { key: 'servicios'     as const, href: '/servicios',      icon: Briefcase, settingId: null },
+  { key: 'modelos3d'     as const, href: '/modelos-3d',     icon: Box, settingId: 'modelos3d' },
+  { key: 'configurador'  as const, href: '/configurador',   icon: Settings, settingId: 'configurador' },
+  { key: 'cursos'        as const, href: '/cursos',         icon: GraduationCap, settingId: 'cursos' },
+  { key: 'contacto'      as const, href: '/contacto',       icon: Mail, settingId: 'contacto' },
 ]
 
 // Persistent contact buttons data — labels resolved inside component for i18n
@@ -27,11 +28,17 @@ const CONTACT_BUTTONS_DATA = {
 
 export function Navigation() {
   const { t, locale, toggleLocale, setLocale } = useI18n()
+  const { isEnabled } = useSettings()
   const pathname   = usePathname()
   const [scrolled, setScrolled]   = useState(false)
   const [menuOpen, setMenuOpen]   = useState(false)
   const overlayRef     = useRef<HTMLDivElement>(null)
   const mobileItemRefs = useRef<HTMLAnchorElement[]>([])
+
+  const NAV_ITEMS = ALL_NAV_ITEMS.filter((item) => {
+    if (!item.settingId) return true
+    return isEnabled(item.settingId)
+  })
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)

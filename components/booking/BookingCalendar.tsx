@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import {
   ChevronLeft,
   ChevronRight,
@@ -64,6 +65,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [loadingSlots, setLoadingSlots] = useState(false)
 
   const isVideocall = type === 'videocall'
+  const { getPrice } = useSettings()
+  const videocallPrice = getPrice('videollamada') || 50
 
   const monthNames: Record<string, string[]> = {
     es: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
@@ -99,7 +102,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Consulta personalizada de 20-25 minutos por videollamada con nuestros expertos.'
         : 'Visita a nuestro taller en Madrid para tomar medidas y conocernos.',
       duration: isVideocall ? '20-25 minutos' : '45-60 minutos',
-      price: isVideocall ? '€50' : 'Gratis',
+      price: isVideocall ? `€${videocallPrice}` : 'Gratis',
       location: 'Madrid',
     },
     en: {
@@ -128,7 +131,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Personalized 20-25 minute video call consultation with our experts.'
         : 'Visit our atelier in Madrid for measurements and to meet us.',
       duration: isVideocall ? '20-25 minutes' : '45-60 minutes',
-      price: isVideocall ? '€50' : 'Free',
+      price: isVideocall ? `€${videocallPrice}` : 'Free',
       location: 'Madrid',
     },
     it: {
@@ -157,7 +160,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Consulenza personalizzata di 20-25 minuti in videochiamata con i nostri esperti.'
         : 'Visita il nostro atelier a Madrid per le misure e conoscerci.',
       duration: isVideocall ? '20-25 minuti' : '45-60 minuti',
-      price: isVideocall ? '€50' : 'Gratuito',
+      price: isVideocall ? `€${videocallPrice}` : 'Gratuito',
       location: 'Madrid',
     },
     fr: {
@@ -186,7 +189,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         ? 'Consultation personnalisée de 20-25 minutes par visioconférence avec nos experts.'
         : 'Visitez notre atelier à Madrid pour les mesures et nous rencontrer.',
       duration: isVideocall ? '20-25 minutes' : '45-60 minutes',
-      price: isVideocall ? '€50' : 'Gratuit',
+      price: isVideocall ? `€${videocallPrice}` : 'Gratuit',
       location: 'Madrid',
     },
   }

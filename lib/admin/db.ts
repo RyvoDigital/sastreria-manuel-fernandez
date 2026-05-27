@@ -203,12 +203,40 @@ export async function getDashboardStats() {
     WHERE date >= CURRENT_DATE AND status = 'confirmed'
   `)
 
+  // Chart data: bookings by type
+  const bookingsByType = await query(`
+    SELECT type, COUNT(*) as total FROM bookings GROUP BY type
+  `)
+
+  // Chart data: bookings last 6 months
+  const bookingsByMonth = await query(`
+    SELECT TO_CHAR(date_trunc('month', created_at), 'Mon YYYY') as month, COUNT(*) as total
+    FROM bookings
+    WHERE created_at >= date_trunc('month', CURRENT_DATE - INTERVAL '5 months')
+    GROUP BY date_trunc('month', created_at)
+    ORDER BY date_trunc('month', created_at)
+  `)
+
+  // Chart data: contacts by type
+  const contactsByType = await query(`
+    SELECT type, COUNT(*) as total FROM contact_submissions GROUP BY type
+  `)
+
+  // Chart data: configurations by status
+  const configsByStatus = await query(`
+    SELECT status, COUNT(*) as total FROM configurations GROUP BY status
+  `)
+
   return {
     totalBookings: parseInt(bookingsResult.rows[0].total, 10),
     bookingsThisMonth: parseInt(bookingsThisMonth.rows[0].total, 10),
     unreadContacts: parseInt(contactsResult.rows[0].total, 10),
     newConfigurations: parseInt(configsResult.rows[0].total, 10),
     upcomingAppointments: parseInt(upcomingResult.rows[0].total, 10),
+    bookingsByType: bookingsByType.rows,
+    bookingsByMonth: bookingsByMonth.rows,
+    contactsByType: contactsByType.rows,
+    configsByStatus: configsByStatus.rows,
   }
 }
 
