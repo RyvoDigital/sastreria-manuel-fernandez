@@ -121,7 +121,7 @@ async function setup() {
     const defaultSettings = [
       { id: 'bodas', name: 'Bodas y Ceremonia', enabled: true, price: null },
       { id: 'trajes', name: 'Trajes a Medida', enabled: true, price: 1200 },
-      { id: 'configurador', name: 'Configurador 3D', enabled: true, price: null },
+      { id: 'configurador', name: 'Configurador 3D', enabled: true, price: 29 },
       { id: 'cursos', name: 'Cursos de Sastrería', enabled: true, price: 350 },
       { id: 'videollamada', name: 'Videollamada', enabled: true, price: 50 },
       { id: 'modelos3d', name: 'Modelos 3D', enabled: true, price: null },

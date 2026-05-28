@@ -27,7 +27,7 @@ export function CursosPaymentGate({
 }: CursosPaymentGateProps) {
   const { locale } = useI18n()
   const { getPrice } = useSettings()
-  const price = propPrice || getPrice('cursos') || 35000
+  const price = propPrice || (getPrice('cursos') || 350) * 100
   const [isProcessing, setIsProcessing] = useState(false)
 
   useEffect(() => {

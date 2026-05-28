@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
+import { useContent } from '@/lib/content-provider'
 import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 import { Phone, MapPin, Calendar } from 'lucide-react'
@@ -133,12 +134,15 @@ function AnimatedGoldLine({ isVisible }: { isVisible: boolean }) {
 
 export function HeroEnhanced() {
   const { t } = useI18n()
+  const { getValue } = useContent()
   const isMobile = useIsMobile()
   const isIPhone = useIsIPhone()
   const heroRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const heroTitle = getValue('hero.title') || t.hero.tagline
+  const heroSubtitle = getValue('hero.subtitle') || t.hero.tagline2
 
   // Mouse parallax effect
   const handleMouseMove = useCallback((e: MouseEvent) => {
@@ -327,7 +331,7 @@ export function HeroEnhanced() {
                 transformStyle: 'preserve-3d',
               }}
             >
-              {t.hero.tagline}
+              {heroTitle}
             </div>
             <div 
               className="animate-in"
@@ -341,7 +345,7 @@ export function HeroEnhanced() {
                 opacity: 0,
               }}
             >
-              {t.hero.tagline2}
+              {heroSubtitle}
             </div>
           </h1>
 

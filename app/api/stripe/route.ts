@@ -27,6 +27,10 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { type, courseId, courseName, price, name, email, date, time } = body
 
+    if (!price || typeof price !== 'number' || price <= 0) {
+      return NextResponse.json({ error: 'Invalid or missing price' }, { status: 400 })
+    }
+
     const origin = req.headers.get('origin') || 'http://localhost:3000'
 
     let session
@@ -42,7 +46,7 @@ export async function POST(req: NextRequest) {
                 name: 'Videollamada de Asesoría',
                 description: `Consulta personalizada de sastrería - ${date} a las ${time}`,
               },
-              unit_amount: price || 5000,
+              unit_amount: price,
             },
             quantity: 1,
           },
@@ -70,7 +74,7 @@ export async function POST(req: NextRequest) {
                 name: 'Acceso al Configurador de Prendas',
                 description: 'Diseña tu traje a medida paso a paso',
               },
-              unit_amount: price || 2900,
+              unit_amount: price,
             },
             quantity: 1,
           },
@@ -93,7 +97,7 @@ export async function POST(req: NextRequest) {
                 name: courseName || 'Curso de Sastrería',
                 description: 'Acceso completo al curso de sastrería artesanal',
               },
-              unit_amount: price || 35000,
+              unit_amount: price,
             },
             quantity: 1,
           },

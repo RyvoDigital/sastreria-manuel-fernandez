@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ConfiguradorLayout } from '@/components/configurador/ConfiguradorLayout'
+import { ServiceGate } from '@/components/global/ServiceGate'
 
 export const metadata: Metadata = {
   title: 'Configurador de Prendas · Sastrería Manuel Fernández',
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function ConfiguradorPage() {
-  return <ConfiguradorLayout />
+  return (
+    <ServiceGate settingId="configurador">
+      <ConfiguradorLayout />
+    </ServiceGate>
+  )
 }

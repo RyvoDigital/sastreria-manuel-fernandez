@@ -3,25 +3,36 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import { usePathname } from 'next/navigation'
 import { Send, MessageCircle } from 'lucide-react'
 
-const NAV_COL1 = [
-  { key: 'inicio' as const, href: '/' },
-  { key: 'sastreria' as const, href: '/la-sastreria' },
-  { key: 'servicios' as const, href: '/servicios' },
-  { key: 'bodas' as const, href: '/bodas-y-ceremonia' },
+const ALL_NAV_COL1 = [
+  { key: 'inicio' as const, href: '/', settingId: null },
+  { key: 'sastreria' as const, href: '/la-sastreria', settingId: null },
+  { key: 'servicios' as const, href: '/servicios', settingId: null },
+  { key: 'bodas' as const, href: '/bodas-y-ceremonia', settingId: 'bodas' },
 ]
 
-const NAV_COL2 = [
-  { key: 'configurador' as const, href: '/configurador' },
-  { key: 'cursos' as const, href: '/cursos' },
-  { key: 'contacto' as const, href: '/contacto' },
+const ALL_NAV_COL2 = [
+  { key: 'configurador' as const, href: '/configurador', settingId: 'configurador' },
+  { key: 'cursos' as const, href: '/cursos', settingId: 'cursos' },
+  { key: 'contacto' as const, href: '/contacto', settingId: 'contacto' },
 ]
 
 export function FooterEnhanced() {
   const { t } = useI18n()
+  const { isEnabled } = useSettings()
   const pathname = usePathname()
+
+  const NAV_COL1 = ALL_NAV_COL1.filter((item) => {
+    if (!item.settingId) return true
+    return isEnabled(item.settingId)
+  })
+  const NAV_COL2 = ALL_NAV_COL2.filter((item) => {
+    if (!item.settingId) return true
+    return isEnabled(item.settingId)
+  })
 
   if (pathname?.startsWith('/admin')) return null
 

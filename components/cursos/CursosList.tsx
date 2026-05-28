@@ -135,7 +135,7 @@ interface CursosListProps {
 export function CursosList({ onSelectCourse }: CursosListProps) {
   const { locale } = useI18n();
   const { getPrice } = useSettings();
-  const coursePrice = getPrice('cursos') || 35000;
+  const coursePrice = (getPrice('cursos') || 350) * 100;
 
   const t = {
     es: {

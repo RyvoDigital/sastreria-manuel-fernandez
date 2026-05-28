@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import { Video, Check, Clock, Palette, User, Scissors, Banknote, Copy } from 'lucide-react'
 
 interface VideollamadaPaymentGateProps {
@@ -13,9 +14,15 @@ const FEATURE_ICONS = [Palette, User, Scissors]
 
 export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPaymentGateProps) {
   const { t, locale } = useI18n()
+  const { getPrice } = useSettings()
   const [hasPaid, setHasPaid] = useState(false)
   const [copied, setCopied] = useState<string | null>(null)
   const c = t.videollamada.gate
+
+  const price = getPrice('videollamada') || 50
+  const priceDisplay = locale === 'en'
+    ? `€${price.toLocaleString('en-GB')}`
+    : `${price.toLocaleString('es-ES')} €`
 
   const handleCopy = (text: string, key: string) => {
     navigator.clipboard.writeText(text)
@@ -303,7 +310,7 @@ export function VideollamadaPaymentGate({ onAccessGranted }: VideollamadaPayment
                 fontSize: '1.1rem',
                 fontStyle: 'italic',
                 color: '#C9A84C',
-              }}>{c.price_value}</span>
+              }}>{priceDisplay}</span>
             </div>
 
             {/* Bank fields */}

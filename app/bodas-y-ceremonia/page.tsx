@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { BodasLayout } from '@/components/bodas/BodasLayout'
+import { ServiceGate } from '@/components/global/ServiceGate'
 
 export const metadata: Metadata = {
   title: 'Bodas y Ceremonia | Sastrería Manuel Fernández',
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function BodasPage() {
-  return <BodasLayout />
+  return (
+    <ServiceGate settingId="bodas">
+      <BodasLayout />
+    </ServiceGate>
+  )
 }

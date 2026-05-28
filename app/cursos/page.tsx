@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { CursosLayout } from '@/components/cursos/CursosLayout'
+import { ServiceGate } from '@/components/global/ServiceGate'
 
 export const metadata: Metadata = {
   title: 'Cursos Online · Sastrería Manuel Fernández',
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function CursosPage() {
-  return <CursosLayout />
+  return (
+    <ServiceGate settingId="cursos">
+      <CursosLayout />
+    </ServiceGate>
+  )
 }

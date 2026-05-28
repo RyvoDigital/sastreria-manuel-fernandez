@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { MapPin, Phone, Clock, Mail, ArrowRight, Calendar, Video, MessageSquare, X } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import { useContent } from '@/lib/content-provider'
+import { useSettings } from '@/lib/settings-provider'
 import { useIsMobile } from '@/lib/use-mobile'
 import { BookingCalendar } from '@/components/booking/BookingCalendar'
 import { useSearchParams } from 'next/navigation'
@@ -107,6 +109,8 @@ type BookingMode = 'none' | 'inperson' | 'videocall'
 
 function ContactPageInner() {
   const { t, locale } = useI18n()
+  const { getValue } = useContent()
+  const { getPrice, isEnabled } = useSettings()
   const isMobile = useIsMobile()
   const searchParams = useSearchParams()
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -203,6 +207,7 @@ function ContactPageInner() {
   }
 
   const handleStripeCheckout = async (data: { name: string; email: string; date: string; time: string }) => {
+    const videocallPriceCents = (getPrice('videollamada') || 50) * 100
     const res = await fetch('/api/stripe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -212,7 +217,7 @@ function ContactPageInner() {
         email: data.email,
         date: data.date,
         time: data.time,
-        price: 5000,
+        price: videocallPriceCents,
       }),
     })
     const result = await res.json()
@@ -223,10 +228,14 @@ function ContactPageInner() {
     }
   }
 
+  const cmsPhone = getValue('contact.phone')
+  const cmsAddress = getValue('contact.address')
+  const cmsHours = getValue('business.hours')
+
   const details = [
-    { Icon: MapPin, label: t.contacto.address_label, value: t.contacto.address,  href: undefined },
-    { Icon: Phone,  label: t.contacto.phone_label,   value: t.contacto.phone,    href: `tel:${t.contacto.phone.replace(/\s/g,'')}` },
-    { Icon: Clock,  label: t.contacto.hours_label,   value: t.contacto.hours,    href: undefined },
+    { Icon: MapPin, label: t.contacto.address_label, value: cmsAddress || t.contacto.address,  href: undefined },
+    { Icon: Phone,  label: t.contacto.phone_label,   value: cmsPhone || t.contacto.phone,    href: `tel:${(cmsPhone || t.contacto.phone).replace(/\s/g,'')}` },
+    { Icon: Clock,  label: t.contacto.hours_label,   value: cmsHours || t.contacto.hours,    href: undefined },
     { Icon: Mail,   label: t.contacto.email_label,   value: t.contacto.email,    href: `mailto:${t.contacto.email}` },
   ]
 
@@ -508,7 +517,7 @@ function ContactPageInner() {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+              gridTemplateColumns: isMobile ? '1fr' : isEnabled('videollamada') ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)',
               gap: '0.75rem',
             }}>
               {/* In-person */}
@@ -544,38 +553,39 @@ function ContactPageInner() {
                 </div>
               </button>
 
-              {/* Video call */}
-              <button
-                onClick={() => setBookingMode('videocall')}
-                style={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
-                  padding: '1.25rem',
-                  background: 'rgba(255,255,255,0.02)',
-                  border: '1px solid rgba(201,168,76,0.15)',
-                  borderRadius: 12,
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease',
-                  textAlign: 'left',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
-                  e.currentTarget.style.background = 'rgba(201,168,76,0.04)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.15)'
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
-                }}
-              >
-                <Video size={20} color="#C9A84C" />
-                <div>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
-                    {bl.videocall}
-                  </p>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
-                    {bl.videocallDesc}
-                  </p>
-                </div>
-              </button>
+              {isEnabled('videollamada') && (
+                <button
+                  onClick={() => setBookingMode('videocall')}
+                  style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
+                    padding: '1.25rem',
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(201,168,76,0.15)',
+                    borderRadius: 12,
+                    cursor: 'pointer',
+                    transition: 'all 0.25s ease',
+                    textAlign: 'left',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
+                    e.currentTarget.style.background = 'rgba(201,168,76,0.04)'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = 'rgba(201,168,76,0.15)'
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                  }}
+                >
+                  <Video size={20} color="#C9A84C" />
+                  <div>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                      {bl.videocall}
+                    </p>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                      {bl.videocallDesc}
+                    </p>
+                  </div>
+                </button>
+              )}
 
               {/* Message */}
               <button

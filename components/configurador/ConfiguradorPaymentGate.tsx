@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import { Lock, Check, Clock, Loader2, CreditCard, ArrowRight } from 'lucide-react'
 
 interface ConfiguradorPaymentGateProps {
@@ -17,6 +18,8 @@ export function ConfiguradorPaymentGate({
   subtitle,
 }: ConfiguradorPaymentGateProps) {
   const { locale } = useI18n()
+  const { getPrice } = useSettings()
+  const configPrice = getPrice('configurador') || 29
   const [isProcessing, setIsProcessing] = useState(false)
 
   const t = {
@@ -31,7 +34,7 @@ export function ConfiguradorPaymentGate({
         'Recomendación de estilo personalizado',
         'Presupuesto instantáneo',
       ],
-      cta: 'Comprar Acceso — €29',
+      cta: `Comprar Acceso — €${configPrice}`,
       secure: 'Pago seguro con Stripe',
       contact: '¿Prefieres hablar con nosotros?',
       contact_cta: 'Reservar cita',
@@ -48,7 +51,7 @@ export function ConfiguradorPaymentGate({
         'Personalised style recommendation',
         'Instant quote',
       ],
-      cta: 'Buy Access — €29',
+      cta: `Buy Access — €${configPrice}`,
       secure: 'Secure payment with Stripe',
       contact: 'Prefer to talk to us?',
       contact_cta: 'Book an appointment',
@@ -65,7 +68,7 @@ export function ConfiguradorPaymentGate({
         'Raccomandazione di stile personalizzata',
         'Preventivo istantaneo',
       ],
-      cta: 'Acquista Accesso — €29',
+      cta: `Acquista Accesso — €${configPrice}`,
       secure: 'Pagamento sicuro con Stripe',
       contact: 'Preferisci parlarci?',
       contact_cta: 'Prenota un appuntamento',
@@ -82,7 +85,7 @@ export function ConfiguradorPaymentGate({
         'Recommandation de style personnalisée',
         'Devis instantané',
       ],
-      cta: 'Acheter l\'Accès — €29',
+      cta: `Acheter l'Accès — €${configPrice}`,
       secure: 'Paiement sécurisé avec Stripe',
       contact: 'Vous préférez nous parler?',
       contact_cta: 'Prendre rendez-vous',
@@ -292,7 +295,7 @@ export function ConfiguradorPaymentGate({
                   const res = await fetch('/api/stripe', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ type: 'configurator' }),
+                    body: JSON.stringify({ type: 'configurator', price: configPrice * 100 }),
                   })
                   const data = await res.json()
                   if (data.url) {

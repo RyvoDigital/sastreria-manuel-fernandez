@@ -4,13 +4,17 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
+import { useContent } from '@/lib/content-provider'
 import { Phone, MapPin, Calendar } from 'lucide-react'
 
 export function HeroNew() {
   const { t } = useI18n()
+  const { getValue } = useContent()
   const heroRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
+  const heroTitle = getValue('hero.title') || t.hero.tagline
+  const heroSubtitle = getValue('hero.subtitle') || t.hero.tagline2
 
   useEffect(() => {
     // Wait for loading screen to finish
@@ -128,7 +132,7 @@ export function HeroNew() {
               opacity: isLoaded ? 1 : 0,
             }}
           >
-            {t.hero.tagline}
+            {heroTitle}
           </div>
           <div 
             className="animate-in"
@@ -142,7 +146,7 @@ export function HeroNew() {
               opacity: isLoaded ? 1 : 0,
             }}
           >
-            {t.hero.tagline2}
+            {heroSubtitle}
           </div>
         </h1>
 

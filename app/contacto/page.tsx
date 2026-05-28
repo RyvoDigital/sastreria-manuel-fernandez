@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ContactPage } from '@/components/contacto/ContactPage'
+import { ServiceGate } from '@/components/global/ServiceGate'
 
 export const metadata: Metadata = {
   title: 'Contacto · Sastrería Manuel Fernández',
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function ContactoPage() {
-  return <ContactPage />
+  return (
+    <ServiceGate settingId="contacto">
+      <ContactPage />
+    </ServiceGate>
+  )
 }
