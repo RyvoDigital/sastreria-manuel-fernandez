@@ -106,7 +106,7 @@ export function EspacioSection() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at_02.33.20_unnlrp.png"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780308464/IMG_2141_fcqc0n.jpg"
               alt="Taller de Sastrería Manuel Fernández"
               style={{
                 width:          '100%',
@@ -115,7 +115,6 @@ export function EspacioSection() {
                 objectPosition: 'center',
                 filter:         'brightness(0.85) saturate(0.72)',
                 display:        'block',
-                transform:      'rotate(90deg) scale(1.15)',
               }}
             />
             {/* Bottom gradient */}
