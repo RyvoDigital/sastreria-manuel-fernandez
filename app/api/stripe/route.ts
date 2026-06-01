@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimit } from '@/lib/rate-limit'
+import { createPayment } from '@/lib/admin/db'
 
 const stripeLimiter = rateLimit({ name: 'stripe', maxRequests: 10, windowMs: 60_000 })
 
@@ -110,6 +111,23 @@ export async function POST(req: NextRequest) {
           courseId: courseId || 'default',
         },
       })
+    }
+
+    // Record payment in local DB
+    try {
+      await createPayment({
+        stripeSessionId: session.id,
+        amount: price,
+        currency: 'eur',
+        status: 'pending',
+        type: type || 'course',
+        customerEmail: email || null,
+        customerName: name || null,
+        metadata: { courseId, date, time },
+      })
+    } catch (dbErr) {
+      console.error('Failed to record payment:', dbErr)
+      // Non-critical: don't fail checkout if DB insert fails
     }
 
     return NextResponse.json({ sessionId: session.id, url: session.url })

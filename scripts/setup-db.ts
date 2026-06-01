@@ -122,7 +122,13 @@ async function setup() {
       { id: 'bodas', name: 'Bodas y Ceremonia', enabled: true, price: null },
       { id: 'trajes', name: 'Trajes a Medida', enabled: true, price: 1200 },
       { id: 'configurador', name: 'Configurador 3D', enabled: true, price: 29 },
-      { id: 'cursos', name: 'Cursos de Sastrería', enabled: true, price: 350 },
+      { id: 'cursos', name: 'Cursos de Sastrería (global)', enabled: true, price: 350 },
+      { id: 'cursos-intro', name: 'Curso: Introducción', enabled: true, price: 350 },
+      { id: 'cursos-canvas', name: 'Curso: Entretelado', enabled: true, price: 350 },
+      { id: 'cursos-lapel', name: 'Curso: Solapas', enabled: true, price: 350 },
+      { id: 'cursos-pockets', name: 'Curso: Bolsillos', enabled: true, price: 350 },
+      { id: 'cursos-buttonholes', name: 'Curso: Ojales', enabled: true, price: 350 },
+      { id: 'cursos-finishes', name: 'Curso: Acabados', enabled: true, price: 350 },
       { id: 'videollamada', name: 'Videollamada', enabled: true, price: 50 },
       { id: 'modelos3d', name: 'Modelos 3D', enabled: true, price: null },
       { id: 'contacto', name: 'Formulario de Contacto', enabled: true, price: null },
@@ -135,6 +141,24 @@ async function setup() {
         [s.id, s.name, s.enabled, s.price]
       )
     }
+
+    // Payments table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS payments (
+        id SERIAL PRIMARY KEY,
+        stripe_session_id VARCHAR(255) UNIQUE,
+        stripe_payment_intent_id VARCHAR(255),
+        amount INTEGER NOT NULL,
+        currency VARCHAR(10) DEFAULT 'eur',
+        status VARCHAR(50) DEFAULT 'pending',
+        type VARCHAR(50),
+        customer_email VARCHAR(200),
+        customer_name VARCHAR(100),
+        metadata JSONB,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
 
     // Seed default admin if none exists and ADMIN_PASSWORD is set
     const adminPassword = process.env.ADMIN_PASSWORD

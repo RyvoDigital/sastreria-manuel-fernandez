@@ -135,7 +135,12 @@ interface CursosListProps {
 export function CursosList({ onSelectCourse }: CursosListProps) {
   const { locale } = useI18n();
   const { getPrice } = useSettings();
-  const coursePrice = (getPrice('cursos') || 350) * 100;
+  const globalCoursePrice = (getPrice('cursos') || 350) * 100;
+
+  const getCoursePrice = (courseId: string) => {
+    const individual = getPrice(`cursos-${courseId}`);
+    return (individual || getPrice('cursos') || 350) * 100;
+  };
 
   const t = {
     es: {
@@ -448,7 +453,7 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
 
                   {/* Course action button */}
                   <button
-                    onClick={() => onSelectCourse?.({ ...course, price: coursePrice })}
+                    onClick={() => onSelectCourse?.({ ...course, price: getCoursePrice(course.id) })}
                     style={{
                       marginTop: '1.25rem',
                       width: '100%',

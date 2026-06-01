@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { bookSlot, isSlotBooked } from '@/lib/bookings'
+import { updatePaymentBySessionId } from '@/lib/admin/db'
 import { Resend } from 'resend'
 
 export async function POST(req: NextRequest) {
@@ -32,6 +33,16 @@ export async function POST(req: NextRequest) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Record<string, any>
     const metadata = session.metadata || {}
+
+    // Update local payment record
+    try {
+      await updatePaymentBySessionId(session.id, {
+        status: 'paid',
+        stripePaymentIntentId: session.payment_intent || null,
+      })
+    } catch (dbErr) {
+      console.error('Failed to update payment status:', dbErr)
+    }
 
     // Only handle videocall bookings via webhook
     if (metadata.type === 'videocall') {

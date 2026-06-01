@@ -280,3 +280,65 @@ export async function updateSetting(id: string, data: { enabled?: boolean; price
   const result = await query(sql, params)
   return result.rows[0] || null
 }
+
+// Payments
+export async function createPayment(data: {
+  stripeSessionId: string
+  amount: number
+  currency?: string
+  status?: string
+  type?: string
+  customerEmail?: string
+  customerName?: string
+  metadata?: Record<string, unknown>
+}) {
+  const result = await query(
+    `INSERT INTO payments (stripe_session_id, amount, currency, status, type, customer_email, customer_name, metadata)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+     ON CONFLICT (stripe_session_id) DO NOTHING
+     RETURNING *`,
+    [
+      data.stripeSessionId,
+      data.amount,
+      data.currency || 'eur',
+      data.status || 'pending',
+      data.type || null,
+      data.customerEmail || null,
+      data.customerName || null,
+      data.metadata ? JSON.stringify(data.metadata) : null,
+    ]
+  )
+  return result.rows[0] || null
+}
+
+export async function updatePaymentBySessionId(
+  stripeSessionId: string,
+  data: { status?: string; stripePaymentIntentId?: string }
+) {
+  const fields: string[] = []
+  const params: unknown[] = []
+  let i = 1
+
+  if (data.status !== undefined) {
+    fields.push(`status = $${i++}`)
+    params.push(data.status)
+  }
+  if (data.stripePaymentIntentId !== undefined) {
+    fields.push(`stripe_payment_intent_id = $${i++}`)
+    params.push(data.stripePaymentIntentId)
+  }
+
+  if (fields.length === 0) return null
+  fields.push(`updated_at = CURRENT_TIMESTAMP`)
+  params.push(stripeSessionId)
+  const sql = `UPDATE payments SET ${fields.join(', ')} WHERE stripe_session_id = $${i} RETURNING *`
+  const result = await query(sql, params)
+  return result.rows[0] || null
+}
+
+export async function getPayments() {
+  const result = await query(
+    `SELECT * FROM payments ORDER BY created_at DESC`
+  )
+  return result.rows
+}
