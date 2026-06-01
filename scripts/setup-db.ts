@@ -160,6 +160,54 @@ async function setup() {
       )
     `)
 
+    // Courses table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS courses (
+        id VARCHAR(50) PRIMARY KEY,
+        title_es VARCHAR(200) NOT NULL,
+        title_en VARCHAR(200) NOT NULL,
+        title_it VARCHAR(200) NOT NULL,
+        title_fr VARCHAR(200) NOT NULL,
+        desc_es TEXT,
+        desc_en TEXT,
+        desc_it TEXT,
+        desc_fr TEXT,
+        duration VARCHAR(50),
+        lessons INTEGER DEFAULT 0,
+        image VARCHAR(500),
+        price INTEGER NOT NULL DEFAULT 0,
+        locked BOOLEAN DEFAULT false,
+        enabled BOOLEAN DEFAULT true,
+        sort_order INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Migrate hardcoded courses if table is empty
+    const courseCount = await pool.query(`SELECT COUNT(*) FROM courses`)
+    if (parseInt(courseCount.rows[0].count) === 0) {
+      const defaultCourses = [
+        { id: 'intro', title_es: 'Introducción a la Sastrería Artesanal', title_en: 'Introduction to Artisan Tailoring', title_it: 'Introduzione alla Sartoria Artigianale', title_fr: 'Introduction à la Tailleur Artisanale', desc_es: 'Fundamentos y filosofía del traje a mano.', desc_en: 'Fundamentals and philosophy of handmade tailoring.', desc_it: 'Fondamenti e filosofia dell\'abito fatto a mano.', desc_fr: 'Fondements et philosophie du costume fait main.', duration: '45 min', lessons: 3, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at_02.34.21_xacsg5.png', price: 350, locked: false, enabled: true, sort_order: 0 },
+        { id: 'canvas', title_es: 'Entretelado a Mano', title_en: 'Hand Canvas', title_it: 'Canvas a Mano', title_fr: 'Canvas à la Main', desc_es: 'Técnicas de cosido de la entretela canvas.', desc_en: 'Hand-stitching canvas interlining techniques.', desc_it: 'Tecniche di cucitura della tela canvas.', desc_fr: 'Techniques de couture de la toile canvas.', duration: '2h 30min', lessons: 5, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779673071/WhatsApp_Image_2026-05-24_at_00.37.28_ztx6kh.jpg', price: 350, locked: false, enabled: true, sort_order: 1 },
+        { id: 'lapel', title_es: 'Construcción de Solapas', title_en: 'Lapel Construction', title_it: 'Costruzione del Revers', title_fr: 'Construction du Revers', desc_es: 'Tipos de solapa y su confección paso a paso.', desc_en: 'Lapel types and step-by-step construction.', desc_it: 'Tipi di rever e costruzione passo dopo passo.', desc_fr: 'Types de revers et construction étape par étape.', duration: '1h 45min', lessons: 4, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg', price: 350, locked: false, enabled: true, sort_order: 2 },
+        { id: 'pockets', title_es: 'Bolsillos de Chaqueta', title_en: 'Jacket Pockets', title_it: 'Tasche della Giacca', title_fr: 'Poches de la Veste', desc_es: 'Bolsillos de ojal, de parche y de tapeta.', desc_en: 'Welt, patch and flap pockets.', desc_it: 'Tasche a filo, a toppa e con patta.', desc_fr: 'Poches passepoilées, à patch et à rabat.', duration: '2h 15min', lessons: 6, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/showroom-jackets_n55sfk', price: 350, locked: false, enabled: true, sort_order: 3 },
+        { id: 'buttonholes', title_es: 'Ojales a Mano', title_en: 'Hand-made Buttonholes', title_it: 'Asole a Mano', title_fr: 'Boutonnières à la Main', desc_es: 'Técnica de ojales de ojaladero.', desc_en: 'Buttonhole stitch technique.', desc_it: 'Tecnica del punto a giorno.', desc_fr: 'Technique du point de boutonnière.', duration: '1h 30min', lessons: 3, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672947/Screenshot_2026-05-25_at_02.32.56_yziv1n.png', price: 350, locked: false, enabled: true, sort_order: 4 },
+        { id: 'finishes', title_es: 'Acabados Profesionales', title_en: 'Professional Finishes', title_it: 'Finiture Professionali', title_fr: 'Finitions Professionnelles', desc_es: 'Detalles que marcan la diferencia.', desc_en: 'Details that make the difference.', desc_it: 'Dettagli che fanno la differenza.', desc_fr: 'Détails qui font la différence.', duration: '2h', lessons: 4, image: '/photos/anatomia-traje.png', price: 350, locked: false, enabled: true, sort_order: 5 },
+      ]
+      for (const c of defaultCourses) {
+        await pool.query(
+          `INSERT INTO courses (id, title_es, title_en, title_it, title_fr, desc_es, desc_en, desc_it, desc_fr, duration, lessons, image, price, locked, enabled, sort_order)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
+          [c.id, c.title_es, c.title_en, c.title_it, c.title_fr, c.desc_es, c.desc_en, c.desc_it, c.desc_fr, c.duration, c.lessons, c.image, c.price, c.locked, c.enabled, c.sort_order]
+        )
+      }
+      console.log('Default courses seeded')
+    }
+
+    // Add reminder_sent_at to bookings if missing
+    await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS reminder_sent_at TIMESTAMP`)
+
     // Seed default admin if none exists and ADMIN_PASSWORD is set
     const adminPassword = process.env.ADMIN_PASSWORD
     if (adminPassword) {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CheckCircle, XCircle } from 'lucide-react'
+import { CheckCircle, XCircle, Bell } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
 interface Booking {
@@ -14,6 +14,7 @@ interface Booking {
   status: string
   notes: string | null
   created_at: string
+  reminder_sent_at: string | null
 }
 
 export default function BookingsPage() {
@@ -43,6 +44,19 @@ export default function BookingsPage() {
       body: JSON.stringify({ id, status }),
     })
     fetchBookings()
+  }
+
+  async function sendReminder(id: number) {
+    const res = await fetch('/api/admin/reminders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ bookingId: id }),
+    })
+    if (res.ok) {
+      fetchBookings()
+    } else {
+      alert('Failed to send reminder')
+    }
   }
 
   return (
@@ -122,6 +136,13 @@ export default function BookingsPage() {
                           <XCircle size={16} />
                         </button>
                       )}
+                      <button
+                        onClick={() => sendReminder(b.id)}
+                        className={`p-1.5 rounded ${b.reminder_sent_at ? 'bg-gray-800 text-gray-500' : 'bg-amber-900/30 text-amber-300 hover:bg-amber-900/50'}`}
+                        title={b.reminder_sent_at ? 'Reminder sent' : 'Send reminder'}
+                      >
+                        <Bell size={16} />
+                      </button>
                     </div>
                   </td>
                 </tr>

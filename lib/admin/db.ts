@@ -342,3 +342,99 @@ export async function getPayments() {
   )
   return result.rows
 }
+
+// Courses
+export async function getCourses() {
+  const result = await query(
+    `SELECT * FROM courses ORDER BY sort_order, created_at`
+  )
+  return result.rows
+}
+
+export async function getCourseById(id: string) {
+  const result = await query(`SELECT * FROM courses WHERE id = $1`, [id])
+  return result.rows[0] || null
+}
+
+export async function createCourse(data: {
+  id: string
+  title_es: string
+  title_en: string
+  title_it: string
+  title_fr: string
+  desc_es?: string
+  desc_en?: string
+  desc_it?: string
+  desc_fr?: string
+  duration?: string
+  lessons?: number
+  image?: string
+  price?: number
+  locked?: boolean
+  enabled?: boolean
+  sort_order?: number
+}) {
+  const result = await query(
+    `INSERT INTO courses (id, title_es, title_en, title_it, title_fr, desc_es, desc_en, desc_it, desc_fr, duration, lessons, image, price, locked, enabled, sort_order)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+     RETURNING *`,
+    [data.id, data.title_es, data.title_en, data.title_it, data.title_fr, data.desc_es || '', data.desc_en || '', data.desc_it || '', data.desc_fr || '', data.duration || '', data.lessons || 0, data.image || '', data.price || 0, data.locked ?? false, data.enabled ?? true, data.sort_order ?? 0]
+  )
+  return result.rows[0]
+}
+
+export async function updateCourse(id: string, data: Partial<{
+  title_es: string
+  title_en: string
+  title_it: string
+  title_fr: string
+  desc_es: string
+  desc_en: string
+  desc_it: string
+  desc_fr: string
+  duration: string
+  lessons: number
+  image: string
+  price: number
+  locked: boolean
+  enabled: boolean
+  sort_order: number
+}>) {
+  const fields: string[] = []
+  const params: unknown[] = []
+  let i = 1
+
+  const mappings: Record<string, string> = {
+    title_es: 'title_es', title_en: 'title_en', title_it: 'title_it', title_fr: 'title_fr',
+    desc_es: 'desc_es', desc_en: 'desc_en', desc_it: 'desc_it', desc_fr: 'desc_fr',
+    duration: 'duration', lessons: 'lessons', image: 'image', price: 'price',
+    locked: 'locked', enabled: 'enabled', sort_order: 'sort_order',
+  }
+
+  for (const [key, col] of Object.entries(mappings)) {
+    if (data[key as keyof typeof data] !== undefined) {
+      fields.push(`${col} = $${i++}`)
+      params.push(data[key as keyof typeof data])
+    }
+  }
+
+  if (fields.length === 0) return null
+  fields.push(`updated_at = CURRENT_TIMESTAMP`)
+  params.push(id)
+  const sql = `UPDATE courses SET ${fields.join(', ')} WHERE id = $${i} RETURNING *`
+  const result = await query(sql, params)
+  return result.rows[0] || null
+}
+
+export async function deleteCourse(id: string) {
+  await query(`DELETE FROM courses WHERE id = $1`, [id])
+}
+
+// Booking reminders
+export async function updateBookingReminder(id: number) {
+  const result = await query(
+    `UPDATE bookings SET reminder_sent_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *`,
+    [id]
+  )
+  return result.rows[0] || null
+}

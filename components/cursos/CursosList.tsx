@@ -5,6 +5,7 @@ import { useSettings } from "@/lib/settings-provider";
 import { motion } from "framer-motion";
 import { Play, Lock, Clock, BookOpen } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface Course {
   id: string
@@ -135,9 +136,23 @@ interface CursosListProps {
 export function CursosList({ onSelectCourse }: CursosListProps) {
   const { locale } = useI18n();
   const { getPrice } = useSettings();
-  const globalCoursePrice = (getPrice('cursos') || 350) * 100;
+  const [apiCourses, setApiCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const getCoursePrice = (courseId: string) => {
+  useEffect(() => {
+    fetch('/api/courses')
+      .then((r) => r.json())
+      .then((data) => {
+        setApiCourses(data.courses || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const displayCourses = apiCourses.length > 0 ? apiCourses : COURSES;
+
+  const getCoursePrice = (courseId: string, coursePrice?: number) => {
+    if (coursePrice !== undefined && coursePrice !== null) return coursePrice * 100;
     const individual = getPrice(`cursos-${courseId}`);
     return (individual || getPrice('cursos') || 350) * 100;
   };
@@ -271,7 +286,7 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
             justifyContent: 'center',
           }}
         >
-          {COURSES.map((course, index) => {
+          {displayCourses.map((course, index) => {
             const title =
               (course[`title_${locale}` as keyof typeof course] as string) ||
               course.title_es;
@@ -453,7 +468,7 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
 
                   {/* Course action button */}
                   <button
-                    onClick={() => onSelectCourse?.({ ...course, price: getCoursePrice(course.id) })}
+                    onClick={() => onSelectCourse?.({ ...course, price: getCoursePrice(course.id, course.price) })}
                     style={{
                       marginTop: '1.25rem',
                       width: '100%',
