@@ -16,6 +16,7 @@ import {
   LogOut,
   KeyRound,
   BookOpen,
+  Box,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
@@ -26,6 +27,7 @@ const navItems = [
   { href: '/admin/payments', icon: CreditCard, key: 'payments' },
   { href: '/admin/configurations', icon: Shirt, key: 'configurations' },
   { href: '/admin/courses', icon: BookOpen, key: 'courses' },
+  { href: '/admin/garments', icon: Box, key: 'garments' },
   { href: '/admin/customers', icon: Users, key: 'customers' },
   { href: '/admin/content', icon: FileText, key: 'content' },
   { href: '/admin/settings', icon: Settings, key: 'settings' },

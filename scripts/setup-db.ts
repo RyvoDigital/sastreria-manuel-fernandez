@@ -205,6 +205,38 @@ async function setup() {
       console.log('Default courses seeded')
     }
 
+    // Garments for 3D Models page
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS garments (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(200) NOT NULL,
+        slug VARCHAR(200) NOT NULL UNIQUE,
+        thumbnail_url VARCHAR(500) NOT NULL,
+        description TEXT,
+        is_active BOOLEAN DEFAULT TRUE,
+        sort_order INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `)
+
+    // Seed default garments if table is empty
+    const garmentCount = await pool.query(`SELECT COUNT(*) FROM garments`)
+    if (parseInt(garmentCount.rows[0].count) === 0) {
+      const defaultGarments = [
+        { name: 'Traje Clásico a Medida', slug: 'traje-clasico', thumbnail_url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/IMG_7409_orkk1x', description: 'Traje bespoke clásico en lana premium.', sort_order: 0 },
+        { name: 'Smoking de Gala', slug: 'smoking-gala', thumbnail_url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-tuxedo_rv21ou', description: 'Smoking negro de ceremonia con solapa de satén.', sort_order: 1 },
+        { name: 'Chaqué Nupcial', slug: 'chaque-nupcial', thumbnail_url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-morning-coat_ptibah', description: 'Chaqué tradicional para bodas de mañana.', sort_order: 2 },
+      ]
+      for (const g of defaultGarments) {
+        await pool.query(
+          `INSERT INTO garments (name, slug, thumbnail_url, description, is_active, sort_order) VALUES ($1, $2, $3, $4, $5, $6)`,
+          [g.name, g.slug, g.thumbnail_url, g.description, true, g.sort_order]
+        )
+      }
+      console.log('Default garments seeded')
+    }
+
     // Add reminder_sent_at to bookings if missing
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS reminder_sent_at TIMESTAMP`)
 

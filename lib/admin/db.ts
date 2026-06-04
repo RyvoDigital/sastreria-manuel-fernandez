@@ -430,6 +430,77 @@ export async function deleteCourse(id: string) {
   await query(`DELETE FROM courses WHERE id = $1`, [id])
 }
 
+// Garments
+export async function getGarments() {
+  const result = await query(
+    `SELECT * FROM garments ORDER BY sort_order, created_at`
+  )
+  return result.rows
+}
+
+export async function getGarmentBySlug(slug: string) {
+  const result = await query(`SELECT * FROM garments WHERE slug = $1`, [slug])
+  return result.rows[0] || null
+}
+
+export async function getGarmentById(id: number) {
+  const result = await query(`SELECT * FROM garments WHERE id = $1`, [id])
+  return result.rows[0] || null
+}
+
+export async function createGarment(data: {
+  name: string
+  slug: string
+  thumbnail_url: string
+  description?: string
+  is_active?: boolean
+  sort_order?: number
+}) {
+  const result = await query(
+    `INSERT INTO garments (name, slug, thumbnail_url, description, is_active, sort_order)
+     VALUES ($1, $2, $3, $4, $5, $6)
+     RETURNING *`,
+    [data.name, data.slug, data.thumbnail_url, data.description || '', data.is_active ?? true, data.sort_order ?? 0]
+  )
+  return result.rows[0]
+}
+
+export async function updateGarment(id: number, data: Partial<{
+  name: string
+  slug: string
+  thumbnail_url: string
+  description: string
+  is_active: boolean
+  sort_order: number
+}>) {
+  const fields: string[] = []
+  const params: unknown[] = []
+  let i = 1
+
+  const mappings: Record<string, string> = {
+    name: 'name', slug: 'slug', thumbnail_url: 'thumbnail_url',
+    description: 'description', is_active: 'is_active', sort_order: 'sort_order',
+  }
+
+  for (const [key, col] of Object.entries(mappings)) {
+    if (data[key as keyof typeof data] !== undefined) {
+      fields.push(`${col} = $${i++}`)
+      params.push(data[key as keyof typeof data])
+    }
+  }
+
+  if (fields.length === 0) return null
+  fields.push(`updated_at = CURRENT_TIMESTAMP`)
+  params.push(id)
+  const sql = `UPDATE garments SET ${fields.join(', ')} WHERE id = $${i} RETURNING *`
+  const result = await query(sql, params)
+  return result.rows[0] || null
+}
+
+export async function deleteGarment(id: number) {
+  await query(`DELETE FROM garments WHERE id = $1`, [id])
+}
+
 // Booking reminders
 export async function updateBookingReminder(id: number) {
   const result = await query(
