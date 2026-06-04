@@ -154,7 +154,7 @@ export function BeforeAfterSlider() {
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* After Image (Right side) */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765962/fotos-web/03-screenshots/screenshot-11.png"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778764133/photos/ChatGPT_Image_10_abr_2026_11_27_13_xjds4g.png"
               alt="After fitting"
               style={{
                 width: '100%',
