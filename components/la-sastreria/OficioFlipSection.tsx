@@ -25,7 +25,7 @@ export function OficioFlipSection() {
 
   const disciplines = [
     { label: t.la_sastreria.oficio.cat1, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1504_j2eexd'  },
-    { label: t.la_sastreria.oficio.cat2, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/v1778764157/photos/fabric-selection_stkbcf.jpg'  },
+    { label: t.la_sastreria.oficio.cat2, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0623_xipoh3'  },
     { label: t.la_sastreria.oficio.cat3, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/Proceso_de_sastrería_en_tela_azul_y03oyr' },
     { label: t.la_sastreria.oficio.cat4, url: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/ChatGPT_Image_10_abr_2026_11_27_13_xjds4g'  },
   ]

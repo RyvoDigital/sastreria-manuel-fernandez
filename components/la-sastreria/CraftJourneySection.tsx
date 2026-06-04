@@ -57,7 +57,7 @@ export function CraftJourneySection() {
     },
     {
       id:          'diseno',
-      background:  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_1200/photos/web_lista_images/sastreria-hero_v6qd4x',
+      background:  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_1200/photos/web_lista_images/sastreria-overview_viyqaa',
       leftLabel:   t.la_sastreria.oficio.cat2,
       title:       'Precisión',
       rightLabel:  'Tradición',
