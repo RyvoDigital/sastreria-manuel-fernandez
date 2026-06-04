@@ -6,7 +6,7 @@
     "bodas": "Weddings & Ceremony",
     "contacto": "Contact",
     "configurador": "Configurator",
-    "cursos": "Online Courses",
+    "cursos": "Artisan Course",
     "videollamada": "Video Call",
     "modelos3d": "Create your Suit"
   },
@@ -161,7 +161,7 @@
       "p2": "His work reflects a savoir-faire inherited and perfected throughout a lifetime, combined with a contemporary outlook that projects tailoring towards the future. Each garment is born from a deep knowledge of the craft, proportion and detail, achieving unique pieces that balance tradition, innovation and excellence."
     },
     "evelyn": {
-      "label": "The Workshop",
+      "label": "The Story Continues",
       "p1": "Evelyn Fernández, trained in Advertising at the Complutense University of Madrid and specialised in the luxury universe through the Luxury Direction and Strategic Management programme at IE Business School, has developed her career between Madrid and Paris in projects linked to fashion, branding and the premium client.",
       "p2": "With an international vision and a marked aesthetic sensitivity, she has driven different business initiatives within the lifestyle and luxury sector, consolidating an approach focused on exclusivity, experience and detail.",
       "p3": "She currently leads Sastrería Manuel Fernández, positioning it as a benchmark in high-level artisan tailoring, aimed at a demanding and global clientele, with service in Spanish, English and French."
@@ -176,15 +176,19 @@
     },
     "cifras": {
       "label": "By the Numbers",
-      "n1": " ", "l1": "Founded",
-      "n2": "∞",   "l2": "Unique Suits",
-      "n3": "Madrid", "l3": "Our City",
-      "n4": "By Hand", "l4": "Every Piece"
+      "n1": " ",
+      "l1": "Founded",
+      "n2": "∞",
+      "l2": "Unique Suits",
+      "n3": "Madrid",
+      "l3": "Our City",
+      "n4": "By Hand",
+      "l4": "Every Piece"
     },
     "espacio": {
       "label": "The Space",
       "title": "Where the Suit is Born",
-      "description": "A private workshop in Madrid where every visit is an experience as carefully considered as the garment created within it.",
+      "description": "A private tailor shop in Madrid where every visit is an experience as carefully considered as the garment created within it.",
       "subtitle": "Tailoring",
       "body": "You will discover a place full of tradition, elegance, distinction and innovation. Here, we will make you discover the passion of bespoke dressing."
     },
@@ -246,7 +250,7 @@
         "desc": "Design your suit step by step. Paid access."
       },
       "courses": {
-        "label": "Online Courses",
+        "label": "Artisan Course",
         "desc": "Learn tailoring techniques with video tutorials."
       },
       "videocall": {
@@ -261,52 +265,65 @@
       "headline": "Everything a Master Tailor Can Create"
     },
     "services": {
-      "s1_num": "01", "s1_title": "Tailcoat",
-      "s2_num": "02", "s2_title": "Morning Coat",
-      "s3_num": "03", "s3_title": "Tuxedo",
-      "s4_num": "04", "s4_title": "Artisan Suit",
-      "s5_num": "05", "s5_title": "Artisan Overcoat",
-      "s6_num": "06", "s6_title": "Blazer",
-      "s7_num": "07", "s7_title": "Shirts",
-      "s8_num": "08", "s8_title": "Sport Trousers",
-      "s9_num": "09", "s9_title": "Waistcoats",
-      "s10_num": "10", "s10_title": "Bespoke Alterations"
+      "s1_num": "01",
+      "s1_title": "Tailcoat",
+      "s2_num": "02",
+      "s2_title": "Morning Coat",
+      "s3_num": "03",
+      "s3_title": "Tuxedo",
+      "s4_num": "04",
+      "s4_title": "Artisan Suit",
+      "s5_num": "05",
+      "s5_title": "Artisan Overcoat",
+      "s6_num": "06",
+      "s6_title": "Blazer",
+      "s7_num": "07",
+      "s7_title": "Shirts",
+      "s8_num": "08",
+      "s8_title": "Sport Trousers",
+      "s9_num": "09",
+      "s9_title": "Waistcoats",
+      "s10_num": "10",
+      "s10_title": "Bespoke Alterations"
     },
     "credenciales": {
       "badge": "Trusted Tailoring",
       "headline1": "A Legacy of",
       "headline2": "Exceptional Craft",
-      "body": "Every suit that leaves the workshop carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
-      "stat1_val": "40+",      "stat1_label": "Years",
-      "stat2_val": "Bespoke",  "stat2_label": "Every Piece",
-      "stat3_val": "Madrid",   "stat3_label": "Our City",
+      "body": "Every suit that leaves the tailor shop carries with it decades of knowledge, the finest European cloth, and the rigour of someone for whom perfection is a habit.",
+      "stat1_val": "40+",
+      "stat1_label": "Years",
+      "stat2_val": "Bespoke",
+      "stat2_label": "Every Piece",
+      "stat3_val": "Madrid",
+      "stat3_label": "Our City",
       "satisfaction_label": "Satisfied Clients",
       "btn_primary": "Book Appointment",
-      "btn_secondary": "The Workshop"
+      "btn_secondary": "The Tailor Shop"
     },
     "tejidos": {
       "label": "Our Clients",
-      "title": "Where We Work with Clients",
-      "p1": "From Madrid, we dress gentlemen worldwide. Miami, Oporto, Lisbon, Paris, London, Rome, Dubai and more. Every suit travels handmade.",
-      "p2": "Artisan tailoring knows no borders. Every client, wherever they are, receives the same dedication and attention to detail. We offer DHL EXPRESS service. We work with the finest textile houses: Reda, Luvit, Carnet, Harrison, Fox Brothers, and Zegna."
+      "title": "IN THE WORLD",
+      "p1": "From Madrid we dress gentlemen and ladies from all over the world.",
+      "p2": "Artisan tailoring knows no borders. Every client, wherever they are, receives the same dedication and attention to detail. We offer DHL EXPRESS service. We work with the finest textile houses: Loro Piana, Scabal, Holland & Sherry, Fratelli Tallia di Delfino, Dugdale Bros and Dormeuil."
     },
     "cta": {
       "label": "The Next Step",
       "headline": "The suit you imagine is one conversation away",
       "btn_primary": "Book Appointment",
-      "btn_secondary": "The Workshop"
+      "btn_secondary": "The Tailor Shop"
     }
   },
   "contacto": {
     "section_label": "Contact",
     "headline": "Let's Talk",
     "subheadline": "Every commission begins with a conversation.",
-    "address_label": "Workshop",
+    "address_label": "Tailor Shop",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone_label": "Phone",
     "phone": "+34 682 19 29 44",
     "hours_label": "Hours",
-    "hours": "Mon–Fri 10:00–14:00 & 17:00–20:00; Sat 10:00–13:00; Sun closed",
+    "hours": "Mon–Fri 10:00–14:00 & 17:00–20:00; Sat 10:00–13:00",
     "email_label": "Email",
     "email": "sastreriamanuelfernandez@gmail.com",
     "cta_reservar": "Book Appointment",
@@ -325,7 +342,8 @@
     "quote5": "The fabric chooses who you are.",
     "quote6": "The lapel: the silent language of power.",
     "quote7": "We build identity, not clothing.",
-    "quote8": "The big day starts months before."
+    "quote8": "The big day starts months before.",
+    "form_phone": "Phone"
   },
   "coleccion": {
     "hero": {
@@ -365,35 +383,59 @@
     },
     "categorias": {
       "label": "Ceremony Styles",
-      "cat1": "Morning Coat",    "cat1_desc": "The most formal elegance for unique occasions.",
-      "cat2": "Stroller","cat2_desc": "The ultimate expression of morning wedding elegance.",
-      "cat3": "Tuxedo",       "cat3_desc": "Impecable for the ceremony and evening reception.",
-      "cat4": "Bespoke Suit",    "cat4_desc": "Personalised elegance for any special occasion."
+      "cat1": "Morning Coat",
+      "cat1_desc": "The most formal elegance for unique occasions.",
+      "cat2": "Stroller",
+      "cat2_desc": "The ultimate expression of morning wedding elegance.",
+      "cat3": "Tuxedo",
+      "cat3_desc": "Impecable for the ceremony and evening reception.",
+      "cat4": "Bespoke Suit",
+      "cat4_desc": "Personalised elegance for any special occasion."
     },
     "formal_wear": {
       "label": "Formal Wear",
       "title": "From the first appointment",
-      "items": ["Morning coat", "Stroller", "Tuxedo", "Bespoke suit"]
+      "items": [
+        "Morning coat",
+        "Stroller",
+        "Tuxedo",
+        "Bespoke suit"
+      ]
     },
     "accesorios": {
       "label": "Accessories",
       "title": "Everything included",
-      "items": ["Bespoke ties", "Personalised pocket squares", "Shirts", "Cummerbunds", "Bow ties", "Shoes", "Cufflinks", "Socks"]
+      "items": [
+        "Bespoke ties",
+        "Personalised pocket squares",
+        "Shirts",
+        "Cummerbunds",
+        "Bow ties",
+        "Shoes",
+        "Cufflinks",
+        "Socks"
+      ]
     },
     "proceso": {
       "label": "The Wedding Process",
       "title": "From the first appointment",
-      "step1_num": "01", "step1_title": "First Appointment",
+      "step1_num": "01",
+      "step1_title": "First Appointment",
       "step1_body": "We talk about the day, the venue, the style. No catalogues, no pressure. We understand who you are and what you need.",
-      "step2_num": "02", "step2_title": "Fabric Selection",
+      "step2_num": "02",
+      "step2_title": "Fabric Selection",
       "step2_body": "Exclusive wools, silks, cashmere, vicuña, mohairs, etc. Only the best for the best day. Every fibre hand-selected.",
-      "step3_num": "03", "step3_title": "The Fitting",
+      "step3_num": "03",
+      "step3_title": "The Fitting",
       "step3_body": "A single fitting session. We build the suit to your exact measurements, with no need for multiple adjustments.",
-      "step4_num": "04", "step4_title": "Everything Ready",
+      "step4_num": "04",
+      "step4_title": "FINAL DELIVERY",
       "step4_body": "The client leaves with everything prepared: suit, shirt, tie, shoes and accessories. No stress, no loose ends."
     },
     "key_message": "The client leaves with everything ready, no stress, no loose ends.",
-    "carousel": { "label": "Memorable Weddings" },
+    "carousel": {
+      "label": "Memorable Weddings"
+    },
     "cta": {
       "label": "The Next Step",
       "headline": "The most important day of your life deserves a unique suit.",
@@ -440,7 +482,7 @@
     "value": {
       "label": "The Consultation",
       "title": "The same excellence, now at a distance.",
-      "body": "Our video call is not a substitute for the in-person experience: it is an extension of it. In 20 minutes, our tailors assess your silhouette, style and needs with the same precision as in the atelier.",
+      "body": "Our video call is not a substitute for the in-person experience: it is an extension of it. In 20 minutes, our tailors assess your silhouette, style and needs with the same precision as in the tailor shop.",
       "features": [
         "Real-time silhouette and posture evaluation",
         "Fabric recommendations based on occasion and climate",
@@ -461,7 +503,11 @@
     "gate": {
       "badge": "Premium Consultation",
       "description": "Receive personalised tailoring advice from anywhere. A 20-25 minute video call with our qualified professionals.",
-      "features": ["Fabric recommendations", "Colour advice", "Personalised style guidance"],
+      "features": [
+        "Fabric recommendations",
+        "Colour advice",
+        "Personalised style guidance"
+      ],
       "duration": "Duration: 20-25 minutes",
       "cta": "Book Video Call",
       "secure": "Bank transfer payment",
@@ -506,7 +552,7 @@
     "rights": "© 2026 Sastrería Manuel Fernández. All rights reserved.",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone": "+34 682 19 29 44",
-    "hours": "Mon–Fri 10:00–14:00 & 17:00–20:00; Sat 10:00–13:00; Sun closed",
+    "hours": "Mon–Fri 10:00–14:00 & 17:00–20:00; Sat 10:00–13:00",
     "cta_title": "Ready for your next suit?",
     "cta_btn": "Book Appointment",
     "instagram": "Instagram",

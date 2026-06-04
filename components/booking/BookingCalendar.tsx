@@ -11,6 +11,7 @@ import {
   Clock,
   User,
   Mail,
+  Phone,
   Check,
   Loader2,
   ArrowLeft,
@@ -28,19 +29,21 @@ const TIME_SLOTS = [
 
 const SATURDAY_SLOTS = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00']
 
-export type BookingType = 'inperson' | 'videocall'
+export type BookingType = 'inperson-measure' | 'inperson-style' | 'videocall'
 
 interface BookingCalendarProps {
   type: BookingType
   onFreeSubmit?: (data: {
     name: string
     email: string
+    phone: string
     date: string
     time: string
   }) => Promise<void>
   onStripeCheckout?: (data: {
     name: string
     email: string
+    phone: string
     date: string
     time: string
   }) => Promise<void>
@@ -54,6 +57,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [step, setStep] = useState<'calendar' | 'details'>('calendar')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -65,6 +69,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [loadingSlots, setLoadingSlots] = useState(false)
 
   const isVideocall = type === 'videocall'
+  const isInpersonMeasure = type === 'inperson-measure'
+  const isInpersonStyle = type === 'inperson-style'
   const { getPrice } = useSettings()
   const videocallPrice = getPrice('videollamada') || 50
 
@@ -77,7 +83,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
 
   const labels = {
     es: {
-      title: isVideocall ? 'Reservar Videollamada' : 'Reservar Cita Presencial',
+      title: isVideocall ? 'Reservar Videollamada' : isInpersonMeasure ? 'Reservar Cita: Tomar Medidas' : 'Reservar Cita: Consulta de Estilo',
       subtitle: 'Revisa nuestra disponibilidad y reserva la fecha y hora que más te convengan',
       selectDateTime: 'Selecciona fecha y hora',
       timezone: 'hora de verano de Europa central (CEST)',
@@ -88,6 +94,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       confirm: isVideocall ? 'Pagar y Reservar' : 'Confirmar Reserva',
       name: 'Nombre completo',
       email: 'Correo electrónico',
+      phone: 'Teléfono',
+      phonePlaceholder: '+34 600 00 00 00',
       namePlaceholder: 'Tu nombre',
       emailPlaceholder: 'correo@ejemplo.com',
       fillFields: 'Completa todos los campos',
@@ -97,16 +105,18 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       successMsg: isVideocall
         ? 'Te redirigiremos al pago para confirmar tu videollamada.'
         : 'Hemos recibido tu solicitud. Nos pondremos en contacto contigo pronto.',
-      serviceName: isVideocall ? 'Videollamada de asesoría' : 'Cita presencial en taller',
+      serviceName: isVideocall ? 'Videollamada de asesoría' : isInpersonMeasure ? 'Cita presencial: Tomar Medidas' : 'Cita presencial: Consulta de Estilo',
       serviceDesc: isVideocall
         ? 'Consulta personalizada de 20-25 minutos por videollamada con nuestros expertos.'
-        : 'Visita a nuestro taller en Madrid para tomar medidas y conocernos.',
-      duration: isVideocall ? '20-25 minutos' : '45-60 minutos',
-      price: isVideocall ? `€${videocallPrice}` : 'Gratis',
+        : isInpersonMeasure
+          ? 'Visita a nuestra sastrería en Madrid para tomar medidas y conocernos.'
+          : 'Visita a nuestra sastrería en Madrid para una consulta de estilo sin medidas.',
+      duration: isVideocall ? '20-25 minutos' : '30 minutos',
+      price: isVideocall ? `€${videocallPrice}` : '',
       location: 'Madrid',
     },
     en: {
-      title: isVideocall ? 'Book Video Call' : 'Book In-Person Appointment',
+      title: isVideocall ? 'Book Video Call' : isInpersonMeasure ? 'Book Appointment: Measurements' : 'Book Appointment: Style Consultation',
       subtitle: 'Check our availability and book the date and time that suits you best',
       selectDateTime: 'Select date and time',
       timezone: 'Central European Summer Time (CEST)',
@@ -117,6 +127,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       confirm: isVideocall ? 'Pay & Book' : 'Confirm Booking',
       name: 'Full name',
       email: 'Email address',
+      phone: 'Phone',
+      phonePlaceholder: '+34 600 00 00 00',
       namePlaceholder: 'Your name',
       emailPlaceholder: 'email@example.com',
       fillFields: 'Please fill in all fields',
@@ -126,16 +138,18 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       successMsg: isVideocall
         ? 'We will redirect you to payment to confirm your video call.'
         : 'We have received your request. We will contact you soon.',
-      serviceName: isVideocall ? 'Video consultation' : 'In-person atelier visit',
+      serviceName: isVideocall ? 'Video consultation' : isInpersonMeasure ? 'In-person: Measurements' : 'In-person: Style Consultation',
       serviceDesc: isVideocall
         ? 'Personalized 20-25 minute video call consultation with our experts.'
-        : 'Visit our atelier in Madrid for measurements and to meet us.',
-      duration: isVideocall ? '20-25 minutes' : '45-60 minutes',
-      price: isVideocall ? `€${videocallPrice}` : 'Free',
+        : isInpersonMeasure
+          ? 'Visit our tailoring house in Madrid for measurements and to meet us.'
+          : 'Visit our tailoring house in Madrid for a style consultation without measurements.',
+      duration: isVideocall ? '20-25 minutes' : '30 minutes',
+      price: isVideocall ? `€${videocallPrice}` : '',
       location: 'Madrid',
     },
     it: {
-      title: isVideocall ? 'Prenota Videochiamata' : 'Prenota Appuntamento in Sede',
+      title: isVideocall ? 'Prenota Videochiamata' : isInpersonMeasure ? 'Prenota Appuntamento: Misure' : 'Prenota Appuntamento: Consulenza di Stile',
       subtitle: 'Controlla la nostra disponibilità e prenota la data e l\'ora che preferisci',
       selectDateTime: 'Seleziona data e ora',
       timezone: 'Ora legale dell\'Europa centrale (CEST)',
@@ -146,6 +160,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       confirm: isVideocall ? 'Paga e Prenota' : 'Conferma Prenotazione',
       name: 'Nome completo',
       email: 'Indirizzo email',
+      phone: 'Telefono',
+      phonePlaceholder: '+34 600 00 00 00',
       namePlaceholder: 'Il tuo nome',
       emailPlaceholder: 'email@esempio.com',
       fillFields: 'Compila tutti i campi',
@@ -155,16 +171,18 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       successMsg: isVideocall
         ? 'Ti reindirizzeremo al pagamento per confermare la tua videochiamata.'
         : 'Abbiamo ricevuto la tua richiesta. Ti contatteremo presto.',
-      serviceName: isVideocall ? 'Consulenza video' : 'Visita in sede a Madrid',
+      serviceName: isVideocall ? 'Consulenza video' : isInpersonMeasure ? 'Visita in sartoria: Misure' : 'Visita in sartoria: Consulenza di Stile',
       serviceDesc: isVideocall
         ? 'Consulenza personalizzata di 20-25 minuti in videochiamata con i nostri esperti.'
-        : 'Visita il nostro atelier a Madrid per le misure e conoscerci.',
-      duration: isVideocall ? '20-25 minuti' : '45-60 minuti',
-      price: isVideocall ? `€${videocallPrice}` : 'Gratuito',
+        : isInpersonMeasure
+          ? 'Visita la nostra sartoria a Madrid per le misure e conoscerci.'
+          : 'Visita la nostra sartoria a Madrid per una consulenza di stile senza misure.',
+      duration: isVideocall ? '20-25 minuti' : '30 minuti',
+      price: isVideocall ? `€${videocallPrice}` : '',
       location: 'Madrid',
     },
     fr: {
-      title: isVideocall ? 'Réserver Visioconférence' : 'Réserver Rendez-vous en Atelier',
+      title: isVideocall ? 'Réserver Visioconférence' : isInpersonMeasure ? 'Réserver: Prise de Mesures' : 'Réserver: Consultation de Style',
       subtitle: 'Consultez nos disponibilités et réservez la date et l\'heure qui vous conviennent',
       selectDateTime: 'Sélectionnez date et heure',
       timezone: 'Heure d\'été d\'Europe centrale (CEST)',
@@ -175,6 +193,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       confirm: isVideocall ? 'Payer et Réserver' : 'Confirmer le Rendez-vous',
       name: 'Nom complet',
       email: 'Adresse email',
+      phone: 'Téléphone',
+      phonePlaceholder: '+34 600 00 00 00',
       namePlaceholder: 'Votre nom',
       emailPlaceholder: 'email@exemple.com',
       fillFields: 'Veuillez remplir tous les champs',
@@ -184,12 +204,14 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       successMsg: isVideocall
         ? 'Nous allons vous rediriger vers le paiement pour confirmer votre visioconférence.'
         : 'Nous avons reçu votre demande. Nous vous contacterons bientôt.',
-      serviceName: isVideocall ? 'Consultation vidéo' : 'Visite en atelier à Madrid',
+      serviceName: isVideocall ? 'Consultation vidéo' : isInpersonMeasure ? 'Visite: Prise de Mesures' : 'Visite: Consultation de Style',
       serviceDesc: isVideocall
         ? 'Consultation personnalisée de 20-25 minutes par visioconférence avec nos experts.'
-        : 'Visitez notre atelier à Madrid pour les mesures et nous rencontrer.',
-      duration: isVideocall ? '20-25 minutes' : '45-60 minutes',
-      price: isVideocall ? `€${videocallPrice}` : 'Gratuit',
+        : isInpersonMeasure
+          ? 'Visitez notre maison de tailleur à Madrid pour les mesures et nous rencontrer.'
+          : 'Visitez notre maison de tailleur à Madrid pour une consultation de style sans mesures.',
+      duration: isVideocall ? '20-25 minutes' : '30 minutes',
+      price: isVideocall ? `€${videocallPrice}` : '',
       location: 'Madrid',
     },
   }
@@ -287,7 +309,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const handleSubmit = async () => {
     setError(null)
     if (!selectedDate || !selectedTime) return
-    if (!name.trim() || !email.trim()) {
+    if (!name.trim() || !email.trim() || !phone.trim()) {
       setError(l.fillFields)
       return
     }
@@ -303,6 +325,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         await onStripeCheckout({
           name: name.trim(),
           email: email.trim(),
+          phone: phone.trim(),
           date: selectedDate.toISOString().split('T')[0],
           time: selectedTime,
         })
@@ -311,6 +334,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         await onFreeSubmit({
           name: name.trim(),
           email: email.trim(),
+          phone: phone.trim(),
           date: selectedDate.toISOString().split('T')[0],
           time: selectedTime,
         })
@@ -353,6 +377,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     setSelectedTime(null)
     setName('')
     setEmail('')
+    setPhone('')
     setBookedSlots([])
     setError(null)
   }
@@ -795,6 +820,33 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={l.emailPlaceholder}
+                      style={{
+                        width: '100%', padding: '0.875rem 1rem',
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1.5px solid rgba(255,255,255,0.1)',
+                        borderRadius: 8, color: '#FFFFFF',
+                        fontFamily: 'var(--font-sans)', fontSize: '0.85rem',
+                        outline: 'none', transition: 'border-color 0.25s ease',
+                      }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.5)' }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{
+                      display: 'flex', alignItems: 'center', gap: '0.5rem',
+                      fontFamily: 'var(--font-sans)', fontSize: '0.7rem',
+                      letterSpacing: '0.08em', textTransform: 'uppercase',
+                      color: 'rgba(255,255,255,0.5)', marginBottom: '0.5rem',
+                    }}>
+                      <Phone size={12} />
+                      {l.phone}
+                    </label>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder={l.phonePlaceholder}
                       style={{
                         width: '100%', padding: '0.875rem 1rem',
                         background: 'rgba(255,255,255,0.03)',

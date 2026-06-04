@@ -19,7 +19,7 @@ const Globe = dynamic(() => import('@/components/ui/globe').then((m) => m.Globe)
 
 // Client locations where we work — Madrid workshop at center
 const MARKERS: GlobeMarker[] = [
-  { id: 'madrid',       location: [40.4168,  -3.7038],  label: 'Madrid — Nuestro Taller' },
+  { id: 'madrid',       location: [40.4168,  -3.7038],  label: 'Madrid — Nuestra Sastrería' },
   { id: 'miami',        location: [25.7617,  -80.1918], label: 'Miami · USA' },
   { id: 'oporto',       location: [41.1579,   -8.6291], label: 'Oporto · Portugal' },
   { id: 'lisbon',       location: [38.7223,   -9.1393], label: 'Lisboa · Portugal' },
@@ -127,7 +127,7 @@ export function TejidosMundoSection() {
           <h2 style={{
             fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
-            fontSize: 'clamp(2rem, 3.5vw, 3.2rem)',
+            fontSize: 'clamp(2.5rem, 4.5vw, 4rem)',
             fontWeight: 400,
             lineHeight: 1.15,
             color: '#FFFFFF',
@@ -169,6 +169,7 @@ export function TejidosMundoSection() {
               { city: 'Roma', country: 'Italia' },
               { city: 'Dubái', country: 'UAE' },
               { city: 'Rep. Dominicana', country: 'Caribe' },
+              { city: 'Perú', country: 'Sudamérica' },
             ].map((loc) => (
               <div key={loc.city} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C9A84C', opacity: 0.6 }} />

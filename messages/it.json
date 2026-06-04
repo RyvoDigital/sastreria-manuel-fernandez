@@ -6,7 +6,7 @@
     "bodas": "Sposi",
     "contacto": "Contatto",
     "configurador": "Configuratore",
-    "cursos": "Corsi",
+    "cursos": "Corso Artigianale",
     "videollamada": "Videochiamata",
     "modelos3d": "Crea il tuo Abito"
   },
@@ -111,8 +111,8 @@
     }
   },
   "editorial": {
-    "label": "Ispirazione Editoriale",
-    "title": "Ispirazione Editoriale",
+    "label": "Ispirazione",
+    "title": "Editoriale",
     "read_more": "Leggi di Più",
     "articles": [
       {
@@ -164,7 +164,7 @@
       "p2": "Il suo lavoro riflette un savoir-faire ereditato e perfezionato nel corso di tutta una vita, combinato con uno sguardo contemporaneo che proietta la sartoria verso il futuro. Ogni capo nasce dalla conoscenza profonda del mestiere, della proporzione e del dettaglio, ottenendo pezzi unici che equilibrano tradizione, innovazione ed eccellenza."
     },
     "evelyn": {
-      "label": "Il Laboratorio",
+      "label": "La Storia Continua",
       "p1": "Evelyn Fernández, formata in Pubblicità all'Università Complutense di Madrid e specializzata nell'universo del lusso attraverso il programma in Direzione e Gestione Strategica del Lusso dell'IE Business School, ha sviluppato la sua carriera tra Madrid e Parigi in progetti legati alla moda, al branding e al cliente premium.",
       "p2": "Con una visione internazionale e una marcata sensibilità estetica, ha promosso diverse iniziative imprenditoriali all'interno del settore lifestyle e lusso, consolidando un approccio orientato all'esclusività, all'esperienza e al dettaglio.",
       "p3": "Attualmente guida la Sastrería Manuel Fernández, posizionandola come un punto di riferimento nella sartoria artigianale di alto livello, rivolta a una clientela esigente e globale, con attenzione in spagnolo, inglese e francese."
@@ -191,7 +191,7 @@
     "espacio": {
       "label": "Lo Spazio",
       "title": "Dove Nasce l'Abito",
-      "description": "Un laboratorio privato a Madrid dove ogni visita è un'esperienza curata con la stessa attenzione del capo creato al suo interno.",
+      "description": "Una sartoria privata a Madrid dove ogni visita è un'esperienza curata con la stessa attenzione del capo creato al suo interno.",
       "subtitle": "Sartoria",
       "body": "Scoprirai un luogo pieno di tradizione, eleganza, distinzione e innovazione. Qui, ti faremo scoprire la passione dell'abbigliamento su misura."
     },
@@ -253,7 +253,7 @@
         "desc": "Progetta il tuo abito passo dopo passo. Accesso a pagamento."
       },
       "courses": {
-        "label": "Corsi Online",
+        "label": "Corso Artigianale",
         "desc": "Impara le tecniche di sartoria con tutorial video."
       },
       "videocall": {
@@ -293,7 +293,7 @@
       "badge": "Sartoria di Fiducia",
       "headline1": "Un Eredità di",
       "headline2": "Artigianato Eccezionale",
-      "body": "Ogni abito che lascia il laboratorio porta con sé decenni di conoscenza, i migliori tessuti europei, e la rigorosità di qualcuno per cui la perfezione è un'abitudine.",
+      "body": "Ogni abito che lascia la sartoria porta con sé decenni di conoscenza, i migliori tessuti europei, e la rigorosità di qualcuno per cui la perfezione è un'abitudine.",
       "stat1_val": "40+",
       "stat1_label": "Anni",
       "stat2_val": "Su Misura",
@@ -302,19 +302,19 @@
       "stat3_label": "La Nostra Città",
       "satisfaction_label": "Clienti Soddisfatti",
       "btn_primary": "Prenota Appuntamento",
-      "btn_secondary": "Il Laboratorio"
+      "btn_secondary": "La Sartoria"
     },
     "tejidos": {
       "label": "I Nostri Clienti",
-      "title": "Dove Lavoriamo con i Clienti",
-      "p1": "Da Madrid, vestiamo gentlemen in tutto il mondo. Miami, Porto, Lisbona, Parigi, Londra, Roma, Dubai e oltre. Ogni abito viaggia fatto a mano.",
-      "p2": "La sartoria artigianale non conosce confini. Ogni cliente, ovunque si trovi, riceve la stessa dedizione e attenzione ai dettagli. Offriamo il servizio DHL EXPRESS. Lavoriamo con le migliori case tessili: Reda, Luvit, Carnet, Harrison, Fox Brothers e Zegna."
+      "title": "NEL MONDO",
+      "p1": "Da Madrid vestiamo gentlemen e ladies da tutto il mondo.",
+      "p2": "La sartoria artigianale non conosce confini. Ogni cliente, ovunque si trovi, riceve la stessa dedizione e attenzione ai dettagli. Offriamo il servizio DHL EXPRESS. Lavoriamo con le migliori case tessili: Loro Piana, Scabal, Holland & Sherry, Fratelli Tallia di Delfino, Dugdale Bros e Dormeuil."
     },
     "cta": {
       "label": "Il Prossimo Passo",
       "headline": "L'abito che immagini è a una conversazione di distanza",
       "btn_primary": "Prenota Appuntamento",
-      "btn_secondary": "Il Laboratorio"
+      "btn_secondary": "La Sartoria"
     },
     "hero_label": "Servizi",
     "hero_title": "Puro Su Misura",
@@ -326,12 +326,12 @@
     "section_label": "Contatto",
     "headline": "Parliamone",
     "subheadline": "Ogni commissione inizia con una conversazione.",
-    "address_label": "Laboratorio",
+    "address_label": "Sartoria",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone_label": "Telefono",
     "phone": "+34 682 19 29 44",
     "hours_label": "Orario",
-    "hours": "Lun–Ven 10:00–14:00 e 17:00–20:00; Sab 10:00–13:00; Dom chiuso",
+    "hours": "Lun–Ven 10:00–14:00 e 17:00–20:00; Sab 10:00–13:00",
     "email_label": "Email",
     "email": "sastreriamanuelfernandez@gmail.com",
     "cta_reservar": "Prenota Appuntamento",
@@ -350,7 +350,8 @@
     "quote5": "Il tessuto sceglie chi sei.",
     "quote6": "Il reverso: il linguaggio silenzioso del potere.",
     "quote7": "Costruiamo identità, non vestiti.",
-    "quote8": "Il grande giorno inizia mesi prima."
+    "quote8": "Il grande giorno inizia mesi prima.",
+    "form_phone": "Telefono"
   },
   "coleccion": {
     "hero": {
@@ -436,7 +437,7 @@
       "step3_title": "La Prova",
       "step3_body": "Una sola sessione di prova. Costruiamo l'abito secondo le tue misure esatte, senza bisogno di molteplici aggiustamenti.",
       "step4_num": "04",
-      "step4_title": "Tutto Pronto",
+      "step4_title": "CONSEGNA FINALE",
       "step4_body": "Il cliente se ne va con tutto preparato: abito, camicia, cravatta, scarpe e accessori. Senza stress, senza dettagli in sospeso."
     },
     "key_message": "Il cliente se ne va con tutto pronto, senza stress, senza dettagli in sospeso.",
@@ -497,7 +498,7 @@
     "rights": "© 2026 Sartoria Manuel Fernández. Tutti i diritti riservati.",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone": "+34 682 19 29 44",
-    "hours": "Lun–Ven 10:00–14:00 e 17:00–20:00; Sab 10:00–13:00; Dom chiuso",
+    "hours": "Lun–Ven 10:00–14:00 e 17:00–20:00; Sab 10:00–13:00",
     "cta_title": "Pronto per il tuo prossimo abito?",
     "cta_btn": "Prenota Appuntamento",
     "instagram": "Instagram",
@@ -556,7 +557,7 @@
     "value": {
       "label": "La Consulenza",
       "title": "La stessa eccellenza, ora a distanza.",
-      "body": "La nostra videochiamata non è un sostituto dell'esperienza di persona: è un'estensione di essa. In 20 minuti, i nostri sarti valutano la tua silhouette, il tuo stile e le tue esigenze con la stessa precisione che nell'atelier.",
+      "body": "La nostra videochiamata non è un sostituto dell'esperienza di persona: è un'estensione di essa. In 20 minuti, i nostri sarti valutano la tua silhouette, il tuo stile e le tue esigenze con la stessa precisione che nella sartoria.",
       "features": [
         "Valutazione silhouette e postura in tempo reale",
         "Raccomandazione tessuti in base a occasione e clima",
@@ -577,7 +578,11 @@
     "gate": {
       "badge": "Consulenza Premium",
       "description": "Ricevi consulenza di sartoria personalizzata da qualsiasi luogo. Una videochiamata di 20-25 minuti con i nostri professionisti qualificati.",
-      "features": ["Raccomandazione tessuti", "Consiglio colore", "Guida stile personalizzata"],
+      "features": [
+        "Raccomandazione tessuti",
+        "Consiglio colore",
+        "Guida stile personalizzata"
+      ],
       "duration": "Durata: 20-25 minuti",
       "cta": "Prenota Videochiamata",
       "secure": "Pagamento con bonifico bancario",

@@ -69,6 +69,7 @@ body {
   color: var(--color-white);
   font-family: var(--font-sans);
   font-weight: 300;
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
   line-height: 1.6;
   overflow-x: hidden;
 }

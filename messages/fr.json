@@ -6,7 +6,7 @@
     "bodas": "Mariages",
     "contacto": "Contact",
     "configurador": "Configurateur",
-    "cursos": "Cours",
+    "cursos": "Cours Artisanal",
     "videollamada": "Visioconférence",
     "modelos3d": "Créez votre Costume"
   },
@@ -111,8 +111,8 @@
     }
   },
   "editorial": {
-    "label": "Inspiration Éditoriale",
-    "title": "Inspiration Éditoriale",
+    "label": "Inspiration",
+    "title": "Éditorial",
     "read_more": "Lire la Suite",
     "articles": [
       {
@@ -164,7 +164,7 @@
       "p2": "Son travail reflète un savoir-faire hérité et perfectionné tout au long d'une vie, combiné à un regard contemporain qui projette la tailleur vers l'avenir. Chaque vêtement naît d'une connaissance profonde du métier, de la proportion et du détail, réalisant des pièces uniques qui équilibrent tradition, innovation et excellence."
     },
     "evelyn": {
-      "label": "L'Atelier",
+      "label": "L'Histoire Continue",
       "p1": "Evelyn Fernández, formée en Publicité à l'Université Complutense de Madrid et spécialisée dans l'univers du luxe via le programme en Direction et Gestion Stratégique du Luxe de l'IE Business School, a développé sa carrière entre Madrid et Paris dans des projets liés à la mode, au branding et au client premium.",
       "p2": "Avec une vision internationale et une sensibilité esthétique marquée, elle a impulsé différentes initiatives entrepreneuriales au sein du secteur lifestyle et luxe, consolidant une approche orientée vers l'exclusivité, l'expérience et le détail.",
       "p3": "Elle dirige actuellement la Sastrería Manuel Fernández, la positionnant comme une référence en tailleur artisanal de haut niveau, destinée à une clientèle exigeante et globale, avec service en espagnol, anglais et français."
@@ -191,7 +191,7 @@
     "espacio": {
       "label": "L'Espace",
       "title": "Là où le Costume Naît",
-      "description": "Un atelier privé à Madrid où chaque visite est une expérience aussi soigneusement pensée que le vêtement créé à l'intérieur.",
+      "description": "Un tailleur privé à Madrid où chaque visite est une expérience aussi soigneusement pensée que le vêtement créé à l'intérieur.",
       "subtitle": "Tailleur",
       "body": "Vous découvrirez un lieu plein de tradition, d'élégance, de distinction et d'innovation. Ici, nous vous ferons découvrir la passion du sur-mesure."
     },
@@ -253,7 +253,7 @@
         "desc": "Concevez votre costume étape par étape. Accès payant."
       },
       "courses": {
-        "label": "Cours en Ligne",
+        "label": "Cours Artisanal",
         "desc": "Apprenez les techniques de tailleur avec des tutoriels vidéo."
       },
       "videocall": {
@@ -293,7 +293,7 @@
       "badge": "Tailleur de Confiance",
       "headline1": "Un Héritage de",
       "headline2": "Artisanat Exceptionnel",
-      "body": "Chaque costume qui quitte l'atelier porte avec lui des décennies de savoir, les plus beaux draps européens, et la rigueur de quelqu'un pour qui la perfection est une habitude.",
+      "body": "Chaque costume qui quitte le tailleur porte avec lui des décennies de savoir, les plus beaux draps européens, et la rigueur de quelqu'un pour qui la perfection est une habitude.",
       "stat1_val": "40+",
       "stat1_label": "Années",
       "stat2_val": "Sur Mesure",
@@ -302,19 +302,19 @@
       "stat3_label": "Notre Ville",
       "satisfaction_label": "Clients Satisfaits",
       "btn_primary": "Prendre Rendez-vous",
-      "btn_secondary": "L'Atelier"
+      "btn_secondary": "Le Tailleur"
     },
     "tejidos": {
       "label": "Nos Clients",
-      "title": "Où Nous Travaillons avec les Clients",
-      "p1": "Depuis Madrid, nous habillons des gentlemen du monde entier. Miami, Porto, Lisbonne, Paris, Londres, Rome, Dubaï et plus. Chaque costume voyage fait main.",
-      "p2": "Le tailleur artisanal ne connaît pas de frontières. Chaque client, où qu'il soit, reçoit la même dévotion et attention aux détails. Nous offrons le service DHL EXPRESS. Nous travaillons avec les meilleures maisons textiles : Reda, Luvit, Carnet, Harrison, Fox Brothers et Zegna."
+      "title": "DANS LE MONDE",
+      "p1": "Depuis Madrid, nous habillons des gentlemen et des dames du monde entier.",
+      "p2": "Le tailleur artisanal ne connaît pas de frontières. Chaque client, où qu'il soit, reçoit la même dévotion et attention aux détails. Nous offrons le service DHL EXPRESS. Nous travaillons avec les meilleures maisons textiles : Loro Piana, Scabal, Holland & Sherry, Fratelli Tallia di Delfino, Dugdale Bros et Dormeuil."
     },
     "cta": {
       "label": "La Prochaine Étape",
       "headline": "Le costume que vous imaginez est à une conversation de distance",
       "btn_primary": "Prendre Rendez-vous",
-      "btn_secondary": "L'Atelier"
+      "btn_secondary": "Le Tailleur"
     },
     "hero_label": "Services",
     "hero_title": "Pur Sur Mesure",
@@ -326,12 +326,12 @@
     "section_label": "Contact",
     "headline": "Parlons-en",
     "subheadline": "Chaque commande commence par une conversation.",
-    "address_label": "Atelier",
+    "address_label": "Tailleur",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone_label": "Téléphone",
     "phone": "+34 682 19 29 44",
     "hours_label": "Horaires",
-    "hours": "Lun–Ven 10:00–14:00 et 17:00–20:00; Sam 10:00–13:00; Dim fermé",
+    "hours": "Lun–Ven 10:00–14:00 et 17:00–20:00; Sam 10:00–13:00",
     "email_label": "Email",
     "email": "sastreriamanuelfernandez@gmail.com",
     "cta_reservar": "Prendre Rendez-vous",
@@ -350,7 +350,8 @@
     "quote5": "Le tissu choisit qui vous êtes.",
     "quote6": "Le revers : le langage silencieux du pouvoir.",
     "quote7": "Nous construisons l'identité, pas les vêtements.",
-    "quote8": "Le grand jour commence des mois avant."
+    "quote8": "Le grand jour commence des mois avant.",
+    "form_phone": "Téléphone"
   },
   "coleccion": {
     "hero": {
@@ -436,7 +437,7 @@
       "step3_title": "L'Essayage",
       "step3_body": "Une seule session d'essayage. Nous construisons le costume selon vos mesures exactes, sans besoin de multiples ajustements.",
       "step4_num": "04",
-      "step4_title": "Tout Prêt",
+      "step4_title": "LIVRAISON FINALE",
       "step4_body": "Le client repart avec tout préparé : costume, chemise, cravate, chaussures et accessoires. Sans stress, sans détails en suspens."
     },
     "key_message": "Le client repart avec tout prêt, sans stress, sans détails en suspens.",
@@ -497,7 +498,7 @@
     "rights": "© 2026 Tailleur Manuel Fernández. Tous droits réservés.",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone": "+34 682 19 29 44",
-    "hours": "Lun–Ven 10:00–14:00 et 17:00–20:00; Sam 10:00–13:00; Dim fermé",
+    "hours": "Lun–Ven 10:00–14:00 et 17:00–20:00; Sam 10:00–13:00",
     "cta_title": "Prêt pour votre prochain costume ?",
     "cta_btn": "Prendre Rendez-vous",
     "instagram": "Instagram",
@@ -556,7 +557,7 @@
     "value": {
       "label": "La Consultation",
       "title": "La même excellence, maintenant à distance.",
-      "body": "Notre visioconférence n'est pas un substitut à l'expérience en personne : c'en est une extension. En 20 minutes, nos tailleurs évaluent votre silhouette, votre style et vos besoins avec la même précision que dans l'atelier.",
+      "body": "Notre visioconférence n'est pas un substitut à l'expérience en personne : c'en est une extension. En 20 minutes, nos tailleurs évaluent votre silhouette, votre style et vos besoins avec la même précision que dans la sastrería.",
       "features": [
         "Évaluation silhouette et posture en temps réel",
         "Recommandation de tissus selon occasion et climat",
@@ -577,12 +578,16 @@
     "gate": {
       "badge": "Consultation Premium",
       "description": "Recevez des conseils de tailleur personnalisés de n'importe où. Une visioconférence de 20-25 minutes avec nos professionnels qualifiés.",
-      "features": ["Recommandation de tissus", "Conseil couleur", "Guide de style personnalisé"],
+      "features": [
+        "Recommandation de tissus",
+        "Conseil couleur",
+        "Guide de style personnalisé"
+      ],
       "duration": "Durée: 20-25 minutes",
       "cta": "Prendre Rendez-vous",
       "secure": "Paiement par virement bancaire",
       "contact": "Vous préférez nous rendre visite?",
-      "contact_cta": "Prendre rendez-vous en atelier",
+      "contact_cta": "Prendre rendez-vous sur place",
       "price_label": "Prix de la consultation",
       "price_value": "€50",
       "bank_title": "Coordonnées bancaires",

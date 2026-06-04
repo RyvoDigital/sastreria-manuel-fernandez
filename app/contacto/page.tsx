@@ -4,7 +4,7 @@ import { ServiceGate } from '@/components/global/ServiceGate'
 
 export const metadata: Metadata = {
   title: 'Contacto · Sastrería Manuel Fernández',
-  description: 'Cada encargo comienza con una conversación. Póngase en contacto con el taller de Sastrería Manuel Fernández en Madrid.',
+  description: 'Cada encargo comienza con una conversación. Póngase en contacto con la sastrería de Sastrería Manuel Fernández en Madrid.',
 }
 
 export default function ContactoPage() {

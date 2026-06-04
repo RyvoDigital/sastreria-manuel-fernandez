@@ -105,7 +105,7 @@ const CSS = `
   }
 `
 
-type BookingMode = 'none' | 'inperson' | 'videocall'
+type BookingMode = 'none' | 'inperson-measure' | 'inperson-style' | 'videocall'
 
 function ContactPageInner() {
   const { t, locale } = useI18n()
@@ -174,13 +174,14 @@ function ContactPageInner() {
     const f    = e.currentTarget
     const name = (f.elements.namedItem('nombre')  as HTMLInputElement).value
     const mail = (f.elements.namedItem('email')   as HTMLInputElement).value
+    const phone = (f.elements.namedItem('telefono') as HTMLInputElement).value
     const msg  = (f.elements.namedItem('mensaje') as HTMLTextAreaElement).value
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email: mail, message: msg, type: 'contact' }),
+        body: JSON.stringify({ name, email: mail, phone, message: msg, type: 'contact' }),
       })
       const data = await res.json()
       if (!res.ok || !data.success) {
@@ -194,7 +195,7 @@ function ContactPageInner() {
     }
   }
 
-  const handleFreeBooking = async (data: { name: string; email: string; date: string; time: string }) => {
+  const handleFreeBooking = async (data: { name: string; email: string; phone: string; date: string; time: string }) => {
     const res = await fetch('/api/booking', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -206,7 +207,7 @@ function ContactPageInner() {
     }
   }
 
-  const handleStripeCheckout = async (data: { name: string; email: string; date: string; time: string }) => {
+  const handleStripeCheckout = async (data: { name: string; email: string; phone: string; date: string; time: string }) => {
     const videocallPriceCents = (getPrice('videollamada') || 50) * 100
     const res = await fetch('/api/stripe', {
       method: 'POST',
@@ -243,8 +244,10 @@ function ContactPageInner() {
     es: {
       hubTitle: '¿Cómo prefieres contactarnos?',
       hubSubtitle: 'Elige la opción que mejor se adapte a ti',
-      inperson: 'Cita Presencial',
-      inpersonDesc: 'Visítanos en nuestro taller de Madrid',
+      inpersonMeasure: '1. Tomar Medidas',
+      inpersonMeasureDesc: 'Visítanos en nuestra sastrería en Madrid para tomar medidas',
+      inpersonStyle: '2. Consulta de Estilo',
+      inpersonStyleDesc: 'Visítanos para una consulta de estilo sin medidas',
       videocall: 'Videollamada',
       videocallDesc: 'Consulta personalizada a distancia',
       message: 'Enviar Mensaje',
@@ -254,8 +257,10 @@ function ContactPageInner() {
     en: {
       hubTitle: 'How would you like to reach us?',
       hubSubtitle: 'Choose the option that suits you best',
-      inperson: 'In-Person Appointment',
-      inpersonDesc: 'Visit our Madrid atelier',
+      inpersonMeasure: '1. Measurements',
+      inpersonMeasureDesc: 'Visit our Madrid tailoring house for measurements',
+      inpersonStyle: '2. Style Consultation',
+      inpersonStyleDesc: 'Visit us for a style consultation without measurements',
       videocall: 'Video Call',
       videocallDesc: 'Personalized remote consultation',
       message: 'Send Message',
@@ -265,8 +270,10 @@ function ContactPageInner() {
     it: {
       hubTitle: 'Come preferisci contattarci?',
       hubSubtitle: 'Scegli l\'opzione più adatta a te',
-      inperson: 'Appuntamento in Sede',
-      inpersonDesc: 'Visita il nostro atelier a Madrid',
+      inpersonMeasure: '1. Prendere Misure',
+      inpersonMeasureDesc: 'Visita la nostra sartoria a Madrid per le misure',
+      inpersonStyle: '2. Consulto di Stile',
+      inpersonStyleDesc: 'Visita per una consulenza di stile senza misure',
       videocall: 'Videochiamata',
       videocallDesc: 'Consulenza personalizzata a distanza',
       message: 'Invia Messaggio',
@@ -276,8 +283,10 @@ function ContactPageInner() {
     fr: {
       hubTitle: 'Comment préférez-vous nous contacter?',
       hubSubtitle: 'Choisissez l\'option qui vous convient le mieux',
-      inperson: 'Rendez-vous en Atelier',
-      inpersonDesc: 'Visitez notre atelier à Madrid',
+      inpersonMeasure: '1. Prise de Mesures',
+      inpersonMeasureDesc: 'Visitez notre maison de tailleur à Madrid pour les mesures',
+      inpersonStyle: '2. Consultation de Style',
+      inpersonStyleDesc: 'Visitez-nous pour une consultation de style sans mesures',
       videocall: 'Visioconférence',
       videocallDesc: 'Consultation personnalisée à distance',
       message: 'Envoyer un Message',
@@ -517,12 +526,12 @@ function ContactPageInner() {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : isEnabled('videollamada') ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)',
+              gridTemplateColumns: isMobile ? '1fr' : isEnabled('videollamada') ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)',
               gap: '0.75rem',
             }}>
-              {/* In-person */}
+              {/* In-person Measurements */}
               <button
-                onClick={() => setBookingMode('inperson')}
+                onClick={() => setBookingMode('inperson-measure')}
                 style={{
                   display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
                   padding: '1.25rem',
@@ -545,10 +554,43 @@ function ContactPageInner() {
                 <Calendar size={20} color="#C9A84C" />
                 <div>
                   <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
-                    {bl.inperson}
+                    {bl.inpersonMeasure}
                   </p>
                   <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
-                    {bl.inpersonDesc}
+                    {bl.inpersonMeasureDesc}
+                  </p>
+                </div>
+              </button>
+
+              {/* In-person Style Consultation */}
+              <button
+                onClick={() => setBookingMode('inperson-style')}
+                style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
+                  padding: '1.25rem',
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(201,168,76,0.15)',
+                  borderRadius: 12,
+                  cursor: 'pointer',
+                  transition: 'all 0.25s ease',
+                  textAlign: 'left',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'
+                  e.currentTarget.style.background = 'rgba(201,168,76,0.04)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.15)'
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                }}
+              >
+                <Calendar size={20} color="#C9A84C" />
+                <div>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                    {bl.inpersonStyle}
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                    {bl.inpersonStyleDesc}
                   </p>
                 </div>
               </button>
@@ -660,6 +702,11 @@ function ContactPageInner() {
                     <input type="email" name="email"  id="mf-ce" placeholder=" " required className="mf-cf-input" disabled={loading} />
                     <label htmlFor="mf-ce" className="mf-cf-label">{t.contacto.form_email}</label>
                   </div>
+                </div>
+
+                <div className="mf-cf-field">
+                  <input type="tel" name="telefono" id="mf-ct" placeholder=" " required className="mf-cf-input" disabled={loading} />
+                  <label htmlFor="mf-ct" className="mf-cf-label">{t.contacto.form_phone}</label>
                 </div>
 
                 <div className="mf-cf-field">

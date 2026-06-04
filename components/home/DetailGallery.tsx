@@ -14,7 +14,6 @@ const IMAGES = [
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-10-22-001-1550',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-10-01-002-1477',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-08-06-010-0971',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/others/IMG_9650_bffsnb',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/IMG_7511_l7ua4x',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/atelier-tools_clirtk',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/IMG_7409_orkk1x',

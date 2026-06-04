@@ -6,7 +6,7 @@
     "bodas": "Bodas y Ceremonia",
     "contacto": "Contacto",
     "configurador": "Configurador",
-    "cursos": "Cursos Online",
+    "cursos": "Curso Artesanal",
     "videollamada": "Videollamada",
     "modelos3d": "Crea tu Traje"
   },
@@ -108,8 +108,8 @@
     }
   },
   "editorial": {
-    "label": "Inspiración editorial",
-    "title": "Inspiración Editorial",
+    "label": "Inspiración",
+    "title": "Editorial",
     "read_more": "Leer más",
     "articles": [
       {
@@ -161,7 +161,7 @@
       "p2": "Su trabajo refleja un savoir-faire heredado y perfeccionado a lo largo de toda una vida, combinado con una mirada contemporánea que proyecta la sastrería hacia el futuro. Cada prenda nace desde el conocimiento profundo del oficio, la proporción y el detalle, logrando piezas únicas que equilibran tradición, innovación y excelencia."
     },
     "evelyn": {
-      "label": "El Taller",
+      "label": "La Historia Continúa",
       "p1": "Evelyn Fernández, formada en Publicidad en la Universidad Complutense de Madrid y especializada en el universo del lujo a través del programa en Dirección y Gestión Estratégica del Lujo del IE Business School, ha desarrollado su trayectoria entre Madrid y París en proyectos vinculados a la moda, el branding y el cliente premium.",
       "p2": "Con una visión internacional y una marcada sensibilidad estética, ha impulsado diferentes iniciativas empresariales dentro del sector lifestyle y lujo, consolidando un enfoque orientado a la exclusividad, la experiencia y el detalle.",
       "p3": "Actualmente lidera Sastrería Manuel Fernández, posicionándola como un referente en sastrería artesanal de alto nivel, dirigida a un cliente exigente y global, con atención en español, inglés y francés."
@@ -184,14 +184,14 @@
     "espacio": {
       "label": "El Espacio",
       "title": "Donde Nace el Traje",
-      "description": "Un taller privado en Madrid donde cada visita es una experiencia tan cuidada como la prenda que se crea en él.",
+      "description": "Una sastrería privada en Madrid donde cada visita es una experiencia tan cuidada como la prenda que se crea en ella.",
       "subtitle": "Sastrería",
       "body": "Descubrirás un lugar lleno de tradición, elegancia, distinción e innovación. Aquí, te haremos descubrir la pasión de vestir a medida."
     },
     "filosofia": {
       "label": "La Filosofía",
       "q1": "No medimos el cuerpo.",
-      "q2": "Medimos la persona.",
+      "q2": "Medimos tus pensamientos.",
       "q3": "Esa es toda la diferencia.",
       "p1": "En Sastrería Manuel Fernández, el proceso comienza con preguntas, no con cinta métrica. Queremos entender quién eres, qué momento vives, qué quieres comunicar al mundo.",
       "p2": "El resultado nunca es sólo un traje. Es una herramienta de identidad. Una declaración silenciosa. La versión más auténtica de ti mismo, hecha a mano."
@@ -229,8 +229,8 @@
     }
   },
   "home_services": {
-    "section_label": "Nuestros Servicios",
-    "section_title": "Experiencia Sartorial",
+    "section_label": "Servicios",
+    "section_title": "Nuestros Servicios",
     "discover": "Descubrir",
     "items": {
       "artisan": {
@@ -246,7 +246,7 @@
         "desc": "Diseña tu traje paso a paso. Acceso con pago."
       },
       "courses": {
-        "label": "Cursos Online",
+        "label": "Curso Artesanal",
         "desc": "Aprende técnicas de sastrería con video tutoriales."
       },
       "videocall": {
@@ -276,7 +276,7 @@
       "badge": "Sastrería de Confianza",
       "headline1": "Un Legado de",
       "headline2": "Oficio Excepcional",
-      "body": "Cada traje que sale del taller lleva consigo décadas de conocimiento, el mejor paño europeo y el rigor de quien hace de la perfección un hábito.",
+      "body": "Cada traje que sale de la sastrería lleva consigo décadas de conocimiento, el mejor paño europeo y el rigor de quien hace de la perfección un hábito.",
       "stat1_val": "40+",      "stat1_label": "Años",
       "stat2_val": "A Medida", "stat2_label": "Cada Pieza",
       "stat3_val": "Madrid",   "stat3_label": "Nuestra Ciudad",
@@ -286,9 +286,9 @@
     },
     "tejidos": {
       "label": "Nuestros Clientes",
-      "title": "Donde Trabajamos con Clientes",
-      "p1": "Desde Madrid, vestimos a caballeros en todo el mundo. Miami, Oporto, Lisboa, París, Londres, Roma, Dubái y más. Cada traje viaja hecho a mano.",
-      "p2": "La sastrería artesanal no conoce fronteras. Cada cliente, donde esté, recibe la misma dedicación y atención al detalle. Ofrecemos servicio DHL EXPRESS. Trabajamos con las mejores casas textiles: Reda, Luvit, Carnet, Harrison, Fox Brothers y Zegna."
+      "title": "EN EL MUNDO",
+      "p1": "Desde Madrid vestimos a caballeros y damas de todo el mundo.",
+      "p2": "La sastrería artesanal no conoce fronteras. Cada cliente, donde esté, recibe la misma dedicación y atención al detalle. Ofrecemos servicio DHL EXPRESS. Trabajamos con las mejores casas textiles: Loro Piana, Scabal, Holland & Sherry, Fratelli Tallia di Delfino, Dugdale Bros y Dormeuil."
     },
     "cta": {
       "label": "El Siguiente Paso",
@@ -301,18 +301,19 @@
     "section_label": "Contacto",
     "headline": "Hablemos",
     "subheadline": "Cada encargo comienza con una conversación.",
-    "address_label": "Taller",
+    "address_label": "Sastrería",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone_label": "Teléfono",
     "phone": "+34 682 19 29 44",
     "hours_label": "Horario",
-    "hours": "Lun–Vie 10:00–14:00 y 17:00–20:00; Sáb 10:00–13:00; Dom cerrado",
+    "hours": "Lun–Vie 10:00–14:00 y 17:00–20:00; Sáb 10:00–13:00",
     "email_label": "Correo",
     "email": "sastreriamanuelfernandez@gmail.com",
     "cta_reservar": "Reservar Cita",
     "form_title": "Envíenos un mensaje",
     "form_name": "Nombre",
     "form_email": "Correo electrónico",
+    "form_phone": "Teléfono",
     "form_message": "Mensaje",
     "form_submit": "Enviar",
     "form_success": "Mensaje enviado. Nos pondremos en contacto pronto.",
@@ -389,8 +390,8 @@
       "step2_body": "Tejidos exclusivos de lana, seda, cashmere, vicuña, mohair, etc. Solo lo mejor para el mejor día. Cada fibra seleccionada a mano.",
       "step3_num": "03", "step3_title": "La Prueba",
       "step3_body": "Una única sesión de prueba. Construimos el traje a tu medida exacta, sin necesidad de múltiples ajustes.",
-      "step4_num": "04", "step4_title": "Todo Listo",
-      "step4_body": "El cliente se lleva todo preparado: traje, camisa, corbata, zapatos y accesorios. Sin estrés, sin cabos sueltos."
+      "step4_num": "04", "step4_title": "ENTREGA FINAL",
+      "step4_body": "Tu traje está listo. Te acompañamos con consejos de protocolo, cuidado y mantenimiento para que solo te ocupes de disfrutar un día inolvidable."
     },
     "key_message": "El cliente se lleva todo listo, sin estrés, sin cabos sueltos.",
     "carousel": { "label": "Bodas Memorables" },
@@ -440,7 +441,7 @@
     "value": {
       "label": "La Consulta",
       "title": "La misma excelencia, ahora a distancia.",
-      "body": "Nuestra videollamada no es un sustituto de la experiencia presencial: es una extensión de ella. En 20 minutos, nuestros sastres evalúan tu silueta, tu estilo y tus necesidades con la misma precisión que en el taller.",
+      "body": "Nuestra videollamada no es un sustituto de la experiencia presencial: es una extensión de ella. En 20 minutos, nuestros sastres evalúan tu silueta, tu estilo y tus necesidades con la misma precisión que en la sastrería.",
       "features": [
         "Evaluación de silueta y postura en tiempo real",
         "Recomendación de tejidos según ocasión y clima",
@@ -506,7 +507,7 @@
     "rights": "© 2026 Sastrería Manuel Fernández. Todos los derechos reservados.",
     "address": "C. de Jorge Juan, 41, Salamanca, 28001 Madrid",
     "phone": "+34 682 19 29 44",
-    "hours": "Lun–Vie 10:00–14:00 y 17:00–20:00; Sáb 10:00–13:00; Dom cerrado",
+    "hours": "Lun–Vie 10:00–14:00 y 17:00–20:00; Sáb 10:00–13:00",
     "cta_title": "¿Listo para su próximo traje?",
     "cta_btn": "Solicitar Cita",
     "instagram": "Instagram",

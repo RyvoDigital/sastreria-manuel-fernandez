@@ -154,7 +154,7 @@ export function BeforeAfterSlider() {
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* After Image (Right side) */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765962/fotos-web/03-screenshots/screenshot-11.png"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765983/fotos-web/04-named-photos/proceso-de-sastreria-en-tela-azul.png"
               alt="After fitting"
               style={{
                 width: '100%',

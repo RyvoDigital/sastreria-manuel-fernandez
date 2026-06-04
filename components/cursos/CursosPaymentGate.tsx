@@ -49,7 +49,7 @@ export function CursosPaymentGate({
       price: `${(price / 100).toLocaleString('es-ES')} €`,
       cta: 'Comprar Acceso',
       secure: 'Pago seguro con Stripe',
-      note: 'Acceso inmediato tras la compra. Devolución garantizada en 14 días.',
+      note: 'Acceso inmediato tras la compra.',
       duration: 'Duración aprox: 10-15 horas',
     },
     en: {
@@ -66,7 +66,7 @@ export function CursosPaymentGate({
       price: `€${(price / 100).toLocaleString('en-GB')}`,
       cta: 'Buy Access',
       secure: 'Secure payment with Stripe',
-      note: 'Immediate access after purchase. 14-day money-back guarantee.',
+      note: 'Immediate access after purchase.',
       duration: 'Approx duration: 10-15 hours',
     },
     it: {
@@ -83,7 +83,7 @@ export function CursosPaymentGate({
       price: `${(price / 100).toLocaleString('it-IT')} €`,
       cta: 'Acquista Accesso',
       secure: 'Pagamento sicuro con Stripe',
-      note: 'Accesso immediato dopo l\'acquisto. Rimborso garantito in 14 giorni.',
+      note: 'Accesso immediato dopo l\'acquisto.',
       duration: 'Durata appross: 10-15 ore',
     },
     fr: {
@@ -100,7 +100,7 @@ export function CursosPaymentGate({
       price: `${(price / 100).toLocaleString('fr-FR')} €`,
       cta: 'Acheter l\'Accès',
       secure: 'Paiement sécurisé avec Stripe',
-      note: 'Accès immédiat après l\'achat. Remboursement garanti sous 14 jours.',
+      note: 'Accès immédiat après l\'achat.',
       duration: 'Durée approx: 10-15 heures',
     },
   }

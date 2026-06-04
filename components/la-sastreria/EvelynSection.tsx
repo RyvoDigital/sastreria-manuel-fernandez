@@ -172,7 +172,7 @@ export function EvelynSection() {
             color:         '#FFFFFF',
             marginBottom:  'clamp(2rem, 4vh, 3rem)',
           }}>
-            Evelyn Fernández
+            {t.la_sastreria.evelyn.label}
           </h2>
 
           <p className="mf-ev-p" style={{

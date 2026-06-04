@@ -38,7 +38,7 @@ export function ConfiguradorPaymentGate({
       secure: 'Pago seguro con Stripe',
       contact: '¿Prefieres hablar con nosotros?',
       contact_cta: 'Reservar cita',
-      comingSoonNote: 'Acceso inmediato tras la compra. Devolución garantizada en 14 días.',
+      comingSoonNote: 'Acceso inmediato tras la compra.',
     },
     en: {
       badge: 'Premium Access',
@@ -55,7 +55,7 @@ export function ConfiguradorPaymentGate({
       secure: 'Secure payment with Stripe',
       contact: 'Prefer to talk to us?',
       contact_cta: 'Book an appointment',
-      comingSoonNote: 'Immediate access after purchase. 14-day money-back guarantee.',
+      comingSoonNote: 'Immediate access after purchase.',
     },
     it: {
       badge: 'Accesso Premium',
@@ -72,7 +72,7 @@ export function ConfiguradorPaymentGate({
       secure: 'Pagamento sicuro con Stripe',
       contact: 'Preferisci parlarci?',
       contact_cta: 'Prenota un appuntamento',
-      comingSoonNote: 'Accesso immediato dopo l\'acquisto. Rimborso garantito in 14 giorni.',
+      comingSoonNote: 'Accesso immediato dopo l\'acquisto.',
     },
     fr: {
       badge: 'Accès Premium',
@@ -89,7 +89,7 @@ export function ConfiguradorPaymentGate({
       secure: 'Paiement sécurisé avec Stripe',
       contact: 'Vous préférez nous parler?',
       contact_cta: 'Prendre rendez-vous',
-      comingSoonNote: 'Accès immédiat après l\'achat. Remboursement garanti sous 14 jours.',
+      comingSoonNote: 'Accès immédiat après l\'achat.',
     },
   }
 
