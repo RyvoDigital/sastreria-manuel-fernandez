@@ -67,7 +67,7 @@ export default function Modelos3DPage() {
       <main className="flex flex-col bg-[#0A1628] min-h-screen">
         <section style={{
           position: 'relative',
-          minHeight: '40vh',
+          minHeight: '70vh',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
