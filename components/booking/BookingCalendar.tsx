@@ -607,7 +607,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                             return (
                               <button
                                 key={time}
-                                onClick={() => { if (!isBooked) { setSelectedTime(time); window.scrollTo({ top: 0, behavior: 'smooth' }) }
+                                onClick={() => { if (!isBooked) { setSelectedTime(time); window.scrollTo({ top: 0, behavior: 'smooth' }) } }}
                                 disabled={isBooked}
                                 style={{
                                   padding: '0.75rem 0.5rem',
