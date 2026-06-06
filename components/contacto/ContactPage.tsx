@@ -531,7 +531,7 @@ function ContactPageInner() {
             }}>
               {/* In-person Measurements */}
               <button
-                onClick={() => setBookingMode('inperson-measure')}
+                onClick={() => { setBookingMode('inperson-measure'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 style={{
                   display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
                   padding: '1.25rem',
@@ -564,7 +564,7 @@ function ContactPageInner() {
 
               {/* In-person Style Consultation */}
               <button
-                onClick={() => setBookingMode('inperson-style')}
+                onClick={() => { setBookingMode('inperson-style'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 style={{
                   display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
                   padding: '1.25rem',
@@ -597,7 +597,7 @@ function ContactPageInner() {
 
               {isEnabled('videollamada') && (
                 <button
-                  onClick={() => setBookingMode('videocall')}
+                  onClick={() => { setBookingMode('videocall'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                   style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem',
                     padding: '1.25rem',

@@ -40,7 +40,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at_02.34.21_xacsg5.png",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721860/WhatsApp_Image_2026-06-05_at_13.10.34_jmwnk8.jpg",
   },
   {
     id: "canvas",
@@ -57,7 +57,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779673071/WhatsApp_Image_2026-05-24_at_00.37.28_ztx6kh.jpg",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721858/WhatsApp_Image_2026-06-05_at_13.09.18_mtwbpy.jpg",
   },
   {
     id: "lapel",
@@ -125,7 +125,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "/photos/anatomia-traje.png",
+      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721857/WhatsApp_Image_2026-06-05_at_13.08.17_dcjxub.jpg",
   },
 ];
 
