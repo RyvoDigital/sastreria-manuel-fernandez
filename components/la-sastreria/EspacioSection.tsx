@@ -106,7 +106,7 @@ export function EspacioSection() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780308464/IMG_2141_fcqc0n.jpg"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721815/WhatsApp_Image_2026-06-05_at_13.27.25_qmad7w.jpg"
               alt="Sastrería Manuel Fernández"
               style={{
                 width:          '100%',
