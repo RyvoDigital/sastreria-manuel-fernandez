@@ -53,7 +53,9 @@ interface BookingCalendarProps {
 export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }: BookingCalendarProps) {
   /* Scroll to top on mount */
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const lenis = (typeof window !== 'undefined' && (window as unknown as Record<string, unknown>).lenis) as { scrollTo: (y: number, opts?: { immediate?: boolean }) => void } | undefined
+    if (lenis) lenis.scrollTo(0, { immediate: true })
+    else window.scrollTo(0, 0)
   }, [])
   const { t, locale } = useI18n()
   const [currentMonth, setCurrentMonth] = useState(new Date())
@@ -302,7 +304,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     if (isPast(date) || isSunday(date) || isBeyond30Days(date)) return
     setSelectedDate(date)
     setSelectedTime(null)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    const lenis = (typeof window !== 'undefined' && (window as unknown as Record<string, unknown>).lenis) as { scrollTo: (y: number, opts?: { immediate?: boolean }) => void } | undefined
+    if (lenis) lenis.scrollTo(0, { immediate: true })
+    else window.scrollTo(0, 0)
     fetchAvailability(date.toISOString().split('T')[0])
   }
 
@@ -612,7 +616,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                             return (
                               <button
                                 key={time}
-                                onClick={() => { if (!isBooked) { setSelectedTime(time); window.scrollTo({ top: 0, behavior: 'smooth' }) } }}
+                                onClick={() => { if (!isBooked) { setSelectedTime(time); const lenis = (typeof window !== 'undefined' && (window as unknown as Record<string, unknown>).lenis) as { scrollTo: (y: number, opts?: { immediate?: boolean }) => void } | undefined; if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0) } }
                                 disabled={isBooked}
                                 style={{
                                   padding: '0.75rem 0.5rem',
