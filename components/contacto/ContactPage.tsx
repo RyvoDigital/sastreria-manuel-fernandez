@@ -121,6 +121,13 @@ function ContactPageInner() {
   const [videocallSuccess, setVideocallSuccess] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
 
+  /* Scroll to top when booking mode changes */
+  useEffect(() => {
+    if (bookingMode !== 'none') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [bookingMode])
+
   /* Handle Stripe return */
   useEffect(() => {
     const success = searchParams.get('videocall_success')

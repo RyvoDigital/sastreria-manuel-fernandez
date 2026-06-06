@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
@@ -51,6 +51,10 @@ interface BookingCalendarProps {
 }
 
 export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }: BookingCalendarProps) {
+  /* Scroll to top on mount */
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
   const { t, locale } = useI18n()
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
