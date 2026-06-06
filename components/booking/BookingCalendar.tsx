@@ -302,6 +302,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     if (isPast(date) || isSunday(date) || isBeyond30Days(date)) return
     setSelectedDate(date)
     setSelectedTime(null)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     fetchAvailability(date.toISOString().split('T')[0])
   }
 
