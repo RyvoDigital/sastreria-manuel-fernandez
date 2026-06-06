@@ -65,7 +65,7 @@ export function BodasSuitSection() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-suit_m8cqj3"
+            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780727276/WhatsApp_Image_2026-06-05_at_10.50.14_ycl5xz.jpg"
             alt={label}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
