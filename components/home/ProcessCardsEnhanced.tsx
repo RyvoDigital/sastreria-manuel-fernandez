@@ -8,7 +8,7 @@ import { useIsMobile } from '@/lib/use-mobile'
 const CARD_IMAGES = [
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-selection_vsmq3j',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-sartorial-interpretation_sdszvu',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto:best/f_auto/v1778765991/fotos-web/05-whatsapp/whatsapp-01.jpg',
+  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780727276/WhatsApp_Image_2026-06-05_at_10.50.14_ycl5xz.jpg',
 ]
 
 const CSS = `
