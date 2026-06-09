@@ -86,7 +86,7 @@ function CursosLayoutInner() {
       <CursosPaymentGate
         onAccessGranted={() => setSelectedCourse(null)}
         title={selectedCourse.title}
-        subtitle={c.subtitle}
+        subtitle={''}
         courseId={selectedCourse.id}
         courseName={selectedCourse.title}
         price={selectedCourse.price}
