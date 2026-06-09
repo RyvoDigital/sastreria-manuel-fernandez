@@ -104,15 +104,25 @@ export function EspacioSection() {
             ref={mainPhotoRef}
             style={{ position: 'relative', overflow: 'hidden' }}
           >
+            <style>{`
+              .espacio-main-img {
+                object-position: center;
+              }
+              @media (max-width: 768px) {
+                .espacio-main-img {
+                  object-position: left center;
+                }
+              }
+            `}</style>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721815/WhatsApp_Image_2026-06-05_at_13.27.25_qmad7w.jpg"
+              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1781041266/Screenshot_2026-06-09_at_22.35.41_anewhw.png"
               alt="Sastrería Manuel Fernández"
+              className="espacio-main-img"
               style={{
                 width:          '100%',
                 height:         '100%',
                 objectFit:      'cover',
-                objectPosition: 'center',
                 filter:         'brightness(0.85) saturate(0.72)',
                 display:        'block',
               }}
