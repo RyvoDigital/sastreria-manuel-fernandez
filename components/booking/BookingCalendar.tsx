@@ -27,7 +27,7 @@ const TIME_SLOTS = [
   '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
 ]
 
-const SATURDAY_SLOTS = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00']
+const SATURDAY_SLOTS = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30']
 
 export type BookingType = 'inperson-measure' | 'inperson-style' | 'videocall'
 
