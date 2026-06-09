@@ -51,7 +51,7 @@ const SERVICES = [
     key: 'contacto' as const,
     icon: Mail,
     href: '/contacto',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/maestro-cutting-table_qytlmp',
+    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778764246/photos/others/IMG_0734_ug3baf.jpg',
   },
 ]
 
