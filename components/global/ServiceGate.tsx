@@ -42,7 +42,7 @@ export function ServiceGate({ settingId, children }: ServiceGateProps) {
           color: '#FFFFFF',
           marginBottom: '1rem',
         }}>
-          Próximamente
+          {t.coming_soon.title}
         </h1>
         <p style={{
           fontFamily: 'var(--font-sans)',
@@ -52,7 +52,7 @@ export function ServiceGate({ settingId, children }: ServiceGateProps) {
           marginBottom: '2rem',
           lineHeight: 1.6,
         }}>
-          Estamos preparando esta sección. Vuelve pronto para descubrirlo.
+          {t.coming_soon.description}
         </p>
         <Link href="/" style={{
           display: 'inline-flex',

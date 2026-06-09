@@ -621,5 +621,9 @@
       "error": "Prenotazione non riuscita",
       "errorMessage": "Impossibile inviare la prenotazione. Riprova."
     }
+  },
+  "coming_soon": {
+    "title": "Presto disponibile",
+    "description": "Stiamo preparando questa sezione. Torna presto per scoprirla."
   }
 }

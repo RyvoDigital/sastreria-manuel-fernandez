@@ -621,5 +621,9 @@
       "error": "Échec de la réservation",
       "errorMessage": "Impossible d'envoyer votre réservation. Veuillez réessayer."
     }
+  },
+  "coming_soon": {
+    "title": "Bientôt disponible",
+    "description": "Nous préparons cette section. Revenez bientôt pour la découvrir."
   }
 }
