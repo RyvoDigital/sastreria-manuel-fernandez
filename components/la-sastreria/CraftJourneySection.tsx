@@ -50,7 +50,7 @@ export function CraftJourneySection() {
   const sections = [
     {
       id:          'tejido',
-      background:  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_1200/photos/web_lista_images/sastreria-overview_viyqaa',
+      background:  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765891/fotos-web/02-ai-promo/promo-ai-06.png',
       leftLabel:   t.la_sastreria.oficio.cat1,
       title:       'Carácter',
       rightLabel:  'Lana & Seda',

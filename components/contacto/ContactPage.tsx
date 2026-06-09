@@ -19,10 +19,10 @@ type QuoteKey =
   | 'quote5' | 'quote6' | 'quote7' | 'quote8'
 
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765850/fotos-web/01-atelier-canon/atelier-unknown-014-0631.jpg', quoteKey: 'quote1' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765799/fotos-web/01-atelier-canon/atelier-unknown-001-0350.jpg', quoteKey: 'quote2' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765846/fotos-web/01-atelier-canon/atelier-unknown-012-0621.jpg', quoteKey: 'quote3' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765781/fotos-web/01-atelier-canon/atelier-2026-04-24-006-0648.jpg', quoteKey: 'quote4' },
+ 
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765799/fotos-web/01-atelier-canon/atelier-unknown-001-0350.jpg', quoteKey: 'quote1' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765846/fotos-web/01-atelier-canon/atelier-unknown-012-0621.jpg', quoteKey: 'quote2' },
+  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765781/fotos-web/01-atelier-canon/atelier-2026-04-24-006-0648.jpg', quoteKey: 'quote3' },
 ]
 
 const CSS = `
@@ -49,7 +49,7 @@ const CSS = `
     border-bottom: 1px solid rgba(196,163,90,0.18);
     color: var(--color-offwhite);
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 300;
     padding: 1.4rem 0 0.55rem;
     outline: none;
@@ -62,7 +62,7 @@ const CSS = `
     position: absolute;
     left: 0; top: 1.4rem;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.82rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(245,240,234,0.28);
@@ -74,7 +74,7 @@ const CSS = `
   }
   .mf-cf-input:focus + .mf-cf-label,
   .mf-cf-input:not(:placeholder-shown) + .mf-cf-label {
-    top: 0; font-size: 0.58rem; color: var(--color-gold);
+    top: 0; font-size: 0.65rem; color: var(--color-gold);
   }
   .mf-cf-textarea { resize: none; min-height: 64px; }
   .mf-cf-submit {
@@ -82,7 +82,7 @@ const CSS = `
     border: 1px solid rgba(196,163,90,0.28);
     color: rgba(245,240,234,0.55);
     font-family: var(--font-sans);
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     padding: 0.85rem 2.2rem;
@@ -253,9 +253,9 @@ function ContactPageInner() {
     es: {
       hubTitle: '¿Cómo prefieres contactarnos?',
       hubSubtitle: 'Elige la opción que mejor se adapte a ti',
-      inpersonMeasure: '1. Tomar Medidas',
+      inpersonMeasure: 'Tomar Medidas',
       inpersonMeasureDesc: 'Visítanos en nuestra sastrería en Madrid para tomar medidas',
-      inpersonStyle: '2. Consulta de Estilo',
+      inpersonStyle: 'Consulta de Estilo',
       inpersonStyleDesc: 'Visítanos para una consulta de estilo sin medidas',
       videocall: 'Videollamada',
       videocallDesc: 'Consulta personalizada a distancia',
@@ -266,9 +266,9 @@ function ContactPageInner() {
     en: {
       hubTitle: 'How would you like to reach us?',
       hubSubtitle: 'Choose the option that suits you best',
-      inpersonMeasure: '1. Measurements',
+      inpersonMeasure: 'Measurements',
       inpersonMeasureDesc: 'Visit our Madrid tailoring house for measurements',
-      inpersonStyle: '2. Style Consultation',
+      inpersonStyle: 'Style Consultation',
       inpersonStyleDesc: 'Visit us for a style consultation without measurements',
       videocall: 'Video Call',
       videocallDesc: 'Personalized remote consultation',
@@ -279,9 +279,9 @@ function ContactPageInner() {
     it: {
       hubTitle: 'Come preferisci contattarci?',
       hubSubtitle: 'Scegli l\'opzione più adatta a te',
-      inpersonMeasure: '1. Prendere Misure',
+      inpersonMeasure: 'Prendere Misure',
       inpersonMeasureDesc: 'Visita la nostra sartoria a Madrid per le misure',
-      inpersonStyle: '2. Consulto di Stile',
+      inpersonStyle: 'Consulto di Stile',
       inpersonStyleDesc: 'Visita per una consulenza di stile senza misure',
       videocall: 'Videochiamata',
       videocallDesc: 'Consulenza personalizzata a distanza',
@@ -292,9 +292,9 @@ function ContactPageInner() {
     fr: {
       hubTitle: 'Comment préférez-vous nous contacter?',
       hubSubtitle: 'Choisissez l\'option qui vous convient le mieux',
-      inpersonMeasure: '1. Prise de Mesures',
+      inpersonMeasure: 'Prise de Mesures',
       inpersonMeasureDesc: 'Visitez notre maison de tailleur à Madrid pour les mesures',
-      inpersonStyle: '2. Consultation de Style',
+      inpersonStyle: 'Consultation de Style',
       inpersonStyleDesc: 'Visitez-nous pour une consultation de style sans mesures',
       videocall: 'Visioconférence',
       videocallDesc: 'Consultation personnalisée à distance',
@@ -451,7 +451,7 @@ function ContactPageInner() {
 
           {/* Section label */}
           <div className="mf-ci" style={{
-            fontFamily: 'var(--font-sans)', fontSize: '0.82rem',
+            fontFamily: 'var(--font-sans)', fontSize: '0.9rem',
             letterSpacing: '0.34em', textTransform: 'uppercase',
             color: 'rgba(196,163,90,0.55)', marginBottom: '0.9rem',
           }}>
@@ -476,7 +476,7 @@ function ContactPageInner() {
 
           {/* Subheadline */}
           <p className="mf-ci" style={{
-            fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.05rem, 1.3vw, 1.2rem)',
+            fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.15rem, 1.5vw, 1.35rem)',
             fontStyle: 'italic', lineHeight: 1.7, color: 'rgba(245,240,234,0.4)',
             marginBottom: '1.8rem',
           }}>
@@ -495,7 +495,7 @@ function ContactPageInner() {
                 <Icon size={11} strokeWidth={1.5} style={{ color: 'var(--color-gold)', marginTop: '3px', flexShrink: 0, opacity: 0.6 }} />
                 <div>
                   <div style={{
-                    fontFamily: 'var(--font-sans)', fontSize: '0.7rem',
+                    fontFamily: 'var(--font-sans)', fontSize: '0.78rem',
                     letterSpacing: '0.22em', textTransform: 'uppercase',
                     color: 'rgba(196,163,90,0.4)', marginBottom: '2px',
                   }}>
@@ -503,7 +503,7 @@ function ContactPageInner() {
                   </div>
                   {href ? (
                     <a href={href} style={{
-                      fontFamily: 'var(--font-sans)', fontSize: '0.95rem', fontWeight: 300,
+                      fontFamily: 'var(--font-sans)', fontSize: '1.05rem', fontWeight: 300,
                       color: 'rgba(245,240,234,0.58)', textDecoration: 'none',
                       transition: 'color .2s',
                     }}
@@ -513,7 +513,7 @@ function ContactPageInner() {
                     </a>
                   ) : (
                     <span style={{
-                      fontFamily: 'var(--font-sans)', fontSize: '0.95rem', fontWeight: 300,
+                      fontFamily: 'var(--font-sans)', fontSize: '1.05rem', fontWeight: 300,
                       color: 'rgba(245,240,234,0.58)',
                     }}>
                       {value}
@@ -527,8 +527,8 @@ function ContactPageInner() {
           {/* ─── BOOKING HUB ─── */}
           <div className="mf-ci" style={{ marginBottom: '2rem' }}>
             <p style={{
-              fontFamily: 'var(--font-serif)', fontSize: '1rem', fontStyle: 'italic',
-              color: 'rgba(245,240,234,0.5)', marginBottom: '1rem',
+              fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontStyle: 'italic',
+              color: '#FFFFFF', marginBottom: '1rem',
             }}>
               {bl.hubTitle}
             </p>
@@ -562,10 +562,10 @@ function ContactPageInner() {
               >
                 <Calendar size={20} color="#C9A84C" />
                 <div>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
                     {bl.inpersonMeasure}
                   </p>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
                     {bl.inpersonMeasureDesc}
                   </p>
                 </div>
@@ -595,10 +595,10 @@ function ContactPageInner() {
               >
                 <Calendar size={20} color="#C9A84C" />
                 <div>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
                     {bl.inpersonStyle}
                   </p>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
                     {bl.inpersonStyleDesc}
                   </p>
                 </div>
@@ -628,10 +628,10 @@ function ContactPageInner() {
                 >
                   <Video size={20} color="#C9A84C" />
                   <div>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
                       {bl.videocall}
                     </p>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
                       {bl.videocallDesc}
                     </p>
                   </div>
@@ -662,10 +662,10 @@ function ContactPageInner() {
               >
                 <MessageSquare size={20} color="#C9A84C" />
                 <div>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: '#FFFFFF', fontWeight: 500, margin: 0 }}>
                     {bl.message}
                   </p>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', margin: '0.15rem 0 0' }}>
                     {bl.messageDesc}
                   </p>
                 </div>
@@ -681,7 +681,7 @@ function ContactPageInner() {
           {/* Form */}
           <div className="mf-ci" id="contact-form">
             <div style={{
-              fontFamily: 'var(--font-sans)', fontSize: '0.78rem',
+              fontFamily: 'var(--font-sans)', fontSize: '0.85rem',
               letterSpacing: '0.28em', textTransform: 'uppercase',
               color: 'rgba(245,240,234,0.25)', marginBottom: '1.4rem',
             }}>

@@ -26,7 +26,6 @@ function CursosLayoutInner() {
   const t = {
     es: {
       title: 'Curso Artesanal',
-      subtitle: 'No medimos el cuerpo. Medimos tus pensamientos.',
       desc: 'Nuestra academia digital ofrece masterclasses detalladas sobre las técnicas tradicionales que definen nuestro estilo. Aprende desde cualquier lugar, a tu ritmo.',
       back: 'Volver a cursos',
       successTitle: '¡Compra exitosa!',
@@ -34,7 +33,6 @@ function CursosLayoutInner() {
     },
     en: {
       title: 'Artisan Course',
-      subtitle: "We don't measure the body. We measure your thoughts.",
       desc: 'Our digital academy offers detailed masterclasses on the traditional techniques that define our style. Learn from anywhere, at your own pace.',
       back: 'Back to courses',
       successTitle: 'Purchase successful!',
@@ -42,7 +40,6 @@ function CursosLayoutInner() {
     },
     it: {
       title: 'Corso Artigianale',
-      subtitle: "Non misuriamo il corpo. Misuriamo i tuoi pensieri.",
       desc: 'La nostra accademia digitale offre masterclass dettagliate sulle tecniche tradizionali che definiscono il nostro stile. Impara da qualsiasi luogo, al tuo ritmo.',
       back: 'Torna ai corsi',
       successTitle: 'Acquisto riuscito!',
@@ -50,7 +47,6 @@ function CursosLayoutInner() {
     },
     fr: {
       title: 'Cours Artisanal',
-      subtitle: "Nous ne mesurons pas le corps. Nous mesurons vos pensées.",
       desc: 'Notre académie numérique propose des masterclasses détaillées sur les techniques traditionnelles qui définissent notre style. Apprenez de n\'importe où, à votre rythme.',
       back: 'Retour aux cours',
       successTitle: 'Achat réussi !',
@@ -190,17 +186,6 @@ function CursosLayoutInner() {
           }}>
             {c.title}
           </h1>
-          <div style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
-            letterSpacing: '0.3em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.7)',
-            marginBottom: '2.5rem',
-          }}>
-            {c.subtitle}
-          </div>
-
           <div style={{
             width: '40px',
             height: '1px',

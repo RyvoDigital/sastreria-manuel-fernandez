@@ -271,8 +271,6 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     return d > maxBookableDate
   }
 
-  const isSunday = (date: Date) => date.getDay() === 0
-
   const formatDateLong = (date: Date) => {
     const opts: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long' }
     return date.toLocaleDateString(
@@ -305,7 +303,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   }
 
   const handleDateSelect = (date: Date) => {
-    if (isPast(date) || isSunday(date) || isBeyond30Days(date)) return
+    if (isPast(date) || isBeyond30Days(date)) return
     setSelectedDate(date)
     setSelectedTime(null)
     scrollToTop()
@@ -549,7 +547,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                     {calendarDays.map((day, i) => {
                       if (!day) return <div key={`empty-${i}`} />
                       const isSelected = selectedDate?.toDateString() === day.toDateString()
-                      const disabled = isPast(day) || isSunday(day) || isBeyond30Days(day)
+                      const disabled = isPast(day) || isBeyond30Days(day)
                       return (
                         <button
                           key={day.toISOString()}
