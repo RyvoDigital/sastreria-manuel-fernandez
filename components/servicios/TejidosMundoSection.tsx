@@ -67,13 +67,11 @@ export function TejidosMundoSection() {
         stagger: 0.12,
         scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none none' },
       })
-      if (!isMobile) {
-        gsap.from('.mf-tj-globe', {
-          scale: 0.9, opacity: 0, duration: 1.2, ease: 'power3.out',
-          delay: 0.2,
-          scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none none' },
-        })
-      }
+      gsap.from('.mf-tj-globe', {
+        scale: 0.9, opacity: 0, duration: 1.2, ease: 'power3.out',
+        delay: 0.2,
+        scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none none' },
+      })
     }, el)
     return () => ctx.revert()
   }, [isMobile])
@@ -187,9 +185,8 @@ export function TejidosMundoSection() {
           </div>
         </div>
 
-        {/* Right: Globe (desktop only) */}
-        {!isMobile && (
-          <div className="mf-tj-globe" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {/* Right: Globe */}
+        <div className="mf-tj-globe" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {/* Gold glow halo behind the globe */}
             <div style={{ position: 'relative', width: '100%', maxWidth: '540px' }}>
               <div style={{
@@ -223,7 +220,6 @@ export function TejidosMundoSection() {
               </div>
             </div>
           </div>
-        )}
 
       </div>
     </section>
