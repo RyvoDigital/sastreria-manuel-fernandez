@@ -20,7 +20,8 @@ const SERVICES = [
     key: 'bodas' as const,
     icon: Heart,
     href: '/bodas-y-ceremonia',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/madrid-suit-street_slsine',
+      image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765793/fotos-web/01-atelier-canon/atelier-2026-04-24-009-0640.jpg',
+  
   },
   {
     key: 'servicios' as const,
