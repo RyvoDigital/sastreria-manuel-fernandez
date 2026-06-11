@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { bookSlot, isSlotBooked } from '@/lib/bookings'
+import { validateBookingSlot } from '@/lib/booking/date-utils'
 
 export async function GET(req: NextRequest) {
   try {
@@ -36,6 +37,15 @@ export async function GET(req: NextRequest) {
 
     if (!name || !email || !date || !time) {
       return NextResponse.json({ success: false, error: 'Incomplete booking data' }, { status: 400 })
+    }
+
+    // Validate date/time are within the bookable window and not in the past
+    const slotValidation = validateBookingSlot(date, time)
+    if (!slotValidation.valid) {
+      return NextResponse.json(
+        { success: false, error: slotValidation.error },
+        { status: 400 }
+      )
     }
 
     // Check if already booked (idempotency)

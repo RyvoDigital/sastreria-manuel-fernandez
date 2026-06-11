@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
+import { toMadridDateString, isSlotInPast } from '@/lib/booking/date-utils'
 import {
   ChevronLeft,
   ChevronRight,
@@ -113,8 +114,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       conflict: 'Esta franja horaria ya está reservada. Por favor, elige otra.',
       successTitle: '¡Reserva confirmada!',
       successMsg: isVideocall
-        ? 'Te redirigiremos al pago para confirmar tu videollamada.'
-        : 'Hemos recibido tu solicitud. Nos pondremos en contacto contigo pronto.',
+        ? 'Te redirigiremos al pago para confirmar tu videollamada. Tu cita quedará reservada una vez completado el pago.'
+        : 'Tu cita ha sido reservada correctamente. Te esperamos en nuestra sastrería de Madrid.',
       serviceName: isVideocall ? 'Videollamada de asesoría' : isInpersonMeasure ? 'Cita presencial: Tomar Medidas' : 'Cita presencial: Consulta de Estilo',
       serviceDesc: isVideocall
         ? 'Consulta personalizada de 20-25 minutos por videollamada con nuestros expertos.'
@@ -146,8 +147,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       conflict: 'This time slot is already booked. Please choose another.',
       successTitle: 'Booking confirmed!',
       successMsg: isVideocall
-        ? 'We will redirect you to payment to confirm your video call.'
-        : 'We have received your request. We will contact you soon.',
+        ? 'We will redirect you to payment to confirm your video call. Your appointment will be reserved once payment is complete.'
+        : 'Your appointment has been successfully booked. We look forward to seeing you at our Madrid tailor shop.',
       serviceName: isVideocall ? 'Video consultation' : isInpersonMeasure ? 'In-person: Measurements' : 'In-person: Style Consultation',
       serviceDesc: isVideocall
         ? 'Personalized 20-25 minute video call consultation with our experts.'
@@ -179,8 +180,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       conflict: 'Questa fascia oraria è già prenotata. Scegli un\'altra.',
       successTitle: 'Prenotazione confermata!',
       successMsg: isVideocall
-        ? 'Ti reindirizzeremo al pagamento per confermare la tua videochiamata.'
-        : 'Abbiamo ricevuto la tua richiesta. Ti contatteremo presto.',
+        ? 'Ti reindirizzeremo al pagamento per confermare la tua videochiamata. L\'appuntamento sarà riservato al termine del pagamento.'
+        : 'Il tuo appuntamento è stato prenotato correttamente. Ti aspettiamo nella nostra sartoria a Madrid.',
       serviceName: isVideocall ? 'Consulenza video' : isInpersonMeasure ? 'Visita in sartoria: Misure' : 'Visita in sartoria: Consulenza di Stile',
       serviceDesc: isVideocall
         ? 'Consulenza personalizzata di 20-25 minuti in videochiamata con i nostri esperti.'
@@ -212,8 +213,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       conflict: 'Ce créneau horaire est déjà réservé. Veuillez en choisir un autre.',
       successTitle: 'Rendez-vous confirmé!',
       successMsg: isVideocall
-        ? 'Nous allons vous rediriger vers le paiement pour confirmer votre visioconférence.'
-        : 'Nous avons reçu votre demande. Nous vous contacterons bientôt.',
+        ? 'Nous allons vous rediriger vers le paiement pour confirmer votre visioconférence. Votre rendez-vous sera réservé une fois le paiement effectué.'
+        : 'Votre rendez-vous a été réservé avec succès. Nous vous attendons dans notre sastreria à Madrid.',
       serviceName: isVideocall ? 'Consultation vidéo' : isInpersonMeasure ? 'Visite: Prise de Mesures' : 'Visite: Consultation de Style',
       serviceDesc: isVideocall
         ? 'Consultation personnalisée de 20-25 minutes par visioconférence avec nos experts.'
@@ -255,20 +256,24 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const getSlotsForDate = (date: Date | null) => {
     if (!date) return TIME_SLOTS
     const day = date.getDay()
+    // Sunday is closed
+    if (day === 0) return []
     const isSaturday = day === 6
-    return isSaturday ? SATURDAY_SLOTS : TIME_SLOTS
+    const baseSlots = isSaturday ? SATURDAY_SLOTS : TIME_SLOTS
+    const dateStr = toMadridDateString(date)
+    return baseSlots.filter((time) => !isSlotInPast(dateStr, time))
   }
 
   const isPast = (date: Date) => {
-    const d = new Date(date)
-    d.setHours(0, 0, 0, 0)
-    return d < today
+    const dateStr = toMadridDateString(date)
+    const todayStr = toMadridDateString(today)
+    return dateStr < todayStr
   }
 
   const isBeyond30Days = (date: Date) => {
-    const d = new Date(date)
-    d.setHours(0, 0, 0, 0)
-    return d > maxBookableDate
+    const dateStr = toMadridDateString(date)
+    const maxStr = toMadridDateString(maxBookableDate)
+    return dateStr > maxStr
   }
 
   const formatDateLong = (date: Date) => {
@@ -307,7 +312,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     setSelectedDate(date)
     setSelectedTime(null)
     scrollToTop()
-    fetchAvailability(date.toISOString().split('T')[0])
+    fetchAvailability(toMadridDateString(date))
   }
 
   const handleNext = () => {
@@ -335,7 +340,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
           name: name.trim(),
           email: email.trim(),
           phone: phone.trim(),
-          date: selectedDate.toISOString().split('T')[0],
+          date: toMadridDateString(selectedDate),
           time: selectedTime,
         })
         setSuccess(true)
@@ -344,7 +349,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
           name: name.trim(),
           email: email.trim(),
           phone: phone.trim(),
-          date: selectedDate.toISOString().split('T')[0],
+          date: toMadridDateString(selectedDate),
           time: selectedTime,
         })
         setSuccess(true)
@@ -355,7 +360,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         setError(l.conflict)
         // Refresh availability to show updated state
         if (selectedDate) {
-          fetchAvailability(selectedDate.toISOString().split('T')[0])
+          fetchAvailability(toMadridDateString(selectedDate))
         }
       } else {
         setError(msg)
@@ -401,7 +406,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
-          date: selectedDate.toISOString().split('T')[0],
+          date: toMadridDateString(selectedDate),
           time: selectedTime,
         }),
       })

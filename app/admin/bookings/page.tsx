@@ -17,8 +17,21 @@ interface Booking {
   reminder_sent_at: string | null
 }
 
+function formatAdminDate(dateStr: string, locale: string): string {
+  const [year, month, day] = dateStr.split('-').map(Number)
+  const date = new Date(year, month - 1, day, 12, 0, 0)
+  return new Intl.DateTimeFormat(
+    locale === 'en' ? 'en-GB' : locale === 'it' ? 'it-IT' : locale === 'fr' ? 'fr-FR' : 'es-ES',
+    { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Europe/Madrid' }
+  ).format(date)
+}
+
+function formatAdminTime(timeStr: string): string {
+  return timeStr
+}
+
 export default function BookingsPage() {
-  const { t } = useAdminI18n()
+  const { t, locale } = useAdminI18n()
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
@@ -94,8 +107,8 @@ export default function BookingsPage() {
             <tbody className="divide-y divide-[#1E3A5F]/50">
               {bookings.map((b) => (
                 <tr key={b.id} className="hover:bg-[#1E3A5F]/20">
-                  <td className="px-6 py-4 text-white">{b.date}</td>
-                  <td className="px-6 py-4 text-white">{b.time}</td>
+                  <td className="px-6 py-4 text-white">{formatAdminDate(b.date, locale)}</td>
+                  <td className="px-6 py-4 text-white">{formatAdminTime(b.time)}</td>
                   <td className="px-6 py-4">
                     <div className="text-white">{b.name}</div>
                     <div className="text-gray-400 text-xs">{b.email}</div>

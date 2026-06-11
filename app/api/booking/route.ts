@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { Resend } from 'resend'
 import { bookSlot, isSlotBooked } from '@/lib/bookings'
+import { validateBookingSlot } from '@/lib/booking/date-utils'
 import { query } from '@/lib/db'
 import { rateLimit } from '@/lib/rate-limit'
 
@@ -196,6 +197,15 @@ export async function POST(req: NextRequest) {
 
     const { name, email, date, time, type, locale } = parsed.data
     const loc = locale || 'es'
+
+    // Validate date/time are within the bookable window and not in the past
+    const slotValidation = validateBookingSlot(date, time)
+    if (!slotValidation.valid) {
+      return NextResponse.json(
+        { success: false, error: slotValidation.error },
+        { status: 400 }
+      )
+    }
 
     // Check for conflicts
     const alreadyBooked = await isSlotBooked(date, time)

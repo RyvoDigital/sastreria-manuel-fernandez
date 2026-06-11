@@ -261,7 +261,7 @@ function ContactPageInner() {
       videocallDesc: 'Consulta personalizada a distancia',
       message: 'Enviar Mensaje',
       messageDesc: 'Escríbenos y te responderemos pronto',
-      videocallPaidSuccess: '¡Videollamada confirmada! Hemos recibido tu pago y nos pondremos en contacto contigo.',
+      videocallPaidSuccess: '¡Videollamada confirmada! Hemos recibido tu pago. Te enviaremos el enlace de conexión antes de la cita.'
     },
     en: {
       hubTitle: 'How would you like to reach us?',
@@ -274,7 +274,7 @@ function ContactPageInner() {
       videocallDesc: 'Personalized remote consultation',
       message: 'Send Message',
       messageDesc: 'Write to us and we will reply soon',
-      videocallPaidSuccess: 'Video call confirmed! We have received your payment and will contact you.',
+      videocallPaidSuccess: 'Video call confirmed! We have received your payment. We will send you the connection link before the appointment.'
     },
     it: {
       hubTitle: 'Come preferisci contattarci?',
@@ -287,7 +287,7 @@ function ContactPageInner() {
       videocallDesc: 'Consulenza personalizzata a distanza',
       message: 'Invia Messaggio',
       messageDesc: 'Scrivici e ti risponderemo presto',
-      videocallPaidSuccess: 'Videochiamata confermata! Abbiamo ricevuto il pagamento e ti contatteremo.',
+      videocallPaidSuccess: 'Videochiamata confermata! Abbiamo ricevuto il pagamento. Ti invieremo il link di connessione prima dell\'appuntamento.'
     },
     fr: {
       hubTitle: 'Comment préférez-vous nous contacter?',
@@ -300,7 +300,7 @@ function ContactPageInner() {
       videocallDesc: 'Consultation personnalisée à distance',
       message: 'Envoyer un Message',
       messageDesc: 'Écrivez-nous et nous vous répondrons bientôt',
-      videocallPaidSuccess: 'Visioconférence confirmée! Nous avons reçu votre paiement et vous contacterons.',
+      videocallPaidSuccess: 'Visioconférence confirmée! Nous avons reçu votre paiement. Nous vous enverrons le lien de connexion avant le rendez-vous.'
     },
   }
 
