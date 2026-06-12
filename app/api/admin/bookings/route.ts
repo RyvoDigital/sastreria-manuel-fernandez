@@ -206,16 +206,17 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ booking: existing })
     }
 
-    // Validate new slot if date/time changed
     const newDate = date !== undefined ? date : existing.date
     const newTime = time !== undefined ? time : existing.time
-    const slotValidation = validateBookingSlot(newDate, newTime)
-    if (!slotValidation.valid) {
-      return NextResponse.json({ error: slotValidation.error }, { status: 400 })
-    }
 
-    // Check for conflicts if date/time changed (excluding current booking)
+    // Validate new slot only if date/time changed
     if ((date !== undefined && date !== existing.date) || (time !== undefined && time !== existing.time)) {
+      const slotValidation = validateBookingSlot(newDate, newTime)
+      if (!slotValidation.valid) {
+        return NextResponse.json({ error: slotValidation.error }, { status: 400 })
+      }
+
+      // Check for conflicts (excluding current booking)
       const conflictResult = await query(
         `SELECT 1 FROM bookings WHERE date = $1 AND time = $2 AND id != $3 LIMIT 1`,
         [newDate, newTime, id]
