@@ -225,9 +225,11 @@ function ContactPageInner() {
         type: 'videocall',
         name: data.name,
         email: data.email,
+        phone: data.phone,
         date: data.date,
         time: data.time,
         price: videocallPriceCents,
+        locale,
       }),
     })
     const result = await res.json()

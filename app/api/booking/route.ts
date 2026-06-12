@@ -11,10 +11,11 @@ const bookingLimiter = rateLimit({ name: 'booking', maxRequests: 3, windowMs: 60
 const bookingSchema = z.object({
   name: z.string().min(1).max(100),
   email: z.string().email().max(200),
+  phone: z.string().max(50).optional(),
   date: z.string().min(1),
   time: z.string().min(1),
   type: z.enum(['inperson', 'videocall']).default('inperson'),
-  locale: z.string().max(5).optional(),
+  locale: z.string().max(10).optional(),
 })
 
 function getOwnerSubject(type: string, name: string, date: string, time: string, locale?: string): string {
@@ -195,7 +196,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const { name, email, date, time, type, locale } = parsed.data
+    const { name, email, phone, date, time, type, locale } = parsed.data
     const loc = locale || 'es'
 
     // Validate date/time are within the bookable window and not in the past
@@ -220,9 +221,11 @@ export async function POST(req: NextRequest) {
     const bookResult = await bookSlot({
       name,
       email,
+      phone,
       date,
       time,
       type,
+      locale,
       createdAt: new Date().toISOString(),
     })
 

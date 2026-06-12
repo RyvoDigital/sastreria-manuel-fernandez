@@ -6,6 +6,8 @@ export interface BookingRecord {
   type: 'inperson' | 'videocall'
   name: string
   email: string
+  phone?: string
+  locale?: string
   createdAt: string
 }
 
@@ -36,8 +38,8 @@ export async function isSlotBooked(date: string, time: string): Promise<boolean>
 export async function bookSlot(record: BookingRecord): Promise<{ success: boolean; error?: string }> {
   try {
     await query(
-      'INSERT INTO bookings (date, time, type, name, email) VALUES ($1, $2, $3, $4, $5)',
-      [record.date, record.time, record.type, record.name, record.email]
+      'INSERT INTO bookings (date, time, type, name, email, phone, locale) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+      [record.date, record.time, record.type, record.name, record.email, record.phone || null, record.locale || 'es']
     )
     return { success: true }
   } catch (err: unknown) {

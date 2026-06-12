@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     })
 
     const body = await req.json()
-    const { type, courseId, courseName, price, name, email, date, time } = body
+    const { type, courseId, courseName, price, name, email, phone, date, time } = body
 
     if (!price || typeof price !== 'number' || price <= 0) {
       return NextResponse.json({ error: 'Invalid or missing price' }, { status: 400 })
@@ -59,8 +59,10 @@ export async function POST(req: NextRequest) {
           type: 'videocall',
           name: name || '',
           email: email || '',
+          phone: phone || '',
           date: date || '',
           time: time || '',
+          locale: body.locale || 'es',
         },
         customer_email: email,
       })

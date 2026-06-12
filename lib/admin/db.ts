@@ -28,21 +28,40 @@ export async function getBookings(filters?: { type?: string; dateFrom?: string; 
   return result.rows
 }
 
-export async function updateBooking(id: number, data: { status?: string; notes?: string }) {
+export async function updateBooking(id: number, data: {
+  status?: string
+  notes?: string
+  name?: string
+  email?: string
+  phone?: string
+  date?: string
+  time?: string
+  type?: string
+}) {
   const fields: string[] = []
   const params: unknown[] = []
   let i = 1
 
-  if (data.status !== undefined) {
-    fields.push(`status = $${i++}`)
-    params.push(data.status)
+  const mappings: Record<string, string> = {
+    status: 'status',
+    notes: 'notes',
+    name: 'name',
+    email: 'email',
+    phone: 'phone',
+    date: 'date',
+    time: 'time',
+    type: 'type',
   }
-  if (data.notes !== undefined) {
-    fields.push(`notes = $${i++}`)
-    params.push(data.notes)
+
+  for (const [key, col] of Object.entries(mappings)) {
+    if (data[key as keyof typeof data] !== undefined) {
+      fields.push(`${col} = $${i++}`)
+      params.push(data[key as keyof typeof data])
+    }
   }
 
   if (fields.length === 0) return null
+  fields.push(`updated_at = CURRENT_TIMESTAMP`)
   params.push(id)
   const sql = `UPDATE bookings SET ${fields.join(', ')} WHERE id = $${i} RETURNING *`
   const result = await query(sql, params)

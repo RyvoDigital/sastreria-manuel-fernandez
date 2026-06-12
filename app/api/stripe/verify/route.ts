@@ -31,6 +31,7 @@ export async function GET(req: NextRequest) {
     const metadata = session.metadata || {}
     const name = metadata.name || ''
     const email = metadata.email || ''
+    const phone = metadata.phone || ''
     const date = metadata.date || ''
     const time = metadata.time || ''
     const locale = metadata.locale || 'es'
@@ -54,9 +55,11 @@ export async function GET(req: NextRequest) {
       const bookResult = await bookSlot({
         name,
         email,
+        phone,
         date,
         time,
         type: 'videocall',
+        locale,
         createdAt: new Date().toISOString(),
       })
 
