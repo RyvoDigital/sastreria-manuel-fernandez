@@ -214,6 +214,7 @@ function ContactPageInner() {
     if (!res.ok || !result.success) {
       throw new Error(result.error || 'Error')
     }
+    return result
   }
 
   const handleStripeCheckout = async (data: { name: string; email: string; phone: string; date: string; time: string }) => {

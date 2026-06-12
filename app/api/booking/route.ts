@@ -290,6 +290,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
+      bookingId: bookResult.bookingId,
       ownerId,
       clientId,
     })
@@ -305,19 +306,25 @@ export async function POST(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   try {
     const body = await req.json()
-    const { email, date, time } = body
+    const { id, email, date, time } = body
 
-    if (!email || !date || !time) {
+    let result
+    if (id) {
+      result = await query(
+        `DELETE FROM bookings WHERE id = $1 RETURNING *`,
+        [id]
+      )
+    } else if (email && date && time) {
+      result = await query(
+        `DELETE FROM bookings WHERE email = $1 AND date = $2 AND time = $3 RETURNING *`,
+        [email, date, time]
+      )
+    } else {
       return NextResponse.json(
-        { success: false, error: 'Email, date and time required' },
+        { success: false, error: 'Booking id or email/date/time required' },
         { status: 400 }
       )
     }
-
-    const result = await query(
-      `DELETE FROM bookings WHERE email = $1 AND date = $2 AND time = $3 RETURNING *`,
-      [email, date, time]
-    )
 
     if (result.rowCount === 0) {
       return NextResponse.json(

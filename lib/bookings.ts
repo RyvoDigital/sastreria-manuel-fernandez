@@ -35,13 +35,13 @@ export async function isSlotBooked(date: string, time: string): Promise<boolean>
   }
 }
 
-export async function bookSlot(record: BookingRecord): Promise<{ success: boolean; error?: string }> {
+export async function bookSlot(record: BookingRecord): Promise<{ success: boolean; error?: string; bookingId?: number }> {
   try {
-    await query(
-      'INSERT INTO bookings (date, time, type, name, email, phone, locale) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+    const result = await query(
+      'INSERT INTO bookings (date, time, type, name, email, phone, locale) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
       [record.date, record.time, record.type, record.name, record.email, record.phone || null, record.locale || 'es']
     )
-    return { success: true }
+    return { success: true, bookingId: result.rows[0]?.id }
   } catch (err: unknown) {
     const pgErr = err as { code?: string; detail?: string }
     if (pgErr.code === '23505') {

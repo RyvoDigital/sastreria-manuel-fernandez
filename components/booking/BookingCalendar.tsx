@@ -40,7 +40,7 @@ interface BookingCalendarProps {
     phone: string
     date: string
     time: string
-  }) => Promise<void>
+  }) => Promise<{ success: boolean; bookingId?: number }>
   onStripeCheckout?: (data: {
     name: string
     email: string
@@ -76,6 +76,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [cancelled, setCancelled] = useState(false)
   const [isCancelling, setIsCancelling] = useState(false)
   const [cancelError, setCancelError] = useState<string | null>(null)
+  const [bookingId, setBookingId] = useState<number | null>(null)
   const [bookedSlots, setBookedSlots] = useState<string[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
 
@@ -112,6 +113,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Completa todos los campos',
       invalidEmail: 'Introduce un email válido',
       conflict: 'Esta franja horaria ya está reservada. Por favor, elige otra.',
+      cancelBooking: 'Cancelar esta reserva',
+      cancelling: 'Cancelando…',
+      cancelledSuccess: 'Reserva cancelada correctamente',
       successTitle: '¡Reserva confirmada!',
       successMsg: isVideocall
         ? 'Te redirigiremos al pago para confirmar tu videollamada. Tu cita quedará reservada una vez completado el pago.'
@@ -145,6 +149,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Please fill in all fields',
       invalidEmail: 'Please enter a valid email',
       conflict: 'This time slot is already booked. Please choose another.',
+      cancelBooking: 'Cancel this booking',
+      cancelling: 'Cancelling…',
+      cancelledSuccess: 'Booking cancelled successfully',
       successTitle: 'Booking confirmed!',
       successMsg: isVideocall
         ? 'We will redirect you to payment to confirm your video call. Your appointment will be reserved once payment is complete.'
@@ -178,6 +185,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Compila tutti i campi',
       invalidEmail: 'Inserisci un email valida',
       conflict: 'Questa fascia oraria è già prenotata. Scegli un\'altra.',
+      cancelBooking: 'Annulla questa prenotazione',
+      cancelling: 'Annullamento…',
+      cancelledSuccess: 'Prenotazione annullata con successo',
       successTitle: 'Prenotazione confermata!',
       successMsg: isVideocall
         ? 'Ti reindirizzeremo al pagamento per confermare la tua videochiamata. L\'appuntamento sarà riservato al termine del pagamento.'
@@ -211,6 +221,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Veuillez remplir tous les champs',
       invalidEmail: 'Veuillez entrer un email valide',
       conflict: 'Ce créneau horaire est déjà réservé. Veuillez en choisir un autre.',
+      cancelBooking: 'Annuler ce rendez-vous',
+      cancelling: 'Annulation…',
+      cancelledSuccess: 'Rendez-vous annulé avec succès',
       successTitle: 'Rendez-vous confirmé!',
       successMsg: isVideocall
         ? 'Nous allons vous rediriger vers le paiement pour confirmer votre visioconférence. Votre rendez-vous sera réservé une fois le paiement effectué.'
@@ -345,13 +358,16 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         })
         setSuccess(true)
       } else if (onFreeSubmit) {
-        await onFreeSubmit({
+        const result = await onFreeSubmit({
           name: name.trim(),
           email: email.trim(),
           phone: phone.trim(),
           date: toMadridDateString(selectedDate),
           time: selectedTime,
         })
+        if (result.bookingId) {
+          setBookingId(result.bookingId)
+        }
         setSuccess(true)
       }
     } catch (err) {
@@ -386,6 +402,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     setSuccess(false)
     setCancelled(false)
     setCancelError(null)
+    setBookingId(null)
     setStep('calendar')
     setSelectedDate(null)
     setSelectedTime(null)
@@ -397,18 +414,20 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   }
 
   const handleCancel = async () => {
-    if (!selectedDate || !selectedTime || !email) return
+    if (!bookingId && (!selectedDate || !selectedTime || !email)) return
     setIsCancelling(true)
     setCancelError(null)
     try {
+      const body: Record<string, unknown> = { id: bookingId }
+      if (!bookingId) {
+        body.email = email
+        body.date = selectedDate ? toMadridDateString(selectedDate) : ''
+        body.time = selectedTime
+      }
       const res = await fetch('/api/booking', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          date: toMadridDateString(selectedDate),
-          time: selectedTime,
-        }),
+        body: JSON.stringify(body),
       })
       if (res.ok) {
         setCancelled(true)
@@ -1016,7 +1035,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
               )}
 
               {/* Cancel Booking */}
-              {!isVideocall && !cancelled && (
+              {!cancelled && (
                 <div style={{ marginBottom: '1.5rem' }}>
                   {cancelError && (
                     <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#e57373', marginBottom: '0.5rem' }}>
@@ -1043,7 +1062,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,100,100,0.4)'; e.currentTarget.style.color = 'rgba(255,100,100,0.7)' }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)' }}
                   >
-                    {isCancelling ? 'Cancelling...' : 'Cancel this booking'}
+                    {isCancelling ? l.cancelling : l.cancelBooking}
                   </button>
                 </div>
               )}
@@ -1056,7 +1075,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                   marginBottom: '1.5rem',
                 }}>
                   <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: 'rgba(255,150,150,0.8)', margin: 0 }}>
-                    Booking cancelled successfully
+                    {l.cancelledSuccess}
                   </p>
                 </div>
               )}
