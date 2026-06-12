@@ -9,6 +9,9 @@ const MAX_DAYS_AHEAD = 30
  * Prevents UTC-shift issues when the user is in a different timezone.
  */
 export function toMadridDateString(date: Date): string {
+  if (!date || Number.isNaN(date.getTime())) {
+    return ''
+  }
   const parts = new Intl.DateTimeFormat('en-GB', {
     timeZone: BUSINESS_TIMEZONE,
     year: 'numeric',

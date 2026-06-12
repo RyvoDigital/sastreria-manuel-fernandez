@@ -18,8 +18,16 @@ interface Booking {
 }
 
 function formatAdminDate(dateStr: string, locale: string): string {
-  const [year, month, day] = dateStr.split('-').map(Number)
+  if (!dateStr) return '—'
+  const dateOnly = dateStr.split('T')[0]
+  const [year, month, day] = dateOnly.split('-').map(Number)
+  if (!year || !month || !day || Number.isNaN(year) || Number.isNaN(month) || Number.isNaN(day)) {
+    return dateOnly || '—'
+  }
   const date = new Date(year, month - 1, day, 12, 0, 0)
+  if (Number.isNaN(date.getTime())) {
+    return dateOnly
+  }
   return new Intl.DateTimeFormat(
     locale === 'en' ? 'en-GB' : locale === 'it' ? 'it-IT' : locale === 'fr' ? 'fr-FR' : 'es-ES',
     { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Europe/Madrid' }
