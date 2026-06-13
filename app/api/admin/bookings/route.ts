@@ -42,8 +42,9 @@ export async function PATCH(request: NextRequest) {
     if ((error as Error).message === 'Unauthorized') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const message = error instanceof Error ? error.message : String(error)
     console.error('Update booking error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: 'Internal server error', details: message }, { status: 500 })
   }
 }
 
