@@ -34,10 +34,13 @@ function getDayName(dateStr: string, locale: string): string {
   )
 }
 
-function getSlotsForDate(dateStr: string): string[] {
+function getDayOfWeekLocal(dateStr: string): number {
   const [year, month, day] = dateStr.split('-').map(Number)
-  const date = new Date(year, month - 1, day, 12, 0, 0)
-  const dayOfWeek = date.getDay()
+  return new Date(year, month - 1, day, 12, 0, 0).getDay()
+}
+
+function getSlotsForDate(dateStr: string): string[] {
+  const dayOfWeek = getDayOfWeekLocal(dateStr)
   if (dayOfWeek === 0) return []
   if (dayOfWeek === 6) return SATURDAY_SLOTS
   return TIME_SLOTS
@@ -108,7 +111,7 @@ export default function AvailabilityPage() {
   }
 
   const slots = getSlotsForDate(selectedDate)
-  const isSunday = new Date(selectedDate).getDay() === 0
+  const isSunday = getDayOfWeekLocal(selectedDate) === 0
 
   return (
     <div>
