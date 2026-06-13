@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
   Calendar,
+  Clock,
   Mail,
   CreditCard,
   Shirt,
@@ -23,6 +24,7 @@ import { useAdminI18n } from '@/lib/admin/i18n'
 const navItems = [
   { href: '/admin', icon: LayoutDashboard, key: 'dashboard' },
   { href: '/admin/bookings', icon: Calendar, key: 'bookings' },
+  { href: '/admin/availability', icon: Clock, key: 'availability' },
   { href: '/admin/contacts', icon: Mail, key: 'contacts' },
   { href: '/admin/payments', icon: CreditCard, key: 'payments' },
   { href: '/admin/configurations', icon: Shirt, key: 'configurations' },

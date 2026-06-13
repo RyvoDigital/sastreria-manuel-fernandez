@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getBookedSlots } from '@/lib/bookings'
+import { getBlockedTimes } from '@/lib/availability'
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,11 +11,16 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ success: false, error: 'Missing date' }, { status: 400 })
     }
 
-    const booked = await getBookedSlots(date)
+    const [booked, blocked] = await Promise.all([
+      getBookedSlots(date),
+      getBlockedTimes(date),
+    ])
+
     return NextResponse.json({
       success: true,
       date,
       bookedTimes: booked.map((b) => b.time),
+      blockedTimes: blocked,
     })
   } catch (err) {
     console.error('Availability API error:', err)

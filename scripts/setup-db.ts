@@ -46,6 +46,23 @@ async function setup() {
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS locale VARCHAR(10) DEFAULT 'es'`)
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP`)
 
+    // Blocked time slots (admin can mark slots unavailable per day)
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS blocked_slots (
+        id SERIAL PRIMARY KEY,
+        date DATE NOT NULL,
+        time VARCHAR(10) NOT NULL,
+        reason TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE(date, time)
+      )
+    `)
+
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS idx_blocked_slots_date
+      ON blocked_slots (date)
+    `)
+
     // Admin users
     await pool.query(`
       CREATE TABLE IF NOT EXISTS admins (

@@ -78,6 +78,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [cancelError, setCancelError] = useState<string | null>(null)
   const [bookingId, setBookingId] = useState<number | null>(null)
   const [bookedSlots, setBookedSlots] = useState<string[]>([])
+  const [blockedSlots, setBlockedSlots] = useState<string[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
 
   const isVideocall = type === 'videocall'
@@ -312,6 +313,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       const data = await res.json()
       if (data.success) {
         setBookedSlots(data.bookedTimes)
+        setBlockedSlots(data.blockedTimes || [])
       }
     } catch (err) {
       console.error('Failed to fetch availability', err)
@@ -637,29 +639,32 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                         }}>
                           {getSlotsForDate(selectedDate).map((time) => {
                             const isBooked = bookedSlots.includes(time)
+                            const isBlocked = blockedSlots.includes(time)
+                            const isUnavailable = isBooked || isBlocked
                             return (
                               <button
                                 key={time}
-                                onClick={() => { if (!isBooked) { setSelectedTime(time); scrollToTop() } }}
-                                disabled={isBooked}
+                                onClick={() => { if (!isUnavailable) { setSelectedTime(time); scrollToTop() } }}
+                                disabled={isUnavailable}
+                                title={isBlocked ? 'No disponible' : isBooked ? 'Reservado' : ''}
                                 style={{
                                   padding: '0.75rem 0.5rem',
-                                  background: selectedTime === time ? '#C9A84C' : isBooked ? 'rgba(255,255,255,0.02)' : 'transparent',
-                                  border: `1.5px solid ${selectedTime === time ? '#C9A84C' : isBooked ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.15)'}`,
+                                  background: selectedTime === time ? '#C9A84C' : isUnavailable ? 'rgba(255,255,255,0.02)' : 'transparent',
+                                  border: `1.5px solid ${selectedTime === time ? '#C9A84C' : isUnavailable ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.15)'}`,
                                   borderRadius: '6px',
-                                  color: selectedTime === time ? '#000' : isBooked ? 'rgba(255,255,255,0.2)' : '#fff',
+                                  color: selectedTime === time ? '#000' : isUnavailable ? 'rgba(255,255,255,0.2)' : '#fff',
                                   fontFamily: 'var(--font-sans)', fontSize: '0.8rem',
-                                  cursor: isBooked ? 'not-allowed' : 'pointer',
+                                  cursor: isUnavailable ? 'not-allowed' : 'pointer',
                                   transition: 'all 0.2s ease',
-                                  textDecoration: isBooked ? 'line-through' : 'none',
+                                  textDecoration: isUnavailable ? 'line-through' : 'none',
                                 }}
                                 onMouseEnter={(e) => {
-                                  if (!isBooked && selectedTime !== time) {
+                                  if (!isUnavailable && selectedTime !== time) {
                                     e.currentTarget.style.borderColor = 'rgba(201,168,76,0.5)'
                                   }
                                 }}
                                 onMouseLeave={(e) => {
-                                  if (!isBooked && selectedTime !== time) {
+                                  if (!isUnavailable && selectedTime !== time) {
                                     e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'
                                   }
                                 }}
