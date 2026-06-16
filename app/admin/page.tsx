@@ -85,7 +85,7 @@ export default function AdminDashboard() {
 
       {/* Price settings */}
       <div className="mb-10">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <h2 className="text-lg font-medium text-white flex items-center gap-2">
             <Euro size={18} className="text-[#C9A84C]" />
             Precios de servicios

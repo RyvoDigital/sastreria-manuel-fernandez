@@ -129,7 +129,7 @@ export default function BookingsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h1 className="text-2xl font-serif text-white">{t.sidebar.bookings}</h1>
         <select
           value={filter}
@@ -148,7 +148,8 @@ export default function BookingsPage() {
         <div className="text-gray-400">{t.common.noData}</div>
       ) : (
         <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl overflow-hidden">
-          <table className="w-full text-left text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm min-w-[720px]">
             <thead className="bg-[#1E3A5F]/30 text-gray-300 uppercase text-xs tracking-wider">
               <tr>
                 <th className="px-6 py-4">{t.common.date}</th>
@@ -226,6 +227,7 @@ export default function BookingsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
 

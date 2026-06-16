@@ -18,6 +18,7 @@ import {
   KeyRound,
   BookOpen,
   Box,
+  X,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
@@ -37,7 +38,12 @@ const navItems = [
   { href: '/admin/change-password', icon: KeyRound, key: 'password' },
 ]
 
-export default function AdminSidebar() {
+interface AdminSidebarProps {
+  isOpen?: boolean
+  onClose?: () => void
+}
+
+export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
   const pathname = usePathname()
   const { t, locale, setLocale } = useAdminI18n()
   const langSwitcherRef = useRef<HTMLDivElement>(null)
@@ -62,11 +68,29 @@ export default function AdminSidebar() {
     window.location.href = '/admin/login'
   }
 
+  useEffect(() => {
+    onClose?.()
+  }, [pathname])
+
   return (
-    <aside className="w-64 min-h-screen bg-[#0A1628] border-r border-[#1E3A5F] flex flex-col shrink-0">
-      <div className="p-6 border-b border-[#1E3A5F]">
-        <h1 className="text-lg font-serif text-[#C9A84C] tracking-wide">{t.sidebar.title}</h1>
-        <p className="text-xs text-gray-400 mt-1">{t.sidebar.subtitle}</p>
+    <aside
+      className={`fixed md:static inset-y-0 left-0 z-50 w-64 min-h-screen bg-[#0A1628] border-r border-[#1E3A5F] flex flex-col shrink-0 transition-transform duration-300 ease-in-out ${
+        isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+      }`}
+    >
+      <div className="p-6 border-b border-[#1E3A5F] flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h1 className="text-lg font-serif text-[#C9A84C] tracking-wide">{t.sidebar.title}</h1>
+          <p className="text-xs text-gray-400 mt-1">{t.sidebar.subtitle}</p>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="md:hidden p-1.5 rounded-lg text-gray-400 hover:bg-[#1E3A5F]/50 hover:text-white transition-colors shrink-0"
+          aria-label="Close menu"
+        >
+          <X size={20} />
+        </button>
       </div>
 
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">

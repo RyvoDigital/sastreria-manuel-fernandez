@@ -117,7 +117,7 @@ export default function GarmentsAdminPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div className="flex items-center gap-3">
           <Box className="text-[#C9A84C]" size={24} />
           <h1 className="text-2xl font-serif text-white">3D Garments</h1>

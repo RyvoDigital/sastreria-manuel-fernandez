@@ -60,7 +60,8 @@ export default function PaymentsPage() {
         <div className="text-gray-400">{t.common.noData}</div>
       ) : (
         <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl overflow-hidden">
-          <table className="w-full text-left text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm min-w-[600px]">
             <thead className="bg-[#1E3A5F]/30 text-gray-300 uppercase text-xs tracking-wider">
               <tr>
                 <th className="px-6 py-4">{t.common.date}</th>
@@ -96,6 +97,7 @@ export default function PaymentsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>

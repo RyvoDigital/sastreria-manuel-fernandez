@@ -110,7 +110,7 @@ export default function CoursesPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h1 className="text-2xl font-serif text-white">Cursos</h1>
         <button
           onClick={() => setEditing({ ...emptyCourse, sort_order: courses.length })}
@@ -259,7 +259,8 @@ export default function CoursesPage() {
       )}
 
       <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl overflow-hidden">
-        <table className="w-full text-left text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full text-left text-sm min-w-[640px]">
           <thead className="bg-[#1E3A5F]/30 text-gray-300 uppercase text-xs tracking-wider">
             <tr>
               <th className="px-4 py-3 w-10"></th>
@@ -321,6 +322,7 @@ export default function CoursesPage() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   )
