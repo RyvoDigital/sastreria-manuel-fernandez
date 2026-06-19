@@ -11,6 +11,7 @@ import { FooterEnhanced } from '@/components/global/FooterEnhanced'
 import { ScrollToTop } from '@/components/global/ScrollToTop'
 import { ScrollToTopButton } from '@/components/global/ScrollToTopButton'
 import { HtmlLang } from '@/components/global/HtmlLang'
+import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/global/GoogleTagManager'
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
@@ -96,7 +97,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${cormorant.variable} ${inter.variable}`}>
+      <head>
+        <GoogleTagManager />
+      </head>
       <body>
+        <GoogleTagManagerNoscript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
