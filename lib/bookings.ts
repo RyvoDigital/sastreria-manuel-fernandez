@@ -1,4 +1,5 @@
 import { query } from './db'
+import { normalizeDateString, normalizeTimeSlot } from './booking/date-utils'
 
 export interface BookingRecord {
   date: string
@@ -17,7 +18,11 @@ export async function getBookedSlots(date: string): Promise<BookingRecord[]> {
       'SELECT date, time, type, name, email, created_at as "createdAt" FROM bookings WHERE date = $1',
       [date]
     )
-    return result.rows as BookingRecord[]
+    return (result.rows as BookingRecord[]).map((row) => ({
+      ...row,
+      date: normalizeDateString(row.date),
+      time: normalizeTimeSlot(row.time),
+    }))
   } catch {
     return []
   }
@@ -25,9 +30,11 @@ export async function getBookedSlots(date: string): Promise<BookingRecord[]> {
 
 export async function isSlotBooked(date: string, time: string): Promise<boolean> {
   try {
+    const normalizedDate = normalizeDateString(date)
+    const normalizedTime = normalizeTimeSlot(time)
     const result = await query(
       'SELECT 1 FROM bookings WHERE date = $1 AND time = $2 LIMIT 1',
-      [date, time]
+      [normalizedDate, normalizedTime]
     )
     return result.rowCount !== null && result.rowCount > 0
   } catch {
@@ -37,9 +44,11 @@ export async function isSlotBooked(date: string, time: string): Promise<boolean>
 
 export async function bookSlot(record: BookingRecord): Promise<{ success: boolean; error?: string; bookingId?: number }> {
   try {
+    const normalizedDate = normalizeDateString(record.date)
+    const normalizedTime = normalizeTimeSlot(record.time)
     const result = await query(
       'INSERT INTO bookings (date, time, type, name, email, phone, locale) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
-      [record.date, record.time, record.type, record.name, record.email, record.phone || null, record.locale || 'es']
+      [normalizedDate, normalizedTime, record.type, record.name, record.email, record.phone || null, record.locale || 'es']
     )
     return { success: true, bookingId: result.rows[0]?.id }
   } catch (err: unknown) {

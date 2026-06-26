@@ -1,4 +1,5 @@
 import { query } from './db'
+import { normalizeDateString, normalizeTimeSlot } from './booking/date-utils'
 
 export interface BlockedSlot {
   id: number
@@ -14,7 +15,11 @@ export async function getBlockedSlots(date: string): Promise<BlockedSlot[]> {
       'SELECT id, date, time, reason, created_at FROM blocked_slots WHERE date = $1 ORDER BY time',
       [date]
     )
-    return result.rows as BlockedSlot[]
+    return (result.rows as BlockedSlot[]).map((slot) => ({
+      ...slot,
+      date: normalizeDateString(slot.date),
+      time: normalizeTimeSlot(slot.time),
+    }))
   } catch (err) {
     console.error('Failed to get blocked slots:', err)
     return []
@@ -26,17 +31,41 @@ export async function getBlockedTimes(date: string): Promise<string[]> {
   return slots.map((s) => s.time)
 }
 
+export async function isSlotBlocked(date: string, time: string): Promise<boolean> {
+  try {
+    const normalizedDate = normalizeDateString(date)
+    const normalizedTime = normalizeTimeSlot(time)
+    const result = await query(
+      'SELECT 1 FROM blocked_slots WHERE date = $1 AND time = $2 LIMIT 1',
+      [normalizedDate, normalizedTime]
+    )
+    return result.rowCount !== null && result.rowCount > 0
+  } catch {
+    return false
+  }
+}
+
 export async function blockSlot(
   date: string,
   time: string,
   reason?: string
 ): Promise<{ success: boolean; error?: string; slot?: BlockedSlot }> {
   try {
+    const normalizedDate = normalizeDateString(date)
+    const normalizedTime = normalizeTimeSlot(time)
     const result = await query(
       'INSERT INTO blocked_slots (date, time, reason) VALUES ($1, $2, $3) RETURNING *',
-      [date, time, reason || null]
+      [normalizedDate, normalizedTime, reason || null]
     )
-    return { success: true, slot: result.rows[0] as BlockedSlot }
+    const slot = result.rows[0] as BlockedSlot
+    return {
+      success: true,
+      slot: {
+        ...slot,
+        date: normalizeDateString(slot.date),
+        time: normalizeTimeSlot(slot.time),
+      },
+    }
   } catch (err: unknown) {
     const pgErr = err as { code?: string }
     if (pgErr.code === '23505') {

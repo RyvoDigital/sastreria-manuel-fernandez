@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getBookedSlots } from '@/lib/bookings'
 import { getBlockedTimes } from '@/lib/availability'
+import { normalizeDateString, normalizeTimeSlot } from '@/lib/booking/date-utils'
 
 export async function GET(req: NextRequest) {
   try {
@@ -18,9 +19,9 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      date,
-      bookedTimes: booked.map((b) => b.time),
-      blockedTimes: blocked,
+      date: normalizeDateString(date),
+      bookedTimes: booked.map((b) => normalizeTimeSlot(b.time)),
+      blockedTimes: blocked.map((t) => normalizeTimeSlot(t)),
     })
   } catch (err) {
     console.error('Availability API error:', err)

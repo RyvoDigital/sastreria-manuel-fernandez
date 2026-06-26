@@ -114,6 +114,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Completa todos los campos',
       invalidEmail: 'Introduce un email válido',
       conflict: 'Esta franja horaria ya está reservada. Por favor, elige otra.',
+      unavailable: 'Esta franja horaria no está disponible. Por favor, elige otra.',
       cancelBooking: 'Cancelar esta reserva',
       cancelling: 'Cancelando…',
       cancelledSuccess: 'Reserva cancelada correctamente',
@@ -150,6 +151,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Please fill in all fields',
       invalidEmail: 'Please enter a valid email',
       conflict: 'This time slot is already booked. Please choose another.',
+      unavailable: 'This time slot is not available. Please choose another.',
       cancelBooking: 'Cancel this booking',
       cancelling: 'Cancelling…',
       cancelledSuccess: 'Booking cancelled successfully',
@@ -186,6 +188,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Compila tutti i campi',
       invalidEmail: 'Inserisci un email valida',
       conflict: 'Questa fascia oraria è già prenotata. Scegli un\'altra.',
+      unavailable: 'Questa fascia oraria non è disponibile. Scegline un\'altra.',
       cancelBooking: 'Annulla questa prenotazione',
       cancelling: 'Annullamento…',
       cancelledSuccess: 'Prenotazione annullata con successo',
@@ -222,6 +225,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       fillFields: 'Veuillez remplir tous les champs',
       invalidEmail: 'Veuillez entrer un email valide',
       conflict: 'Ce créneau horaire est déjà réservé. Veuillez en choisir un autre.',
+      unavailable: 'Ce créneau horaire n\'est pas disponible. Veuillez en choisir un autre.',
       cancelBooking: 'Annuler ce rendez-vous',
       cancelling: 'Annulation…',
       cancelledSuccess: 'Rendez-vous annulé avec succès',
@@ -374,7 +378,12 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Error'
-      if (msg === 'conflict' || msg.toLowerCase().includes('already booked') || msg.toLowerCase().includes('ya está') || msg.toLowerCase().includes('già prenotata') || msg.toLowerCase().includes('déjà réservé')) {
+      if (msg === 'unavailable') {
+        setError(l.unavailable)
+        if (selectedDate) {
+          fetchAvailability(toMadridDateString(selectedDate))
+        }
+      } else if (msg === 'conflict' || msg.toLowerCase().includes('already booked') || msg.toLowerCase().includes('ya está') || msg.toLowerCase().includes('già prenotata') || msg.toLowerCase().includes('déjà réservé')) {
         setError(l.conflict)
         // Refresh availability to show updated state
         if (selectedDate) {

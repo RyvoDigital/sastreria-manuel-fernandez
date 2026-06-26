@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimit } from '@/lib/rate-limit'
 import { createPayment } from '@/lib/admin/db'
+import { isSlotBooked } from '@/lib/bookings'
+import { isSlotBlocked } from '@/lib/availability'
+import { validateBookingSlot } from '@/lib/booking/date-utils'
 
 const stripeLimiter = rateLimit({ name: 'stripe', maxRequests: 10, windowMs: 60_000 })
 
@@ -37,6 +40,23 @@ export async function POST(req: NextRequest) {
     let session
 
     if (type === 'videocall') {
+      if (!date || !time || !email || !name) {
+        return NextResponse.json({ error: 'Missing booking details' }, { status: 400 })
+      }
+
+      const slotValidation = validateBookingSlot(date, time)
+      if (!slotValidation.valid) {
+        return NextResponse.json({ error: slotValidation.error }, { status: 400 })
+      }
+
+      if (await isSlotBlocked(date, time)) {
+        return NextResponse.json({ error: 'unavailable' }, { status: 409 })
+      }
+
+      if (await isSlotBooked(date, time)) {
+        return NextResponse.json({ error: 'conflict' }, { status: 409 })
+      }
+
       session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: [

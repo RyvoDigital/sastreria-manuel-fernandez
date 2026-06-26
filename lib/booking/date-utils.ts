@@ -66,6 +66,24 @@ export function isDateBeyondWindow(dateStr: string, daysAhead = MAX_DAYS_AHEAD):
 /**
  * Validate a booking date/time string pair.
  */
+/** Normalize HH:MM or HH:MM:SS to HH:MM for consistent slot comparison. */
+export function normalizeTimeSlot(time: string): string {
+  if (!time) return time
+  const [hours = '00', minutes = '00'] = time.split(':')
+  return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`
+}
+
+/** Normalize DB/API date values to YYYY-MM-DD. */
+export function normalizeDateString(date: string | Date): string {
+  if (date instanceof Date) {
+    return toMadridDateString(date)
+  }
+  if (typeof date === 'string') {
+    return date.split('T')[0]
+  }
+  return date
+}
+
 export function validateBookingSlot(
   dateStr: string,
   timeStr: string
