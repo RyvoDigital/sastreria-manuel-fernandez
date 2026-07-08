@@ -36,7 +36,7 @@ export function ServiciosCTA() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/create-your-suit_cjcrgw"
+        src="https://ik.imagekit.io/hvzm7siir/all-images/create-your-suit.jpg"
         alt=""
         aria-hidden
         style={{

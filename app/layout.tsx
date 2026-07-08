@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     'bespoke tailoring spain'
   ],
   icons: {
-    icon: '/favicon.ico',
+    icon: 'https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/favicon.ico',
   },
 }
 
@@ -87,7 +87,7 @@ const jsonLd = {
     },
   ],
   priceRange: '€€€',
-  image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-workshop_n5x6ce',
+  image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-workshop.jpg',
 }
 
 export default function RootLayout({

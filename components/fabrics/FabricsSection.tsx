@@ -9,10 +9,10 @@ import { Eye, Leaf, Award, Hand } from 'lucide-react'
 
 
 const CONTENT_BLOCKS = [
-  { id: 'visual' as const, icon: Eye, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-visual_xki5xz', span: 4 },
-  { id: 'origins' as const, icon: Leaf, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-origin_xacgvx', span: 2 },
-  { id: 'grading' as const, icon: Award, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-the-process_qjrutl', span: 2 },
-  { id: 'selection' as const, icon: Hand, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/home-selection_vsmq3j', span: 4 },
+  { id: 'visual' as const, icon: Eye, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-visual.png', span: 4 },
+  { id: 'origins' as const, icon: Leaf, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-origin.png', span: 2 },
+  { id: 'grading' as const, icon: Award, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-the-process.png', span: 2 },
+  { id: 'selection' as const, icon: Hand, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-selection.png', span: 4 },
 ]
 
 export function FabricsSection() {

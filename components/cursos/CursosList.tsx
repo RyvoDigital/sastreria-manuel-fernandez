@@ -40,7 +40,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721860/WhatsApp_Image_2026-06-05_at_13.10.34_jmwnk8.jpg",
+      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.10.34.jpeg",
   },
   {
     id: "canvas",
@@ -57,7 +57,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721858/WhatsApp_Image_2026-06-05_at_13.09.18_mtwbpy.jpg",
+      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.09.18.jpeg",
   },
   {
     id: "lapel",
@@ -91,7 +91,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/showroom-jackets_n55sfk",
+      "https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg",
   },
   {
     id: "buttonholes",
@@ -125,7 +125,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721857/WhatsApp_Image_2026-06-05_at_13.08.17_dcjxub.jpg",
+      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.08.17.jpeg",
   },
 ];
 

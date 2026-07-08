@@ -7,10 +7,10 @@ import { useIsMobile } from '@/lib/use-mobile'
 
 
 const PHOTOS = [
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_7067_xultr4',  catKey: 'cat1' as const },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1310_u91crm',  catKey: 'cat2' as const },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_9721_zxahxp', catKey: 'cat3' as const },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/tweed-buttons_vse8vw',  catKey: 'cat4' as const },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7067.JPG',  catKey: 'cat1' as const },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_1310.JPG',  catKey: 'cat2' as const },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_9721.JPG', catKey: 'cat3' as const },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/tweed-buttons.jpg',  catKey: 'cat4' as const },
 ]
 
 export function OficioGrid() {

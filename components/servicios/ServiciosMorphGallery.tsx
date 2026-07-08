@@ -9,37 +9,37 @@ const SERVICE_GROUPS = [
   {
     name: 'Traje a Medida',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-artisan-suit_tccgpr',
+      'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png',
     ],
   },
   {
     name: 'Blazer',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-blazer_ojjfkl',
+      'https://ik.imagekit.io/hvzm7siir/all-images/producto-blazer.png',
     ],
   },
   {
     name: 'Pantalón a Medida',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-shirts_rztcfm',
+      'https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png',
     ],
   },
   {
     name: 'Abrigo a Medida',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-artisan-coat_lmffv1',
+      'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-coat.png',
     ],
   },
   {
     name: 'Traje de Novio',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-tuxedo_wozaya',
+      'https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png',
     ],
   },
   {
     name: 'Arreglos',
     images: [
-      'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-stroller_qofut3',
+      'https://ik.imagekit.io/hvzm7siir/all-images/producto-stroller.png',
     ],
   },
 ]

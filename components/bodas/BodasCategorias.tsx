@@ -7,10 +7,10 @@ import { useIsMobile } from '@/lib/use-mobile'
 
 
 const CATS = [
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-morning-coat_wfh4yl', height: '46vh', key: 'cat1' as const },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/bodas-morning-coat.png', height: '46vh', key: 'cat1' as const },
   { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765854/fotos-web/01-atelier-canon/atelier-unknown-016-0634.jpg',    height: '63vh', key: 'cat2' as const },
   { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765844/fotos-web/01-atelier-canon/atelier-unknown-011-0620.jpg',        height: '63vh', key: 'cat4' as const },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-tuxedo_rv21ou',   height: '46vh', key: 'cat3' as const },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-tuxedo.jpg',   height: '46vh', key: 'cat3' as const },
 ]
 
 export function BodasCategorias() {

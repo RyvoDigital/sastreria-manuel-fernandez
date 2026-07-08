@@ -154,7 +154,7 @@ export function BeforeAfterSlider() {
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* After Image (Right side) */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1780721782/WhatsApp_Image_2026-06-05_at_13.11.33_tsitzq.jpg"
+              src="https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg"
               alt="After fitting"
               style={{
                 width: '100%',
@@ -178,7 +178,7 @@ export function BeforeAfterSlider() {
             }}
           >
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779441855/25ED7BDA-ADA8-4DC8-9F11-D47C9C4173E0_wsfocs.png"
+              src="https://ik.imagekit.io/hvzm7siir/all-images/25ED7BDA-ADA8-4DC8-9F11-D47C9C4173E0.PNG"
               alt="Before fitting"
               style={{
                 width: '100%',

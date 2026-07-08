@@ -99,7 +99,7 @@ export function EvelynSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={photoImgRef}
-            src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_800/photos/web_lista_images/sastreria-evelyn-fernandez_wwlkgw"
+            src="https://ik.imagekit.io/hvzm7siir/all-images/sastreria-evelyn-fernandez.png"
             alt="Evelyn · Sastrería Manuel Fernández"
             style={{
               position:   'absolute',

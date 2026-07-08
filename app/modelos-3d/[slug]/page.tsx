@@ -167,7 +167,7 @@ export default function Modelo3DDetailPage() {
               </div>
 
               {/* 3D Viewer */}
-              <GLBViewer url="/models/Environment_.glb" />
+              <GLBViewer url="https://ik.imagekit.io/hvzm7siir/all-images/Environment_.glb" />
             </>
           )}
         </section>

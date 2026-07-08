@@ -16,8 +16,8 @@ const CARDS = [
   { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-008-0693', caption: 'Studio' },
   { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-003-0684', caption: 'Fitting' },
   { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-001-0657', caption: 'Pattern' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-groom-detail_akayli', caption: 'Groom Detail' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/wedding-morning-coat_ptibah', caption: 'Morning Coat' },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-groom-detail.jpg', caption: 'Groom Detail' },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-morning-coat.jpg', caption: 'Morning Coat' },
 ]
 
 const CARD_W = 260

@@ -27,32 +27,32 @@ const SERVICES = [
     key: 'servicios' as const,
     icon: Briefcase,
     href: '/servicios',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/tailor-workshop_rb0bcw',
+    image: 'https://ik.imagekit.io/hvzm7siir/all-images/tailor-workshop.jpg',
   },
   {
     key: 'modelos3d' as const,
     icon: Box,
     href: '/modelos-3d',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778764139/photos/IMG_0067_hlr9ym.jpg',
+    image: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0067.JPG',
   },
   {
     key: 'configurador' as const,
     icon: Settings,
     href: '/configurador',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/fabric-consultation_vtqjmo',
+    image: 'https://ik.imagekit.io/hvzm7siir/all-images/fabric-consultation.jpg',
   },
   {
     key: 'cursos' as const,
     icon: GraduationCap,
     href: '/cursos',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/atelier-tools_clirtk',
+    image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-tools.jpg',
   },
 
   {
     key: 'contacto' as const,
     icon: Mail,
     href: '/contacto',
-    image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778764246/photos/others/IMG_0734_ug3baf.jpg',
+    image: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0734.JPG',
   },
 ]
 

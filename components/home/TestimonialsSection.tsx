@@ -8,11 +8,11 @@ import { useIsIPhone } from '@/lib/use-iphone'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const PHOTOS = [
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/madrid-tweed_zsfaxi',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/IMG_9423_bn8baq',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/mint-jacket-madrid_igacjj',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0808_oo35om',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0416_brafs7',
+  'https://ik.imagekit.io/hvzm7siir/all-images/madrid-tweed.jpg',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_9423.JPG',
+  'https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0808.JPG',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0416.JPG',
 ]
 
 const AUTO_ROTATE_INTERVAL = 3000
@@ -197,7 +197,7 @@ export function TestimonialsSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `url('https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/cutting-fabric-wide_jqwwjw')`,
+          backgroundImage: `url('https://ik.imagekit.io/hvzm7siir/all-images/cutting-fabric-wide.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.04,

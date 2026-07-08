@@ -31,7 +31,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: "url('https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/servicios-hero_ywyf2j')",
+        backgroundImage: "url('https://ik.imagekit.io/hvzm7siir/all-images/servicios-hero.png')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
@@ -108,28 +108,28 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
   return (
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: isMobile ? '80px 1rem 0' : '200px 2rem 0' }}>
       <ParallaxImg
-        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-morning-coat_kv6syx"
+        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-morning-coat.png"
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-tuxedo_wozaya"
+        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png"
         alt="Consulta de tejidos"
         start={200}
         end={-250}
         imgStyle={{ width: isMobile ? '90%' : '60%', margin: '0 auto' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-artisan-suit_tccgpr"
+        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png"
         alt="Corte con tijeras"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%', marginLeft: 'auto' }}
       />
       <ParallaxImg
-        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/producto-blazer_ojjfkl"
+        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-blazer.png"
         alt="Showroom trajes"
         start={0}
         end={-500}
@@ -214,16 +214,16 @@ const ServiceItem = ({
 }
 
 const SERVICE_IMAGES = [
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-morning-coat_kv6syx',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-stroller_qofut3',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-tuxedo_wozaya',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-artisan-suit_tccgpr',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-artisan-coat_lmffv1',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/mint-jacket-madrid_igacjj',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/web_lista_images/producto-shirts_rztcfm',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/madrid-suit-street_slsine',
+  'https://ik.imagekit.io/hvzm7siir/all-images/producto-morning-coat.png',
+  'https://ik.imagekit.io/hvzm7siir/all-images/producto-stroller.png',
+  'https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png',
+  'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png',
+  'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-coat.png',
+  'https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg',
+  'https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png',
+  'https://ik.imagekit.io/hvzm7siir/all-images/madrid-suit-street.jpg',
   'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765609/fotos-web/01-atelier-canon/atelier-2012-09-15-007-1325.jpg',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/w_200/photos/scissors-cutting_vyt9my',
+  'https://ik.imagekit.io/hvzm7siir/all-images/scissors-cutting.jpg',
 ]
 
 const ServiciosList = () => {

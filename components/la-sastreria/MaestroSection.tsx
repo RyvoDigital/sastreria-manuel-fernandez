@@ -75,7 +75,7 @@ export function MaestroSection() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_1001_x1afrj"
+          src="https://ik.imagekit.io/hvzm7siir/all-images/IMG_1001.JPG"
           alt="Manuel Fernández en su sastrería"
           style={{
             position:   'absolute', inset: 0,

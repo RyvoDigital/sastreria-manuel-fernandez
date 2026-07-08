@@ -39,7 +39,7 @@ export function BodasFinal() {
       {/* Background photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/photos/web_lista_images/bodas-lining_nc9flu"
+        src="https://ik.imagekit.io/hvzm7siir/all-images/bodas-lining.png"
         alt=""
         style={{
           position: 'absolute', inset: 0,

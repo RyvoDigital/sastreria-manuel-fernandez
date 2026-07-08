@@ -7,14 +7,14 @@ import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 
 const IMAGES = [
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/cutting-table_pgugkd',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0860_vevl7m',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7409_orkk1x',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/IMG_7414_mcc9pi',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/sleeve-buttons_drh2px',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/velvet-lining_ukeflq',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_0945_tkw7o1',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/others/IMG_7034_urbpjv',
+  'https://ik.imagekit.io/hvzm7siir/all-images/cutting-table.jpg',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0860.JPG',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7409.JPG',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7414.JPG',
+  'https://ik.imagekit.io/hvzm7siir/all-images/sleeve-buttons.jpg',
+  'https://ik.imagekit.io/hvzm7siir/all-images/velvet-lining.jpg',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0945.JPG',
+  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7034.JPG',
 ]
 
 /* Desktop: scattered collage layout — 8 images */

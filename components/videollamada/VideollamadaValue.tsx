@@ -63,7 +63,7 @@ export function VideollamadaValue() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://res.cloudinary.com/dp3qxlhb4/image/upload/photos/web_lista_images/videollamada-overview_cxoxtp"
+              src="https://ik.imagekit.io/hvzm7siir/all-images/videollamada-overview.png"
               alt=""
               style={{
                 width: '100%',
