@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     'bespoke tailoring spain'
   ],
   icons: {
-    icon: 'https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/favicon.ico',
+    icon: 'https://ik.imagekit.io/hvzm7siir/all-images/favicon.ico',
   },
 }
 

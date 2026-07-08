@@ -90,6 +90,7 @@ function main() {
         const raw = m.replace(/[),;]+$/, "");
         if (raw.includes("ik.imagekit.io")) continue;
         if (raw.startsWith("http") && !raw.includes("cloudinary.com")) continue;
+        if (raw.startsWith("/") && content.includes(`ik.imagekit.io/hvzm7siir/all-images${raw}`)) continue;
         found.add(raw);
       }
     }

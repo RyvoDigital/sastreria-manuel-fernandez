@@ -33,9 +33,9 @@ function extract(content) {
       m.startsWith("/photos") ||
       m.startsWith("/models") ||
       m.startsWith("/images") ||
-      m === "https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/favicon.ico" ||
-      m === "https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/logo.png" ||
-      m === "https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif"
+      m === "/favicon.ico" ||
+      m === "/logo.png" ||
+      m === "/hero-bg.avif"
     ) {
       out.add(m);
     }
@@ -71,7 +71,7 @@ function indexLocal() {
 function localFor(url) {
   if (!url.startsWith("/")) return null;
   const rel = url.split("?")[0].replace(/^\//, "");
-  const appFav = path.join(ROOT, "apphttps://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/favicon.ico");
+  const appFav = path.join(ROOT, "app", "favicon.ico");
   if (rel === "favicon.ico" && fs.existsSync(appFav)) return appFav;
   return path.join(ROOT, "public", rel);
 }

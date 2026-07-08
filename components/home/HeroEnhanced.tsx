@@ -235,7 +235,7 @@ export function HeroEnhanced() {
           loop
           playsInline
           preload="metadata"
-          poster="https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif"
+          poster="https://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif"
           style={{
             width: '100%',
             height: '100%',

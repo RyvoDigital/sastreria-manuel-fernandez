@@ -108,7 +108,7 @@ export function Navigation() {
         {/* ── LOGO ─────────────────────────────────────────── */}
         <Link href="/" style={{ textDecoration: 'none', flexShrink: 0, lineHeight: 1, maxWidth: 'min(40vw, 140px)' }}>
           <img 
-            src="https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/logo.png" 
+            src="https://ik.imagekit.io/hvzm7siir/all-images/logo.png" 
             alt="Sastrería Manuel Fernández"
             style={{
               height: 'clamp(28px, 5vh, 56px)',
@@ -310,7 +310,7 @@ export function Navigation() {
           flexShrink: 0,
         }}>
           <img 
-            src="https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/logo.png" 
+            src="https://ik.imagekit.io/hvzm7siir/all-images/logo.png" 
             alt="Sastrería Manuel Fernández"
             style={{
               height: '36px',

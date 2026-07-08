@@ -55,9 +55,9 @@ function extractUrls(content) {
       m.startsWith("/models") ||
       m.startsWith("/images") ||
       m.includes("imagekit.io") ||
-      m === "https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/favicon.ico" ||
-      m === "https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/logo.png" ||
-      m === "https://ik.imagekit.io/hvzm7siir/all-imageshttps://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif"
+      m === "/favicon.ico" ||
+      m === "/logo.png" ||
+      m === "/hero-bg.avif"
     ) {
       found.add(m);
     }
