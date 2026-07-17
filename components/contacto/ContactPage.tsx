@@ -185,12 +185,13 @@ function ContactPageInner() {
     const mail = (f.elements.namedItem('email')   as HTMLInputElement).value
     const phone = (f.elements.namedItem('telefono') as HTMLInputElement).value
     const msg  = (f.elements.namedItem('mensaje') as HTMLTextAreaElement).value
+    const website = (f.elements.namedItem('website') as HTMLInputElement | null)?.value || ''
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email: mail, phone, message: msg, type: 'contact' }),
+        body: JSON.stringify({ name, email: mail, phone, message: msg, type: 'contact', website }),
       })
       const data = await res.json()
       if (!res.ok || !data.success) {
@@ -705,6 +706,22 @@ function ContactPageInner() {
               </motion.p>
             ) : (
               <form onSubmit={handleSubmit}>
+                {/* Honeypot — hidden from humans, bots often fill it */}
+                <div
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', top: 'auto', width: 1, height: 1, overflow: 'hidden' }}
+                >
+                  <label htmlFor="mf-website">Website</label>
+                  <input
+                    type="text"
+                    name="website"
+                    id="mf-website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    defaultValue=""
+                  />
+                </div>
+
                 <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0 1.5rem' }}>
                   <div className="mf-cf-field">
                     <input type="text"  name="nombre" id="mf-cn" placeholder=" " required className="mf-cf-input" disabled={loading} />

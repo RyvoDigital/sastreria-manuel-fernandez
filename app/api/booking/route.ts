@@ -6,6 +6,8 @@ import { sendBookingEmails } from '@/lib/booking/emails'
 import { isSlotBlocked } from '@/lib/availability'
 import { query } from '@/lib/db'
 import { rateLimit } from '@/lib/rate-limit'
+import { checkSpam } from '@/lib/spam-filter'
+import { isEmailReachable } from '@/lib/email-validate'
 
 const bookingLimiter = rateLimit({ name: 'booking', maxRequests: 3, windowMs: 60_000 })
 
@@ -17,6 +19,8 @@ const bookingSchema = z.object({
   time: z.string().min(1),
   type: z.enum(['inperson', 'videocall']).default('inperson'),
   locale: z.string().max(10).optional(),
+  website: z.string().max(200).optional(),
+  company: z.string().max(200).optional(),
 })
 
 export async function POST(req: NextRequest) {
@@ -36,8 +40,23 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const { name, email, phone, date, time, type, locale } = parsed.data
+    const { name, email, phone, date, time, type, locale, website, company } = parsed.data
     const loc = locale || 'es'
+
+    const spam = checkSpam({ name, email, phone, website, company })
+    if (spam.spam) {
+      console.warn('Booking spam blocked:', { email, reasons: spam.reasons })
+      return NextResponse.json({ success: true, filtered: true })
+    }
+
+    const reach = await isEmailReachable(email)
+    if (!reach.ok) {
+      console.warn('Booking email not reachable:', { email, reason: reach.reason })
+      return NextResponse.json(
+        { success: false, error: 'Please use a valid email address we can reply to.' },
+        { status: 400 }
+      )
+    }
 
     const slotValidation = validateBookingSlot(date, time)
     if (!slotValidation.valid) {

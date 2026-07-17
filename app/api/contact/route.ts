@@ -3,17 +3,23 @@ import { z } from 'zod'
 import { Resend } from 'resend'
 import { createContact } from '@/lib/admin/db'
 import { rateLimit } from '@/lib/rate-limit'
+import { checkSpam } from '@/lib/spam-filter'
+import { isEmailReachable } from '@/lib/email-validate'
 
-const contactLimiter = rateLimit({ name: 'contact', maxRequests: 5, windowMs: 60_000 })
+const contactLimiter = rateLimit({ name: 'contact', maxRequests: 3, windowMs: 60_000 })
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
   email: z.string().email('Invalid email address').max(200),
   message: z.string().min(1, 'Message is required').max(5000),
+  phone: z.string().max(50).optional(),
   type: z.enum(['contact', 'videollamada']).default('contact'),
   date: z.string().optional(),
   time: z.string().optional(),
   locale: z.string().max(5).optional(),
+  // Honeypot fields — real users leave empty
+  website: z.string().max(200).optional(),
+  company: z.string().max(200).optional(),
 })
 
 /* ─── Owner-facing email builders ─────────────────────────────── */
@@ -197,8 +203,26 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const { name, email, message, type, date, time, locale } = parsed.data
+    const { name, email, message, phone, type, date, time, locale, website, company } = parsed.data
     const loc = locale || 'es'
+
+    /* ── Spam filter: never email the owner for bot junk ──────── */
+    const spam = checkSpam({ name, email, message, phone, website, company })
+    if (spam.spam) {
+      console.warn('Contact spam blocked:', { email, reasons: spam.reasons })
+      // Silent success so bots do not retry with different payloads
+      return NextResponse.json({ success: true, filtered: true })
+    }
+
+    /* ── Email must have a real mail domain (MX) before we send ─ */
+    const reach = await isEmailReachable(email)
+    if (!reach.ok) {
+      console.warn('Contact email not reachable:', { email, reason: reach.reason })
+      return NextResponse.json(
+        { success: false, error: 'Please use a valid email address we can reply to.' },
+        { status: 400 }
+      )
+    }
 
     // Save to admin database
     try {
