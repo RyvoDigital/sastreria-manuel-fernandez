@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import { useI18n } from '@/lib/i18n'
 import { Box, ArrowLeft } from 'lucide-react'
 import { ServiceGate } from '@/components/global/ServiceGate'
-import { GLBViewer } from '@/components/modelos-3d/GLBViewer'
+import { ENVIRONMENT_GLB, GLBViewer } from '@/components/modelos-3d/GLBViewer'
 
 interface Garment {
   id: number
@@ -166,8 +166,8 @@ export default function Modelo3DDetailPage() {
                 </p>
               </div>
 
-              {/* 3D Viewer */}
-              <GLBViewer url="/models/Environment_.glb" />
+              {/* 3D Viewer — interactive atelier environment */}
+              <GLBViewer url={ENVIRONMENT_GLB} />
             </>
           )}
         </section>

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 import { Box } from 'lucide-react'
 import { ServiceGate } from '@/components/global/ServiceGate'
+import { ENVIRONMENT_GLB, GLBViewer } from '@/components/modelos-3d/GLBViewer'
 
 interface Garment {
   id: number
@@ -26,6 +27,9 @@ export default function Modelos3DPage() {
       desc: 'Explora nuestras prendas en un entorno tridimensional interactivo. Selecciona una prenda para verla en detalle.',
       loading: 'Cargando…',
       empty: 'No hay prendas disponibles.',
+      envTitle: 'Entorno del Atelier',
+      envHint: 'Arrastra para rotar · Scroll para zoom',
+      garmentsTitle: 'Prendas',
     },
     en: {
       title: 'Create your Suit',
@@ -33,6 +37,9 @@ export default function Modelos3DPage() {
       desc: 'Explore our garments in an interactive three-dimensional environment. Select a garment to view it in detail.',
       loading: 'Loading…',
       empty: 'No garments available.',
+      envTitle: 'Atelier Environment',
+      envHint: 'Drag to rotate · Scroll to zoom',
+      garmentsTitle: 'Garments',
     },
     it: {
       title: 'Crea il tuo Abito',
@@ -40,6 +47,9 @@ export default function Modelos3DPage() {
       desc: 'Esplora i nostri abiti in un ambiente tridimensionale interattivo. Seleziona un abito per vederlo in dettaglio.',
       loading: 'Caricamento…',
       empty: 'Nessun abito disponibile.',
+      envTitle: 'Ambiente dell\'Atelier',
+      envHint: 'Trascina per ruotare · Scrolla per zoomare',
+      garmentsTitle: 'Abiti',
     },
     fr: {
       title: 'Créez votre Costume',
@@ -47,6 +57,9 @@ export default function Modelos3DPage() {
       desc: 'Explorez nos vêtements dans un environnement tridimensionnel interactif. Sélectionnez un vêtement pour le voir en détail.',
       loading: 'Chargement…',
       empty: 'Aucun vêtement disponible.',
+      envTitle: 'Environnement de l\'Atelier',
+      envHint: 'Faites glisser pour pivoter · Défilez pour zoomer',
+      garmentsTitle: 'Vêtements',
     },
   }
 
@@ -156,12 +169,53 @@ export default function Modelos3DPage() {
           </div>
         </section>
 
+        {/* Interactive 3D atelier environment */}
         <section style={{
-          padding: 'clamp(3rem, 6vh, 5rem) var(--container-padding)',
+          padding: '0 var(--container-padding) clamp(3rem, 6vh, 5rem)',
           maxWidth: '1200px',
           margin: '0 auto',
           width: '100%',
         }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+              fontWeight: 400,
+              fontStyle: 'italic',
+              color: '#FFFFFF',
+              marginBottom: '0.5rem',
+            }}>
+              {c.envTitle}
+            </h2>
+            <p style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.75rem',
+              color: 'rgba(255,255,255,0.35)',
+              letterSpacing: '0.1em',
+            }}>
+              {c.envHint}
+            </p>
+          </div>
+          <GLBViewer url={ENVIRONMENT_GLB} height="min(72vh, 720px)" minHeight={420} />
+        </section>
+
+        <section style={{
+          padding: '0 var(--container-padding) clamp(3rem, 6vh, 5rem)',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          width: '100%',
+        }}>
+          <h2 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(1.35rem, 2.5vw, 1.75rem)',
+            fontWeight: 400,
+            fontStyle: 'italic',
+            color: '#FFFFFF',
+            textAlign: 'center',
+            marginBottom: 'clamp(1.5rem, 3vh, 2.5rem)',
+          }}>
+            {c.garmentsTitle}
+          </h2>
           {loading ? (
             <p style={{ color: 'rgba(255,255,255,0.4)', textAlign: 'center' }}>{c.loading}</p>
           ) : garments.length === 0 ? (

@@ -21,6 +21,19 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  // Serve GLB as 3D assets for the viewer (not browser file-download)
+  async headers() {
+    return [
+      {
+        source: '/models/:path*.glb',
+        headers: [
+          { key: 'Content-Type', value: 'model/gltf-binary' },
+          { key: 'Content-Disposition', value: 'inline' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+    ]
+  },
 };
 
 const withAnalyzer = withBundleAnalyzer({

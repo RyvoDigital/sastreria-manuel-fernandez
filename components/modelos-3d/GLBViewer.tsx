@@ -1,9 +1,12 @@
 'use client'
 
-import { Suspense, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useMemo } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
+
+/** Latest atelier room scene (public/models) */
+export const ENVIRONMENT_GLB = '/models/Environment_.glb'
 
 function ModelCenterer({ url }: { url: string }) {
   const { scene } = useGLTF(url)
@@ -115,17 +118,40 @@ function LoadingFallback() {
   )
 }
 
-export function GLBViewer({ url }: { url: string }) {
+export function GLBViewer({
+  url = ENVIRONMENT_GLB,
+  height = '70vh',
+  minHeight = 500,
+}: {
+  url?: string
+  height?: string | number
+  minHeight?: number
+}) {
+  useEffect(() => {
+    useGLTF.preload(url)
+  }, [url])
+
   return (
-    <div style={{ width: '100%', height: '70vh', minHeight: '500px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(201,168,76,0.2)' }}>
+    <div
+      style={{
+        width: '100%',
+        height,
+        minHeight,
+        borderRadius: '12px',
+        overflow: 'hidden',
+        border: '1px solid rgba(201,168,76,0.2)',
+        background: '#0A1628',
+      }}
+    >
       <Canvas
         camera={{ fov: 50 }}
-        style={{ background: '#0A1628' }}
+        style={{ background: '#0A1628', width: '100%', height: '100%' }}
         gl={{
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.2,
         }}
+        dpr={[1, 2]}
       >
         <color attach="background" args={['#0A1628']} />
         <Suspense fallback={<LoadingFallback />}>
