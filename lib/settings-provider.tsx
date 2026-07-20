@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
+import { isModelos3dHiddenByDeploy } from '@/lib/features'
 
 export interface SiteSetting {
   id: string
@@ -41,7 +42,12 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
 
   const getSetting = (id: string) => settings.find((s) => s.id === id)
   const getPrice = (id: string) => getSetting(id)?.price ?? null
-  const isEnabled = (id: string) => getSetting(id)?.enabled ?? true
+
+  /** DB setting + deploy-time hide flags (e.g. Ryvo hides modelos3d via env). */
+  const isEnabled = (id: string) => {
+    if (id === 'modelos3d' && isModelos3dHiddenByDeploy()) return false
+    return getSetting(id)?.enabled ?? true
+  }
 
   return (
     <SettingsContext.Provider value={{ settings, loading, getSetting, getPrice, isEnabled }}>
