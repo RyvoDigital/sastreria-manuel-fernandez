@@ -204,16 +204,26 @@ async function setup() {
       )
     `)
 
+    // Canonical course thumbnails on ImageKit (live page reads from DB, not static component)
+    const courseImages: Record<string, string> = {
+      intro: 'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.10.34.jpeg',
+      canvas: 'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg',
+      lapel: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg',
+      pockets: 'https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg',
+      buttonholes: 'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg',
+      finishes: 'https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png',
+    }
+
     // Migrate hardcoded courses if table is empty
     const courseCount = await pool.query(`SELECT COUNT(*) FROM courses`)
     if (parseInt(courseCount.rows[0].count) === 0) {
       const defaultCourses = [
-        { id: 'intro', title_es: 'Introducción a la Sastrería Artesanal', title_en: 'Introduction to Artisan Tailoring', title_it: 'Introduzione alla Sartoria Artigianale', title_fr: 'Introduction à la Tailleur Artisanale', desc_es: 'Fundamentos y filosofía del traje a mano.', desc_en: 'Fundamentals and philosophy of handmade tailoring.', desc_it: 'Fondamenti e filosofia dell\'abito fatto a mano.', desc_fr: 'Fondements et philosophie du costume fait main.', duration: '45 min', lessons: 3, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at_02.34.21_xacsg5.png', price: 350, locked: false, enabled: true, sort_order: 0 },
-        { id: 'canvas', title_es: 'Entretelado a Mano', title_en: 'Hand Canvas', title_it: 'Canvas a Mano', title_fr: 'Canvas à la Main', desc_es: 'Técnicas de cosido de la entretela canvas.', desc_en: 'Hand-stitching canvas interlining techniques.', desc_it: 'Tecniche di cucitura della tela canvas.', desc_fr: 'Techniques de couture de la toile canvas.', duration: '2h 30min', lessons: 5, image: 'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg', price: 350, locked: false, enabled: true, sort_order: 1 },
-        { id: 'lapel', title_es: 'Construcción de Solapas', title_en: 'Lapel Construction', title_it: 'Costruzione del Revers', title_fr: 'Construction du Revers', desc_es: 'Tipos de solapa y su confección paso a paso.', desc_en: 'Lapel types and step-by-step construction.', desc_it: 'Tipi di rever e costruzione passo dopo passo.', desc_fr: 'Types de revers et construction étape par étape.', duration: '1h 45min', lessons: 4, image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg', price: 350, locked: false, enabled: true, sort_order: 2 },
-        { id: 'pockets', title_es: 'Bolsillos de Chaqueta', title_en: 'Jacket Pockets', title_it: 'Tasche della Giacca', title_fr: 'Poches de la Veste', desc_es: 'Bolsillos de ojal, de parche y de tapeta.', desc_en: 'Welt, patch and flap pockets.', desc_it: 'Tasche a filo, a toppa e con patta.', desc_fr: 'Poches passepoilées, à patch et à rabat.', duration: '2h 15min', lessons: 6, image: 'https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg', price: 350, locked: false, enabled: true, sort_order: 3 },
-        { id: 'buttonholes', title_es: 'Ojales a Mano', title_en: 'Hand-made Buttonholes', title_it: 'Asole a Mano', title_fr: 'Boutonnières à la Main', desc_es: 'Técnica de ojales de ojaladero.', desc_en: 'Buttonhole stitch technique.', desc_it: 'Tecnica del punto a giorno.', desc_fr: 'Technique du point de boutonnière.', duration: '1h 30min', lessons: 3, image: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672947/Screenshot_2026-05-25_at_02.32.56_yziv1n.png', price: 350, locked: false, enabled: true, sort_order: 4 },
-        { id: 'finishes', title_es: 'Acabados Profesionales', title_en: 'Professional Finishes', title_it: 'Finiture Professionali', title_fr: 'Finitions Professionnelles', desc_es: 'Detalles que marcan la diferencia.', desc_en: 'Details that make the difference.', desc_it: 'Dettagli che fanno la differenza.', desc_fr: 'Détails qui font la différence.', duration: '2h', lessons: 4, image: 'https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png', price: 350, locked: false, enabled: true, sort_order: 5 },
+        { id: 'intro', title_es: 'Introducción a la Sastrería Artesanal', title_en: 'Introduction to Artisan Tailoring', title_it: 'Introduzione alla Sartoria Artigianale', title_fr: 'Introduction à la Tailleur Artisanale', desc_es: 'Fundamentos y filosofía del traje a mano.', desc_en: 'Fundamentals and philosophy of handmade tailoring.', desc_it: 'Fondamenti e filosofia dell\'abito fatto a mano.', desc_fr: 'Fondements et philosophie du costume fait main.', duration: '45 min', lessons: 3, image: courseImages.intro, price: 350, locked: false, enabled: true, sort_order: 0 },
+        { id: 'canvas', title_es: 'Entretelado a Mano', title_en: 'Hand Canvas', title_it: 'Canvas a Mano', title_fr: 'Canvas à la Main', desc_es: 'Técnicas de cosido de la entretela canvas.', desc_en: 'Hand-stitching canvas interlining techniques.', desc_it: 'Tecniche di cucitura della tela canvas.', desc_fr: 'Techniques de couture de la toile canvas.', duration: '2h 30min', lessons: 5, image: courseImages.canvas, price: 350, locked: false, enabled: true, sort_order: 1 },
+        { id: 'lapel', title_es: 'Construcción de Solapas', title_en: 'Lapel Construction', title_it: 'Costruzione del Revers', title_fr: 'Construction du Revers', desc_es: 'Tipos de solapa y su confección paso a paso.', desc_en: 'Lapel types and step-by-step construction.', desc_it: 'Tipi di rever e costruzione passo dopo passo.', desc_fr: 'Types de revers et construction étape par étape.', duration: '1h 45min', lessons: 4, image: courseImages.lapel, price: 350, locked: false, enabled: true, sort_order: 2 },
+        { id: 'pockets', title_es: 'Bolsillos de Chaqueta', title_en: 'Jacket Pockets', title_it: 'Tasche della Giacca', title_fr: 'Poches de la Veste', desc_es: 'Bolsillos de ojal, de parche y de tapeta.', desc_en: 'Welt, patch and flap pockets.', desc_it: 'Tasche a filo, a toppa e con patta.', desc_fr: 'Poches passepoilées, à patch et à rabat.', duration: '2h 15min', lessons: 6, image: courseImages.pockets, price: 350, locked: false, enabled: true, sort_order: 3 },
+        { id: 'buttonholes', title_es: 'Ojales a Mano', title_en: 'Hand-made Buttonholes', title_it: 'Asole a Mano', title_fr: 'Boutonnières à la Main', desc_es: 'Técnica de ojales de ojaladero.', desc_en: 'Buttonhole stitch technique.', desc_it: 'Tecnica del punto a giorno.', desc_fr: 'Technique du point de boutonnière.', duration: '1h 30min', lessons: 3, image: courseImages.buttonholes, price: 350, locked: false, enabled: true, sort_order: 4 },
+        { id: 'finishes', title_es: 'Acabados Profesionales', title_en: 'Professional Finishes', title_it: 'Finiture Professionali', title_fr: 'Finitions Professionnelles', desc_es: 'Detalles que marcan la diferencia.', desc_en: 'Details that make the difference.', desc_it: 'Dettagli che fanno la differenza.', desc_fr: 'Détails qui font la différence.', duration: '2h', lessons: 4, image: courseImages.finishes, price: 350, locked: false, enabled: true, sort_order: 5 },
       ]
       for (const c of defaultCourses) {
         await pool.query(
@@ -223,6 +233,27 @@ async function setup() {
         )
       }
       console.log('Default courses seeded')
+    }
+
+    // Fix broken Cloudinary / relative course images on existing rows
+    let courseImagesFixed = 0
+    for (const [id, image] of Object.entries(courseImages)) {
+      const result = await pool.query(
+        `UPDATE courses
+         SET image = $1, updated_at = CURRENT_TIMESTAMP
+         WHERE id = $2
+           AND (
+             image IS NULL
+             OR image = ''
+             OR image LIKE '%res.cloudinary.com%'
+             OR image NOT LIKE 'http%'
+           )`,
+        [image, id]
+      )
+      courseImagesFixed += result.rowCount ?? 0
+    }
+    if (courseImagesFixed > 0) {
+      console.log(`Course images migrated to ImageKit: ${courseImagesFixed}`)
     }
 
     // Garments for 3D Models page

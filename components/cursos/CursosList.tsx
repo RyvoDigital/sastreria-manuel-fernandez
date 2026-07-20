@@ -57,7 +57,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.09.18.jpeg",
+      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg",
   },
   {
     id: "lapel",
@@ -108,7 +108,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672947/Screenshot_2026-05-25_at_02.32.56_yziv1n.png",
+      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg",
   },
   {
     id: "finishes",
@@ -125,7 +125,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.08.17.jpeg",
+      "https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png",
   },
 ];
 
