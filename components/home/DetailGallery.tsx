@@ -4,7 +4,6 @@ import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const IMAGES = [
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/screenshot-06',
   'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-014-0631.jpg',
   'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-04-22-001-9645.jpg',
   'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg',

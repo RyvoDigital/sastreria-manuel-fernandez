@@ -8,7 +8,6 @@ const CARDS = [
   { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg', caption: 'Fabric' },
   { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-009-0599.jpg', caption: 'Precision' },
   { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-008-0596.jpg', caption: 'Atelier' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/screenshot-09', caption: 'Portfolio' },
   { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-017-9305.jpg', caption: 'Handwork' },
   { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-013-0625.jpg', caption: 'Craft' },
   { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-011-0702.jpg', caption: 'Process' },
