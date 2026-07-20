@@ -1,12 +1,10 @@
 /**
- * Deploy-time feature flags (per Vercel project / env).
- * These are independent of the shared database `settings` table.
+ * Deploy-time feature flags (per Vercel project). Independent of shared DB settings.
  *
- * Ryvo production (hide Modelos 3D):
- *   NEXT_PUBLIC_HIDE_MODELOS3D=true
- *
- * Ajemark / local (show Modelos 3D when admin setting is on):
- *   leave unset, or NEXT_PUBLIC_HIDE_MODELOS3D=false
+ * Modelos 3D:
+ * - Ryvo deploys: HIDDEN by default (detected via Vercel URL / repo owner in next.config)
+ * - Ajemark / local: shown (admin setting still applies)
+ * - Override anytime: NEXT_PUBLIC_HIDE_MODELOS3D=true|false
  */
 export function isModelos3dHiddenByDeploy(): boolean {
   const v = process.env.NEXT_PUBLIC_HIDE_MODELOS3D
