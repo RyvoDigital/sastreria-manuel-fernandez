@@ -150,7 +150,7 @@ async function setup() {
       { id: 'cursos-buttonholes', name: 'Curso: Ojales', enabled: true, price: 350 },
       { id: 'cursos-finishes', name: 'Curso: Acabados', enabled: true, price: 350 },
       { id: 'videollamada', name: 'Videollamada', enabled: true, price: 50 },
-      { id: 'modelos3d', name: 'Modelos 3D', enabled: true, price: null },
+      { id: 'modelos3d', name: 'Modelos 3D', enabled: false, price: null },
       { id: 'contacto', name: 'Formulario de Contacto', enabled: true, price: null },
     ]
 

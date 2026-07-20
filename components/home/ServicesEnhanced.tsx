@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
 import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import { useIsMobile } from '@/lib/use-mobile'
 import Image from 'next/image'
 
@@ -15,37 +16,42 @@ const SERVICES = [
     icon: Scissors,
     href: '/la-sastreria',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-005-0682.jpg',
+    settingId: null as string | null,
   },
   {
     key: 'bodas' as const,
     icon: Heart,
     href: '/bodas-y-ceremonia',
       image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg',
-  
+    settingId: 'bodas',
   },
   {
     key: 'servicios' as const,
     icon: Briefcase,
     href: '/servicios',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/tailor-workshop.jpg',
+    settingId: null,
   },
   {
     key: 'modelos3d' as const,
     icon: Box,
     href: '/modelos-3d',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0067.JPG',
+    settingId: 'modelos3d',
   },
   {
     key: 'configurador' as const,
     icon: Settings,
     href: '/configurador',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/fabric-consultation.jpg',
+    settingId: 'configurador',
   },
   {
     key: 'cursos' as const,
     icon: GraduationCap,
     href: '/cursos',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-tools.jpg',
+    settingId: 'cursos',
   },
 
   {
@@ -53,14 +59,20 @@ const SERVICES = [
     icon: Mail,
     href: '/contacto',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0734.JPG',
+    settingId: 'contacto',
   },
 ]
 
 export function ServicesEnhanced() {
   const { t, locale } = useI18n()
+  const { isEnabled } = useSettings()
   const isMobile = useIsMobile()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
+
+  const visibleServices = SERVICES.filter(
+    (s) => !s.settingId || isEnabled(s.settingId)
+  )
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -180,7 +192,7 @@ export function ServicesEnhanced() {
           gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
           gap: isMobile ? '1rem' : '1.25rem',
         }}>
-          {SERVICES.map((service) => {
+          {visibleServices.map((service) => {
             const Icon = service.icon
             const label = getLabel(service.key)
 

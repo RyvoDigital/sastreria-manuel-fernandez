@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { gsap } from 'gsap'
 import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import { useSettings } from '@/lib/settings-provider'
 import Image from 'next/image'
 
 const SERVICES = [
@@ -13,36 +14,42 @@ const SERVICES = [
     icon: Scissors,
     href: '/la-sastreria',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-005-0682.jpg',
+    settingId: null as string | null,
   },
   {
     key: 'bodas',
     icon: Heart,
     href: '/bodas-y-ceremonia',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg',
+    settingId: 'bodas',
   },
   {
     key: 'servicios',
     icon: Briefcase,
     href: '/servicios',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/tailor-workshop.jpg',
+    settingId: null,
   },
   {
     key: 'modelos3d',
     icon: Box,
     href: '/modelos-3d',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0067.JPG',
+    settingId: 'modelos3d',
   },
   {
     key: 'configurador',
     icon: Settings,
     href: '/configurador',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0577.JPG',
+    settingId: 'configurador',
   },
   {
     key: 'cursos',
     icon: GraduationCap,
     href: '/cursos',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-tools.jpg',
+    settingId: 'cursos',
   },
 
   {
@@ -50,13 +57,19 @@ const SERVICES = [
     icon: Mail,
     href: '/contacto',
     image: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0734.JPG',
+    settingId: 'contacto',
   },
 ]
 
 export function ServicesOverview() {
   const { locale, t } = useI18n()
+  const { isEnabled } = useSettings()
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+
+  const visibleServices = SERVICES.filter(
+    (s) => !s.settingId || isEnabled(s.settingId)
+  )
 
   useEffect(() => {
     const el = sectionRef.current
@@ -159,7 +172,7 @@ export function ServicesOverview() {
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '1.25rem',
         }}>
-          {SERVICES.map((service) => {
+          {visibleServices.map((service) => {
             const Icon = service.icon
             const label = getLabel(service.key)
 

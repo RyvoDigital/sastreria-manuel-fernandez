@@ -4,7 +4,6 @@ import { Suspense, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 
 /** Latest atelier room scene (public/models) */
 export const ENVIRONMENT_GLB = '/models/Environment_.glb'
@@ -26,7 +25,8 @@ function findNamedObject(root: THREE.Object3D, names: readonly string[]): THREE.
 function ModelCenterer({ url }: { url: string }) {
   const { scene } = useGLTF(url)
   const { camera } = useThree()
-  const controlsRef = useRef<OrbitControlsImpl | null>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const controlsRef = useRef<any>(null)
   const cloned = useMemo(() => scene.clone(true), [scene])
 
   // Keep every wall/ceiling visible (true interior). Soften baked lights.

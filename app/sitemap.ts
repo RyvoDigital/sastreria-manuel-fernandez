@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/la-sastreria',
     '/bodas-y-ceremonia',
     '/servicios',
-    '/modelos-3d',
+
     '/configurador',
     '/cursos',
     '/contacto',
