@@ -222,7 +222,7 @@ const SERVICE_IMAGES = [
   'https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg',
   'https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png',
   'https://ik.imagekit.io/hvzm7siir/all-images/madrid-suit-street.jpg',
-  'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765609/fotos-web/01-atelier-canon/atelier-2012-09-15-007-1325.jpg',
+  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-09-15-007-1325.jpg',
   'https://ik.imagekit.io/hvzm7siir/all-images/scissors-cutting.jpg',
 ]
 

@@ -74,7 +74,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg",
+      "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg",
   },
   {
     id: "pockets",

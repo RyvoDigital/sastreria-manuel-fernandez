@@ -1,129 +1,253 @@
 {
-  "generated": "2026-07-08T18:21:27.196Z",
-  "csv": "media-library-export-2026-07-08_19-18-20.csv",
-  "imagekitAssets": 98,
-  "filesUpdated": 6,
-  "totalReplacements": 10,
+  "generated": "2026-07-20T07:40:55.874Z",
+  "csv": "media-library-export-2026-07-20_08-39-08.csv",
+  "imagekitAssets": 124,
+  "filesUpdated": 11,
+  "totalReplacements": 34,
   "replacements": [
     {
-      "file": "components/global/LoadingScreen.tsx",
+      "file": "components/bodas/BodasCarrusel.tsx",
+      "count": 11,
       "subs": [
         {
-          "old": "/logo.png",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/logo.png",
-          "base": "logo"
-        }
-      ]
-    },
-    {
-      "file": "components/global/Navigation.tsx",
-      "subs": [
-        {
-          "old": "/logo.png",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/logo.png",
-          "base": "logo"
-        }
-      ]
-    },
-    {
-      "file": "components/home/HeroEnhanced.tsx",
-      "subs": [
-        {
-          "old": "/hero-bg.avif",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif",
-          "base": "hero-bg"
-        }
-      ]
-    },
-    {
-      "file": "app/layout.tsx",
-      "subs": [
-        {
-          "old": "/favicon.ico",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/favicon.ico",
-          "base": "favicon"
-        }
-      ]
-    },
-    {
-      "file": "scripts/audit-app-image-links.js",
-      "subs": [
-        {
-          "old": "/hero-bg.avif",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif",
-          "base": "hero-bg"
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-011-0702",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-011-0702.jpg",
+          "base": "atelier-2026-04-24-011-0702"
         },
         {
-          "old": "/favicon.ico",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/favicon.ico",
-          "base": "favicon"
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-009-0640",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg",
+          "base": "atelier-2026-04-24-009-0640"
         },
         {
-          "old": "/logo.png",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/logo.png",
-          "base": "logo"
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-008-0693",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-008-0693.jpg",
+          "base": "atelier-2026-04-24-008-0693"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-003-0684",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-003-0684.jpg",
+          "base": "atelier-2026-04-24-003-0684"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-001-0657",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-001-0657.jpg",
+          "base": "atelier-2026-04-24-001-0657"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-011-0620",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-011-0620.jpg",
+          "base": "atelier-unknown-011-0620"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-016-0634",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg",
+          "base": "atelier-unknown-016-0634"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-009-0599",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-009-0599.jpg",
+          "base": "atelier-unknown-009-0599"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-008-0596",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-008-0596.jpg",
+          "base": "atelier-unknown-008-0596"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-017-9305",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-017-9305.jpg",
+          "base": "atelier-unknown-017-9305"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-013-0625",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-013-0625.jpg",
+          "base": "atelier-unknown-013-0625"
         }
       ]
     },
     {
-      "file": "scripts/check-live-image-urls.js",
+      "file": "components/bodas/BodasCategorias.tsx",
+      "count": 2,
       "subs": [
         {
-          "old": "/hero-bg.avif",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif",
-          "base": "hero-bg"
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765854/fotos-web/01-atelier-canon/atelier-unknown-016-0634.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg",
+          "base": "atelier-unknown-016-0634"
         },
         {
-          "old": "/favicon.ico",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/favicon.ico",
-          "base": "favicon"
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765844/fotos-web/01-atelier-canon/atelier-unknown-011-0620.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-011-0620.jpg",
+          "base": "atelier-unknown-011-0620"
+        }
+      ]
+    },
+    {
+      "file": "components/bodas/BodasHero.tsx",
+      "count": 1,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-010-0677.jpg",
+          "base": "atelier-2026-04-24-010-0677"
+        }
+      ]
+    },
+    {
+      "file": "components/contacto/ContactPage.tsx",
+      "count": 3,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765781/fotos-web/01-atelier-canon/atelier-2026-04-24-006-0648.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-006-0648.jpg",
+          "base": "atelier-2026-04-24-006-0648"
         },
         {
-          "old": "/logo.png",
-          "new": "https://ik.imagekit.io/hvzm7siir/all-images/logo.png",
-          "base": "logo"
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765799/fotos-web/01-atelier-canon/atelier-unknown-001-0350.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-001-0350.jpg",
+          "base": "atelier-unknown-001-0350"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765846/fotos-web/01-atelier-canon/atelier-unknown-012-0621.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-012-0621.jpg",
+          "base": "atelier-unknown-012-0621"
+        }
+      ]
+    },
+    {
+      "file": "components/cursos/CursosList.tsx",
+      "count": 1,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg",
+          "base": "atelier-unknown-006-0582"
+        }
+      ]
+    },
+    {
+      "file": "components/home/DetailGallery.tsx",
+      "count": 8,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-04-22-001-9645",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-04-22-001-9645.jpg",
+          "base": "atelier-2012-04-22-001-9645"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-010-0677",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-010-0677.jpg",
+          "base": "atelier-2026-04-24-010-0677"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2026-04-24-004-0661",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-004-0661.jpg",
+          "base": "atelier-2026-04-24-004-0661"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-10-22-001-1550",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-22-001-1550.jpg",
+          "base": "atelier-2012-10-22-001-1550"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-10-01-002-1477",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-01-002-1477.jpg",
+          "base": "atelier-2012-10-01-002-1477"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-2012-08-06-010-0971",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-010-0971.jpg",
+          "base": "atelier-2012-08-06-010-0971"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-014-0631",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-014-0631.jpg",
+          "base": "atelier-unknown-014-0631"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon/atelier-unknown-006-0582",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg",
+          "base": "atelier-unknown-006-0582"
+        }
+      ]
+    },
+    {
+      "file": "components/home/ServicesEnhanced.tsx",
+      "count": 2,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765778/fotos-web/01-atelier-canon/atelier-2026-04-24-005-0682.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-005-0682.jpg",
+          "base": "atelier-2026-04-24-005-0682"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765793/fotos-web/01-atelier-canon/atelier-2026-04-24-009-0640.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg",
+          "base": "atelier-2026-04-24-009-0640"
+        }
+      ]
+    },
+    {
+      "file": "components/home/ServicesOverview.tsx",
+      "count": 2,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765778/fotos-web/01-atelier-canon/atelier-2026-04-24-005-0682.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-005-0682.jpg",
+          "base": "atelier-2026-04-24-005-0682"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765793/fotos-web/01-atelier-canon/atelier-2026-04-24-009-0640.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg",
+          "base": "atelier-2026-04-24-009-0640"
+        }
+      ]
+    },
+    {
+      "file": "components/home/TrajeEmpiezaSection.tsx",
+      "count": 1,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765494/fotos-web/01-atelier-canon/atelier-2012-08-06-006-0923.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-006-0923.jpg",
+          "base": "atelier-2012-08-06-006-0923"
+        }
+      ]
+    },
+    {
+      "file": "components/servicios/ServiciosHero.tsx",
+      "count": 1,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765609/fotos-web/01-atelier-canon/atelier-2012-09-15-007-1325.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-09-15-007-1325.jpg",
+          "base": "atelier-2012-09-15-007-1325"
+        }
+      ]
+    },
+    {
+      "file": "scripts/setup-db.ts",
+      "count": 2,
+      "subs": [
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-atelier-canon/atelier-unknown-006-0582.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg",
+          "base": "atelier-unknown-006-0582"
+        },
+        {
+          "old": "https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779673071/WhatsApp_Image_2026-05-24_at_00.37.28_ztx6kh.jpg",
+          "new": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg",
+          "base": "whatsapp_image_2026-05-24_at_00.37.28"
         }
       ]
     }
   ],
   "unmatched": [
-    "atelier-2012-04-22-001-9645  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2012-08-06-006-0923  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765494/fotos-web/01-a",
-    "atelier-2012-08-06-010-0971  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2012-09-15-007-1325  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765609/fotos-web/01-a",
-    "atelier-2012-10-01-002-1477  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2012-10-22-001-1550  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2026-04-24-001-0657  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2026-04-24-003-0684  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2026-04-24-004-0661  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2026-04-24-005-0682  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765778/fotos-web/01-a",
-    "atelier-2026-04-24-006-0648  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765781/fotos-web/01-a",
-    "atelier-2026-04-24-008-0693  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2026-04-24-009-0640  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2026-04-24-009-0640  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765793/fotos-web/01-a",
-    "atelier-2026-04-24-010-0677  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-2026-04-24-010-0677  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765795/fotos-web/01-a",
-    "atelier-2026-04-24-011-0702  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-001-0350  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765799/fotos-web/01-a",
-    "atelier-unknown-006-0582  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-006-0582  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765834/fotos-web/01-a",
-    "atelier-unknown-008-0596  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-009-0599  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-011-0620  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-011-0620  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765844/fotos-web/01-a",
-    "atelier-unknown-012-0621  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765846/fotos-web/01-a",
-    "atelier-unknown-013-0625  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-014-0631  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-016-0634  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "atelier-unknown-016-0634  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765854/fotos-web/01-a",
-    "atelier-unknown-017-9305  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/01-atelier-canon",
-    "hero-section-background-manuel-fernandez_1  ←  https://res.cloudinary.com/dpljev9ap/video/upload/v1774996821/hero-section-background-manu",
-    "screenshot-06  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/s",
-    "screenshot-09  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/s",
-    "screenshot_2026-05-25_at_02.32.56  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672947/Screenshot_202",
-    "screenshot_2026-05-25_at_02.33.52  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_202",
-    "screenshot_2026-05-25_at_02.34.21  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_202",
-    "screenshot_2026-06-09_at_22.35.41  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1781041266/Screenshot_202",
-    "whatsapp_image_2026-05-24_at_00.37.28  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779673071/WhatsApp_Image"
+    "screenshot-06  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/screenshot-",
+    "screenshot-09  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/fotos-web/03-screenshots/screenshot-",
+    "screenshot_2026-05-25_at_02.32.56  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672947/Screenshot_2026-05-25_at",
+    "screenshot_2026-05-25_at_02.33.52  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at",
+    "screenshot_2026-05-25_at_02.34.21  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1779672949/Screenshot_2026-05-25_at",
+    "screenshot_2026-06-09_at_22.35.41  ←  https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1781041266/Screenshot_2026-06-09_at"
   ]
 }

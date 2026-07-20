@@ -93,7 +93,7 @@ export function TrajeEmpiezaSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765494/fotos-web/01-atelier-canon/atelier-2012-08-06-006-0923.jpg')`,
+            backgroundImage: `url('https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-006-0923.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
           }}

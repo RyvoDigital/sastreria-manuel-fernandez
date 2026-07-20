@@ -20,9 +20,9 @@ type QuoteKey =
 
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
  
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765799/fotos-web/01-atelier-canon/atelier-unknown-001-0350.jpg', quoteKey: 'quote1' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765846/fotos-web/01-atelier-canon/atelier-unknown-012-0621.jpg', quoteKey: 'quote2' },
-  { src: 'https://res.cloudinary.com/dp3qxlhb4/image/upload/q_auto/f_auto/v1778765781/fotos-web/01-atelier-canon/atelier-2026-04-24-006-0648.jpg', quoteKey: 'quote3' },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-001-0350.jpg', quoteKey: 'quote1' },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-012-0621.jpg', quoteKey: 'quote2' },
+  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-006-0648.jpg', quoteKey: 'quote3' },
 ]
 
 const CSS = `
