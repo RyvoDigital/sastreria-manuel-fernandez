@@ -95,7 +95,7 @@ export default function Modelos3DPage() {
             zIndex: 0,
           }}>
             <img
-              src="/photos/Screenshot_2026-05-25_at_02.33.52.png"
+              src="/img/americana-blanca-fachada-sastreria.webp"
               alt=""
               style={{
                 width: '100%',
