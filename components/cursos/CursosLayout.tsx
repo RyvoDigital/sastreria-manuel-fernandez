@@ -114,7 +114,7 @@ function CursosLayoutInner() {
           zIndex: 0,
         }}>
           <img
-            src="https://ik.imagekit.io/hvzm7siir/all-images/IMG_9423.JPG"
+            src="/img/curso-sastreria-mesa-corte.webp"
             alt="Cursos de Sastrería"
             style={{
               width: '100%',

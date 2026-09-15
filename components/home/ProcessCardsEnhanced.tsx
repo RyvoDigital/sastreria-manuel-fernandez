@@ -6,9 +6,9 @@ import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 
 const CARD_IMAGES = [
-  'https://ik.imagekit.io/hvzm7siir/all-images/home-selection.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/home-sartorial-interpretation.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_10.50.14.jpeg',
+  '/img/chaqueta-entretela-canvas-maniqui.webp',
+  '/img/manuel-fernandez-marcando-patron.webp',
+  '/img/novio-padrinos-trajes-azules.webp',
 ]
 
 const CSS = `

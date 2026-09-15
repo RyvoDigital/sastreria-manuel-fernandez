@@ -154,7 +154,7 @@ export function BeforeAfterSlider() {
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* After Image (Right side) */}
             <img
-              src="https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg"
+              src="/img/chaqueta-azul-terminada-despues.webp"
               alt="After fitting"
               style={{
                 width: '100%',
@@ -178,7 +178,7 @@ export function BeforeAfterSlider() {
             }}
           >
             <img
-              src="https://ik.imagekit.io/hvzm7siir/all-images/25ED7BDA-ADA8-4DC8-9F11-D47C9C4173E0.PNG"
+              src="/img/chaqueta-hilvanada-antes-prueba.webp"
               alt="Before fitting"
               style={{
                 width: '100%',

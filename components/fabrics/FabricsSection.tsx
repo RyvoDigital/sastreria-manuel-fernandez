@@ -9,10 +9,10 @@ import { Eye, Leaf, Award, Hand } from 'lucide-react'
 
 
 const CONTENT_BLOCKS = [
-  { id: 'visual' as const, icon: Eye, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-visual.png', span: 4 },
-  { id: 'origins' as const, icon: Leaf, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-origin.png', span: 2 },
-  { id: 'grading' as const, icon: Award, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-the-process.png', span: 2 },
-  { id: 'selection' as const, icon: Hand, image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-selection.png', span: 4 },
+  { id: 'visual' as const, icon: Eye, image: '/img/muestras-tejidos-forbes.webp', span: 4 },
+  { id: 'origins' as const, icon: Leaf, image: '/img/hilos-telar-origen-tejido.webp', span: 2 },
+  { id: 'grading' as const, icon: Award, image: '/img/traje-gris-medida-puerta-madrid.webp', span: 2 },
+  { id: 'selection' as const, icon: Hand, image: '/img/chaqueta-entretela-canvas-maniqui.webp', span: 4 },
 ]
 
 export function FabricsSection() {

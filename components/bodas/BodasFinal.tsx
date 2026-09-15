@@ -39,7 +39,7 @@ export function BodasFinal() {
       {/* Background photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://ik.imagekit.io/hvzm7siir/all-images/bodas-lining.png"
+        src="/img/forro-chaqueta-boda.webp"
         alt=""
         style={{
           position: 'absolute', inset: 0,

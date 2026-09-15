@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     'bespoke tailoring spain'
   ],
   icons: {
-    icon: 'https://ik.imagekit.io/hvzm7siir/all-images/favicon.ico',
+    icon: '/img/favicon-manuel-fernandez.png',
   },
 }
 
@@ -87,7 +87,7 @@ const jsonLd = {
     },
   ],
   priceRange: '€€€',
-  image: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-workshop.jpg',
+  image: '/img/taller-sastreria-mesa-corte.webp',
 }
 
 export default function RootLayout({

@@ -235,7 +235,7 @@ export function HeroEnhanced() {
           loop
           playsInline
           preload="metadata"
-          poster="https://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif"
+          poster="/img/hero-manuel-fernandez-corte-patron.webp"
           style={{
             width: '100%',
             height: '100%',

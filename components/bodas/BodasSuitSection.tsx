@@ -65,7 +65,7 @@ export function BodasSuitSection() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://ik.imagekit.io/hvzm7siir/all-images/bodas-suit.png"
+            src="/img/traje-novio-beige-showroom.webp"
             alt={label}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />

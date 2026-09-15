@@ -16,7 +16,7 @@ const CSS = `
   .mf-cr-marquee { animation: mf-cr-marquee 40s linear infinite; }
 `
 
-const OVERVIEW_IMAGE = 'https://ik.imagekit.io/hvzm7siir/all-images/servicios-overview.jpg'
+const OVERVIEW_IMAGE = '/img/showroom-muestrario-tejidos.webp'
 
 const FABRIC_HOUSES = [
   { name: 'Reda',                     icon: Scissors },

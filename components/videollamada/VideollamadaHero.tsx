@@ -22,7 +22,7 @@ export function VideollamadaHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://ik.imagekit.io/hvzm7siir/all-images/videollamada-overview.png"
+          src="/img/asesoramiento-tejido-cliente.webp"
           alt=""
           style={{
             width: '100%',

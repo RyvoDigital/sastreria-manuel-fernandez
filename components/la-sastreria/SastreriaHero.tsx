@@ -73,7 +73,7 @@ export function SastreriaHero() {
       }}>
         {/* Photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="https://ik.imagekit.io/hvzm7siir/all-images/sastreria-hero.png" alt="" aria-hidden className="mf-sas-hero-photo" />
+        <img src="/img/manos-sastre-tela-gris.webp" alt="" aria-hidden className="mf-sas-hero-photo" />
 
         {/* Gradient overlay */}
         <div style={{

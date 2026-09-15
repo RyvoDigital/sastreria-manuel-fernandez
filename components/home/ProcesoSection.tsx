@@ -9,17 +9,17 @@ import { useIsMobile } from '@/lib/use-mobile'
 /* ─── Step data ──────────────────────────────────────────── */
 const STEP_META = [
   {
-    image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-selection.png',
+    image: '/img/chaqueta-entretela-canvas-maniqui.webp',
     imageLeft: true,
     bg: '#050C14',
   },
   {
-    image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-sartorial-interpretation.png',
+    image: '/img/manuel-fernandez-marcando-patron.webp',
     imageLeft: false,
     bg: '#07101A',
   },
   {
-    image: 'https://ik.imagekit.io/hvzm7siir/all-images/home-the-result.png',
+    image: '/img/fachada-sastreria-jorge-juan.webp',
     imageLeft: true,
     bg: '#050C14',
   },

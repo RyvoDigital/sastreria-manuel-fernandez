@@ -31,7 +31,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: "url('https://ik.imagekit.io/hvzm7siir/all-images/servicios-hero.png')",
+        backgroundImage: "url('/img/patron-cortado-tela-raya.webp')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
@@ -108,28 +108,28 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
   return (
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: isMobile ? '80px 1rem 0' : '200px 2rem 0' }}>
       <ParallaxImg
-        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-morning-coat.png"
+        src="/img/chaque-gris-hilvanado-showroom.webp"
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%' }}
       />
       <ParallaxImg
-        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png"
+        src="/img/smoking-negro-pajarita.webp"
         alt="Consulta de tejidos"
         start={200}
         end={-250}
         imgStyle={{ width: isMobile ? '90%' : '60%', margin: '0 auto' }}
       />
       <ParallaxImg
-        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png"
+        src="/img/traje-tres-piezas-gris-medida.webp"
         alt="Corte con tijeras"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%', marginLeft: 'auto' }}
       />
       <ParallaxImg
-        src="https://ik.imagekit.io/hvzm7siir/all-images/producto-blazer.png"
+        src="/img/blazer-cuadros-azul-medida.webp"
         alt="Showroom trajes"
         start={0}
         end={-500}
@@ -214,16 +214,16 @@ const ServiceItem = ({
 }
 
 const SERVICE_IMAGES = [
-  'https://ik.imagekit.io/hvzm7siir/all-images/producto-morning-coat.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/producto-stroller.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-coat.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png',
-  'https://ik.imagekit.io/hvzm7siir/all-images/madrid-suit-street.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-09-15-007-1325.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/scissors-cutting.jpg',
+  '/img/chaque-gris-hilvanado-showroom.webp',
+  '/img/frac-chaleco-blanco.webp',
+  '/img/smoking-negro-pajarita.webp',
+  '/img/traje-tres-piezas-gris-medida.webp',
+  '/img/abrigo-medida-rojo-forro.webp',
+  '/img/americana-verde-menta-madrid.webp',
+  '/img/camisas-medida-corbatas.webp',
+  '/img/americana-marron-medida-madrid.webp',
+  '/img/chaque-chaleco-corbata-detalle.webp',
+  '/img/tijeras-cortando-tejido.webp',
 ]
 
 const ServiciosList = () => {

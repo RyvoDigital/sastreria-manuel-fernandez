@@ -22,7 +22,7 @@ export function ConfiguradorHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://ik.imagekit.io/hvzm7siir/all-images/madrid-suit-street.jpg"
+          src="/img/americana-marron-medida-madrid.webp"
           alt=""
           style={{
             width: '100%',

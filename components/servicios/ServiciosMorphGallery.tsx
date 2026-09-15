@@ -9,37 +9,37 @@ const SERVICE_GROUPS = [
   {
     name: 'Traje a Medida',
     images: [
-      'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png',
+      '/img/traje-tres-piezas-gris-medida.webp',
     ],
   },
   {
     name: 'Blazer',
     images: [
-      'https://ik.imagekit.io/hvzm7siir/all-images/producto-blazer.png',
+      '/img/blazer-cuadros-azul-medida.webp',
     ],
   },
   {
     name: 'Pantalón a Medida',
     images: [
-      'https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png',
+      '/img/camisas-medida-corbatas.webp',
     ],
   },
   {
     name: 'Abrigo a Medida',
     images: [
-      'https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-coat.png',
+      '/img/abrigo-medida-rojo-forro.webp',
     ],
   },
   {
     name: 'Traje de Novio',
     images: [
-      'https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png',
+      '/img/smoking-negro-pajarita.webp',
     ],
   },
   {
     name: 'Arreglos',
     images: [
-      'https://ik.imagekit.io/hvzm7siir/all-images/producto-stroller.png',
+      '/img/frac-chaleco-blanco.webp',
     ],
   },
 ]

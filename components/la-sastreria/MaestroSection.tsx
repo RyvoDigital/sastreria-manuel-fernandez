@@ -75,7 +75,7 @@ export function MaestroSection() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://ik.imagekit.io/hvzm7siir/all-images/IMG_1001.JPG"
+          src="/img/manuel-fernandez-hilvanando.webp"
           alt="Manuel Fernández en su sastrería"
           style={{
             position:   'absolute', inset: 0,

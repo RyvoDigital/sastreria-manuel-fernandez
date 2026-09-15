@@ -68,7 +68,7 @@ export function LoadingScreen() {
     >
       <img
         ref={logoRef}
-        src="https://ik.imagekit.io/hvzm7siir/all-images/logo.png"
+        src="/img/logo-manuel-fernandez.png"
         alt="Sastrería Manuel Fernández"
         style={{
           width: '80px',

@@ -4,19 +4,19 @@ import { useRef, useEffect } from 'react'
 import { useI18n } from '@/lib/i18n'
 
 const CARDS = [
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-011-0620.jpg', caption: 'Detail' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg', caption: 'Fabric' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-009-0599.jpg', caption: 'Precision' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-008-0596.jpg', caption: 'Atelier' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-017-9305.jpg', caption: 'Handwork' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-013-0625.jpg', caption: 'Craft' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-011-0702.jpg', caption: 'Process' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg', caption: 'Tailor Shop' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-008-0693.jpg', caption: 'Studio' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-003-0684.jpg', caption: 'Fitting' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-001-0657.jpg', caption: 'Pattern' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-groom-detail.jpg', caption: 'Groom Detail' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-morning-coat.jpg', caption: 'Morning Coat' },
+  { src: '/img/novio-chaque-paseo-novia.webp', caption: 'Detail' },
+  { src: '/img/novio-traje-azul-sentado.webp', caption: 'Fabric' },
+  { src: '/img/novios-playa-traje-azul.webp', caption: 'Precision' },
+  { src: '/img/novio-traje-gris-boutonniere.webp', caption: 'Atelier' },
+  { src: '/img/novio-traje-verde-bosque.webp', caption: 'Handwork' },
+  { src: '/img/novios-escalera-jardin.webp', caption: 'Craft' },
+  { src: '/img/novios-petalos-salida-boda.webp', caption: 'Process' },
+  { src: '/img/novia-velo-novio-jardin.webp', caption: 'Tailor Shop' },
+  { src: '/img/novios-tarta-boda.webp', caption: 'Studio' },
+  { src: '/img/novios-baile-boda-jardin.webp', caption: 'Fitting' },
+  { src: '/img/novios-ramo-boda.webp', caption: 'Pattern' },
+  { src: '/img/boda-novios-ceremonia.webp', caption: 'Groom Detail' },
+  { src: '/img/novio-chaque-roma.webp', caption: 'Morning Coat' },
 ]
 
 const CARD_W = 260

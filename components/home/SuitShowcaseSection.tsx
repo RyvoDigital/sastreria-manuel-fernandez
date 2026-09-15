@@ -76,7 +76,7 @@ export function SuitShowcaseSection() {
           {/* Main Image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png"
+            src="/img/anatomia-traje-forro-interior.webp"
             alt={t.suit_showcase.label}
             style={{
               width: '100%',

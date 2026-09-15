@@ -4,18 +4,18 @@ import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const IMAGES = [
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-014-0631.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-04-22-001-9645.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-010-0677.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-004-0661.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-22-001-1550.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-01-002-1477.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-010-0971.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7511.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/atelier-tools.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7409.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7784.JPG',
+  '/img/prenda-medida-etiqueta.webp',
+  '/img/sastre-cortando-tela-mesa-exterior.webp',
+  '/img/chaleco-verde-chaqueta-azul-showroom.webp',
+  '/img/novios-chaque-coliseo-roma.webp',
+  '/img/smoking-azul-forro-detalle.webp',
+  '/img/prueba-traje-showroom.webp',
+  '/img/cliente-bolsa-sastreria-jorge-juan.webp',
+  '/img/americana-verde-menta-calle.webp',
+  '/img/showroom-libros-tejidos.webp',
+  '/img/herramientas-sastre-cinta-metrica.webp',
+  '/img/toma-medidas-cliente.webp',
+  '/img/chaqueta-verde-construccion-alfileres.webp',
 ]
 
 export function DetailGallery() {

@@ -141,8 +141,8 @@ export function EspacioSection() {
             gap:           '0.75rem',
           }}>
             {[
-              { src: 'https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-02.png', alt: 'Sastrería Manuel Fernández' },
-              { src: 'https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-01.png', alt: 'Sastrería Manuel Fernández' },
+              { src: '/img/espacio-sastreria-showroom-02.webp', alt: 'Sastrería Manuel Fernández' },
+              { src: '/img/espacio-sastreria-showroom-01.webp', alt: 'Sastrería Manuel Fernández' },
             ].map((photo, i) => (
               <div
                 key={i}

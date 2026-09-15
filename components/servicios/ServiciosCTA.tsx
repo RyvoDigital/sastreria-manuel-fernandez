@@ -36,7 +36,7 @@ export function ServiciosCTA() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://ik.imagekit.io/hvzm7siir/all-images/create-your-suit.jpg"
+        src="/img/piezas-patron-tela-mesa-corte.webp"
         alt=""
         aria-hidden
         style={{

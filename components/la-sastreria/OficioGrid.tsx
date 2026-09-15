@@ -7,10 +7,10 @@ import { useIsMobile } from '@/lib/use-mobile'
 
 
 const PHOTOS = [
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7067.JPG',  catKey: 'cat1' as const },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_1310.JPG',  catKey: 'cat2' as const },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_9721.JPG', catKey: 'cat3' as const },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/tweed-buttons.jpg',  catKey: 'cat4' as const },
+  { src: '/img/americana-menta-fachada-sastreria.webp',  catKey: 'cat1' as const },
+  { src: '/img/recepcion-sastreria-madrid.webp',  catKey: 'cat2' as const },
+  { src: '/img/demostracion-corte-evento.webp', catKey: 'cat3' as const },
+  { src: '/img/botones-tweed-detalle.webp',  catKey: 'cat4' as const },
 ]
 
 export function OficioGrid() {

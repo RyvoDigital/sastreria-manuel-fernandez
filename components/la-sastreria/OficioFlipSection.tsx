@@ -24,10 +24,10 @@ export function OficioFlipSection() {
   const [activeIdx, setActiveIdx] = useState(0)
 
   const disciplines = [
-    { label: t.la_sastreria.oficio.cat1, url: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_1504.JPG'  },
-    { label: t.la_sastreria.oficio.cat2, url: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0623.JPG'  },
-    { label: t.la_sastreria.oficio.cat3, url: 'https://ik.imagekit.io/hvzm7siir/all-images/Proceso_de_sastrer%C3%ADa_en_tela_azul.png' },
-    { label: t.la_sastreria.oficio.cat4, url: 'https://ik.imagekit.io/hvzm7siir/all-images/ChatGPT_Image_10_abr_2026_11_27_13.png'  },
+    { label: t.la_sastreria.oficio.cat1, url: '/img/eleccion-tejido-cliente.webp'  },
+    { label: t.la_sastreria.oficio.cat2, url: '/img/marcado-tiza-tela-gris.webp'  },
+    { label: t.la_sastreria.oficio.cat3, url: '/img/proceso-sastreria-tela-azul.webp' },
+    { label: t.la_sastreria.oficio.cat4, url: '/img/chaqueta-azul-claro-corbata-granate.webp'  },
   ]
 
   const images = disciplines.map((d) => ({ title: d.label, url: d.url }))

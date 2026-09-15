@@ -7,10 +7,10 @@ import { useIsMobile } from '@/lib/use-mobile'
 
 
 const CATS = [
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/bodas-morning-coat.png', height: '46vh', key: 'cat1' as const },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg',    height: '63vh', key: 'cat2' as const },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-011-0620.jpg',        height: '63vh', key: 'cat4' as const },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-tuxedo.jpg',   height: '46vh', key: 'cat3' as const },
+  { src: '/img/chaque-hilvanado-medida.webp', height: '46vh', key: 'cat1' as const },
+  { src: '/img/novio-traje-azul-sentado.webp',    height: '63vh', key: 'cat2' as const },
+  { src: '/img/novio-chaque-paseo-novia.webp',        height: '63vh', key: 'cat4' as const },
+  { src: '/img/smoking-novio-gala.webp',   height: '46vh', key: 'cat3' as const },
 ]
 
 export function BodasCategorias() {

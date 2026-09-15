@@ -20,9 +20,9 @@ type QuoteKey =
 
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
  
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-001-0350.jpg', quoteKey: 'quote1' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-012-0621.jpg', quoteKey: 'quote2' },
-  { src: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-006-0648.jpg', quoteKey: 'quote3' },
+  { src: '/img/traje-azul-celeste-medida.webp', quoteKey: 'quote1' },
+  { src: '/img/evelyn-fernandez-mesa-corte-showroom.webp', quoteKey: 'quote2' },
+  { src: '/img/manuel-fernandez-midiendo-tejido.webp', quoteKey: 'quote3' },
 ]
 
 const CSS = `

@@ -93,7 +93,7 @@ export function TrajeEmpiezaSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url('https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-006-0923.jpg')`,
+            backgroundImage: `url('/img/traje-gris-claro-medida-calle.webp')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
           }}

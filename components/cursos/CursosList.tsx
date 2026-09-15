@@ -40,7 +40,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.10.34.jpeg",
+      "/img/chaqueta-en-construccion-curso.webp",
   },
   {
     id: "canvas",
@@ -57,7 +57,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg",
+      "/img/solapa-chaqueta-cuadros-curso.webp",
   },
   {
     id: "lapel",
@@ -74,7 +74,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg",
+      "/img/chaleco-verde-chaqueta-azul-showroom.webp",
   },
   {
     id: "pockets",
@@ -91,7 +91,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg",
+      "/img/chaquetas-maniquies-showroom.webp",
   },
   {
     id: "buttonholes",
@@ -108,7 +108,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg",
+      "/img/chaqueta-azul-terminada-despues.webp",
   },
   {
     id: "finishes",
@@ -125,7 +125,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png",
+      "/img/anatomia-traje-forro-interior.webp",
   },
 ];
 

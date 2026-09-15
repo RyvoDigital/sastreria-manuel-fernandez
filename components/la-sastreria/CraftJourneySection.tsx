@@ -50,28 +50,28 @@ export function CraftJourneySection() {
   const sections = [
     {
       id:          'tejido',
-      background:  'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-10_at_11.15.20.jpeg',
+      background:  '/img/tejido-principe-de-gales-etiqueta.webp',
       leftLabel:   t.la_sastreria.oficio.cat1,
       title:       'Carácter',
       rightLabel:  'Lana & Seda',
     },
     {
       id:          'diseno',
-      background:  'https://ik.imagekit.io/hvzm7siir/all-images/sastreria-overview.png',
+      background:  '/img/chaque-hilvanado-diseno.webp',
       leftLabel:   t.la_sastreria.oficio.cat2,
       title:       'Precisión',
       rightLabel:  'Tradición',
     },
     {
       id:          'corte',
-      background:  'https://ik.imagekit.io/hvzm7siir/all-images/sastreria-cut-by-hand.png',
+      background:  '/img/corte-a-mano-mesa.webp',
       leftLabel:   t.la_sastreria.oficio.cat3,
       title:       'Paciencia',
       rightLabel:  'A Mano',
     },
     {
       id:          'proceso',
-      background:  'https://ik.imagekit.io/hvzm7siir/all-images/sastreria-artisan-detail.png',
+      background:  '/img/cosido-a-mano-detalle.webp',
       leftLabel:   t.la_sastreria.oficio.cat4,
       title:       'Perfección',
       rightLabel:  'El Detalle',

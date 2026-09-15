@@ -63,7 +63,7 @@ export function ConfiguradorValueProp() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://ik.imagekit.io/hvzm7siir/all-images/configurador-overview.png"
+              src="/img/chaqueta-gris-raya-diplomatica-maniqui.webp"
               alt=""
               style={{
                 width: '100%',

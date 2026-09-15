@@ -49,7 +49,7 @@ export function SastreriaCTA() {
       {/* Photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://ik.imagekit.io/hvzm7siir/all-images/sastreria-next-step.png"
+        src="/img/cliente-showroom-sofa-chester.webp"
         alt=""
         aria-hidden
         className="mf-sas-cta-photo"

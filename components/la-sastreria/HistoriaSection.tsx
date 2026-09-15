@@ -175,7 +175,7 @@ export function HistoriaSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={photoImgRef}
-            src="https://ik.imagekit.io/hvzm7siir/all-images/sastreria-manuel-fernandez.png"
+            src="/img/manuel-fernandez-mesa-de-corte.webp"
             alt="Manuel Fernández en la mesa de corte"
             style={{
               position:   'absolute',

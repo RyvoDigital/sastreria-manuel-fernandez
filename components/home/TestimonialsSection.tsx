@@ -8,11 +8,11 @@ import { useIsIPhone } from '@/lib/use-iphone'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const PHOTOS = [
-  'https://ik.imagekit.io/hvzm7siir/all-images/madrid-tweed.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_9423.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0808.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0416.JPG',
+  '/img/traje-tweed-madrid-calle.webp',
+  '/img/curso-sastreria-mesa-corte.webp',
+  '/img/americana-verde-menta-madrid.webp',
+  '/img/camisas-corbatas-accesorios.webp',
+  '/img/puno-camisa-reloj-detalle.webp',
 ]
 
 const AUTO_ROTATE_INTERVAL = 3000
@@ -197,7 +197,7 @@ export function TestimonialsSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `url('https://ik.imagekit.io/hvzm7siir/all-images/cutting-fabric-wide.jpg')`,
+          backgroundImage: `url('/img/corte-tejido-tijeras.webp')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.04,

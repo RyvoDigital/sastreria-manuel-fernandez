@@ -7,14 +7,14 @@ import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 
 const IMAGES = [
-  'https://ik.imagekit.io/hvzm7siir/all-images/cutting-table.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0860.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7409.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7414.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/sleeve-buttons.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/velvet-lining.jpg',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0945.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7034.JPG',
+  '/img/marcado-patron-tela-azul.webp',
+  '/img/manuel-fernandez-cinta-metrica-mesa.webp',
+  '/img/toma-medidas-cliente.webp',
+  '/img/toma-medidas-cinta-metrica.webp',
+  '/img/botones-manga-tweed.webp',
+  '/img/forro-morado-chaqueta.webp',
+  '/img/americana-menta-espejo-showroom.webp',
+  '/img/americana-azul-claro-calle.webp',
 ]
 
 /* Desktop: scattered collage layout — 8 images */

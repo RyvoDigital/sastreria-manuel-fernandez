@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { useI18n } from '@/lib/i18n'
 
 const CARD_IMAGES = [
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_1648.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_0150.JPG',
-  'https://ik.imagekit.io/hvzm7siir/all-images/IMG_1277.JPG',
+  '/img/prueba-traje-burdeos-ajuste.webp',
+  '/img/traje-gris-tres-piezas-detalle.webp',
+  '/img/cliente-saliendo-sastreria-bolsa.webp',
 ]
 
 interface CardProps {
