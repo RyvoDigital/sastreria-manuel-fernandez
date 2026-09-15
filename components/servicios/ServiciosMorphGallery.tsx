@@ -39,7 +39,7 @@ const SERVICE_GROUPS = [
   {
     name: 'Arreglos',
     images: [
-      '/img/frac-chaleco-blanco.webp',
+      '/img/chaque-gris-hilvanado-showroom.webp',
     ],
   },
 ]

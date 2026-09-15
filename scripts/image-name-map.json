@@ -11,9 +11,9 @@
   },
   "anatomia-traje.png": {
     "name": "anatomia-traje-forro-interior",
-    "source": "~/sastreria-manuel-fernandez/public/photos/anatomia-traje.png",
+    "source": ".image-migration/original/anatomia-traje.png",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png",
     "used_in": [
       "components/cursos/CursosList.tsx",
@@ -124,10 +124,10 @@
     ]
   },
   "atelier-2026-04-24-006-0648.jpg": {
-    "name": "manuel-fernandez-midiendo-tejido",
-    "source": "~/Downloads/fotos sastre/Captura de pantalla 2025-11-27 a las 11.28.42.png",
+    "name": "traje-azul-maniqui-forbes",
+    "source": ".image-migration/docx/image39.png",
     "method": "substitute",
-    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Filled with the image Evelyn's WEB LISTA doc specifies for this page: \"EN LA PAGINA DE CONTACTO\".",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-006-0648.jpg",
     "used_in": [
       "components/contacto/ContactPage.tsx"
@@ -159,10 +159,9 @@
     "name": "novios-chaque-coliseo-roma",
     "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/fed9ea90-39aa-4c68-a43c-922218d04457 2.JPG",
     "method": "substitute",
-    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available. Kept for the home gallery only; the Bodas hero now uses the doc-specified image.",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-010-0677.jpg",
     "used_in": [
-      "components/bodas/BodasHero.tsx",
       "components/home/DetailGallery.tsx"
     ]
   },
@@ -178,9 +177,9 @@
   },
   "atelier-tools.jpg": {
     "name": "herramientas-sastre-cinta-metrica",
-    "source": "~/sastreria-manuel-fernandez/public/photos/atelier-tools.jpg",
+    "source": ".image-migration/original/atelier-tools.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-tools.jpg",
     "used_in": [
       "components/home/DetailGallery.tsx",
@@ -222,31 +221,30 @@
     ]
   },
   "atelier-unknown-009-0599.jpg": {
-    "name": "novios-playa-traje-azul",
-    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2024-04-03 a las 11.31.40.png",
+    "name": "novio-chaque-corbata-ceremonia",
+    "source": ".image-migration/docx/image30.png",
     "method": "substitute",
-    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Filled with the image Evelyn's WEB LISTA doc specifies for this page: \"LA CEREMONIA\" (Bodas).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-009-0599.jpg",
     "used_in": [
       "components/bodas/BodasCarrusel.tsx"
     ]
   },
   "atelier-unknown-011-0620.jpg": {
-    "name": "novio-chaque-paseo-novia",
-    "source": "~/Downloads/Sastreria Wedding Photos/SMF 2/PHOTO-2026-02-24-08-36-19(5).jpg",
+    "name": "botones-manga-chaqueta-boda",
+    "source": ".image-migration/docx/image27.png",
     "method": "substitute",
-    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Filled with the image Evelyn's WEB LISTA doc specifies for this page: \"LOS BOTONES\" (Bodas).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-011-0620.jpg",
     "used_in": [
-      "components/bodas/BodasCarrusel.tsx",
-      "components/bodas/BodasCategorias.tsx"
+      "components/bodas/BodasCarrusel.tsx"
     ]
   },
   "atelier-unknown-012-0621.jpg": {
-    "name": "evelyn-fernandez-mesa-corte-showroom",
-    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2022-06-29 a las 18.36.00.png",
+    "name": "tarjeta-visita-sastreria-mano",
+    "source": ".image-migration/docx/image7.png",
     "method": "substitute",
-    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Filled with the image Evelyn's WEB LISTA doc specifies for this page: \"CONTACTO\".",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-012-0621.jpg",
     "used_in": [
       "components/contacto/ContactPage.tsx"
@@ -273,14 +271,13 @@
     ]
   },
   "atelier-unknown-016-0634.jpg": {
-    "name": "novio-traje-azul-sentado",
-    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2024-04-03 a las 11.31.48.png",
+    "name": "forro-chaqueta-tejido-boda",
+    "source": ".image-migration/docx/image29.png",
     "method": "substitute",
-    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Filled with the image Evelyn's WEB LISTA doc specifies for this page: \"LOS TEJIDOS\" (Bodas).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg",
     "used_in": [
-      "components/bodas/BodasCarrusel.tsx",
-      "components/bodas/BodasCategorias.tsx"
+      "components/bodas/BodasCarrusel.tsx"
     ]
   },
   "atelier-unknown-017-9305.jpg": {
@@ -295,9 +292,9 @@
   },
   "atelier-workshop.jpg": {
     "name": "taller-sastreria-mesa-corte",
-    "source": "~/sastreria-manuel-fernandez/public/photos/atelier-workshop.jpg",
+    "source": ".image-migration/original/atelier-workshop.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-workshop.jpg",
     "used_in": [
       "app/layout.tsx"
@@ -307,7 +304,7 @@
     "name": "forro-chaqueta-boda",
     "source": ".image-migration/docx/image28.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-lining.png",
     "used_in": [
       "components/bodas/BodasFinal.tsx"
@@ -317,7 +314,7 @@
     "name": "chaque-hilvanado-medida",
     "source": ".image-migration/docx/image24.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match). Doc label \"EN CHAQUE\"; moved from the \"Frac\" card to the \"Chaqué\" card.",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-morning-coat.png",
     "used_in": [
       "components/bodas/BodasCategorias.tsx"
@@ -327,7 +324,7 @@
     "name": "traje-novio-beige-showroom",
     "source": ".image-migration/docx/image26.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-suit.png",
     "used_in": [
       "components/bodas/BodasSuitSection.tsx"
@@ -347,7 +344,7 @@
     "name": "chaqueta-gris-raya-diplomatica-maniqui",
     "source": ".image-migration/docx/image4.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/configurador-overview.png",
     "used_in": [
       "components/configurador/ConfiguradorValueProp.tsx"
@@ -357,7 +354,7 @@
     "name": "piezas-patron-tela-mesa-corte",
     "source": ".image-migration/docx/image3.jpg",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/create-your-suit.jpg",
     "used_in": [
       "components/servicios/ServiciosCTA.tsx"
@@ -365,9 +362,9 @@
   },
   "cutting-fabric-wide.jpg": {
     "name": "corte-tejido-tijeras",
-    "source": "~/sastreria-manuel-fernandez/public/photos/cutting-fabric-wide.jpg",
+    "source": ".image-migration/original/cutting-fabric-wide.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/cutting-fabric-wide.jpg",
     "used_in": [
       "components/home/TestimonialsSection.tsx"
@@ -375,9 +372,9 @@
   },
   "cutting-table.jpg": {
     "name": "marcado-patron-tela-azul",
-    "source": "~/sastreria-manuel-fernandez/public/photos/cutting-table.jpg",
+    "source": ".image-migration/original/cutting-table.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/cutting-table.jpg",
     "used_in": [
       "components/home/ZoomParallaxSection.tsx"
@@ -385,9 +382,9 @@
   },
   "fabric-consultation.jpg": {
     "name": "consulta-tejidos-showroom",
-    "source": "~/sastreria-manuel-fernandez/public/photos/fabric-consultation.jpg",
+    "source": ".image-migration/original/fabric-consultation.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/fabric-consultation.jpg",
     "used_in": [
       "components/home/ServicesEnhanced.tsx"
@@ -417,7 +414,7 @@
     "name": "hilos-telar-origen-tejido",
     "source": ".image-migration/docx/image12.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-origin.png",
     "used_in": [
       "components/fabrics/FabricsSection.tsx"
@@ -450,7 +447,7 @@
     "name": "traje-gris-medida-puerta-madrid",
     "source": ".image-migration/docx/image8.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-the-process.png",
     "used_in": [
       "components/fabrics/FabricsSection.tsx"
@@ -460,7 +457,7 @@
     "name": "fachada-sastreria-jorge-juan",
     "source": ".image-migration/docx/image10.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-the-result.png",
     "used_in": [
       "components/home/ProcesoSection.tsx"
@@ -470,7 +467,7 @@
     "name": "muestras-tejidos-forbes",
     "source": ".image-migration/docx/image11.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-visual.png",
     "used_in": [
       "components/fabrics/FabricsSection.tsx"
@@ -714,9 +711,9 @@
   },
   "madrid-suit-street.jpg": {
     "name": "americana-marron-medida-madrid",
-    "source": "~/sastreria-manuel-fernandez/public/photos/madrid-suit-street.jpg",
+    "source": ".image-migration/original/madrid-suit-street.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/madrid-suit-street.jpg",
     "used_in": [
       "components/configurador/ConfiguradorHero.tsx",
@@ -725,9 +722,9 @@
   },
   "madrid-tweed.jpg": {
     "name": "traje-tweed-madrid-calle",
-    "source": "~/sastreria-manuel-fernandez/public/photos/madrid-tweed.jpg",
+    "source": ".image-migration/original/madrid-tweed.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/madrid-tweed.jpg",
     "used_in": [
       "components/home/TestimonialsSection.tsx"
@@ -735,9 +732,9 @@
   },
   "mint-jacket-madrid.jpg": {
     "name": "americana-verde-menta-madrid",
-    "source": "~/sastreria-manuel-fernandez/public/photos/mint-jacket-madrid.jpg",
+    "source": ".image-migration/original/mint-jacket-madrid.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg",
     "used_in": [
       "components/home/TestimonialsSection.tsx",
@@ -758,7 +755,7 @@
     "name": "abrigo-medida-rojo-forro",
     "source": ".image-migration/docx/image36.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-coat.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx",
@@ -769,7 +766,7 @@
     "name": "traje-tres-piezas-gris-medida",
     "source": ".image-migration/docx/image35.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx",
@@ -780,7 +777,7 @@
     "name": "blazer-cuadros-azul-medida",
     "source": ".image-migration/docx/image37.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-blazer.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx",
@@ -788,10 +785,10 @@
     ]
   },
   "producto-morning-coat.png": {
-    "name": "chaque-gris-hilvanado-showroom",
-    "source": ".image-migration/docx/image33.png",
+    "name": "frac-chaleco-blanco",
+    "source": ".image-migration/docx/image32.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN which of docx FRAC/CHAQUE maps to stroller vs morning-coat.",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match). NOTE: the developer named Evelyn's FRAC photo \"producto-morning-coat\".",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-morning-coat.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx"
@@ -801,7 +798,7 @@
     "name": "camisas-medida-corbatas",
     "source": ".image-migration/docx/image38.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx",
@@ -809,10 +806,10 @@
     ]
   },
   "producto-stroller.png": {
-    "name": "frac-chaleco-blanco",
-    "source": ".image-migration/docx/image32.png",
+    "name": "chaque-gris-hilvanado-showroom",
+    "source": ".image-migration/docx/image33.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN which of docx FRAC/CHAQUE maps to stroller vs morning-coat.",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match). NOTE: the developer named Evelyn's CHAQUE photo \"producto-stroller\".",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-stroller.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx",
@@ -823,7 +820,7 @@
     "name": "smoking-negro-pajarita",
     "source": ".image-migration/docx/image34.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx",
@@ -834,7 +831,7 @@
     "name": "cosido-a-mano-detalle",
     "source": ".image-migration/docx/image16.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-artisan-detail.png",
     "used_in": [
       "components/la-sastreria/CraftJourneySection.tsx"
@@ -844,7 +841,7 @@
     "name": "corte-a-mano-mesa",
     "source": ".image-migration/docx/image15.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-cut-by-hand.png",
     "used_in": [
       "components/la-sastreria/CraftJourneySection.tsx"
@@ -854,7 +851,7 @@
     "name": "evelyn-fernandez-sastreria",
     "source": ".image-migration/docx/image18.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-evelyn-fernandez.png",
     "used_in": [
       "components/la-sastreria/EvelynSection.tsx"
@@ -864,7 +861,7 @@
     "name": "manos-sastre-tela-gris",
     "source": ".image-migration/docx/image14.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-hero.png",
     "used_in": [
       "components/la-sastreria/SastreriaHero.tsx"
@@ -874,7 +871,7 @@
     "name": "manuel-fernandez-mesa-de-corte",
     "source": ".image-migration/docx/image17.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-manuel-fernandez.png",
     "used_in": [
       "components/la-sastreria/HistoriaSection.tsx"
@@ -884,7 +881,7 @@
     "name": "cliente-showroom-sofa-chester",
     "source": ".image-migration/docx/image22.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-next-step.png",
     "used_in": [
       "components/la-sastreria/SastreriaCTA.tsx"
@@ -894,7 +891,7 @@
     "name": "chaque-hilvanado-diseno",
     "source": ".image-migration/docx/image1.png",
     "method": "docx-web-lista",
-    "note": "UNCERTAIN: docx image under heading \"SASTRERIA ARTESANAL\", no exact label; verify.",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-overview.png",
     "used_in": [
       "components/la-sastreria/CraftJourneySection.tsx"
@@ -904,7 +901,7 @@
     "name": "espacio-sastreria-showroom-01",
     "source": ".image-migration/docx/image19.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN order of the two \"EL ESPACIO\" docx images.",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-01.png",
     "used_in": [
       "components/la-sastreria/EspacioSection.tsx"
@@ -914,7 +911,7 @@
     "name": "espacio-sastreria-showroom-02",
     "source": ".image-migration/docx/image20.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN order of the two \"EL ESPACIO\" docx images.",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-02.png",
     "used_in": [
       "components/la-sastreria/EspacioSection.tsx"
@@ -922,9 +919,9 @@
   },
   "scissors-cutting.jpg": {
     "name": "tijeras-cortando-tejido",
-    "source": "~/sastreria-manuel-fernandez/public/photos/scissors-cutting.jpg",
+    "source": ".image-migration/original/scissors-cutting.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/scissors-cutting.jpg",
     "used_in": [
       "components/servicios/ServiciosHero.tsx"
@@ -934,7 +931,7 @@
     "name": "patron-cortado-tela-raya",
     "source": ".image-migration/docx/image31.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/servicios-hero.png",
     "used_in": [
       "components/servicios/ServiciosHero.tsx"
@@ -944,7 +941,7 @@
     "name": "showroom-muestrario-tejidos",
     "source": ".image-migration/docx/image2.jpg",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/servicios-overview.jpg",
     "used_in": [
       "components/servicios/CredencialesSection.tsx"
@@ -952,9 +949,9 @@
   },
   "showroom-jackets.jpg": {
     "name": "chaquetas-maniquies-showroom",
-    "source": "~/sastreria-manuel-fernandez/public/photos/showroom-jackets.jpg",
+    "source": ".image-migration/original/showroom-jackets.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg",
     "used_in": [
       "components/cursos/CursosList.tsx",
@@ -964,9 +961,9 @@
   },
   "sleeve-buttons.jpg": {
     "name": "botones-manga-tweed",
-    "source": "~/sastreria-manuel-fernandez/public/photos/sleeve-buttons.jpg",
+    "source": ".image-migration/original/sleeve-buttons.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/sleeve-buttons.jpg",
     "used_in": [
       "components/home/ZoomParallaxSection.tsx"
@@ -974,9 +971,9 @@
   },
   "tailor-workshop.jpg": {
     "name": "evelyn-fernandez-taller-corte",
-    "source": "~/sastreria-manuel-fernandez/public/photos/tailor-workshop.jpg",
+    "source": ".image-migration/original/tailor-workshop.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/tailor-workshop.jpg",
     "used_in": [
       "components/home/ServicesEnhanced.tsx",
@@ -985,9 +982,9 @@
   },
   "tweed-buttons.jpg": {
     "name": "botones-tweed-detalle",
-    "source": "~/sastreria-manuel-fernandez/public/photos/tweed-buttons.jpg",
+    "source": ".image-migration/original/tweed-buttons.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/tweed-buttons.jpg",
     "used_in": [
       "components/la-sastreria/OficioGrid.tsx"
@@ -995,9 +992,9 @@
   },
   "velvet-lining.jpg": {
     "name": "forro-morado-chaqueta",
-    "source": "~/sastreria-manuel-fernandez/public/photos/velvet-lining.jpg",
+    "source": ".image-migration/original/velvet-lining.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/velvet-lining.jpg",
     "used_in": [
       "components/home/ZoomParallaxSection.tsx"
@@ -1007,7 +1004,7 @@
     "name": "asesoramiento-tejido-cliente",
     "source": ".image-migration/docx/image6.png",
     "method": "docx-web-lista",
-    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "note": "Confirmed against Evelyn's WEB LISTA doc via recovered media-library-export.csv (exact byte-size match).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/videollamada-overview.png",
     "used_in": [
       "components/videollamada/VideollamadaHero.tsx",
@@ -1016,9 +1013,9 @@
   },
   "wedding-groom-detail.jpg": {
     "name": "boda-novios-ceremonia",
-    "source": "~/sastreria-manuel-fernandez/public/photos/wedding-groom-detail.jpg",
+    "source": ".image-migration/original/wedding-groom-detail.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-groom-detail.jpg",
     "used_in": [
       "components/bodas/BodasCarrusel.tsx"
@@ -1026,9 +1023,9 @@
   },
   "wedding-morning-coat.jpg": {
     "name": "novio-chaque-roma",
-    "source": "~/sastreria-manuel-fernandez/public/photos/wedding-morning-coat.jpg",
+    "source": ".image-migration/original/wedding-morning-coat.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-morning-coat.jpg",
     "used_in": [
       "components/bodas/BodasCarrusel.tsx",
@@ -1037,9 +1034,9 @@
   },
   "wedding-tuxedo.jpg": {
     "name": "smoking-novio-gala",
-    "source": "~/sastreria-manuel-fernandez/public/photos/wedding-tuxedo.jpg",
+    "source": ".image-migration/original/wedding-tuxedo.jpg",
     "method": "local-repo",
-    "note": "",
+    "note": "Source: public/photos in git history (removed from the tree in the cleanup commit).",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-tuxedo.jpg",
     "used_in": [
       "components/bodas/BodasCategorias.tsx",
@@ -1069,10 +1066,10 @@
     ]
   },
   "WhatsApp_Image_2026-06-05_at_13.10.34.jpeg": {
-    "name": "chaqueta-en-construccion-curso",
-    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/IMG_7442 2.jpg",
+    "name": "curso-manuel-fernandez-mesa-corte",
+    "source": ".image-migration/docx/image5.jpg",
     "method": "substitute",
-    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Filled with the image Evelyn's WEB LISTA doc specifies for this page: \"CURSOS ONLINE\".",
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.10.34.jpeg",
     "used_in": [
       "components/cursos/CursosList.tsx",
@@ -1101,6 +1098,26 @@
     "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-10_at_11.15.20.jpeg",
     "used_in": [
       "components/la-sastreria/CraftJourneySection.tsx"
+    ]
+  },
+  "WEB-LISTA-image23.png": {
+    "name": "novio-celebracion-boda-noche",
+    "source": ".image-migration/docx/image23.png",
+    "method": "docx-web-lista",
+    "note": "Evelyn's WEB LISTA doc: \"LA PRIMERA FOTO DE BODAS Y CEREMONIA\". Not on ImageKit; the site used an unrecoverable photo here instead.",
+    "url": "docx://WEB LISTA (1).docx/word/media/image23.png",
+    "used_in": [
+      "components/bodas/BodasHero.tsx"
+    ]
+  },
+  "WEB-LISTA-image25.png": {
+    "name": "frac-novio-balcon",
+    "source": ".image-migration/docx/image25.png",
+    "method": "docx-web-lista",
+    "note": "Evelyn's WEB LISTA doc: \"EN FRAC\". Not on ImageKit; the site used an unrecoverable photo here instead.",
+    "url": "docx://WEB LISTA (1).docx/word/media/image25.png",
+    "used_in": [
+      "components/bodas/BodasCategorias.tsx"
     ]
   }
 }

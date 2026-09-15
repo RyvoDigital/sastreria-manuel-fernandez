@@ -40,7 +40,7 @@ const COURSES: Course[] = [
     locked: false,
     price: undefined,
     image:
-      "/img/chaqueta-en-construccion-curso.webp",
+      "/img/curso-manuel-fernandez-mesa-corte.webp",
   },
   {
     id: "canvas",

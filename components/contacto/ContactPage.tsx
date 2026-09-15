@@ -21,8 +21,8 @@ type QuoteKey =
 const PHOTOS: { src: string; quoteKey: QuoteKey }[] = [
  
   { src: '/img/traje-azul-celeste-medida.webp', quoteKey: 'quote1' },
-  { src: '/img/evelyn-fernandez-mesa-corte-showroom.webp', quoteKey: 'quote2' },
-  { src: '/img/manuel-fernandez-midiendo-tejido.webp', quoteKey: 'quote3' },
+  { src: '/img/tarjeta-visita-sastreria-mano.webp', quoteKey: 'quote2' },
+  { src: '/img/traje-azul-maniqui-forbes.webp', quoteKey: 'quote3' },
 ]
 
 const CSS = `

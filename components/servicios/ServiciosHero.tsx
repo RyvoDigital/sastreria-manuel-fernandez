@@ -108,7 +108,7 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
   return (
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: isMobile ? '80px 1rem 0' : '200px 2rem 0' }}>
       <ParallaxImg
-        src="/img/chaque-gris-hilvanado-showroom.webp"
+        src="/img/frac-chaleco-blanco.webp"
         alt="Cinta métrica sobre patrón"
         start={-200}
         end={200}
@@ -214,8 +214,8 @@ const ServiceItem = ({
 }
 
 const SERVICE_IMAGES = [
-  '/img/chaque-gris-hilvanado-showroom.webp',
   '/img/frac-chaleco-blanco.webp',
+  '/img/chaque-gris-hilvanado-showroom.webp',
   '/img/smoking-negro-pajarita.webp',
   '/img/traje-tres-piezas-gris-medida.webp',
   '/img/abrigo-medida-rojo-forro.webp',

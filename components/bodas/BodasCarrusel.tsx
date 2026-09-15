@@ -4,9 +4,9 @@ import { useRef, useEffect } from 'react'
 import { useI18n } from '@/lib/i18n'
 
 const CARDS = [
-  { src: '/img/novio-chaque-paseo-novia.webp', caption: 'Detail' },
-  { src: '/img/novio-traje-azul-sentado.webp', caption: 'Fabric' },
-  { src: '/img/novios-playa-traje-azul.webp', caption: 'Precision' },
+  { src: '/img/botones-manga-chaqueta-boda.webp', caption: 'Detail' },
+  { src: '/img/forro-chaqueta-tejido-boda.webp', caption: 'Fabric' },
+  { src: '/img/novio-chaque-corbata-ceremonia.webp', caption: 'Precision' },
   { src: '/img/novio-traje-gris-boutonniere.webp', caption: 'Atelier' },
   { src: '/img/novio-traje-verde-bosque.webp', caption: 'Handwork' },
   { src: '/img/novios-escalera-jardin.webp', caption: 'Craft' },

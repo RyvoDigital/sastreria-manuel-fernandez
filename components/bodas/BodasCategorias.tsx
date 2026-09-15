@@ -7,9 +7,9 @@ import { useIsMobile } from '@/lib/use-mobile'
 
 
 const CATS = [
-  { src: '/img/chaque-hilvanado-medida.webp', height: '46vh', key: 'cat1' as const },
-  { src: '/img/novio-traje-azul-sentado.webp',    height: '63vh', key: 'cat2' as const },
-  { src: '/img/novio-chaque-paseo-novia.webp',        height: '63vh', key: 'cat4' as const },
+  { src: '/img/frac-novio-balcon.webp', height: '46vh', key: 'cat1' as const },
+  { src: '/img/chaque-hilvanado-medida.webp',    height: '63vh', key: 'cat2' as const },
+  { src: '/img/novio-traje-azul-sentado.webp',        height: '63vh', key: 'cat4' as const },
   { src: '/img/smoking-novio-gala.webp',   height: '46vh', key: 'cat3' as const },
 ]
 

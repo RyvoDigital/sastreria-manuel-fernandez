@@ -206,7 +206,7 @@ async function setup() {
 
     // Canonical course thumbnails, self-hosted in public/img (live page reads from DB, not static component)
     const courseImages: Record<string, string> = {
-      intro: '/img/chaqueta-en-construccion-curso.webp',
+      intro: '/img/curso-manuel-fernandez-mesa-corte.webp',
       canvas: '/img/solapa-chaqueta-cuadros-curso.webp',
       lapel: '/img/chaleco-verde-chaqueta-azul-showroom.webp',
       pockets: '/img/chaquetas-maniquies-showroom.webp',

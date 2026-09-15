@@ -23,7 +23,7 @@ export function BodasHero() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/img/novios-chaque-coliseo-roma.webp"
+            src="/img/novio-celebracion-boda-noche.webp"
             alt=""
             style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12 }}
           />
@@ -86,7 +86,7 @@ export function BodasHero() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/img/novios-chaque-coliseo-roma.webp"
+              src="/img/novio-celebracion-boda-noche.webp"
               alt="Traje de novio a medida · Bodas y Ceremonia"
               style={{
                 width: '100%',
@@ -117,7 +117,7 @@ export function BodasHero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/img/novios-chaque-coliseo-roma.webp"
+          src="/img/novio-celebracion-boda-noche.webp"
           alt=""
           style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18 }}
         />
@@ -165,7 +165,7 @@ export function BodasHero() {
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/img/novios-chaque-coliseo-roma.webp"
+          src="/img/novio-celebracion-boda-noche.webp"
           alt="Traje de novio a medida · Bodas y Ceremonia"
           style={{
             width: '100%',
