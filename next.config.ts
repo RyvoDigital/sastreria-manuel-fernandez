@@ -36,17 +36,11 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_HIDE_MODELOS3D: resolveHideModelos3d(),
   },
+  // Every image is self-hosted under public/img, so no remote hosts are
+  // allowed. Keep this empty: an entry here would re-enable Vercel image
+  // optimization for that host, which is metered on the Hobby plan.
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'ik.imagekit.io',
-      },
-    ],
+    remotePatterns: [],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
