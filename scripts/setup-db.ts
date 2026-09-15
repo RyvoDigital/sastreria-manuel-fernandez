@@ -204,14 +204,14 @@ async function setup() {
       )
     `)
 
-    // Canonical course thumbnails on ImageKit (live page reads from DB, not static component)
+    // Canonical course thumbnails, self-hosted in public/img (live page reads from DB, not static component)
     const courseImages: Record<string, string> = {
-      intro: 'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.10.34.jpeg',
-      canvas: 'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg',
-      lapel: 'https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg',
-      pockets: 'https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg',
-      buttonholes: 'https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg',
-      finishes: 'https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png',
+      intro: '/img/chaqueta-en-construccion-curso.webp',
+      canvas: '/img/solapa-chaqueta-cuadros-curso.webp',
+      lapel: '/img/chaleco-verde-chaqueta-azul-showroom.webp',
+      pockets: '/img/chaquetas-maniquies-showroom.webp',
+      buttonholes: '/img/chaqueta-azul-terminada-despues.webp',
+      finishes: '/img/anatomia-traje-forro-interior.webp',
     }
 
     // Migrate hardcoded courses if table is empty
@@ -235,7 +235,8 @@ async function setup() {
       console.log('Default courses seeded')
     }
 
-    // Fix broken Cloudinary / relative course images on existing rows
+    // Repair course images that point at dead remote hosts (Cloudinary, ImageKit) or are empty.
+    // Relative /img/... paths are the canonical value now and must NOT be treated as broken.
     let courseImagesFixed = 0
     for (const [id, image] of Object.entries(courseImages)) {
       const result = await pool.query(
@@ -246,14 +247,14 @@ async function setup() {
              image IS NULL
              OR image = ''
              OR image LIKE '%res.cloudinary.com%'
-             OR image NOT LIKE 'http%'
+             OR image LIKE '%ik.imagekit.io%'
            )`,
         [image, id]
       )
       courseImagesFixed += result.rowCount ?? 0
     }
     if (courseImagesFixed > 0) {
-      console.log(`Course images migrated to ImageKit: ${courseImagesFixed}`)
+      console.log(`Course images repaired to local /img paths: ${courseImagesFixed}`)
     }
 
     // Garments for 3D Models page
@@ -275,9 +276,9 @@ async function setup() {
     const garmentCount = await pool.query(`SELECT COUNT(*) FROM garments`)
     if (parseInt(garmentCount.rows[0].count) === 0) {
       const defaultGarments = [
-        { name: 'Traje Clásico a Medida', slug: 'traje-clasico', thumbnail_url: 'https://ik.imagekit.io/hvzm7siir/all-images/IMG_7409.JPG', description: 'Traje bespoke clásico en lana premium.', sort_order: 0 },
-        { name: 'Smoking de Gala', slug: 'smoking-gala', thumbnail_url: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-tuxedo.jpg', description: 'Smoking negro de ceremonia con solapa de satén.', sort_order: 1 },
-        { name: 'Chaqué Nupcial', slug: 'chaque-nupcial', thumbnail_url: 'https://ik.imagekit.io/hvzm7siir/all-images/wedding-morning-coat.jpg', description: 'Chaqué tradicional para bodas de mañana.', sort_order: 2 },
+        { name: 'Traje Clásico a Medida', slug: 'traje-clasico', thumbnail_url: '/img/toma-medidas-cliente.webp', description: 'Traje bespoke clásico en lana premium.', sort_order: 0 },
+        { name: 'Smoking de Gala', slug: 'smoking-gala', thumbnail_url: '/img/smoking-novio-gala.webp', description: 'Smoking negro de ceremonia con solapa de satén.', sort_order: 1 },
+        { name: 'Chaqué Nupcial', slug: 'chaque-nupcial', thumbnail_url: '/img/novio-chaque-roma.webp', description: 'Chaqué tradicional para bodas de mañana.', sort_order: 2 },
       ]
       for (const g of defaultGarments) {
         await pool.query(
