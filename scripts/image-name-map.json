@@ -1,0 +1,1106 @@
+{
+  "25ED7BDA-ADA8-4DC8-9F11-D47C9C4173E0.PNG": {
+    "name": "chaqueta-hilvanada-antes-prueba",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2022-02-22 a las 17.49.40.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/25ED7BDA-ADA8-4DC8-9F11-D47C9C4173E0.PNG",
+    "used_in": [
+      "components/home/BeforeAfterSlider.tsx"
+    ]
+  },
+  "anatomia-traje.png": {
+    "name": "anatomia-traje-forro-interior",
+    "source": "~/sastreria-manuel-fernandez/public/photos/anatomia-traje.png",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png",
+    "used_in": [
+      "components/cursos/CursosList.tsx",
+      "components/home/SuitShowcaseSection.tsx",
+      "scripts/setup-db.ts",
+      "courses#finishes"
+    ]
+  },
+  "atelier-2012-04-22-001-9645.jpg": {
+    "name": "sastre-cortando-tela-mesa-exterior",
+    "source": "~/sastreria-manuel-fernandez/.image-migration/original/atelier-2012-04-22-001-9645.jpg",
+    "method": "imagekit-download",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-04-22-001-9645.jpg",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "atelier-2012-08-06-006-0923.jpg": {
+    "name": "traje-gris-claro-medida-calle",
+    "source": "~/Downloads/fotos sastre/IMG_0923.JPG",
+    "method": "downloads-exif-number",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-006-0923.jpg",
+    "used_in": [
+      "components/home/TrajeEmpiezaSection.tsx"
+    ]
+  },
+  "atelier-2012-08-06-010-0971.jpg": {
+    "name": "americana-verde-menta-calle",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/IMG_0971.JPG",
+    "method": "downloads-exif-number",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-010-0971.jpg",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "atelier-2012-09-15-007-1325.jpg": {
+    "name": "chaque-chaleco-corbata-detalle",
+    "source": "~/Downloads/fotos sastre/IMG_1325.JPG",
+    "method": "downloads-exif-number",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-09-15-007-1325.jpg",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx"
+    ]
+  },
+  "atelier-2012-10-01-002-1477.jpg": {
+    "name": "cliente-bolsa-sastreria-jorge-juan",
+    "source": "~/Downloads/fotos sastre/IMG_1477.JPG",
+    "method": "downloads-exif-number",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-01-002-1477.jpg",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "atelier-2012-10-22-001-1550.jpg": {
+    "name": "prueba-traje-showroom",
+    "source": "~/Downloads/fotos sastre/IMG_1550.JPG",
+    "method": "downloads-exif-number",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-22-001-1550.jpg",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "atelier-2026-04-24-001-0657.jpg": {
+    "name": "novios-ramo-boda",
+    "source": "~/Downloads/Sastreria Wedding Photos/SMF 1/47AD5489-14BE-4AEE-8897-F3A794A999BD.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-001-0657.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-2026-04-24-003-0684.jpg": {
+    "name": "novios-baile-boda-jardin",
+    "source": "~/Downloads/Sastreria Wedding Photos/SMF 2/PHOTO-2026-02-24-08-36-19(1).jpg",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-003-0684.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-2026-04-24-004-0661.jpg": {
+    "name": "smoking-azul-forro-detalle",
+    "source": "~/Downloads/Sastreria Wedding Photos/SMF 1/A8D820CA-CF54-4837-9FEE-9FA28775480C.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-004-0661.jpg",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "atelier-2026-04-24-005-0682.jpg": {
+    "name": "manuel-fernandez-toma-medidas-cliente",
+    "source": "~/Downloads/fotos sastre/IMG_0111.JPG",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-005-0682.jpg",
+    "used_in": [
+      "components/home/ServicesEnhanced.tsx",
+      "components/home/ServicesOverview.tsx"
+    ]
+  },
+  "atelier-2026-04-24-006-0648.jpg": {
+    "name": "manuel-fernandez-midiendo-tejido",
+    "source": "~/Downloads/fotos sastre/Captura de pantalla 2025-11-27 a las 11.28.42.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-006-0648.jpg",
+    "used_in": [
+      "components/contacto/ContactPage.tsx"
+    ]
+  },
+  "atelier-2026-04-24-008-0693.jpg": {
+    "name": "novios-tarta-boda",
+    "source": "~/Downloads/Sastreria Wedding Photos/SMF 2/PHOTO-2026-02-24-08-36-19(2).jpg",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-008-0693.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-2026-04-24-009-0640.jpg": {
+    "name": "novia-velo-novio-jardin",
+    "source": "~/Downloads/Sastreria Wedding Photos/SMF 2/PHOTO-2026-02-24-08-36-19(3).jpg",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx",
+      "components/home/ServicesEnhanced.tsx",
+      "components/home/ServicesOverview.tsx"
+    ]
+  },
+  "atelier-2026-04-24-010-0677.jpg": {
+    "name": "novios-chaque-coliseo-roma",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/fed9ea90-39aa-4c68-a43c-922218d04457 2.JPG",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-010-0677.jpg",
+    "used_in": [
+      "components/bodas/BodasHero.tsx",
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "atelier-2026-04-24-011-0702.jpg": {
+    "name": "novios-petalos-salida-boda",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2023-02-15 a las 12.40.03.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-011-0702.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-tools.jpg": {
+    "name": "herramientas-sastre-cinta-metrica",
+    "source": "~/sastreria-manuel-fernandez/public/photos/atelier-tools.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-tools.jpg",
+    "used_in": [
+      "components/home/DetailGallery.tsx",
+      "components/home/ServicesEnhanced.tsx",
+      "components/home/ServicesOverview.tsx"
+    ]
+  },
+  "atelier-unknown-001-0350.jpg": {
+    "name": "traje-azul-celeste-medida",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/IMG_0350 2.jpg",
+    "method": "downloads-exif-number",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-001-0350.jpg",
+    "used_in": [
+      "components/contacto/ContactPage.tsx"
+    ]
+  },
+  "atelier-unknown-006-0582.jpg": {
+    "name": "chaleco-verde-chaqueta-azul-showroom",
+    "source": "~/sastreria-manuel-fernandez/.image-migration/original/atelier-unknown-006-0582.jpg",
+    "method": "imagekit-download",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg",
+    "used_in": [
+      "components/cursos/CursosList.tsx",
+      "components/home/DetailGallery.tsx",
+      "scripts/setup-db.ts",
+      "courses#lapel"
+    ]
+  },
+  "atelier-unknown-008-0596.jpg": {
+    "name": "novio-traje-gris-boutonniere",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2023-02-15 a las 12.57.27.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-008-0596.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-unknown-009-0599.jpg": {
+    "name": "novios-playa-traje-azul",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2024-04-03 a las 11.31.40.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-009-0599.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-unknown-011-0620.jpg": {
+    "name": "novio-chaque-paseo-novia",
+    "source": "~/Downloads/Sastreria Wedding Photos/SMF 2/PHOTO-2026-02-24-08-36-19(5).jpg",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-011-0620.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx",
+      "components/bodas/BodasCategorias.tsx"
+    ]
+  },
+  "atelier-unknown-012-0621.jpg": {
+    "name": "evelyn-fernandez-mesa-corte-showroom",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2022-06-29 a las 18.36.00.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-012-0621.jpg",
+    "used_in": [
+      "components/contacto/ContactPage.tsx"
+    ]
+  },
+  "atelier-unknown-013-0625.jpg": {
+    "name": "novios-escalera-jardin",
+    "source": "~/Downloads/Sastreria Wedding Photos/SMF 2/PHOTO-2026-02-24-08-36-19.jpg",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-013-0625.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-unknown-014-0631.jpg": {
+    "name": "prenda-medida-etiqueta",
+    "source": "~/sastreria-manuel-fernandez/.image-migration/original/atelier-unknown-014-0631.jpg",
+    "method": "imagekit-download",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-014-0631.jpg",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "atelier-unknown-016-0634.jpg": {
+    "name": "novio-traje-azul-sentado",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2024-04-03 a las 11.31.48.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx",
+      "components/bodas/BodasCategorias.tsx"
+    ]
+  },
+  "atelier-unknown-017-9305.jpg": {
+    "name": "novio-traje-verde-bosque",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/Captura de pantalla 2023-02-15 a las 12.36.29.png",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-017-9305.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "atelier-workshop.jpg": {
+    "name": "taller-sastreria-mesa-corte",
+    "source": "~/sastreria-manuel-fernandez/public/photos/atelier-workshop.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-workshop.jpg",
+    "used_in": [
+      "app/layout.tsx"
+    ]
+  },
+  "bodas-lining.png": {
+    "name": "forro-chaqueta-boda",
+    "source": ".image-migration/docx/image28.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-lining.png",
+    "used_in": [
+      "components/bodas/BodasFinal.tsx"
+    ]
+  },
+  "bodas-morning-coat.png": {
+    "name": "chaque-hilvanado-medida",
+    "source": ".image-migration/docx/image24.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-morning-coat.png",
+    "used_in": [
+      "components/bodas/BodasCategorias.tsx"
+    ]
+  },
+  "bodas-suit.png": {
+    "name": "traje-novio-beige-showroom",
+    "source": ".image-migration/docx/image26.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-suit.png",
+    "used_in": [
+      "components/bodas/BodasSuitSection.tsx"
+    ]
+  },
+  "ChatGPT_Image_10_abr_2026_11_27_13.png": {
+    "name": "chaqueta-azul-claro-corbata-granate",
+    "source": "~/Downloads/fotos sastre/ChatGPT Image 10 abr 2026, 11_27_13.png",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/ChatGPT_Image_10_abr_2026_11_27_13.png",
+    "used_in": [
+      "components/la-sastreria/OficioFlipSection.tsx"
+    ]
+  },
+  "configurador-overview.png": {
+    "name": "chaqueta-gris-raya-diplomatica-maniqui",
+    "source": ".image-migration/docx/image4.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/configurador-overview.png",
+    "used_in": [
+      "components/configurador/ConfiguradorValueProp.tsx"
+    ]
+  },
+  "create-your-suit.jpg": {
+    "name": "piezas-patron-tela-mesa-corte",
+    "source": ".image-migration/docx/image3.jpg",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/create-your-suit.jpg",
+    "used_in": [
+      "components/servicios/ServiciosCTA.tsx"
+    ]
+  },
+  "cutting-fabric-wide.jpg": {
+    "name": "corte-tejido-tijeras",
+    "source": "~/sastreria-manuel-fernandez/public/photos/cutting-fabric-wide.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/cutting-fabric-wide.jpg",
+    "used_in": [
+      "components/home/TestimonialsSection.tsx"
+    ]
+  },
+  "cutting-table.jpg": {
+    "name": "marcado-patron-tela-azul",
+    "source": "~/sastreria-manuel-fernandez/public/photos/cutting-table.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/cutting-table.jpg",
+    "used_in": [
+      "components/home/ZoomParallaxSection.tsx"
+    ]
+  },
+  "fabric-consultation.jpg": {
+    "name": "consulta-tejidos-showroom",
+    "source": "~/sastreria-manuel-fernandez/public/photos/fabric-consultation.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/fabric-consultation.jpg",
+    "used_in": [
+      "components/home/ServicesEnhanced.tsx"
+    ]
+  },
+  "favicon.ico": {
+    "name": "favicon-manuel-fernandez",
+    "source": "~/sastreria-manuel-fernandez/.image-migration/original/favicon.ico",
+    "method": "imagekit-download",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/favicon.ico",
+    "used_in": [
+      "app/layout.tsx"
+    ]
+  },
+  "hero-bg.avif": {
+    "name": "hero-manuel-fernandez-corte-patron",
+    "source": "~/sastreria-manuel-fernandez/public/hero-bg.avif",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif",
+    "used_in": [
+      "components/home/HeroEnhanced.tsx"
+    ]
+  },
+  "home-origin.png": {
+    "name": "hilos-telar-origen-tejido",
+    "source": ".image-migration/docx/image12.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-origin.png",
+    "used_in": [
+      "components/fabrics/FabricsSection.tsx"
+    ]
+  },
+  "home-sartorial-interpretation.png": {
+    "name": "manuel-fernandez-marcando-patron",
+    "source": "~/sastreria-manuel-fernandez/.image-migration/original/home-sartorial-interpretation.png",
+    "method": "imagekit-download",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-sartorial-interpretation.png",
+    "used_in": [
+      "components/home/ProcesoSection.tsx",
+      "components/home/ProcessCardsEnhanced.tsx"
+    ]
+  },
+  "home-selection.png": {
+    "name": "chaqueta-entretela-canvas-maniqui",
+    "source": "~/sastreria-manuel-fernandez/.image-migration/original/home-selection.png",
+    "method": "imagekit-download",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-selection.png",
+    "used_in": [
+      "components/fabrics/FabricsSection.tsx",
+      "components/home/ProcesoSection.tsx",
+      "components/home/ProcessCardsEnhanced.tsx"
+    ]
+  },
+  "home-the-process.png": {
+    "name": "traje-gris-medida-puerta-madrid",
+    "source": ".image-migration/docx/image8.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-the-process.png",
+    "used_in": [
+      "components/fabrics/FabricsSection.tsx"
+    ]
+  },
+  "home-the-result.png": {
+    "name": "fachada-sastreria-jorge-juan",
+    "source": ".image-migration/docx/image10.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-the-result.png",
+    "used_in": [
+      "components/home/ProcesoSection.tsx"
+    ]
+  },
+  "home-visual.png": {
+    "name": "muestras-tejidos-forbes",
+    "source": ".image-migration/docx/image11.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-visual.png",
+    "used_in": [
+      "components/fabrics/FabricsSection.tsx"
+    ]
+  },
+  "IMG_0067.JPG": {
+    "name": "patron-chaqueta-piezas-cortadas",
+    "source": "~/Downloads/fotos sastre/IMG_0067.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0067.JPG",
+    "used_in": [
+      "components/home/ServicesEnhanced.tsx",
+      "components/home/ServicesOverview.tsx"
+    ]
+  },
+  "IMG_0150.JPG": {
+    "name": "traje-gris-tres-piezas-detalle",
+    "source": "~/Downloads/fotos sastre/IMG_0150.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0150.JPG",
+    "used_in": [
+      "components/home/ProcessCardsSection.tsx"
+    ]
+  },
+  "IMG_0416.JPG": {
+    "name": "puno-camisa-reloj-detalle",
+    "source": "~/Downloads/fotos sastre/IMG_0416.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0416.JPG",
+    "used_in": [
+      "components/home/TestimonialsSection.tsx"
+    ]
+  },
+  "IMG_0577.JPG": {
+    "name": "ajuste-cintura-pantalon",
+    "source": "~/Downloads/fotos sastre/IMG_0577.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0577.JPG",
+    "used_in": [
+      "components/home/ServicesOverview.tsx"
+    ]
+  },
+  "IMG_0623.JPG": {
+    "name": "marcado-tiza-tela-gris",
+    "source": "~/Downloads/fotos sastre/IMG_0623.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0623.JPG",
+    "used_in": [
+      "components/la-sastreria/OficioFlipSection.tsx"
+    ]
+  },
+  "IMG_0734.JPG": {
+    "name": "clientes-showroom-sofa",
+    "source": "~/Downloads/fotos sastre/IMG_0734.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0734.JPG",
+    "used_in": [
+      "components/home/ServicesEnhanced.tsx",
+      "components/home/ServicesOverview.tsx"
+    ]
+  },
+  "IMG_0808.JPG": {
+    "name": "camisas-corbatas-accesorios",
+    "source": "~/Downloads/fotos sastre/IMG_0808.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0808.JPG",
+    "used_in": [
+      "components/home/TestimonialsSection.tsx"
+    ]
+  },
+  "IMG_0860.JPG": {
+    "name": "manuel-fernandez-cinta-metrica-mesa",
+    "source": "~/Downloads/fotos sastre/IMG_0860.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0860.JPG",
+    "used_in": [
+      "components/home/ZoomParallaxSection.tsx"
+    ]
+  },
+  "IMG_0945.JPG": {
+    "name": "americana-menta-espejo-showroom",
+    "source": "~/Downloads/fotos sastre/IMG_0945.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0945.JPG",
+    "used_in": [
+      "components/home/ZoomParallaxSection.tsx"
+    ]
+  },
+  "IMG_1001.JPG": {
+    "name": "manuel-fernandez-hilvanando",
+    "source": "~/Downloads/fotos sastre/IMG_1001.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1001.JPG",
+    "used_in": [
+      "components/la-sastreria/MaestroSection.tsx"
+    ]
+  },
+  "IMG_1277.JPG": {
+    "name": "cliente-saliendo-sastreria-bolsa",
+    "source": "~/Downloads/fotos sastre/IMG_1277.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1277.JPG",
+    "used_in": [
+      "components/home/ProcessCardsSection.tsx"
+    ]
+  },
+  "IMG_1310.JPG": {
+    "name": "recepcion-sastreria-madrid",
+    "source": "~/Downloads/fotos sastre/IMG_1310.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1310.JPG",
+    "used_in": [
+      "components/la-sastreria/OficioGrid.tsx"
+    ]
+  },
+  "IMG_1504.JPG": {
+    "name": "eleccion-tejido-cliente",
+    "source": "~/Downloads/fotos sastre/IMG_1504.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1504.JPG",
+    "used_in": [
+      "components/la-sastreria/OficioFlipSection.tsx"
+    ]
+  },
+  "IMG_1648.JPG": {
+    "name": "prueba-traje-burdeos-ajuste",
+    "source": "~/Downloads/fotos sastre/IMG_1648.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1648.JPG",
+    "used_in": [
+      "components/home/ProcessCardsSection.tsx"
+    ]
+  },
+  "IMG_7034.JPG": {
+    "name": "americana-azul-claro-calle",
+    "source": "~/Downloads/fotos sastre/IMG_7034.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7034.JPG",
+    "used_in": [
+      "components/home/ZoomParallaxSection.tsx"
+    ]
+  },
+  "IMG_7067.JPG": {
+    "name": "americana-menta-fachada-sastreria",
+    "source": "~/Downloads/fotos sastre/IMG_7067.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7067.JPG",
+    "used_in": [
+      "components/la-sastreria/OficioGrid.tsx"
+    ]
+  },
+  "IMG_7409.JPG": {
+    "name": "toma-medidas-cliente",
+    "source": "~/Downloads/fotos sastre/IMG_7409.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7409.JPG",
+    "used_in": [
+      "components/home/DetailGallery.tsx",
+      "components/home/ZoomParallaxSection.tsx",
+      "scripts/setup-db.ts"
+    ]
+  },
+  "IMG_7414.JPG": {
+    "name": "toma-medidas-cinta-metrica",
+    "source": "~/Downloads/fotos sastre/IMG_7414.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7414.JPG",
+    "used_in": [
+      "components/home/ZoomParallaxSection.tsx"
+    ]
+  },
+  "IMG_7511.JPG": {
+    "name": "showroom-libros-tejidos",
+    "source": "~/Downloads/fotos sastre/IMG_7511.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7511.JPG",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "IMG_7784.JPG": {
+    "name": "chaqueta-verde-construccion-alfileres",
+    "source": "~/Downloads/fotos sastre/IMG_7784.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7784.JPG",
+    "used_in": [
+      "components/home/DetailGallery.tsx"
+    ]
+  },
+  "IMG_9423.JPG": {
+    "name": "curso-sastreria-mesa-corte",
+    "source": "~/Downloads/fotos sastre/IMG_9423.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_9423.JPG",
+    "used_in": [
+      "components/cursos/CursosLayout.tsx",
+      "components/home/TestimonialsSection.tsx"
+    ]
+  },
+  "IMG_9721.JPG": {
+    "name": "demostracion-corte-evento",
+    "source": "~/Downloads/fotos sastre/IMG_9721.JPG",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_9721.JPG",
+    "used_in": [
+      "components/la-sastreria/OficioGrid.tsx"
+    ]
+  },
+  "logo.png": {
+    "name": "logo-manuel-fernandez",
+    "source": "~/sastreria-manuel-fernandez/public/logo.png",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/logo.png",
+    "used_in": [
+      "components/global/LoadingScreen.tsx",
+      "components/global/Navigation.tsx"
+    ]
+  },
+  "madrid-suit-street.jpg": {
+    "name": "americana-marron-medida-madrid",
+    "source": "~/sastreria-manuel-fernandez/public/photos/madrid-suit-street.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/madrid-suit-street.jpg",
+    "used_in": [
+      "components/configurador/ConfiguradorHero.tsx",
+      "components/servicios/ServiciosHero.tsx"
+    ]
+  },
+  "madrid-tweed.jpg": {
+    "name": "traje-tweed-madrid-calle",
+    "source": "~/sastreria-manuel-fernandez/public/photos/madrid-tweed.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/madrid-tweed.jpg",
+    "used_in": [
+      "components/home/TestimonialsSection.tsx"
+    ]
+  },
+  "mint-jacket-madrid.jpg": {
+    "name": "americana-verde-menta-madrid",
+    "source": "~/sastreria-manuel-fernandez/public/photos/mint-jacket-madrid.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg",
+    "used_in": [
+      "components/home/TestimonialsSection.tsx",
+      "components/servicios/ServiciosHero.tsx"
+    ]
+  },
+  "Proceso_de_sastrería_en_tela_azul.png": {
+    "name": "proceso-sastreria-tela-azul",
+    "source": "~/Downloads/fotos sastre/Proceso de sastrería en tela azul.png",
+    "method": "local-downloads",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/Proceso_de_sastrer%C3%ADa_en_tela_azul.png",
+    "used_in": [
+      "components/la-sastreria/OficioFlipSection.tsx"
+    ]
+  },
+  "producto-artisan-coat.png": {
+    "name": "abrigo-medida-rojo-forro",
+    "source": ".image-migration/docx/image36.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-coat.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx",
+      "components/servicios/ServiciosMorphGallery.tsx"
+    ]
+  },
+  "producto-artisan-suit.png": {
+    "name": "traje-tres-piezas-gris-medida",
+    "source": ".image-migration/docx/image35.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx",
+      "components/servicios/ServiciosMorphGallery.tsx"
+    ]
+  },
+  "producto-blazer.png": {
+    "name": "blazer-cuadros-azul-medida",
+    "source": ".image-migration/docx/image37.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-blazer.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx",
+      "components/servicios/ServiciosMorphGallery.tsx"
+    ]
+  },
+  "producto-morning-coat.png": {
+    "name": "chaque-gris-hilvanado-showroom",
+    "source": ".image-migration/docx/image33.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN which of docx FRAC/CHAQUE maps to stroller vs morning-coat.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-morning-coat.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx"
+    ]
+  },
+  "producto-shirts.png": {
+    "name": "camisas-medida-corbatas",
+    "source": ".image-migration/docx/image38.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx",
+      "components/servicios/ServiciosMorphGallery.tsx"
+    ]
+  },
+  "producto-stroller.png": {
+    "name": "frac-chaleco-blanco",
+    "source": ".image-migration/docx/image32.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN which of docx FRAC/CHAQUE maps to stroller vs morning-coat.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-stroller.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx",
+      "components/servicios/ServiciosMorphGallery.tsx"
+    ]
+  },
+  "producto-tuxedo.png": {
+    "name": "smoking-negro-pajarita",
+    "source": ".image-migration/docx/image34.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx",
+      "components/servicios/ServiciosMorphGallery.tsx"
+    ]
+  },
+  "sastreria-artisan-detail.png": {
+    "name": "cosido-a-mano-detalle",
+    "source": ".image-migration/docx/image16.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-artisan-detail.png",
+    "used_in": [
+      "components/la-sastreria/CraftJourneySection.tsx"
+    ]
+  },
+  "sastreria-cut-by-hand.png": {
+    "name": "corte-a-mano-mesa",
+    "source": ".image-migration/docx/image15.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-cut-by-hand.png",
+    "used_in": [
+      "components/la-sastreria/CraftJourneySection.tsx"
+    ]
+  },
+  "sastreria-evelyn-fernandez.png": {
+    "name": "evelyn-fernandez-sastreria",
+    "source": ".image-migration/docx/image18.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-evelyn-fernandez.png",
+    "used_in": [
+      "components/la-sastreria/EvelynSection.tsx"
+    ]
+  },
+  "sastreria-hero.png": {
+    "name": "manos-sastre-tela-gris",
+    "source": ".image-migration/docx/image14.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-hero.png",
+    "used_in": [
+      "components/la-sastreria/SastreriaHero.tsx"
+    ]
+  },
+  "sastreria-manuel-fernandez.png": {
+    "name": "manuel-fernandez-mesa-de-corte",
+    "source": ".image-migration/docx/image17.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-manuel-fernandez.png",
+    "used_in": [
+      "components/la-sastreria/HistoriaSection.tsx"
+    ]
+  },
+  "sastreria-next-step.png": {
+    "name": "cliente-showroom-sofa-chester",
+    "source": ".image-migration/docx/image22.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-next-step.png",
+    "used_in": [
+      "components/la-sastreria/SastreriaCTA.tsx"
+    ]
+  },
+  "sastreria-overview.png": {
+    "name": "chaque-hilvanado-diseno",
+    "source": ".image-migration/docx/image1.png",
+    "method": "docx-web-lista",
+    "note": "UNCERTAIN: docx image under heading \"SASTRERIA ARTESANAL\", no exact label; verify.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-overview.png",
+    "used_in": [
+      "components/la-sastreria/CraftJourneySection.tsx"
+    ]
+  },
+  "sastreria-space-01.png": {
+    "name": "espacio-sastreria-showroom-01",
+    "source": ".image-migration/docx/image19.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN order of the two \"EL ESPACIO\" docx images.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-01.png",
+    "used_in": [
+      "components/la-sastreria/EspacioSection.tsx"
+    ]
+  },
+  "sastreria-space-02.png": {
+    "name": "espacio-sastreria-showroom-02",
+    "source": ".image-migration/docx/image20.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies). UNCERTAIN order of the two \"EL ESPACIO\" docx images.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-02.png",
+    "used_in": [
+      "components/la-sastreria/EspacioSection.tsx"
+    ]
+  },
+  "scissors-cutting.jpg": {
+    "name": "tijeras-cortando-tejido",
+    "source": "~/sastreria-manuel-fernandez/public/photos/scissors-cutting.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/scissors-cutting.jpg",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx"
+    ]
+  },
+  "servicios-hero.png": {
+    "name": "patron-cortado-tela-raya",
+    "source": ".image-migration/docx/image31.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/servicios-hero.png",
+    "used_in": [
+      "components/servicios/ServiciosHero.tsx"
+    ]
+  },
+  "servicios-overview.jpg": {
+    "name": "showroom-muestrario-tejidos",
+    "source": ".image-migration/docx/image2.jpg",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/servicios-overview.jpg",
+    "used_in": [
+      "components/servicios/CredencialesSection.tsx"
+    ]
+  },
+  "showroom-jackets.jpg": {
+    "name": "chaquetas-maniquies-showroom",
+    "source": "~/sastreria-manuel-fernandez/public/photos/showroom-jackets.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg",
+    "used_in": [
+      "components/cursos/CursosList.tsx",
+      "scripts/setup-db.ts",
+      "courses#pockets"
+    ]
+  },
+  "sleeve-buttons.jpg": {
+    "name": "botones-manga-tweed",
+    "source": "~/sastreria-manuel-fernandez/public/photos/sleeve-buttons.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/sleeve-buttons.jpg",
+    "used_in": [
+      "components/home/ZoomParallaxSection.tsx"
+    ]
+  },
+  "tailor-workshop.jpg": {
+    "name": "evelyn-fernandez-taller-corte",
+    "source": "~/sastreria-manuel-fernandez/public/photos/tailor-workshop.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/tailor-workshop.jpg",
+    "used_in": [
+      "components/home/ServicesEnhanced.tsx",
+      "components/home/ServicesOverview.tsx"
+    ]
+  },
+  "tweed-buttons.jpg": {
+    "name": "botones-tweed-detalle",
+    "source": "~/sastreria-manuel-fernandez/public/photos/tweed-buttons.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/tweed-buttons.jpg",
+    "used_in": [
+      "components/la-sastreria/OficioGrid.tsx"
+    ]
+  },
+  "velvet-lining.jpg": {
+    "name": "forro-morado-chaqueta",
+    "source": "~/sastreria-manuel-fernandez/public/photos/velvet-lining.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/velvet-lining.jpg",
+    "used_in": [
+      "components/home/ZoomParallaxSection.tsx"
+    ]
+  },
+  "videollamada-overview.png": {
+    "name": "asesoramiento-tejido-cliente",
+    "source": ".image-migration/docx/image6.png",
+    "method": "docx-web-lista",
+    "note": "Recovered from ~/Downloads/WEB LISTA (1).docx (label-matched; 2 of them pixel-verified against ImageKit copies).",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/videollamada-overview.png",
+    "used_in": [
+      "components/videollamada/VideollamadaHero.tsx",
+      "components/videollamada/VideollamadaValue.tsx"
+    ]
+  },
+  "wedding-groom-detail.jpg": {
+    "name": "boda-novios-ceremonia",
+    "source": "~/sastreria-manuel-fernandez/public/photos/wedding-groom-detail.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-groom-detail.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx"
+    ]
+  },
+  "wedding-morning-coat.jpg": {
+    "name": "novio-chaque-roma",
+    "source": "~/sastreria-manuel-fernandez/public/photos/wedding-morning-coat.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-morning-coat.jpg",
+    "used_in": [
+      "components/bodas/BodasCarrusel.tsx",
+      "scripts/setup-db.ts"
+    ]
+  },
+  "wedding-tuxedo.jpg": {
+    "name": "smoking-novio-gala",
+    "source": "~/sastreria-manuel-fernandez/public/photos/wedding-tuxedo.jpg",
+    "method": "local-repo",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-tuxedo.jpg",
+    "used_in": [
+      "components/bodas/BodasCategorias.tsx",
+      "scripts/setup-db.ts"
+    ]
+  },
+  "WhatsApp_Image_2026-05-24_at_00.37.28.jpg": {
+    "name": "solapa-chaqueta-cuadros-curso",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/IMG_7446.jpg",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg",
+    "used_in": [
+      "components/cursos/CursosList.tsx",
+      "scripts/setup-db.ts",
+      "courses#canvas"
+    ]
+  },
+  "WhatsApp_Image_2026-06-05_at_10.50.14.jpeg": {
+    "name": "novio-padrinos-trajes-azules",
+    "source": "~/sastreria-manuel-fernandez/.image-migration/original/WhatsApp_Image_2026-06-05_at_10.50.14.jpeg",
+    "method": "imagekit-download",
+    "note": "",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_10.50.14.jpeg",
+    "used_in": [
+      "components/home/ProcessCardsEnhanced.tsx"
+    ]
+  },
+  "WhatsApp_Image_2026-06-05_at_13.10.34.jpeg": {
+    "name": "chaqueta-en-construccion-curso",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/IMG_7442 2.jpg",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.10.34.jpeg",
+    "used_in": [
+      "components/cursos/CursosList.tsx",
+      "scripts/setup-db.ts",
+      "courses#intro"
+    ]
+  },
+  "WhatsApp_Image_2026-06-05_at_13.11.33.jpeg": {
+    "name": "chaqueta-azul-terminada-despues",
+    "source": "~/Downloads/Sastreria Manuel Fernandez Fotos/IMG_2368.JPG",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg",
+    "used_in": [
+      "components/cursos/CursosList.tsx",
+      "components/home/BeforeAfterSlider.tsx",
+      "scripts/setup-db.ts",
+      "courses#buttonholes"
+    ]
+  },
+  "WhatsApp_Image_2026-06-10_at_11.15.20.jpeg": {
+    "name": "tejido-principe-de-gales-etiqueta",
+    "source": "~/Downloads/fotos sastre/IMG_0647.JPG",
+    "method": "substitute",
+    "note": "SUBSTITUTE: original unrecoverable (ImageKit 403). Chosen from client photo folders; replace when original is available.",
+    "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-10_at_11.15.20.jpeg",
+    "used_in": [
+      "components/la-sastreria/CraftJourneySection.tsx"
+    ]
+  }
+}

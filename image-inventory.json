@@ -1,0 +1,1389 @@
+{
+  "summary": {
+    "generatedAt": "2026-09-15T14:55:19.465Z",
+    "dbScanned": true,
+    "codeReferences": 151,
+    "codeFiles": 42,
+    "dbRows": 6,
+    "distinctAssets": 106,
+    "dbOnlyAssets": []
+  },
+  "assets": [
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/25ED7BDA-ADA8-4DC8-9F11-D47C9C4173E0.PNG",
+      "filename": "25ED7BDA-ADA8-4DC8-9F11-D47C9C4173E0.PNG",
+      "code": [
+        {
+          "file": "components/home/BeforeAfterSlider.tsx",
+          "line": 181
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/anatomia-traje.png",
+      "filename": "anatomia-traje.png",
+      "code": [
+        {
+          "file": "components/cursos/CursosList.tsx",
+          "line": 128
+        },
+        {
+          "file": "components/home/SuitShowcaseSection.tsx",
+          "line": 79
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 214
+        }
+      ],
+      "db": [
+        {
+          "table": "courses",
+          "id": "finishes"
+        }
+      ]
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-04-22-001-9645.jpg",
+      "filename": "atelier-2012-04-22-001-9645.jpg",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 8
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-006-0923.jpg",
+      "filename": "atelier-2012-08-06-006-0923.jpg",
+      "code": [
+        {
+          "file": "components/home/TrajeEmpiezaSection.tsx",
+          "line": 96
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-08-06-010-0971.jpg",
+      "filename": "atelier-2012-08-06-010-0971.jpg",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 14
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-09-15-007-1325.jpg",
+      "filename": "atelier-2012-09-15-007-1325.jpg",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 225
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-01-002-1477.jpg",
+      "filename": "atelier-2012-10-01-002-1477.jpg",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 13
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2012-10-22-001-1550.jpg",
+      "filename": "atelier-2012-10-22-001-1550.jpg",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 12
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-001-0657.jpg",
+      "filename": "atelier-2026-04-24-001-0657.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 17
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-003-0684.jpg",
+      "filename": "atelier-2026-04-24-003-0684.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 16
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-004-0661.jpg",
+      "filename": "atelier-2026-04-24-004-0661.jpg",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 11
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-005-0682.jpg",
+      "filename": "atelier-2026-04-24-005-0682.jpg",
+      "code": [
+        {
+          "file": "components/home/ServicesEnhanced.tsx",
+          "line": 18
+        },
+        {
+          "file": "components/home/ServicesOverview.tsx",
+          "line": 16
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-006-0648.jpg",
+      "filename": "atelier-2026-04-24-006-0648.jpg",
+      "code": [
+        {
+          "file": "components/contacto/ContactPage.tsx",
+          "line": 25
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-008-0693.jpg",
+      "filename": "atelier-2026-04-24-008-0693.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 15
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-009-0640.jpg",
+      "filename": "atelier-2026-04-24-009-0640.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 14
+        },
+        {
+          "file": "components/home/ServicesEnhanced.tsx",
+          "line": 25
+        },
+        {
+          "file": "components/home/ServicesOverview.tsx",
+          "line": 23
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-010-0677.jpg",
+      "filename": "atelier-2026-04-24-010-0677.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasHero.tsx",
+          "line": 26
+        },
+        {
+          "file": "components/bodas/BodasHero.tsx",
+          "line": 89
+        },
+        {
+          "file": "components/bodas/BodasHero.tsx",
+          "line": 120
+        },
+        {
+          "file": "components/bodas/BodasHero.tsx",
+          "line": 168
+        },
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 10
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-2026-04-24-011-0702.jpg",
+      "filename": "atelier-2026-04-24-011-0702.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 13
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-tools.jpg",
+      "filename": "atelier-tools.jpg",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 16
+        },
+        {
+          "file": "components/home/ServicesEnhanced.tsx",
+          "line": 53
+        },
+        {
+          "file": "components/home/ServicesOverview.tsx",
+          "line": 51
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-001-0350.jpg",
+      "filename": "atelier-unknown-001-0350.jpg",
+      "code": [
+        {
+          "file": "components/contacto/ContactPage.tsx",
+          "line": 23
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-006-0582.jpg",
+      "filename": "atelier-unknown-006-0582.jpg",
+      "code": [
+        {
+          "file": "components/cursos/CursosList.tsx",
+          "line": 77
+        },
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 9
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 211
+        }
+      ],
+      "db": [
+        {
+          "table": "courses",
+          "id": "lapel"
+        }
+      ]
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-008-0596.jpg",
+      "filename": "atelier-unknown-008-0596.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 10
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-009-0599.jpg",
+      "filename": "atelier-unknown-009-0599.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 9
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-011-0620.jpg",
+      "filename": "atelier-unknown-011-0620.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 7
+        },
+        {
+          "file": "components/bodas/BodasCategorias.tsx",
+          "line": 12
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-012-0621.jpg",
+      "filename": "atelier-unknown-012-0621.jpg",
+      "code": [
+        {
+          "file": "components/contacto/ContactPage.tsx",
+          "line": 24
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-013-0625.jpg",
+      "filename": "atelier-unknown-013-0625.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 12
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-014-0631.jpg",
+      "filename": "atelier-unknown-014-0631.jpg",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 7
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-016-0634.jpg",
+      "filename": "atelier-unknown-016-0634.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 8
+        },
+        {
+          "file": "components/bodas/BodasCategorias.tsx",
+          "line": 11
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-unknown-017-9305.jpg",
+      "filename": "atelier-unknown-017-9305.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 11
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/atelier-workshop.jpg",
+      "filename": "atelier-workshop.jpg",
+      "code": [
+        {
+          "file": "app/layout.tsx",
+          "line": 90
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-lining.png",
+      "filename": "bodas-lining.png",
+      "code": [
+        {
+          "file": "components/bodas/BodasFinal.tsx",
+          "line": 42
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-morning-coat.png",
+      "filename": "bodas-morning-coat.png",
+      "code": [
+        {
+          "file": "components/bodas/BodasCategorias.tsx",
+          "line": 10
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/bodas-suit.png",
+      "filename": "bodas-suit.png",
+      "code": [
+        {
+          "file": "components/bodas/BodasSuitSection.tsx",
+          "line": 68
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/ChatGPT_Image_10_abr_2026_11_27_13.png",
+      "filename": "ChatGPT_Image_10_abr_2026_11_27_13.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioFlipSection.tsx",
+          "line": 30
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/configurador-overview.png",
+      "filename": "configurador-overview.png",
+      "code": [
+        {
+          "file": "components/configurador/ConfiguradorValueProp.tsx",
+          "line": 66
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/create-your-suit.jpg",
+      "filename": "create-your-suit.jpg",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosCTA.tsx",
+          "line": 39
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/cutting-fabric-wide.jpg",
+      "filename": "cutting-fabric-wide.jpg",
+      "code": [
+        {
+          "file": "components/home/TestimonialsSection.tsx",
+          "line": 200
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/cutting-table.jpg",
+      "filename": "cutting-table.jpg",
+      "code": [
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 10
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/fabric-consultation.jpg",
+      "filename": "fabric-consultation.jpg",
+      "code": [
+        {
+          "file": "components/home/ServicesEnhanced.tsx",
+          "line": 46
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/favicon.ico",
+      "filename": "favicon.ico",
+      "code": [
+        {
+          "file": "app/layout.tsx",
+          "line": 46
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/hero-bg.avif",
+      "filename": "hero-bg.avif",
+      "code": [
+        {
+          "file": "components/home/HeroEnhanced.tsx",
+          "line": 238
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-origin.png",
+      "filename": "home-origin.png",
+      "code": [
+        {
+          "file": "components/fabrics/FabricsSection.tsx",
+          "line": 13
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-sartorial-interpretation.png",
+      "filename": "home-sartorial-interpretation.png",
+      "code": [
+        {
+          "file": "components/home/ProcesoSection.tsx",
+          "line": 17
+        },
+        {
+          "file": "components/home/ProcessCardsEnhanced.tsx",
+          "line": 10
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-selection.png",
+      "filename": "home-selection.png",
+      "code": [
+        {
+          "file": "components/fabrics/FabricsSection.tsx",
+          "line": 15
+        },
+        {
+          "file": "components/home/ProcesoSection.tsx",
+          "line": 12
+        },
+        {
+          "file": "components/home/ProcessCardsEnhanced.tsx",
+          "line": 9
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-the-process.png",
+      "filename": "home-the-process.png",
+      "code": [
+        {
+          "file": "components/fabrics/FabricsSection.tsx",
+          "line": 14
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-the-result.png",
+      "filename": "home-the-result.png",
+      "code": [
+        {
+          "file": "components/home/ProcesoSection.tsx",
+          "line": 22
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/home-visual.png",
+      "filename": "home-visual.png",
+      "code": [
+        {
+          "file": "components/fabrics/FabricsSection.tsx",
+          "line": 12
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0067.JPG",
+      "filename": "IMG_0067.JPG",
+      "code": [
+        {
+          "file": "components/home/ServicesEnhanced.tsx",
+          "line": 39
+        },
+        {
+          "file": "components/home/ServicesOverview.tsx",
+          "line": 37
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0150.JPG",
+      "filename": "IMG_0150.JPG",
+      "code": [
+        {
+          "file": "components/home/ProcessCardsSection.tsx",
+          "line": 8
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0416.JPG",
+      "filename": "IMG_0416.JPG",
+      "code": [
+        {
+          "file": "components/home/TestimonialsSection.tsx",
+          "line": 15
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0577.JPG",
+      "filename": "IMG_0577.JPG",
+      "code": [
+        {
+          "file": "components/home/ServicesOverview.tsx",
+          "line": 44
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0623.JPG",
+      "filename": "IMG_0623.JPG",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioFlipSection.tsx",
+          "line": 28
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0734.JPG",
+      "filename": "IMG_0734.JPG",
+      "code": [
+        {
+          "file": "components/home/ServicesEnhanced.tsx",
+          "line": 61
+        },
+        {
+          "file": "components/home/ServicesOverview.tsx",
+          "line": 59
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0808.JPG",
+      "filename": "IMG_0808.JPG",
+      "code": [
+        {
+          "file": "components/home/TestimonialsSection.tsx",
+          "line": 14
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0860.JPG",
+      "filename": "IMG_0860.JPG",
+      "code": [
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 11
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_0945.JPG",
+      "filename": "IMG_0945.JPG",
+      "code": [
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 16
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1001.JPG",
+      "filename": "IMG_1001.JPG",
+      "code": [
+        {
+          "file": "components/la-sastreria/MaestroSection.tsx",
+          "line": 78
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1277.JPG",
+      "filename": "IMG_1277.JPG",
+      "code": [
+        {
+          "file": "components/home/ProcessCardsSection.tsx",
+          "line": 9
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1310.JPG",
+      "filename": "IMG_1310.JPG",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioGrid.tsx",
+          "line": 11
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1504.JPG",
+      "filename": "IMG_1504.JPG",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioFlipSection.tsx",
+          "line": 27
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_1648.JPG",
+      "filename": "IMG_1648.JPG",
+      "code": [
+        {
+          "file": "components/home/ProcessCardsSection.tsx",
+          "line": 7
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7034.JPG",
+      "filename": "IMG_7034.JPG",
+      "code": [
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 17
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7067.JPG",
+      "filename": "IMG_7067.JPG",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioGrid.tsx",
+          "line": 10
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7409.JPG",
+      "filename": "IMG_7409.JPG",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 17
+        },
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 12
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 278
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7414.JPG",
+      "filename": "IMG_7414.JPG",
+      "code": [
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 13
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7511.JPG",
+      "filename": "IMG_7511.JPG",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 15
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_7784.JPG",
+      "filename": "IMG_7784.JPG",
+      "code": [
+        {
+          "file": "components/home/DetailGallery.tsx",
+          "line": 18
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_9423.JPG",
+      "filename": "IMG_9423.JPG",
+      "code": [
+        {
+          "file": "components/cursos/CursosLayout.tsx",
+          "line": 117
+        },
+        {
+          "file": "components/home/TestimonialsSection.tsx",
+          "line": 12
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/IMG_9721.JPG",
+      "filename": "IMG_9721.JPG",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioGrid.tsx",
+          "line": 12
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/logo.png",
+      "filename": "logo.png",
+      "code": [
+        {
+          "file": "components/global/LoadingScreen.tsx",
+          "line": 71
+        },
+        {
+          "file": "components/global/Navigation.tsx",
+          "line": 111
+        },
+        {
+          "file": "components/global/Navigation.tsx",
+          "line": 313
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/madrid-suit-street.jpg",
+      "filename": "madrid-suit-street.jpg",
+      "code": [
+        {
+          "file": "components/configurador/ConfiguradorHero.tsx",
+          "line": 25
+        },
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 224
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/madrid-tweed.jpg",
+      "filename": "madrid-tweed.jpg",
+      "code": [
+        {
+          "file": "components/home/TestimonialsSection.tsx",
+          "line": 11
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/mint-jacket-madrid.jpg",
+      "filename": "mint-jacket-madrid.jpg",
+      "code": [
+        {
+          "file": "components/home/TestimonialsSection.tsx",
+          "line": 13
+        },
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 222
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/Proceso_de_sastrer%C3%ADa_en_tela_azul.png",
+      "filename": "Proceso_de_sastrería_en_tela_azul.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioFlipSection.tsx",
+          "line": 29
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-coat.png",
+      "filename": "producto-artisan-coat.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 221
+        },
+        {
+          "file": "components/servicios/ServiciosMorphGallery.tsx",
+          "line": 30
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-artisan-suit.png",
+      "filename": "producto-artisan-suit.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 125
+        },
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 220
+        },
+        {
+          "file": "components/servicios/ServiciosMorphGallery.tsx",
+          "line": 12
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-blazer.png",
+      "filename": "producto-blazer.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 132
+        },
+        {
+          "file": "components/servicios/ServiciosMorphGallery.tsx",
+          "line": 18
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-morning-coat.png",
+      "filename": "producto-morning-coat.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 111
+        },
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 217
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-shirts.png",
+      "filename": "producto-shirts.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 223
+        },
+        {
+          "file": "components/servicios/ServiciosMorphGallery.tsx",
+          "line": 24
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-stroller.png",
+      "filename": "producto-stroller.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 218
+        },
+        {
+          "file": "components/servicios/ServiciosMorphGallery.tsx",
+          "line": 42
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/producto-tuxedo.png",
+      "filename": "producto-tuxedo.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 118
+        },
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 219
+        },
+        {
+          "file": "components/servicios/ServiciosMorphGallery.tsx",
+          "line": 36
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-artisan-detail.png",
+      "filename": "sastreria-artisan-detail.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/CraftJourneySection.tsx",
+          "line": 74
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-cut-by-hand.png",
+      "filename": "sastreria-cut-by-hand.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/CraftJourneySection.tsx",
+          "line": 67
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-evelyn-fernandez.png",
+      "filename": "sastreria-evelyn-fernandez.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/EvelynSection.tsx",
+          "line": 102
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-hero.png",
+      "filename": "sastreria-hero.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/SastreriaHero.tsx",
+          "line": 76
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-manuel-fernandez.png",
+      "filename": "sastreria-manuel-fernandez.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/HistoriaSection.tsx",
+          "line": 178
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-next-step.png",
+      "filename": "sastreria-next-step.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/SastreriaCTA.tsx",
+          "line": 52
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-overview.png",
+      "filename": "sastreria-overview.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/CraftJourneySection.tsx",
+          "line": 60
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-01.png",
+      "filename": "sastreria-space-01.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/EspacioSection.tsx",
+          "line": 145
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sastreria-space-02.png",
+      "filename": "sastreria-space-02.png",
+      "code": [
+        {
+          "file": "components/la-sastreria/EspacioSection.tsx",
+          "line": 144
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/scissors-cutting.jpg",
+      "filename": "scissors-cutting.jpg",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 226
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/servicios-hero.png",
+      "filename": "servicios-hero.png",
+      "code": [
+        {
+          "file": "components/servicios/ServiciosHero.tsx",
+          "line": 34
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/servicios-overview.jpg",
+      "filename": "servicios-overview.jpg",
+      "code": [
+        {
+          "file": "components/servicios/CredencialesSection.tsx",
+          "line": 19
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/showroom-jackets.jpg",
+      "filename": "showroom-jackets.jpg",
+      "code": [
+        {
+          "file": "components/cursos/CursosList.tsx",
+          "line": 94
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 212
+        }
+      ],
+      "db": [
+        {
+          "table": "courses",
+          "id": "pockets"
+        }
+      ]
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/sleeve-buttons.jpg",
+      "filename": "sleeve-buttons.jpg",
+      "code": [
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 14
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/tailor-workshop.jpg",
+      "filename": "tailor-workshop.jpg",
+      "code": [
+        {
+          "file": "components/home/ServicesEnhanced.tsx",
+          "line": 32
+        },
+        {
+          "file": "components/home/ServicesOverview.tsx",
+          "line": 30
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/tweed-buttons.jpg",
+      "filename": "tweed-buttons.jpg",
+      "code": [
+        {
+          "file": "components/la-sastreria/OficioGrid.tsx",
+          "line": 13
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/velvet-lining.jpg",
+      "filename": "velvet-lining.jpg",
+      "code": [
+        {
+          "file": "components/home/ZoomParallaxSection.tsx",
+          "line": 15
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/videollamada-overview.png",
+      "filename": "videollamada-overview.png",
+      "code": [
+        {
+          "file": "components/videollamada/VideollamadaHero.tsx",
+          "line": 25
+        },
+        {
+          "file": "components/videollamada/VideollamadaValue.tsx",
+          "line": 66
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-groom-detail.jpg",
+      "filename": "wedding-groom-detail.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 18
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-morning-coat.jpg",
+      "filename": "wedding-morning-coat.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCarrusel.tsx",
+          "line": 19
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 280
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/wedding-tuxedo.jpg",
+      "filename": "wedding-tuxedo.jpg",
+      "code": [
+        {
+          "file": "components/bodas/BodasCategorias.tsx",
+          "line": 13
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 279
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-05-24_at_00.37.28.jpg",
+      "filename": "WhatsApp_Image_2026-05-24_at_00.37.28.jpg",
+      "code": [
+        {
+          "file": "components/cursos/CursosList.tsx",
+          "line": 60
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 210
+        }
+      ],
+      "db": [
+        {
+          "table": "courses",
+          "id": "canvas"
+        }
+      ]
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_10.50.14.jpeg",
+      "filename": "WhatsApp_Image_2026-06-05_at_10.50.14.jpeg",
+      "code": [
+        {
+          "file": "components/home/ProcessCardsEnhanced.tsx",
+          "line": 11
+        }
+      ],
+      "db": []
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.10.34.jpeg",
+      "filename": "WhatsApp_Image_2026-06-05_at_13.10.34.jpeg",
+      "code": [
+        {
+          "file": "components/cursos/CursosList.tsx",
+          "line": 43
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 209
+        }
+      ],
+      "db": [
+        {
+          "table": "courses",
+          "id": "intro"
+        }
+      ]
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-05_at_13.11.33.jpeg",
+      "filename": "WhatsApp_Image_2026-06-05_at_13.11.33.jpeg",
+      "code": [
+        {
+          "file": "components/cursos/CursosList.tsx",
+          "line": 111
+        },
+        {
+          "file": "components/home/BeforeAfterSlider.tsx",
+          "line": 157
+        },
+        {
+          "file": "scripts/setup-db.ts",
+          "line": 213
+        }
+      ],
+      "db": [
+        {
+          "table": "courses",
+          "id": "buttonholes"
+        }
+      ]
+    },
+    {
+      "url": "https://ik.imagekit.io/hvzm7siir/all-images/WhatsApp_Image_2026-06-10_at_11.15.20.jpeg",
+      "filename": "WhatsApp_Image_2026-06-10_at_11.15.20.jpeg",
+      "code": [
+        {
+          "file": "components/la-sastreria/CraftJourneySection.tsx",
+          "line": 53
+        }
+      ],
+      "db": []
+    }
+  ]
+}

@@ -45,3 +45,6 @@ public/hero.mp4
 /web_lista_images
 /web_lista_temp
 *.docx
+
+# image migration scratch (never commit)
+.image-migration/
