@@ -14,8 +14,12 @@ import {
     adjustments corrected by hand afterwards (client, 15 Sep 2026)
   - no patterns; cut and built directly on the cloth (client, same date)
   - the repertoire of garments (messages/es.json servicios.services)
-  - lapel, shoulder, cloth and colour are chosen per garment
-    (messages/es.json proceso.step2_body)
+  - every element of the garment is the client's decision and nothing is
+    pre-made (client, 17 Sep 2026). Stated with the nine elements she was asked
+    about: lapel, shoulder, cloth, colour, lining, buttons, pockets, vents and
+    monogram. Her phrasing was "absolutamente todo"; that is not printed bare,
+    because a bare superlative reads as marketing while the list reads as fact.
+    Do not extend the list beyond those nine without asking her again.
   - the cloth houses, named by the client herself (17 Sep 2026): Loro Piana,
     Holland & Sherry, Scabal, Vitale Barberis Canonico, Drapers, Piacenza and
     Dormeuil. Her list and the twelve-name marquee in
@@ -96,11 +100,14 @@ const COPY = {
 
   personalisation: {
     label: 'La prenda',
-    h2: 'Qué se decide en cada encargo',
+    h2: 'Aquí no hay nada prehecho',
     body:
-      'La solapa, el hombro, el tejido y el color se deciden prenda a prenda, en función de quién ' +
-      'la va a vestir y del momento para el que se crea. Ninguna de esas decisiones se hereda de ' +
-      'un encargo anterior.',
+      'La solapa, el hombro, el tejido y el color. El forro, los botones, los bolsillos, las ' +
+      'aberturas y el monograma. Cada uno de esos elementos se decide encargo a encargo, en ' +
+      'función de quién va a vestir la prenda y del momento para el que se crea.',
+    body2:
+      'Ninguna de esas decisiones se hereda de un encargo anterior, igual que no se hereda el ' +
+      'corte. La prenda se concibe entera cada vez.',
   },
 
   visit: {
@@ -252,10 +259,7 @@ export function TrajesAMedidaMadrid() {
           <Rule />
           <Display measure="20ch">{COPY.personalisation.h2}</Display>
           <Prose measure="60ch">{COPY.personalisation.body}</Prose>
-          {/* TODO(copy): needs confirmation from Manuel Fernández — the full
-              list of what a client actually chooses (linings, buttons, pockets,
-              vents, monogram). Only lapel, shoulder, cloth and colour are
-              sourced from existing site copy, so only those are named. */}
+          <Prose measure="60ch">{COPY.personalisation.body2}</Prose>
         </div>
       </section>
 

@@ -26,8 +26,13 @@ import {
 
   Deliberately NOT stated: prices, lead times, number of fittings beyond the
   confirmed one, fabric-house relationships, who the atelier has dressed.
-  Craft steps the sources do not cover are described in general terms only and
-  carry a TODO(copy).
+  Three craft steps are still described in general terms because the atelier's
+  own practice is not confirmed: hilvanado (is the basting entirely by hand,
+  and when is the garment first assembled), entretelas (full or half canvas,
+  materials, whether the chest piece is padded by hand) and acabados (which
+  finishings are hand-worked). Those paragraphs describe the craft step and
+  claim nothing about this workshop, which is why they are safe to ship as
+  they stand. They are the last open copy question on the site.
 
   Copy lives in this file rather than messages/*.json. Locale is client-side
   state with no URL that always boots to Spanish, so a Spanish landing page
