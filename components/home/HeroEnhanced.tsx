@@ -317,6 +317,32 @@ export function HeroEnhanced() {
 
           {/* Main headline with split text */}
           <h1 style={{ margin: 0, perspective: '500px' }}>
+            {/*
+              SEO descriptor. Leads the H1 text content so the heading says what
+              the business is, while the brand tagline below stays the dominant
+              visual element. Reuses the type treatment of the t.hero.since
+              eyebrow above rather than introducing a new one.
+
+              MUST keep className="animate-in": the GSAP effect above selects
+              .animate-in inside textRef and tweens it from opacity 0 to 1. An
+              element with the inline opacity: 0 below but without the class
+              would never be animated and would stay permanently invisible.
+            */}
+            <div
+              className="animate-in"
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.7rem',
+                letterSpacing: '0.25em',
+                textTransform: 'uppercase',
+                lineHeight: 1.5,
+                color: '#C9A84C',
+                marginBottom: '0.75rem',
+                opacity: 0,
+              }}
+            >
+              {t.hero.seo_heading}
+            </div>
             <div 
               className="animate-in"
               style={{

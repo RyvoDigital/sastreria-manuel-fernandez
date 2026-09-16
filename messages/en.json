@@ -1,4 +1,7 @@
 {
+  "home": {
+    "seo_intro": "Sastrería Manuel Fernández is an artisan bespoke tailoring house in Madrid, at Jorge Juan 41, in the Barrio de Salamanca. We create bespoke suits for men and women, wedding suits, morning coats, dinner jackets, tailcoats, blazers, overcoats and unique garments through artisan tailoring processes."
+  },
   "nav": {
     "inicio": "Home",
     "sastreria": "Artisan Tailoring",
@@ -11,6 +14,7 @@
     "modelos3d": "Create your Suit"
   },
   "hero": {
+    "seo_heading": "Bespoke tailoring in Madrid",
     "tagline": "Tailoring of today, designed for tomorrow.",
     "tagline2": "Architecture in fabric, tailored to the measure of your essence.",
     "subtext": "",

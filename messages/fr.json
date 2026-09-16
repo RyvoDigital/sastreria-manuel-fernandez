@@ -1,4 +1,7 @@
 {
+  "home": {
+    "seo_intro": "Sastrería Manuel Fernández est une maison de tailleur artisanal sur mesure à Madrid, située au 41 Jorge Juan, dans le Barrio de Salamanca. Nous créons des costumes sur mesure pour homme et femme, des costumes de marié, des jaquettes, des smokings, des fracs, des blazers, des manteaux et des pièces uniques selon des procédés de confection artisanale."
+  },
   "nav": {
     "inicio": "Accueil",
     "sastreria": "La Tailleur",
@@ -11,6 +14,7 @@
     "modelos3d": "Créez votre Costume"
   },
   "hero": {
+    "seo_heading": "Tailleur artisanal sur mesure à Madrid",
     "tagline": "Tailleur d'aujourd'hui, pensé pour demain.",
     "tagline2": "Architecture en tissu, sur mesure pour votre essence.",
     "subtext": "",

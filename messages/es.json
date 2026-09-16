@@ -1,4 +1,7 @@
 {
+  "home": {
+    "seo_intro": "Sastrería Manuel Fernández es una sastrería artesanal a medida en Madrid, situada en Jorge Juan 41, en el Barrio de Salamanca. Creamos trajes bespoke para caballero y señora, trajes de novio, chaqués, smoking, frac, blazers, abrigos y prendas únicas mediante procesos de confección artesanal."
+  },
   "nav": {
     "inicio": "Inicio",
     "sastreria": "Sastrería Artesanal",
@@ -11,6 +14,7 @@
     "modelos3d": "Crea tu Traje"
   },
   "hero": {
+    "seo_heading": "Sastrería artesanal a medida en Madrid",
     "tagline": "Sastrería de hoy, pensada para el mañana.",
     "tagline2": "Arquitectura en tela, hecha a la medida de tu esencia.",
     "subtext": "",
