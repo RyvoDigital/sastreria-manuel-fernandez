@@ -46,11 +46,17 @@ export function SastreriaCTA() {
         justifyContent: 'center',
       }}
     >
-      {/* Photo */}
+      {/* Photo.
+          Retired cliente-showroom-sofa-chester.webp here: the roll-up banner
+          in that photograph advertises the .net domain, which works against
+          the single-entity signal the .com site is building. Replaced rather
+          than dropped, since this is a full-bleed CTA and needs a backdrop.
+          alt is empty because the element is aria-hidden: a dimmed background
+          behind the heading, not content. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/img/cliente-showroom-sofa-chester.webp"
-        alt="Cliente consultando un muestrario de tejidos en el sofá chéster del showroom"
+        src="/img/consulta-tejidos-showroom.webp"
+        alt=""
         aria-hidden
         className="mf-sas-cta-photo"
         style={{ filter: 'brightness(0.55) saturate(0.7)', objectPosition: 'center 30%' }}

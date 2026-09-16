@@ -9,8 +9,8 @@ import { LandingPage, type LandingContent } from './LandingPage'
   No wide atelier photography anywhere, close detail only. That rules out the
   private-appointment angle the brief suggested for this page, which would have
   meant showing the room, so the page is built from the street, the address and
-  the work itself instead. There is no facade or street photograph in the
-  library yet; see the TODO(image) below.
+  the work itself instead. The page opens on the shopfront: that photograph
+  already existed in the library, unused on a feature-flagged page.
 */
 const content: LandingContent = {
   serviceType: 'Sastrería artesanal a medida',
@@ -20,14 +20,13 @@ const content: LandingContent = {
     'El taller está en Jorge Juan 41, a unos pasos de Serrano, Velázquez y Príncipe de Vergara. ' +
     'Desde ahí se corta y se construye a mano cada prenda, para una sola persona.',
   blocks: [
-    // TODO(image): needs a photograph of the facade and of Jorge Juan from the
-    // street. Nothing in public/img covers the exterior, and the workshop
-    // interior cannot be used. Until then this page opens on the work itself.
     {
+      // The shopfront on Jorge Juan. Previously sat unused on /modelos-3d,
+      // which is feature-flagged off on this deployment.
       kind: 'figure',
-      src: '/img/trazado-tiza-tejido-azul.webp',
-      alt: 'Trazado a tiza sobre un paño azul, con cinta métrica y regla, en la mesa de corte',
-      height: 'clamp(16rem, 38vw, 28rem)',
+      src: '/img/americana-blanca-fachada-sastreria.webp',
+      alt: 'Americana blanca de lino y pantalón azul frente al escaparate de la sastrería en Jorge Juan',
+      height: 'clamp(18rem, 42vw, 32rem)',
     },
     {
       kind: 'prose',
