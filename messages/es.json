@@ -285,6 +285,8 @@
       "stat2_val": "A Medida", "stat2_label": "Cada Pieza",
       "stat3_val": "Madrid",   "stat3_label": "Nuestra Ciudad",
       "satisfaction_label": "Clientes Satisfechos",
+      "artesanal_lead": "Conozca en detalle cómo trabajamos:",
+      "artesanal_link": "sastrería artesanal a medida en Madrid",
       "btn_primary": "Reservar Cita",
       "btn_secondary": "Ver la Sastrería"
     },

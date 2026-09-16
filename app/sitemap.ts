@@ -18,6 +18,7 @@ import { SITE_URL } from '@/lib/site'
 const routes = [
   '',
   '/la-sastreria',
+  '/sastreria-artesanal-madrid',
   '/servicios',
   '/bodas-y-ceremonia',
   '/configurador',

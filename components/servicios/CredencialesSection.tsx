@@ -164,6 +164,29 @@ export function CredencialesSection() {
             marginBottom: '2.5rem',
           }}>{c.body}</p>
 
+          {/* Contextual link to the artisan tailoring landing page. Descriptive
+              anchor text, not "read more". /servicios stays the overview and
+              links out; the landing page goes deep. */}
+          <p style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'clamp(0.8rem, 1.1vw, 0.9rem)',
+            lineHeight: 1.85,
+            color: 'rgba(255,255,255,0.5)',
+            maxWidth: '44ch',
+            marginBottom: '2.5rem',
+          }}>
+            {c.artesanal_lead}{' '}
+            <Link href="/sastreria-artesanal-madrid" style={{
+              color: '#C9A84C',
+              textDecoration: 'underline',
+              textUnderlineOffset: '0.2em',
+              textDecorationThickness: '1px',
+            }}>
+              {c.artesanal_link}
+            </Link>
+            .
+          </p>
+
           {/* CTA Buttons */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link href="/contacto" style={{
