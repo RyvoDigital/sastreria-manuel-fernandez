@@ -16,8 +16,13 @@ import {
   - the repertoire of garments (messages/es.json servicios.services)
   - lapel, shoulder, cloth and colour are chosen per garment
     (messages/es.json proceso.step2_body)
-  - the cloth houses, named exactly as the site already names them in
-    components/servicios/CredencialesSection.tsx
+  - the cloth houses, named by the client herself (17 Sep 2026): Loro Piana,
+    Holland & Sherry, Scabal, Vitale Barberis Canonico, Drapers, Piacenza and
+    Dormeuil. Her list and the twelve-name marquee in
+    components/servicios/CredencialesSection.tsx are deliberately NOT
+    reconciled: this passage is where the client speaks, so it carries her
+    seven, and "entre ellas" keeps it open rather than exhaustive. Her point
+    that no house is singled out is stated, because it is the answer.
   - Jorge Juan 41, Barrio de Salamanca; attended in Spanish, English, French
 
   Deliberately NOT stated: prices, lead times, turnaround, how many fittings
@@ -79,9 +84,14 @@ const COPY = {
     label: 'Los tejidos',
     h2: 'El tejido se elige con el muestrario delante',
     body:
-      'Trabajamos con paños de casas como Loro Piana, Holland & Sherry, Scabal, Fox Brothers, ' +
-      'Dormeuil, Zegna, Reda, Harrison, Carnet, Dugdale Bros y Fratelli Tallia di Delfino. La ' +
-      'elección se hace en la primera cita, sobre el muestrario y con la prenda ya en mente.',
+      'Trabajamos con algunas de las casas textiles más prestigiosas del mundo, entre ellas Loro ' +
+      'Piana, Holland & Sherry, Scabal, Vitale Barberis Canonico, Drapers, Piacenza y Dormeuil. ' +
+      'Ninguna se destaca por encima de las demás: cada una tiene colecciones, pesos y ' +
+      'características extraordinarias.',
+    body2:
+      'Lo importante es seleccionar el tejido adecuado para cada cliente, teniendo en cuenta la ' +
+      'prenda, la ocasión, el clima, el uso y la caída que se quiere conseguir. Esa elección se ' +
+      'hace en la primera cita, sobre el muestrario.',
   },
 
   personalisation: {
@@ -227,11 +237,7 @@ export function TrajesAMedidaMadrid() {
           <Rule />
           <Display italic="con el muestrario delante" measure="24ch">{COPY.fabrics.h2}</Display>
           <Prose measure="60ch">{COPY.fabrics.body}</Prose>
-          {/* TODO(copy): needs confirmation from Manuel Fernández — whether any
-              of these houses should be given more prominence than the others,
-              and whether there are cloth merchants he works with regularly that
-              the /servicios marquee does not list. Nothing above implies a
-              partnership, an authorised dealership or exclusivity. */}
+          <Prose measure="60ch">{COPY.fabrics.body2}</Prose>
         </div>
       </section>
 

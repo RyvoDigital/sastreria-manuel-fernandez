@@ -2,9 +2,10 @@ import { LandingPage, type LandingContent } from './LandingPage'
 
 /*
   Sourced: smoking is in the /servicios repertoire; the appointment / single
-  fitting / delivery sequence; no patterns; Jorge Juan 41. Everything about
-  dinner dress below is general dress-code fact rather than a claim about this
-  house; anything house-specific carries a TODO(copy).
+  fitting / delivery sequence; no patterns; Jorge Juan 41. The dinner-dress
+  guidance is the client's own, supplied 17 Sep 2026, adapted to this page's
+  voice rather than pasted. Two earlier lines that guessed at the lapel facing
+  and at the waist covering were corrected against it.
 */
 const content: LandingContent = {
   serviceType: 'Confección de smoking a medida',
@@ -27,8 +28,8 @@ const content: LandingContent = {
       h2: 'Un smoking se decide en la solapa',
       italic: 'en la solapa',
       paras: [
-        'Solapa de pico o chal, forrada en raso o en grosgrain: es la decisión que fija el ' +
-          'carácter de la prenda antes que ninguna otra. A partir de ahí se resuelven la ' +
+        'Solapa de pico o de cuello chal, hecha tradicionalmente en seda: es la decisión que fija ' +
+          'el carácter de la prenda antes que ninguna otra. A partir de ahí se resuelven la ' +
           'botonadura, los bolsillos y el galón del pantalón.',
         'Como el resto de prendas del taller, el smoking se traza y se corta directamente sobre ' +
           'el tejido, para el cuerpo de quien lo va a vestir.',
@@ -62,8 +63,8 @@ const content: LandingContent = {
           n: '03',
           title: 'Camisa y complementos',
           body:
-            'Camisa de etiqueta, pajarita y faja o chaleco, según el registro de la noche. Se ' +
-            'eligen en la primera cita, junto al tejido de la prenda.',
+            'Camisa blanca de ceremonia, pajarita negra de seda y zapato negro. Se eligen en la ' +
+            'primera cita, junto al tejido de la prenda.',
         },
       ],
     },
@@ -72,12 +73,12 @@ const content: LandingContent = {
       label: 'El protocolo',
       h2: 'Cuándo se lleva',
       paras: [
-        'El smoking es prenda de noche. La invitación suele indicarlo, y de ahí se deduce el ' +
-          'resto: el color de la prenda, el tipo de camisa y los complementos que la acompañan.',
-        // TODO(copy): needs confirmation from Manuel Fernández — the house's own
-        // recommendations on dinner dress (midnight blue against black, grosgrain
-        // against satin, faja or waistcoat) so this section can carry his view
-        // rather than general dress code.
+        'El smoking es prenda de etiqueta de noche y debe mantener una estética limpia. Las ' +
+          'solapas, de pico o de cuello chal, se hacen tradicionalmente en seda, igual que ' +
+          'determinados detalles del pantalón.',
+        'Se acompaña de camisa blanca de ceremonia, pajarita preferiblemente negra y de seda, y ' +
+          'zapato negro elegante. Ahí son fundamentales las proporciones y los detalles pequeños: ' +
+          'un smoking bien hecho resulta sofisticado sin parecer excesivo.',
       ],
     },
   ],

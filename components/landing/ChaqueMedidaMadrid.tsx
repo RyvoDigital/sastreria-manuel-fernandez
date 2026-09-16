@@ -3,9 +3,9 @@ import { LandingPage, type LandingContent } from './LandingPage'
 /*
   Sourced: the chaqué is already part of the repertoire on /servicios; the
   appointment / single fitting / delivery sequence; ~120 hours; no patterns;
-  Jorge Juan 41. Protocol descriptions below are general dress-code facts, not
-  claims about this atelier's stock or practice, and anything specific to the
-  house carries a TODO(copy).
+  Jorge Juan 41. The protocol section is the client's own guidance on the
+  chaqué, supplied 17 Sep 2026, adapted to this page's voice rather than
+  pasted verbatim.
 */
 const content: LandingContent = {
   serviceType: 'Confección de chaqué a medida',
@@ -74,13 +74,13 @@ const content: LandingContent = {
       label: 'El protocolo',
       h2: 'Lo que pide la etiqueta',
       paras: [
-        'El chaqué se lleva de día y pide una camisa y unos complementos acordes. Los detalles ' +
-          'concretos, del color del chaleco a la corbata o el plastrón, se acuerdan en la primera ' +
-          'cita según la ceremonia y el papel de quien lo viste.',
-        // TODO(copy): needs confirmation from Manuel Fernández — the house's own
-        // guidance on chaqué protocol (waistcoat colour, plastrón versus tie,
-        // what he recommends for a groom against a guest). Only general dress
-        // code is described above, nothing specific to this atelier.
+        'El chaqué es una de las prendas de máxima etiqueta de día, indicada para bodas y ' +
+          'ceremonias formales celebradas durante el día. Se combina tradicionalmente con ' +
+          'pantalón de corte clásico, chaleco y corbata, cuidando las proporciones, los largos y ' +
+          'la armonía entre los tejidos y los colores.',
+        'En un buen chaqué la diferencia está en el diseño personalizado, en la caída y en el ' +
+          'equilibrio de la chaqueta. Y en respetar el protocolo sin que la prenda deje de ' +
+          'parecerse a quien la lleva.',
       ],
     },
   ],

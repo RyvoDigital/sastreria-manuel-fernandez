@@ -9,9 +9,16 @@ import { LandingPage, type LandingContent } from './LandingPage'
   garments" (la_sastreria.maestro.p1), so women's commissions are an existing
   claim rather than a new one. Method, hours and sequence as elsewhere.
 
-  NOT stated: any separate women's process, price, lead time, or a list of
-  women's garments the site does not already claim. Where the brief would want
-  specifics, there is a TODO(copy) instead.
+  The repertoire and the passage about working from a reference are the
+  client's own answer, supplied 17 Sep 2026, adapted to this page's voice.
+
+  That passage is deliberately framed as inspiration interpreted in this
+  house's own construction. It does not say, and must not be edited to say,
+  that the atelier recreates or reproduces a design from another house, and it
+  names no brand. Same reasoning as the Loro Piana removal: the atelier's work
+  should not borrow another name's authority.
+
+  NOT stated: prices, lead times, or any separate women's process.
 */
 const content: LandingContent = {
   serviceType: "Women's bespoke tailoring",
@@ -78,12 +85,16 @@ const content: LandingContent = {
       label: 'The garments',
       h2: 'What can be commissioned',
       paras: [
-        'Suits, jackets, trousers, waistcoats and coats, in the cloths the house works with. ' +
-          'Ceremony pieces are made to the same standard as the rest of the repertoire.',
-        // TODO(copy): needs confirmation from Manuel Fernández and Evelyn — the
-        // specific women's repertoire they want to lead with, and whether there
-        // are garments they would rather not list. The sentence above stays
-        // within what /servicios already claims for the house as a whole.
+        'Suits with jacket and trousers, jackets, blazers, trousers, waistcoats, skirts, coats ' +
+          'and ceremony pieces, all cut and built by hand. Every garment begins from a design ' +
+          'made for one woman, worked to her anatomy, her proportions and her own style.',
+        'A client may arrive with a reference that inspires her. That reference is a starting ' +
+          'point, never a template: the garment is then drawn and constructed here, in this ' +
+          'house\u2019s own hand, in cloth chosen for her and made entirely to measure. What she ' +
+          'leaves with is a piece created for her alone, its fit, its finishing and its ' +
+          'materials all decided for her.',
+        'The aim is to flatter the figure while keeping the codes, the construction and the ' +
+          'standards of genuine artisan tailoring.',
       ],
     },
     {
