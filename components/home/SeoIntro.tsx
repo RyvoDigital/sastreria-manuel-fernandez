@@ -5,14 +5,22 @@ import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 
 /**
- * Muted body copy on dark ground, and the standard body colour.
+ * The two ends of the scroll reveal.
  *
- * The scroll reveal brightens from one to the other. It deliberately animates
- * colour rather than opacity: this paragraph is the page's SEO copy, and text
- * that scrolls through a near-transparent state reads as hidden text. At its
- * dimmest this is still the colour the paragraph shipped with.
+ * It animates colour, never opacity: this paragraph is the page's SEO copy,
+ * and text that scrolls through a near-transparent state reads as hidden text.
+ *
+ * DIM is set by contrast, not by eye. Composited over the section background
+ * (var(--color-navy), #0A1628) and measured against WCAG, white at these
+ * alphas gives:
+ *
+ *   0.35 -> 3.20:1   0.45 -> 4.48:1   0.47 -> 4.78:1   1.00 -> 18.13:1
+ *
+ * Body text at this size and weight needs 4.5:1 for AA, so 0.47 is the
+ * dimmest value that still reads as grey body text rather than as faint or
+ * hidden text. Do not lower it without re-running that calculation.
  */
-const MUTED = 'rgba(255,255,255,0.72)'
+const DIM = 'rgba(255,255,255,0.47)'
 const BRIGHT = '#FFFFFF' // var(--color-white), the globals.css body colour
 
 /**
@@ -55,12 +63,15 @@ export function SeoIntro() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         words,
-        { color: MUTED },
+        { color: DIM },
         {
           color: BRIGHT,
           ease: 'none',
-          duration: 1,
-          stagger: { each: 0.5 },
+          // Stagger wider than the per-word duration, so each word has almost
+          // finished before the next starts and the highlight reads as a
+          // sweep travelling through the sentence.
+          duration: 1.2,
+          stagger: { each: 1 },
           scrollTrigger: {
             trigger: paragraph,
             start: 'top 85%',
@@ -98,9 +109,11 @@ export function SeoIntro() {
           fontSize: 'clamp(0.95rem, 1.2vw, 1.05rem)',
           fontWeight: 300,
           lineHeight: 1.8,
-          // Base colour, so the paragraph is legible with JavaScript disabled
-          // and before the first ScrollTrigger tick.
-          color: MUTED,
+          // Base colour matches the animation's start, so there is no dimming
+          // flash when GSAP applies the from-state on hydration, and with
+          // JavaScript disabled the paragraph simply stays at this legible
+          // grey rather than being stuck mid-reveal.
+          color: DIM,
         }}
       >
         {words.map((word, i) => (
