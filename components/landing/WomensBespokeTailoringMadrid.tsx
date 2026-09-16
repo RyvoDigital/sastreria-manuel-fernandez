@@ -14,6 +14,7 @@ import { LandingPage, type LandingContent } from './LandingPage'
   specifics, there is a TODO(copy) instead.
 */
 const content: LandingContent = {
+  serviceType: "Women's bespoke tailoring",
   eyebrow: "Women's Bespoke",
   h1: "Women's Bespoke Tailoring in Madrid",
   lede:

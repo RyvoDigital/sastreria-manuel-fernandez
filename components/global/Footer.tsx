@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
+import { track } from '@/lib/analytics'
 
 const NAV_COL1 = [
   { key: 'inicio' as const, href: '/' },
@@ -229,6 +230,7 @@ export function Footer() {
           </a>
           <a
             href="https://wa.me/34682192944"
+            onClick={() => track('whatsapp_click', { location: 'footer' })}
             target="_blank"
             rel="noopener noreferrer"
             style={{

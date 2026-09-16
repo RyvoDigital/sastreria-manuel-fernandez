@@ -16,6 +16,7 @@ import { LandingPage, type LandingContent } from './LandingPage'
   so they are not written here. No prices, no lead times, no partnerships.
 */
 const content: LandingContent = {
+  serviceType: 'Bespoke tailoring',
   eyebrow: 'Bespoke Tailoring',
   h1: 'Bespoke Tailor in Madrid',
   lede:

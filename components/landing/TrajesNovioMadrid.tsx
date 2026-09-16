@@ -1,3 +1,4 @@
+import { FAQ_BY_PAGE } from '@/data/faq'
 import { LandingPage, type LandingContent } from './LandingPage'
 
 /*
@@ -5,16 +6,18 @@ import { LandingPage, type LandingContent } from './LandingPage'
   ~120 hours, the ceremony repertoire (messages/es.json servicios.services),
   Jorge Juan 41, attention in Spanish, English and French.
 
-  NOT stated, deliberately: how far in advance a groom should order. That is
-  exactly the kind of fact the client wants to be authoritative on and it is
-  not confirmed, so it is a TODO(copy) rather than a guess. No prices, no
-  turnaround, no lead times anywhere on this page.
+  The ordering timeframe is stated: eight to twelve months, with express
+  turnaround possible. It is confirmed by the client (15 Sep 2026) and appears
+  verbatim in the FAQ at the foot of this page, so the body copy says the same
+  thing in different words rather than repeating it. No prices anywhere.
 
   Cannibalisation: /bodas-y-ceremonia already exists and stays the brand and
   inspiration page. This one targets the transactional query. They link both
   ways and share no sentences.
 */
 const content: LandingContent = {
+  serviceType: 'Confección de trajes de novio a medida',
+  faq: FAQ_BY_PAGE['trajes-novio-madrid'],
   eyebrow: 'Trajes de Novio',
   h1: 'Trajes de novio a medida en Madrid',
   lede:
@@ -82,13 +85,12 @@ const content: LandingContent = {
       label: 'Cuándo encargarlo',
       h2: 'Con cuánta antelación conviene empezar',
       paras: [
-        // TODO(copy): needs confirmation from Manuel Fernández — how far in
-        // advance a groom should place the order, and what the express option
-        // actually allows. The client has answered this for the FAQ; until that
-        // answer is placed on the page verbatim, no timeframe is stated here.
-        'Conviene empezar con tiempo: la elección del tejido, las pruebas y los ajustes finales ' +
-          'forman parte de la experiencia y se disfrutan más sin prisa. Lo concreto se acuerda en ' +
-          'la primera cita, en función de la fecha de la boda y de la prenda elegida.',
+        'Lo ideal es empezar entre ocho y doce meses antes de la boda. No es un plazo técnico: es ' +
+          'el tiempo que permite elegir el tejido sin prisa, vivir las pruebas como parte del ' +
+          'momento y decidir cada detalle con calma.',
+        'Cuando la fecha aprieta, nuestros tiempos exprés permiten confeccionar la prenda incluso ' +
+          'con un par de semanas por delante. El traje es el mismo; lo que se pierde es la holgura ' +
+          'para disfrutar del proceso.',
       ],
     },
     {

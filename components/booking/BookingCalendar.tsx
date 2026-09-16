@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { track } from '@/lib/analytics'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
 import { toMadridDateString, isSlotInPast } from '@/lib/booking/date-utils'
@@ -362,6 +363,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
           date: toMadridDateString(selectedDate),
           time: selectedTime,
         })
+        track('booking_complete', { location: 'booking' })
         setSuccess(true)
       } else if (onFreeSubmit) {
         const result = await onFreeSubmit({
@@ -374,6 +376,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
         if (result.bookingId) {
           setBookingId(result.bookingId)
         }
+        track('booking_complete', { location: 'booking' })
         setSuccess(true)
       }
     } catch (err) {

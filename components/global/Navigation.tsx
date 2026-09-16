@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 
 import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
+import { track } from '@/lib/analytics'
 import { useSettings } from '@/lib/settings-provider'
 import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
 
@@ -125,6 +126,7 @@ export function Navigation() {
           {/* CALL US BUTTON — Desktop only, persistent on all pages */}
           <a
             href={CONTACT_BUTTONS_DATA.call.href}
+              onClick={() => track('phone_click', { location: 'nav' })}
             className="mf-contact-btn"
             style={{
               display:        'none',
@@ -225,6 +227,7 @@ export function Navigation() {
           {/* WhatsApp */}
           <a
             href="https://wa.me/34682192944"
+            onClick={() => track('whatsapp_click', { location: 'nav' })}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
@@ -434,7 +437,10 @@ export function Navigation() {
           }}>
             <a
               href={CONTACT_BUTTONS_DATA.call.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                track('phone_click', { location: 'nav' })
+                setMenuOpen(false)
+              }}
               style={{
                 display: 'flex',
                 alignItems: 'center',

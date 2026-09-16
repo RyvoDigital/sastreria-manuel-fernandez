@@ -7,6 +7,7 @@ import { LandingPage, type LandingContent } from './LandingPage'
   house; anything house-specific carries a TODO(copy).
 */
 const content: LandingContent = {
+  serviceType: 'Confección de smoking a medida',
   eyebrow: 'Smoking',
   h1: 'Smoking a medida en Madrid',
   lede:

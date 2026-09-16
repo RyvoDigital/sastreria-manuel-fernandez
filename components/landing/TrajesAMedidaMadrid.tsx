@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { JsonLdBlocks } from './JsonLd'
 import { LandingStyles } from './LandingStyles'
 import { ParallaxFigure } from './ParallaxFigure'
 import {
@@ -143,6 +144,7 @@ export function TrajesAMedidaMadrid() {
   return (
     <div className="lp">
       <LandingStyles />
+      <JsonLdBlocks serviceType="Confección de trajes a medida" />
 
       {/* Hero, with the first call to action above the fold. */}
       <section

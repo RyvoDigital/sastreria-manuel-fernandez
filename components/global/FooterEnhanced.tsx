@@ -7,6 +7,7 @@ import { useSettings } from '@/lib/settings-provider'
 import { usePathname } from 'next/navigation'
 import { Send, MessageCircle } from 'lucide-react'
 import { SITE_PHONE_E164 } from '@/lib/site'
+import { track } from '@/lib/analytics'
 
 const ALL_NAV_COL1 = [
   { key: 'inicio' as const, href: '/', settingId: null },
@@ -192,6 +193,7 @@ export function FooterEnhanced() {
 
               <a
                 href={`tel:${SITE_PHONE_E164}`}
+                onClick={() => track('phone_click', { location: 'footer' })}
                 style={{
                   color: 'rgba(255,255,255,0.5)',
                   textDecoration: 'none',
@@ -294,7 +296,8 @@ export function FooterEnhanced() {
                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
               Facebook
             </a>
-            <a href="https://wa.me/34682192944" target="_blank" rel="noopener noreferrer" style={{ 
+            <a href="https://wa.me/34682192944" target="_blank" rel="noopener noreferrer"
+              onClick={() => track('whatsapp_click', { location: 'footer' })} style={{ 
               fontFamily: 'var(--font-sans)',
               fontSize: '0.75rem',
               color: 'rgba(255,255,255,0.4)', 

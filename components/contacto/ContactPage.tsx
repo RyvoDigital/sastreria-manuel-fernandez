@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { MapPin, Phone, Clock, Mail, ArrowRight, Calendar, Video, MessageSquare, X } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
+import { track } from '@/lib/analytics'
 import { useContent } from '@/lib/content-provider'
 import { useSettings } from '@/lib/settings-provider'
 import { useIsMobile } from '@/lib/use-mobile'
@@ -197,6 +198,7 @@ function ContactPageInner() {
       if (!res.ok || !data.success) {
         throw new Error(data.error || t.contacto.form_error)
       }
+      track('contact_form_submit', { location: 'contacto' })
       setSubmitted(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : t.contacto.form_error)

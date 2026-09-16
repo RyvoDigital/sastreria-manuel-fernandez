@@ -13,6 +13,7 @@ import { LandingPage, type LandingContent } from './LandingPage'
   library yet; see the TODO(image) below.
 */
 const content: LandingContent = {
+  serviceType: 'Sastrería artesanal a medida',
   eyebrow: 'Barrio de Salamanca',
   h1: 'Sastrería artesanal en el Barrio de Salamanca, Madrid',
   lede:

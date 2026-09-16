@@ -1,3 +1,6 @@
+import type { FaqEntry } from '@/data/faq'
+import { FaqSection } from './FaqSection'
+import { JsonLdBlocks } from './JsonLd'
 import { LandingStyles } from './LandingStyles'
 import { ParallaxFigure } from './ParallaxFigure'
 import { RailIndex } from './RailIndex'
@@ -34,6 +37,11 @@ export type Block =
   | { kind: 'figure'; src: string; alt: string; height?: string; drift?: number }
 
 export interface LandingContent {
+  /** serviceType for this page's Service JSON-LD. One per page. */
+  serviceType: string
+  /** Questions shown on this page. The schema describes only these. */
+  faq?: readonly FaqEntry[]
+  faqHeading?: string
   eyebrow: string
   h1: string
   /** Optional italic fragment inside the h1, the emphasis device from the template. */
@@ -63,6 +71,7 @@ export function LandingPage({ content }: { content: LandingContent }) {
   return (
     <div className="lp">
       <LandingStyles />
+      <JsonLdBlocks serviceType={content.serviceType} faq={content.faq} />
 
       <section
         className="band"
@@ -169,6 +178,13 @@ export function LandingPage({ content }: { content: LandingContent }) {
           </section>
         )
       })}
+
+      {content.faq && content.faq.length > 0 && (
+        <FaqSection
+          entries={content.faq}
+          heading={content.faqHeading ?? 'Preguntas frecuentes'}
+        />
+      )}
 
       <section className="band" style={{ background: NAVY }}>
         <div className="inner col">

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useContent } from '@/lib/content-provider'
+import { track } from '@/lib/analytics'
 import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 import { Phone, MapPin, Calendar } from 'lucide-react'
@@ -418,7 +419,10 @@ export function HeroEnhanced() {
               {t.hero.cta_book}
             </MagneticButton>
 
-            <MagneticButton href="tel:+34682192944">
+            <MagneticButton
+              href="tel:+34682192944"
+              onClick={() => track('phone_click', { location: 'hero' })}
+            >
               <Phone size={16} />
               {t.hero.cta_call}
             </MagneticButton>
@@ -492,12 +496,14 @@ function MagneticButton({
   href, 
   children, 
   primary = false,
-  outline = false 
+  outline = false,
+  onClick,
 }: { 
   href: string
   children: React.ReactNode
   primary?: boolean
   outline?: boolean
+  onClick?: () => void
 }) {
   const baseStyles = {
     display: 'inline-flex',
@@ -530,6 +536,7 @@ function MagneticButton({
   return (
     <Link
       href={href}
+      onClick={onClick}
       style={{ ...baseStyles, ...primaryStyles }}
       onMouseEnter={(e) => {
         if (primary) e.currentTarget.style.background = '#E8D5A3'

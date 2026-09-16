@@ -1,3 +1,6 @@
+import { FAQ_BY_PAGE } from '@/data/faq'
+import { FaqSection } from './FaqSection'
+import { JsonLdBlocks } from './JsonLd'
 import { LandingStyles } from './LandingStyles'
 import { ParallaxFigure } from './ParallaxFigure'
 import { RailIndex } from './RailIndex'
@@ -204,6 +207,10 @@ export function SastreriaArtesanalMadrid() {
   return (
     <div className="lp">
       <LandingStyles />
+      <JsonLdBlocks
+        serviceType="Sastrería artesanal a medida"
+        faq={FAQ_BY_PAGE['sastreria-artesanal-madrid']}
+      />
 
       {/* Hero. Text only; the first image arrives below as a full bleed. */}
       <section
@@ -300,6 +307,8 @@ export function SastreriaArtesanalMadrid() {
       <div className="bleed">
         <ParallaxFigure {...IMAGES.finishing} height="clamp(14rem, 32vw, 26rem)" drift={56} />
       </div>
+
+      <FaqSection entries={FAQ_BY_PAGE['sastreria-artesanal-madrid']} />
 
       {/* Visit. Italic deliberately dropped, so the device stays rare. */}
       <section className="band" style={{ background: NAVY }}>
