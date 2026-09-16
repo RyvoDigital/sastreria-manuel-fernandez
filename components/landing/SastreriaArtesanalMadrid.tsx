@@ -1,8 +1,13 @@
-import Link from 'next/link'
-import { SITE_LOCALITY, SITE_STREET } from '@/lib/site'
+import { LandingStyles } from './LandingStyles'
+import { ParallaxFigure } from './ParallaxFigure'
+import { RailIndex } from './RailIndex'
+import {
+  Cta, DEEP, Display, Eyebrow, GhostNumeral, NAVY, Prose, Rule, Segments, WHITE,
+  type Segment,
+} from './primitives'
 
 /*
-  Copy sourcing for this page, so the next person can audit it.
+  Copy sourcing, so the next person can audit it.
 
   Sourced and safe to state:
   - no patterns at all, cut and built directly on the cloth, nothing reused
@@ -18,368 +23,295 @@ import { SITE_LOCALITY, SITE_STREET } from '@/lib/site'
 
   Deliberately NOT stated: prices, lead times, number of fittings beyond the
   confirmed one, fabric-house relationships, who the atelier has dressed.
-  Every craft step the sources do not cover is described in general terms only
-  and carries a TODO(copy).
+  Craft steps the sources do not cover are described in general terms only and
+  carry a TODO(copy).
 
-  Copy is written directly in this component rather than in messages/*.json.
-  Locale is client-side state with no URL and always boots to Spanish, so a
-  Spanish landing page reads correctly for every visitor arriving from search.
-  This is the same trade-off section 6.1 of the handoff accepts for the English
-  pages, applied in the other direction.
+  Copy lives in this file rather than messages/*.json. Locale is client-side
+  state with no URL that always boots to Spanish, so a Spanish landing page
+  reads correctly for everyone arriving from search, and the prose is
+  guaranteed to be in the server HTML. Same trade-off section 6.1 of the
+  handoff accepts for the English pages, applied in the other direction.
 */
 
-const NAVY = '#0A1628'
-const WHITE = '#FFFFFF'
-const GOLD = '#C9A84C'
+const COPY = {
+  eyebrow: 'Sastrería Artesanal',
+  h1: 'Sastrería artesanal a medida en Madrid',
+  lede:
+    'Sastrería Manuel Fernández es un taller de sastrería artesanal en el Barrio de Salamanca. ' +
+    'Cada prenda se concibe para una sola persona y se construye a mano en Jorge Juan 41, con más ' +
+    'de cuarenta años de oficio detrás de cada corte.',
 
-function Label({ children, onDark = false }: { children: string; onDark?: boolean }) {
-  return (
-    <div
-      style={{
-        fontFamily: 'var(--font-sans)',
-        fontSize: '0.65rem',
-        letterSpacing: '0.28em',
-        textTransform: 'uppercase',
-        color: GOLD,
-        opacity: onDark ? 1 : 0.85,
-        marginBottom: '1.2rem',
-      }}
-    >
-      {children}
-    </div>
-  )
-}
+  method: {
+    label: 'El método',
+    h2: 'Sin patrones. El corte nace sobre el tejido',
+    // The page's central claim, and the reason the marking photograph belongs here.
+    paras: [
+      'Aquí no hay patrones. Ni un patrón base que se adapte, ni un patrón individual que se ' +
+        'archive para la próxima vez. El diseño y la construcción ocurren directamente sobre el ' +
+        'tejido, para el cuerpo concreto de la persona que va a vestir la prenda: su anatomía, sus ' +
+        'proporciones, sus necesidades y el momento de su vida para el que se crea.',
+      'Nada se reutiliza entre encargos. Cuando un cliente vuelve al taller, su prenda se vuelve a ' +
+        'concebir desde el principio.',
+    ] as string[],
+    linkPara: [
+      'Si quiere conocer el taller y la trayectoria de Manuel Fernández antes de encargar, puede ',
+      { href: '/la-sastreria', text: 'leer la historia de la sastrería' },
+      '.',
+    ] as Segment[],
+  },
 
-function Rule() {
-  return (
-    <div
-      style={{
-        width: '36px',
-        height: '1px',
-        background: 'rgba(201,168,76,0.5)',
-        marginBottom: '1.5rem',
-      }}
-    />
-  )
+  process: {
+    label: 'El proceso',
+    h2: 'Cómo se construye una prenda',
+    steps: [
+      {
+        n: '01',
+        id: 'paso-01',
+        title: 'Trazado y corte sobre el tejido',
+        body:
+          'El trazado se hace sobre la propia pieza de tejido, sin patrón intermedio. Es el momento ' +
+          'que define la prenda: una vez cortado el tejido no hay vuelta atrás, y toda la ' +
+          'construcción posterior depende de esa decisión.',
+        image: 'marking' as const,
+      },
+      {
+        n: '02',
+        id: 'paso-02',
+        title: 'Hilvanado',
+        body:
+          'El hilvanado une las piezas cortadas con puntadas provisionales, de modo que la prenda ' +
+          'pueda probarse y corregirse antes de coserse en firme.',
+        image: 'basting' as const,
+      },
+      {
+        n: '03',
+        id: 'paso-03',
+        title: 'Entretelas y estructura interna',
+        body:
+          'La entretela es la estructura interna que da forma al pecho y a la solapa y sostiene la ' +
+          'caída de la chaqueta. Es la parte que no se ve y la que decide cómo envejece una prenda.',
+        image: 'canvas' as const,
+      },
+      {
+        n: '04',
+        id: 'paso-04',
+        title: 'La prueba',
+        body:
+          'Tras la primera cita, en la que se toman las medidas y se eligen los tejidos y los ' +
+          'detalles de la prenda, el cliente vuelve una sola vez a probar. La entrega llega en el ' +
+          'encuentro siguiente. Si aparece algún ajuste mínimo, se corrige artesanalmente en las ' +
+          'horas o días posteriores.',
+        image: null,
+      },
+      {
+        n: '05',
+        id: 'paso-05',
+        title: 'Confección a mano',
+        body:
+          'Un traje artesanal reúne alrededor de 120 horas de trabajo. Buena parte de ese tiempo ' +
+          'corresponde a procesos completamente artesanales, realizados a mano, y es ahí donde se ' +
+          'deciden la construcción, el equilibrio y las proporciones de la prenda.',
+        image: null,
+      },
+      {
+        n: '06',
+        id: 'paso-06',
+        title: 'Acabados',
+        body:
+          'Los acabados son el último tramo del trabajo: ojales, botones, forros y remates que ' +
+          'cierran la prenda y son, con frecuencia, lo primero que delata cómo ha sido hecha.',
+        image: 'finishing' as const,
+      },
+    ],
+  },
+
+  difference: {
+    label: 'La diferencia',
+    h2: 'Qué distingue a la sastrería artesanal',
+    paras: [
+      'En la confección a medida industrial o semiindustrial se parte de un patrón base ya ' +
+        'existente, que se ajusta a las medidas del cliente y se produce en buena parte de forma ' +
+        'mecanizada. Es un sistema legítimo y da buenos resultados dentro de lo que promete.',
+      'La sastrería artesanal trabaja de otra manera: la prenda se construye desde cero para una ' +
+        'sola persona y el trabajo manual sustituye a la mayor parte del proceso mecánico. Aquí esa ' +
+        'distinción llega un paso más lejos, porque no hay ni siquiera un patrón base del que partir.',
+    ] as string[],
+    linkPara: [
+      'El repertorio completo, del traje al chaqué, está en ',
+      { href: '/servicios', text: 'la página de servicios' },
+      ', y las prendas de ceremonia tienen su propio espacio en ',
+      { href: '/bodas-y-ceremonia', text: 'bodas y ceremonia' },
+      '.',
+    ] as Segment[],
+  },
+
+  visit: {
+    label: 'El siguiente paso',
+    h2: 'Empieza con una conversación',
+    para:
+      'El taller está en Calle de Jorge Juan, 41, en el Barrio de Salamanca, Madrid. Se atiende en ' +
+      'español, inglés y francés. Toda prenda comienza con una primera cita, en la que se toman las ' +
+      'medidas y se eligen los tejidos.',
+    cta: 'Solicitar cita',
+  },
 }
 
 /**
- * Centred reading column. The page is prose with no imagery yet, so a
- * container-width layout would strand every paragraph against the left edge
- * and leave half the viewport empty at desktop. When Evelyn's process
- * photography lands (see the TODO(image) markers below) this is the piece to
- * revisit: the sections that gain a photo want the two-column treatment used
- * in components/la-sastreria/HistoriaSection.tsx instead.
+ * The five process photographs.
+ *
+ * Every one already appears elsewhere on the site: there are no unused images
+ * in public/img. Flagged to Manuel; this resolves when Evelyn's new process
+ * photography lands. Alt text follows the filenames, which were confirmed
+ * against Evelyn's slot map during the self-hosting migration. `marking` was
+ * additionally checked by eye, because it carries the page's central claim: a
+ * hand chalking lines straight onto cloth, no paper pattern anywhere in frame.
  */
-function Measure({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ maxWidth: '64ch', marginLeft: 'auto', marginRight: 'auto' }}>
-      {children}
-    </div>
-  )
-}
+const IMAGES = {
+  opening: {
+    src: '/img/corte-a-mano-mesa.webp',
+    alt: 'Corte a mano sobre la mesa de corte del taller',
+  },
+  marking: {
+    src: '/img/marcado-tiza-tela-gris.webp',
+    alt: 'Marcado a tiza directamente sobre el tejido en la mesa de corte, sin patrón de papel',
+  },
+  canvas: {
+    src: '/img/chaqueta-entretela-canvas-maniqui.webp',
+    alt: 'Chaqueta sobre maniquí con la entretela de canvas a la vista antes del forrado',
+  },
+  finishing: {
+    src: '/img/cosido-a-mano-detalle.webp',
+    alt: 'Detalle de cosido a mano en el acabado de una prenda',
+  },
+} as const
 
-function Prose({ children, onDark = false }: { children: React.ReactNode; onDark?: boolean }) {
-  return (
-    <p
-      style={{
-        fontFamily: 'var(--font-sans)',
-        fontSize: 'clamp(0.88rem, 1.3vw, 1.02rem)',
-        lineHeight: 1.88,
-        color: onDark ? 'rgba(255,255,255,0.72)' : NAVY,
-        marginBottom: '1.4rem',
-        maxWidth: '58ch',
-      }}
-    >
-      {children}
-    </p>
-  )
-}
-
-function H2({ children, onDark = false }: { children: string; onDark?: boolean }) {
-  return (
-    <h2
-      style={{
-        fontFamily: 'var(--font-serif)',
-        fontSize: 'clamp(2rem, 4vw, 3.4rem)',
-        fontWeight: 400,
-        lineHeight: 1.15,
-        color: onDark ? WHITE : NAVY,
-        marginTop: 0,
-        marginBottom: 'clamp(1.5rem, 3vh, 2.4rem)',
-        maxWidth: '20ch',
-      }}
-    >
-      {children}
-    </h2>
-  )
-}
-
-function H3({ children }: { children: string }) {
-  return (
-    <h3
-      style={{
-        fontFamily: 'var(--font-serif)',
-        fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
-        fontWeight: 400,
-        lineHeight: 1.3,
-        color: NAVY,
-        marginTop: 0,
-        marginBottom: '0.9rem',
-      }}
-    >
-      {children}
-    </h3>
-  )
-}
-
-const linkStyle = {
-  color: GOLD,
-  textDecoration: 'underline',
-  textUnderlineOffset: '0.2em',
-  textDecorationThickness: '1px',
-}
-
+/**
+ * Sastrería artesanal a medida en Madrid.
+ *
+ * Structure: one continuous reading column, a sticky contents rail beside the
+ * numbered process steps, and images that interrupt as full-bleed bands rather
+ * than pairing with text. The oversized ghosted numeral beside each step is the
+ * only place a step number is drawn, which is why the rail carries titles
+ * without digits.
+ *
+ * Server component: no hooks, so the whole of the prose is in the server HTML.
+ * The only client pieces are RailIndex (active-entry marker) and
+ * ParallaxFigure (transform-only drift), both of which degrade to plain
+ * content with JavaScript disabled.
+ */
 export function SastreriaArtesanalMadrid() {
+  const steps = COPY.process.steps
+
   return (
-    <>
-      {/* ── Hero ─────────────────────────────────────────── */}
+    <div className="lp">
+      <LandingStyles />
+
+      {/* Hero. Text only; the first image arrives below as a full bleed. */}
       <section
-        style={{
-          background: NAVY,
-          padding: 'clamp(9rem, 18vh, 14rem) var(--container-padding) clamp(5rem, 10vh, 8rem)',
-        }}
+        className="band"
+        style={{ background: NAVY, paddingTop: 'clamp(9rem, 20vh, 14rem)', paddingBottom: 'clamp(3rem, 6vh, 5rem)' }}
       >
-        <Measure>
-          <Label onDark>Sastrería Artesanal</Label>
+        <div className="inner">
+          <Eyebrow onDark>{COPY.eyebrow}</Eyebrow>
           <h1
             style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(2.4rem, 5.5vw, 4.4rem)',
+              fontSize: 'clamp(2.6rem, 7vw, 5.4rem)',
               fontWeight: 400,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               color: WHITE,
               margin: '0 0 clamp(1.5rem, 3vh, 2.5rem)',
-              maxWidth: '16ch',
+              maxWidth: '14ch',
             }}
           >
-            Sastrería artesanal a medida en Madrid
+            {COPY.h1}
           </h1>
-          <Prose onDark>
-            Sastrería Manuel Fernández es un taller de sastrería artesanal en el Barrio de
-            Salamanca. Cada prenda se concibe para una sola persona y se construye a mano en
-            Jorge Juan 41, con más de cuarenta años de oficio detrás de cada corte.
-          </Prose>
-        </Measure>
-      </section>
-
-      {/* ── No patterns. The spine of the page. ──────────── */}
-      <section
-        style={{
-          background: WHITE,
-          padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
-        }}
-      >
-        <Measure>
-          {/* TODO(image): Evelyn's process photography. This section is the
-              one that most needs a picture: Manuel tracing or cutting directly
-              on the cloth, no paper in frame. It is the page's central claim
-              and the image has to show it. Deliberately left empty rather than
-              filled with a substitute from public/img, several of which are
-              named *-patron-* and would contradict the copy. */}
-          <Label>El método</Label>
-          <Rule />
-          <H2>Sin patrones. El corte nace sobre el tejido</H2>
-          <Prose>
-            Aquí no hay patrones. Ni un patrón base que se adapte, ni un patrón individual que se
-            archive para la próxima vez. El diseño y la construcción ocurren directamente sobre el
-            tejido, para el cuerpo concreto de la persona que va a vestir la prenda: su anatomía,
-            sus proporciones, sus necesidades y el momento de su vida para el que se crea.
-          </Prose>
-          <Prose>
-            Nada se reutiliza entre encargos. Cuando un cliente vuelve al taller, su prenda se
-            vuelve a concebir desde el principio.
-          </Prose>
-          <Prose>
-            Si quiere conocer el taller y la trayectoria de Manuel Fernández antes de encargar,
-            puede{' '}
-            <Link href="/la-sastreria" style={linkStyle}>
-              leer la historia de la sastrería
-            </Link>
-            .
-          </Prose>
-        </Measure>
-      </section>
-
-      {/* ── The process ──────────────────────────────────── */}
-      <section
-        style={{
-          background: WHITE,
-          padding: '0 var(--container-padding) clamp(5rem, 10vh, 9rem)',
-        }}
-      >
-        <Measure>
-          <Label>El proceso</Label>
-          <Rule />
-          <H2>Cómo se construye una prenda</H2>
-
-          <div
-            style={{
-              display: 'grid',
-              gap: 'clamp(2.5rem, 5vh, 4rem)',
-              borderTop: '1px solid rgba(10,22,40,0.08)',
-              paddingTop: 'clamp(2.5rem, 5vh, 4rem)',
-            }}
-          >
-            <div>
-              <H3>Trazado y corte sobre el tejido</H3>
-              <Prose>
-                El trazado se hace sobre la propia pieza de tejido, sin patrón intermedio. Es el
-                momento que define la prenda: una vez cortado el tejido no hay vuelta atrás, y toda
-                la construcción posterior depende de esa decisión.
-              </Prose>
-            </div>
-
-            <div>
-              {/* TODO(image): basting in progress, hand and needle in frame.
-                  Pairs with the copy confirmation asked for just below. */}
-              <H3>Hilvanado</H3>
-              <Prose>
-                El hilvanado une las piezas cortadas con puntadas provisionales, de modo que la
-                prenda pueda probarse y corregirse antes de coserse en firme.
-              </Prose>
-              {/* TODO(copy): needs confirmation from Manuel Fernández — whether the
-                  basting is done entirely by hand here, and at what point in the
-                  process the garment is first assembled for the fitting. The
-                  paragraph above describes the craft step in general terms only. */}
-            </div>
-
-            <div>
-              {/* TODO(image): the inner construction, canvas visible before
-                  the lining goes in. Nothing in public/img covers this today. */}
-              <H3>Entretelas y estructura interna</H3>
-              <Prose>
-                La entretela es la estructura interna que da forma al pecho y a la solapa y sostiene
-                la caída de la chaqueta. Es la parte que no se ve y la que decide cómo envejece una
-                prenda.
-              </Prose>
-              {/* TODO(copy): needs confirmation from Manuel Fernández — the
-                  construction actually used in this atelier (full canvas, half
-                  canvas, materials, whether the chest piece is padded by hand).
-                  Nothing specific is claimed above. */}
-            </div>
-
-            <div>
-              <H3>La prueba</H3>
-              <Prose>
-                Tras la primera cita, en la que se toman las medidas y se eligen los tejidos y los
-                detalles de la prenda, el cliente vuelve una sola vez a probar. La entrega llega en
-                el encuentro siguiente. Si aparece algún ajuste mínimo, se corrige artesanalmente en
-                las horas o días posteriores.
-              </Prose>
-            </div>
-
-            <div>
-              <H3>Confección a mano</H3>
-              <Prose>
-                Un traje artesanal reúne alrededor de 120 horas de trabajo. Buena parte de ese
-                tiempo corresponde a procesos completamente artesanales, realizados a mano, y es ahí
-                donde se deciden la construcción, el equilibrio y las proporciones de la prenda.
-              </Prose>
-            </div>
-
-            <div>
-              {/* TODO(image): a hand-worked finishing detail, buttonhole or
-                  lapel, shot close. */}
-              <H3>Acabados</H3>
-              <Prose>
-                Los acabados son el último tramo del trabajo: ojales, botones, forros y remates que
-                cierran la prenda y son, con frecuencia, lo primero que delata cómo ha sido hecha.
-              </Prose>
-              {/* TODO(copy): needs confirmation from Manuel Fernández — which
-                  finishings are hand-worked here (buttonholes, pick stitching,
-                  linings, buttons) so this can name the atelier's own practice
-                  instead of describing the step generically. */}
-            </div>
+          <div className="col">
+            <Prose onDark measure="60ch">{COPY.lede}</Prose>
           </div>
-        </Measure>
+        </div>
       </section>
 
-      {/* ── Artisan tailoring vs other systems ───────────── */}
-      <section
-        style={{
-          background: NAVY,
-          padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
-        }}
-      >
-        <Measure>
-          <Label onDark>La diferencia</Label>
+      <div className="bleed">
+        <ParallaxFigure {...IMAGES.opening} height="clamp(16rem, 40vw, 30rem)" drift={56} />
+      </div>
+
+      {/* Method. Italic emphasis kept: this heading carries an argument. */}
+      <section className="band" style={{ background: WHITE }}>
+        <div className="inner col">
+          <Eyebrow>{COPY.method.label}</Eyebrow>
           <Rule />
-          <H2 onDark>Qué distingue a la sastrería artesanal</H2>
-          <Prose onDark>
-            En la confección a medida industrial o semiindustrial se parte de un patrón base ya
-            existente, que se ajusta a las medidas del cliente y se produce en buena parte de forma
-            mecanizada. Es un sistema legítimo y da buenos resultados dentro de lo que promete.
+          <Display italic="sobre el tejido" measure="24ch">{COPY.method.h2}</Display>
+          {COPY.method.paras.map((p, i) => (
+            <Prose key={i} measure="60ch">{p}</Prose>
+          ))}
+          <Prose measure="60ch">
+            <Segments parts={COPY.method.linkPara as Segment[]} />
           </Prose>
-          <Prose onDark>
-            La sastrería artesanal trabaja de otra manera: la prenda se construye desde cero para
-            una sola persona y el trabajo manual sustituye a la mayor parte del proceso mecánico.
-            Aquí esa distinción llega un paso más lejos, porque no hay ni siquiera un patrón base
-            del que partir.
-          </Prose>
-          <Prose onDark>
-            El repertorio completo, del traje al chaqué, está en{' '}
-            <Link href="/servicios" style={linkStyle}>
-              la página de servicios
-            </Link>
-            , y las prendas de ceremonia tienen su propio espacio en{' '}
-            <Link href="/bodas-y-ceremonia" style={linkStyle}>
-              bodas y ceremonia
-            </Link>
-            .
-          </Prose>
-        </Measure>
+        </div>
       </section>
 
-      {/* ── Visit / CTA ──────────────────────────────────── */}
-      <section
-        style={{
-          background: WHITE,
-          padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
-        }}
-      >
-        <Measure>
-          <Label>El siguiente paso</Label>
-          <Rule />
-          <H2>Empieza con una conversación</H2>
-          <Prose>
-            El taller está en {SITE_STREET}, en el Barrio de Salamanca, {SITE_LOCALITY}. Se atiende
-            en español, inglés y francés. Toda prenda comienza con una primera cita, en la que se
-            toman las medidas y se eligen los tejidos.
-          </Prose>
-          <Link
-            href="/contacto"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              marginTop: '1rem',
-              background: GOLD,
-              color: '#000000',
-              padding: '1rem 2.5rem',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Solicitar cita
-          </Link>
-        </Measure>
+      {/* The claim, full bleed: chalk straight onto cloth, no paper in frame. */}
+      <div className="bleed">
+        <ParallaxFigure {...IMAGES.marking} height="clamp(18rem, 46vw, 36rem)" drift={64} />
+      </div>
+
+      {/* Process: sticky contents rail, numeral in the left margin. */}
+      <section className="band" style={{ background: DEEP }}>
+        <div className="inner rail">
+          <div className="index">
+            <Eyebrow onDark>{COPY.process.label}</Eyebrow>
+            <RailIndex steps={steps.map((s) => ({ id: s.id, title: s.title }))} />
+          </div>
+
+          <div>
+            <Display onDark measure="22ch">{COPY.process.h2}</Display>
+            {steps.map((s) => (
+              <div key={s.id} id={s.id} className="step">
+                <GhostNumeral onDark>{s.n}</GhostNumeral>
+                <div>
+                  <h3 className="stepTitle">{s.title}</h3>
+                  <Prose onDark measure="58ch">{s.body}</Prose>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
-    </>
+
+      <div className="bleed">
+        <ParallaxFigure {...IMAGES.canvas} height="clamp(16rem, 38vw, 30rem)" drift={56} />
+      </div>
+
+      {/* Difference. The second heading that carries an argument. */}
+      <section className="band" style={{ background: WHITE }}>
+        <div className="inner col">
+          <Eyebrow>{COPY.difference.label}</Eyebrow>
+          <Rule />
+          <Display italic="artesanal" measure="22ch">{COPY.difference.h2}</Display>
+          {COPY.difference.paras.map((p, i) => (
+            <Prose key={i} measure="60ch">{p}</Prose>
+          ))}
+          <Prose measure="60ch">
+            <Segments parts={COPY.difference.linkPara as Segment[]} />
+          </Prose>
+        </div>
+      </section>
+
+      <div className="bleed">
+        <ParallaxFigure {...IMAGES.finishing} height="clamp(14rem, 32vw, 26rem)" drift={56} />
+      </div>
+
+      {/* Visit. Italic deliberately dropped, so the device stays rare. */}
+      <section className="band" style={{ background: NAVY }}>
+        <div className="inner col">
+          <Eyebrow onDark>{COPY.visit.label}</Eyebrow>
+          <Rule />
+          <Display onDark measure="20ch">{COPY.visit.h2}</Display>
+          <Prose onDark measure="60ch">{COPY.visit.para}</Prose>
+          <Cta onDark />
+        </div>
+      </section>
+    </div>
   )
 }

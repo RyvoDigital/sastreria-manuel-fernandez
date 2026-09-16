@@ -1,5 +1,15 @@
+/**
+ * Shared primitives for the landing-page template.
+ *
+ * These are the pieces every landing page needs: the type scale, the gold
+ * tokens, and the small marks (eyebrow, rule, ghosted numeral) that give the
+ * pages their editorial look. Page-specific composition and copy stay in the
+ * page's own component.
+ */
 import Link from 'next/link'
-import type { Segment } from './content'
+
+/** A copy fragment: plain text, or a link to render inside a sentence. */
+export type Segment = string | { href: string; text: string }
 
 export const NAVY = '#0A1628'
 export const DEEP = '#050C14'
@@ -129,21 +139,6 @@ export function Display({
   )
 }
 
-export function StepNumber({ children, onDark }: { children: string; onDark?: boolean }) {
-  return (
-    <div
-      style={{
-        fontFamily: 'var(--font-serif)',
-        fontSize: 'clamp(1.6rem, 3vw, 2.6rem)',
-        fontWeight: 400,
-        lineHeight: 1,
-        color: onDark ? 'rgba(201,168,76,0.75)' : 'rgba(10,22,40,0.28)',
-      }}
-    >
-      {children}
-    </div>
-  )
-}
 
 /**
  * Oversized low-contrast numeral, grafted from Variant 3 (Placas).
@@ -203,26 +198,3 @@ export function Cta({ onDark }: { onDark?: boolean }) {
 }
 
 /** Variant banner. Temporary, so reviewers always know which one they are on. */
-export function VariantTag({ n, name }: { n: number; name: string }) {
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: '1rem',
-        left: '1rem',
-        zIndex: 60,
-        background: 'rgba(10,22,40,0.92)',
-        border: '1px solid rgba(201,168,76,0.5)',
-        color: GOLD,
-        fontFamily: 'var(--font-sans)',
-        fontSize: '0.6rem',
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
-        padding: '0.5rem 0.9rem',
-        borderRadius: '2px',
-      }}
-    >
-      Variante {n} · {name}
-    </div>
-  )
-}

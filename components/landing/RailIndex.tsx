@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { GOLD } from './shared'
+import { GOLD } from './primitives'
 
 /**
  * Sticky contents rail for the process section.

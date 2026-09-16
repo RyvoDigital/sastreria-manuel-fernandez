@@ -34,6 +34,9 @@
   --container-max:     1400px;
   --container-padding: clamp(24px, 5vw, 80px);
 
+  /* Fixed-header clearance for every scroll-into-view on the site. */
+  --header-offset:     clamp(5.5rem, 9vh, 7.5rem);
+
   /* Transitions */
   --ease-silk:         cubic-bezier(0.16, 1, 0.3, 1);
   --ease-cinematic:    cubic-bezier(0.4, 0, 0.15, 1);
@@ -59,6 +62,13 @@
 
 html {
   scroll-behavior: auto; /* Lenis handles smooth scroll */
+
+  /* Clearance for the fixed Navigation, which runs roughly 60-88px tall
+     depending on viewport. Sized to clear the header plus the eyebrow label
+     above a heading, not just the heading itself. scroll-padding-top has to
+     sit on the scrolling element, so any anchor, deep link or find-in-page
+     jump anywhere on the site lands below the header rather than under it. */
+  scroll-padding-top: var(--header-offset);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
