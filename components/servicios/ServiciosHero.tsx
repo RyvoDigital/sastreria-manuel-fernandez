@@ -109,7 +109,7 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
     <div style={{ maxWidth: '72rem', margin: '0 auto', padding: isMobile ? '80px 1rem 0' : '200px 2rem 0' }}>
       <ParallaxImg
         src="/img/frac-chaleco-blanco.webp"
-        alt="Cinta métrica sobre patrón"
+        alt="Frac negro con chaleco blanco sobre maniquí en el showroom de la sastrería"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%' }}
