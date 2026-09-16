@@ -243,10 +243,17 @@ export function HeroEnhanced() {
             filter: 'brightness(0.5) saturate(0.7)',
           }}
         >
-          <source 
-            src="https://res.cloudinary.com/dpljev9ap/video/upload/v1774996821/hero-section-background-manuel-fernandez_1_dfbmep.mp4" 
-            type="video/mp4" 
-          />
+          {/*
+            Self-hosted. This used to load from res.cloudinary.com/dpljev9ap, a
+            separate Cloudinary account from the images one, which is why the
+            self-hosting migration missed it. That account is disabled and the
+            URL returns 401, so the video silently fell back to its poster and
+            the hero looked frozen. There is no CDN left to fall back to, so the
+            file is version-controlled: 1920x1080 H.264, no audio, faststart,
+            re-encoded from the 73.8 MB original down to 3.3 MB. It plays muted
+            and dimmed behind the hero text, which is why that holds up.
+          */}
+          <source src="/video/hero-sastreria-manuel-fernandez.mp4" type="video/mp4" />
         </video>
       </div>
 
