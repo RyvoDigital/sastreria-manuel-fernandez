@@ -159,29 +159,28 @@ const COPY = {
 /**
  * The five process photographs.
  *
- * Every one already appears elsewhere on the site: there are no unused images
- * in public/img. Flagged to Manuel; this resolves when Evelyn's new process
- * photography lands. Alt text follows the filenames, which were confirmed
- * against Evelyn's slot map during the self-hosting migration. `marking` was
- * additionally checked by eye, because it carries the page's central claim: a
- * hand chalking lines straight onto cloth, no paper pattern anywhere in frame.
+ * All four are Evelyn's own process photography, delivered 16 Sep 2026, and
+ * are used only here: they replaced the images this page previously borrowed
+ * from other pages. Every one was checked by eye before being placed. None
+ * shows the workshop interior, per the client's standing constraint, and none
+ * carries legible third-party branding.
  */
 const IMAGES = {
   opening: {
-    src: '/img/corte-a-mano-mesa.webp',
-    alt: 'Corte a mano sobre la mesa de corte del taller',
+    src: '/img/trazado-tiza-tejido-azul.webp',
+    alt: 'Trazado a tiza sobre un paño azul, con cinta métrica y regla, en la mesa de corte',
   },
   marking: {
-    src: '/img/marcado-tiza-tela-gris.webp',
+    src: '/img/marcado-tiza-sobre-tejido.webp',
     alt: 'Marcado a tiza directamente sobre el tejido en la mesa de corte, sin patrón de papel',
   },
   canvas: {
-    src: '/img/chaqueta-entretela-canvas-maniqui.webp',
-    alt: 'Chaqueta sobre maniquí con la entretela de canvas a la vista antes del forrado',
+    src: '/img/picado-entretela-pecho-a-mano.webp',
+    alt: 'Entretelas de pecho picadas a mano con hilo blanco, sobre la mesa de corte',
   },
   finishing: {
-    src: '/img/cosido-a-mano-detalle.webp',
-    alt: 'Detalle de cosido a mano en el acabado de una prenda',
+    src: '/img/hilvanado-aguja-hilo-a-mano.webp',
+    alt: 'Hilo tirado a mano con la aguja sobre una pieza de entretela, con la cinta métrica al cuello',
   },
 } as const
 
