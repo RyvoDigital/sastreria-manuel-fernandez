@@ -87,14 +87,12 @@ const jsonLd = {
     postalCode: SITE_POSTAL,
     addressCountry: 'ES',
   },
-  // TODO(data): these coordinates are unverified against Jorge Juan 41. The
-  // street address itself is confirmed; the lat/long predate this work and
-  // could not be checked from anything in the repo. Confirm against Google
-  // Maps and correct if they do not land on the door.
+  // Confirmed against Google Maps on 16 Sep 2026. The previous values
+  // (40.4258, -3.6868) sat a couple of blocks north of the shop.
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 40.4258,
-    longitude: -3.6868,
+    latitude: 40.423848,
+    longitude: -3.682051,
   },
   openingHoursSpecification: [
     {
