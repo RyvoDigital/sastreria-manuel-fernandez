@@ -26,13 +26,20 @@ import {
 
   Deliberately NOT stated: prices, lead times, number of fittings beyond the
   confirmed one, fabric-house relationships, who the atelier has dressed.
-  Three craft steps are still described in general terms because the atelier's
-  own practice is not confirmed: hilvanado (is the basting entirely by hand,
-  and when is the garment first assembled), entretelas (full or half canvas,
-  materials, whether the chest piece is padded by hand) and acabados (which
-  finishings are hand-worked). Those paragraphs describe the craft step and
-  claim nothing about this workshop, which is why they are safe to ship as
-  they stand. They are the last open copy question on the site.
+  The hilvanado, entretelas and acabados steps now carry the atelier's own
+  practice, confirmed by the client on 18 Sep 2026: basting entirely by hand,
+  full canvas construction with natural interlinings and a hand-padded chest,
+  and hand-worked buttonholes, edges, linings, hems, sleeves, collars and
+  lapels.
+
+  UNRESOLVED CONFLICT, left deliberately. Her answer on finishing says
+  adjustments are made "durante las sucesivas pruebas", plural. The FAQ on this
+  same page says "una única prueba", which she confirmed separately on
+  15 Sep 2026 and which data/faq.ts carries verbatim. The acabados step here is
+  therefore written as adjustments made during the fitting process, without a
+  number, and the FAQ is untouched. Do not reconcile these by editing either
+  one: ask her which is right first. A page that says one fitting in its FAQ
+  and several in its body copy is worse than one that is vague about it.
 
   Copy lives in this file rather than messages/*.json. Locale is client-side
   state with no URL that always boots to Spanish, so a Spanish landing page
@@ -85,10 +92,14 @@ const COPY = {
       {
         n: '02',
         id: 'paso-02',
-        title: 'Hilvanado',
+        title: 'Hilvanado y primer montaje',
         body:
-          'El hilvanado une las piezas cortadas con puntadas provisionales, de modo que la prenda ' +
-          'pueda probarse y corregirse antes de coserse en firme.',
+          'El hilvanado se realiza enteramente a mano. La prenda se monta por primera vez después ' +
+          'de la toma de medidas y del diseño desarrollado para el cliente, y llega a la prueba ' +
+          'todavía en una fase inicial, prácticamente construida.',
+        body2:
+          'Eso permite trabajar directamente sobre el cuerpo y corregir aplomos, volúmenes, largos ' +
+          'y proporciones antes de avanzar con la confección definitiva.',
         image: 'basting' as const,
       },
       {
@@ -96,8 +107,13 @@ const COPY = {
         id: 'paso-03',
         title: 'Entretelas y estructura interna',
         body:
-          'La entretela es la estructura interna que da forma al pecho y a la solapa y sostiene la ' +
-          'caída de la chaqueta. Es la parte que no se ve y la que decide cómo envejece una prenda.',
+          'Trabajamos principalmente con construcción de entretela completa, adaptada al tipo de ' +
+          'prenda, al tejido y al resultado que se busca. Las entretelas son naturales y de alta ' +
+          'calidad, seleccionadas según el peso y el comportamiento del tejido exterior.',
+        body2:
+          'El pecho se trabaja y se pica a mano, dando forma a la prenda progresivamente hasta ' +
+          'conseguir volumen, estructura y una caída natural, lejos de la rigidez propia de una ' +
+          'construcción industrial.',
         image: 'canvas' as const,
       },
       {
@@ -126,8 +142,12 @@ const COPY = {
         id: 'paso-06',
         title: 'Acabados',
         body:
-          'Los acabados son el último tramo del trabajo: ojales, botones, forros y remates que ' +
-          'cierran la prenda y son, con frecuencia, lo primero que delata cómo ha sido hecha.',
+          'Una parte muy importante de los acabados se hace a mano: los ojales, determinados ' +
+          'ribetes y pespuntes, la colocación y el remate de los forros, los bajos, las mangas, ' +
+          'los cuellos, las solapas y los distintos puntos de terminación interior.',
+        body2:
+          'También se resuelven a mano los ajustes que la prenda necesite durante el proceso de ' +
+          'prueba.',
         image: 'finishing' as const,
       },
     ],
@@ -143,6 +163,10 @@ const COPY = {
       'La sastrería artesanal trabaja de otra manera: la prenda se construye desde cero para una ' +
         'sola persona y el trabajo manual sustituye a la mayor parte del proceso mecánico. Aquí esa ' +
         'distinción llega un paso más lejos, porque no hay ni siquiera un patrón base del que partir.',
+      'Para nosotros, la artesanía no consiste únicamente en que una prenda tenga detalles hechos ' +
+        'a mano, sino en que todo el proceso esté pensado, construido y ajustado individualmente ' +
+        'para una sola persona. Esa es la verdadera diferencia entre una prenda producida de ' +
+        'manera estandarizada y una pieza de auténtica sastrería artesanal.',
     ] as string[],
     linkPara: [
       'El repertorio completo, del traje al chaqué, está en ',
@@ -283,6 +307,7 @@ export function SastreriaArtesanalMadrid() {
                 <div>
                   <h3 className="stepTitle">{s.title}</h3>
                   <Prose onDark measure="58ch">{s.body}</Prose>
+                  {s.body2 && <Prose onDark measure="58ch">{s.body2}</Prose>}
                 </div>
               </div>
             ))}
