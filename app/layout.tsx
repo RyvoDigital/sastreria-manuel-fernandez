@@ -12,7 +12,15 @@ import { ScrollToTop } from '@/components/global/ScrollToTop'
 import { ScrollToTopButton } from '@/components/global/ScrollToTopButton'
 import { HtmlLang } from '@/components/global/HtmlLang'
 import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/global/GoogleTagManager'
-import { SITE_NAME, SITE_URL } from '@/lib/site'
+import {
+  SITE_INSTAGRAM,
+  SITE_LOCALITY,
+  SITE_NAME,
+  SITE_PHONE_E164,
+  SITE_POSTAL,
+  SITE_STREET,
+  SITE_URL,
+} from '@/lib/site'
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
@@ -63,18 +71,26 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Sastrería Manuel Fernández',
+  // ClothingStore is a valid schema.org subtype of LocalBusiness and is more
+  // specific than the bare type. Declaring both keeps the general type for
+  // consumers that do not know the subtype.
+  '@type': ['LocalBusiness', 'ClothingStore'],
+  name: SITE_NAME,
   description: 'Maestros sastres en Madrid expertos en confección artesanal de trajes a medida, chaqués y esmóquines.',
   url: SITE_URL,
-  telephone: '+34 682 192 944',
+  // E.164, so the number is machine readable.
+  telephone: SITE_PHONE_E164,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Calle de Jorge Juan, 41',
-    addressLocality: 'Madrid',
-    postalCode: '28001',
+    streetAddress: SITE_STREET,
+    addressLocality: SITE_LOCALITY,
+    postalCode: SITE_POSTAL,
     addressCountry: 'ES',
   },
+  // TODO(data): these coordinates are unverified against Jorge Juan 41. The
+  // street address itself is confirmed; the lat/long predate this work and
+  // could not be checked from anything in the repo. Confirm against Google
+  // Maps and correct if they do not land on the door.
   geo: {
     '@type': 'GeoCoordinates',
     latitude: 40.4258,
@@ -94,14 +110,22 @@ const jsonLd = {
       closes: '20:00',
     },
     {
+      // Was 13:00, which contradicted the footer dictionary in every locale.
+      // The client confirmed on 15 Sep 2026 that Saturday closes at 14:00 and
+      // that the dictionary is the correct source.
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: 'Saturday',
       opens: '10:00',
-      closes: '13:00',
+      closes: '14:00',
     },
   ],
   priceRange: '€€€',
-  image: '/img/taller-sastreria-mesa-corte.webp',
+  // Absolute. A relative path here is not resolvable by a consumer reading the
+  // JSON-LD on its own, and metadataBase does not apply to hand-built schema.
+  image: `${SITE_URL}/img/taller-sastreria-mesa-corte.webp`,
+  // Only profiles that are verified. The site also links a Facebook page from
+  // the footer; it is left out until Manuel confirms it is current.
+  sameAs: [SITE_INSTAGRAM],
 }
 
 export default function RootLayout({

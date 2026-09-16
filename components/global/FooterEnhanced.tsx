@@ -6,6 +6,7 @@ import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
 import { usePathname } from 'next/navigation'
 import { Send, MessageCircle } from 'lucide-react'
+import { SITE_PHONE_E164 } from '@/lib/site'
 
 const ALL_NAV_COL1 = [
   { key: 'inicio' as const, href: '/', settingId: null },
@@ -156,6 +157,55 @@ export function FooterEnhanced() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Contact / NAP. The address, phone and hours keys have always
+              existed in messages/*.json but were never rendered. Name, address
+              and phone need to be on the page and consistent with the
+              LocalBusiness schema in app/layout.tsx. */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.65rem',
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: '#C9A84C',
+            }}>
+              {t.nav.contacto}
+            </div>
+
+            <address style={{
+              // <address> defaults to italic in every browser; the site has no
+              // italic sans anywhere, so reset it.
+              fontStyle: 'normal',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.85rem',
+              lineHeight: 1.9,
+              color: 'rgba(255,255,255,0.5)',
+              margin: 0,
+              maxWidth: '260px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
+            }}>
+              <span>{t.footer.address}</span>
+
+              <a
+                href={`tel:${SITE_PHONE_E164}`}
+                style={{
+                  color: 'rgba(255,255,255,0.5)',
+                  textDecoration: 'none',
+                  transition: 'color 0.3s ease',
+                  width: 'fit-content',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
+              >
+                {t.footer.phone}
+              </a>
+
+              <span>{t.footer.hours}</span>
+            </address>
           </div>
 
           {/* CTA Column */}
