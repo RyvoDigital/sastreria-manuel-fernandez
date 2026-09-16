@@ -23,8 +23,8 @@ const content: LandingContent = {
   blocks: [
     {
       kind: 'figure',
-      src: '/img/trazado-tiza-tejido-azul.webp',
-      alt: 'Chalk geometry drawn directly onto navy cloth, with tape measure and rule',
+      src: '/img/piezas-cortadas-tiza-mesa.webp',
+      alt: 'Cut cloth pieces on the cutting table, chalk marks still visible',
       height: 'clamp(16rem, 38vw, 28rem)',
     },
     {
@@ -87,8 +87,8 @@ const content: LandingContent = {
     },
     {
       kind: 'figure',
-      src: '/img/picado-entretela-pecho-a-mano.webp',
-      alt: 'Chest canvases pad-stitched by hand in white thread, on the cutting table',
+      src: '/img/hilvanado-aguja-hilo-a-mano.webp',
+      alt: 'Thread drawn by hand through canvas, tape measure around the neck',
     },
   ],
   closing: {

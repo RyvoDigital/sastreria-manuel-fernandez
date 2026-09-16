@@ -175,12 +175,12 @@ const IMAGES = {
     alt: 'Marcado a tiza directamente sobre el tejido en la mesa de corte, sin patrón de papel',
   },
   canvas: {
-    src: '/img/picado-entretela-pecho-a-mano.webp',
-    alt: 'Entretelas de pecho picadas a mano con hilo blanco, sobre la mesa de corte',
+    src: '/img/prenda-hilvanada-maniqui.webp',
+    alt: 'Chaqueta hilvanada sobre maniquí, con las puntadas provisionales blancas y el forro a la vista',
   },
   finishing: {
-    src: '/img/hilvanado-aguja-hilo-a-mano.webp',
-    alt: 'Hilo tirado a mano con la aguja sobre una pieza de entretela, con la cinta métrica al cuello',
+    src: '/img/picado-entretela-pecho-a-mano.webp',
+    alt: 'Entretelas de pecho picadas a mano con hilo blanco, sobre la mesa de corte',
   },
 } as const
 

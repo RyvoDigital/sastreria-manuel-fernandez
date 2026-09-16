@@ -115,8 +115,11 @@ const IMAGES = {
     alt: 'Traje de tres piezas en franela gris, con chaqueta, chaleco y pantalón, sobre maniquí',
   },
   cloth: {
-    src: '/img/showroom-muestrario-tejidos.webp',
-    alt: 'Muestrarios de tejidos en el showroom de la sastrería',
+    // Evelyn's own photograph. The Holland & Sherry swatch book is legible in
+    // frame and she is content with that: /servicios already names the house as
+    // cloth the atelier works with, which is not a certification claim.
+    src: '/img/trazado-cenital-regla-tejido-azul.webp',
+    alt: 'Vista cenital del trazado a tiza sobre un paño azul, con regla, tijeras, cinta métrica y un muestrario de tejidos',
   },
   fitting: {
     src: '/img/prueba-traje-showroom.webp',
