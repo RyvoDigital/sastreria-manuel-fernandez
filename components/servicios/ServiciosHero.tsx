@@ -116,21 +116,21 @@ const ParallaxImages = ({ isMobile }: { isMobile: boolean }) => {
       />
       <ParallaxImg
         src="/img/smoking-negro-pajarita.webp"
-        alt="Consulta de tejidos"
+        alt="Smoking negro con solapa de raso y pajarita, sobre camisa blanca con pañuelo de bolsillo"
         start={200}
         end={-250}
         imgStyle={{ width: isMobile ? '90%' : '60%', margin: '0 auto' }}
       />
       <ParallaxImg
         src="/img/traje-tres-piezas-gris-medida.webp"
-        alt="Corte con tijeras"
+        alt="Traje de tres piezas en franela gris, con chaqueta, chaleco y pantalón, sobre maniquí"
         start={-200}
         end={200}
         imgStyle={{ width: isMobile ? '85%' : '32%', marginLeft: 'auto' }}
       />
       <ParallaxImg
         src="/img/blazer-cuadros-azul-medida.webp"
-        alt="Showroom trajes"
+        alt="Blazer de cuadros en azul y tostado sobre maniquí de sastre, con las solapas sin rematar"
         start={0}
         end={-500}
         imgStyle={{ width: isMobile ? '90%' : '40%', marginLeft: isMobile ? '0' : '8rem' }}

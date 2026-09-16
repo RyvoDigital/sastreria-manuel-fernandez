@@ -184,6 +184,16 @@ export function CredencialesSection() {
             }}>
               {c.artesanal_link}
             </Link>
+            .{' '}
+            {c.medida_lead}{' '}
+            <Link href="/trajes-a-medida-madrid" style={{
+              color: '#C9A84C',
+              textDecoration: 'underline',
+              textUnderlineOffset: '0.2em',
+              textDecorationThickness: '1px',
+            }}>
+              {c.medida_link}
+            </Link>
             .
           </p>
 

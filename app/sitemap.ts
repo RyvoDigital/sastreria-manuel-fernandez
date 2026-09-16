@@ -19,6 +19,7 @@ const routes = [
   '',
   '/la-sastreria',
   '/sastreria-artesanal-madrid',
+  '/trajes-a-medida-madrid',
   '/servicios',
   '/bodas-y-ceremonia',
   '/configurador',
