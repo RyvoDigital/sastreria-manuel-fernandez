@@ -155,7 +155,7 @@ export function BeforeAfterSlider() {
             {/* After Image (Right side) */}
             <img
               src="/img/chaqueta-azul-terminada-despues.webp"
-              alt="After fitting"
+              alt="Chaqueta azul marino terminada, con botonadura dorada, sobre maniquí"
               style={{
                 width: '100%',
                 height: '100%',
@@ -179,7 +179,7 @@ export function BeforeAfterSlider() {
           >
             <img
               src="/img/chaqueta-hilvanada-antes-prueba.webp"
-              alt="Before fitting"
+              alt="La misma chaqueta hilvanada, cubierta de puntadas provisionales blancas, antes de la prueba"
               style={{
                 width: '100%',
                 height: '100%',

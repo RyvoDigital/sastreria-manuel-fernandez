@@ -76,7 +76,7 @@ export function MaestroSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/img/manuel-fernandez-hilvanando.webp"
-          alt="Manuel Fernández en su sastrería"
+          alt="Manos hilvanando a mano las piezas cortadas sobre la mesa de corte"
           style={{
             position:   'absolute', inset: 0,
             width:      '100%', height: '100%',

@@ -115,7 +115,7 @@ function CursosLayoutInner() {
         }}>
           <img
             src="/img/curso-sastreria-mesa-corte.webp"
-            alt="Cursos de Sastrería"
+            alt="Manuel Fernández trazando y cortando sobre el tejido en la mesa de corte"
             style={{
               width: '100%',
               height: '100%',

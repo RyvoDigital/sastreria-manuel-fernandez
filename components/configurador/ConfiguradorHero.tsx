@@ -23,7 +23,7 @@ export function ConfiguradorHero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/img/americana-marron-medida-madrid.webp"
-          alt=""
+          alt="Americana marrón de cuadros y pantalón camel, en una calle de Madrid"
           style={{
             width: '100%',
             height: '100%',

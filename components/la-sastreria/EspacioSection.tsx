@@ -117,7 +117,7 @@ export function EspacioSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/img/interior-showroom-sastreria-madrid.webp"
-              alt="Sastrería Manuel Fernández"
+              alt="Interior del showroom, con los muestrarios de tejidos, la corbatería y los probadores"
               className="espacio-main-img"
               style={{
                 width:          '100%',

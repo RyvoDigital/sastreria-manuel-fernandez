@@ -100,7 +100,7 @@ export function EvelynSection() {
           <img
             ref={photoImgRef}
             src="/img/evelyn-fernandez-sastreria.webp"
-            alt="Evelyn · Sastrería Manuel Fernández"
+            alt="Evelyn Fernández trazando a tiza sobre un paño en la mesa de corte, con la cinta métrica al cuello"
             style={{
               position:   'absolute',
               inset:      '-10%',

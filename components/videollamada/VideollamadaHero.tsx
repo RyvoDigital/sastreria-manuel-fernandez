@@ -23,7 +23,7 @@ export function VideollamadaHero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/img/asesoramiento-tejido-cliente.webp"
-          alt=""
+          alt="Asesoramiento de tejidos: una muestra de paño mostrada a un cliente en el showroom"
           style={{
             width: '100%',
             height: '100%',

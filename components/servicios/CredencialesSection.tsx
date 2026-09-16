@@ -243,7 +243,7 @@ export function CredencialesSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={OVERVIEW_IMAGE}
-              alt=""
+              alt="Muestrarios de tejidos en el showroom de la sastrería"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
           </div>

@@ -176,7 +176,7 @@ export function HistoriaSection() {
           <img
             ref={photoImgRef}
             src="/img/manuel-fernandez-mesa-de-corte.webp"
-            alt="Manuel Fernández en la mesa de corte"
+            alt="Manuel Fernández trazando a tiza sobre el tejido en la mesa de corte, bajo el escudo de la casa"
             style={{
               position:   'absolute',
               inset:      '-10%',

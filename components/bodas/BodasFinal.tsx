@@ -40,7 +40,7 @@ export function BodasFinal() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/img/forro-chaqueta-boda.webp"
-        alt=""
+        alt="Chaqueta de lino beige abierta sobre maniquí, con el forro de paisley verde y dorado a la vista"
         style={{
           position: 'absolute', inset: 0,
           width: '100%', height: '100%',

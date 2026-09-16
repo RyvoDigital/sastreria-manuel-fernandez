@@ -77,7 +77,7 @@ export function SuitShowcaseSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/img/anatomia-traje-forro-interior.webp"
-            alt={t.suit_showcase.label}
+            alt="Traje azul marino abierto para mostrar el forro de paisley y el chaleco celeste"
             style={{
               width: '100%',
               height: '100%',

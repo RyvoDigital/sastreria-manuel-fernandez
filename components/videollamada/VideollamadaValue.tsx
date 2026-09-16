@@ -64,7 +64,7 @@ export function VideollamadaValue() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/img/asesoramiento-tejido-cliente.webp"
-              alt=""
+              alt="Asesoramiento de tejidos con el cliente, muestrario en mano"
               style={{
                 width: '100%',
                 height: '100%',

@@ -96,7 +96,7 @@ export default function Modelos3DPage() {
           }}>
             <img
               src="/img/americana-blanca-fachada-sastreria.webp"
-              alt=""
+              alt="Americana blanca de lino y pantalón azul frente al escaparate de la sastrería"
               style={{
                 width: '100%',
                 height: '100%',

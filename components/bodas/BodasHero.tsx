@@ -87,7 +87,7 @@ export function BodasHero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/img/novio-celebracion-boda-noche.webp"
-              alt="Traje de novio a medida · Bodas y Ceremonia"
+              alt="Novio con traje azul marino de tres piezas, en volandas durante la celebración de su boda"
               style={{
                 width: '100%',
                 height: '100%',
@@ -166,7 +166,7 @@ export function BodasHero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/img/novio-celebracion-boda-noche.webp"
-          alt="Traje de novio a medida · Bodas y Ceremonia"
+          alt="Novio con traje azul marino de tres piezas, en volandas durante la celebración de su boda"
           style={{
             width: '100%',
             height: 'clamp(340px, 72vh, 680px)',

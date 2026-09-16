@@ -66,7 +66,7 @@ export function BodasSuitSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/img/traje-novio-beige-showroom.webp"
-            alt={label}
+            alt="Traje de novio en tono beige, con camisa blanca de cuello abierto, en el showroom"
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
         </motion.div>

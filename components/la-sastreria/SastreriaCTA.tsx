@@ -50,7 +50,7 @@ export function SastreriaCTA() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/img/cliente-showroom-sofa-chester.webp"
-        alt=""
+        alt="Cliente consultando un muestrario de tejidos en el sofá chéster del showroom"
         aria-hidden
         className="mf-sas-cta-photo"
         style={{ filter: 'brightness(0.55) saturate(0.7)', objectPosition: 'center 30%' }}

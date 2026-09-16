@@ -73,7 +73,7 @@ export function SastreriaHero() {
       }}>
         {/* Photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img/manos-sastre-tela-gris.webp" alt="" aria-hidden className="mf-sas-hero-photo" />
+        <img src="/img/manos-sastre-tela-gris.webp" alt="Mano del sastre marcando a tiza sobre el tejido en la mesa de corte" aria-hidden className="mf-sas-hero-photo" />
 
         {/* Gradient overlay */}
         <div style={{
