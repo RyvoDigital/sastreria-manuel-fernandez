@@ -145,6 +145,36 @@ export function StepNumber({ children, onDark }: { children: string; onDark?: bo
   )
 }
 
+/**
+ * Oversized low-contrast numeral, grafted from Variant 3 (Placas).
+ *
+ * It is the only place a step number is drawn: the rail carries titles without
+ * digits, so this is a position marker rather than a second numbering system.
+ * `aria-hidden` because the step already has a visible heading and the digit is
+ * decoration to a screen reader, not content.
+ *
+ * Sizing and placement are driven by the consuming variant's CSS (`.ghost`), so
+ * it can sit in the left margin at desktop and stack above the title at mobile
+ * without this component knowing anything about layout.
+ */
+export function GhostNumeral({ children, onDark }: { children: string; onDark?: boolean }) {
+  return (
+    <div
+      className="ghost"
+      aria-hidden="true"
+      style={{
+        fontFamily: 'var(--font-serif)',
+        fontWeight: 400,
+        lineHeight: 0.8,
+        letterSpacing: '-0.03em',
+        color: onDark ? 'rgba(201,168,76,0.22)' : 'rgba(10,22,40,0.14)',
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
 export function Cta({ onDark }: { onDark?: boolean }) {
   return (
     <Link

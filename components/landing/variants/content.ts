@@ -43,6 +43,7 @@ export const COPY = {
     steps: [
       {
         n: '01',
+        id: 'paso-01',
         title: 'Trazado y corte sobre el tejido',
         body:
           'El trazado se hace sobre la propia pieza de tejido, sin patrón intermedio. Es el momento ' +
@@ -52,6 +53,7 @@ export const COPY = {
       },
       {
         n: '02',
+        id: 'paso-02',
         title: 'Hilvanado',
         body:
           'El hilvanado une las piezas cortadas con puntadas provisionales, de modo que la prenda ' +
@@ -60,6 +62,7 @@ export const COPY = {
       },
       {
         n: '03',
+        id: 'paso-03',
         title: 'Entretelas y estructura interna',
         body:
           'La entretela es la estructura interna que da forma al pecho y a la solapa y sostiene la ' +
@@ -68,6 +71,7 @@ export const COPY = {
       },
       {
         n: '04',
+        id: 'paso-04',
         title: 'La prueba',
         body:
           'Tras la primera cita, en la que se toman las medidas y se eligen los tejidos y los ' +
@@ -78,6 +82,7 @@ export const COPY = {
       },
       {
         n: '05',
+        id: 'paso-05',
         title: 'Confección a mano',
         body:
           'Un traje artesanal reúne alrededor de 120 horas de trabajo. Buena parte de ese tiempo ' +
@@ -87,6 +92,7 @@ export const COPY = {
       },
       {
         n: '06',
+        id: 'paso-06',
         title: 'Acabados',
         body:
           'Los acabados son el último tramo del trabajo: ojales, botones, forros y remates que ' +
