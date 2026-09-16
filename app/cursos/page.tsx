@@ -5,6 +5,7 @@ import { ServiceGate } from '@/components/global/ServiceGate'
 export const metadata: Metadata = {
   title: 'Curso Artesanal · Sastrería Manuel Fernández',
   description: 'Aprende técnicas de sastrería artesanal con nuestros cursos en vídeo.',
+  alternates: { canonical: '/cursos' },
 }
 
 export default function CursosPage() {

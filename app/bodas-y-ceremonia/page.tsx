@@ -5,6 +5,7 @@ import { ServiceGate } from '@/components/global/ServiceGate'
 export const metadata: Metadata = {
   title: 'Bodas y Ceremonia | Sastrería Manuel Fernández',
   description: 'Trajes de novio y ceremonia a medida en Madrid. Chaqué, smoking y traje oscuro para el día más importante.',
+  alternates: { canonical: '/bodas-y-ceremonia' },
 }
 
 export default function BodasPage() {

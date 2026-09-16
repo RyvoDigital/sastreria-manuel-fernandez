@@ -5,6 +5,7 @@ import { ServiceGate } from '@/components/global/ServiceGate'
 export const metadata: Metadata = {
   title: 'Configurador de Prendas · Sastrería Manuel Fernández',
   description: 'Diseña tu traje a medida paso a paso. Configurador de prendas artesanales con pago previo.',
+  alternates: { canonical: '/configurador' },
 }
 
 export default function ConfiguradorPage() {

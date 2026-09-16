@@ -12,6 +12,7 @@ import { ScrollToTop } from '@/components/global/ScrollToTop'
 import { ScrollToTopButton } from '@/components/global/ScrollToTopButton'
 import { HtmlLang } from '@/components/global/HtmlLang'
 import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/global/GoogleTagManager'
+import { SITE_NAME, SITE_URL } from '@/lib/site'
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
@@ -45,6 +46,19 @@ export const metadata: Metadata = {
   icons: {
     icon: '/img/favicon-manuel-fernandez.png',
   },
+  // Resolves every relative canonical and Open Graph URL below to the live
+  // domain. Without it those URLs resolve against the deployment hostname.
+  metadataBase: new URL(SITE_URL),
+  // No `alternates` and no `openGraph.url` here on purpose. Metadata fields
+  // are inherited by any page that does not set its own, so either one at the
+  // root would make every page declare itself a duplicate of the homepage.
+  // Each page sets its own self-referencing canonical instead; omitting
+  // og:url lets social platforms use the URL actually being shared.
+  openGraph: {
+    type: 'website',
+    siteName: SITE_NAME,
+    locale: 'es_ES',
+  },
 }
 
 const jsonLd = {
@@ -52,7 +66,7 @@ const jsonLd = {
   '@type': 'LocalBusiness',
   name: 'Sastrería Manuel Fernández',
   description: 'Maestros sastres en Madrid expertos en confección artesanal de trajes a medida, chaqués y esmóquines.',
-  url: 'https://sastreria-five.vercel.app',
+  url: SITE_URL,
   telephone: '+34 682 192 944',
   address: {
     '@type': 'PostalAddress',

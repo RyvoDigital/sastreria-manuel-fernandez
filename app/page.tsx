@@ -11,6 +11,12 @@ import { BeforeAfterSlider }     from '@/components/home/BeforeAfterSlider'
 import { SuitShowcaseSection }   from '@/components/home/SuitShowcaseSection'
 import { FabricsSection }        from '@/components/fabrics/FabricsSection'
 
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+}
+
 export default function HomePage() {
   return (
     <>
