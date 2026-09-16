@@ -63,6 +63,22 @@ function Rule() {
   )
 }
 
+/**
+ * Centred reading column. The page is prose with no imagery yet, so a
+ * container-width layout would strand every paragraph against the left edge
+ * and leave half the viewport empty at desktop. When Evelyn's process
+ * photography lands (see the TODO(image) markers below) this is the piece to
+ * revisit: the sections that gain a photo want the two-column treatment used
+ * in components/la-sastreria/HistoriaSection.tsx instead.
+ */
+function Measure({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ maxWidth: '64ch', marginLeft: 'auto', marginRight: 'auto' }}>
+      {children}
+    </div>
+  )
+}
+
 function Prose({ children, onDark = false }: { children: React.ReactNode; onDark?: boolean }) {
   return (
     <p
@@ -134,7 +150,7 @@ export function SastreriaArtesanalMadrid() {
           padding: 'clamp(9rem, 18vh, 14rem) var(--container-padding) clamp(5rem, 10vh, 8rem)',
         }}
       >
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+        <Measure>
           <Label onDark>Sastrería Artesanal</Label>
           <h1
             style={{
@@ -154,7 +170,7 @@ export function SastreriaArtesanalMadrid() {
             Salamanca. Cada prenda se concibe para una sola persona y se construye a mano en
             Jorge Juan 41, con más de cuarenta años de oficio detrás de cada corte.
           </Prose>
-        </div>
+        </Measure>
       </section>
 
       {/* ── No patterns. The spine of the page. ──────────── */}
@@ -164,7 +180,13 @@ export function SastreriaArtesanalMadrid() {
           padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
         }}
       >
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+        <Measure>
+          {/* TODO(image): Evelyn's process photography. This section is the
+              one that most needs a picture: Manuel tracing or cutting directly
+              on the cloth, no paper in frame. It is the page's central claim
+              and the image has to show it. Deliberately left empty rather than
+              filled with a substitute from public/img, several of which are
+              named *-patron-* and would contradict the copy. */}
           <Label>El método</Label>
           <Rule />
           <H2>Sin patrones. El corte nace sobre el tejido</H2>
@@ -186,7 +208,7 @@ export function SastreriaArtesanalMadrid() {
             </Link>
             .
           </Prose>
-        </div>
+        </Measure>
       </section>
 
       {/* ── The process ──────────────────────────────────── */}
@@ -196,7 +218,7 @@ export function SastreriaArtesanalMadrid() {
           padding: '0 var(--container-padding) clamp(5rem, 10vh, 9rem)',
         }}
       >
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+        <Measure>
           <Label>El proceso</Label>
           <Rule />
           <H2>Cómo se construye una prenda</H2>
@@ -219,6 +241,8 @@ export function SastreriaArtesanalMadrid() {
             </div>
 
             <div>
+              {/* TODO(image): basting in progress, hand and needle in frame.
+                  Pairs with the copy confirmation asked for just below. */}
               <H3>Hilvanado</H3>
               <Prose>
                 El hilvanado une las piezas cortadas con puntadas provisionales, de modo que la
@@ -231,6 +255,8 @@ export function SastreriaArtesanalMadrid() {
             </div>
 
             <div>
+              {/* TODO(image): the inner construction, canvas visible before
+                  the lining goes in. Nothing in public/img covers this today. */}
               <H3>Entretelas y estructura interna</H3>
               <Prose>
                 La entretela es la estructura interna que da forma al pecho y a la solapa y sostiene
@@ -263,6 +289,8 @@ export function SastreriaArtesanalMadrid() {
             </div>
 
             <div>
+              {/* TODO(image): a hand-worked finishing detail, buttonhole or
+                  lapel, shot close. */}
               <H3>Acabados</H3>
               <Prose>
                 Los acabados son el último tramo del trabajo: ojales, botones, forros y remates que
@@ -274,7 +302,7 @@ export function SastreriaArtesanalMadrid() {
                   instead of describing the step generically. */}
             </div>
           </div>
-        </div>
+        </Measure>
       </section>
 
       {/* ── Artisan tailoring vs other systems ───────────── */}
@@ -284,7 +312,7 @@ export function SastreriaArtesanalMadrid() {
           padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
         }}
       >
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+        <Measure>
           <Label onDark>La diferencia</Label>
           <Rule />
           <H2 onDark>Qué distingue a la sastrería artesanal</H2>
@@ -310,7 +338,7 @@ export function SastreriaArtesanalMadrid() {
             </Link>
             .
           </Prose>
-        </div>
+        </Measure>
       </section>
 
       {/* ── Visit / CTA ──────────────────────────────────── */}
@@ -320,7 +348,7 @@ export function SastreriaArtesanalMadrid() {
           padding: 'clamp(5rem, 10vh, 9rem) var(--container-padding)',
         }}
       >
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+        <Measure>
           <Label>El siguiente paso</Label>
           <Rule />
           <H2>Empieza con una conversación</H2>
@@ -350,7 +378,7 @@ export function SastreriaArtesanalMadrid() {
           >
             Solicitar cita
           </Link>
-        </div>
+        </Measure>
       </section>
     </>
   )
