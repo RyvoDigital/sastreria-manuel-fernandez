@@ -12,7 +12,6 @@ const NAV_COL1 = [
 ]
 
 const NAV_COL2 = [
-  { key: 'configurador' as const, href: '/configurador' },
   { key: 'cursos' as const, href: '/cursos' },
   { key: 'contacto' as const, href: '/contacto' },
 ]

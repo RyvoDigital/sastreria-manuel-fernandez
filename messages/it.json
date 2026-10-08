@@ -8,10 +8,8 @@
     "servicios": "Servizi",
     "bodas": "Sposi",
     "contacto": "Contatto",
-    "configurador": "Configuratore",
     "cursos": "Corso Artigianale",
-    "videollamada": "Videochiamata",
-    "modelos3d": "Crea il tuo Abito"
+    "videollamada": "Videochiamata"
   },
   "hero": {
     "seo_heading": "Sartoria artigianale su misura a Madrid",
@@ -252,10 +250,6 @@
         "label": "Matrimoni & Cerimonie",
         "desc": "Abiti da matrimonio unici: frac, smoking, redingote."
       },
-      "configurator": {
-        "label": "Configuratore di Abiti",
-        "desc": "Progetta il tuo abito passo dopo passo. Accesso a pagamento."
-      },
       "courses": {
         "label": "Corso Artigianale",
         "desc": "Impara le tecniche di sartoria con tutorial video."
@@ -471,35 +465,6 @@
     "process_step4": "Consegna",
     "final_title": "Inizia il tuo viaggio",
     "final_cta": "Prenota Appuntamento"
-  },
-  "configurador": {
-    "hero": {
-      "label": "Configuratore",
-      "title": "Disegna l'Abito che Sei",
-      "subtitle": "Un capo su misura costruito secondo la tua visione esatta. Il nostro configuratore ti guida passo dopo passo per costruire l'abito che esprime esattamente chi sei.",
-      "scroll": "Scorrere"
-    },
-    "value": {
-      "label": "L'Esperienza",
-      "title": "Più di un modulo, una conversazione con il tessuto.",
-      "body": "Ogni selezione che fai nel configuratore ha conseguenze reali sul taglio, la caduta e il carattere del tuo abito. Dal rever al colore, ogni dettaglio è pensato perché il risultato sia un'estensione della tua personalità.",
-      "features": [
-        "Un processo su misura che copre ogni dettaglio dell'abito",
-        "Raccomandazioni basate sulla tua occasione e stile",
-        "Riepilogo visivo di tutte le tue scelte",
-        "Preventivo personalizzato al termine"
-      ]
-    },
-    "steps": {
-      "label": "Il Processo",
-      "title": "Dall'idea al capo",
-      "subtitle": "Un processo su misura che trasforma la tua visione in un abito fatto su misura.",
-      "descriptions": [
-        "Scegli tra tessuti esclusivi: Principe di Galles, riga diplomatica, tinta unita e altro.",
-        "Prendiamo le tue misure con precisione per una vestibilità perfetta.",
-        "Definisci il rever, il taglio, i bottoni e ogni dettaglio del tuo abito."
-      ]
-    }
   },
   "footer": {
     "tagline": "Costruiamo identità attraverso l'artigianato.",

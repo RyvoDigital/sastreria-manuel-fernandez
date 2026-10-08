@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from 'gsap'
-import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
+import { Scissors, Heart, Briefcase, GraduationCap, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
 import Image from 'next/image'
@@ -29,20 +29,6 @@ const SERVICES = [
     href: '/servicios',
     image: '/img/evelyn-fernandez-taller-corte.webp',
     settingId: null,
-  },
-  {
-    key: 'modelos3d',
-    icon: Box,
-    href: '/modelos-3d',
-    image: '/img/patron-chaqueta-piezas-cortadas.webp',
-    settingId: 'modelos3d',
-  },
-  {
-    key: 'configurador',
-    icon: Settings,
-    href: '/configurador',
-    image: '/img/ajuste-cintura-pantalon.webp',
-    settingId: 'configurador',
   },
   {
     key: 'cursos',

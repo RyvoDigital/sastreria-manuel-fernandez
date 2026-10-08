@@ -87,29 +87,6 @@ export async function POST(req: NextRequest) {
         },
         customer_email: email,
       })
-    } else if (type === 'configurator') {
-      session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items: [
-          {
-            price_data: {
-              currency: 'eur',
-              product_data: {
-                name: 'Acceso al Configurador de Prendas',
-                description: 'Diseña tu traje a medida paso a paso',
-              },
-              unit_amount: price,
-            },
-            quantity: 1,
-          },
-        ],
-        mode: 'payment',
-        success_url: `${origin}/configurador?success=true`,
-        cancel_url: `${origin}/configurador?cancelled=true`,
-        metadata: {
-          type: 'configurator',
-        },
-      })
     } else {
       if (!(await areCoursePurchasesOpen())) {
         return NextResponse.json({ error: 'course_purchases_closed' }, { status: 403 })

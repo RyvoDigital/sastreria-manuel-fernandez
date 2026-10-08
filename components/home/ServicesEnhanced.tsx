@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
-import { Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
+import { Scissors, Heart, Briefcase, GraduationCap, Mail } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
 import { useIsMobile } from '@/lib/use-mobile'
@@ -33,20 +33,6 @@ const SERVICES = [
     settingId: null,
   },
   {
-    key: 'modelos3d' as const,
-    icon: Box,
-    href: '/modelos-3d',
-    image: '/img/patron-chaqueta-piezas-cortadas.webp',
-    settingId: 'modelos3d',
-  },
-  {
-    key: 'configurador' as const,
-    icon: Settings,
-    href: '/configurador',
-    image: '/img/consulta-tejidos-showroom.webp',
-    settingId: 'configurador',
-  },
-  {
     key: 'cursos' as const,
     icon: GraduationCap,
     href: '/cursos',
@@ -62,6 +48,17 @@ const SERVICES = [
     settingId: 'contacto',
   },
 ]
+
+/**
+ * Column span on the 12-column desktop grid. Up to four cards share one row.
+ * Five cards (the full set) sit as two wide cards over three, so no card is
+ * left alone on a second row. Settings can hide cards, so this follows the
+ * visible count.
+ */
+function desktopSpan(index: number, count: number): number {
+  if (count === 5) return index < 2 ? 6 : 4
+  return 12 / count
+}
 
 export function ServicesEnhanced() {
   const { t, locale } = useI18n()
@@ -186,13 +183,13 @@ export function ServicesEnhanced() {
           </h2>
         </div>
 
-        {/* 3x3 Grid of image cards — stacks on mobile */}
+        {/* Grid of image cards — stacks on mobile */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)',
           gap: isMobile ? '1rem' : '1.25rem',
         }}>
-          {visibleServices.map((service) => {
+          {visibleServices.map((service, index) => {
             const Icon = service.icon
             const label = getLabel(service.key)
 
@@ -213,6 +210,7 @@ export function ServicesEnhanced() {
                   cursor: 'pointer',
                   opacity: 0,
                   position: 'relative',
+                  gridColumn: isMobile ? undefined : `span ${desktopSpan(index, visibleServices.length)}`,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(201,168,76,0.35)'
