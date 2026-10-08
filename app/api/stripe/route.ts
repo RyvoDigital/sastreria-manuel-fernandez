@@ -1,12 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimit } from '@/lib/rate-limit'
-import { createPayment } from '@/lib/admin/db'
+import { createPayment, getSettings } from '@/lib/admin/db'
 import { isSlotBooked } from '@/lib/bookings'
 import { isSlotBlocked } from '@/lib/availability'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
 import { areCoursePurchasesOpen } from '@/lib/course-purchases-server'
 
 const stripeLimiter = rateLimit({ name: 'stripe', maxRequests: 10, windowMs: 60_000 })
+
+/**
+ * What to charge, in cents, decided here and never taken from the browser.
+ * Prices are the admin settings in euros: `cursos-<id>` for one course, else
+ * `cursos`, and `videollamada` for a video call. The fallbacks match what
+ * the site displays when settings cannot be read (CursosList, ContactPage).
+ */
+async function priceInCents(type: unknown, courseId: unknown): Promise<number> {
+  let settings: { id: string; price: number | string | null }[] = []
+  try {
+    settings = await getSettings()
+  } catch (err) {
+    console.error('Stripe: could not read prices from settings, using defaults', err)
+  }
+  const euros = (id: string) => {
+    const value = Number(settings.find((s) => s.id === id)?.price)
+    return Number.isFinite(value) && value > 0 ? value : null
+  }
+
+  const amount =
+    type === 'videocall'
+      ? euros('videollamada') ?? 50
+      : (typeof courseId === 'string' ? euros(`cursos-${courseId}`) : null) ?? euros('cursos') ?? 350
+  return Math.round(amount * 100)
+}
 
 export async function POST(req: NextRequest) {
   const limit = stripeLimiter(req)
@@ -30,11 +55,9 @@ export async function POST(req: NextRequest) {
     })
 
     const body = await req.json()
-    const { type, courseId, courseName, price, name, email, phone, date, time } = body
-
-    if (!price || typeof price !== 'number' || price <= 0) {
-      return NextResponse.json({ error: 'Invalid or missing price' }, { status: 400 })
-    }
+    // Any `price` in the body is ignored: the amount is looked up server-side.
+    const { type, courseId, courseName, name, email, phone, date, time } = body
+    const price = await priceInCents(type, courseId)
 
     const origin = req.headers.get('origin') || 'http://localhost:3000'
 
