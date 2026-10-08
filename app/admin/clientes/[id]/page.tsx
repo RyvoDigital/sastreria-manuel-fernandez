@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { Archive, ArchiveRestore, Calendar, CreditCard, Save, ShoppingBag, Scissors } from 'lucide-react'
+import { Archive, ArchiveRestore, Calendar, CreditCard, Plus, Save, ShoppingBag, Scissors } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { Badge, Card, ErrorText, Field, PageHeader, api, useApi, btnDanger, btnPrimary, btnSecondary, formatDate, formatMoney, inputClass } from '../../_components/ui'
 import MedidasSection, { type MedidasRow } from './MedidasSection'
@@ -46,11 +47,21 @@ interface Pago {
   created_at: string
 }
 
+interface Compra {
+  id: number
+  numero: string
+  fecha: string
+  total: string
+  devuelto: string
+  resumen: string | null
+}
+
 interface Ficha {
   cliente: Cliente
   medidas: MedidasRow[]
   citas: Cita[]
   pagos: Pago[]
+  compras: Compra[]
 }
 
 const TEXT_FIELDS = ['nombre', 'apellidos', 'email', 'telefono', 'nif', 'direccion', 'codigo_postal', 'ciudad', 'pais'] as const
@@ -136,8 +147,35 @@ export default function ClienteFichaPage() {
             </Card>
           )}
 
-          <Card title={<span className="flex items-center gap-2"><ShoppingBag size={18} className="text-[#C9A84C]" />{t.clientes.sections.compras}</span>}>
-            <p className="text-sm text-gray-400">{t.clientes.comprasSoon}</p>
+          <Card
+            title={<span className="flex items-center gap-2"><ShoppingBag size={18} className="text-[#C9A84C]" />{t.clientes.sections.compras}</span>}
+            actions={
+              <Link href={`/admin/ventas/nueva?cliente=${cliente.id}`} className={btnSecondary}>
+                <Plus size={16} />
+                {t.ventas.new}
+              </Link>
+            }
+          >
+            {ficha.compras.length === 0 ? (
+              <p className="text-sm text-gray-400">{t.clientes.sinCompras}</p>
+            ) : (
+              <ul className="divide-y divide-[#1E3A5F] -my-2">
+                {ficha.compras.map((v) => (
+                  <li key={v.id}>
+                    <Link href={`/admin/ventas/${v.id}`} className="py-2.5 flex items-center justify-between gap-3 text-sm hover:text-[#C9A84C]">
+                      <span className="min-w-0">
+                        <span className="text-white">{v.numero} · {formatDate(v.fecha, locale)}</span>
+                        <span className="block text-xs text-gray-500 truncate">{v.resumen}</span>
+                      </span>
+                      <span className="text-right shrink-0">
+                        <span className="text-white tabular-nums">{formatMoney(v.total, locale)}</span>
+                        {Number(v.devuelto) > 0 && <span className="block text-xs text-red-300 tabular-nums">−{formatMoney(v.devuelto, locale)}</span>}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </Card>
 
           <Card title={<span className="flex items-center gap-2"><Scissors size={18} className="text-[#C9A84C]" />{t.clientes.sections.encargos}</span>}>

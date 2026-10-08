@@ -1,5 +1,5 @@
 import { query } from '../db'
-import { HttpError, buildUpdate, pickFields, type CurrentAdmin } from './server'
+import { HttpError, buildUpdate, pickFields, wordsMatch, type CurrentAdmin } from './server'
 import { isTipoPrenda } from './medidas'
 
 // DATE columns come back as text: pg would turn them into midnight-UTC Date objects
@@ -26,9 +26,7 @@ export async function listClientes(opts: { q?: string; archivados?: boolean; lim
   const params: unknown[] = []
   const where: string[] = [opts.archivados ? 'c.activo = FALSE' : 'c.activo = TRUE']
   if (opts.q) {
-    params.push(`%${opts.q.toLowerCase()}%`)
-    const p = `$${params.length}`
-    where.push(`(lower(c.nombre || ' ' || coalesce(c.apellidos, '')) LIKE ${p} OR lower(c.email) LIKE ${p} OR c.telefono LIKE ${p})`)
+    where.push(wordsMatch(opts.q, `lower(c.nombre || ' ' || coalesce(c.apellidos, '') || ' ' || coalesce(c.email, '') || ' ' || coalesce(c.telefono, ''))`, params))
   }
   params.push(Math.min(opts.limit ?? 50, 200), opts.offset ?? 0)
   const result = await query(
@@ -48,7 +46,7 @@ export async function getCliente(id: number) {
   const cliente = (await query(`SELECT ${RETURNING} FROM clientes WHERE id = $1`, [id])).rows[0]
   if (!cliente) throw new HttpError(404, 'not found')
 
-  const [medidas, citas, pagos] = await Promise.all([
+  const [medidas, citas, pagos, compras] = await Promise.all([
     query(
       `SELECT m.*, m.tomada_en::text AS tomada_en, a.name AS tomada_por_nombre
          FROM cliente_medidas m LEFT JOIN admins a ON a.id = m.tomada_por
@@ -71,9 +69,16 @@ export async function getCliente(id: number) {
           [cliente.email]
         )
       : Promise.resolve({ rows: [] }),
+    query(
+      `SELECT v.id, v.numero, v.fecha, v.total, v.estado,
+              (SELECT COALESCE(SUM(d.importe_total), 0) FROM devoluciones d WHERE d.venta_id = v.id) AS devuelto,
+              (SELECT string_agg(l.descripcion, ', ' ORDER BY l.id) FROM venta_lineas l WHERE l.venta_id = v.id) AS resumen
+         FROM ventas v WHERE v.cliente_id = $1 ORDER BY v.fecha DESC LIMIT 50`,
+      [id]
+    ),
   ])
 
-  return { cliente, medidas: medidas.rows, citas: citas.rows, pagos: pagos.rows }
+  return { cliente, medidas: medidas.rows, citas: citas.rows, pagos: pagos.rows, compras: compras.rows }
 }
 
 export async function createCliente(body: Record<string, unknown>, admin: CurrentAdmin) {

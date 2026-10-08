@@ -18,6 +18,7 @@ import {
   BookOpen,
   Truck,
   Package,
+  ShoppingBag,
   X,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
@@ -31,6 +32,7 @@ const navGroups = [
       { href: '/admin/clientes', icon: Users, key: 'customers' },
       { href: '/admin/bookings', icon: Calendar, key: 'bookings' },
       { href: '/admin/inventario', icon: Package, key: 'inventario' },
+      { href: '/admin/ventas', icon: ShoppingBag, key: 'ventas' },
       { href: '/admin/proveedores', icon: Truck, key: 'proveedores' },
     ],
   },
@@ -99,7 +101,7 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
 
   return (
     <aside
-      className={`fixed md:static inset-y-0 left-0 z-50 w-64 min-h-screen bg-[#0A1628] border-r border-[#1E3A5F] flex flex-col shrink-0 transition-transform duration-300 ease-in-out ${
+      className={`print:hidden fixed md:static inset-y-0 left-0 z-50 w-64 min-h-screen bg-[#0A1628] border-r border-[#1E3A5F] flex flex-col shrink-0 transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
       }`}
     >

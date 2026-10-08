@@ -25,8 +25,8 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }, [sidebarOpen])
 
   return (
-    <div className="min-h-screen bg-[#0F1D2E]">
-      <header className="md:hidden sticky top-0 z-30 flex items-center gap-3 px-4 py-3 bg-[#0A1628] border-b border-[#1E3A5F]">
+    <div className="min-h-screen bg-[#0F1D2E] print:bg-white print:min-h-0">
+      <header className="md:hidden print:hidden sticky top-0 z-30 flex items-center gap-3 px-4 py-3 bg-[#0A1628] border-b border-[#1E3A5F]">
         <button
           type="button"
           onClick={() => setSidebarOpen(true)}
@@ -52,7 +52,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
       <div className="flex min-h-[calc(100vh-57px)] md:min-h-screen">
         <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <main className="flex-1 min-w-0 p-4 sm:p-6 md:p-8 overflow-auto">
+        <main className="flex-1 min-w-0 p-4 sm:p-6 md:p-8 overflow-auto print:p-0 print:overflow-visible">
           {children}
         </main>
       </div>

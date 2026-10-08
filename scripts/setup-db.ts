@@ -631,6 +631,89 @@ async function setupInventario(pool: Pool, hasTrgm: boolean) {
       FOR EACH ROW EXECUTE FUNCTION movimientos_stock_inmutable()
     `)
   }
+
+  await setupVentas(pool)
+}
+
+// Sales register. NOT fiscal invoicing: tickets are non-fiscal (VeriFactu is out of scope).
+async function setupVentas(pool: Pool) {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS ventas (
+      id SERIAL PRIMARY KEY,
+      numero VARCHAR(20) NOT NULL UNIQUE,
+      fecha TIMESTAMPTZ NOT NULL DEFAULT now(),
+      cliente_id INTEGER REFERENCES clientes(id) ON DELETE SET NULL,
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      admin_nombre VARCHAR(100),
+      metodo_pago VARCHAR(15) NOT NULL CHECK (metodo_pago IN ('efectivo', 'tarjeta', 'bizum', 'transferencia', 'mixto', 'otro')),
+      pagos JSONB,
+      total_base NUMERIC(12,2) NOT NULL,
+      total_iva NUMERIC(12,2) NOT NULL,
+      total NUMERIC(12,2) NOT NULL,
+      descuento_total NUMERIC(12,2) NOT NULL DEFAULT 0,
+      estado VARCHAR(20) NOT NULL DEFAULT 'completada' CHECK (estado IN ('completada', 'devuelta_parcial', 'devuelta')),
+      notas TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS ventas_fecha_idx ON ventas (fecha DESC)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS ventas_cliente_idx ON ventas (cliente_id, fecha DESC)`)
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS venta_lineas (
+      id SERIAL PRIMARY KEY,
+      venta_id INTEGER NOT NULL REFERENCES ventas(id) ON DELETE CASCADE,
+      variante_id INTEGER REFERENCES producto_variantes(id),
+      descripcion VARCHAR(250) NOT NULL,
+      cantidad NUMERIC(12,3) NOT NULL CHECK (cantidad > 0),
+      pvp_unitario NUMERIC(12,2) NOT NULL CHECK (pvp_unitario >= 0),
+      descuento_pct NUMERIC(5,2) NOT NULL DEFAULT 0 CHECK (descuento_pct BETWEEN 0 AND 100),
+      importe_descuento NUMERIC(12,2) NOT NULL DEFAULT 0,
+      iva NUMERIC(5,2) NOT NULL,
+      base NUMERIC(12,2) NOT NULL,
+      cuota_iva NUMERIC(12,2) NOT NULL,
+      total NUMERIC(12,2) NOT NULL,
+      coste_unitario NUMERIC(12,4),
+      cantidad_devuelta NUMERIC(12,3) NOT NULL DEFAULT 0
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS venta_lineas_venta_idx ON venta_lineas (venta_id)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS venta_lineas_variante_idx ON venta_lineas (variante_id)`)
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS devoluciones (
+      id SERIAL PRIMARY KEY,
+      numero VARCHAR(20) NOT NULL UNIQUE,
+      venta_id INTEGER NOT NULL REFERENCES ventas(id),
+      fecha TIMESTAMPTZ NOT NULL DEFAULT now(),
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      admin_nombre VARCHAR(100),
+      motivo TEXT,
+      importe_total NUMERIC(12,2) NOT NULL,
+      metodo_reembolso VARCHAR(15) NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS devoluciones_venta_idx ON devoluciones (venta_id)`)
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS devolucion_lineas (
+      id SERIAL PRIMARY KEY,
+      devolucion_id INTEGER NOT NULL REFERENCES devoluciones(id) ON DELETE CASCADE,
+      venta_linea_id INTEGER NOT NULL REFERENCES venta_lineas(id),
+      cantidad NUMERIC(12,3) NOT NULL CHECK (cantidad > 0),
+      importe NUMERIC(12,2) NOT NULL,
+      reponer_stock BOOLEAN NOT NULL DEFAULT TRUE
+    )
+  `)
+
+  // The ledger columns created in A2 now get their foreign keys
+  for (const [name, col, ref] of [
+    ['movimientos_venta_linea_fkey', 'venta_linea_id', 'venta_lineas'],
+    ['movimientos_devolucion_linea_fkey', 'devolucion_linea_id', 'devolucion_lineas'],
+  ]) {
+    const exists = await pool.query(`SELECT 1 FROM pg_constraint WHERE conname = $1`, [name])
+    if (exists.rowCount === 0) {
+      await pool.query(`ALTER TABLE movimientos_stock ADD CONSTRAINT ${name} FOREIGN KEY (${col}) REFERENCES ${ref}(id)`)
+    }
+  }
 }
 
 setup()

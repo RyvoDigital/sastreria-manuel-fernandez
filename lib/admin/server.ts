@@ -62,6 +62,9 @@ export async function handle(label: string, fn: () => Promise<unknown>) {
     if (error instanceof HttpError) {
       return NextResponse.json({ error: error.message, details: error.details }, { status: error.status })
     }
+    if (error instanceof SyntaxError) {
+      return NextResponse.json({ error: 'invalid json' }, { status: 400 })
+    }
     const pgCode = (error as { code?: string }).code
     if (pgCode === '23505') {
       return NextResponse.json({ error: 'duplicate' }, { status: 409 })
@@ -97,4 +100,17 @@ export function buildUpdate(table: string, id: number, fields: Record<string, un
     sql: `UPDATE ${table} SET ${sets.join(', ')} WHERE id = $${cols.length + 1} RETURNING ${returning}`,
     params: [...Object.values(fields), id],
   }
+}
+
+// "grenadina azul" should find "Corbata grenadina · azul marino": every word must appear, in any order.
+// Returns an SQL condition over `haystack` and pushes one parameter per word.
+export function wordsMatch(q: string, haystack: string, params: unknown[]) {
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean).slice(0, 6)
+  if (words.length === 0) return 'TRUE'
+  return words
+    .map((w) => {
+      params.push(`%${w.replace(/[\\%_]/g, (c) => '\\' + c)}%`)
+      return `${haystack} LIKE $${params.length}`
+    })
+    .join(' AND ')
 }

@@ -142,20 +142,28 @@ export async function api<T>(url: string, init?: { method?: string; body?: unkno
     body: init?.body !== undefined ? JSON.stringify(init.body) : undefined,
   })
   const data = await res.json().catch(() => ({}))
-  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`)
+  if (!res.ok) {
+    const error = new Error(data.error || `HTTP ${res.status}`) as Error & { details?: unknown }
+    error.details = data.details
+    throw error
+  }
   return data as T
 }
 
 // Loads a JSON endpoint; reload() refetches. Stale responses (url changed meanwhile) are dropped.
-export function useApi<T>(url: string) {
-  const [state, setState] = useState<{ data: T | null; error: string | null; loading: boolean }>({ data: null, error: null, loading: true })
+// A null url means "nothing to load yet".
+export function useApi<T>(url: string | null) {
+  const [state, setState] = useState<{ data: T | null; error: string | null; loading: boolean; url: string | null }>({
+    data: null, error: null, loading: url !== null, url,
+  })
   const [version, setVersion] = useState(0)
 
   useEffect(() => {
+    if (url === null) return
     let current = true
     api<T>(url).then(
-      (data) => current && setState({ data, error: null, loading: false }),
-      (error: Error) => current && setState((s) => ({ ...s, error: error.message, loading: false }))
+      (data) => current && setState({ data, error: null, loading: false, url }),
+      (error: Error) => current && setState((s) => ({ ...s, error: error.message, loading: false, url }))
     )
     return () => {
       current = false
@@ -163,7 +171,8 @@ export function useApi<T>(url: string) {
   }, [url, version])
 
   const reload = useCallback(() => setVersion((v) => v + 1), [])
-  return { ...state, reload }
+  if (url === null) return { data: null, error: null, loading: false, reload }
+  return { data: state.data, error: state.error, loading: state.loading, reload }
 }
 
 export function formatDate(value: string | null | undefined, locale: string) {

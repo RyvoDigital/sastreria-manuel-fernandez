@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg'
 import { query } from '../db'
-import { HttpError, pickFields, withTransaction, type CurrentAdmin } from './server'
+import { HttpError, pickFields, withTransaction, wordsMatch, type CurrentAdmin } from './server'
 import { aplicarMovimientos, MOTIVOS_AJUSTE, UNIDADES, type MotivoAjuste } from './stock'
 import { deleteFotos } from './fotos'
 
@@ -87,9 +87,13 @@ export async function listProductos(f: ProductoFilters) {
   const p = (value: unknown) => (params.push(value), `$${params.length}`)
   const where = [f.archivados ? 'NOT p.activo' : 'p.activo']
   if (f.q) {
-    const like = p(`%${f.q.toLowerCase()}%`)
-    where.push(`(lower(p.nombre || ' ' || coalesce(p.referencia, '') || ' ' || coalesce(p.marca, '')) LIKE ${like}
-      OR EXISTS (SELECT 1 FROM producto_variantes sv WHERE sv.producto_id = p.id AND lower(coalesce(sv.sku, '') || ' ' || coalesce(sv.etiqueta, '')) LIKE ${like}))`)
+    // Product fields plus all its variants' SKUs and labels, so "oxford 42" finds the product
+    where.push(wordsMatch(
+      f.q,
+      `lower(p.nombre || ' ' || coalesce(p.referencia, '') || ' ' || coalesce(p.marca, '') || ' ' ||
+        coalesce((SELECT string_agg(coalesce(sv.sku, '') || ' ' || coalesce(sv.etiqueta, ''), ' ') FROM producto_variantes sv WHERE sv.producto_id = p.id), ''))`,
+      params
+    ))
   }
   if (f.categoria) where.push(`p.categoria_id = ${p(f.categoria)}`)
   if (f.proveedor) where.push(`p.proveedor_id = ${p(f.proveedor)}`)
@@ -320,7 +324,12 @@ export async function updateVariante(id: number, body: Record<string, unknown>) 
 
 // For pickers (entradas now, ventas and encargos later)
 export async function buscarVariantes(q: string, opts: { tipo?: 'terminado' | 'material' } = {}) {
-  const params: unknown[] = [`%${q.toLowerCase()}%`]
+  const params: unknown[] = []
+  const match = wordsMatch(
+    q,
+    `lower(p.nombre || ' ' || coalesce(p.referencia, '') || ' ' || coalesce(p.marca, '') || ' ' || coalesce(v.sku, '') || ' ' || coalesce(v.etiqueta, ''))`,
+    params
+  )
   const tipoFilter = opts.tipo ? `AND c.tipo = $${params.push(opts.tipo)}` : ''
   const result = await query(
     `SELECT v.id, v.etiqueta, v.sku, v.stock_actual, v.stock_reservado, v.es_unica,
@@ -331,7 +340,7 @@ export async function buscarVariantes(q: string, opts: { tipo?: 'terminado' | 'm
        JOIN productos p ON p.id = v.producto_id
        JOIN categorias_producto c ON c.id = p.categoria_id
       WHERE v.activo AND p.activo ${tipoFilter}
-        AND lower(p.nombre || ' ' || coalesce(p.referencia, '') || ' ' || coalesce(p.marca, '') || ' ' || coalesce(v.sku, '') || ' ' || coalesce(v.etiqueta, '')) LIKE $1
+        AND ${match}
       ORDER BY lower(p.nombre), v.orden
       LIMIT 30`,
     params
