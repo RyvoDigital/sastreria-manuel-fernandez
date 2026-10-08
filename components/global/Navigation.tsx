@@ -8,15 +8,13 @@ import { gsap } from 'gsap'
 import { useI18n } from '@/lib/i18n'
 import { track } from '@/lib/analytics'
 import { useSettings } from '@/lib/settings-provider'
-import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, Box, Settings, GraduationCap, Mail } from 'lucide-react'
+import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, GraduationCap, Mail } from 'lucide-react'
 
 const ALL_NAV_ITEMS = [
   { key: 'inicio'        as const, href: '/',               icon: Home, settingId: null },
   { key: 'sastreria'     as const, href: '/la-sastreria',   icon: Scissors, settingId: null },
   { key: 'bodas'         as const, href: '/bodas-y-ceremonia', icon: Heart, settingId: 'bodas' },
   { key: 'servicios'     as const, href: '/servicios',      icon: Briefcase, settingId: null },
-  { key: 'modelos3d'     as const, href: '/modelos-3d',     icon: Box, settingId: 'modelos3d' },
-  { key: 'configurador'  as const, href: '/configurador',   icon: Settings, settingId: 'configurador' },
   { key: 'cursos'        as const, href: '/cursos',         icon: GraduationCap, settingId: 'cursos' },
   { key: 'contacto'      as const, href: '/contacto',       icon: Mail, settingId: 'contacto' },
 ]

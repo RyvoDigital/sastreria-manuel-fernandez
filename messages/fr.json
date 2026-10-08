@@ -8,10 +8,8 @@
     "servicios": "Services",
     "bodas": "Mariages",
     "contacto": "Contact",
-    "configurador": "Configurateur",
     "cursos": "Cours Artisanal",
-    "videollamada": "Visioconférence",
-    "modelos3d": "Créez votre Costume"
+    "videollamada": "Visioconférence"
   },
   "hero": {
     "seo_heading": "Tailleur artisanal sur mesure à Madrid",
@@ -252,10 +250,6 @@
         "label": "Mariages & Cérémonie",
         "desc": "Tenue de mariage unique : redingote, queue-de-pie, smoking."
       },
-      "configurator": {
-        "label": "Configurateur de Vêtements",
-        "desc": "Concevez votre costume étape par étape. Accès payant."
-      },
       "courses": {
         "label": "Cours Artisanal",
         "desc": "Apprenez les techniques de tailleur avec des tutoriels vidéo."
@@ -471,35 +465,6 @@
     "process_step4": "Livraison",
     "final_title": "Commencez votre voyage",
     "final_cta": "Prendre Rendez-vous"
-  },
-  "configurador": {
-    "hero": {
-      "label": "Configurateur",
-      "title": "Concevez le Costume que Vous Êtes",
-      "subtitle": "Un vêtement sur mesure construit selon votre vision exacte. Notre configurateur vous guide étape par étape pour construire le costume qui exprime exactement qui vous êtes.",
-      "scroll": "Défiler"
-    },
-    "value": {
-      "label": "L'Expérience",
-      "title": "Plus qu'un formulaire, une conversation avec le tissu.",
-      "body": "Chaque sélection que vous faites dans le configurateur a des conséquences réelles sur la coupe, la chute et le caractère de votre costume. Du revers à la couleur, chaque détail est pensé pour que le résultat soit une extension de votre personnalité.",
-      "features": [
-        "Un processus sur mesure couvrant chaque détail du costume",
-        "Recommandations basées sur votre occasion et style",
-        "Résumé visuel de tous vos choix",
-        "Devis personnalisé à la fin"
-      ]
-    },
-    "steps": {
-      "label": "Le Processus",
-      "title": "De l'idée au vêtement",
-      "subtitle": "Un processus sur mesure qui transforme votre vision en un costume fait sur mesure.",
-      "descriptions": [
-        "Choisissez parmi des tissus exclusifs : Prince de Galles, rayure diplomatique, unis et plus.",
-        "Nous prenons vos mesures avec précision pour un ajustement parfait.",
-        "Définissez le revers, la coupe, les boutons et chaque détail de votre costume."
-      ]
-    }
   },
   "footer": {
     "tagline": "Nous construisons l'identité à travers l'artisanat.",

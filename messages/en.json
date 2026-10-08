@@ -8,10 +8,8 @@
     "servicios": "Services",
     "bodas": "Weddings & Ceremony",
     "contacto": "Contact",
-    "configurador": "Configurator",
     "cursos": "Artisan Course",
-    "videollamada": "Video Call",
-    "modelos3d": "Create your Suit"
+    "videollamada": "Video Call"
   },
   "hero": {
     "seo_heading": "Bespoke tailoring in Madrid",
@@ -249,10 +247,6 @@
         "label": "Weddings & Ceremony",
         "desc": "Unique wedding attire: morning coat, tailcoat, tuxedo."
       },
-      "configurator": {
-        "label": "Garment Configurator",
-        "desc": "Design your suit step by step. Paid access."
-      },
       "courses": {
         "label": "Artisan Course",
         "desc": "Learn tailoring techniques with video tutorials."
@@ -449,35 +443,6 @@
       "headline": "The most important day of your life deserves a unique suit.",
       "btn_primary": "Book Appointment",
       "btn_secondary": "Our Story"
-    }
-  },
-  "configurador": {
-    "hero": {
-      "label": "Configurator",
-      "title": "Design the Suit You Are",
-      "subtitle": "A bespoke garment built to your exact vision. Our configurator guides you step by step to build the suit that expresses exactly who you are.",
-      "scroll": "Scroll"
-    },
-    "value": {
-      "label": "The Experience",
-      "title": "More than a form, a conversation with fabric.",
-      "body": "Every selection you make in the configurator has real consequences on the cut, drape and character of your suit. From lapel to colour, every detail is designed so the result is an extension of your personality.",
-      "features": [
-        "A tailored process covering every detail of the suit",
-        "Recommendations based on your occasion and style",
-        "Visual summary of all your choices",
-        "Personalised quote upon completion"
-      ]
-    },
-    "steps": {
-      "label": "The Process",
-      "title": "From idea to garment",
-      "subtitle": "A tailored process that transforms your vision into a suit made to your measure.",
-      "descriptions": [
-        "Choose from exclusive fabrics: Prince of Wales, diplomacy stripe, solids and more.",
-        "We take your measurements with precision for a perfect fit.",
-        "Define the lapel, cut, buttons and every detail of your suit."
-      ]
     }
   },
   "videollamada": {

@@ -21,8 +21,7 @@ const content: LandingContent = {
     'Desde ahí se corta y se construye a mano cada prenda, para una sola persona.',
   blocks: [
     {
-      // The shopfront on Jorge Juan. Previously sat unused on /modelos-3d,
-      // which is feature-flagged off on this deployment.
+      // The shopfront on Jorge Juan.
       kind: 'figure',
       src: '/img/americana-blanca-fachada-sastreria.webp',
       alt: 'Americana blanca de lino y pantalón azul frente al escaparate de la sastrería en Jorge Juan',

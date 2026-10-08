@@ -9,8 +9,6 @@ import { SITE_URL } from '@/lib/site'
  * return 404. They must never appear here.
  *
  * Deliberately excluded:
- * - `/modelos-3d`   feature-flagged off on Ryvo deploys via
- *                   NEXT_PUBLIC_HIDE_MODELOS3D in next.config.ts.
  * - `/videollamada` redirects to /contacto, so it never returns 200.
  *
  * When a new page ships, add it here in the same commit as the page.
@@ -28,7 +26,6 @@ const routes = [
   '/womens-bespoke-tailoring-madrid',
   '/servicios',
   '/bodas-y-ceremonia',
-  '/configurador',
   '/cursos',
   '/contacto',
   '/legal',

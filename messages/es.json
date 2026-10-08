@@ -8,10 +8,8 @@
     "servicios": "Servicios",
     "bodas": "Bodas y Ceremonia",
     "contacto": "Contacto",
-    "configurador": "Configurador",
     "cursos": "Curso Artesanal",
-    "videollamada": "Videollamada",
-    "modelos3d": "Crea tu Traje"
+    "videollamada": "Videollamada"
   },
   "hero": {
     "seo_heading": "Sastrería artesanal a medida en Madrid",
@@ -245,10 +243,6 @@
         "label": "Bodas y Ceremonia",
         "desc": "Trajes nupciales únicos: chaqué, frac, esmoquin."
       },
-      "configurator": {
-        "label": "Configurador de Prendas",
-        "desc": "Diseña tu traje paso a paso. Acceso con pago."
-      },
       "courses": {
         "label": "Curso Artesanal",
         "desc": "Aprende técnicas de sastrería con video tutoriales."
@@ -408,35 +402,6 @@
       "headline": "El día más importante de su vida merece un traje único.",
       "btn_primary": "Reservar Cita",
       "btn_secondary": "Conocer la Sastrería"
-    }
-  },
-  "configurador": {
-    "hero": {
-      "label": "Configurador",
-      "title": "Diseña el Traje que Eres",
-      "subtitle": "Una prenda a medida construida según tu visión exacta. Nuestro configurador te guía paso a paso para construir el traje que expresa exactamente quién eres.",
-      "scroll": "Desplazar"
-    },
-    "value": {
-      "label": "La Experiencia",
-      "title": "Más que un formulario, una conversación con el tejido.",
-      "body": "Cada selección que haces en el configurador tiene consecuencia real en el corte, la caída y el carácter de tu traje. Desde la solapa hasta el color, cada detalle está pensado para que el resultado sea una extensión de tu personalidad.",
-      "features": [
-        "Un proceso a medida que cubre cada detalle del traje",
-        "Recomendaciones basadas en tu ocasión y estilo",
-        "Resumen visual de todas tus elecciones",
-        "Presupuesto personalizado al finalizar"
-      ]
-    },
-    "steps": {
-      "label": "El Proceso",
-      "title": "De la idea a la prenda",
-      "subtitle": "Un proceso a medida que transforma tu visión en un traje hecho a tu medida.",
-      "descriptions": [
-        "Elige entre tejidos exclusivos: Príncipe de Gales, raya diplomática, lisos y más.",
-        "Tomamos tus medidas con precisión para un ajuste perfecto.",
-        "Define la solapa, el corte, los botones y cada detalle de tu traje."
-      ]
     }
   },
   "videollamada": {

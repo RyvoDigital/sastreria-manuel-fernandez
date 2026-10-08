@@ -17,7 +17,6 @@ const ALL_NAV_COL1 = [
 ]
 
 const ALL_NAV_COL2 = [
-  { key: 'configurador' as const, href: '/configurador', settingId: 'configurador' },
   { key: 'cursos' as const, href: '/cursos', settingId: 'cursos' },
   { key: 'contacto' as const, href: '/contacto', settingId: 'contacto' },
 ]
