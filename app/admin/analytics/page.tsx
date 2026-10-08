@@ -5,11 +5,9 @@ import {
   BarChart3,
   TrendingUp,
   Users,
-  CreditCard,
   Calendar,
   Video,
   Mail,
-  Settings,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import {
@@ -31,12 +29,11 @@ interface Stats {
   totalBookings: number
   bookingsThisMonth: number
   unreadContacts: number
-  newConfigurations: number
+  totalClientes: number
   upcomingAppointments: number
   bookingsByType: { type: string; total: string }[]
   bookingsByMonth: { month: string; total: string }[]
   contactsByType: { type: string; total: string }[]
-  configsByStatus: { status: string; total: string }[]
 }
 
 const COLORS = ['#C9A84C', '#4A90A4', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444']
@@ -83,25 +80,12 @@ export default function AnalyticsPage() {
       value: parseInt(row.total, 10),
     })) || []
 
-  const configsByStatusData =
-    stats?.configsByStatus.map((row) => ({
-      name:
-        row.status === 'new'
-          ? 'Nuevo'
-          : row.status === 'quote_sent'
-            ? 'Presupuesto'
-            : row.status === 'in_production'
-              ? 'En producción'
-              : 'Completado',
-      value: parseInt(row.total, 10),
-    })) || []
-
   return (
     <div>
       <h1 className="text-2xl font-serif text-white mb-8">{t.sidebar.analytics}</h1>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
           <div className="flex items-center gap-3 mb-4">
             <TrendingUp className="text-emerald-400" size={20} />
@@ -114,14 +98,7 @@ export default function AnalyticsPage() {
             <Users className="text-blue-400" size={20} />
             <span className="text-sm text-gray-400">{t.common.totalClients}</span>
           </div>
-          <div className="text-3xl font-light text-white">{stats?.totalBookings ?? 0}</div>
-        </div>
-        <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <CreditCard className="text-purple-400" size={20} />
-            <span className="text-sm text-gray-400">{t.common.newConfigs}</span>
-          </div>
-          <div className="text-3xl font-light text-white">{stats?.newConfigurations ?? 0}</div>
+          <div className="text-3xl font-light text-white">{stats?.totalClientes ?? 0}</div>
         </div>
         <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
           <div className="flex items-center gap-3 mb-4">
@@ -247,35 +224,6 @@ export default function AnalyticsPage() {
           )}
         </div>
 
-        {/* Configs by Status */}
-        <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
-          <div className="flex items-center gap-3 mb-6">
-            <Settings className="text-[#C9A84C]" size={20} />
-            <h2 className="text-lg font-medium text-white">Configuraciones por Estado</h2>
-          </div>
-          {configsByStatusData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={240}>
-              <BarChart data={configsByStatusData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-                <XAxis dataKey="name" stroke="rgba(255,255,255,0.3)" fontSize={12} />
-                <YAxis stroke="rgba(255,255,255,0.3)" fontSize={12} />
-                <Tooltip
-                  contentStyle={{
-                    background: '#0A1628',
-                    border: '1px solid #1E3A5F',
-                    borderRadius: '8px',
-                    color: '#fff',
-                  }}
-                />
-                <Bar dataKey="value" fill="#8B5CF6" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="h-48 flex items-center justify-center bg-[#1E3A5F]/10 rounded-lg">
-              <p className="text-gray-400 text-sm">{t.common.noData}</p>
-            </div>
-          )}
-        </div>
       </div>
     </div>
   )

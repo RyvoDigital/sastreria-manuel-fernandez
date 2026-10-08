@@ -3,6 +3,10 @@
 import { useEffect, useState } from 'react'
 import { Settings, Save } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import SettingsTabs from './SettingsTabs'
+
+// Configurator settings rows stay in the DB but the feature is gone
+const RETIRED_SETTINGS = ['configurador', 'modelos3d']
 
 interface ServiceSetting {
   id: string
@@ -48,13 +52,14 @@ export default function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-serif text-white mb-8">{t.settings.title}</h1>
+      <h1 className="text-2xl font-serif text-white mb-6">{t.settings.title}</h1>
+      <SettingsTabs />
 
       {loading ? (
         <div className="text-gray-400">{t.common.loading}</div>
       ) : (
         <div className="space-y-6">
-          {settings.map((s) => (
+          {settings.filter((s) => !RETIRED_SETTINGS.includes(s.id)).map((s) => (
             <div key={s.id} className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">

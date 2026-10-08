@@ -9,7 +9,6 @@ import {
   Clock,
   Mail,
   CreditCard,
-  Shirt,
   Users,
   FileText,
   Settings,
@@ -17,26 +16,37 @@ import {
   LogOut,
   KeyRound,
   BookOpen,
-  Box,
+  Truck,
   X,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
-const navItems = [
-  { href: '/admin', icon: LayoutDashboard, key: 'dashboard' },
-  { href: '/admin/bookings', icon: Calendar, key: 'bookings' },
-  { href: '/admin/availability', icon: Clock, key: 'availability' },
-  { href: '/admin/contacts', icon: Mail, key: 'contacts' },
-  { href: '/admin/payments', icon: CreditCard, key: 'payments' },
-  { href: '/admin/configurations', icon: Shirt, key: 'configurations' },
-  { href: '/admin/courses', icon: BookOpen, key: 'courses' },
-  { href: '/admin/garments', icon: Box, key: 'garments' },
-  { href: '/admin/customers', icon: Users, key: 'customers' },
-  { href: '/admin/content', icon: FileText, key: 'content' },
-  { href: '/admin/settings', icon: Settings, key: 'settings' },
-  { href: '/admin/analytics', icon: BarChart3, key: 'analytics' },
-  { href: '/admin/change-password', icon: KeyRound, key: 'password' },
-]
+// Evelyn's order. Modules appear here as each phase ships (Encargos, Taller, Inventario, Ventas, Informes).
+const navGroups = [
+  {
+    key: 'gestion',
+    items: [
+      { href: '/admin', icon: LayoutDashboard, key: 'dashboard' },
+      { href: '/admin/clientes', icon: Users, key: 'customers' },
+      { href: '/admin/bookings', icon: Calendar, key: 'bookings' },
+      { href: '/admin/proveedores', icon: Truck, key: 'proveedores' },
+    ],
+  },
+  {
+    key: 'web',
+    items: [
+      { href: '/admin/availability', icon: Clock, key: 'availability' },
+      { href: '/admin/contacts', icon: Mail, key: 'contacts' },
+      { href: '/admin/payments', icon: CreditCard, key: 'payments' },
+      { href: '/admin/courses', icon: BookOpen, key: 'courses' },
+      { href: '/admin/content', icon: FileText, key: 'content' },
+      { href: '/admin/settings', icon: Settings, key: 'settings' },
+      { href: '/admin/analytics', icon: BarChart3, key: 'analytics' },
+    ],
+  },
+] as const
+
+const accountItems = [{ href: '/admin/change-password', icon: KeyRound, key: 'password' }] as const
 
 interface AdminSidebarProps {
   isOpen?: boolean
@@ -93,25 +103,22 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
         </button>
       </div>
 
-      <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href + '/'))
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-colors ${
-                isActive
-                  ? 'bg-[#C9A84C]/10 text-[#C9A84C]'
-                  : 'text-gray-300 hover:bg-[#1E3A5F]/50 hover:text-white'
-              }`}
-            >
-              <item.icon size={18} />
-              {/* @ts-ignore */}
-              {t.sidebar[item.key]}
-            </Link>
-          )
-        })}
+      <nav className="flex-1 p-4 overflow-y-auto">
+        {navGroups.map((group) => (
+          <div key={group.key} className="mb-5">
+            <div className="px-4 mb-2 text-[11px] uppercase tracking-[0.14em] text-gray-500">{t.nav[group.key]}</div>
+            <div className="space-y-1">
+              {group.items.map((item) => (
+                <NavLink key={item.href} item={item} pathname={pathname} label={t.sidebar[item.key]} />
+              ))}
+            </div>
+          </div>
+        ))}
+        <div className="pt-4 border-t border-[#1E3A5F] space-y-1">
+          {accountItems.map((item) => (
+            <NavLink key={item.href} item={item} pathname={pathname} label={t.sidebar[item.key]} />
+          ))}
+        </div>
       </nav>
 
       <div className="p-4 border-t border-[#1E3A5F] space-y-3">
@@ -140,5 +147,27 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
         </button>
       </div>
     </aside>
+  )
+}
+
+function NavLink({ item, pathname, label }: {
+  item: { href: string; icon: React.ComponentType<{ size?: number }> }
+  pathname: string
+  label: string
+}) {
+  const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href + '/'))
+  return (
+    <Link
+      href={item.href}
+      aria-current={isActive ? 'page' : undefined}
+      className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors ${
+        isActive
+          ? 'bg-[#C9A84C]/10 text-[#C9A84C]'
+          : 'text-gray-300 hover:bg-[#1E3A5F]/50 hover:text-white'
+      }`}
+    >
+      <item.icon size={18} />
+      {label}
+    </Link>
   )
 }

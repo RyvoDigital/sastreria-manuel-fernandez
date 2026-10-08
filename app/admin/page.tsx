@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Calendar, Mail, Shirt, CreditCard, Clock, Save, Euro } from 'lucide-react'
+import { Calendar, Mail, Users, Clock, Save, Euro } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
 interface Stats {
   totalBookings: number
   bookingsThisMonth: number
   unreadContacts: number
-  newConfigurations: number
+  totalClientes: number
   upcomingAppointments: number
 }
 
@@ -18,6 +18,9 @@ interface ServiceSetting {
   enabled: boolean
   price: number | null
 }
+
+// Configurator settings rows stay in the DB but the feature is gone
+const RETIRED_SETTINGS = ['configurador', 'modelos3d']
 
 export default function AdminDashboard() {
   const { t } = useAdminI18n()
@@ -60,11 +63,11 @@ export default function AdminDashboard() {
   const statCards = [
     { label: t.dashboard.totalBookings, value: stats?.totalBookings ?? 0, icon: Calendar, color: 'text-blue-400' },
     { label: t.dashboard.unreadContacts, value: stats?.unreadContacts ?? 0, icon: Mail, color: 'text-amber-400' },
-    { label: t.dashboard.newConfigs, value: stats?.newConfigurations ?? 0, icon: Shirt, color: 'text-purple-400' },
+    { label: t.dashboard.totalClientes, value: stats?.totalClientes ?? 0, icon: Users, color: 'text-purple-400' },
     { label: 'Videocalls', value: stats?.upcomingAppointments ?? 0, icon: Clock, color: 'text-emerald-400' },
   ]
 
-  const priceSettings = settings.filter((s) => s.price !== null)
+  const priceSettings = settings.filter((s) => s.price !== null && !RETIRED_SETTINGS.includes(s.id))
 
   return (
     <div>

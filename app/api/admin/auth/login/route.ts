@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     }
 
     const admin = await getAdminByEmail(email)
-    if (!admin) {
+    if (!admin || admin.activo === false) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 

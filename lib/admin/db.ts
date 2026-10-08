@@ -104,33 +104,7 @@ export async function createContact(data: { name: string; email: string; type?: 
   return result.rows[0]
 }
 
-// Configurations
-export async function getConfigurations() {
-  const result = await query(`SELECT * FROM configurations ORDER BY created_at DESC`)
-  return result.rows
-}
-
-export async function updateConfiguration(id: number, data: { status?: string; notes?: string }) {
-  const fields: string[] = []
-  const params: unknown[] = []
-  let i = 1
-
-  if (data.status !== undefined) {
-    fields.push(`status = $${i++}`)
-    params.push(data.status)
-  }
-  if (data.notes !== undefined) {
-    fields.push(`notes = $${i++}`)
-    params.push(data.notes)
-  }
-
-  if (fields.length === 0) return null
-  params.push(id)
-  const sql = `UPDATE configurations SET ${fields.join(', ')} WHERE id = $${i} RETURNING *`
-  const result = await query(sql, params)
-  return result.rows[0]
-}
-
+// Configurations (public configurator submissions; admin views were removed)
 export async function createConfiguration(data: {
   name: string
   email: string
@@ -143,48 +117,6 @@ export async function createConfiguration(data: {
     [data.name, data.email, data.fabric || null, JSON.stringify(data.measurements || {}), JSON.stringify(data.designOptions || {})]
   )
   return result.rows[0]
-}
-
-// Customer notes
-export async function getCustomers() {
-  const result = await query(`
-    SELECT 
-      COALESCE(cn.email, b.email) as email,
-      COALESCE(cn.name, b.name) as name,
-      cn.notes,
-      cn.measurements,
-      cn.updated_at,
-      COUNT(DISTINCT b.id) as booking_count,
-      MAX(b.created_at) as last_booking
-    FROM bookings b
-    LEFT JOIN customer_notes cn ON b.email = cn.email
-    GROUP BY COALESCE(cn.email, b.email), COALESCE(cn.name, b.name), cn.notes, cn.measurements, cn.updated_at
-    ORDER BY last_booking DESC
-  `)
-  return result.rows
-}
-
-export async function upsertCustomerNote(data: {
-  email: string
-  name?: string
-  notes?: string
-  measurements?: Record<string, unknown>
-}) {
-  const existing = await query(`SELECT id FROM customer_notes WHERE email = $1`, [data.email])
-
-  if (existing.rowCount && existing.rowCount > 0) {
-    const result = await query(
-      `UPDATE customer_notes SET name = COALESCE($1, name), notes = COALESCE($2, notes), measurements = COALESCE($3, measurements), updated_at = CURRENT_TIMESTAMP WHERE email = $4 RETURNING *`,
-      [data.name || null, data.notes || null, data.measurements ? JSON.stringify(data.measurements) : null, data.email]
-    )
-    return result.rows[0]
-  } else {
-    const result = await query(
-      `INSERT INTO customer_notes (email, name, notes, measurements) VALUES ($1, $2, $3, $4) RETURNING *`,
-      [data.email, data.name || '', data.notes || '', data.measurements ? JSON.stringify(data.measurements) : null]
-    )
-    return result.rows[0]
-  }
 }
 
 // Editable content
@@ -216,7 +148,7 @@ export async function getDashboardStats() {
     WHERE created_at >= date_trunc('month', CURRENT_DATE)
   `)
   const contactsResult = await query(`SELECT COUNT(*) as total FROM contact_submissions WHERE read = FALSE`)
-  const configsResult = await query(`SELECT COUNT(*) as total FROM configurations WHERE status = 'new'`)
+  const clientesResult = await query(`SELECT COUNT(*) as total FROM clientes WHERE activo`)
   const upcomingResult = await query(`
     SELECT COUNT(*) as total FROM bookings 
     WHERE date >= CURRENT_DATE AND status = 'confirmed'
@@ -241,27 +173,21 @@ export async function getDashboardStats() {
     SELECT type, COUNT(*) as total FROM contact_submissions GROUP BY type
   `)
 
-  // Chart data: configurations by status
-  const configsByStatus = await query(`
-    SELECT status, COUNT(*) as total FROM configurations GROUP BY status
-  `)
-
   return {
     totalBookings: parseInt(bookingsResult.rows[0].total, 10),
     bookingsThisMonth: parseInt(bookingsThisMonth.rows[0].total, 10),
     unreadContacts: parseInt(contactsResult.rows[0].total, 10),
-    newConfigurations: parseInt(configsResult.rows[0].total, 10),
+    totalClientes: parseInt(clientesResult.rows[0].total, 10),
     upcomingAppointments: parseInt(upcomingResult.rows[0].total, 10),
     bookingsByType: bookingsByType.rows,
     bookingsByMonth: bookingsByMonth.rows,
     contactsByType: contactsByType.rows,
-    configsByStatus: configsByStatus.rows,
   }
 }
 
 // Admin users
 export async function getAdminByEmail(email: string) {
-  const result = await query(`SELECT * FROM admins WHERE email = $1`, [email])
+  const result = await query(`SELECT * FROM admins WHERE lower(email) = lower($1)`, [email])
   return result.rows[0] || null
 }
 
@@ -447,77 +373,6 @@ export async function updateCourse(id: string, data: Partial<{
 
 export async function deleteCourse(id: string) {
   await query(`DELETE FROM courses WHERE id = $1`, [id])
-}
-
-// Garments
-export async function getGarments() {
-  const result = await query(
-    `SELECT * FROM garments ORDER BY sort_order, created_at`
-  )
-  return result.rows
-}
-
-export async function getGarmentBySlug(slug: string) {
-  const result = await query(`SELECT * FROM garments WHERE slug = $1`, [slug])
-  return result.rows[0] || null
-}
-
-export async function getGarmentById(id: number) {
-  const result = await query(`SELECT * FROM garments WHERE id = $1`, [id])
-  return result.rows[0] || null
-}
-
-export async function createGarment(data: {
-  name: string
-  slug: string
-  thumbnail_url: string
-  description?: string
-  is_active?: boolean
-  sort_order?: number
-}) {
-  const result = await query(
-    `INSERT INTO garments (name, slug, thumbnail_url, description, is_active, sort_order)
-     VALUES ($1, $2, $3, $4, $5, $6)
-     RETURNING *`,
-    [data.name, data.slug, data.thumbnail_url, data.description || '', data.is_active ?? true, data.sort_order ?? 0]
-  )
-  return result.rows[0]
-}
-
-export async function updateGarment(id: number, data: Partial<{
-  name: string
-  slug: string
-  thumbnail_url: string
-  description: string
-  is_active: boolean
-  sort_order: number
-}>) {
-  const fields: string[] = []
-  const params: unknown[] = []
-  let i = 1
-
-  const mappings: Record<string, string> = {
-    name: 'name', slug: 'slug', thumbnail_url: 'thumbnail_url',
-    description: 'description', is_active: 'is_active', sort_order: 'sort_order',
-  }
-
-  for (const [key, col] of Object.entries(mappings)) {
-    if (data[key as keyof typeof data] !== undefined) {
-      fields.push(`${col} = $${i++}`)
-      params.push(data[key as keyof typeof data])
-    }
-  }
-
-  if (fields.length === 0) return null
-  fields.push(`updated_at = CURRENT_TIMESTAMP`)
-  params.push(id)
-  const sql = `UPDATE garments SET ${fields.join(', ')} WHERE id = $${i} RETURNING *`
-  const result = await query(sql, params)
-  return result.rows[0] || null
-}
-
-export async function deleteGarment(id: number) {
-  await query(`DELETE FROM garments WHERE id = $1`, [id])
 }
 
 // Booking reminders

@@ -141,7 +141,6 @@ async function setup() {
     const defaultSettings = [
       { id: 'bodas', name: 'Bodas y Ceremonia', enabled: true, price: null },
       { id: 'trajes', name: 'Trajes a Medida', enabled: true, price: 1200 },
-      { id: 'configurador', name: 'Configurador 3D', enabled: true, price: 29 },
       { id: 'cursos', name: 'Cursos de Sastrería (global)', enabled: true, price: 350 },
       { id: 'cursos-intro', name: 'Curso: Introducción', enabled: true, price: 350 },
       { id: 'cursos-canvas', name: 'Curso: Entretelado', enabled: true, price: 350 },
@@ -150,7 +149,6 @@ async function setup() {
       { id: 'cursos-buttonholes', name: 'Curso: Ojales', enabled: true, price: 350 },
       { id: 'cursos-finishes', name: 'Curso: Acabados', enabled: true, price: 350 },
       { id: 'videollamada', name: 'Videollamada', enabled: true, price: 50 },
-      { id: 'modelos3d', name: 'Modelos 3D', enabled: true, price: null },
       { id: 'contacto', name: 'Formulario de Contacto', enabled: true, price: null },
     ]
 
@@ -292,6 +290,8 @@ async function setup() {
     // Add reminder_sent_at to bookings if missing
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS reminder_sent_at TIMESTAMP`)
 
+    await setupGestion(pool)
+
     // Seed default admin if none exists and ADMIN_PASSWORD is set
     const adminPassword = process.env.ADMIN_PASSWORD
     if (adminPassword) {
@@ -312,6 +312,129 @@ async function setup() {
     process.exit(1)
   } finally {
     await pool.end()
+  }
+}
+
+// Gestión (clientes, proveedores, inventario…). See docs/gestion-data-model.md.
+// This runs on every build, preview builds included, so everything here must stay
+// additive and idempotent: IF NOT EXISTS, OR REPLACE, ON CONFLICT DO NOTHING. Never DROP.
+async function setupGestion(pool: Pool) {
+  await pool.query(`ALTER TABLE admins ADD COLUMN IF NOT EXISTS activo BOOLEAN NOT NULL DEFAULT TRUE`)
+
+  // Trigram search is optional: fall back to plain ILIKE if the extension can't be created
+  let hasTrgm = false
+  try {
+    await pool.query(`CREATE EXTENSION IF NOT EXISTS pg_trgm`)
+    hasTrgm = true
+  } catch (err) {
+    console.warn('pg_trgm unavailable, search indexes skipped:', (err as Error).message)
+  }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS clientes (
+      id SERIAL PRIMARY KEY,
+      nombre VARCHAR(100) NOT NULL,
+      apellidos VARCHAR(150),
+      email VARCHAR(200),
+      telefono VARCHAR(50),
+      nif VARCHAR(20),
+      direccion VARCHAR(200),
+      codigo_postal VARCHAR(10),
+      ciudad VARCHAR(100),
+      pais VARCHAR(100),
+      fecha_nacimiento DATE,
+      idioma VARCHAR(5) NOT NULL DEFAULT 'es',
+      notas TEXT,
+      origen VARCHAR(20) NOT NULL DEFAULT 'tienda',
+      acepta_comunicaciones BOOLEAN NOT NULL DEFAULT FALSE,
+      activo BOOLEAN NOT NULL DEFAULT TRUE,
+      created_by INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE UNIQUE INDEX IF NOT EXISTS clientes_email_key ON clientes (lower(email)) WHERE email IS NOT NULL`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS clientes_telefono_idx ON clientes (telefono)`)
+  if (hasTrgm) {
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS clientes_nombre_trgm ON clientes
+      USING gin ((lower(nombre || ' ' || coalesce(apellidos, ''))) gin_trgm_ops)
+    `)
+  }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS cliente_medidas (
+      id SERIAL PRIMARY KEY,
+      cliente_id INTEGER NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
+      tipo_prenda VARCHAR(30) NOT NULL DEFAULT 'general',
+      medidas JSONB NOT NULL DEFAULT '{}',
+      observaciones TEXT,
+      tomada_por INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      tomada_en DATE NOT NULL DEFAULT CURRENT_DATE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS cliente_medidas_cliente_idx ON cliente_medidas (cliente_id, tipo_prenda, tomada_en DESC)`)
+
+  // Citas: link bookings to clientes. New bookings come from public code (lib/bookings.ts),
+  // so a trigger does the linking instead of the insert itself.
+  await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cliente_id INTEGER REFERENCES clientes(id) ON DELETE SET NULL`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS bookings_cliente_idx ON bookings (cliente_id)`)
+  await pool.query(`
+    CREATE OR REPLACE FUNCTION bookings_link_cliente() RETURNS trigger LANGUAGE plpgsql AS $$
+    DECLARE
+      cid INTEGER;
+    BEGIN
+      IF NEW.cliente_id IS NOT NULL OR NEW.email IS NULL OR btrim(NEW.email) = '' THEN
+        RETURN NEW;
+      END IF;
+      SELECT id INTO cid FROM clientes WHERE lower(email) = lower(btrim(NEW.email));
+      IF cid IS NULL THEN
+        INSERT INTO clientes (nombre, email, telefono, idioma, origen)
+        VALUES (NEW.name, lower(btrim(NEW.email)), NEW.phone, COALESCE(NEW.locale, 'es'), 'web')
+        ON CONFLICT ((lower(email))) WHERE email IS NOT NULL DO UPDATE SET email = clientes.email
+        RETURNING id INTO cid;
+      END IF;
+      NEW.cliente_id := cid;
+      RETURN NEW;
+    EXCEPTION WHEN others THEN
+      -- Linking is a convenience: never let it block a booking
+      RETURN NEW;
+    END
+    $$
+  `)
+  const trigger = await pool.query(
+    `SELECT 1 FROM pg_trigger WHERE tgname = 'bookings_link_cliente_trg' AND tgrelid = 'bookings'::regclass`
+  )
+  if (trigger.rowCount === 0) {
+    await pool.query(`
+      CREATE TRIGGER bookings_link_cliente_trg BEFORE INSERT ON bookings
+      FOR EACH ROW EXECUTE FUNCTION bookings_link_cliente()
+    `)
+  }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS proveedores (
+      id SERIAL PRIMARY KEY,
+      nombre VARCHAR(150) NOT NULL,
+      razon_social VARCHAR(200),
+      nif VARCHAR(20),
+      persona_contacto VARCHAR(150),
+      email VARCHAR(200),
+      telefono VARCHAR(50),
+      web VARCHAR(200),
+      direccion VARCHAR(200),
+      ciudad VARCHAR(100),
+      pais VARCHAR(100),
+      condiciones TEXT,
+      notas TEXT,
+      activo BOOLEAN NOT NULL DEFAULT TRUE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  if (hasTrgm) {
+    await pool.query(`CREATE INDEX IF NOT EXISTS proveedores_nombre_trgm ON proveedores USING gin (lower(nombre) gin_trgm_ops)`)
   }
 }
 
