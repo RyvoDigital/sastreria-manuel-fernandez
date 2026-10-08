@@ -398,7 +398,7 @@ export async function getAlertas(limit = 100) {
   const result = await query(
     `SELECT * FROM (
        SELECT v.id AS variante_id, v.etiqueta, v.es_unica, v.stock_actual, v.stock_reservado, v.stock_minimo,
-              p.id AS producto_id, p.nombre AS producto, p.unidad, c.tipo, ${ALERTA_SQL} AS alerta
+              p.id AS producto_id, p.nombre AS producto, p.unidad, c.tipo, c.nombre AS categoria, v.sku, ${ALERTA_SQL} AS alerta
          FROM producto_variantes v
          JOIN productos p ON p.id = v.producto_id
          JOIN categorias_producto c ON c.id = p.categoria_id

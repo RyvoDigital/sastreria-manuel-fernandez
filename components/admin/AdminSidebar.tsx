@@ -19,6 +19,7 @@ import {
   Truck,
   Package,
   ShoppingBag,
+  FileBarChart,
   X,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
@@ -34,6 +35,7 @@ const navGroups = [
       { href: '/admin/inventario', icon: Package, key: 'inventario' },
       { href: '/admin/ventas', icon: ShoppingBag, key: 'ventas' },
       { href: '/admin/proveedores', icon: Truck, key: 'proveedores' },
+      { href: '/admin/informes', icon: FileBarChart, key: 'informes' },
     ],
   },
   {

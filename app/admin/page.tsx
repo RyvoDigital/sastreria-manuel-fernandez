@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Calendar, Mail, Users, Clock, Save, Euro } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import StockAlertsCard from './_components/StockAlertsCard'
+import PanelKpis from './_components/PanelKpis'
 
 interface Stats {
   totalBookings: number
@@ -65,7 +66,7 @@ export default function AdminDashboard() {
     { label: t.dashboard.totalBookings, value: stats?.totalBookings ?? 0, icon: Calendar, color: 'text-blue-400' },
     { label: t.dashboard.unreadContacts, value: stats?.unreadContacts ?? 0, icon: Mail, color: 'text-amber-400' },
     { label: t.dashboard.totalClientes, value: stats?.totalClientes ?? 0, icon: Users, color: 'text-purple-400' },
-    { label: 'Videocalls', value: stats?.upcomingAppointments ?? 0, icon: Clock, color: 'text-emerald-400' },
+    { label: t.common.videocall, value: stats?.upcomingAppointments ?? 0, icon: Clock, color: 'text-emerald-400' },
   ]
 
   const priceSettings = settings.filter((s) => s.price !== null && !RETIRED_SETTINGS.includes(s.id))
@@ -74,10 +75,16 @@ export default function AdminDashboard() {
     <div>
       <h1 className="text-2xl font-serif text-white mb-8">{t.dashboard.title}</h1>
 
+      <div className="space-y-6 mb-10">
+        <PanelKpis />
+        <StockAlertsCard />
+      </div>
+
       {/* Stats cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <h2 className="text-[11px] uppercase tracking-[0.14em] text-gray-500 mb-3">{t.nav.web}</h2>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10">
         {statCards.map((card) => (
-          <div key={card.label} className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
+          <div key={card.label} className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-4 sm:p-6">
             <div className="flex items-center gap-3 mb-3">
               <card.icon size={20} className={card.color} />
               <span className="text-sm text-gray-400">{card.label}</span>
@@ -87,9 +94,6 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div className="mb-10">
-        <StockAlertsCard />
-      </div>
 
       {/* Price settings */}
       <div className="mb-10">
