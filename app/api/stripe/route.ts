@@ -4,6 +4,7 @@ import { createPayment } from '@/lib/admin/db'
 import { isSlotBooked } from '@/lib/bookings'
 import { isSlotBlocked } from '@/lib/availability'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
+import { areCoursePurchasesOpen } from '@/lib/course-purchases-server'
 
 const stripeLimiter = rateLimit({ name: 'stripe', maxRequests: 10, windowMs: 60_000 })
 
@@ -110,6 +111,9 @@ export async function POST(req: NextRequest) {
         },
       })
     } else {
+      if (!(await areCoursePurchasesOpen())) {
+        return NextResponse.json({ error: 'course_purchases_closed' }, { status: 403 })
+      }
       session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: [

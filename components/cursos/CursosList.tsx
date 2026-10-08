@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { Play, Lock, Clock, BookOpen } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { COURSE_PURCHASES_SETTING_ID } from "@/lib/course-purchases";
+import { CursosComingSoonDialog } from "./CursosComingSoonDialog";
 
 interface Course {
   id: string
@@ -135,7 +137,10 @@ interface CursosListProps {
 
 export function CursosList({ onSelectCourse }: CursosListProps) {
   const { locale } = useI18n();
-  const { getPrice } = useSettings();
+  const { getPrice, getSetting } = useSettings();
+  // Closed until the admin switches "Compra de cursos" on (see lib/course-purchases.ts).
+  const purchasesOpen = getSetting(COURSE_PURCHASES_SETTING_ID)?.enabled === true;
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
   const [apiCourses, setApiCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -382,7 +387,7 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
                   </div>
 
                   {/* Badge - BIGGER */}
-                  {course.locked && (
+                  {(course.locked || !purchasesOpen) && (
                     <div style={{
                       position: 'absolute',
                       top: '1rem',
@@ -402,7 +407,7 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
                       {c.locked}
                     </div>
                   )}
-                  {!course.locked && (
+                  {!course.locked && purchasesOpen && (
                     <div style={{
                       position: 'absolute',
                       top: '1rem',
@@ -468,7 +473,9 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
 
                   {/* Course action button */}
                   <button
-                    onClick={() => onSelectCourse?.({ ...course, price: getCoursePrice(course.id, course.price) })}
+                    onClick={() => purchasesOpen
+                      ? onSelectCourse?.({ ...course, price: getCoursePrice(course.id, course.price) })
+                      : setComingSoonOpen(true)}
                     style={{
                       marginTop: '1.25rem',
                       width: '100%',
@@ -513,6 +520,8 @@ export function CursosList({ onSelectCourse }: CursosListProps) {
           transform: scale(1.05);
         }
       `}</style>
+
+      {comingSoonOpen && <CursosComingSoonDialog onClose={() => setComingSoonOpen(false)} />}
     </section>
   );
 }
