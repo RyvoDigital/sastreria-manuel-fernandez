@@ -1,0 +1,68 @@
+/* Page-transition overlay. Hidden by default (visibility); it only ever
+   appears while JS is running a transition, so it can never hide content.
+   No CSS transforms here: GSAP owns them. */
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+
+.stitch {
+  width: min(60vw, 28rem);
+  height: 1px;
+}
+
+/* 1 · Hilván — navy cloth rises, a gold basting stitch runs across it. */
+.hilvan .panel {
+  background: var(--color-navy);
+}
+.hilvan .stitch {
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--color-gold) 0 10px, transparent 10px 18px);
+}
+
+/* 2 · Medida — a white sheet is cut across the screen along a gold-dim rule. */
+.medida .panel {
+  background: var(--color-white);
+}
+.medida .stitch {
+  width: 100%;
+  background: var(--color-gold-dim);
+}
+
+/* 3 · Probador — the fitting-room curtains draw shut, then open. */
+.curtainL,
+.curtainR {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  will-change: transform;
+  /* Velvet folds: only brand navies, layered. */
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(0, 0, 0, 0.28) 0,
+      rgba(18, 34, 56, 0.0) 3.5%,
+      rgba(18, 34, 56, 0.55) 6%,
+      rgba(0, 0, 0, 0.28) 9%),
+    var(--color-navy);
+}
+.curtainL {
+  left: 0;
+  box-shadow: inset -1px 0 0 rgba(201, 168, 76, 0.35);
+}
+.curtainR {
+  right: 0;
+  box-shadow: inset 1px 0 0 rgba(201, 168, 76, 0.35);
+}
