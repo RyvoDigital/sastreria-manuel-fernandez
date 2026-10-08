@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Clock, Lock, Unlock, Trash2, Loader2 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
@@ -50,17 +50,11 @@ export default function AvailabilityPage() {
   const { locale } = useAdminI18n()
   const [selectedDate, setSelectedDate] = useState(formatDateLocal(new Date()))
   const [blockedSlots, setBlockedSlots] = useState<BlockedSlot[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetchBlockedSlots()
-  }, [selectedDate])
-
-  async function fetchBlockedSlots() {
-    setLoading(true)
-    setError(null)
+  const fetchBlockedSlots = useCallback(async () => {
     try {
       const res = await fetch(`/api/admin/availability?date=${selectedDate}`)
       const data = await res.json()
@@ -74,7 +68,11 @@ export default function AvailabilityPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [selectedDate])
+
+  useEffect(() => {
+    fetchBlockedSlots()
+  }, [fetchBlockedSlots])
 
   async function toggleSlot(time: string) {
     const existing = blockedSlots.find((s) => s.time === time)
@@ -130,7 +128,11 @@ export default function AvailabilityPage() {
         <input
           type="date"
           value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
+          onChange={(e) => {
+            setLoading(true)
+            setError(null)
+            setSelectedDate(e.target.value)
+          }}
           className="px-4 py-2 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm"
         />
         <p className="mt-2 text-[#C9A84C] text-sm">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FileText, Save } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
@@ -16,17 +16,18 @@ export default function ContentPage() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetchContent()
+  const fetchContent = useCallback(() => {
+    return fetch('/api/admin/content')
+      .then((res) => res.json())
+      .then((data) => {
+        setContent(data.content || [])
+        setLoading(false)
+      })
   }, [])
 
-  async function fetchContent() {
-    setLoading(true)
-    const res = await fetch('/api/admin/content')
-    const data = await res.json()
-    setContent(data.content || [])
-    setLoading(false)
-  }
+  useEffect(() => {
+    fetchContent()
+  }, [fetchContent])
 
   async function updateValue(id: string, value: string) {
     setSaving(id)

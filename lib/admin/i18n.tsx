@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback, useEffect } from 'react'
+import { createContext, useContext, useCallback, useSyncExternalStore } from 'react'
 
 export type AdminLocale = 'es' | 'en' | 'it' | 'fr'
 
@@ -2789,20 +2789,33 @@ const AdminI18nContext = createContext<AdminI18nContextValue>({
   setLocale: () => {},
 })
 
-export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<AdminLocale>('es')
+// The saved language lives in localStorage; the server render (and hydration) always uses Spanish.
+// chosenLocale keeps the choice working when storage is blocked.
+let chosenLocale: AdminLocale | null = null
+const localeListeners = new Set<() => void>()
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('admin-lang') as AdminLocale | null
-      if (saved && labels[saved]) {
-        console.log('[i18n] loaded saved locale:', saved)
-        setLocaleState(saved)
-      }
-    } catch {
-      // ignore
-    }
-  }, [])
+function readLocale(): AdminLocale {
+  if (chosenLocale) return chosenLocale
+  try {
+    const saved = localStorage.getItem('admin-lang') as AdminLocale | null
+    if (saved && labels[saved]) return saved
+  } catch {
+    // ignore
+  }
+  return 'es'
+}
+
+function subscribeLocale(listener: () => void) {
+  localeListeners.add(listener)
+  window.addEventListener('storage', listener)
+  return () => {
+    localeListeners.delete(listener)
+    window.removeEventListener('storage', listener)
+  }
+}
+
+export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
+  const locale = useSyncExternalStore(subscribeLocale, readLocale, () => 'es' as AdminLocale)
 
   const setLocale = useCallback((l: AdminLocale) => {
     try {
@@ -2810,7 +2823,8 @@ export function AdminI18nProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // ignore
     }
-    setLocaleState(l)
+    chosenLocale = l
+    localeListeners.forEach((listener) => listener())
   }, [])
 
   const value = {

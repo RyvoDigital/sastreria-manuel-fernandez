@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { CheckCircle, XCircle, Bell, Pencil, X } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
@@ -48,19 +48,20 @@ export default function BookingsPage() {
   const [editError, setEditError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
 
-  useEffect(() => {
-    fetchBookings()
-  }, [filter])
-
-  async function fetchBookings() {
-    setLoading(true)
+  const fetchBookings = useCallback(() => {
     const params = new URLSearchParams()
     if (filter !== 'all') params.set('type', filter)
-    const res = await fetch(`/api/admin/bookings?${params}`)
-    const data = await res.json()
-    setBookings(data.bookings || [])
-    setLoading(false)
-  }
+    return fetch(`/api/admin/bookings?${params}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setBookings(data.bookings || [])
+        setLoading(false)
+      })
+  }, [filter])
+
+  useEffect(() => {
+    fetchBookings()
+  }, [fetchBookings])
 
   async function updateStatus(id: number, status: string) {
     await fetch('/api/admin/bookings', {
@@ -133,7 +134,10 @@ export default function BookingsPage() {
         <h1 className="text-2xl font-serif text-white">{t.sidebar.bookings}</h1>
         <select
           value={filter}
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={(e) => {
+            setLoading(true)
+            setFilter(e.target.value)
+          }}
           className="px-4 py-2 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm"
         >
           <option value="all">{t.common.allTypes}</option>

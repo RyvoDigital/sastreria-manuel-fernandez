@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Mail, Eye } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 
@@ -20,17 +20,18 @@ export default function ContactsPage() {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetchContacts()
+  const fetchContacts = useCallback(() => {
+    return fetch('/api/admin/contacts')
+      .then((res) => res.json())
+      .then((data) => {
+        setContacts(data.contacts || [])
+        setLoading(false)
+      })
   }, [])
 
-  async function fetchContacts() {
-    setLoading(true)
-    const res = await fetch('/api/admin/contacts')
-    const data = await res.json()
-    setContacts(data.contacts || [])
-    setLoading(false)
-  }
+  useEffect(() => {
+    fetchContacts()
+  }, [fetchContacts])
 
   async function markAsRead(id: number) {
     await fetch('/api/admin/contacts', {

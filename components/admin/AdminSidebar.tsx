@@ -97,8 +97,13 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
     window.location.href = '/admin/login'
   }
 
+  // Close the mobile drawer after navigating; onClose is read through a ref so a new callback doesn't close it
+  const onCloseRef = useRef(onClose)
   useEffect(() => {
-    onClose?.()
+    onCloseRef.current = onClose
+  })
+  useEffect(() => {
+    onCloseRef.current?.()
   }, [pathname])
 
   return (
