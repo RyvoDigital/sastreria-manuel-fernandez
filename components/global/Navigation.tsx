@@ -1,540 +1,383 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-import { gsap } from 'gsap'
-import { useI18n } from '@/lib/i18n'
+import { useI18n, type Locale } from '@/lib/i18n'
 import { track } from '@/lib/analytics'
 import { useSettings } from '@/lib/settings-provider'
-import { Phone, MapPin, MessageCircle, Home, Scissors, Heart, Briefcase, GraduationCap, Mail } from 'lucide-react'
+import { useMenuDialog, useScrolled } from '@/lib/use-menu-dialog'
+import { SITE_PHONE_DISPLAY, SITE_PHONE_E164 } from '@/lib/site'
+
+/*
+ * Escaparate: the house front on Jorge Juan, translated to a header. On wide
+ * screens the crest sits on the axis with the pages of the site either side
+ * in spaced capitals, and a thin strip above carries the address, telephone
+ * and languages the way a shop window carries its gilt lettering. The strip
+ * folds away on scroll. Below DESKTOP the bar is crest + "Menú", and the menu
+ * opens as a column of Cormorant lines that rise into place.
+ */
+
+const DESKTOP = 1200
 
 const ALL_NAV_ITEMS = [
-  { key: 'inicio'        as const, href: '/',               icon: Home, settingId: null },
-  { key: 'sastreria'     as const, href: '/la-sastreria',   icon: Scissors, settingId: null },
-  { key: 'bodas'         as const, href: '/bodas-y-ceremonia', icon: Heart, settingId: 'bodas' },
-  { key: 'servicios'     as const, href: '/servicios',      icon: Briefcase, settingId: null },
-  { key: 'cursos'        as const, href: '/cursos',         icon: GraduationCap, settingId: 'cursos' },
-  { key: 'contacto'      as const, href: '/contacto',       icon: Mail, settingId: 'contacto' },
-]
+  { key: 'inicio', href: '/', settingId: null },
+  { key: 'sastreria', href: '/la-sastreria', settingId: null },
+  { key: 'bodas', href: '/bodas-y-ceremonia', settingId: 'bodas' },
+  { key: 'servicios', href: '/servicios', settingId: null },
+  { key: 'cursos', href: '/cursos', settingId: 'cursos' },
+  { key: 'contacto', href: '/contacto', settingId: 'contacto' },
+] as const
 
-// Persistent contact buttons data — labels resolved inside component for i18n
-const CONTACT_BUTTONS_DATA = {
-  call: { href: 'tel:+34682192944', icon: Phone },
-  location: { href: 'https://www.google.com/maps/search/?api=1&query=Sastrería+Manuel+Fernández,+C.+de+Jorge+Juan,+41,+Salamanca,+28001+Madrid', icon: MapPin },
+const LOCALES: Locale[] = ['es', 'en', 'it', 'fr']
+
+const LOCALE_NAMES: Record<Locale, string> = {
+  es: 'Español',
+  en: 'English',
+  it: 'Italiano',
+  fr: 'Français',
+}
+
+const CONTACT = {
+  tel: `tel:${SITE_PHONE_E164}`,
+  whatsapp: 'https://wa.me/34682192944',
+  maps: 'https://www.google.com/maps/search/?api=1&query=Sastrería+Manuel+Fernández,+C.+de+Jorge+Juan,+41,+Salamanca,+28001+Madrid',
+}
+
+const UI: Record<Locale, { menu: string; close: string; call: string; language: string; nav: string; home: string }> = {
+  es: { menu: 'Menú', close: 'Cerrar', call: 'Llámanos', language: 'Idioma', nav: 'Navegación principal', home: 'Inicio' },
+  en: { menu: 'Menu', close: 'Close', call: 'Call us', language: 'Language', nav: 'Main navigation', home: 'Home' },
+  it: { menu: 'Menu', close: 'Chiudi', call: 'Chiamaci', language: 'Lingua', nav: 'Navigazione principale', home: 'Home' },
+  fr: { menu: 'Menu', close: 'Fermer', call: 'Appelez-nous', language: 'Langue', nav: 'Navigation principale', home: 'Accueil' },
+}
+
+/** WhatsApp's own glyph rather than a generic speech bubble. */
+function WhatsAppIcon({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z" />
+    </svg>
+  )
 }
 
 export function Navigation() {
-  const { t, locale, toggleLocale, setLocale } = useI18n()
+  const { t, locale, setLocale } = useI18n()
   const { isEnabled } = useSettings()
-  const pathname   = usePathname()
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
-  const overlayRef     = useRef<HTMLDivElement>(null)
-  const mobileItemRefs = useRef<HTMLAnchorElement[]>([])
+  const pathname = usePathname() ?? '/'
+  const rootRef = useRef<HTMLDivElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const { open, toggle, close } = useMenuDialog(rootRef, toggleRef, DESKTOP)
+  const scrolled = useScrolled()
 
-  const NAV_ITEMS = ALL_NAV_ITEMS.filter((item) => {
-    if (!item.settingId) return true
-    return isEnabled(item.settingId)
-  })
+  if (pathname.startsWith('/admin')) return null
 
-  const isActive = (href: string) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href)
+  const ui = UI[locale]
+  const items = ALL_NAV_ITEMS.filter((i) => !i.settingId || isEnabled(i.settingId)).map((i) => ({
+    key: i.key,
+    href: i.href,
+    label: t.nav[i.key],
+    active: i.href === '/' ? pathname === '/' : pathname.startsWith(i.href),
+  }))
+  const half = Math.ceil(items.length / 2)
 
-  // Pages with light hero backgrounds need the nav to always be opaque
-  const lightBgPages: string[] = []
-  const forceOpaque = lightBgPages.some(r => pathname.startsWith(r))
-  const isOpaque = scrolled || forceOpaque
+  const trackPhone = () => track('phone_click', { location: 'nav' })
+  const trackWhatsApp = () => track('whatsapp_click', { location: 'nav' })
 
-  /* scroll */
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  /* mobile overlay */
-  useEffect(() => {
-    const overlay = overlayRef.current
-    if (!overlay) return
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-      gsap.set(overlay, { display: 'flex' })
-      gsap.fromTo(overlay,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: 'power2.out' }
-      )
-      gsap.fromTo(
-        mobileItemRefs.current.filter(Boolean),
-        { opacity: 0, y: 30, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out', delay: 0.15 }
-      )
-    } else {
-      document.body.style.overflow = ''
-      gsap.to(overlay, {
-        opacity: 0, duration: 0.3, ease: 'power2.in',
-        onComplete: () => { gsap.set(overlay, { display: 'none' }) },
-      })
-    }
-  }, [menuOpen])
-
-  /* Hide on admin routes, and on /preview/menu which renders its own header */
-  if (pathname?.startsWith('/admin') || pathname?.startsWith('/preview')) return null
+  const desktopLink = (item: (typeof items)[number]) => (
+    <Link key={item.key} href={item.href} className="mf-nav-link" aria-current={item.active ? 'page' : undefined}>
+      {item.label}
+    </Link>
+  )
 
   return (
-    <>
-      {/* ─── NAVBAR ──────────────────────────────────────────── */}
-      <nav
-        role="navigation"
-        aria-label="Navegación principal"
-        style={{
-          position:       'fixed',
-          inset:          '0 0 auto 0',
-          zIndex:          1000,
-          display:        'flex',
-          alignItems:     'center',
-          justifyContent: 'space-between',
-          padding:        `${isOpaque ? '1rem' : '1.6rem'} var(--container-padding)`,
-          background:      isOpaque ? 'rgba(5,12,20,0.97)' : 'transparent',
-          backdropFilter:  isOpaque ? 'blur(18px)' : 'none',
-          WebkitBackdropFilter: isOpaque ? 'blur(18px)' : 'none',
-          borderBottom:    isOpaque ? '1px solid rgba(196,163,90,0.07)' : 'none',
-          transition:     'padding .45s ease, background .45s ease, border-color .45s ease',
-        }}
-      >
-
-        {/* ── LOGO ─────────────────────────────────────────── */}
-        <Link href="/" style={{ textDecoration: 'none', flexShrink: 0, lineHeight: 1, maxWidth: 'min(40vw, 140px)' }}>
-          <img 
-            src="/img/logo-manuel-fernandez.png" 
-            alt="Sastrería Manuel Fernández"
-            style={{
-              height: 'clamp(28px, 5vh, 56px)',
-              width: 'auto',
-              maxWidth: '100%',
-              objectFit: 'contain',
-            }}
-          />
-        </Link>
-
-        {/* ── RIGHT CLUSTER ────────────────────────────────── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.25rem, 1vw, 1.25rem)', flexShrink: 0, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-
-          {/* CALL US BUTTON — Desktop only, persistent on all pages */}
-          <a
-            href={CONTACT_BUTTONS_DATA.call.href}
-              onClick={() => track('phone_click', { location: 'nav' })}
-            className="mf-contact-btn"
-            style={{
-              display:        'none',
-              alignItems:     'center',
-              gap:            '0.5rem',
-              fontFamily:     'var(--font-sans)',
-              fontSize:       '0.65rem',
-              fontWeight:      500,
-              letterSpacing:  '0.12em',
-              textTransform:  'uppercase',
-              textDecoration:  'none',
-              padding:        '0.55rem 1.1rem',
-              color:           'var(--color-gold)',
-              border:          '1px solid var(--color-gold)',
-              background:      'transparent',
-              transition:     'all .25s ease',
-              whiteSpace:     'nowrap',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--color-gold)'
-              el.style.color = 'var(--color-black)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'transparent'
-              el.style.color = 'var(--color-gold)'
-            }}
-          >
-            <Phone size={14} strokeWidth={1.5} />
-            {locale === 'es' ? 'Llámanos' : locale === 'it' ? 'Chiamaci' : locale === 'fr' ? 'Appelez-nous' : 'Call Us'}
+    <div ref={rootRef} className="mf-nav" data-open={open || undefined} data-scrolled={scrolled || undefined}>
+      <header className="mf-nav-bar">
+        <div className="mf-nav-strip">
+          <a href={CONTACT.maps} target="_blank" rel="noopener noreferrer" className="mf-nav-strip-link">
+            Jorge Juan 41 · Madrid
           </a>
-
-          {/* WHERE WE ARE BUTTON — Desktop only, persistent on all pages */}
-          <a
-            href={CONTACT_BUTTONS_DATA.location.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mf-contact-btn"
-            style={{
-              display:        'none',
-              alignItems:     'center',
-              gap:            '0.5rem',
-              fontFamily:     'var(--font-sans)',
-              fontSize:       '0.65rem',
-              fontWeight:      500,
-              letterSpacing:  '0.12em',
-              textTransform:  'uppercase',
-              textDecoration:  'none',
-              padding:        '0.55rem 1.1rem',
-              color:           'var(--color-white)',
-              border:          '1px solid rgba(255,255,255,0.3)',
-              background:      'transparent',
-              transition:     'all .25s ease',
-              whiteSpace:     'nowrap',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'var(--color-white)'
-              el.style.background = 'rgba(255,255,255,0.1)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(255,255,255,0.3)'
-              el.style.background = 'transparent'
-            }}
-          >
-            <MapPin size={14} strokeWidth={1.5} />
-            {locale === 'es' ? 'Dónde Estamos' : locale === 'it' ? 'Dove Siamo' : locale === 'fr' ? 'Où Nous Sommes' : 'Find Us'}
-          </a>
-
-          {/* Language selector */}
-          <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'center' }}>
-            {(['es', 'en', 'it', 'fr'] as const).map((l) => (
-              <button
-                key={l}
-                onClick={() => setLocale(l)}
-                aria-label={`Switch to ${l}`}
-                style={{
-                  background:    'none',
-                  border:        'none',
-                  padding:       '2px 4px',
-                  fontFamily:    'var(--font-sans)',
-                  fontSize:      '0.45rem',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color:          locale === l ? 'var(--color-gold)' : 'rgba(201,168,76,0.4)',
-                  cursor:         'pointer',
-                  transition:    'color .25s',
-                  borderBottom:  locale === l ? '1px solid var(--color-gold)' : '1px solid transparent',
-                }}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
-
-          {/* WhatsApp */}
-          <a
-            href="https://wa.me/34682192944"
-            onClick={() => track('whatsapp_click', { location: 'nav' })}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#25D366',
-              textDecoration: 'none',
-              cursor: 'pointer',
-              transition: 'opacity .25s',
-              opacity: 0.85,
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.opacity = '1'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.opacity = '0.85'
-            }}
-          >
-            <MessageCircle size={18} strokeWidth={1.5} />
-          </a>
-
-          {/* Hamburger */}
-          <button
-            onClick={() => setMenuOpen(v => !v)}
-            aria-label="Menu"
-            className="mf-hamburger"
-            style={{
-              background:    'none',
-              border:        'none',
-              cursor:         'pointer',
-              padding:       '6px',
-              display:       'flex',
-              flexDirection: 'column',
-              alignItems:    'center',
-              justifyContent: 'center',
-              gap:           '4px',
-              width:         '32px',
-              height:        '32px',
-            }}
-          >
-            <span style={{ display: 'block', width: '18px', height: '1.5px', background: 'rgba(255,255,255,0.65)', borderRadius: '1px' }} />
-            <span style={{ display: 'block', width: '18px', height: '1.5px', background: 'rgba(255,255,255,0.65)', borderRadius: '1px' }} />
-            <span style={{ display: 'block', width: '14px', height: '1.5px', background: 'rgba(255,255,255,0.65)', borderRadius: '1px' }} />
-          </button>
-
-        </div>
-      </nav>
-
-      {/* ─── BREAKPOINT HELPERS ─────────────────────────────── */}
-      <style>{`
-        @media (min-width: 1024px) {
-          .mf-contact-btn { display: inline-flex !important; }
-        }
-        @media (max-width: 1200px) {
-          .mf-contact-btn span { display: none !important; }
-        }
-      `}</style>
-
-      {/* ─── MOBILE OVERLAY ─────────────────────────────────── */}
-      <div
-        ref={overlayRef}
-        style={{
-          display:        'none',
-          position:       'fixed',
-          inset:           0,
-          zIndex:          990,
-          background:     '#0A1628',
-          flexDirection:  'column',
-          overflowY:      'auto',
-          overflowX:      'hidden',
-        }}
-      >
-        {/* Header bar */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '1.2rem var(--container-padding)',
-          flexShrink: 0,
-        }}>
-          <img 
-            src="/img/logo-manuel-fernandez.png" 
-            alt="Sastrería Manuel Fernández"
-            style={{
-              height: '36px',
-              width: 'auto',
-              objectFit: 'contain',
-              opacity: 0.9,
-            }}
-          />
-          <button
-            onClick={() => setMenuOpen(false)}
-            aria-label="Cerrar menú"
-            style={{
-              background: 'none',
-              border:     'none',
-              color:       'rgba(196,163,90,0.6)',
-              fontSize:    '1.2rem',
-              lineHeight:   1,
-              cursor:      'pointer',
-              padding: '0.5rem',
-            }}
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* Main content - grid of tiles */}
-        <div style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '1rem var(--container-padding) 2rem',
-        }}>
-          {/* Grid of square nav tiles */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: 'clamp(0.4rem, 1.5vw, 0.75rem)',
-            maxWidth: '480px',
-            width: '100%',
-            margin: '0 auto',
-          }}>
-            {NAV_ITEMS.map(({ key, href, icon: Icon }, i) => {
-              const active = isActive(href)
-              return (
-                <Link
-                  key={key}
-                  href={href}
-                  ref={el => { if (el) mobileItemRefs.current[i] = el as HTMLAnchorElement }}
-                  onClick={() => setMenuOpen(false)}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.4rem',
-                    aspectRatio: '1',
-                    background: active 
-                      ? 'rgba(201,168,76,0.12)' 
-                      : 'rgba(255,255,255,0.03)',
-                    border: active 
-                      ? '1px solid rgba(201,168,76,0.35)' 
-                      : '1px solid rgba(255,255,255,0.06)',
-                    borderRadius: '8px',
-                    textDecoration: 'none',
-                    transition: 'all 0.3s ease',
-                    padding: '0.4rem',
-                    overflow: 'hidden',
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.background = 'rgba(201,168,76,0.1)'
-                    el.style.borderColor = 'rgba(201,168,76,0.3)'
-                    el.style.transform = 'translateY(-2px)'
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.background = active 
-                      ? 'rgba(201,168,76,0.12)' 
-                      : 'rgba(255,255,255,0.03)'
-                    el.style.borderColor = active 
-                      ? 'rgba(201,168,76,0.35)' 
-                      : 'rgba(255,255,255,0.06)'
-                    el.style.transform = 'translateY(0)'
-                  }}
-                >
-                  <Icon 
-                    size={18} 
-                    strokeWidth={1.5}
-                    style={{ 
-                      color: active ? 'var(--color-gold)' : 'rgba(255,255,255,0.5)',
-                      transition: 'color 0.3s',
-                    }}
-                  />
-                  <span style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'clamp(0.48rem, 1.4vw, 0.65rem)',
-                    fontWeight: 500,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: active ? 'var(--color-gold)' : 'rgba(255,255,255,0.7)',
-                    textAlign: 'center',
-                    lineHeight: 1.25,
-                    transition: 'color 0.3s',
-                    wordBreak: 'break-word',
-                  }}>
-                    {t.nav[key]}
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-
-          {/* Contact buttons row */}
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'center',
-            gap: '0.75rem', 
-            marginTop: '2rem',
-            flexWrap: 'wrap',
-          }}>
-            <a
-              href={CONTACT_BUTTONS_DATA.call.href}
-              onClick={() => {
-                track('phone_click', { location: 'nav' })
-                setMenuOpen(false)
-              }}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.6rem',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.6rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--color-gold)',
-                textDecoration: 'none',
-                padding: '0.65rem 1.25rem',
-                border: '1px solid var(--color-gold)',
-                borderRadius: '4px',
-                transition: 'all 0.25s ease',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.background = 'var(--color-gold)'
-                el.style.color = '#0A1628'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.background = 'transparent'
-                el.style.color = 'var(--color-gold)'
-              }}
-            >
-              <Phone size={15} strokeWidth={1.5} />
-              {locale === 'es' ? 'Llámanos' : locale === 'it' ? 'Chiamaci' : locale === 'fr' ? 'Appelez-nous' : 'Call Us'}
+          <div className="mf-nav-strip-right">
+            <a href={CONTACT.tel} className="mf-nav-strip-link" onClick={trackPhone}>{SITE_PHONE_DISPLAY}</a>
+            <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="mf-nav-strip-link" onClick={trackWhatsApp}>
+              WhatsApp
             </a>
+            <div className="mf-nav-langs" role="group" aria-label={ui.language}>
+              {LOCALES.map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  className="mf-nav-lang"
+                  aria-pressed={locale === l}
+                  aria-label={LOCALE_NAMES[l]}
+                  onClick={() => setLocale(l)}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mf-nav-row">
+          <nav className="mf-nav-side mf-nav-side--left" aria-label={ui.nav}>{items.slice(0, half).map(desktopLink)}</nav>
+
+          <Link href="/" className="mf-nav-crest" aria-label={`Sastrería Manuel Fernández — ${ui.home}`} onClick={close}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/img/logo-manuel-fernandez.png" alt="" width={2000} height={1317} />
+          </Link>
+
+          <nav className="mf-nav-side mf-nav-side--right" aria-label={ui.nav}>{items.slice(half).map(desktopLink)}</nav>
+
+          <div className="mf-nav-compact">
             <a
-              href={CONTACT_BUTTONS_DATA.location.href}
+              href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.6rem',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.6rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.8)',
-                textDecoration: 'none',
-                padding: '0.65rem 1.25rem',
-                border: '1px solid rgba(255,255,255,0.25)',
-                borderRadius: '4px',
-                transition: 'all 0.25s ease',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'rgba(255,255,255,0.5)'
-                el.style.background = 'rgba(255,255,255,0.05)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'rgba(255,255,255,0.25)'
-                el.style.background = 'transparent'
-              }}
+              className="mf-nav-icon"
+              aria-label="WhatsApp"
+              onClick={trackWhatsApp}
             >
-              <MapPin size={15} strokeWidth={1.5} />
-              {locale === 'es' ? 'Dónde Estamos' : locale === 'it' ? 'Dove Siamo' : locale === 'fr' ? 'Où Nous Sommes' : 'Find Us'}
+              <WhatsAppIcon size={18} />
             </a>
-          </div>
-
-          {/* Language selector */}
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '0.75rem', 
-            marginTop: '2rem',
-          }}>
-            {(['es', 'en', 'it', 'fr'] as const).map((l) => (
-              <button
-                key={l}
-                onClick={() => setLocale(l)}
-                style={{
-                  background: locale === l ? 'rgba(201,168,76,0.15)' : 'none',
-                  border:     '1px solid rgba(201,168,76,0.25)',
-                  color:       locale === l ? 'var(--color-gold)' : 'rgba(201,168,76,0.6)',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize:   '0.65rem',
-                  letterSpacing: '0.22em',
-                  padding:    '0.6rem 1.25rem',
-                  cursor:      'pointer',
-                  borderRadius: '4px',
-                  transition: 'all 0.25s',
-                }}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
+            <button
+              ref={toggleRef}
+              type="button"
+              className="mf-nav-toggle"
+              aria-expanded={open}
+              aria-controls="mf-nav-panel"
+              onClick={toggle}
+            >
+              <span className="mf-nav-toggle-label">{open ? ui.close : ui.menu}</span>
+              <span className="mf-nav-toggle-lines" aria-hidden="true"><span /><span /></span>
+            </button>
           </div>
         </div>
+      </header>
+
+      <div id="mf-nav-panel" className="mf-nav-panel" role="dialog" aria-modal="true" aria-label={ui.nav} inert={!open}>
+        <nav className="mf-nav-panel-inner" aria-label={ui.nav}>
+          <ul className="mf-nav-list">
+            {items.map((item, i) => (
+              <li key={item.key} style={{ ['--i' as string]: i }}>
+                <Link
+                  href={item.href}
+                  data-menu-item
+                  className="mf-nav-item"
+                  aria-current={item.active ? 'page' : undefined}
+                  onClick={close}
+                >
+                  <span className="mf-nav-mask"><span className="mf-nav-rise">{item.label}</span></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mf-nav-foot" style={{ ['--i' as string]: items.length }}>
+            <div className="mf-nav-foot-block">
+              <a href={CONTACT.maps} target="_blank" rel="noopener noreferrer" className="mf-nav-foot-link">{t.footer.address}</a>
+              <p className="mf-nav-foot-note">{t.footer.hours}</p>
+            </div>
+            <div className="mf-nav-foot-actions">
+              <a href={CONTACT.tel} className="mf-nav-pill mf-nav-pill--gold" onClick={trackPhone}>{ui.call}</a>
+              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="mf-nav-pill" onClick={trackWhatsApp}>
+                <WhatsAppIcon size={14} /> WhatsApp
+              </a>
+            </div>
+            <div className="mf-nav-foot-langs" role="group" aria-label={ui.language}>
+              {LOCALES.map((l) => (
+                <button key={l} type="button" className="mf-nav-foot-lang" aria-pressed={locale === l} onClick={() => setLocale(l)}>
+                  {LOCALE_NAMES[l]}
+                </button>
+              ))}
+            </div>
+          </div>
+        </nav>
       </div>
-    </>
+
+      <style>{CSS}</style>
+    </div>
   )
 }
+
+const CSS = `
+.mf-nav { --mf-nav-ease: cubic-bezier(0.16, 1, 0.3, 1); }
+
+.mf-nav-bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 1001;
+  color: var(--color-white);
+  background: linear-gradient(to bottom, rgba(10,22,40,0.55), rgba(10,22,40,0));
+  transition: background .5s ease, box-shadow .5s ease;
+}
+.mf-nav[data-scrolled] .mf-nav-bar,
+.mf-nav[data-open] .mf-nav-bar {
+  background: rgba(10,22,40,0.96);
+  box-shadow: 0 1px 0 rgba(201,168,76,0.14);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .mf-nav[data-scrolled] .mf-nav-bar { background: rgba(10,22,40,0.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .mf-nav[data-open] .mf-nav-bar { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* Strip: address, phone, languages. Desktop only, folds away on scroll. */
+.mf-nav-strip {
+  display: none;
+  justify-content: space-between; align-items: center;
+  padding: 0 var(--container-padding);
+  height: 30px; overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--font-sans); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: height .5s var(--mf-nav-ease), opacity .3s ease, border-color .5s ease;
+}
+.mf-nav[data-scrolled] .mf-nav-strip { height: 0; opacity: 0; border-color: transparent; }
+.mf-nav-strip-right { display: flex; align-items: center; gap: 1.75rem; }
+.mf-nav-strip-link { color: rgba(255,255,255,0.62); text-decoration: none; transition: color .25s ease; }
+.mf-nav-strip-link:hover { color: var(--color-gold-light); }
+.mf-nav-langs { display: flex; gap: 0.15rem; padding-left: 1.25rem; border-left: 1px solid rgba(255,255,255,0.14); }
+.mf-nav-lang {
+  background: none; border: 0; cursor: pointer; padding: 0.35rem 0.4rem;
+  font: inherit; letter-spacing: 0.16em; color: rgba(255,255,255,0.45);
+  transition: color .25s ease;
+}
+.mf-nav-lang:hover { color: var(--color-white); }
+.mf-nav-lang[aria-pressed="true"] { color: var(--color-gold); }
+
+/* Main row */
+.mf-nav-row {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 0 var(--container-padding);
+  height: 76px;
+  transition: height .5s var(--mf-nav-ease);
+}
+.mf-nav[data-scrolled] .mf-nav-row { height: 64px; }
+.mf-nav-crest {
+  grid-column: 1; justify-self: start;
+  display: block; height: 44px;
+  transition: height .5s var(--mf-nav-ease);
+}
+.mf-nav[data-scrolled] .mf-nav-crest { height: 38px; }
+.mf-nav-crest img { display: block; height: 100%; width: auto; }
+.mf-nav-side { display: none; }
+.mf-nav-compact { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 0.5rem; }
+
+.mf-nav-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; color: rgba(255,255,255,0.75);
+  transition: color .25s ease;
+}
+.mf-nav-icon:hover { color: var(--color-gold-light); }
+
+.mf-nav-toggle {
+  display: inline-flex; align-items: center; gap: 0.85rem;
+  min-height: 44px; padding: 0 0.25rem 0 0.75rem;
+  background: none; border: 0; cursor: pointer; color: var(--color-white);
+  font-family: var(--font-sans); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+}
+.mf-nav-toggle-lines { position: relative; width: 22px; height: 8px; }
+.mf-nav-toggle-lines span {
+  position: absolute; left: 0; right: 0; height: 1px; background: currentColor;
+  transition: transform .45s var(--mf-nav-ease), top .45s var(--mf-nav-ease);
+}
+.mf-nav-toggle-lines span:first-child { top: 0; }
+.mf-nav-toggle-lines span:last-child { top: 7px; }
+.mf-nav[data-open] .mf-nav-toggle-lines span:first-child { top: 4px; transform: rotate(45deg); }
+.mf-nav[data-open] .mf-nav-toggle-lines span:last-child { top: 4px; transform: rotate(-45deg); }
+
+@media (min-width: ${DESKTOP}px) {
+  .mf-nav-strip { display: flex; }
+  .mf-nav-row { height: 78px; }
+  .mf-nav-crest { grid-column: 2; justify-self: center; height: 52px; }
+  .mf-nav[data-scrolled] .mf-nav-crest { height: 40px; }
+  .mf-nav-side { display: flex; align-items: center; gap: clamp(1.5rem, 2.4vw, 2.75rem); }
+  .mf-nav-side--left { grid-column: 1; grid-row: 1; justify-self: end; padding-right: clamp(2rem, 3.5vw, 3.5rem); }
+  .mf-nav-side--right { grid-column: 3; grid-row: 1; justify-self: start; padding-left: clamp(2rem, 3.5vw, 3.5rem); }
+  .mf-nav-compact { display: none; }
+}
+
+.mf-nav-link {
+  position: relative; padding: 0.6rem 0;
+  font-family: var(--font-sans); font-size: 0.7rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap;
+  color: rgba(255,255,255,0.82); text-decoration: none;
+  transition: color .3s ease;
+}
+.mf-nav-link::after {
+  content: ''; position: absolute; left: 0; right: 0.2em; bottom: 0.2rem; height: 1px;
+  background: var(--color-gold);
+  transform: scaleX(0); transform-origin: center;
+  transition: transform .5s var(--mf-nav-ease);
+}
+.mf-nav-link:hover { color: var(--color-white); }
+.mf-nav-link:hover::after, .mf-nav-link[aria-current="page"]::after { transform: scaleX(1); }
+.mf-nav-link[aria-current="page"] { color: var(--color-gold-light); }
+
+/* Panel */
+.mf-nav-panel {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--color-navy);
+  overflow-y: auto; overscroll-behavior: contain;
+  visibility: hidden; opacity: 0;
+  transition: opacity .45s ease, visibility 0s linear .45s;
+}
+.mf-nav[data-open] .mf-nav-panel { visibility: visible; opacity: 1; transition: opacity .45s ease, visibility 0s; }
+.mf-nav-panel-inner {
+  min-height: 100%;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem;
+  padding: calc(76px + clamp(1.5rem, 6vh, 3.5rem)) var(--container-padding) max(2rem, env(safe-area-inset-bottom));
+}
+.mf-nav-list { list-style: none; border-top: 1px solid rgba(255,255,255,0.08); }
+.mf-nav-list li { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.mf-nav-item {
+  display: block; padding: clamp(0.7rem, 2vh, 1rem) 0;
+  font-family: var(--font-serif); font-weight: 300;
+  font-size: clamp(2rem, 8.4vw, 3rem); line-height: 1.1;
+  color: var(--color-white); text-decoration: none;
+  transition: color .3s ease, padding-left .45s var(--mf-nav-ease);
+}
+.mf-nav-item:hover { color: var(--color-gold-light); padding-left: 0.4rem; }
+.mf-nav-item[aria-current="page"] { color: var(--color-gold); font-style: italic; }
+.mf-nav-mask { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.mf-nav-rise {
+  display: block; transform: translateY(105%);
+  transition: transform .7s var(--mf-nav-ease);
+  transition-delay: calc(var(--i) * 45ms);
+}
+.mf-nav[data-open] .mf-nav-rise { transform: none; transition-delay: calc(120ms + var(--i) * 55ms); }
+
+.mf-nav-foot {
+  display: grid; gap: 1.5rem;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .5s ease, transform .6s var(--mf-nav-ease);
+}
+.mf-nav[data-open] .mf-nav-foot { opacity: 1; transform: none; transition-delay: calc(160ms + var(--i) * 55ms); }
+.mf-nav-foot-link {
+  font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-white); text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,76,0.35); padding-bottom: 2px;
+}
+.mf-nav-foot-note { margin-top: 0.6rem; font-family: var(--font-sans); font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.mf-nav-foot-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.mf-nav-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  min-height: 46px; padding: 0 1.4rem;
+  border: 1px solid rgba(255,255,255,0.28); color: var(--color-white); text-decoration: none;
+  font-family: var(--font-sans); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+.mf-nav-pill:hover { border-color: var(--color-white); }
+.mf-nav-pill--gold { border-color: var(--color-gold); color: var(--color-gold); }
+.mf-nav-pill--gold:hover { background: var(--color-gold); color: var(--color-navy); }
+.mf-nav-foot-langs { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.mf-nav-foot-lang {
+  background: none; border: 0; cursor: pointer; padding: 0.5rem 0;
+  font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5); transition: color .25s ease;
+}
+.mf-nav-foot-lang:hover { color: var(--color-white); }
+.mf-nav-foot-lang[aria-pressed="true"] { color: var(--color-gold); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+
+.mf-nav a:focus-visible, .mf-nav button:focus-visible { outline: 1px solid var(--color-gold); outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-nav *, .mf-nav *::before, .mf-nav *::after { transition-duration: 0s !important; transition-delay: 0s !important; }
+  .mf-nav-rise { transform: none; }
+}
+`
