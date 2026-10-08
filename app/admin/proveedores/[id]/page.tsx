@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { Archive, ArchiveRestore, Package, Save, Truck } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
-import { Badge, Card, ErrorText, Field, PageHeader, api, useApi, btnDanger, btnPrimary, btnSecondary, inputClass } from '../../_components/ui'
+import { Badge, Card, ErrorText, Field, PageHeader, api, formatDate, formatMoney, useApi, btnDanger, btnPrimary, btnSecondary, inputClass } from '../../_components/ui'
 
 const FIELDS = [
   'nombre', 'razon_social', 'nif', 'persona_contacto', 'email', 'telefono', 'web', 'direccion', 'ciudad', 'pais',
@@ -106,14 +107,60 @@ function ProveedorFicha({ proveedor, reload }: { proveedor: Proveedor; reload: (
         </form>
 
         <div className="space-y-6">
-          <Card title={<span className="flex items-center gap-2"><Package size={18} className="text-[#C9A84C]" />{t.proveedores.productos}</span>}>
-            <p className="text-sm text-gray-400">{t.proveedores.productosSoon}</p>
-          </Card>
-          <Card title={t.proveedores.compras}>
-            <p className="text-sm text-gray-400">{t.proveedores.comprasSoon}</p>
-          </Card>
+          <ProveedorInventario proveedorId={id} />
         </div>
       </div>
     </div>
+  )
+}
+
+function ProveedorInventario({ proveedorId }: { proveedorId: number }) {
+  const { t, locale } = useAdminI18n()
+  const { data: prods } = useApi<{ productos: { id: number; nombre: string; referencia: string | null; stock_total: string; unidad: string }[] }>(
+    `/api/admin/inventario/productos?proveedor=${proveedorId}`
+  )
+  const { data: compras } = useApi<{ compras: { id: number; numero: string; fecha: string; total: string; referencia_proveedor: string | null }[] }>(
+    `/api/admin/inventario/compras?proveedor=${proveedorId}`
+  )
+  const linkClass = 'py-2.5 flex items-center justify-between gap-3 text-sm hover:text-[#C9A84C]'
+
+  return (
+    <>
+      <Card
+        title={<span className="flex items-center gap-2"><Package size={18} className="text-[#C9A84C]" />{t.proveedores.productos}</span>}
+        actions={<Link href={`/admin/inventario?proveedor=${proveedorId}`} className="text-sm text-[#C9A84C] hover:text-[#D4B76A]">{t.inventario.panel.verTodas}</Link>}
+      >
+        {!prods?.productos.length ? (
+          <p className="text-sm text-gray-400">{t.inventario.empty}</p>
+        ) : (
+          <ul className="divide-y divide-[#1E3A5F] -my-2">
+            {prods.productos.slice(0, 10).map((p) => (
+              <li key={p.id}>
+                <Link href={`/admin/inventario/${p.id}`} className={linkClass}>
+                  <span className="text-white truncate">{p.nombre}{p.referencia && <span className="text-gray-500"> · {p.referencia}</span>}</span>
+                  <span className="text-gray-400 tabular-nums shrink-0">{Number(p.stock_total).toLocaleString(locale)} {t.inventario.unidades[p.unidad as keyof typeof t.inventario.unidades] ?? p.unidad}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+      <Card title={t.proveedores.compras}>
+        {!compras?.compras.length ? (
+          <p className="text-sm text-gray-400">{t.inventario.entradas.empty}</p>
+        ) : (
+          <ul className="divide-y divide-[#1E3A5F] -my-2">
+            {compras.compras.slice(0, 10).map((c) => (
+              <li key={c.id}>
+                <Link href={`/admin/inventario/entradas/${c.id}`} className={linkClass}>
+                  <span className="text-white">{c.numero}<span className="text-gray-500"> · {formatDate(c.fecha, locale)}{c.referencia_proveedor && ` · ${c.referencia_proveedor}`}</span></span>
+                  <span className="text-gray-300 tabular-nums shrink-0">{formatMoney(c.total, locale)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+    </>
   )
 }

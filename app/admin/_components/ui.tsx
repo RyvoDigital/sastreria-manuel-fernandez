@@ -81,11 +81,12 @@ export function Badge({ children, tone = 'neutral' }: { children: React.ReactNod
   return <span className={`inline-flex items-center text-xs px-2 py-0.5 rounded-full ${tones[tone]}`}>{children}</span>
 }
 
-export function Modal({ title, onClose, children, closeLabel }: {
+export function Modal({ title, onClose, children, closeLabel, wide = false }: {
   title: string
   onClose: () => void
   children: React.ReactNode
   closeLabel: string
+  wide?: boolean
 }) {
   const panelRef = useRef<HTMLDivElement>(null)
   // Callers pass inline arrows; keep the effect from re-running (and re-focusing) on every render
@@ -113,7 +114,7 @@ export function Modal({ title, onClose, children, closeLabel }: {
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="w-full sm:max-w-lg max-h-[92vh] overflow-y-auto bg-[#0F1D2E] border border-[#1E3A5F] rounded-t-2xl sm:rounded-2xl p-5 sm:p-6"
+        className={`w-full ${wide ? 'sm:max-w-3xl' : 'sm:max-w-lg'} max-h-[92vh] overflow-y-auto bg-[#0F1D2E] border border-[#1E3A5F] rounded-t-2xl sm:rounded-2xl p-5 sm:p-6`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">

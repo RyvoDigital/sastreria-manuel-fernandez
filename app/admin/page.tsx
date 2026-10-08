@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Calendar, Mail, Users, Clock, Save, Euro } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import StockAlertsCard from './_components/StockAlertsCard'
 
 interface Stats {
   totalBookings: number
@@ -84,6 +85,10 @@ export default function AdminDashboard() {
             <div className="text-3xl font-light text-white">{card.value}</div>
           </div>
         ))}
+      </div>
+
+      <div className="mb-10">
+        <StockAlertsCard />
       </div>
 
       {/* Price settings */}

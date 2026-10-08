@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
@@ -17,6 +17,7 @@ import {
   KeyRound,
   BookOpen,
   Truck,
+  Package,
   X,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
@@ -29,6 +30,7 @@ const navGroups = [
       { href: '/admin', icon: LayoutDashboard, key: 'dashboard' },
       { href: '/admin/clientes', icon: Users, key: 'customers' },
       { href: '/admin/bookings', icon: Calendar, key: 'bookings' },
+      { href: '/admin/inventario', icon: Package, key: 'inventario' },
       { href: '/admin/proveedores', icon: Truck, key: 'proveedores' },
     ],
   },
@@ -57,6 +59,19 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
   const pathname = usePathname()
   const { t, locale, setLocale } = useAdminI18n()
   const langSwitcherRef = useRef<HTMLDivElement>(null)
+  const [stockAlerts, setStockAlerts] = useState(0)
+
+  // Low-stock / sold-out count next to Inventario, refreshed on every navigation
+  useEffect(() => {
+    let current = true
+    fetch('/api/admin/inventario/alertas?limit=1')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => current && d && setStockAlerts(d.agotados + d.bajos))
+      .catch(() => {})
+    return () => {
+      current = false
+    }
+  }, [pathname])
 
   // Native DOM event listeners for lang switcher
   useEffect(() => {
@@ -109,7 +124,13 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
             <div className="px-4 mb-2 text-[11px] uppercase tracking-[0.14em] text-gray-500">{t.nav[group.key]}</div>
             <div className="space-y-1">
               {group.items.map((item) => (
-                <NavLink key={item.href} item={item} pathname={pathname} label={t.sidebar[item.key]} />
+                <NavLink
+                  key={item.href}
+                  item={item}
+                  pathname={pathname}
+                  label={t.sidebar[item.key]}
+                  badge={item.key === 'inventario' && stockAlerts > 0 ? { count: stockAlerts, label: t.inventario.panel.alertas } : undefined}
+                />
               ))}
             </div>
           </div>
@@ -150,10 +171,11 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
   )
 }
 
-function NavLink({ item, pathname, label }: {
+function NavLink({ item, pathname, label, badge }: {
   item: { href: string; icon: React.ComponentType<{ size?: number }> }
   pathname: string
   label: string
+  badge?: { count: number; label: string }
 }) {
   const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href + '/'))
   return (
@@ -167,7 +189,12 @@ function NavLink({ item, pathname, label }: {
       }`}
     >
       <item.icon size={18} />
-      {label}
+      <span className="flex-1">{label}</span>
+      {badge && (
+        <span className="min-w-5 h-5 px-1.5 rounded-full bg-amber-500/20 text-amber-300 text-xs flex items-center justify-center tabular-nums" title={badge.label} aria-label={`${badge.count} ${badge.label}`}>
+          {badge.count}
+        </span>
+      )}
     </Link>
   )
 }

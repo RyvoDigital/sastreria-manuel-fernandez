@@ -436,6 +436,201 @@ async function setupGestion(pool: Pool) {
   if (hasTrgm) {
     await pool.query(`CREATE INDEX IF NOT EXISTS proveedores_nombre_trgm ON proveedores USING gin (lower(nombre) gin_trgm_ops)`)
   }
+
+  await setupInventario(pool, hasTrgm)
+}
+
+async function setupInventario(pool: Pool, hasTrgm: boolean) {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS categorias_producto (
+      id SERIAL PRIMARY KEY,
+      nombre VARCHAR(80) NOT NULL,
+      slug VARCHAR(80) NOT NULL UNIQUE,
+      tipo VARCHAR(10) NOT NULL CHECK (tipo IN ('terminado', 'material')),
+      unidad_defecto VARCHAR(10) NOT NULL DEFAULT 'ud',
+      iva_defecto NUMERIC(5,2) NOT NULL DEFAULT 21,
+      orden INTEGER NOT NULL DEFAULT 0,
+      activo BOOLEAN NOT NULL DEFAULT TRUE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      UNIQUE (nombre, tipo)
+    )
+  `)
+  const categorias: [string, string, 'terminado' | 'material', string][] = [
+    ['tirantes', 'Tirantes', 'terminado', 'ud'],
+    ['corbatas', 'Corbatas', 'terminado', 'ud'],
+    ['pajaritas', 'Pajaritas', 'terminado', 'ud'],
+    ['gemelos', 'Gemelos', 'terminado', 'par'],
+    ['panuelos', 'Pañuelos', 'terminado', 'ud'],
+    ['camisas', 'Camisas', 'terminado', 'ud'],
+    ['zapatos', 'Zapatos', 'terminado', 'par'],
+    ['cinturones', 'Cinturones', 'terminado', 'ud'],
+    ['fajines', 'Fajines', 'terminado', 'ud'],
+    ['chalecos', 'Chalecos', 'terminado', 'ud'],
+    ['calcetines', 'Calcetines', 'terminado', 'par'],
+    ['botones', 'Botones', 'terminado', 'ud'],
+    ['otros-complementos', 'Otros complementos', 'terminado', 'ud'],
+    ['tejidos', 'Tejidos', 'material', 'm'],
+    ['forros', 'Forros', 'material', 'm'],
+    ['botones-taller', 'Botones', 'material', 'ud'],
+    ['hilos', 'Hilos', 'material', 'bobina'],
+    ['entretelas', 'Entretelas', 'material', 'm'],
+    ['cremalleras', 'Cremalleras', 'material', 'ud'],
+  ]
+  for (const [i, [slug, nombre, tipo, unidad]] of categorias.entries()) {
+    await pool.query(
+      `INSERT INTO categorias_producto (slug, nombre, tipo, unidad_defecto, orden) VALUES ($1, $2, $3, $4, $5)
+       ON CONFLICT DO NOTHING`,
+      [slug, nombre, tipo, unidad, i]
+    )
+  }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS productos (
+      id SERIAL PRIMARY KEY,
+      categoria_id INTEGER NOT NULL REFERENCES categorias_producto(id),
+      nombre VARCHAR(200) NOT NULL,
+      referencia VARCHAR(60),
+      marca VARCHAR(100),
+      proveedor_id INTEGER REFERENCES proveedores(id) ON DELETE SET NULL,
+      descripcion TEXT,
+      color VARCHAR(80),
+      material VARCHAR(80),
+      talla VARCHAR(80),
+      unidad VARCHAR(10) NOT NULL DEFAULT 'ud',
+      coste NUMERIC(12,2),
+      pvp NUMERIC(12,2),
+      iva NUMERIC(5,2) NOT NULL DEFAULT 21,
+      stock_minimo_defecto NUMERIC(12,3) NOT NULL DEFAULT 0,
+      ubicacion VARCHAR(100),
+      foto_url VARCHAR(500),
+      foto_thumb_url VARCHAR(500),
+      observaciones TEXT,
+      activo BOOLEAN NOT NULL DEFAULT TRUE,
+      created_by INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE UNIQUE INDEX IF NOT EXISTS productos_referencia_key ON productos (lower(referencia)) WHERE referencia IS NOT NULL`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS productos_categoria_idx ON productos (categoria_id)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS productos_proveedor_idx ON productos (proveedor_id)`)
+  if (hasTrgm) {
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS productos_busqueda_trgm ON productos
+      USING gin ((lower(nombre || ' ' || coalesce(referencia, '') || ' ' || coalesce(marca, ''))) gin_trgm_ops)
+    `)
+  }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS producto_variantes (
+      id SERIAL PRIMARY KEY,
+      producto_id INTEGER NOT NULL REFERENCES productos(id) ON DELETE RESTRICT,
+      sku VARCHAR(80),
+      atributos JSONB NOT NULL DEFAULT '{}',
+      etiqueta VARCHAR(150),
+      es_unica BOOLEAN NOT NULL DEFAULT FALSE,
+      pvp NUMERIC(12,2),
+      coste NUMERIC(12,2),
+      coste_medio NUMERIC(12,4),
+      stock_actual NUMERIC(12,3) NOT NULL DEFAULT 0 CHECK (stock_actual >= 0),
+      stock_reservado NUMERIC(12,3) NOT NULL DEFAULT 0 CHECK (stock_reservado >= 0),
+      stock_minimo NUMERIC(12,3) NOT NULL DEFAULT 0,
+      ubicacion VARCHAR(100),
+      foto_url VARCHAR(500),
+      orden INTEGER NOT NULL DEFAULT 0,
+      activo BOOLEAN NOT NULL DEFAULT TRUE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE UNIQUE INDEX IF NOT EXISTS producto_variantes_sku_key ON producto_variantes (lower(sku)) WHERE sku IS NOT NULL`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS producto_variantes_producto_idx ON producto_variantes (producto_id, orden)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS producto_variantes_atributos_idx ON producto_variantes USING gin (atributos)`)
+  await pool.query(`
+    CREATE INDEX IF NOT EXISTS producto_variantes_alerta_idx ON producto_variantes (producto_id)
+    WHERE activo AND stock_actual - stock_reservado <= stock_minimo
+  `)
+
+  // Document numbering (C-2026-0001…), incremented under FOR UPDATE inside each document's transaction
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS contadores (
+      serie VARCHAR(5) NOT NULL,
+      anio INTEGER NOT NULL,
+      ultimo INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (serie, anio)
+    )
+  `)
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS compras (
+      id SERIAL PRIMARY KEY,
+      numero VARCHAR(20) NOT NULL UNIQUE,
+      proveedor_id INTEGER NOT NULL REFERENCES proveedores(id),
+      fecha DATE NOT NULL DEFAULT CURRENT_DATE,
+      referencia_proveedor VARCHAR(80),
+      estado VARCHAR(12) NOT NULL DEFAULT 'recibida' CHECK (estado IN ('borrador', 'recibida', 'anulada')),
+      notas TEXT,
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS compras_proveedor_idx ON compras (proveedor_id, fecha DESC)`)
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS compra_lineas (
+      id SERIAL PRIMARY KEY,
+      compra_id INTEGER NOT NULL REFERENCES compras(id) ON DELETE CASCADE,
+      variante_id INTEGER NOT NULL REFERENCES producto_variantes(id),
+      cantidad NUMERIC(12,3) NOT NULL CHECK (cantidad > 0),
+      coste_unitario NUMERIC(12,4) NOT NULL CHECK (coste_unitario >= 0),
+      cantidad_devuelta NUMERIC(12,3) NOT NULL DEFAULT 0
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS compra_lineas_compra_idx ON compra_lineas (compra_id)`)
+
+  // The stock ledger. Append-only; producto_variantes.stock_actual caches SUM(cantidad) per variant.
+  // venta/devolución/encargo reference columns get their foreign keys in A3/A4 when those tables exist.
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS movimientos_stock (
+      id BIGSERIAL PRIMARY KEY,
+      variante_id INTEGER NOT NULL REFERENCES producto_variantes(id) ON DELETE RESTRICT,
+      tipo VARCHAR(25) NOT NULL CHECK (tipo IN (
+        'inicial', 'compra', 'devolucion_proveedor', 'venta', 'devolucion_venta',
+        'ajuste', 'consumo_encargo', 'devolucion_encargo'
+      )),
+      cantidad NUMERIC(12,3) NOT NULL CHECK (cantidad <> 0),
+      stock_resultante NUMERIC(12,3) NOT NULL,
+      coste_unitario NUMERIC(12,4),
+      motivo VARCHAR(30),
+      nota TEXT,
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      admin_nombre VARCHAR(100),
+      compra_linea_id INTEGER REFERENCES compra_lineas(id),
+      venta_linea_id INTEGER,
+      devolucion_linea_id INTEGER,
+      encargo_material_id INTEGER,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS movimientos_variante_idx ON movimientos_stock (variante_id, created_at DESC)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS movimientos_tipo_idx ON movimientos_stock (tipo, created_at)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS movimientos_fecha_idx ON movimientos_stock (created_at)`)
+  await pool.query(`
+    CREATE OR REPLACE FUNCTION movimientos_stock_inmutable() RETURNS trigger LANGUAGE plpgsql AS $$
+    BEGIN
+      RAISE EXCEPTION 'movimientos_stock is append-only: correct with a new ajuste movement';
+    END
+    $$
+  `)
+  const trigger = await pool.query(
+    `SELECT 1 FROM pg_trigger WHERE tgname = 'movimientos_stock_inmutable_trg' AND tgrelid = 'movimientos_stock'::regclass`
+  )
+  if (trigger.rowCount === 0) {
+    await pool.query(`
+      CREATE TRIGGER movimientos_stock_inmutable_trg BEFORE UPDATE OR DELETE ON movimientos_stock
+      FOR EACH ROW EXECUTE FUNCTION movimientos_stock_inmutable()
+    `)
+  }
 }
 
 setup()

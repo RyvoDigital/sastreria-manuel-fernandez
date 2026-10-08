@@ -13,7 +13,7 @@ export interface CurrentAdmin {
 }
 
 export class HttpError extends Error {
-  constructor(public status: number, message: string) {
+  constructor(public status: number, message: string, public details?: unknown) {
     super(message)
   }
 }
@@ -60,7 +60,7 @@ export async function handle(label: string, fn: () => Promise<unknown>) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
     if (error instanceof HttpError) {
-      return NextResponse.json({ error: error.message }, { status: error.status })
+      return NextResponse.json({ error: error.message, details: error.details }, { status: error.status })
     }
     const pgCode = (error as { code?: string }).code
     if (pgCode === '23505') {

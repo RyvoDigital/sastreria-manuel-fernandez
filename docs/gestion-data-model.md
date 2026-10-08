@@ -419,6 +419,7 @@ that would be over-engineering for this shop.
 
 How it behaves:
 
+- *(As built in A2: an entrada is recorded as received in one step — there is no draft state yet. `borrador` stays in the CHECK for later.)*
 - A draft compra doesn't touch stock.
 - **Recibir** creates one `compra` movement per line. In the same transaction
   it updates `coste_medio = (stock·coste_medio + cantidad·coste_unitario) / (stock + cantidad)`.
