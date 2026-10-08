@@ -13,31 +13,43 @@ export async function POST(req: NextRequest) {
   const { default: Stripe } = await import('stripe')
   const stripe = new Stripe(stripeKey, {})
 
-  const payload = await req.text()
-  const sig = req.headers.get('stripe-signature')
+  // Every event must carry a valid Stripe signature. Without one, anyone could
+  // POST a fake checkout.session.completed and mark a payment as paid or book
+  // a slot. If the secret is missing the endpoint refuses with 503 rather than
+  // trusting the body; Stripe retries failed deliveries for up to three days,
+  // so events sent before the secret is configured are not lost.
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
+  if (!endpointSecret) {
+    console.error('Stripe webhook rejected: STRIPE_WEBHOOK_SECRET is not set')
+    return NextResponse.json({ error: 'Webhook not configured' }, { status: 503 })
+  }
+
+  const sig = req.headers.get('stripe-signature')
+  if (!sig) {
+    return NextResponse.json({ error: 'Missing signature' }, { status: 400 })
+  }
+
+  const payload = await req.text()
 
   let event
 
   try {
-    if (endpointSecret && sig) {
-      event = stripe.webhooks.constructEvent(payload, sig, endpointSecret)
-    } else {
-      event = JSON.parse(payload)
-    }
+    event = stripe.webhooks.constructEvent(payload, sig, endpointSecret)
   } catch (err) {
     console.error('Webhook signature verification failed:', err)
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
   }
 
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Record<string, unknown>
-    const metadata = (session.metadata || {}) as Record<string, string>
+    const session = event.data.object
+    const metadata: Record<string, string> = session.metadata || {}
+    const paymentIntent =
+      typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id
 
     try {
-      await updatePaymentBySessionId(session.id as string, {
+      await updatePaymentBySessionId(session.id, {
         status: 'paid',
-        stripePaymentIntentId: (session.payment_intent as string) || undefined,
+        stripePaymentIntentId: paymentIntent || undefined,
       })
     } catch (dbErr) {
       console.error('Failed to update payment status:', dbErr)
