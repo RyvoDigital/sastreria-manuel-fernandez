@@ -79,8 +79,8 @@ export function Navigation() {
     }
   }, [menuOpen])
 
-  /* Hide on admin routes */
-  if (pathname?.startsWith('/admin')) return null
+  /* Hide on admin routes, and on /preview/menu which renders its own header */
+  if (pathname?.startsWith('/admin') || pathname?.startsWith('/preview')) return null
 
   return (
     <>
