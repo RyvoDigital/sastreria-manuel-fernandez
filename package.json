@@ -16,6 +16,7 @@
     "@react-three/fiber": "^9.5.0",
     "@stripe/stripe-js": "^9.3.1",
     "@types/three": "^0.183.1",
+    "@vercel/blob": "^2.8.1",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.10.0",
     "cobe": "^2.0.1",
