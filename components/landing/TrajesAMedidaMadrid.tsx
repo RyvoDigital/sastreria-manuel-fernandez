@@ -270,7 +270,7 @@ export function TrajesAMedidaMadrid() {
           <Rule />
           <Display onDark measure="18ch">{COPY.visit.h2}</Display>
           <Prose onDark measure="56ch">{COPY.visit.body}</Prose>
-          <Cta onDark />
+          <Cta onDark end />
         </div>
       </section>
     </div>

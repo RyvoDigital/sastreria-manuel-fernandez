@@ -77,7 +77,8 @@ export function FooterEnhanced() {
         position: 'relative',
         zIndex: 1,
       }}>
-        {/* Booking band: the end of every page leads straight to booking. */}
+        {/* Booking band: the end of every page leads straight to booking
+            (left out where the page already closes with its own booking button). */}
         <div className="mf-foot-book">
           <h4 className="mf-foot-book-title">{t.footer.cta_title}</h4>
           <BookingLink className="mf-foot-book-btn">
@@ -335,6 +336,8 @@ const FOOT_CSS = `
 }
 .mf-foot-book-btn:hover { background: #E8D5A3; }
 .mf-foot-book-btn:focus-visible { outline: 2px solid #E8D5A3; outline-offset: 4px; }
+/* A page that closes with its own booking button does not get the band too. */
+body:has([data-booking-end]) .mf-foot-book { display: none; }
 @media (min-width: 900px) {
   .mf-foot-book { flex-direction: row; align-items: flex-end; justify-content: space-between; }
 }

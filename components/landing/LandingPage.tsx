@@ -203,7 +203,7 @@ export function LandingPage({ content }: { content: LandingContent }) {
                 : <Segments parts={content.closingNote} />}
             </Prose>
           )}
-          <Cta onDark lang={content.lang} />
+          <Cta onDark lang={content.lang} end />
         </div>
       </section>
     </div>

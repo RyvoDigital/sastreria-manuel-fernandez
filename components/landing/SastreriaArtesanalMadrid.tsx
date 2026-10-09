@@ -346,7 +346,7 @@ export function SastreriaArtesanalMadrid() {
           <Rule />
           <Display onDark measure="20ch">{COPY.visit.h2}</Display>
           <Prose onDark measure="60ch">{COPY.visit.para}</Prose>
-          <Cta onDark />
+          <Cta onDark end />
         </div>
       </section>
     </div>
