@@ -1,17 +1,15 @@
 import type { Metadata } from 'next'
-import { ServiciosPreview } from './_components/ServiciosPreview'
+import { ServiciosA } from './_components/ServiciosA'
 
 /*
- * Hidden review route: Servicios in the El hilo system, two variants.
- *   ?v=a  El muestrario     ?v=b  El probador
- * Not linked, not in the sitemap, noindex. Delete once a variant is chosen.
+ * Hidden review route: Servicios, version A (El muestrario) rebuilt to the
+ * motion budget. Not linked, not in the sitemap, noindex. Delete once applied.
  */
 export const metadata: Metadata = {
-  title: 'Servicios · variants',
+  title: 'Servicios · preview',
   robots: { index: false, follow: false },
 }
 
-export default async function Page({ searchParams }: { searchParams: Promise<{ [k: string]: string | string[] | undefined }> }) {
-  const { v } = await searchParams
-  return <ServiciosPreview variant={v === 'b' ? 'b' : 'a'} />
+export default function Page() {
+  return <ServiciosA />
 }

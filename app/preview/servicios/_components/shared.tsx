@@ -46,7 +46,8 @@ export function Stats({ c, className }: { c: ServiciosContent['cred']; className
   )
 }
 
-/* TejidosMundoSection's globe, same markers, arcs and settings as live. */
+/* TejidosMundoSection's globe, same markers, arcs and settings as live, except
+   that it holds still (facing Europe) and turns only when dragged. */
 const Globe = dynamic(() => import('@/components/ui/globe').then((m) => m.Globe), {
   ssr: false,
   loading: () => <div style={{ width: '100%', aspectRatio: '1' }} />,
@@ -83,7 +84,7 @@ export function MundoGlobe() {
         glowColor={[0.77, 0.64, 0.35]}
         mapBrightness={5}
         mapSamples={20000}
-        speed={0.004}
+        speed={0}
         theta={0.38}
         diffuse={1.8}
         markerSize={0.05}

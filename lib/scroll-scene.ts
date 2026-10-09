@@ -180,3 +180,14 @@ export function scrollToStep(section: HTMLElement, i: number, n: number, runPx: 
   if (lenis) lenis.scrollTo(y, { duration: 1.1 })
   else window.scrollTo({ top: y, behavior: 'smooth' })
 }
+
+/**
+ * The quiet entrance: a short fade and a 10px rise, once, under 600ms. For
+ * everything that is not a page's one moment. (Only runs inside a scene, so
+ * never without JS or with reduced motion.)
+ */
+export function enter(nodes: Element[]) {
+  nodes.forEach((node) =>
+    gsap.from(node, { autoAlpha: 0, y: 10, duration: 0.55, ease: 'power2.out', scrollTrigger: { trigger: node, start: 'top 88%', once: true } })
+  )
+}
