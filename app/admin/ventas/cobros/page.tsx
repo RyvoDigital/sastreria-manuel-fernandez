@@ -8,7 +8,7 @@ import { Badge, Card, Field, PageHeader, formatMoney, inputClass, intlLocale, us
 import VentasTabs from '../VentasTabs'
 
 interface Cobro {
-  origen: 'venta' | 'devolucion' | 'online'
+  origen: 'venta' | 'devolucion' | 'online' | 'encargo'
   id: number
   referencia: string
   fecha: string
@@ -72,12 +72,13 @@ export default function CobrosPage() {
                     <span className={`tabular-nums ${Number(c.importe) < 0 ? 'text-red-300' : 'text-white'}`}>{formatMoney(c.importe, locale)}</span>
                   </>
                 )
+                const href = c.origen === 'online' ? null : c.origen === 'encargo' ? `/admin/encargos/${c.id}` : `/admin/ventas/${c.id}`
                 return (
-                  <li key={`${c.origen}-${c.origen === 'online' ? c.id : c.referencia}`}>
-                    {c.origen === 'online' ? (
-                      <div className="py-3 flex items-center gap-4 text-sm">{body}</div>
+                  <li key={`${c.origen}-${c.origen === 'venta' || c.origen === 'devolucion' ? c.referencia : `${c.id}-${c.fecha}`}`}>
+                    {href ? (
+                      <Link href={href} className="py-3 flex items-center gap-4 text-sm hover:bg-[#1E3A5F]/20 -mx-2 px-2 rounded">{body}</Link>
                     ) : (
-                      <Link href={`/admin/ventas/${c.id}`} className="py-3 flex items-center gap-4 text-sm hover:bg-[#1E3A5F]/20 -mx-2 px-2 rounded">{body}</Link>
+                      <div className="py-3 flex items-center gap-4 text-sm">{body}</div>
                     )}
                   </li>
                 )

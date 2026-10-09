@@ -125,7 +125,8 @@ export async function handle(label: string, fn: () => Promise<unknown>) {
     if (pgCode === '23505') {
       return NextResponse.json({ error: 'duplicate' }, { status: 409 })
     }
-    if (pgCode === '23503') {
+    // foreign_key_violation / restrict_violation: the row is still referenced (e.g. measurements used by an encargo)
+    if (pgCode === '23503' || pgCode === '23001') {
       return NextResponse.json({ error: 'in use' }, { status: 409 })
     }
     console.error(`${label} error:`, error)

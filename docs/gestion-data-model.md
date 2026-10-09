@@ -613,6 +613,40 @@ Tailors who don't log in can be represented as `admins` rows with
 
 ---
 
+### 6.6 As built (A4, after Evelyn's answers, October 2026)
+
+Sections 6.1–6.4 were the proposal. What was built:
+
+- **Three kinds** of `encargos.tipo`: `prenda` (americana, pantalón, chaleco, abrigo, otra — several per encargo),
+  `camisa`, `arreglo` (free text in `pedido`). Each has its own tab in the ficha del cliente. Numbered `E-YYYY-0001`.
+- **States** `presupuesto → confirmado → prueba → listo → entregado`. Any step can be chosen (to undo a mistake).
+  `confirmado_at` / `entregado_at` are stamped the first time.
+- **Measurements** follow the paper Ficha de trabajo (`lib/admin/medidas.ts`): one `cliente_medidas` row
+  (`tipo_prenda = 'ficha'`) holds chaqueta, pantalón, chaleco and postura; `observaciones` holds the posture notes.
+  Every save is a new version. `encargos.medidas_id` points at the version used (`ON DELETE RESTRICT`, so a version
+  used by an encargo can't be deleted). New encargos start from the client's latest version. Older rows (generic
+  fields, imported notes) are shown read-only.
+- **Características** (jacket and trouser checkboxes) live on the encargo (`encargos.caracteristicas`), because they
+  describe the garment, not the body.
+- **Materials**: only tejido and forro (`encargo_materiales`). Origin `proveedor` (proveedor, referencia, metros,
+  `pedido`/`recibido`), `inventario` (a product sold by the metre; a `consumo_encargo` movement when the encargo is
+  first confirmed, or immediately if it already is) or `cliente`. Default metres for a talla M: americana 1,80,
+  pantalón 1,20, chaleco 0,70. Leftovers aren't tracked. A line that already took stock can't be edited or removed
+  (fix stock with an ajuste).
+- **Pruebas and entrega are Citas**: each prueba inserts a `bookings` row with `tipo_cita = 'prueba'` and `encargo_id`;
+  date, time and status live on the booking (one source of truth). Cancelling a prueba cancels its cita. The entrega
+  is one booking (`encargos.entrega_booking_id`) that can be moved; it also sets `fecha_entrega`. Bookings keep the
+  web's one-per-slot rule. `bookings.tipo_cita` (`primera_visita` default, `prueba`, `entrega`) is shown before the
+  client's name in Citas.
+- **Pagos**: `encargo_pagos` (date, amount, method, optional split), Propietario only, listed in Cobros. Total /
+  Pagado / Pendiente on the encargo, like TOTAL / SEÑAL / PENDIENTE on paper.
+- **Taller externo**: name, sent and returned dates on the encargo.
+- **Tailors** are a list (`sastres`, Ajustes → Listas), not users. The Taller board groups open encargos by state
+  with a per-tailor filter and workload counts.
+- **Roles**: `owner` = Propietario; `manager` = Empleado (no prices, costs, margins, payments, or client data beyond
+  the name); `taller` = only the Taller board (client name, garment, state, dates, tailor).
+- **Printable Ficha de trabajo**: `/admin/encargos/[id]/ficha`, one A4 page.
+
 ## 7. Product photos: Vercel Blob
 
 - **Storage.** A **public** Vercel Blob store. Product photos aren't

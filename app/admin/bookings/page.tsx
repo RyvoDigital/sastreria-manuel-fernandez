@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { CheckCircle, XCircle, Bell, Pencil, X } from 'lucide-react'
+import Link from 'next/link'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import { useRol } from '../_components/role'
 
 interface Booking {
   id: number
@@ -16,6 +18,9 @@ interface Booking {
   notes: string | null
   created_at: string
   reminder_sent_at: string | null
+  tipo_cita: 'primera_visita' | 'prueba' | 'entrega'
+  encargo_id: number | null
+  encargo_numero: string | null
 }
 
 function formatAdminDate(dateStr: string, locale: string): string {
@@ -41,6 +46,8 @@ function formatAdminTime(timeStr: string): string {
 
 export default function BookingsPage() {
   const { t, locale } = useAdminI18n()
+  const { propietario } = useRol()
+  const [tipoCita, setTipoCita] = useState('')
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
@@ -51,13 +58,14 @@ export default function BookingsPage() {
   const fetchBookings = useCallback(() => {
     const params = new URLSearchParams()
     if (filter !== 'all') params.set('type', filter)
+    if (tipoCita) params.set('tipoCita', tipoCita)
     return fetch(`/api/admin/bookings?${params}`)
       .then((res) => res.json())
       .then((data) => {
         setBookings(data.bookings || [])
         setLoading(false)
       })
-  }, [filter])
+  }, [filter, tipoCita])
 
   useEffect(() => {
     fetchBookings()
@@ -112,6 +120,7 @@ export default function BookingsPage() {
         date: editingBooking.date,
         time: editingBooking.time,
         type: editingBooking.type,
+        tipo_cita: editingBooking.tipo_cita,
         status: editingBooking.status,
         notes: editingBooking.notes,
       }),
@@ -132,6 +141,19 @@ export default function BookingsPage() {
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h1 className="text-2xl font-serif text-white">{t.sidebar.bookings}</h1>
+        <div className="flex flex-wrap gap-2">
+        <select
+          value={tipoCita}
+          onChange={(e) => {
+            setLoading(true)
+            setTipoCita(e.target.value)
+          }}
+          aria-label={t.citas.tipo}
+          className="px-4 py-2 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm"
+        >
+          <option value="">{t.citas.todas}</option>
+          {(['primera_visita', 'prueba', 'entrega'] as const).map((tc) => <option key={tc} value={tc}>{t.citas.tipos[tc]}</option>)}
+        </select>
         <select
           value={filter}
           onChange={(e) => {
@@ -144,6 +166,7 @@ export default function BookingsPage() {
           <option value="inperson">{t.common.inPerson}</option>
           <option value="videocall">{t.common.videocall}</option>
         </select>
+        </div>
       </div>
 
       {loading ? (
@@ -171,8 +194,15 @@ export default function BookingsPage() {
                   <td className="px-6 py-4 text-white">{formatAdminDate(b.date, locale)}</td>
                   <td className="px-6 py-4 text-white">{formatAdminTime(b.time)}</td>
                   <td className="px-6 py-4">
-                    <div className="text-white">{b.name}</div>
-                    <div className="text-gray-400 text-xs">{b.email}</div>
+                    {/* Appointment type before the name, as they write it in the diary */}
+                    <div className="text-white">
+                      <span className={b.tipo_cita === 'primera_visita' ? 'text-gray-400' : 'text-[#C9A84C]'}>{t.citas.tipos[b.tipo_cita] ?? ''}</span>
+                      {' · '}{b.name}
+                    </div>
+                    {b.email && <div className="text-gray-400 text-xs">{b.email}</div>}
+                    {b.encargo_id && (
+                      <Link href={`/admin/encargos/${b.encargo_id}`} className="text-xs text-[#C9A84C] hover:text-[#D4B76A]">{t.citas.encargo} {b.encargo_numero}</Link>
+                    )}
                   </td>
                   <td className="px-6 py-4 text-white">{b.phone || '—'}</td>
                   <td className="px-6 py-4">
@@ -288,11 +318,24 @@ export default function BookingsPage() {
               </div>
 
               <div>
+                <label className="block text-xs uppercase tracking-wider text-gray-400 mb-1">{t.citas.tipo}</label>
+                <select
+                  value={editingBooking.tipo_cita}
+                  onChange={(e) => setEditingBooking({ ...editingBooking, tipo_cita: e.target.value as Booking['tipo_cita'] })}
+                  className="w-full px-3 py-2 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm"
+                >
+                  {(['primera_visita', 'prueba', 'entrega'] as const).map((tc) => <option key={tc} value={tc}>{t.citas.tipos[tc]}</option>)}
+                </select>
+              </div>
+
+              {propietario && <>
+              <div>
                 <label className="block text-xs uppercase tracking-wider text-gray-400 mb-1">Email</label>
+                {/* Pruebas and entregas for clients without email are stored with an empty one */}
                 <input
                   type="email"
-                  required
-                  value={editingBooking.email}
+                  required={editingBooking.tipo_cita === 'primera_visita'}
+                  value={editingBooking.email ?? ''}
                   onChange={(e) => setEditingBooking({ ...editingBooking, email: e.target.value })}
                   className="w-full px-3 py-2 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm"
                 />
@@ -307,6 +350,7 @@ export default function BookingsPage() {
                   className="w-full px-3 py-2 bg-[#0A1628] border border-[#1E3A5F] rounded-lg text-white text-sm"
                 />
               </div>
+              </>}
 
               <div className="grid grid-cols-2 gap-4">
                 <div>

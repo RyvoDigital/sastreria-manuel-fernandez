@@ -4,7 +4,8 @@ import { query } from '../db'
 export const TIPOS_CITA = ['primera_visita', 'prueba', 'entrega'] as const
 
 export async function getBookings(filters?: { type?: string; dateFrom?: string; dateTo?: string; status?: string; tipoCita?: string }) {
-  let sql = `SELECT b.*, e.numero AS encargo_numero FROM bookings b LEFT JOIN encargos e ON e.id = b.encargo_id WHERE 1=1`
+  // DATE as text: a Date object would shift a day on any server not running in UTC
+  let sql = `SELECT b.*, b.date::text AS date, e.numero AS encargo_numero FROM bookings b LEFT JOIN encargos e ON e.id = b.encargo_id WHERE 1=1`
   const params: unknown[] = []
   let i = 1
 

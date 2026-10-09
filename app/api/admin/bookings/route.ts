@@ -194,19 +194,17 @@ export async function PUT(request: NextRequest) {
     }
 
     // Fetch existing booking
-    const existingResult = await query(`SELECT * FROM bookings WHERE id = $1`, [id])
+    // date as text so comparing it with the form's YYYY-MM-DD doesn't flag every save as a date change
+    const existingResult = await query(`SELECT *, date::text AS date FROM bookings WHERE id = $1`, [id])
     const existing = existingResult.rows[0]
     if (!existing) {
       return NextResponse.json({ error: 'Booking not found' }, { status: 404 })
     }
 
-    // The appointment type is internal: saved on its own and never emailed to the client
-    let current = existing
-    if (tipo_cita !== undefined && tipo_cita !== existing.tipo_cita) {
-      if (!(TIPOS_CITA as readonly string[]).includes(tipo_cita)) {
-        return NextResponse.json({ error: 'invalid tipo_cita' }, { status: 400 })
-      }
-      current = await updateBooking(id, { tipo_cita })
+    // The appointment type is internal: saved on its own (after the checks below) and never emailed to the client
+    const tipoCambia = tipo_cita !== undefined && tipo_cita !== existing.tipo_cita
+    if (tipoCambia && !(TIPOS_CITA as readonly string[]).includes(tipo_cita)) {
+      return NextResponse.json({ error: 'invalid tipo_cita' }, { status: 400 })
     }
 
     // Determine which fields actually changed
@@ -221,7 +219,7 @@ export async function PUT(request: NextRequest) {
     if (notes !== undefined && notes !== existing.notes) changedFields.push('notes')
 
     if (changedFields.length === 0) {
-      return NextResponse.json({ booking: current })
+      return NextResponse.json({ booking: tipoCambia ? await updateBooking(id, { tipo_cita }) : existing })
     }
 
     const newDate = date !== undefined ? date : existing.date
@@ -246,6 +244,7 @@ export async function PUT(request: NextRequest) {
       }
     }
 
+    if (tipoCambia) await updateBooking(id, { tipo_cita })
     const booking = await updateBooking(id, { name, email, phone, date, time, type, status, notes })
 
     // Notify client about the update

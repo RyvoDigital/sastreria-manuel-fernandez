@@ -288,6 +288,10 @@ export async function listCobros(opts: { desde: string; hasta: string }) {
               trim(c.nombre || ' ' || coalesce(c.apellidos, ''))
          FROM devoluciones d JOIN ventas v ON v.id = d.venta_id LEFT JOIN clientes c ON c.id = v.cliente_id
        UNION ALL
+       SELECT 'encargo', e.id, e.numero, ep.fecha, ep.importe, ep.metodo, ep.pagos,
+              trim(c.nombre || ' ' || coalesce(c.apellidos, ''))
+         FROM encargo_pagos ep JOIN encargos e ON e.id = ep.encargo_id JOIN clientes c ON c.id = e.cliente_id
+       UNION ALL
        SELECT 'online', p.id, COALESCE(p.type, 'stripe'), p.created_at AT TIME ZONE 'UTC', p.amount / 100.0, 'stripe', NULL,
               COALESCE(p.customer_name, p.customer_email)
          FROM payments p WHERE p.status = 'paid'

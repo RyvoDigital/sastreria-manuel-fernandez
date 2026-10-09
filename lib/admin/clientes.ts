@@ -1,6 +1,6 @@
 import { query } from '../db'
 import { HttpError, buildUpdate, esPropietario, pickFields, sinDineroDeep, wordsMatch, type CurrentAdmin } from './server'
-import { isTipoPrenda } from './medidas'
+import { limpiarFicha } from './medidas'
 
 // DATE columns come back as text: pg would turn them into midnight-UTC Date objects
 // that shift a day in Madrid. node-pg keeps the last of duplicate column names.
@@ -121,22 +121,21 @@ export async function updateCliente(id: number, body: Record<string, unknown>) {
   return result.rows[0]
 }
 
+// Each save is a new version: encargos keep pointing at the set they were made from
 export async function addMedidas(clienteId: number, body: Record<string, unknown>, admin: CurrentAdmin) {
-  const tipo = body.tipo_prenda
-  if (!isTipoPrenda(tipo)) throw new HttpError(400, 'invalid tipo_prenda')
-  const raw = (body.medidas ?? {}) as Record<string, unknown>
-  const medidas: Record<string, number | string> = {}
-  for (const [key, value] of Object.entries(raw)) {
-    if (value === '' || value === null || value === undefined) continue
-    const num = Number(String(value).replace(',', '.'))
-    medidas[key.trim().slice(0, 40)] = Number.isFinite(num) ? num : String(value).slice(0, 100)
+  let medidas
+  try {
+    medidas = limpiarFicha(body.medidas)
+  } catch {
+    throw new HttpError(400, 'invalid medida')
   }
-  if (Object.keys(medidas).length === 0) throw new HttpError(400, 'medidas required')
+  const observaciones = String(body.observaciones ?? '').trim() || null
+  if (Object.keys(medidas).length === 0 && !observaciones) throw new HttpError(400, 'medidas required')
 
   const result = await query(
     `INSERT INTO cliente_medidas (cliente_id, tipo_prenda, medidas, observaciones, tomada_por, tomada_en)
-     VALUES ($1, $2, $3, $4, $5, COALESCE($6::date, CURRENT_DATE)) RETURNING *, tomada_en::text AS tomada_en`,
-    [clienteId, tipo, JSON.stringify(medidas), (body.observaciones as string)?.trim() || null, admin.id, body.tomada_en || null]
+     VALUES ($1, 'ficha', $2, $3, $4, COALESCE($5::date, CURRENT_DATE)) RETURNING *, tomada_en::text AS tomada_en`,
+    [clienteId, JSON.stringify(medidas), observaciones, admin.id, body.tomada_en || null]
   )
   return result.rows[0]
 }

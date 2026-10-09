@@ -3,10 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { Archive, ArchiveRestore, Calendar, CreditCard, Plus, Save, ShoppingBag, Scissors } from 'lucide-react'
+import { Archive, ArchiveRestore, Calendar, CreditCard, Plus, Save, ShoppingBag } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { Badge, Card, ErrorText, Field, PageHeader, api, useApi, btnDanger, btnPrimary, btnSecondary, formatDate, formatMoney, inputClass } from '../../_components/ui'
 import MedidasSection, { type MedidasRow } from './MedidasSection'
+import EncargosSection from './EncargosSection'
+import { useRol } from '../../_components/role'
+import type { EncargoResumen } from '../../encargos/shared'
 
 interface Cliente {
   id: number
@@ -36,6 +39,8 @@ interface Cita {
   type: string
   status: string
   notes: string | null
+  tipo_cita: 'primera_visita' | 'prueba' | 'entrega'
+  encargo_id: number | null
 }
 
 interface Pago {
@@ -62,6 +67,7 @@ interface Ficha {
   citas: Cita[]
   pagos: Pago[]
   compras: Compra[]
+  encargos: EncargoResumen[]
 }
 
 const TEXT_FIELDS = ['nombre', 'apellidos', 'email', 'telefono', 'nif', 'direccion', 'codigo_postal', 'ciudad', 'pais'] as const
@@ -69,6 +75,7 @@ const TEXT_FIELDS = ['nombre', 'apellidos', 'email', 'telefono', 'nif', 'direcci
 export default function ClienteFichaPage() {
   const { id } = useParams<{ id: string }>()
   const { t, locale } = useAdminI18n()
+  const { propietario } = useRol()
   const { data: ficha, error, reload } = useApi<Ficha>(`/api/admin/clientes/${id}`)
 
   async function toggleArchivado() {
@@ -89,10 +96,12 @@ export default function ClienteFichaPage() {
         back={{ href: '/admin/clientes', label: t.clientes.back }}
         title={[cliente.nombre, cliente.apellidos].filter(Boolean).join(' ')}
         actions={
-          <button type="button" className={cliente.activo ? btnDanger : btnSecondary} onClick={toggleArchivado}>
-            {cliente.activo ? <Archive size={16} /> : <ArchiveRestore size={16} />}
-            {cliente.activo ? t.clientes.archive : t.clientes.unarchive}
-          </button>
+          propietario && (
+            <button type="button" className={cliente.activo ? btnDanger : btnSecondary} onClick={toggleArchivado}>
+              {cliente.activo ? <Archive size={16} /> : <ArchiveRestore size={16} />}
+              {cliente.activo ? t.clientes.archive : t.clientes.unarchive}
+            </button>
+          )
         }
       >
         <div className="flex flex-wrap items-center gap-2 mt-2">
@@ -104,7 +113,12 @@ export default function ClienteFichaPage() {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
         <div className="space-y-6">
-          <DatosForm key={cliente.updated_at} cliente={cliente} onSaved={reload} />
+          <EncargosSection clienteId={cliente.id} encargos={ficha.encargos} />
+          {propietario ? (
+            <DatosForm key={cliente.updated_at} cliente={cliente} onSaved={reload} />
+          ) : (
+            <p className="text-sm text-gray-500">{t.clientes.soloNombre}</p>
+          )}
         </div>
 
         <div className="space-y-6">
@@ -118,7 +132,7 @@ export default function ClienteFichaPage() {
                 {ficha.citas.map((c) => (
                   <li key={c.id} className="py-3 flex items-center justify-between gap-3 text-sm">
                     <div>
-                      <div className="text-white">{formatDate(c.date, locale)} · {c.time}</div>
+                      <div className="text-white">{t.citas.tipos[c.tipo_cita] ?? ''} · {formatDate(c.date, locale)} · {c.time}</div>
                       {c.notes && <div className="text-gray-400 text-xs mt-0.5">{c.notes}</div>}
                     </div>
                     <div className="flex gap-2 shrink-0">
@@ -147,7 +161,7 @@ export default function ClienteFichaPage() {
             </Card>
           )}
 
-          <Card
+          {propietario && <Card
             title={<span className="flex items-center gap-2"><ShoppingBag size={18} className="text-[#C9A84C]" />{t.clientes.sections.compras}</span>}
             actions={
               <Link href={`/admin/ventas/nueva?cliente=${cliente.id}`} className={btnSecondary}>
@@ -176,11 +190,7 @@ export default function ClienteFichaPage() {
                 ))}
               </ul>
             )}
-          </Card>
-
-          <Card title={<span className="flex items-center gap-2"><Scissors size={18} className="text-[#C9A84C]" />{t.clientes.sections.encargos}</span>}>
-            <p className="text-sm text-gray-400">{t.clientes.encargosSoon}</p>
-          </Card>
+          </Card>}
         </div>
       </div>
     </div>

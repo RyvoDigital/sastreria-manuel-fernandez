@@ -38,13 +38,14 @@ export default function AdminDashboard() {
   useEffect(() => {
     Promise.all([
       fetch('/api/admin/stats').then((r) => r.json()),
-      fetch('/api/admin/settings').then((r) => r.json()),
+      // Service prices are owner-only
+      propietario ? fetch('/api/admin/settings').then((r) => r.json()) : Promise.resolve({ settings: [] }),
     ]).then(([statsData, settingsData]) => {
       setStats(statsData.stats)
       setSettings(settingsData.settings || [])
       setLoading(false)
     })
-  }, [])
+  }, [propietario])
 
   async function handleSavePrices() {
     setSaving(true)
