@@ -8,12 +8,13 @@ import { useI18n } from '@/lib/i18n'
  * components use (kept verbatim), and the exact photo in each section.
  */
 
-/* CraftJourneySection: hard-coded, Spanish only on the live site. */
-const OFICIO = [
-  { image: '/img/tejido-principe-de-gales-etiqueta.webp', title: 'Carácter', right: 'Lana & Seda' },
-  { image: '/img/chaque-hilvanado-diseno.webp', title: 'Precisión', right: 'Tradición' },
-  { image: '/img/corte-a-mano-mesa.webp', title: 'Paciencia', right: 'A Mano' },
-  { image: '/img/cosido-a-mano-detalle.webp', title: 'Perfección', right: 'El Detalle' },
+/* CraftJourneySection photos. Its labels were Spanish only on the live site;
+   they are now la_sastreria.oficio.title1–4 / detail1–4 in all four languages. */
+const OFICIO_IMG = [
+  '/img/tejido-principe-de-gales-etiqueta.webp',
+  '/img/chaque-hilvanado-diseno.webp',
+  '/img/corte-a-mano-mesa.webp',
+  '/img/cosido-a-mano-detalle.webp',
 ]
 
 export const IMG = {
@@ -45,7 +46,10 @@ export function useSastreriaContent() {
     oficio: {
       label: s.oficio.label,
       title: s.oficio.title,
-      items: OFICIO.map((o, i) => ({ ...o, cat: [s.oficio.cat1, s.oficio.cat2, s.oficio.cat3, s.oficio.cat4][i] })),
+      items: OFICIO_IMG.map((image, i) => {
+        const n = i + 1 as 1 | 2 | 3 | 4
+        return { image, cat: s.oficio[`cat${n}`], title: s.oficio[`title${n}`], right: s.oficio[`detail${n}`] }
+      }),
     },
     historia: { label: s.historia.label, name: 'Manuel Fernández', paras: [s.historia.p1, s.historia.p2, s.historia.p3] },
     evelyn: { label: s.evelyn.label, name: 'Evelyn Fernández', paras: [s.evelyn.p1, s.evelyn.p2, s.evelyn.p3] },

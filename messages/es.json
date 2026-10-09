@@ -174,7 +174,15 @@
       "cat1": "El Tejido",
       "cat2": "El Diseño",
       "cat3": "El Corte",
-      "cat4": "El Proceso Artesanal"
+      "cat4": "El Proceso Artesanal",
+      "title1": "Carácter",
+      "detail1": "Lana & Seda",
+      "title2": "Precisión",
+      "detail2": "Tradición",
+      "title3": "Paciencia",
+      "detail3": "A Mano",
+      "title4": "Perfección",
+      "detail4": "El Detalle"
     },
     "cifras": {
       "label": "En Números",

@@ -177,7 +177,15 @@
       "cat1": "Le Tissu",
       "cat2": "Le Design",
       "cat3": "La Coupe",
-      "cat4": "Le Processus Artisanal"
+      "cat4": "Le Processus Artisanal",
+      "title1": "Caractère",
+      "detail1": "Laine & Soie",
+      "title2": "Précision",
+      "detail2": "Tradition",
+      "title3": "Patience",
+      "detail3": "À la main",
+      "title4": "Perfection",
+      "detail4": "Le Détail"
     },
     "cifras": {
       "label": "En Chiffres",

@@ -174,7 +174,15 @@
       "cat1": "The Fabric",
       "cat2": "The Design",
       "cat3": "The Cut",
-      "cat4": "The Artisan Process"
+      "cat4": "The Artisan Process",
+      "title1": "Character",
+      "detail1": "Wool & Silk",
+      "title2": "Precision",
+      "detail2": "Tradition",
+      "title3": "Patience",
+      "detail3": "By Hand",
+      "title4": "Perfection",
+      "detail4": "The Detail"
     },
     "cifras": {
       "label": "By the Numbers",
