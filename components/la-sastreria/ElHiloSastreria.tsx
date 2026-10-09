@@ -7,13 +7,13 @@ import { gsap } from 'gsap'
 import { useScene, highlight, depth, speeds, type SceneEnv } from '@/lib/scroll-scene'
 import { Words } from '@/components/el-hilo/Words'
 import { BookingLink } from '@/components/global/BookingLink'
-import { useSastreriaContent, IMG, ALT } from './content'
-import s from './sastreria.module.css'
+import { useSastreriaContent, IMG, ALT } from './sastreriaContent'
+import s from './el-hilo-sastreria.module.css'
 
 /* A · La costura: one thread down the left margin sews every chapter. */
 const FILO_RUN = 110
 
-export function SastreriaA() {
+export function ElHiloSastreria() {
   const c = useSastreriaContent()
   const root = useRef<HTMLDivElement>(null)
   useScene(root, build, [c.locale])
@@ -31,7 +31,7 @@ export function SastreriaA() {
         <div className={s.aHeroText}>
           <span className={s.eyebrow}>{c.hero.label}</span>
           <h1 id="h-sastreria" className={s.h1}>
-            <span className={s.h1Line1}>{c.hero.headline_line1}</span>
+            <span className={s.h1Line1}>{c.hero.headline_line1}</span>{' '}
             <span className={s.h1Line2}>{c.hero.headline_line2}</span>
           </h1>
           <p className={s.subline}>{c.hero.subline}</p>

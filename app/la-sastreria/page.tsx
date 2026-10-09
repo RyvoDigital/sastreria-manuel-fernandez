@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { SastreriaLayout } from '@/components/la-sastreria/SastreriaLayout'
+import { ElHiloSastreria } from '@/components/la-sastreria/ElHiloSastreria'
 
 export const metadata: Metadata = {
   title: 'La Sastrería · Sastrería Manuel Fernández',
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 }
 
 export default function LaSastreriaPage() {
-  return <SastreriaLayout />
+  return <ElHiloSastreria />
 }
