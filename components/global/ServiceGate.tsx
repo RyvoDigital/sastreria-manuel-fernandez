@@ -7,23 +7,23 @@ import { Construction } from 'lucide-react'
 
 interface ServiceGateProps {
   settingId: string
+  /** The setting as read on the server when the page was rendered. */
+  initialEnabled: boolean
   children: React.ReactNode
 }
 
-export function ServiceGate({ settingId, children }: ServiceGateProps) {
+/*
+ * The page is rendered on the server with the server's reading of the setting,
+ * so crawlers and first paint get the full page (no spinner, no footer jump).
+ * Once the client has fetched the live settings, they decide: an admin toggle
+ * made since the page was cached still takes effect immediately.
+ */
+export function ServiceGate({ settingId, initialEnabled, children }: ServiceGateProps) {
   const { isEnabled, loading } = useSettings()
   const { t } = useI18n()
+  const enabled = loading ? initialEnabled : isEnabled(settingId)
 
-  if (loading) {
-    return (
-      <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0A1628' }}>
-        <div style={{ width: 32, height: 32, border: '2px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-      </div>
-    )
-  }
-
-  if (!isEnabled(settingId)) {
+  if (!enabled) {
     return (
       <div style={{
         minHeight: '80vh',

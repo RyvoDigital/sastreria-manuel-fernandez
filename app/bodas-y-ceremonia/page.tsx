@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { BodasLayout } from '@/components/bodas/BodasLayout'
 import { ServiceGate } from '@/components/global/ServiceGate'
+import { isSettingEnabled } from '@/lib/settings-server'
+
+/* Re-read the admin show/hide setting at most once a minute. */
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Bodas y Ceremonia | Sastrería Manuel Fernández',
@@ -8,9 +12,10 @@ export const metadata: Metadata = {
   alternates: { canonical: '/bodas-y-ceremonia' },
 }
 
-export default function BodasPage() {
+export default async function BodasPage() {
+  const enabled = await isSettingEnabled('bodas')
   return (
-    <ServiceGate settingId="bodas">
+    <ServiceGate settingId="bodas" initialEnabled={enabled}>
       <BodasLayout />
     </ServiceGate>
   )

@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { ContactPage } from '@/components/contacto/ContactPage'
 import { ServiceGate } from '@/components/global/ServiceGate'
+import { isSettingEnabled } from '@/lib/settings-server'
+
+/* Re-read the admin show/hide setting at most once a minute. */
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Contacto · Sastrería Manuel Fernández',
@@ -8,9 +12,10 @@ export const metadata: Metadata = {
   alternates: { canonical: '/contacto' },
 }
 
-export default function ContactoPage() {
+export default async function ContactoPage() {
+  const enabled = await isSettingEnabled('contacto')
   return (
-    <ServiceGate settingId="contacto">
+    <ServiceGate settingId="contacto" initialEnabled={enabled}>
       <ContactPage />
     </ServiceGate>
   )
