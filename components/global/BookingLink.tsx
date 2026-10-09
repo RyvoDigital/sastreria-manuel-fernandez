@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import type { CSSProperties, MouseEvent, ReactNode } from 'react'
+import type { AnchorHTMLAttributes, MouseEvent } from 'react'
 import { useSettings } from '@/lib/settings-provider'
 import { BOOKING_ANCHOR, BOOKING_EVENT, BOOKING_HREF, BOOKING_PATH } from '@/lib/booking'
 
@@ -13,16 +13,9 @@ import { BOOKING_ANCHOR, BOOKING_EVENT, BOOKING_HREF, BOOKING_PATH } from '@/lib
  * there is nowhere to book then.
  */
 export function BookingLink({
-  className,
-  style,
-  children,
   onClick,
-}: {
-  className?: string
-  style?: CSSProperties
-  children: ReactNode
-  onClick?: () => void
-}) {
+  ...rest
+}: Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'onClick'> & { onClick?: () => void }) {
   const pathname = usePathname()
   const { isEnabled } = useSettings()
   if (!isEnabled('contacto')) return null
@@ -37,8 +30,6 @@ export function BookingLink({
   }
 
   return (
-    <Link href={BOOKING_HREF} className={className} style={style} onClick={handle}>
-      {children}
-    </Link>
+    <Link {...rest} href={BOOKING_HREF} onClick={handle} />
   )
 }

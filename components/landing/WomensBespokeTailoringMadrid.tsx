@@ -21,6 +21,7 @@ import { LandingPage, type LandingContent } from './LandingPage'
   NOT stated: prices, lead times, or any separate women's process.
 */
 const content: LandingContent = {
+  lang: 'en',
   serviceType: "Women's bespoke tailoring",
   eyebrow: "Women's Bespoke",
   h1: "Women's Bespoke Tailoring in Madrid",

@@ -7,6 +7,9 @@
  * page's own component.
  */
 import Link from 'next/link'
+import { BookingLink } from '@/components/global/BookingLink'
+import es from '@/messages/es.json'
+import en from '@/messages/en.json'
 
 /** A copy fragment: plain text, or a link to render inside a sentence. */
 export type Segment = string | { href: string; text: string }
@@ -170,10 +173,13 @@ export function GhostNumeral({ children, onDark }: { children: string; onDark?: 
   )
 }
 
-export function Cta({ onDark }: { onDark?: boolean }) {
+/**
+ * "Reservar cita", in the language of the page (these pages are written in one
+ * language), straight to the booking options.
+ */
+export function Cta({ onDark, lang = 'es' }: { onDark?: boolean; lang?: 'es' | 'en' }) {
   return (
-    <Link
-      href="/contacto"
+    <BookingLink
       style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -192,8 +198,8 @@ export function Cta({ onDark }: { onDark?: boolean }) {
         border: onDark ? '1px solid ' + GOLD : undefined,
       }}
     >
-      Solicitar cita
-    </Link>
+      {(lang === 'en' ? en : es).hero.cta_book}
+    </BookingLink>
   )
 }
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { BookingLink } from '@/components/global/BookingLink'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
 import { ArrowRight } from 'lucide-react'
@@ -99,7 +100,7 @@ export function BodasFinal() {
         </h2>
 
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link href="/contacto" style={{
+          <BookingLink style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
             padding: '0.85rem 2.2rem',
             background: '#C9A84C',
@@ -124,7 +125,7 @@ export function BodasFinal() {
           }}>
             {c.btn_primary}
             <ArrowRight style={{ width: '0.85rem', height: '0.85rem' }} />
-          </Link>
+          </BookingLink>
 
           <Link href="/la-sastreria" style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
