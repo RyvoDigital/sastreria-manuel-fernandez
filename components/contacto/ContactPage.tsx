@@ -10,6 +10,7 @@ import { useContent } from '@/lib/content-provider'
 import { useSettings } from '@/lib/settings-provider'
 import { useIsMobile } from '@/lib/use-mobile'
 import { BookingCalendar } from '@/components/booking/BookingCalendar'
+import { BOOKING_ANCHOR, BOOKING_EVENT } from '@/lib/booking'
 
 /* ─── Nav height constant ─── */
 const NAV_H = 76
@@ -152,6 +153,34 @@ function ContactPageInner() {
       setBookingMode('videocall')
     }
   }, [])
+
+  /* "Reservar cita" from anywhere: arrive at #reservar, or the link was used
+     while already here. Close any open calendar step and bring the booking
+     options into view. */
+  const [bookingRequest, setBookingRequest] = useState(0)
+  useEffect(() => {
+    const request = () => {
+      setBookingMode('none')
+      setBookingRequest((n) => n + 1)
+    }
+    const onHash = () => {
+      if (window.location.hash === `#${BOOKING_ANCHOR}`) request()
+    }
+    onHash()
+    window.addEventListener(BOOKING_EVENT, request)
+    window.addEventListener('hashchange', onHash)
+    return () => {
+      window.removeEventListener(BOOKING_EVENT, request)
+      window.removeEventListener('hashchange', onHash)
+    }
+  }, [])
+  useEffect(() => {
+    if (!bookingRequest) return
+    const id = requestAnimationFrame(() => {
+      document.getElementById(BOOKING_ANCHOR)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+    return () => cancelAnimationFrame(id)
+  }, [bookingRequest])
 
   /* Preload */
   useEffect(() => {
@@ -530,8 +559,8 @@ function ContactPageInner() {
             ))}
           </div>
 
-          {/* ─── BOOKING HUB ─── */}
-          <div className="mf-ci" style={{ marginBottom: '2rem' }}>
+          {/* ─── BOOKING HUB ─── (target of every "Reservar cita" link) */}
+          <div className="mf-ci" id={BOOKING_ANCHOR} style={{ marginBottom: '2rem', scrollMarginTop: 'calc(var(--header-offset, 84px) + 1rem)' }}>
             <p style={{
               fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontStyle: 'italic',
               color: '#FFFFFF', marginBottom: '1rem',
