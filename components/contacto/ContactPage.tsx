@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, FormEvent, Suspense } from 'react'
+import { useState, useEffect, useRef, FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { MapPin, Phone, Clock, Mail, ArrowRight, Calendar, Video, MessageSquare, X } from 'lucide-react'
@@ -10,7 +10,6 @@ import { useContent } from '@/lib/content-provider'
 import { useSettings } from '@/lib/settings-provider'
 import { useIsMobile } from '@/lib/use-mobile'
 import { BookingCalendar } from '@/components/booking/BookingCalendar'
-import { useSearchParams } from 'next/navigation'
 
 /* ─── Nav height constant ─── */
 const NAV_H = 76
@@ -113,7 +112,6 @@ function ContactPageInner() {
   const { getValue } = useContent()
   const { getPrice, isEnabled } = useSettings()
   const isMobile = useIsMobile()
-  const searchParams = useSearchParams()
   const [photoIndex, setPhotoIndex] = useState(0)
   const [submitted, setSubmitted]   = useState(false)
   const [loading, setLoading]       = useState(false)
@@ -131,8 +129,10 @@ function ContactPageInner() {
     }
   }, [bookingMode])
 
-  /* Handle Stripe return */
+  /* Handle Stripe return. Read in the browser (not useSearchParams) so the
+     page is rendered in full on the server instead of a Suspense spinner. */
   useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search)
     const success = searchParams.get('videocall_success')
     const cancelled = searchParams.get('videocall_cancelled')
     const sessionId = searchParams.get('session_id')
@@ -151,7 +151,7 @@ function ContactPageInner() {
     if (cancelled) {
       setBookingMode('videocall')
     }
-  }, [searchParams])
+  }, [])
 
   /* Preload */
   useEffect(() => {
@@ -772,14 +772,5 @@ function ContactPageInner() {
 }
 
 export function ContactPage() {
-  return (
-    <Suspense fallback={
-      <div style={{ minHeight: '100vh', background: '#0A1628', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ width: 32, height: 32, border: '2px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-      </div>
-    }>
-      <ContactPageInner />
-    </Suspense>
-  )
+  return <ContactPageInner />
 }

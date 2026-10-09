@@ -1,15 +1,13 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { GraduationCap, CheckCircle, ArrowLeft } from 'lucide-react'
 import { CursosList } from './CursosList'
 import { CursosPaymentGate } from './CursosPaymentGate'
-import { useSearchParams } from 'next/navigation'
 
 function CursosLayoutInner() {
   const { locale } = useI18n()
-  const searchParams = useSearchParams()
   const [selectedCourse, setSelectedCourse] = useState<{
     id: string
     title: string
@@ -17,11 +15,13 @@ function CursosLayoutInner() {
   } | null>(null)
   const [purchaseSuccess, setPurchaseSuccess] = useState(false)
 
+  /* Stripe return. Read in the browser (not useSearchParams) so the page is
+     rendered in full on the server instead of a Suspense spinner. */
   useEffect(() => {
-    if (searchParams.get('success') === 'true') {
+    if (new URLSearchParams(window.location.search).get('success') === 'true') {
       setPurchaseSuccess(true)
     }
-  }, [searchParams])
+  }, [])
 
   const t = {
     es: {
@@ -244,14 +244,5 @@ function CursosLayoutInner() {
 }
 
 export function CursosLayout() {
-  return (
-    <Suspense fallback={
-      <div style={{ minHeight: '100vh', background: '#0A1628', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ width: 32, height: 32, border: '2px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-      </div>
-    }>
-      <CursosLayoutInner />
-    </Suspense>
-  )
+  return <CursosLayoutInner />
 }
