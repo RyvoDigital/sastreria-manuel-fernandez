@@ -13,11 +13,10 @@ import {
   AFTER_IMAGE,
   AFTER_ALT,
   TESTIMONIAL_BG,
-} from './content'
-import s from './home.module.css'
-import { useScene, highlight, depth, speeds, thread, blend, coverShade, scrollToStep, type SceneEnv } from './scroll'
+} from './homeContent'
+import s from './el-hilo.module.css'
+import { useScene, highlight, depth, speeds, thread, blend, coverShade, scrollToStep, type SceneEnv } from '@/lib/scroll-scene'
 
-export type Variant = 'hilo' | 'capas'
 type Styles = Record<string, string>
 
 /* Real text stays real text: each word is a span so it can be filled by scroll. */
@@ -67,7 +66,7 @@ const ZOOM_DRIFT = [0, 0.55, 0.3, 0.45, 0.62, 0.38, 0.5, 0.7]
 
 const pad2 = (n: number) => String(n).padStart(2, '0')
 
-export function Home({ variant }: { variant: Variant }) {
+export function ElHiloHome() {
   const c = useHomeContent()
   const root = useRef<HTMLDivElement>(null)
   const [voice, setVoice] = useState(0)
@@ -77,8 +76,8 @@ export function Home({ variant }: { variant: Variant }) {
   const vhRef = useRef(800)
 
   const sceneBuild = useCallback(
-    (env: SceneEnv) => buildScene(env, variant, { setVoice, setSpot, setService, baValue, vhRef }, s),
-    [variant]
+    (env: SceneEnv) => buildScene(env, { setVoice, setSpot, setService, baValue, vhRef }, s),
+    []
   )
   useScene(root, sceneBuild, [c.locale, c.services.items.length, sceneBuild])
 
@@ -88,7 +87,7 @@ export function Home({ variant }: { variant: Variant }) {
   }
 
   return (
-    <div ref={root} className={s.page} data-variant={variant}>
+    <div ref={root} className={s.page}>
       {/* 1 · INTRODUCTION: carries the hero's gold line down the page */}
       <div className={s.pair}>
         <section className={s.intro} data-ch="intro">
@@ -437,7 +436,7 @@ function pinTimeline(section: HTMLElement, key: PinKey, vh: number) {
   })
 }
 
-function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
+function buildScene(env: SceneEnv, set: Setters, s: Styles) {
   const { root, q, vh, touch, wide } = env
   const cleanups: (() => void)[] = []
   runK = wide ? RUN_K.wide : RUN_K.phone
@@ -450,27 +449,8 @@ function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
   q('[data-hl]').forEach((n) => highlight(n))
 
   /* 1 → 2 ─────────────────────────────────────────────────────────────── */
-  const intro = ch('intro')
   const services = ch('services')
-  if (v === 'capas') {
-    // Las capas: the introduction is a sheet; Services slides over it while it sinks back.
-    const inner = intro.querySelector<HTMLElement>(`.${s.introInner}`)!
-    const stick = () => {
-      intro.style.top = `${Math.min(0, window.innerHeight - intro.offsetHeight)}px`
-    }
-    stick()
-    window.addEventListener('resize', stick)
-    cleanups.push(() => {
-      window.removeEventListener('resize', stick)
-      intro.style.top = ''
-    })
-    gsap.fromTo(inner, { scale: 1, opacity: 1 }, {
-      scale: 0.92,
-      opacity: 0.35,
-      ease: 'none',
-      scrollTrigger: { trigger: services, start: 'top bottom', end: 'top top', scrub: true },
-    })
-  } else {
+  {
     // El hilo: the thread becomes the top edge of the frame, which opens downward like a blind.
     const list = services.querySelector<HTMLElement>('ul')!
     gsap.fromTo(
@@ -518,7 +498,7 @@ function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
     const SPEED_HILO = wide ? [0, 0.28, 0.12] : [0, 0.22]
     frames.forEach((f, i) => {
       const cols = wide ? 3 : 2
-      const sp = v === 'hilo' ? SPEED_HILO[i % cols] : [0.34, 0.08, 0.2, 0.0, 0.42, 0.14][i % 6]
+      const sp = SPEED_HILO[i % cols]
       f.dataset.speed = String(sp)
     })
     speeds(frames, vh, touch, gallery)
@@ -533,12 +513,7 @@ function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
     const shade = traje.querySelector<HTMLElement>(`.${s.tShade}`)!
     const text = traje.querySelector<HTMLElement>(`.${s.tText}`)!
     const body = traje.querySelector<HTMLElement>(`.${s.tBody}`)!
-    const fromClip =
-      v === 'hilo'
-        ? 'inset(49.6% 7% 49.6% 7% round 0vw 0vw 0vw 0vw)'
-        : wide
-          ? 'inset(24% 38% 18% 38% round 12vw 12vw 0vw 0vw)'
-          : 'inset(24% 22% 22% 22% round 28vw 28vw 0vw 0vw)'
+    const fromClip = 'inset(49.6% 7% 49.6% 7% round 0vw 0vw 0vw 0vw)'
     gsap.set(media, { clipPath: fromClip })
     gsap.set(img, { scale: 1.3 })
     gsap.set(shade, { opacity: 0 })
@@ -579,7 +554,7 @@ function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
       tl.fromTo(layer, { scale: cover * mult[i] }, { scale: 1, duration: 0.72, ease: 'power1.inOut' }, 0)
       tl.to(layer, { y: -vh * (0.35 + ZOOM_DRIFT[i]), duration: 0.28, ease: 'power1.in' }, 0.72)
     })
-    const next = v === 'hilo' ? COLORS.navyMid : COLORS.navyMid
+    const next = COLORS.navyMid
     tl.fromTo(stage, { backgroundColor: COLORS.black }, { backgroundColor: next, duration: 0.28 }, 0.72)
   }
 
@@ -594,8 +569,8 @@ function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
       const frames = steps.map((st) => st.querySelector<HTMLElement>('figure')!)
       const imgs = steps.map((st) => st.querySelector<HTMLElement>('[data-depth]')!)
       const texts = steps.map((st) => st.querySelector<HTMLElement>(`.${s.pText}`)!)
-      const enter = v === 'hilo' ? 'inset(0% 0% 0% 100%)' : 'inset(100% 0% 0% 0% round 50% 50% 0% 0%)'
-      const open = v === 'hilo' ? 'inset(0% 0% 0% 0%)' : 'inset(0% 0% 0% 0% round 50% 50% 0% 0%)'
+      const enter = 'inset(0% 0% 0% 100%)'
+      const open = 'inset(0% 0% 0% 0%)'
       gsap.set(frames.slice(1), { clipPath: enter })
       gsap.set(texts.slice(1), { autoAlpha: 0, y: 40 })
       const tl = pinTimeline(proc, 'process', vh)
@@ -621,13 +596,8 @@ function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
     const proc = ch('process')
     const ed = ch('editorial')
     const voices = ch('voices')
-    if (v === 'capas') {
-      blend(proc, ed, { bgA: COLORS.navyMid, bgB: COLORS.white, inkA: COLORS.white, inkB: COLORS.navy })
-      blend(ed, voices, { bgA: COLORS.white, bgB: COLORS.navy, inkA: COLORS.navy, inkB: COLORS.white })
-    } else {
       blend(proc, ed, { bgA: COLORS.navyMid, bgB: COLORS.navy })
       blend(ed, voices, { bgA: COLORS.navy, bgB: COLORS.black })
-    }
     // Editorial rules draw across, titles fill as they arrive.
     q(`.${s.eRow}`, ed).forEach((row) => {
       const rule = row.querySelector(`.${s.eRule}`)
@@ -732,7 +702,7 @@ function buildScene(env: SceneEnv, v: Variant, set: Setters, s: Styles) {
   {
     const fab = ch('fabrics')
     const items = q('[data-f]', fab)
-    items.forEach((it, i) => (it.dataset.speed = String(v === 'capas' ? [0.05, 0.2, 0.1, 0.26][i] : [0, 0.14, 0.06, 0.2][i])))
+    items.forEach((it, i) => (it.dataset.speed = String([0, 0.14, 0.06, 0.2][i])))
     if (wide) speeds(items, vh, touch, fab.querySelector('ul')!)
   }
   return () => cleanups.forEach((f) => f())
