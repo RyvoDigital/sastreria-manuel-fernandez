@@ -8,6 +8,7 @@ import { track } from '@/lib/analytics'
 import { useSettings } from '@/lib/settings-provider'
 import { useMenuDialog, useScrolled } from '@/lib/use-menu-dialog'
 import { SITE_PHONE_DISPLAY, SITE_PHONE_E164 } from '@/lib/site'
+import { BookingLink } from '@/components/global/BookingLink'
 
 /*
  * Escaparate: the house front on Jorge Juan, translated to a header. On wide
@@ -78,7 +79,10 @@ export function Navigation() {
     label: t.nav[i.key],
     active: i.href === '/' ? pathname === '/' : pathname.startsWith(i.href),
   }))
-  const half = Math.ceil(items.length / 2)
+  // Desktop bar: the crest is the link home, so "Inicio" lives only in the menu
+  // panel; that leaves room for "Reservar cita" at the end of the right side.
+  const barItems = items.filter((i) => i.key !== 'inicio')
+  const half = Math.ceil(barItems.length / 2)
 
   const trackPhone = () => track('phone_click', { location: 'nav' })
   const trackWhatsApp = () => track('whatsapp_click', { location: 'nav' })
@@ -119,16 +123,20 @@ export function Navigation() {
         </div>
 
         <div className="mf-nav-row">
-          <nav className="mf-nav-side mf-nav-side--left" aria-label={ui.nav}>{items.slice(0, half).map(desktopLink)}</nav>
+          <nav className="mf-nav-side mf-nav-side--left" aria-label={ui.nav}>{barItems.slice(0, half).map(desktopLink)}</nav>
 
           <Link href="/" className="mf-nav-crest" aria-label={`Sastrería Manuel Fernández — ${ui.home}`} onClick={close}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/img/logo-manuel-fernandez.png" alt="" width={2000} height={1317} />
           </Link>
 
-          <nav className="mf-nav-side mf-nav-side--right" aria-label={ui.nav}>{items.slice(half).map(desktopLink)}</nav>
+          <div className="mf-nav-side mf-nav-side--right">
+            <nav className="mf-nav-side-links" aria-label={ui.nav}>{barItems.slice(half).map(desktopLink)}</nav>
+            <BookingLink className="mf-nav-book mf-nav-book--row">{t.hero.cta_book}</BookingLink>
+          </div>
 
           <div className="mf-nav-compact">
+            <BookingLink className="mf-nav-book mf-nav-book--compact" onClick={close}>{t.hero.cta_book}</BookingLink>
             <a
               href={CONTACT.whatsapp}
               target="_blank"
@@ -178,6 +186,7 @@ export function Navigation() {
               <p className="mf-nav-foot-note">{t.footer.hours}</p>
             </div>
             <div className="mf-nav-foot-actions">
+              <BookingLink className="mf-nav-pill mf-nav-pill--solid" onClick={close}>{t.hero.cta_book}</BookingLink>
               <a href={CONTACT.tel} className="mf-nav-pill mf-nav-pill--gold" onClick={trackPhone}>{ui.call}</a>
               <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="mf-nav-pill" onClick={trackWhatsApp}>
                 <WhatsAppIcon size={14} /> WhatsApp
@@ -282,14 +291,39 @@ const CSS = `
 .mf-nav[data-open] .mf-nav-toggle-lines span:first-child { top: 4px; transform: rotate(45deg); }
 .mf-nav[data-open] .mf-nav-toggle-lines span:last-child { top: 4px; transform: rotate(-45deg); }
 
+/* "Reservar cita": always in the bar. Right end of the row on desktop; next to
+   Menú below that (the Menú word folds into the icon on narrow phones, and the
+   WhatsApp icon moves into the menu panel on the narrowest ones). */
+.mf-nav-row { position: relative; }
+.mf-nav-book {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 0 1.1rem;
+  background: var(--color-gold); color: var(--color-navy); text-decoration: none; white-space: nowrap;
+  font-family: var(--font-sans); font-weight: 500; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: background .25s ease;
+}
+.mf-nav-book:hover { background: var(--color-gold-light); }
+.mf-nav-book--row { display: none; }
+.mf-nav-book--compact { min-height: 36px; padding: 0 0.8rem; font-size: 0.58rem; letter-spacing: 0.12em; }
+.mf-nav[data-open] .mf-nav-book--compact { visibility: hidden; }
+@media (max-width: 419px) {
+  .mf-nav-toggle { padding-left: 0.5rem; }
+  .mf-nav-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@media (max-width: 374px) {
+  .mf-nav-compact .mf-nav-icon { display: none; }
+}
+
 @media (min-width: ${DESKTOP}px) {
+  .mf-nav-book--row { display: inline-flex; margin-left: auto; }
+  .mf-nav-side-links { display: flex; align-items: center; gap: inherit; }
   .mf-nav-strip { display: flex; }
   .mf-nav-row { height: 78px; }
   .mf-nav-crest { grid-column: 2; justify-self: center; height: 52px; }
   .mf-nav[data-scrolled] .mf-nav-crest { height: 40px; }
   .mf-nav-side { display: flex; align-items: center; gap: clamp(1.5rem, 2.4vw, 2.75rem); }
   .mf-nav-side--left { grid-column: 1; grid-row: 1; justify-self: end; padding-right: clamp(2rem, 3.5vw, 3.5rem); }
-  .mf-nav-side--right { grid-column: 3; grid-row: 1; justify-self: start; padding-left: clamp(2rem, 3.5vw, 3.5rem); }
+  .mf-nav-side--right { grid-column: 3; grid-row: 1; justify-self: stretch; padding-left: clamp(2rem, 3.5vw, 3.5rem); }
   .mf-nav-compact { display: none; }
 }
 
@@ -365,6 +399,8 @@ const CSS = `
 .mf-nav-pill:hover { border-color: var(--color-white); }
 .mf-nav-pill--gold { border-color: var(--color-gold); color: var(--color-gold); }
 .mf-nav-pill--gold:hover { background: var(--color-gold); color: var(--color-navy); }
+.mf-nav-pill--solid { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-navy); }
+.mf-nav-pill--solid:hover { background: var(--color-gold-light); border-color: var(--color-gold-light); }
 .mf-nav-foot-langs { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
 .mf-nav-foot-lang {
   background: none; border: 0; cursor: pointer; padding: 0.5rem 0;

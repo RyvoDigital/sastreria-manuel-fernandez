@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { BookingLink } from '@/components/global/BookingLink'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
@@ -76,6 +77,14 @@ export function FooterEnhanced() {
         position: 'relative',
         zIndex: 1,
       }}>
+        {/* Booking band: the end of every page leads straight to booking. */}
+        <div className="mf-foot-book">
+          <h4 className="mf-foot-book-title">{t.footer.cta_title}</h4>
+          <BookingLink className="mf-foot-book-btn">
+            {t.footer.cta_btn} <Send size={16} aria-hidden="true" />
+          </BookingLink>
+        </div>
+
         {/* Main Footer Content */}
         <div style={{
           display: 'grid',
@@ -209,45 +218,6 @@ export function FooterEnhanced() {
             </address>
           </div>
 
-          {/* CTA Column */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: '2rem',
-          }}>
-            <h4 style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.2rem',
-              color: '#FFFFFF',
-              margin: 0,
-            }}>
-              {t.footer.cta_title}
-            </h4>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link href="/contacto" style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                background: '#C9A84C',
-                color: '#000000',
-                padding: '1rem 2.5rem',
-                borderRadius: '4px',
-                textDecoration: 'none',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                boxShadow: '0 10px 30px rgba(201,168,76,0.3)',
-              }}>
-                {t.footer.cta_btn} <Send size={16} />
-              </Link>
-            </motion.div>
-          </div>
         </div>
 
         {/* Bottom Bar */}
@@ -340,6 +310,32 @@ export function FooterEnhanced() {
           pointerEvents: 'none',
         }}
       />
+      <style>{FOOT_CSS}</style>
     </footer>
   )
 }
+
+const FOOT_CSS = `
+.mf-foot-book {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1.75rem;
+  padding-bottom: clamp(3rem, 7vw, 5rem); margin-bottom: clamp(3rem, 7vw, 5rem);
+  border-bottom: 1px solid rgba(201,168,76,0.18);
+}
+.mf-foot-book-title {
+  margin: 0; max-width: 18ch;
+  font-family: var(--font-serif); font-weight: 300; font-size: clamp(2.1rem, 1.4rem + 3vw, 4rem); line-height: 1.05;
+  color: #FFFFFF; text-wrap: balance;
+}
+.mf-foot-book-btn {
+  display: inline-flex; align-items: center; gap: 1rem;
+  min-height: 52px; padding: 0 2.25rem;
+  background: #C9A84C; color: #0A1628; text-decoration: none;
+  font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  transition: background .25s ease;
+}
+.mf-foot-book-btn:hover { background: #E8D5A3; }
+.mf-foot-book-btn:focus-visible { outline: 2px solid #E8D5A3; outline-offset: 4px; }
+@media (min-width: 900px) {
+  .mf-foot-book { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+}
+`
