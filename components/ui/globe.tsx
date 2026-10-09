@@ -31,6 +31,8 @@ interface GlobeProps {
   arcWidth?: number
   arcHeight?: number
   speed?: number
+  /** Starting rotation in radians (0 = the default view). */
+  phi?: number
   theta?: number
   diffuse?: number
   mapSamples?: number
@@ -51,6 +53,7 @@ export function Globe({
   arcWidth = 0.5,
   arcHeight = 0.25,
   speed = 0.003,
+  phi: startPhi = 0,
   theta = 0.2,
   diffuse = 1.5,
   mapSamples = 16000,
@@ -120,13 +123,13 @@ export function Globe({
       if (width === 0 || globe) return
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      let phi = 0
+      let phi = startPhi
 
       globe = createGlobe(canvas, {
         devicePixelRatio: dpr,
         width,
         height: width,
-        phi: 0,
+        phi: startPhi,
         theta,
         dark,
         diffuse,
@@ -195,7 +198,7 @@ export function Globe({
       if (animationId) cancelAnimationFrame(animationId)
       if (globe) globe.destroy()
     }
-  }, [markers, arcs, markerColor, baseColor, arcColor, glowColor, dark, mapBrightness, markerSize, markerElevation, arcWidth, arcHeight, speed, theta, diffuse, mapSamples])
+  }, [markers, arcs, markerColor, baseColor, arcColor, glowColor, dark, mapBrightness, markerSize, markerElevation, arcWidth, arcHeight, speed, startPhi, theta, diffuse, mapSamples])
 
   return (
     <div className={`relative aspect-square select-none ${className}`}>

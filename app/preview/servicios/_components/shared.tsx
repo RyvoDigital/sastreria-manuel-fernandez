@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import type { GlobeArc, GlobeMarker } from '@/components/ui/globe'
@@ -46,8 +47,7 @@ export function Stats({ c, className }: { c: ServiciosContent['cred']; className
   )
 }
 
-/* TejidosMundoSection's globe, same markers, arcs and settings as live, except
-   that it holds still (facing Europe) and turns only when dragged. */
+/* TejidosMundoSection's globe, same markers, arcs and settings as live. */
 const Globe = dynamic(() => import('@/components/ui/globe').then((m) => m.Globe), {
   ssr: false,
   loading: () => <div style={{ width: '100%', aspectRatio: '1' }} />,
@@ -71,10 +71,23 @@ const MARKERS: GlobeMarker[] = [
 ]
 const ARCS: GlobeArc[] = MARKERS.filter((m) => m.id !== 'madrid').map((m) => ({ id: `madrid-${m.id}`, from: [40.4168, -3.7038], to: m.location }))
 
+/* Start facing Madrid: cobe's rotation for a longitude is π − (λ − π/2). */
+const MADRID_PHI = Math.PI - ((-3.7038 * Math.PI) / 180 - Math.PI / 2)
+
 export function MundoGlobe() {
+  // The globe starts turning only when the reader arrives, so it is seen facing Madrid.
+  const ref = useRef<HTMLDivElement>(null)
+  const [near, setNear] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setNear(true), io.disconnect()), { rootMargin: '0px 0px -10% 0px' })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
   return (
-    <div className={s.globe}>
-      <Globe
+    <div ref={ref} className={s.globe} style={{ aspectRatio: '1' }}>
+      {near && <Globe
         markers={MARKERS}
         arcs={ARCS}
         dark={1}
@@ -84,7 +97,8 @@ export function MundoGlobe() {
         glowColor={[0.77, 0.64, 0.35]}
         mapBrightness={5}
         mapSamples={20000}
-        speed={0}
+        speed={0.004}
+        phi={MADRID_PHI}
         theta={0.38}
         diffuse={1.8}
         markerSize={0.05}
@@ -92,7 +106,7 @@ export function MundoGlobe() {
         arcWidth={0.5}
         arcHeight={0.35}
         className="w-full"
-      />
+      />}
     </div>
   )
 }

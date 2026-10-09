@@ -1,88 +1,90 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   Servicios A · El muestrario, to the motion budget: the layout carries the
-   page. One moment moves (the repertoire index), one paragraph highlights,
-   two large photographs drift a few percent; everything else is still or
-   enters once, quietly. Type and spacing calibrated against Savile Row and
-   Italian houses: modest headlines, small tracked labels, narrow measures,
-   photographs edge to edge. Mobile first (390), then 900+.
+   Servicios in the El hilo system (same tokens as the homepage and
+   La Sastrería: navy, a gold dashed thread, light Cormorant, scrubbed
+   highlights, masked-frame parallax). Static by default; [data-staged]
+   switches on the pinned and sticky layouts.
+     A · El muestrario — the hero opens from a stitched swatch; the
+         repertoire is an index whose sticky frame shows the garment named.
+     B · El probador  — the garments part like a rail to show Pure Bespoke;
+         the repertoire is one frame where each name is tried on in turn.
+   Mobile first (390), then 900+.
    ───────────────────────────────────────────────────────────────────────── */
 
 .page {
-  --pad: 20px;
-  --gap: 2px;
+  --k: 0.8;
+  --pad: 24px;
   --nav: var(--header-offset, 84px);
-  --rule: rgba(232, 213, 163, 0.22);
-  --stitch-h: repeating-linear-gradient(90deg, var(--color-gold) 0 6px, transparent 6px 11px);
-  --stitch-v: repeating-linear-gradient(180deg, var(--color-gold) 0 6px, transparent 6px 11px);
-  --ink-soft: rgba(255, 255, 255, 0.72);
-  --space: clamp(4.5rem, 3.5rem + 5vw, 8.5rem);
+  --stitch-v: repeating-linear-gradient(180deg, var(--color-gold) 0 8px, transparent 8px 14px);
+  --stitch-h: repeating-linear-gradient(90deg, var(--color-gold) 0 8px, transparent 8px 14px);
+  --ink-soft: rgba(255, 255, 255, 0.76);
   position: relative;
   color: var(--color-white);
   background: var(--color-navy);
   overflow-x: clip;
-  padding-bottom: var(--space);
+  padding-bottom: clamp(5rem, 4rem + 6vw, 9rem);
 }
 @media (min-width: 900px) {
-  .page { --pad: clamp(40px, 5.5vw, 104px); }
+  .page { --pad: clamp(40px, 5vw, 96px); --k: 1; }
 }
 
 .cover { object-fit: cover; }
-.drift { position: absolute; inset: -6% 0; will-change: transform; }
+.depth { position: absolute; inset: -12% 0; will-change: transform; }
 .frame { position: relative; overflow: hidden; background: var(--color-navy-mid); }
 
-/* Type: small tracked labels, modest serif headlines, a narrow sans measure */
+/* Type */
 .eyebrow {
   display: block;
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 0.6875rem;
   line-height: 1.6;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-gold-light);
 }
 .h2 {
-  margin-top: 1rem;
+  margin-top: 0.9rem;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(1.9rem, 1.5rem + 1.6vw, 3rem);
-  line-height: 1.08;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
-.h2 em { font-style: italic; color: var(--color-gold-light); }
+.h2 em { display: block; font-style: italic; color: var(--color-gold-light); }
 .body {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 0.9375rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.75;
   color: var(--ink-soft);
-  max-width: 34rem;
+  max-width: 36rem;
 }
 .statement {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(1.45rem, 1.15rem + 1.2vw, 2.25rem);
-  line-height: 1.32;
-  max-width: 30ch;
+  font-size: clamp(1.6rem, 1.15rem + 2.1vw, 3rem);
+  line-height: 1.26;
+  max-width: 28ch;
   text-wrap: pretty;
 }
 .inlineLink {
   color: var(--color-gold-light);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
+  text-underline-offset: 0.2em;
 }
 .inlineLink:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 3px; }
 .btnPrimary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
+  min-height: 52px;
   padding: 0 2rem;
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
   background: var(--color-gold);
@@ -91,126 +93,256 @@
 }
 .btnPrimary:hover { background: var(--color-gold-light); }
 .btnPrimary:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 4px; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
 
-.section { position: relative; padding: var(--space) var(--pad) 0; }
+.section { position: relative; padding: clamp(5rem, 4rem + 6vw, 9rem) var(--pad) 0; }
 
-/* ── Hero: a swatch of the cloth in a stitched mount ───────────────────── */
-.hero { position: relative; padding: calc(var(--nav) + 12px) var(--pad) 0; }
-.swatch { position: relative; height: calc(100svh - var(--nav) - 36px); min-height: 460px; }
-.swatchPhoto { position: absolute; inset: 10px; overflow: hidden; }
-.swatch::before {
-  content: '';
+/* Pinned stages (staged only) */
+.stage { position: relative; }
+.page[data-staged] .pin { height: calc(100svh + var(--run) * var(--k) * 1svh); }
+.page[data-staged] .pin > .stage { position: sticky; top: 0; height: 100svh; overflow: clip; }
+
+/* Hero caption (both) */
+.heroCaption {
   position: absolute;
   inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 0 var(--pad);
+  text-align: center;
+  pointer-events: none;
   z-index: 2;
+}
+.heroCaption .eyebrow { text-shadow: 0 1px 14px rgba(10, 22, 40, 0.9), 0 0 2px rgba(10, 22, 40, 0.8); }
+.pure {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(3rem, 2rem + 6vw, 7.5rem);
+  line-height: 1;
+  color: var(--color-white);
+  text-shadow: 0 2px 30px rgba(10, 22, 40, 0.5);
+}
+.heroShade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 22, 40, 0.45), rgba(10, 22, 40, 0.15) 45%, rgba(10, 22, 40, 0.6)); }
+
+/* Credenciales: figures */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3.5rem, 3rem + 3vw, 6rem);
+  border-top: 1px solid rgba(232, 213, 163, 0.22);
+  list-style: none;
+  padding: 0;
+}
+.stat { display: grid; gap: 0.4rem; padding: 1.5rem 0.5rem 0 0; min-width: 0; }
+.stat + .stat { position: relative; padding-left: 1rem; }
+.stat + .stat::before { content: ''; position: absolute; left: 0; top: 1.5rem; width: 1px; height: 2.75rem; background: var(--stitch-v); }
+.statVal { font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: clamp(1.6rem, 1.2rem + 2vw, 3rem); line-height: 1.05; overflow-wrap: anywhere; }
+.statLabel { font-family: var(--font-sans); font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.master { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.75rem; }
+.master::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--color-gold); }
+
+/* Fabric houses */
+.houses { margin-top: clamp(4rem, 3rem + 4vw, 7rem); }
+.housesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.4rem;
+  margin-top: 1.25rem;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
+  line-height: 1.25;
+}
+
+/* Mundo */
+.mundoGrid { display: grid; gap: 3rem; margin-top: 2.5rem; }
+.cities { display: grid; gap: 0.7rem; margin-top: 2.5rem; padding: 0; list-style: none; font-family: var(--font-sans); font-size: 0.8125rem; letter-spacing: 0.06em; color: var(--ink-soft); }
+.cities li { display: flex; align-items: center; gap: 0.9rem; }
+.cities li::before { content: ''; flex: none; width: 5px; height: 5px; border-radius: 50%; background: var(--color-gold); }
+.city { color: var(--color-gold-light); }
+.globe { width: 100%; max-width: 540px; margin: 0 auto; }
+@media (min-width: 900px) {
+  .mundoGrid { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); align-items: center; gap: clamp(3rem, 5vw, 6rem); }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
+   A · EL MUESTRARIO
+   ═════════════════════════════════════════════════════════════════════════ */
+.aHero .stage { height: 100svh; }
+.aSwatch { position: absolute; inset: 0; overflow: hidden; }
+.aStitch { display: none; }
+.page[data-staged] .aStitch {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   pointer-events: none;
   background:
     var(--stitch-h) top / 100% 1px no-repeat,
     var(--stitch-h) bottom / 100% 1px no-repeat,
     var(--stitch-v) left / 1px 100% no-repeat,
     var(--stitch-v) right / 1px 100% no-repeat;
-  opacity: 0.7;
-}
-.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 22, 40, 0.35), rgba(10, 22, 40, 0.1) 40%, rgba(10, 22, 40, 0.55)); }
-.caption { position: absolute; inset: 0; z-index: 1; display: grid; place-content: center; justify-items: center; gap: 1.1rem; padding: 0 var(--pad); text-align: center; }
-.caption .eyebrow { text-shadow: 0 1px 12px rgba(10, 22, 40, 0.8); }
-.pure {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(3rem, 2.2rem + 4vw, 6rem);
-  line-height: 1;
-  text-shadow: 0 2px 30px rgba(10, 22, 40, 0.45);
 }
 
-/* ── The four garments: tiles edge to edge ─────────────────────────────── */
-.garments { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); margin-top: var(--space); }
-.garment { aspect-ratio: 3 / 4; }
+/* the garments rise past the opened swatch */
+.aGarments { position: relative; z-index: 1; display: grid; gap: 14vh; padding: 10vh var(--pad) 0; }
+.page[data-staged] .aGarments { margin-top: -22svh; }
+.aGarment { aspect-ratio: 3 / 4; }
+.aGarment:nth-child(1) { width: 78%; }
+.aGarment:nth-child(2) { width: 88%; margin-left: auto; aspect-ratio: 4 / 5; }
+.aGarment:nth-child(3) { width: 72%; }
+.aGarment:nth-child(4) { width: 82%; margin-left: auto; }
 @media (min-width: 900px) {
-  .garments { grid-template-columns: repeat(4, 1fr); }
+  .aGarments { display: block; padding-top: 0; height: 140svh; }
+  .aGarment { position: absolute; }
+  .aGarment:nth-child(1) { width: 24%; left: var(--pad); top: 4%; }
+  .aGarment:nth-child(2) { width: 34%; left: 33%; top: 12%; margin: 0; }
+  .aGarment:nth-child(3) { width: 22%; right: var(--pad); top: 34%; }
+  .aGarment:nth-child(4) { width: 28%; left: 13%; top: 50%; margin: 0; }
 }
 
-/* ── El Repertorio: the index and its frame (the page's one moment) ───── */
-.repGrid { position: relative; margin-top: 2rem; }
-.repFrame { display: none; }
-.repList { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule); }
-.repRow {
+/* repertoire: index + sticky frame */
+.aRep { position: relative; padding: clamp(5rem, 4rem + 6vw, 9rem) var(--pad) 0; }
+.aRule { display: block; height: 1px; background: var(--stitch-h); transform-origin: left center; margin-bottom: 1.75rem; }
+.aRepGrid { position: relative; margin-top: 1rem; }
+.aRepFrame { display: none; }
+.aRepList { list-style: none; padding: 0; margin: 0; }
+.aRepRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--rule);
+  padding: 1.15rem 0;
+  border-bottom: 1px solid rgba(232, 213, 163, 0.16);
 }
-.repName {
+.aRepName {
   position: relative;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.35rem);
-  line-height: 1.15;
+  font-size: clamp(1.75rem, 1.3rem + 2.2vw, 3.5rem);
+  line-height: 1.1;
   min-width: 0;
   overflow-wrap: anywhere;
 }
-.repThumb { position: relative; flex: none; width: 64px; aspect-ratio: 4 / 5; overflow: hidden; }
+.aRepThumb { position: relative; flex: none; width: 72px; aspect-ratio: 4 / 3; overflow: hidden; }
 
-.page[data-staged] .repThumb { display: none; }
-.page[data-staged] .repFrame {
+.page[data-staged] .aRepThumb { display: none; }
+.page[data-staged] .aRepFrame {
   display: block;
   position: sticky;
   top: calc(var(--nav) + 8px);
   z-index: 1;
-  height: 36svh;
+  height: 38svh;
   overflow: hidden;
   background: var(--color-navy-mid);
 }
-.page[data-staged] .repImg { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s var(--ease-silk); }
-.page[data-staged] .repImg[data-on] { opacity: 1; }
-.page[data-staged] .repList { padding-top: 1rem; }
-.page[data-staged] .repName { color: rgba(255, 255, 255, 0.34); transition: color 0.4s var(--ease-silk); }
-.page[data-staged] .repRow[data-on] .repName { color: var(--color-white); }
-.page[data-staged] .repRow[data-on] { border-bottom-color: var(--color-gold); }
+.page[data-staged] .aRepImg { position: absolute; inset: 0; opacity: 0; }
+.page[data-staged] .aRepImg:first-child { opacity: 1; }
+.page[data-staged] .aRepList { padding: 6svh 0 30svh; }
+.page[data-staged] .aRepRow { min-height: 15svh; border-bottom: 0; }
+.page[data-staged] .aRepName { color: rgba(255, 255, 255, 0.3); transition: color 0.45s var(--ease-silk); }
+.page[data-staged] .aRepName::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35rem;
+  height: 1px;
+  background: var(--stitch-h);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s var(--ease-silk);
+}
+.page[data-staged] .aRepRow[data-on] .aRepName { color: var(--color-white); }
+.page[data-staged] .aRepRow[data-on] .aRepName::after { transform: scaleX(1); }
 @media (min-width: 900px) {
-  .page[data-staged] .repGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6vw; align-items: start; }
-  .page[data-staged] .repFrame { order: 2; top: calc(var(--nav) + (100svh - var(--nav) - 62svh) / 2); height: 62svh; }
-  .page[data-staged] .repList { padding: 18svh 0 26svh; border-top: 0; }
-  .page[data-staged] .repRow { padding: 1.1rem 0; }
+  .page[data-staged] .aRepGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4vw; align-items: start; }
+  .page[data-staged] .aRepFrame { order: 2; top: calc(50svh - 34svh + var(--nav) / 2); height: 68svh; }
+  .page[data-staged] .aRepList { padding: 22svh 0 40svh; }
+  .page[data-staged] .aRepRow { min-height: 13svh; }
 }
 
-/* ── Credenciales ──────────────────────────────────────────────────────── */
-.credGrid { display: grid; gap: 2.75rem; margin-top: 2rem; }
-.overview { aspect-ratio: 4 / 5; }
+/* credenciales */
+.aCredGrid { display: grid; gap: 3rem; margin-top: 2.5rem; }
+.aOverview { aspect-ratio: 16 / 10; }
 @media (min-width: 900px) {
-  .credGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7vw; align-items: center; }
+  .aCredGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 5vw; }
 }
-.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.page[data-staged] .aHouses { flex-wrap: nowrap; width: max-content; white-space: nowrap; gap: 2.5rem; }
 
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: var(--space) 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-.stat { display: grid; gap: 0.35rem; align-content: start; padding: 1.4rem 0.75rem 1.4rem 0; min-width: 0; }
-.stat + .stat { padding-left: 1rem; border-left: 1px solid var(--rule); }
-.statVal { font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.25rem); line-height: 1.05; overflow-wrap: anywhere; }
-.statLabel { font-family: var(--font-sans); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
-.master { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.25rem; }
-.master::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--color-gold); }
+/* ═════════════════════════════════════════════════════════════════════════
+   B · EL PROBADOR
+   ═════════════════════════════════════════════════════════════════════════ */
+/* hero: static = the pattern photo with the caption, then the four garments */
+.bHero .stage { min-height: 100svh; }
+.bBack { position: absolute; inset: 0; }
+.bRail { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 6px; }
+/* keeps the menu readable over the light photographs */
+.bRail { position: relative; }
+.bRail::after { content: ''; position: absolute; inset: 0 0 auto; height: 24svh; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(10, 22, 40, 0.78), rgba(10, 22, 40, 0)); }
+.bRail > div { aspect-ratio: 3 / 4; }
+.bHeroStatic { position: relative; height: 100svh; }
+.page[data-staged] .bHeroStatic { position: absolute; inset: 0; height: auto; }
+.page[data-staged] .bRail { position: absolute; inset: 0; z-index: 3; padding: 0; gap: 0; }
+.page[data-staged] .bRail { grid-template-rows: 1fr 1fr; }
+.page[data-staged] .bRail > div { aspect-ratio: auto; }
+@media (min-width: 900px) {
+  .bRail { grid-template-columns: repeat(4, 1fr); }
+  .page[data-staged] .bRail { grid-template-rows: 1fr; }
+}
 
-/* the fabric houses, set like a colophon */
-.houses { margin-top: var(--space); max-width: 60rem; }
-.housesList {
-  margin: 1.1rem 0 0;
-  padding: 0;
-  list-style: none;
+/* repertoire: one frame, each name tried on in turn */
+.bRep .stage { padding: 0; }
+.bRepBack { display: none; }
+.bRepInner { position: relative; z-index: 1; padding: clamp(5rem, 4rem + 6vw, 9rem) var(--pad) 0; }
+.bRepList { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.75rem; }
+.bRepRow { display: flex; align-items: center; gap: 1rem; }
+.bRepName {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.85rem);
-  line-height: 1.55;
+  font-size: clamp(1.75rem, 1.3rem + 2.2vw, 3.5rem);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
 }
-.housesList li { display: inline; }
-.housesList li + li::before { content: '·'; margin: 0 0.55em; color: var(--color-gold); }
+.bRepThumb { position: relative; flex: none; width: 64px; aspect-ratio: 4 / 3; overflow: hidden; order: -1; }
+.page[data-staged] .bRepThumb { display: none; }
+.page[data-staged] .bRepBack { display: block; position: absolute; inset: 0; }
+.page[data-staged] .bRepBack > div { position: absolute; inset: 0; opacity: 0; }
+.page[data-staged] .bRepBack::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10, 22, 40, 0.92) 0%, rgba(10, 22, 40, 0.7) 55%, rgba(10, 22, 40, 0.35) 100%); }
+.page[data-staged] .bRepInner { height: 100%; display: flex; flex-direction: column; justify-content: center; padding-top: calc(var(--nav) + 1rem); padding-bottom: 2rem; }
+.bRepTrack { position: relative; }
+.page[data-staged] .bRepList { gap: 0.2rem; margin-top: 1rem; }
+.page[data-staged] .bRepTrack { padding-left: 18px; }
+.page[data-staged] .bRepTrack::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: rgba(232, 213, 163, 0.18); }
+.page[data-staged] .bProgress { position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--stitch-v); transform-origin: top center; transform: scaleY(0); }
+.page[data-staged] .bRepName { font-size: clamp(1.55rem, 1.1rem + 2.1vw, 3.1rem); color: rgba(255, 255, 255, 0.24); }
+.bProgress { display: none; }
+.page[data-staged] .bProgress { display: block; }
 
-/* ── En el Mundo ──────────────────────────────────────────────────────── */
-.mundoGrid { display: grid; gap: 2.5rem; margin-top: 2rem; }
-.cities { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 1.5rem; margin: 2.25rem 0 0; padding: 1.5rem 0 0; list-style: none; border-top: 1px solid var(--rule); font-family: var(--font-sans); font-size: 0.8125rem; letter-spacing: 0.04em; color: var(--ink-soft); }
-.city { display: block; font-family: var(--font-serif); font-size: 1.15rem; letter-spacing: 0; color: var(--color-white); }
-.globe { width: 100%; max-width: 520px; margin: 0 auto; }
+/* credenciales: the showroom photo opens from a slit, the headline over it */
+.bCredHead { position: relative; min-height: 88svh; display: grid; align-items: end; padding: 0 var(--pad) 3rem; }
+.bCredPhoto { position: absolute; inset: 0; overflow: hidden; }
+.bCredPhoto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 22, 40, 0.1) 30%, rgba(10, 22, 40, 0.9)); }
+.bCredText { position: relative; z-index: 1; }
+.bCredBody { display: grid; gap: 2.5rem; }
 @media (min-width: 900px) {
-  .mundoGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 7vw; }
+  .bCredBody { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 6vw; align-items: start; }
+}
+.bStats { margin-top: 0; }
+@media (max-width: 899px) { .bStats { margin-top: 1rem; } }
+.bHousesList { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1.25rem; margin-top: 1.25rem; padding: 0; list-style: none; font-family: var(--font-serif); font-weight: 300; font-size: clamp(1.2rem, 0.9rem + 2vw, 2.75rem); line-height: 1.2; }
+@media (min-width: 900px) {
+  .bHousesList { column-gap: 3rem; }
+}
+
+/* mundo: the globe holds while the places are read */
+@media (min-width: 900px) {
+  .page[data-staged] .bMundoGrid { align-items: start; }
+  .page[data-staged] .bGlobeCol { position: sticky; top: calc(50svh - 270px + var(--nav) / 2); }
+  .page[data-staged] .bMundoText { padding: 10svh 0 20svh; }
 }
