@@ -282,6 +282,9 @@
 .bHero .stage { min-height: 100svh; }
 .bBack { position: absolute; inset: 0; }
 .bRail { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 6px; }
+/* keeps the menu readable over the light photographs */
+.bRail { position: relative; }
+.bRail::after { content: ''; position: absolute; inset: 0 0 auto; height: 24svh; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(10, 22, 40, 0.78), rgba(10, 22, 40, 0)); }
 .bRail > div { aspect-ratio: 3 / 4; }
 .bHeroStatic { position: relative; height: 100svh; }
 .page[data-staged] .bHeroStatic { position: absolute; inset: 0; height: auto; }
