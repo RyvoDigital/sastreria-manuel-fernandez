@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { BookingLink } from '@/components/global/BookingLink'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
 import { ArrowRight, Star, Crown, Scissors, Gem, Layers, Sparkles, Ruler } from 'lucide-react'
@@ -199,7 +200,7 @@ export function CredencialesSection() {
 
           {/* CTA Buttons */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link href="/contacto" style={{
+            <BookingLink style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
               padding: '0.85rem 2rem',
               background: '#C9A84C',
@@ -224,7 +225,7 @@ export function CredencialesSection() {
             }}>
               {c.btn_primary}
               <ArrowRight style={{ width: '0.85rem', height: '0.85rem' }} />
-            </Link>
+            </BookingLink>
 
           </div>
         </div>

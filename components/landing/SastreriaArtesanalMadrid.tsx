@@ -184,7 +184,6 @@ const COPY = {
       'El taller está en Calle de Jorge Juan, 41, en el Barrio de Salamanca, Madrid. Se atiende en ' +
       'español, inglés y francés. Toda prenda comienza con una primera cita, en la que se toman las ' +
       'medidas y se eligen los tejidos.',
-    cta: 'Solicitar cita',
   },
 }
 

@@ -6,6 +6,7 @@ import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useContent } from '@/lib/content-provider'
 import { track } from '@/lib/analytics'
+import { BOOKING_HREF } from '@/lib/booking'
 import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 import { Phone, MapPin, Calendar } from 'lucide-react'
@@ -414,7 +415,7 @@ export function HeroEnhanced() {
           }}
         >
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <MagneticButton href="/contacto" primary>
+            <MagneticButton href={BOOKING_HREF} primary>
               <Calendar size={16} />
               {t.hero.cta_book}
             </MagneticButton>

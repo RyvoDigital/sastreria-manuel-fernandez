@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { BookingLink } from '@/components/global/BookingLink'
 import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
@@ -103,7 +104,7 @@ export function SastreriaCTA() {
 
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/contacto" className="mf-cta-btn mf-cta-btn-primary" style={{
+          <BookingLink className="mf-cta-btn mf-cta-btn-primary" style={{
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',
@@ -131,7 +132,7 @@ export function SastreriaCTA() {
             el.style.boxShadow = 'none'
           }}>
             {t.la_sastreria.cta.btn_primary}
-          </Link>
+          </BookingLink>
 
           <Link href="/la-sastreria" className="mf-cta-btn mf-cta-btn-secondary" style={{
             display:        'inline-flex',

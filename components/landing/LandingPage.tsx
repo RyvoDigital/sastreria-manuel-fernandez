@@ -49,6 +49,8 @@ export interface LandingContent {
   lede: string
   /** Commercial pages put a call to action above the fold. */
   ctaAboveFold?: boolean
+  /** Language the page is written in; the booking button follows it. */
+  lang?: 'es' | 'en'
   blocks: Block[]
   closing: { label: string; h2: string; italic?: string; body: string }
   /** Rendered after the closing prose, before the call to action. */
@@ -107,7 +109,7 @@ export function LandingPage({ content }: { content: LandingContent }) {
           <div className="col">
             <Prose onDark measure="58ch">{content.lede}</Prose>
           </div>
-          {content.ctaAboveFold && <Cta onDark />}
+          {content.ctaAboveFold && <Cta onDark lang={content.lang} />}
         </div>
       </section>
 
@@ -201,7 +203,7 @@ export function LandingPage({ content }: { content: LandingContent }) {
                 : <Segments parts={content.closingNote} />}
             </Prose>
           )}
-          <Cta onDark />
+          <Cta onDark lang={content.lang} />
         </div>
       </section>
     </div>
