@@ -58,7 +58,7 @@ const CITIES: Record<L, [string, string][]> = {
   es: [['Miami', 'USA'], ['Oporto', 'Portugal'], ['Lisboa', 'Portugal'], ['París', 'Francia'], ['Londres', 'UK'], ['Roma', 'Italia'], ['Dubái', 'UAE'], ['Rep. Dominicana', 'Caribe'], ['Perú', 'Sudamérica']],
   en: [['Miami', 'USA'], ['Porto', 'Portugal'], ['Lisbon', 'Portugal'], ['Paris', 'France'], ['London', 'UK'], ['Rome', 'Italy'], ['Dubai', 'UAE'], ['Dominican Rep.', 'Caribbean'], ['Peru', 'South America']],
   fr: [['Miami', 'USA'], ['Porto', 'Portugal'], ['Lisbonne', 'Portugal'], ['Paris', 'France'], ['Londres', 'UK'], ['Rome', 'Italie'], ['Dubaï', 'UAE'], ['Rép. dominicaine', 'Caraïbes'], ['Pérou', 'Amérique du Sud']],
-  it: [['Miami', 'USA'], ['Porto', 'Portogallo'], ['Lisbona', 'Portogallo'], ['Parigi', 'Francia'], ['Londra', 'UK'], ['Roma', 'Italia'], ['Dubai', 'UAE'], ['Rep. Dominicana', 'Caraibi'], ['Perù', 'Sud America']],
+  it: [['Miami', 'USA'], ['Porto', 'Portogallo'], ['Lisbona', 'Portogallo'], ['Parigi', 'Francia'], ['Londra', 'UK'], ['Roma', 'Italia'], ['Dubai', 'UAE'], ['Rep. Dominicana', 'Caraibi'], ['Perù', 'Sudamerica']],
 }
 
 export function useServiciosContent() {
