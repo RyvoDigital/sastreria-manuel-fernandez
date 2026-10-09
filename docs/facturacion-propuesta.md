@@ -91,10 +91,24 @@ but the choice stays visible every time.
 Verifactu is the AEAT regime for invoicing software: Real Decreto 1007/2023 (Reglamento de requisitos de los
 sistemas informáticos de facturación, RRSIF) and Orden HAC/1177/2024.
 
-⚖ **Dates.** After the late-2025 postponement, the obligation applies from **1 January 2027** to taxpayers under
-Impuesto sobre Sociedades (**ECNF HERITAGE SLU**), and from **1 July 2027** to the rest, autónomos included
-(**Evelyn**). Confirm these dates; they have moved before. Both issuers are in scope, each with its own NIF and
-its own record chain.
+⚖ **Dates (checked 9 October 2026).**
+
+- **In force today:** Real Decreto-ley 15/2025 (the December 2025 postponement) still sets **1 January 2027** for
+  taxpayers under Impuesto sobre Sociedades (**ECNF HERITAGE SLU**) and **1 July 2027** for everyone else,
+  autónomos included (**Evelyn**).
+- **Announced, not yet law:** on **5 October 2026** the Ministerio de Hacienda announced that it plans to postpone the
+  Verifactu obligations still pending until **October 2028**. The aim is to line them up with mandatory B2B
+  e-invoicing for businesses under €8M turnover. (The e-invoicing order was published in the BOE on 5 October and
+  took effect on 6 October, which starts a 24-month clock for that group.) The announcement says the requirements
+  stay substantially the same: integrity, preservation, accessibility, legibility, traceability and inalterability
+  of records.
+- **What it means for us:** the 2028 date only applies once a norm with the rank of law changes the calendar. Until
+  then the 2027 dates are the legal ones. The gestoría should confirm when that norm is published.
+  - If it passes: we have more time, and the e-invoicing format (Facturae / the public solution) should be designed
+    together with Verifactu, not after it.
+  - If it doesn't: the SLU's deadline is under three months away, which only an external provider (§7a) could meet.
+
+Both issuers are in scope, each with its own NIF and its own record chain.
 
 We would build the **VERI\*FACTU** mode: every record is sent to AEAT as it is created. That mode avoids the
 electronic signature of each record and the event log that the non-sending mode requires.
@@ -152,8 +166,67 @@ Whoever develops and maintains this system for the shop (RyvoDigital, or whoever
 - **Ongoing duty.** Follow changes to the AEAT technical specifications and the web service, release updates in
   time, and keep the declaration current.
 
-The alternative is for the shop to keep invoicing in an external Verifactu-certified program and import the
-invoice numbers into the app. That avoids all of §7 for us. It's worth costing before deciding.
+## 7a. Option: a certified Verifactu provider through its API
+
+Instead of building §6 ourselves, the app can hand invoicing to a provider that already complies, through its API.
+The screens stay the same: choose the issuer, the invoice from a Venta or an encargo payment, the PDF in the app. Who
+counts as the producer depends on **what** the provider does, so there are two variants.
+
+**B. Compliance layer.** Examples: Verifacti, fiskaly SIGN ES, Invopop, verifactuapi.es.
+
+- Our app still issues the invoice: numbering, immutability, PDF.
+- On each issue, it sends the provider the invoice data. The provider builds the registro, the hash chain and the QR,
+  and sends the record to AEAT with its own certificate, as a *colaborador social* with each issuer's
+  representation. Neither issuer needs a certificate.
+- ⚖ **We would most likely still be a producer.** Our app plus the provider's component together form the invoicing
+  system, and the provider declares only its own auxiliary component (Orden HAC/1177/2024 art. 15). We would sign a
+  much shorter declaración responsable that names their component. Our exposure falls a lot, but not to zero: our
+  side must still guarantee that issued invoices can't be altered and that every one is sent.
+
+**C. Invoicing provider.** Examples: B2Brouter, BeeL., Facturantia, or an invoicing program with an API (Holded,
+Quipu…).
+
+- The invoice is **created and issued inside the provider's program** through the API, for each issuer's account.
+- The provider owns the numbering of both series (starting at 1 and at 2051), the record chain, the QR, the PDF,
+  rectificativas and sending to AEAT.
+- Our app sends the data (issuer, client, lines, the origin Venta or payment). It stores the returned number, status
+  and PDF link, and shows them on the Venta or the encargo.
+- Rectificativas are requested through the API too, never edited locally.
+- ⚖ **The provider is the producer** and its declaración responsable covers the system. Our app is an integration
+  that feeds it data and never holds invoice records. §7 doesn't apply to us. We should still confirm this reading
+  with the gestoría and the provider in writing.
+
+**Comparison** (public prices checked October 2026, before IVA; confirm in writing before choosing):
+
+| | A. Build our own (§2–§7) | B. Compliance layer | C. Invoicing provider |
+|---|---|---|---|
+| Typical cost, 2 issuers | No fee; our build and upkeep | Verifacti ≈ €2.90 per NIF a month (≈ €70/yr for both, first NIF free); others on quote | B2Brouter Professional €110/yr per account; BeeL. API ≈ €15 per NIF a month (≈ €360/yr); Facturantia ≈ €10/month |
+| Our build effort | F1–F5: the largest. AEAT SOAP, certificates, queue, chain, pre-production tests | F1–F2 plus one integration: about half of A | One integration plus settings: the smallest. No invoice tables of our own beyond a link table |
+| Producer exposure (LGT 201 bis, up to €150k/yr) | Full: we are the producer | Reduced: our share of the system and a short declaración | None for us, provided invoices are only ever issued by the provider |
+| Following AEAT changes (incl. the 2028 calendar and e-invoicing) | Our job, indefinitely | Mostly theirs | Theirs |
+| Certificates / representation | Each issuer, or the gestoría | Provider, with each issuer's representation (online signature from ≈ €2.90 for an autónoma) | Provider |
+| Control over the document's design | Full | Full (our PDF) | Their template, some branding |
+| Lock-in | None | Low: the data model is ours | Higher: invoices live there. Exports are needed for the 4-year retention |
+| Offline / provider down | Our queue | Issue locally and queue the send | Can't issue until it's back (ticket as albarán meanwhile) |
+
+**Recommendation.** **C** if they accept the provider's template, otherwise **B**. We would not build A.
+
+- The fees (under €400 a year for both issuers) are far below the cost of building and maintaining A. A would also
+  make RyvoDigital carry the producer liability for a single client.
+- C removes that liability entirely. B keeps our own PDF and data model for a small, documented share of it.
+- Either one can be ready well before 1 January 2027, if the 2028 postponement doesn't become law in time.
+
+**Phases with a provider.**
+
+1. **P1.** Choose the provider and test in its sandbox. Each issuer signs the representation, and the 2051 starting
+   number is set on the autónoma's series.
+2. **P2.** Issuers (only to select which provider account to use) and an `invoices` link table: origin, provider id,
+   number, status, PDF URL.
+3. **P3.** Issue from Ventas (simplified or full) and from encargo payments, plus rectificativas.
+4. **P4.** Go live after the gestoría signs off.
+
+**The simplest variant.** The shop invoices directly in the provider's own web program, and the app just stores the
+number by hand. This needs no integration at all, but it means typing everything twice.
 
 ## 8. Ajustes → Facturación (screens)
 
@@ -164,7 +237,7 @@ invoice numbers into the app. That avoids all of §7 for us. It's worth costing 
 - **Verifactu per issuer**: certificate or authorisation status, mode, last send and errors (when §6 is built).
 - Only Propietarios see these screens. Empleados never see invoices, because they carry prices.
 
-## 9. Proposed phases (after your confirmation)
+## 9. Proposed phases if we build our own (option A; see §7a for the provider route)
 
 1. **F1** Issuers and series in Ajustes, the invoice data model, immutability trigger, and draft → issue for full
    and simplified invoices from Ventas. PDF. *(No Verifactu yet, so not usable for real invoicing until F3–F4
@@ -183,4 +256,8 @@ invoice numbers into the app. That avoids all of §7 for us. It's worth costing 
 4. ⚖ Simplified-invoice limit for bespoke tailoring: €400 or €3,000?
 5. ⚖ Invoicing of señales (advance payments) on encargos: per payment, as described in §5?
 6. Do both issuers have an electronic certificate, or should the gestoría send records for them?
-7. Who signs the declaración responsable as producer?
+7. Who signs the declaración responsable as producer? (Only relevant for options A and B.)
+8. ⚖ Option C (§7a): does the gestoría agree that invoices issued inside a certified provider through its API leave
+   us outside the producer obligations? Do they already use or recommend a provider? Some gestorías get the
+   invoices directly from it.
+9. Is the provider's invoice template acceptable to Evelyn (C), or does she want the app's own design (B)?
