@@ -4,7 +4,7 @@ import { getAdminByEmail, updateAdminPassword } from '@/lib/admin/db'
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await requireAuth()
+    const session = await requireAuth({ taller: true })
     const body = await request.json()
     const { currentPassword, newPassword } = body
 

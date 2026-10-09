@@ -212,6 +212,7 @@ export default function CoursesPage() {
                   placeholder="https://..."
                 />
                 {editing.image && (
+                  // eslint-disable-next-line @next/next/no-img-element -- arbitrary pasted URL, not in next.config remotePatterns
                   <img src={editing.image} alt="preview" className="mt-2 h-24 rounded-lg object-cover" />
                 )}
               </div>
@@ -287,6 +288,7 @@ export default function CoursesPage() {
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     {c.image && (
+                      // eslint-disable-next-line @next/next/no-img-element -- arbitrary pasted URL, not in next.config remotePatterns
                       <img src={c.image} alt="" className="w-10 h-10 rounded object-cover" />
                     )}
                     <div>

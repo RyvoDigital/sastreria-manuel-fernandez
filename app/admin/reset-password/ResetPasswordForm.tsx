@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { KeyRound, ArrowLeft } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
@@ -16,11 +16,7 @@ export default function ResetPassword() {
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    if (!token) {
-      setError(t.forgotPassword.invalidToken)
-    }
-  }, [token, t.forgotPassword.invalidToken])
+  const shownError = error || (token ? '' : t.forgotPassword.invalidToken)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -122,9 +118,9 @@ export default function ResetPassword() {
               />
             </div>
 
-            {error && (
+            {shownError && (
               <div className="text-red-400 text-sm bg-red-900/20 px-4 py-2 rounded-lg">
-                {error}
+                {shownError}
               </div>
             )}
 

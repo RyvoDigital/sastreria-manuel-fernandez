@@ -56,10 +56,14 @@ export async function getSession() {
   return verifyToken(token)
 }
 
-export async function requireAuth() {
+// Web-admin routes check the role in the token (no DB here: the middleware imports this file).
+// Taller users only get the routes that opt in; owner-only routes pass { owner: true }.
+export async function requireAuth(opts: { owner?: boolean; taller?: boolean } = {}) {
   const session = await getSession()
   if (!session) {
     throw new Error('Unauthorized')
   }
+  if (session.role === 'taller' && !opts.taller) throw new Error('Unauthorized')
+  if (opts.owner && session.role !== 'owner') throw new Error('Unauthorized')
   return session
 }

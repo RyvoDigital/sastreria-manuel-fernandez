@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { requireAuth } from '@/lib/admin/auth'
 import { getPayments } from '@/lib/admin/db'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
 
     const payments = await getPayments()
 
