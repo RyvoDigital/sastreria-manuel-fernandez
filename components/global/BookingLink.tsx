@@ -11,11 +11,15 @@ import { BOOKING_ANCHOR, BOOKING_EVENT, BOOKING_HREF, BOOKING_PATH } from '@/lib
  * Contacto; on Contacto itself it brings them back into view (closing an open
  * calendar step). Hidden when Contacto is switched off in the admin, because
  * there is nowhere to book then.
+ *
+ * `end` marks a page's own closing booking button; the footer then leaves out
+ * its booking band, so the same action does not appear twice in a row.
  */
 export function BookingLink({
   onClick,
+  end,
   ...rest
-}: Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'onClick'> & { onClick?: () => void }) {
+}: Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'onClick'> & { onClick?: () => void; end?: boolean }) {
   const pathname = usePathname()
   const { isEnabled } = useSettings()
   if (!isEnabled('contacto')) return null
@@ -30,6 +34,6 @@ export function BookingLink({
   }
 
   return (
-    <Link {...rest} href={BOOKING_HREF} onClick={handle} />
+    <Link {...rest} href={BOOKING_HREF} onClick={handle} data-booking-end={end || undefined} />
   )
 }

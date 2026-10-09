@@ -175,11 +175,13 @@ export function GhostNumeral({ children, onDark }: { children: string; onDark?: 
 
 /**
  * "Reservar cita", in the language of the page (these pages are written in one
- * language), straight to the booking options.
+ * language), straight to the booking options. `end` marks the page's closing
+ * button, so the footer leaves out its own booking band.
  */
-export function Cta({ onDark, lang = 'es' }: { onDark?: boolean; lang?: 'es' | 'en' }) {
+export function Cta({ onDark, lang = 'es', end }: { onDark?: boolean; lang?: 'es' | 'en'; end?: boolean }) {
   return (
     <BookingLink
+      end={end}
       style={{
         display: 'inline-flex',
         alignItems: 'center',

@@ -104,7 +104,7 @@ export function SastreriaCTA() {
 
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <BookingLink className="mf-cta-btn mf-cta-btn-primary" style={{
+          <BookingLink end className="mf-cta-btn mf-cta-btn-primary" style={{
             display:        'inline-flex',
             alignItems:     'center',
             padding:        '1rem 2.5rem',

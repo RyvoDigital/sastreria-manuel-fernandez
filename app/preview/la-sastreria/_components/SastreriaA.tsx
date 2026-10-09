@@ -178,7 +178,7 @@ export function SastreriaA() {
               <Words text={c.cta.headline} />
             </h2>
             <div className={s.actions}>
-              <BookingLink className={s.btnPrimary}>{c.cta.btn_primary}</BookingLink>
+              <BookingLink end className={s.btnPrimary}>{c.cta.btn_primary}</BookingLink>
               <Link href="/la-sastreria" className={s.btnGhost}>
                 {c.cta.btn_secondary}
               </Link>
