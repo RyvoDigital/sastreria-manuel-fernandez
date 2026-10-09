@@ -248,14 +248,13 @@ const ServiciosList = () => {
         }}
       />
 
-      {/* Small caps label */}
-      <motion.p
-        initial={{ y: 20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.4 }}
-        viewport={{ once: true }}
+      {/* Small caps label — the page's h1 (not animated from hidden, so it is
+          always visible to crawlers and without JS) */}
+      <h1
         style={{
           fontFamily: 'var(--font-sans)',
+          fontWeight: 300,
+          lineHeight: 1.6,
           fontSize: '0.6rem',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
@@ -264,7 +263,7 @@ const ServiciosList = () => {
         }}
       >
         {t.servicios.hero.label}
-      </motion.p>
+      </h1>
 
       {titles.map((title, i) => (
         <ServiceItem key={i} title={title} image={SERVICE_IMAGES[i]} index={i} />
