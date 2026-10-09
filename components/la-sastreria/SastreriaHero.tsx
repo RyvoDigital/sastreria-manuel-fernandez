@@ -104,10 +104,10 @@ export function SastreriaHero() {
             {t.la_sastreria.hero.label}
           </div>
 
-          {/* Headline */}
-          <div style={{ lineHeight: 0.9, marginBottom: '2rem' }}>
+          {/* Headline — the page's h1 */}
+          <h1 style={{ lineHeight: 0.9, marginBottom: '2rem', fontWeight: 400, letterSpacing: 'normal' }}>
             {/* Line 1 — offwhite */}
-            <div style={{ display: 'block', overflow: 'hidden' }}>
+            <span style={{ display: 'block', overflow: 'hidden' }}>
               {line1.map((word, i) => (
                 <span key={i} className="mf-sh-w1" style={{
                   display:    'inline-block',
@@ -120,9 +120,9 @@ export function SastreriaHero() {
                   {word}
                 </span>
               ))}
-            </div>
+            </span>
             {/* Line 2 — italic gold */}
-            <div style={{ display: 'block', overflow: 'hidden' }}>
+            <span style={{ display: 'block', overflow: 'hidden' }}>
               {line2.map((word, i) => (
                 <span key={i} className="mf-sh-w2" style={{
                   display:    'inline-block',
@@ -136,8 +136,8 @@ export function SastreriaHero() {
                   {word}
                 </span>
               ))}
-            </div>
-          </div>
+            </span>
+          </h1>
 
           {/* Subline */}
           <p className="mf-sh-sub" style={{
