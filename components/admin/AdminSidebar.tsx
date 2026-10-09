@@ -20,11 +20,18 @@ import {
   Package,
   ShoppingBag,
   FileBarChart,
+  Scissors,
+  ClipboardList,
   X,
 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import type { Role } from '@/lib/admin/server'
+import { useRol } from '@/app/admin/_components/role'
 
-// Evelyn's order. Modules appear here as each phase ships (Encargos, Taller, Inventario, Ventas, Informes).
+// Evelyn's order. `roles` limits an item; without it, Propietarios and Empleados see it.
+// The API enforces the same limits.
+const STAFF: readonly Role[] = ['owner', 'manager']
+const OWNER: readonly Role[] = ['owner']
 const navGroups = [
   {
     key: 'gestion',
@@ -32,27 +39,34 @@ const navGroups = [
       { href: '/admin', icon: LayoutDashboard, key: 'dashboard' },
       { href: '/admin/clientes', icon: Users, key: 'customers' },
       { href: '/admin/bookings', icon: Calendar, key: 'bookings' },
+      { href: '/admin/encargos', icon: ClipboardList, key: 'encargos' },
+      { href: '/admin/taller', icon: Scissors, key: 'taller', roles: ['owner', 'manager', 'taller'] as readonly Role[] },
       { href: '/admin/inventario', icon: Package, key: 'inventario' },
-      { href: '/admin/ventas', icon: ShoppingBag, key: 'ventas' },
+      { href: '/admin/ventas', icon: ShoppingBag, key: 'ventas', roles: OWNER },
       { href: '/admin/proveedores', icon: Truck, key: 'proveedores' },
-      { href: '/admin/informes', icon: FileBarChart, key: 'informes' },
+      { href: '/admin/informes', icon: FileBarChart, key: 'informes', roles: OWNER },
     ],
   },
   {
     key: 'web',
     items: [
       { href: '/admin/availability', icon: Clock, key: 'availability' },
-      { href: '/admin/contacts', icon: Mail, key: 'contacts' },
-      { href: '/admin/payments', icon: CreditCard, key: 'payments' },
-      { href: '/admin/courses', icon: BookOpen, key: 'courses' },
+      { href: '/admin/contacts', icon: Mail, key: 'contacts', roles: OWNER },
+      { href: '/admin/payments', icon: CreditCard, key: 'payments', roles: OWNER },
+      { href: '/admin/courses', icon: BookOpen, key: 'courses', roles: OWNER },
       { href: '/admin/content', icon: FileText, key: 'content' },
-      { href: '/admin/settings', icon: Settings, key: 'settings' },
+      { href: '/admin/settings', icon: Settings, key: 'settings', roles: OWNER },
       { href: '/admin/analytics', icon: BarChart3, key: 'analytics' },
     ],
   },
 ] as const
 
 const accountItems = [{ href: '/admin/change-password', icon: KeyRound, key: 'password' }] as const
+
+function visible(item: object, role: Role) {
+  const roles = 'roles' in item ? (item.roles as readonly Role[]) : STAFF
+  return roles.includes(role)
+}
 
 interface AdminSidebarProps {
   isOpen?: boolean
@@ -64,9 +78,11 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
   const { t, locale, setLocale } = useAdminI18n()
   const langSwitcherRef = useRef<HTMLDivElement>(null)
   const [stockAlerts, setStockAlerts] = useState(0)
+  const { role } = useRol()
 
   // Low-stock / sold-out count next to Inventario, refreshed on every navigation
   useEffect(() => {
+    if (role === 'taller') return
     let current = true
     fetch('/api/admin/inventario/alertas?limit=1')
       .then((r) => (r.ok ? r.json() : null))
@@ -75,7 +91,7 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
     return () => {
       current = false
     }
-  }, [pathname])
+  }, [pathname, role])
 
   // Native DOM event listeners for lang switcher
   useEffect(() => {
@@ -128,11 +144,14 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
       </div>
 
       <nav className="flex-1 p-4 overflow-y-auto">
-        {navGroups.map((group) => (
+        {navGroups.map((group) => {
+          const items = group.items.filter((item) => visible(item, role))
+          if (items.length === 0) return null
+          return (
           <div key={group.key} className="mb-5">
             <div className="px-4 mb-2 text-[11px] uppercase tracking-[0.14em] text-gray-500">{t.nav[group.key]}</div>
             <div className="space-y-1">
-              {group.items.map((item) => (
+              {items.map((item) => (
                 <NavLink
                   key={item.href}
                   item={item}
@@ -143,7 +162,8 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
               ))}
             </div>
           </div>
-        ))}
+          )
+        })}
         <div className="pt-4 border-t border-[#1E3A5F] space-y-1">
           {accountItems.map((item) => (
             <NavLink key={item.href} item={item} pathname={pathname} label={t.sidebar[item.key]} />

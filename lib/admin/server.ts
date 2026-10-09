@@ -3,7 +3,10 @@ import { NextResponse } from 'next/server'
 import { pool, query } from '../db'
 import { requireAuth } from './auth'
 
-export type Role = 'owner' | 'manager'
+// owner = Propietario (everything), manager = Empleado (no prices, costs, margins or client data
+// beyond the name), taller = workshop login that only sees the Taller board.
+export type Role = 'owner' | 'manager' | 'taller'
+export const ROLES: readonly Role[] = ['owner', 'manager', 'taller']
 
 export interface CurrentAdmin {
   id: number
@@ -18,15 +21,68 @@ export class HttpError extends Error {
   }
 }
 
-// The JWT outlives a deactivation by up to 8h, so gestión writes re-check the row.
-export async function requireAdmin(): Promise<CurrentAdmin> {
-  const session = await requireAuth()
+// The JWT outlives a deactivation or a role change by up to 8h, so gestión routes re-check the row.
+// Taller users are refused unless the route opts in (only the Taller board does).
+export async function requireAdmin(opts: { taller?: boolean } = {}): Promise<CurrentAdmin> {
+  const session = await requireAuth({ taller: true })
   const result = await query(
     `SELECT id, name, email, role FROM admins WHERE id = $1 AND activo IS NOT FALSE`,
     [session.id]
   )
-  if (!result.rows[0]) throw new Error('Unauthorized')
-  return result.rows[0]
+  const admin = result.rows[0] as CurrentAdmin | undefined
+  if (!admin) throw new Error('Unauthorized')
+  if (admin.role === 'taller' && !opts.taller) throw new HttpError(403, 'forbidden')
+  return admin
+}
+
+// Prices, costs, margins, payments and client data beyond the name are for Propietarios only
+export function esPropietario(admin: CurrentAdmin) {
+  return admin.role === 'owner'
+}
+
+export function requirePropietarioData(admin: CurrentAdmin) {
+  if (!esPropietario(admin)) throw new HttpError(403, 'forbidden')
+}
+
+const MONEY_KEYS = new Set(['coste', 'pvp', 'coste_medio', 'coste_unitario', 'total', 'importe', 'pagado', 'pendiente', 'pagos'])
+
+// Recursively blanks prices, costs and payments in a response for non-owners
+export function sinDineroDeep<T>(admin: CurrentAdmin, data: T): T {
+  if (esPropietario(admin)) return data
+  const walk = (value: unknown): unknown => {
+    if (Array.isArray(value)) return value.map(walk)
+    if (value && typeof value === 'object' && !(value instanceof Date)) {
+      return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, MONEY_KEYS.has(k) ? null : walk(v)]))
+    }
+    return value
+  }
+  return walk(data) as T
+}
+
+// Drops price and cost fields an Empleado sends, so their edits never touch them
+export function sinDineroBody(admin: CurrentAdmin, body: Record<string, unknown>) {
+  if (esPropietario(admin)) return body
+  const copy = { ...body }
+  for (const key of ['coste', 'pvp', 'total']) delete copy[key]
+  if (Array.isArray(copy.variantes)) {
+    copy.variantes = copy.variantes.map((v: Record<string, unknown>) => {
+      const rest = { ...v }
+      delete rest.coste
+      delete rest.pvp
+      return rest
+    })
+  }
+  return copy
+}
+
+// Blanks the money fields of each row for non-owners (keeps the keys so the UI shapes stay the same)
+export function sinDinero<T extends Record<string, unknown>>(admin: CurrentAdmin, rows: T[], keys: readonly string[]): T[] {
+  if (esPropietario(admin)) return rows
+  return rows.map((row) => {
+    const copy: Record<string, unknown> = { ...row }
+    for (const key of keys) if (key in copy) copy[key] = null
+    return copy as T
+  })
 }
 
 export async function requireOwner(): Promise<CurrentAdmin> {
@@ -68,6 +124,9 @@ export async function handle(label: string, fn: () => Promise<unknown>) {
     const pgCode = (error as { code?: string }).code
     if (pgCode === '23505') {
       return NextResponse.json({ error: 'duplicate' }, { status: 409 })
+    }
+    if (pgCode === '23503') {
+      return NextResponse.json({ error: 'in use' }, { status: 409 })
     }
     console.error(`${label} error:`, error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })

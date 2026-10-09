@@ -1,7 +1,7 @@
 'use client'
 
 import { useAdminI18n } from '@/lib/admin/i18n'
-import { Badge, intlLocale } from '../_components/ui'
+import { Badge, inputClass, intlLocale, useApi } from '../_components/ui'
 
 export interface Categoria {
   id: number
@@ -12,6 +12,20 @@ export interface Categoria {
   orden: number
   activo: boolean
   productos: number
+  subtipos: string[]
+}
+
+// Locations come from Ajustes → Listas; a value saved before the list existed stays selectable
+export function UbicacionSelect({ value, onChange, id }: { value: string; onChange: (v: string) => void; id?: string }) {
+  const { data } = useApi<{ items: { id: number; nombre: string; activo: boolean }[] }>('/api/admin/listas/ubicaciones')
+  const nombres = (data?.items ?? []).filter((u) => u.activo).map((u) => u.nombre)
+  if (value && !nombres.includes(value)) nombres.push(value)
+  return (
+    <select id={id} className={inputClass} value={value} onChange={(e) => onChange(e.target.value)}>
+      <option value="">—</option>
+      {nombres.map((n) => <option key={n} value={n}>{n}</option>)}
+    </select>
+  )
 }
 
 export interface ProveedorOption {

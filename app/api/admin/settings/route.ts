@@ -4,7 +4,7 @@ import { getSettings, updateSetting } from '@/lib/admin/db'
 
 export async function GET() {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const settings = await getSettings()
     return NextResponse.json({ settings })
   } catch (error) {
@@ -18,7 +18,7 @@ export async function GET() {
 
 export async function PUT(request: NextRequest) {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const body = await request.json()
     const { settings } = body
 

@@ -1,8 +1,10 @@
 import { query } from '../db'
 
 // Bookings
-export async function getBookings(filters?: { type?: string; dateFrom?: string; dateTo?: string; status?: string }) {
-  let sql = `SELECT * FROM bookings WHERE 1=1`
+export const TIPOS_CITA = ['primera_visita', 'prueba', 'entrega'] as const
+
+export async function getBookings(filters?: { type?: string; dateFrom?: string; dateTo?: string; status?: string; tipoCita?: string }) {
+  let sql = `SELECT b.*, e.numero AS encargo_numero FROM bookings b LEFT JOIN encargos e ON e.id = b.encargo_id WHERE 1=1`
   const params: unknown[] = []
   let i = 1
 
@@ -22,8 +24,12 @@ export async function getBookings(filters?: { type?: string; dateFrom?: string; 
     sql += ` AND status = $${i++}`
     params.push(filters.status)
   }
+  if (filters?.tipoCita) {
+    sql += ` AND b.tipo_cita = $${i++}`
+    params.push(filters.tipoCita)
+  }
 
-  sql += ` ORDER BY date DESC, time ASC`
+  sql += ` ORDER BY b.date DESC, b.time ASC`
   const result = await query(sql, params)
   return result.rows
 }
@@ -37,6 +43,7 @@ export async function updateBooking(id: number, data: {
   date?: string
   time?: string
   type?: string
+  tipo_cita?: string
 }) {
   const fields: string[] = []
   const params: unknown[] = []
@@ -51,6 +58,7 @@ export async function updateBooking(id: number, data: {
     date: 'date',
     time: 'time',
     type: 'type',
+    tipo_cita: 'tipo_cita',
   }
 
   for (const [key, col] of Object.entries(mappings)) {

@@ -10,6 +10,7 @@ export default function SettingsTabs() {
   const tabs = [
     { href: '/admin/settings', label: t.usuarios.tabServicios },
     { href: '/admin/settings/usuarios', label: t.usuarios.tabUsuarios },
+    { href: '/admin/settings/listas', label: t.listas.tab },
   ]
 
   return (

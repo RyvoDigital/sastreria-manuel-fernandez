@@ -1,8 +1,7 @@
 import { query } from '../db'
 import { hashPassword } from './auth'
-import { HttpError, withTransaction, type CurrentAdmin, type Role } from './server'
+import { HttpError, ROLES, withTransaction, type CurrentAdmin, type Role } from './server'
 
-const ROLES: readonly Role[] = ['owner', 'manager']
 const MIN_PASSWORD = 8
 
 function checkRole(role: unknown): Role {

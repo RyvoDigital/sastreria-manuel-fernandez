@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { HttpError, handle, requireAdmin } from '@/lib/admin/server'
+import { HttpError, handle, requireAdmin, requirePropietarioData } from '@/lib/admin/server'
 import { informeMovimientos, informeStock, informeValoracion, informeVentas, panelKpis, type Filtros } from '@/lib/admin/informes'
 import { getAlertas } from '@/lib/admin/inventario'
 
@@ -7,7 +7,7 @@ type Ctx = { params: Promise<{ informe: string }> }
 
 export async function GET(request: NextRequest, ctx: Ctx) {
   return handle('Informe', async () => {
-    await requireAdmin()
+    requirePropietarioData(await requireAdmin())
     const { informe } = await ctx.params
     const sp = request.nextUrl.searchParams
     const tipo = sp.get('tipo')

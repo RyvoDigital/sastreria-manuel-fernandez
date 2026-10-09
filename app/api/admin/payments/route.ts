@@ -4,7 +4,7 @@ import { getPayments } from '@/lib/admin/db'
 
 export async function GET() {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
 
     const payments = await getPayments()
 

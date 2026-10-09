@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { ErrorText, Field, Modal, api, btnPrimary, btnSecondary, inputClass } from '../../_components/ui'
 import VariantesGenerator, { draftsToBody, type VarianteDraft } from '../VariantesGenerator'
-import { errorMessage, formatQty, type ProveedorOption } from '../shared'
+import { useRol } from '../../_components/role'
+import { UbicacionSelect, errorMessage, formatQty, type ProveedorOption } from '../shared'
 
 export interface Variante {
   id: number
@@ -199,6 +200,7 @@ export function AjusteModal({ variante, productoNombre, unidad, onClose, onDone 
 
 export function VarianteEditModal({ variante, onClose, onDone }: { variante: Variante; onClose: () => void; onDone: () => void }) {
   const { t } = useAdminI18n()
+  const { propietario } = useRol()
   const s = t.inventario.variantesSection
   const [form, setForm] = useState({
     etiqueta: variante.etiqueta ?? '',
@@ -233,10 +235,14 @@ export function VarianteEditModal({ variante, onClose, onDone }: { variante: Var
             <Field label={s.etiqueta}><input className={inputClass} value={form.etiqueta} onChange={set('etiqueta')} /></Field>
           )}
           <Field label={s.sku}><input className={inputClass} value={form.sku} onChange={set('sku')} disabled={variante.es_unica} /></Field>
-          <Field label={`${s.pvp} (${s.override})`}><input className={inputClass} inputMode="decimal" value={form.pvp} onChange={set('pvp')} /></Field>
-          <Field label={`${s.coste} (${s.override})`}><input className={inputClass} inputMode="decimal" value={form.coste} onChange={set('coste')} /></Field>
+          {propietario && (
+            <>
+              <Field label={`${s.pvp} (${s.override})`}><input className={inputClass} inputMode="decimal" value={form.pvp} onChange={set('pvp')} /></Field>
+              <Field label={`${s.coste} (${s.override})`}><input className={inputClass} inputMode="decimal" value={form.coste} onChange={set('coste')} /></Field>
+            </>
+          )}
           <Field label={s.minimo}><input className={inputClass} inputMode="decimal" value={form.stock_minimo} onChange={set('stock_minimo')} /></Field>
-          <Field label={s.ubicacion}><input className={inputClass} value={form.ubicacion} onChange={set('ubicacion')} /></Field>
+          <Field label={s.ubicacion}><UbicacionSelect value={form.ubicacion} onChange={(v) => setForm({ ...form, ubicacion: v })} /></Field>
         </div>
         <ErrorText>{error}</ErrorText>
         <div className="flex flex-wrap gap-2 pt-2">

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { ChevronRight, Plus, Search } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { Badge, ErrorText, Field, Modal, PageHeader, api, btnPrimary, btnSecondary, formatDate, inputClass } from '../_components/ui'
+import { useRol } from '../_components/role'
 
 interface ClienteRow {
   id: number
@@ -22,6 +23,7 @@ const PAGE = 50
 
 export default function ClientesPage() {
   const { t, locale } = useAdminI18n()
+  const { propietario } = useRol()
   const [clientes, setClientes] = useState<ClienteRow[]>([])
   const [q, setQ] = useState('')
   const [archivados, setArchivados] = useState(false)
@@ -52,10 +54,12 @@ export default function ClientesPage() {
       <PageHeader
         title={t.clientes.title}
         actions={
-          <button type="button" className={btnPrimary} onClick={() => setCreating(true)}>
-            <Plus size={16} />
-            {t.clientes.new}
-          </button>
+          propietario && (
+            <button type="button" className={btnPrimary} onClick={() => setCreating(true)}>
+              <Plus size={16} />
+              {t.clientes.new}
+            </button>
+          )
         }
       />
 

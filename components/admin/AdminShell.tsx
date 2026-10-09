@@ -1,13 +1,26 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu } from 'lucide-react'
 import AdminSidebar from '@/components/admin/AdminSidebar'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import type { Role } from '@/lib/admin/server'
+import { RolProvider } from '@/app/admin/_components/role'
 
-export default function AdminShell({ children }: { children: React.ReactNode }) {
+// A workshop login only ever sees the Taller board (and can change its password)
+const TALLER_PATHS = ['/admin/taller', '/admin/change-password']
+
+export default function AdminShell({ role, children }: { role: Role; children: React.ReactNode }) {
   const { t } = useAdminI18n()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+  const blocked = role === 'taller' && !TALLER_PATHS.some((p) => pathname === p || pathname.startsWith(p + '/'))
+
+  useEffect(() => {
+    if (blocked) router.replace('/admin/taller')
+  }, [blocked, router])
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,6 +38,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }, [sidebarOpen])
 
   return (
+    <RolProvider role={role}>
     <div className="min-h-screen bg-[#0F1D2E] print:bg-white print:min-h-0">
       <header className="md:hidden print:hidden sticky top-0 z-30 flex items-center gap-3 px-4 py-3 bg-[#0A1628] border-b border-[#1E3A5F]">
         <button
@@ -53,9 +67,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       <div className="flex min-h-[calc(100vh-57px)] md:min-h-screen">
         <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <main className="flex-1 min-w-0 p-4 sm:p-6 md:p-8 overflow-auto print:p-0 print:overflow-visible">
-          {children}
+          {blocked ? null : children}
         </main>
       </div>
     </div>
+    </RolProvider>
   )
 }

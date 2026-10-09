@@ -45,6 +45,7 @@ export default function CategoriasPage() {
                         {' · '}{t.inventario.fields.iva} {Number(cat.iva_defecto)}
                         {' · '}{cat.productos} {c.productos}
                       </div>
+                      {cat.subtipos?.length > 0 && <div className="text-xs text-gray-400 mt-0.5">{c.subtipos}: {cat.subtipos.join(', ')}</div>}
                     </div>
                     {!cat.activo && <Badge>{c.inactive}</Badge>}
                     <button type="button" className={btnSecondary} onClick={() => setEditing(cat)} aria-label={t.common.edit}>
@@ -79,6 +80,7 @@ function CategoriaModal({ categoria, onClose, onSaved }: { categoria: Categoria 
     iva_defecto: categoria ? String(Number(categoria.iva_defecto)) : '21',
     orden: String(categoria?.orden ?? 100),
     activo: categoria?.activo ?? true,
+    subtipos: (categoria?.subtipos ?? []).join(', '),
   })
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -124,6 +126,10 @@ function CategoriaModal({ categoria, onClose, onSaved }: { categoria: Categoria 
             <input className={inputClass} inputMode="numeric" value={form.orden} onChange={(e) => setForm({ ...form, orden: e.target.value })} />
           </Field>
         </div>
+        <Field label={c.subtipos}>
+          <input className={inputClass} value={form.subtipos} onChange={(e) => setForm({ ...form, subtipos: e.target.value })} placeholder={c.subtiposEjemplo} />
+        </Field>
+        <p className="text-xs text-gray-500 -mt-2">{c.subtiposHint}</p>
         {categoria && (
           <label className="flex items-center gap-3 text-sm text-gray-300 min-h-11">
             <input type="checkbox" className="w-5 h-5 accent-[#C9A84C]" checked={form.activo} onChange={(e) => setForm({ ...form, activo: e.target.checked })} />

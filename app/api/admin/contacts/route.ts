@@ -4,7 +4,7 @@ import { getContacts, markContactRead } from '@/lib/admin/db'
 
 export async function GET(request: NextRequest) {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const { searchParams } = new URL(request.url)
     const filters = {
       read: searchParams.has('read') ? searchParams.get('read') === 'true' : undefined,
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const body = await request.json()
     const { id } = body
 

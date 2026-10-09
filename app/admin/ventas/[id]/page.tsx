@@ -38,7 +38,8 @@ export default function VentaPage() {
               <Printer size={16} />
               {v.imprimirTicket}
             </Link>
-            {venta.estado !== 'devuelta' && (
+            {/* Returns: accessories only (bespoke work and arreglos are never returned) */}
+            {lineas.some((l) => l.devolvible && Number(l.cantidad) > Number(l.cantidad_devuelta)) && (
               <button type="button" className={btnSecondary} onClick={() => setDevolviendo(true)}>
                 <Undo2 size={16} />
                 {v.devolucion}
@@ -169,7 +170,7 @@ function DevolucionModal({ ventaId, lineas, defaultMetodo, onClose, onDone }: {
 }) {
   const { t, locale } = useAdminI18n()
   const v = t.ventas
-  const pendientes = lineas.filter((l) => Number(l.cantidad) - Number(l.cantidad_devuelta) > 0)
+  const pendientes = lineas.filter((l) => l.devolvible && Number(l.cantidad) - Number(l.cantidad_devuelta) > 0)
   const [rows, setRows] = useState(() => pendientes.map((l) => ({ id: l.id, cantidad: '', reponer: !!l.variante_id })))
   const [metodo, setMetodo] = useState<MetodoPago>(defaultMetodo)
   const [motivo, setMotivo] = useState('')
@@ -214,6 +215,7 @@ function DevolucionModal({ ventaId, lineas, defaultMetodo, onClose, onDone }: {
   return (
     <Modal title={v.devolucion} onClose={onClose} closeLabel={t.common.close} wide>
       <form onSubmit={submit} className="space-y-4">
+        <p className="text-xs text-gray-500">{v.soloComplementos}</p>
         <button type="button" className="text-sm text-[#C9A84C] hover:text-[#D4B76A]" onClick={todo}>{v.devolverTodo}</button>
         <ul className="space-y-2">
           {pendientes.map((l, i) => {

@@ -3,13 +3,16 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import { useRol } from '../_components/role'
 
 export default function InventarioTabs() {
   const { t } = useAdminI18n()
+  const { propietario } = useRol()
   const pathname = usePathname()
+  // Entradas carry costs, so Empleados don't get that tab
   const tabs = [
     { href: '/admin/inventario', label: t.inventario.tabs.productos, match: (p: string) => p === '/admin/inventario' || /^\/admin\/inventario\/(\d+|nuevo)/.test(p) },
-    { href: '/admin/inventario/entradas', label: t.inventario.tabs.entradas, match: (p: string) => p.startsWith('/admin/inventario/entradas') },
+    ...(propietario ? [{ href: '/admin/inventario/entradas', label: t.inventario.tabs.entradas, match: (p: string) => p.startsWith('/admin/inventario/entradas') }] : []),
     { href: '/admin/inventario/categorias', label: t.inventario.tabs.categorias, match: (p: string) => p.startsWith('/admin/inventario/categorias') },
   ]
 

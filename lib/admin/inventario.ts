@@ -36,7 +36,12 @@ function slugify(text: string) {
 }
 
 function categoriaFields(body: Record<string, unknown>) {
-  const f = pickFields(body, ['nombre', 'tipo', 'unidad_defecto', 'iva_defecto', 'orden', 'activo'] as const)
+  const f = pickFields(body, ['nombre', 'tipo', 'unidad_defecto', 'iva_defecto', 'orden', 'activo', 'subtipos'] as const)
+  if ('subtipos' in f) {
+    // A list or a comma-separated string, deduplicated
+    const raw = Array.isArray(f.subtipos) ? f.subtipos : String(f.subtipos ?? '').split(',')
+    f.subtipos = JSON.stringify([...new Set(raw.map((x) => String(x).trim().slice(0, 60)).filter(Boolean))].slice(0, 30))
+  }
   if ('nombre' in f && !f.nombre) throw new HttpError(400, 'nombre required')
   if ('tipo' in f && f.tipo !== 'terminado' && f.tipo !== 'material') throw new HttpError(400, 'invalid tipo')
   if ('unidad_defecto' in f && !UNIDADES.includes(f.unidad_defecto as never)) throw new HttpError(400, 'invalid unidad')
@@ -90,7 +95,7 @@ export async function listProductos(f: ProductoFilters) {
     // Product fields plus all its variants' SKUs and labels, so "oxford 42" finds the product
     where.push(wordsMatch(
       f.q,
-      `lower(p.nombre || ' ' || coalesce(p.referencia, '') || ' ' || coalesce(p.marca, '') || ' ' ||
+      `lower(p.nombre || ' ' || coalesce(p.referencia, '') || ' ' || coalesce(p.marca, '') || ' ' || coalesce(p.subtipo, '') || ' ' ||
         coalesce((SELECT string_agg(coalesce(sv.sku, '') || ' ' || coalesce(sv.etiqueta, ''), ' ') FROM producto_variantes sv WHERE sv.producto_id = p.id), ''))`,
       params
     ))
@@ -103,7 +108,7 @@ export async function listProductos(f: ProductoFilters) {
   if (f.alerta === 'cualquiera') where.push('(agg.agotados > 0 OR agg.bajos > 0)')
 
   const result = await query(
-    `SELECT p.id, p.nombre, p.referencia, p.marca, p.unidad, p.pvp, p.foto_thumb_url,
+    `SELECT p.id, p.nombre, p.referencia, p.marca, p.subtipo, p.unidad, p.pvp, p.foto_thumb_url,
             c.nombre AS categoria, c.tipo, pr.nombre AS proveedor,
             agg.variantes, agg.stock_total, agg.agotados, agg.bajos
        FROM productos p
@@ -128,6 +133,7 @@ export async function listProductos(f: ProductoFilters) {
 const PRODUCTO_FIELDS = [
   'categoria_id', 'nombre', 'referencia', 'marca', 'proveedor_id', 'descripcion', 'color', 'material', 'talla',
   'unidad', 'coste', 'pvp', 'iva', 'stock_minimo_defecto', 'ubicacion', 'foto_url', 'foto_thumb_url', 'observaciones', 'activo',
+  'subtipo',
 ] as const
 
 function productoFields(body: Record<string, unknown>) {

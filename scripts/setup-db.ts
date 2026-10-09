@@ -456,6 +456,7 @@ async function setupInventario(pool: Pool, hasTrgm: boolean) {
       UNIQUE (nombre, tipo)
     )
   `)
+  const SUBTIPOS_SEMILLA: Record<string, string[]> = { 'botones-taller': ['Clásicos', 'Beta', 'Metálicos', 'Especiales'] }
   const categorias: [string, string, 'terminado' | 'material', string][] = [
     ['tirantes', 'Tirantes', 'terminado', 'ud'],
     ['corbatas', 'Corbatas', 'terminado', 'ud'],
@@ -468,7 +469,6 @@ async function setupInventario(pool: Pool, hasTrgm: boolean) {
     ['fajines', 'Fajines', 'terminado', 'ud'],
     ['chalecos', 'Chalecos', 'terminado', 'ud'],
     ['calcetines', 'Calcetines', 'terminado', 'par'],
-    ['botones', 'Botones', 'terminado', 'ud'],
     ['otros-complementos', 'Otros complementos', 'terminado', 'ud'],
     ['tejidos', 'Tejidos', 'material', 'm'],
     ['forros', 'Forros', 'material', 'm'],
@@ -477,11 +477,13 @@ async function setupInventario(pool: Pool, hasTrgm: boolean) {
     ['entretelas', 'Entretelas', 'material', 'm'],
     ['cremalleras', 'Cremalleras', 'material', 'ud'],
   ]
+  // Subtypes inside a category (Botones: Clásicos, Beta, Metálicos, Especiales), editable in Categorías
+  await pool.query(`ALTER TABLE categorias_producto ADD COLUMN IF NOT EXISTS subtipos JSONB NOT NULL DEFAULT '[]'`)
   for (const [i, [slug, nombre, tipo, unidad]] of categorias.entries()) {
     await pool.query(
-      `INSERT INTO categorias_producto (slug, nombre, tipo, unidad_defecto, orden) VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO categorias_producto (slug, nombre, tipo, unidad_defecto, orden, subtipos) VALUES ($1, $2, $3, $4, $5, $6)
        ON CONFLICT DO NOTHING`,
-      [slug, nombre, tipo, unidad, i]
+      [slug, nombre, tipo, unidad, i, JSON.stringify(SUBTIPOS_SEMILLA[slug] ?? [])]
     )
   }
 
@@ -512,6 +514,7 @@ async function setupInventario(pool: Pool, hasTrgm: boolean) {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
     )
   `)
+  await pool.query(`ALTER TABLE productos ADD COLUMN IF NOT EXISTS subtipo VARCHAR(60)`)
   await pool.query(`CREATE UNIQUE INDEX IF NOT EXISTS productos_referencia_key ON productos (lower(referencia)) WHERE referencia IS NOT NULL`)
   await pool.query(`CREATE INDEX IF NOT EXISTS productos_categoria_idx ON productos (categoria_id)`)
   await pool.query(`CREATE INDEX IF NOT EXISTS productos_proveedor_idx ON productos (proveedor_id)`)
@@ -551,6 +554,18 @@ async function setupInventario(pool: Pool, hasTrgm: boolean) {
     CREATE INDEX IF NOT EXISTS producto_variantes_alerta_idx ON producto_variantes (producto_id)
     WHERE activo AND stock_actual - stock_reservado <= stock_minimo
   `)
+
+  // Editable list behind the Ubicación dropdowns (productos/variantes keep the name as text)
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS ubicaciones (
+      id SERIAL PRIMARY KEY,
+      nombre VARCHAR(100) NOT NULL UNIQUE,
+      orden INTEGER NOT NULL DEFAULT 0,
+      activo BOOLEAN NOT NULL DEFAULT TRUE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`INSERT INTO ubicaciones (nombre, orden) VALUES ('Taller', 0), ('Sastrería', 1) ON CONFLICT DO NOTHING`)
 
   // Document numbering (C-2026-0001…), incremented under FOR UPDATE inside each document's transaction
   await pool.query(`
@@ -714,6 +729,129 @@ async function setupVentas(pool: Pool) {
       await pool.query(`ALTER TABLE movimientos_stock ADD CONSTRAINT ${name} FOREIGN KEY (${col}) REFERENCES ${ref}(id)`)
     }
   }
+
+  // Products a customer wanted when there was no stock: shown on the Panel until ordered and resolved
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS por_pedir (
+      id SERIAL PRIMARY KEY,
+      variante_id INTEGER REFERENCES producto_variantes(id),
+      descripcion VARCHAR(250) NOT NULL,
+      cantidad NUMERIC(12,3) NOT NULL DEFAULT 1 CHECK (cantidad > 0),
+      cliente_id INTEGER REFERENCES clientes(id) ON DELETE SET NULL,
+      notas TEXT,
+      estado VARCHAR(12) NOT NULL DEFAULT 'pendiente' CHECK (estado IN ('pendiente', 'pedido', 'resuelto')),
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      admin_nombre VARCHAR(100),
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS por_pedir_estado_idx ON por_pedir (estado, created_at)`)
+
+  await setupEncargos(pool)
+}
+
+// Encargos (bespoke orders) and the workshop. See docs/gestion-data-model.md, "Encargos y Taller".
+async function setupEncargos(pool: Pool) {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS sastres (
+      id SERIAL PRIMARY KEY,
+      nombre VARCHAR(100) NOT NULL UNIQUE,
+      orden INTEGER NOT NULL DEFAULT 0,
+      activo BOOLEAN NOT NULL DEFAULT TRUE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS encargos (
+      id SERIAL PRIMARY KEY,
+      numero VARCHAR(20) NOT NULL UNIQUE,
+      cliente_id INTEGER NOT NULL REFERENCES clientes(id),
+      tipo VARCHAR(10) NOT NULL CHECK (tipo IN ('prenda', 'camisa', 'arreglo')),
+      prendas JSONB NOT NULL DEFAULT '[]',
+      pedido TEXT,
+      estado VARCHAR(12) NOT NULL DEFAULT 'presupuesto'
+        CHECK (estado IN ('presupuesto', 'confirmado', 'prueba', 'listo', 'entregado')),
+      fecha_encargo DATE NOT NULL DEFAULT CURRENT_DATE,
+      fecha_entrega DATE,
+      sastre_id INTEGER REFERENCES sastres(id) ON DELETE SET NULL,
+      medidas_id INTEGER REFERENCES cliente_medidas(id) ON DELETE RESTRICT,
+      caracteristicas JSONB NOT NULL DEFAULT '{}',
+      total NUMERIC(12,2) CHECK (total >= 0),
+      notas_sastre TEXT,
+      comentarios TEXT,
+      taller_externo VARCHAR(150),
+      taller_enviado DATE,
+      taller_devuelto DATE,
+      confirmado_at TIMESTAMPTZ,
+      entregado_at TIMESTAMPTZ,
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS encargos_cliente_idx ON encargos (cliente_id, fecha_encargo DESC)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS encargos_estado_idx ON encargos (estado, sastre_id)`)
+
+  // Only tejido and forro are tracked per encargo; everything else is general stock adjusted by hand
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS encargo_materiales (
+      id SERIAL PRIMARY KEY,
+      encargo_id INTEGER NOT NULL REFERENCES encargos(id) ON DELETE CASCADE,
+      material VARCHAR(10) NOT NULL CHECK (material IN ('tejido', 'forro')),
+      origen VARCHAR(12) NOT NULL CHECK (origen IN ('proveedor', 'inventario', 'cliente')),
+      proveedor_id INTEGER REFERENCES proveedores(id) ON DELETE SET NULL,
+      referencia VARCHAR(150),
+      metros NUMERIC(12,3) CHECK (metros > 0),
+      estado_pedido VARCHAR(10) CHECK (estado_pedido IN ('pedido', 'recibido')),
+      variante_id INTEGER REFERENCES producto_variantes(id),
+      consumido BOOLEAN NOT NULL DEFAULT FALSE,
+      notas TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS encargo_materiales_encargo_idx ON encargo_materiales (encargo_id)`)
+  const fk = await pool.query(`SELECT 1 FROM pg_constraint WHERE conname = 'movimientos_encargo_material_fkey'`)
+  if (fk.rowCount === 0) {
+    await pool.query(`ALTER TABLE movimientos_stock ADD CONSTRAINT movimientos_encargo_material_fkey FOREIGN KEY (encargo_material_id) REFERENCES encargo_materiales(id)`)
+  }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS encargo_pagos (
+      id SERIAL PRIMARY KEY,
+      encargo_id INTEGER NOT NULL REFERENCES encargos(id),
+      fecha TIMESTAMPTZ NOT NULL DEFAULT now(),
+      importe NUMERIC(12,2) NOT NULL CHECK (importe > 0),
+      metodo VARCHAR(15) NOT NULL CHECK (metodo IN ('efectivo', 'tarjeta', 'bizum', 'transferencia', 'mixto', 'otro')),
+      pagos JSONB,
+      notas TEXT,
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      admin_nombre VARCHAR(100),
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS encargo_pagos_encargo_idx ON encargo_pagos (encargo_id)`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS encargo_pagos_fecha_idx ON encargo_pagos (fecha)`)
+
+  // Citas: appointment type (shown before the client's name) and the encargo a prueba/entrega belongs to.
+  // Existing and web bookings are first visits.
+  await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS tipo_cita VARCHAR(20) NOT NULL DEFAULT 'primera_visita'`)
+  await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS encargo_id INTEGER REFERENCES encargos(id) ON DELETE SET NULL`)
+  await pool.query(`CREATE INDEX IF NOT EXISTS bookings_encargo_idx ON bookings (encargo_id)`)
+
+  // Pruebas are Citas: date, time and status live on the booking
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS encargo_pruebas (
+      id SERIAL PRIMARY KEY,
+      encargo_id INTEGER NOT NULL REFERENCES encargos(id) ON DELETE CASCADE,
+      booking_id INTEGER REFERENCES bookings(id) ON DELETE SET NULL,
+      notas TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS encargo_pruebas_encargo_idx ON encargo_pruebas (encargo_id)`)
+  await pool.query(`ALTER TABLE encargos ADD COLUMN IF NOT EXISTS entrega_booking_id INTEGER REFERENCES bookings(id) ON DELETE SET NULL`)
 }
 
 setup()

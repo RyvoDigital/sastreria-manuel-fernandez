@@ -50,6 +50,21 @@ function NuevaVenta() {
   const [notas, setNotas] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  // Lines already noted in "Por pedir" (selling never takes stock below zero)
+  const [pedidos, setPedidos] = useState<Set<string>>(() => new Set())
+
+  async function anadirPorPedir(l: Linea, faltan: number) {
+    if (!l.variante) return
+    try {
+      await api('/api/admin/por-pedir', {
+        method: 'POST',
+        body: { variante_id: l.variante.id, cantidad: faltan, cliente_id: clienteActual?.id ?? null },
+      })
+      setPedidos((prev) => new Set(prev).add(l.key))
+    } catch {
+      setError(t.gestionCommon.error)
+    }
+  }
 
   function addVariante(opt: VarianteOption) {
     const existing = lineas.findIndex((l) => l.variante?.id === opt.id)
@@ -110,7 +125,9 @@ function NuevaVenta() {
       router.push(`/admin/ventas/${venta.id}`)
     } catch (err) {
       const e = err as Error & { details?: { producto?: string; variante?: string; disponible?: number } }
-      const msg = (v.errors as Record<string, string>)[e.message] ?? (t.inventario.errors as Record<string, string>)[e.message] ?? t.gestionCommon.error
+      const msg = e.message === 'insufficient stock'
+        ? t.porPedir.sinStock
+        : (v.errors as Record<string, string>)[e.message] ?? (t.inventario.errors as Record<string, string>)[e.message] ?? t.gestionCommon.error
       const d = e.details
       setError(e.message === 'insufficient stock' && d?.producto
         ? `${msg} ${d.producto}${d.variante ? ` · ${d.variante}` : ''}: ${formatQty(d.disponible ?? 0, locale)}`
@@ -163,6 +180,21 @@ function NuevaVenta() {
                               {[l.variante.sku, `IVA ${l.iva} %`].filter(Boolean).join(' · ')}
                               {sinStock && <span className="text-red-400"> · {v.stockInsuficiente} ({formatQty(l.variante.stock_actual, locale)} {u})</span>}
                             </div>
+                            {sinStock && (
+                              <div className="mt-1.5 text-xs">
+                                {pedidos.has(l.key) ? (
+                                  <span className="text-emerald-400">{t.porPedir.anadido}</span>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    className="text-[#C9A84C] hover:text-[#D4B76A] underline underline-offset-2 py-1"
+                                    onClick={() => anadirPorPedir(l, Math.round((num(l.cantidad) - Number(l.variante!.stock_actual)) * 1000) / 1000)}
+                                  >
+                                    {t.porPedir.anadir}
+                                  </button>
+                                )}
+                              </div>
+                            )}
                           </div>
                         ) : (
                           <input

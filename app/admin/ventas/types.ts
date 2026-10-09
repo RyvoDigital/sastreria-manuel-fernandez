@@ -16,6 +16,7 @@ export interface VentaLinea {
   base: string
   cuota_iva: string
   total: string
+  devolvible: boolean
 }
 
 export interface VentaDetalle {

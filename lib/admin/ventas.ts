@@ -144,11 +144,12 @@ export async function createDevolucion(ventaId: number, body: Record<string, unk
     const lineas = new Map(
       (
         await client.query(
-          `SELECT l.*, p.unidad,
+          `SELECT l.*, p.unidad, COALESCE(cat.tipo = 'terminado', FALSE) AS devolvible,
                   COALESCE((SELECT SUM(dl.importe) FROM devolucion_lineas dl WHERE dl.venta_linea_id = l.id), 0) AS importe_devuelto
              FROM venta_lineas l
              LEFT JOIN producto_variantes v ON v.id = l.variante_id
              LEFT JOIN productos p ON p.id = v.producto_id
+             LEFT JOIN categorias_producto cat ON cat.id = p.categoria_id
             WHERE l.venta_id = $1 ORDER BY l.id FOR UPDATE OF l`,
           [ventaId]
         )
@@ -158,6 +159,8 @@ export async function createDevolucion(ventaId: number, body: Record<string, unk
     const plan = input.map((d) => {
       const l = lineas.get(Number(d.venta_linea_id))
       if (!l) throw new HttpError(400, 'invalid linea')
+      // Only accessories (finished products) come back; free lines (arreglos, servicios) and workshop materials don't
+      if (!l.devolvible) throw new HttpError(409, 'not returnable', { venta_linea_id: l.id })
       const cantidad = parseNumber(d.cantidad, { min: 0.001 })
       if (l.unidad) validarCantidad(cantidad, l.unidad)
       const pendiente = Math.round((Number(l.cantidad) - Number(l.cantidad_devuelta)) * 1000)
@@ -248,8 +251,9 @@ export async function getVenta(id: number) {
   if (!venta) throw new HttpError(404, 'not found')
   const [lineas, devoluciones, empresa] = await Promise.all([
     query(
-      `SELECT l.*, v.producto_id, v.sku, p.unidad
+      `SELECT l.*, v.producto_id, v.sku, p.unidad, COALESCE(cat.tipo = 'terminado', FALSE) AS devolvible
          FROM venta_lineas l LEFT JOIN producto_variantes v ON v.id = l.variante_id LEFT JOIN productos p ON p.id = v.producto_id
+         LEFT JOIN categorias_producto cat ON cat.id = p.categoria_id
         WHERE l.venta_id = $1 ORDER BY l.id`,
       [id]
     ),

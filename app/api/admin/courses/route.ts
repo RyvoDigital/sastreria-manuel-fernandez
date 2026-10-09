@@ -4,7 +4,7 @@ import { getCourses, createCourse, updateCourse, deleteCourse } from '@/lib/admi
 
 export async function GET() {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const courses = await getCourses()
     return NextResponse.json({ courses })
   } catch (error) {
@@ -18,7 +18,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const body = await request.json()
     const course = await createCourse(body)
     return NextResponse.json({ course })
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const body = await request.json()
     const { id, ...data } = body
     if (!id) {
@@ -52,7 +52,7 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
-    await requireAuth()
+    await requireAuth({ owner: true })
     const { searchParams } = new URL(request.url)
     const id = searchParams.get('id')
     if (!id) {

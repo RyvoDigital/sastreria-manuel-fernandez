@@ -168,8 +168,9 @@ function UsuarioForm({ usuario, isSelf, onClose, onSaved, errorText }: {
         </Field>
         <Field label={t.usuarios.role}>
           <select className={inputClass} value={role} onChange={(e) => setRole(e.target.value)} disabled={isSelf}>
-            <option value="manager">{t.usuarios.roles.manager}</option>
             <option value="owner">{t.usuarios.roles.owner}</option>
+            <option value="manager">{t.usuarios.roles.manager}</option>
+            <option value="taller">{t.usuarios.roles.taller}</option>
           </select>
           <span className="block text-xs text-gray-500 mt-1.5">{t.usuarios.roleHelp}</span>
         </Field>

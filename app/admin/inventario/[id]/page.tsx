@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { Archive, ArchiveRestore, ArrowDownToLine, History, Pencil, Plus, Save, SlidersHorizontal } from 'lucide-react'
+import { Archive, ArchiveRestore, ArrowDownToLine, Copy, History, Pencil, Plus, Save, SlidersHorizontal } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { Badge, Card, ErrorText, PageHeader, api, btnDanger, btnPrimary, btnSecondary, formatMoney, useApi } from '../../_components/ui'
+import { useRol } from '../../_components/role'
 import InventarioTabs from '../InventarioTabs'
 import ProductoForm, { toBody, type ProductoFormValues } from '../ProductoForm'
 import { AlertaBadge, TipoBadge, errorMessage, formatQty, useUnidad, type Categoria, type ProveedorOption } from '../shared'
@@ -59,7 +60,7 @@ export default function ProductoFichaPage() {
 function toValues(p: Producto): ProductoFormValues {
   const str = (v: unknown) => (v === null || v === undefined ? '' : String(v))
   return {
-    categoria_id: str(p.categoria_id), nombre: p.nombre, referencia: str(p.referencia), marca: str(p.marca),
+    categoria_id: str(p.categoria_id), subtipo: str(p.subtipo), nombre: p.nombre, referencia: str(p.referencia), marca: str(p.marca),
     proveedor_id: str(p.proveedor_id), descripcion: str(p.descripcion), color: str(p.color), material: str(p.material),
     talla: str(p.talla), unidad: p.unidad, coste: str(p.coste), pvp: str(p.pvp), iva: String(Number(p.iva)),
     stock_minimo_defecto: String(Number(p.stock_minimo_defecto)), ubicacion: str(p.ubicacion), observaciones: str(p.observaciones),
@@ -77,6 +78,7 @@ function Ficha({ producto, variantes, categorias, proveedores, historyVersion, o
   reload: () => void
 }) {
   const { t, locale } = useAdminI18n()
+  const { propietario } = useRol()
   const fmtUnidad = useUnidad()
   const s = t.inventario.variantesSection
   const [values, setValues] = useState(() => toValues(producto))
@@ -128,10 +130,12 @@ function Ficha({ producto, variantes, categorias, proveedores, historyVersion, o
           {[v.sku, v.ubicacion, `${s.minimo}: ${formatQty(v.stock_minimo, locale)}`, v.pvp && formatMoney(v.pvp, locale)].filter(Boolean).join(' · ')}
         </div>
         <div className="flex gap-1.5 ml-auto">
-          <button type="button" className={btnSecondary} onClick={() => setDialog({ kind: 'entrada', variante: v })} disabled={!v.activo} title={t.inventario.entradas.quick}>
-            <ArrowDownToLine size={16} />
-            <span className="hidden sm:inline">{t.inventario.acciones.entrada}</span>
-          </button>
+          {propietario && (
+            <button type="button" className={btnSecondary} onClick={() => setDialog({ kind: 'entrada', variante: v })} disabled={!v.activo} title={t.inventario.entradas.quick}>
+              <ArrowDownToLine size={16} />
+              <span className="hidden sm:inline">{t.inventario.acciones.entrada}</span>
+            </button>
+          )}
           <button type="button" className={btnSecondary} onClick={() => setDialog({ kind: 'ajuste', variante: v })} disabled={!v.activo} title={t.inventario.ajuste.title}>
             <SlidersHorizontal size={16} />
             <span className="hidden sm:inline">{t.inventario.acciones.ajuste}</span>
@@ -150,10 +154,16 @@ function Ficha({ producto, variantes, categorias, proveedores, historyVersion, o
         back={{ href: '/admin/inventario', label: t.inventario.title }}
         title={producto.nombre}
         actions={
-          <button type="button" className={producto.activo ? btnDanger : btnSecondary} onClick={toggleArchivado}>
-            {producto.activo ? <Archive size={16} /> : <ArchiveRestore size={16} />}
-            {producto.activo ? t.inventario.archive : t.inventario.unarchive}
-          </button>
+          <>
+            <Link href={`/admin/inventario/nuevo?desde=${producto.id}`} className={btnSecondary}>
+              <Copy size={16} />
+              {t.inventario.duplicar}
+            </Link>
+            <button type="button" className={producto.activo ? btnDanger : btnSecondary} onClick={toggleArchivado}>
+              {producto.activo ? <Archive size={16} /> : <ArchiveRestore size={16} />}
+              {producto.activo ? t.inventario.archive : t.inventario.unarchive}
+            </button>
+          </>
         }
       >
         <div className="flex flex-wrap items-center gap-2 mt-2">
@@ -211,10 +221,12 @@ function Ficha({ producto, variantes, categorias, proveedores, historyVersion, o
             {message && <span className="text-sm text-emerald-400">{message}</span>}
             <ErrorText>{error}</ErrorText>
           </div>
-          <p className="text-xs text-gray-500">
-            {t.inventario.verEntradas}{' '}
-            <Link href={`/admin/inventario/entradas`} className="text-[#C9A84C] hover:text-[#D4B76A]">{t.inventario.tabs.entradas}</Link>
-          </p>
+          {propietario && (
+            <p className="text-xs text-gray-500">
+              {t.inventario.verEntradas}{' '}
+              <Link href={`/admin/inventario/entradas`} className="text-[#C9A84C] hover:text-[#D4B76A]">{t.inventario.tabs.entradas}</Link>
+            </p>
+          )}
         </form>
       </div>
 

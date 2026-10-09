@@ -1,21 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth } from '@/lib/admin/auth'
-import { getBookings, updateBooking } from '@/lib/admin/db'
+import { TIPOS_CITA, getBookings, updateBooking } from '@/lib/admin/db'
 import { Resend } from 'resend'
 import { query } from '@/lib/db'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
 
 export async function GET(request: NextRequest) {
   try {
-    await requireAuth()
+    const session = await requireAuth()
     const { searchParams } = new URL(request.url)
     const filters = {
       type: searchParams.get('type') || undefined,
       dateFrom: searchParams.get('dateFrom') || undefined,
       dateTo: searchParams.get('dateTo') || undefined,
       status: searchParams.get('status') || undefined,
+      tipoCita: searchParams.get('tipoCita') || undefined,
     }
     const bookings = await getBookings(filters)
+    // Empleados see the client's name only
+    if (session.role !== 'owner') {
+      return NextResponse.json({ bookings: bookings.map((b: Record<string, unknown>) => ({ ...b, email: null, phone: null })) })
+    }
     return NextResponse.json({ bookings })
   } catch (error) {
     if ((error as Error).message === 'Unauthorized') {
@@ -177,9 +182,12 @@ async function sendUpdateNotification(booking: Record<string, unknown>, changedF
 
 export async function PUT(request: NextRequest) {
   try {
-    await requireAuth()
+    const session = await requireAuth()
     const body = await request.json()
-    const { id, name, email, phone, date, time, type, status, notes } = body
+    const { id, name, date, time, type, status, notes, tipo_cita } = body
+    // Empleados never see or change the client's contact details
+    const email = session.role === 'owner' ? body.email : undefined
+    const phone = session.role === 'owner' ? body.phone : undefined
 
     if (!id) {
       return NextResponse.json({ error: 'Booking ID required' }, { status: 400 })
@@ -190,6 +198,15 @@ export async function PUT(request: NextRequest) {
     const existing = existingResult.rows[0]
     if (!existing) {
       return NextResponse.json({ error: 'Booking not found' }, { status: 404 })
+    }
+
+    // The appointment type is internal: saved on its own and never emailed to the client
+    let current = existing
+    if (tipo_cita !== undefined && tipo_cita !== existing.tipo_cita) {
+      if (!(TIPOS_CITA as readonly string[]).includes(tipo_cita)) {
+        return NextResponse.json({ error: 'invalid tipo_cita' }, { status: 400 })
+      }
+      current = await updateBooking(id, { tipo_cita })
     }
 
     // Determine which fields actually changed
@@ -204,7 +221,7 @@ export async function PUT(request: NextRequest) {
     if (notes !== undefined && notes !== existing.notes) changedFields.push('notes')
 
     if (changedFields.length === 0) {
-      return NextResponse.json({ booking: existing })
+      return NextResponse.json({ booking: current })
     }
 
     const newDate = date !== undefined ? date : existing.date
@@ -212,7 +229,9 @@ export async function PUT(request: NextRequest) {
 
     // Validate new slot only if date/time changed
     if ((date !== undefined && date !== existing.date) || (time !== undefined && time !== existing.time)) {
-      const slotValidation = validateBookingSlot(newDate, newTime)
+      // Pruebas and entregas are booked months ahead from an encargo: the web's 30-day window doesn't apply
+      const tipo = tipo_cita ?? existing.tipo_cita
+      const slotValidation = tipo === 'primera_visita' || !tipo ? validateBookingSlot(newDate, newTime) : { valid: true, error: undefined }
       if (!slotValidation.valid) {
         return NextResponse.json({ error: slotValidation.error }, { status: 400 })
       }

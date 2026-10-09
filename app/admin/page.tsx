@@ -5,6 +5,8 @@ import { Calendar, Mail, Users, Clock, Save, Euro } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import StockAlertsCard from './_components/StockAlertsCard'
 import PanelKpis from './_components/PanelKpis'
+import PorPedirCard from './_components/PorPedirCard'
+import { useRol } from './_components/role'
 
 interface Stats {
   totalBookings: number
@@ -26,6 +28,7 @@ const RETIRED_SETTINGS = ['configurador', 'modelos3d']
 
 export default function AdminDashboard() {
   const { t } = useAdminI18n()
+  const { propietario } = useRol()
   const [stats, setStats] = useState<Stats | null>(null)
   const [settings, setSettings] = useState<ServiceSetting[]>([])
   const [loading, setLoading] = useState(true)
@@ -76,8 +79,11 @@ export default function AdminDashboard() {
       <h1 className="text-2xl font-serif text-white mb-8">{t.dashboard.title}</h1>
 
       <div className="space-y-6 mb-10">
-        <PanelKpis />
-        <StockAlertsCard />
+        {propietario && <PanelKpis />}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+          <PorPedirCard />
+          <StockAlertsCard />
+        </div>
       </div>
 
       {/* Stats cards */}
@@ -96,6 +102,7 @@ export default function AdminDashboard() {
 
 
       {/* Price settings */}
+      {propietario && (
       <div className="mb-10">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <h2 className="text-lg font-medium text-white flex items-center gap-2">
@@ -141,6 +148,7 @@ export default function AdminDashboard() {
           )}
         </div>
       </div>
+      )}
 
       {/* Quick links */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -18,6 +18,7 @@ interface ProductoRow {
   pvp: string | null
   foto_thumb_url: string | null
   categoria: string
+  subtipo: string | null
   tipo: 'terminado' | 'material'
   proveedor: string | null
   variantes: number
@@ -168,7 +169,7 @@ function InventarioList() {
                   <div className="min-w-0 flex-1">
                     <div className="text-white font-medium truncate">{p.nombre}</div>
                     <div className="text-sm text-gray-400 truncate">
-                      {[p.referencia, p.categoria, p.marca ?? p.proveedor].filter(Boolean).join(' · ')}
+                      {[p.referencia, p.subtipo ? `${p.categoria} · ${p.subtipo}` : p.categoria, p.marca ?? p.proveedor].filter(Boolean).join(' · ')}
                     </div>
                     <div className="flex flex-wrap gap-1.5 mt-1 sm:hidden">
                       {p.agotados > 0 && <Badge tone="red">{t.inventario.alertas.agotado} · {p.agotados}</Badge>}

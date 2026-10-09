@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation'
 import { Archive, ArchiveRestore, Package, Save, Truck } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { Badge, Card, ErrorText, Field, PageHeader, api, formatDate, formatMoney, useApi, btnDanger, btnPrimary, btnSecondary, inputClass } from '../../_components/ui'
+import { useRol } from '../../_components/role'
 
 const FIELDS = [
   'nombre', 'razon_social', 'nif', 'persona_contacto', 'email', 'telefono', 'web', 'direccion', 'ciudad', 'pais',
@@ -119,8 +120,10 @@ function ProveedorInventario({ proveedorId }: { proveedorId: number }) {
   const { data: prods } = useApi<{ productos: { id: number; nombre: string; referencia: string | null; stock_total: string; unidad: string }[] }>(
     `/api/admin/inventario/productos?proveedor=${proveedorId}`
   )
+  // Entradas carry costs: Propietarios only
+  const { propietario } = useRol()
   const { data: compras } = useApi<{ compras: { id: number; numero: string; fecha: string; total: string; referencia_proveedor: string | null }[] }>(
-    `/api/admin/inventario/compras?proveedor=${proveedorId}`
+    propietario ? `/api/admin/inventario/compras?proveedor=${proveedorId}` : null
   )
   const linkClass = 'py-2.5 flex items-center justify-between gap-3 text-sm hover:text-[#C9A84C]'
 
@@ -145,7 +148,7 @@ function ProveedorInventario({ proveedorId }: { proveedorId: number }) {
           </ul>
         )}
       </Card>
-      <Card title={t.proveedores.compras}>
+      {propietario && <Card title={t.proveedores.compras}>
         {!compras?.compras.length ? (
           <p className="text-sm text-gray-400">{t.inventario.entradas.empty}</p>
         ) : (
@@ -160,7 +163,7 @@ function ProveedorInventario({ proveedorId }: { proveedorId: number }) {
             ))}
           </ul>
         )}
-      </Card>
+      </Card>}
     </>
   )
 }
