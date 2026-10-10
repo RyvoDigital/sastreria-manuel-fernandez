@@ -4,13 +4,13 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
 import { CursosPaymentGate } from '@/components/cursos/CursosPaymentGate'
 import { CursosComingSoonDialog } from '@/components/cursos/CursosComingSoonDialog'
-import { useCursosContent, type CourseItem, type CursosContent } from './content'
-import s from './cursos.module.css'
+import { useCursosContent, type CourseItem, type CursosContent } from './cursosContent'
+import s from './el-hilo-cursos.module.css'
 
 /*
- * CursosLayout's behaviour, unchanged: the Stripe return screen, the payment
- * gate for a chosen course, and the coming-soon dialog while purchases are
- * closed. The variant only draws the page and calls watch(course).
+ * The page's behaviour, unchanged from before: the Stripe return screen, the
+ * payment gate for a chosen course, and the coming-soon dialog while
+ * purchases are closed. The page only draws itself and calls watch(course).
  */
 export function CursosShell({ children }: { children: (c: CursosContent, watch: (course: CourseItem) => void) => ReactNode }) {
   const c = useCursosContent()
@@ -74,7 +74,7 @@ export function CursosShell({ children }: { children: (c: CursosContent, watch: 
   )
 }
 
-/* One course's facts and its button, as on the live card. */
+/* One course's facts and its button. */
 export function CourseFacts({ course, c, onWatch }: { course: CourseItem; c: CursosContent; onWatch: () => void }) {
   return (
     <>

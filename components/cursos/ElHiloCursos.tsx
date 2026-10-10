@@ -5,17 +5,17 @@ import Image from 'next/image'
 import { gsap } from 'gsap'
 import { useScene, highlight, depth, type SceneEnv } from '@/lib/scroll-scene'
 import { Words } from '@/components/el-hilo/Words'
-import { HERO, BADGE, type CursosContent, type CourseItem } from './content'
-import { CursosShell, CourseFacts } from './shared'
-import s from './cursos.module.css'
+import { HERO, BADGE, type CursosContent, type CourseItem } from './cursosContent'
+import { CursosShell, CourseFacts } from './cursosShared'
+import s from './el-hilo-cursos.module.css'
 
-/* A · El temario: the hero opens like cloth unrolled on the cutting table;
+/* Cursos, El temario: the hero opens like cloth unrolled on the cutting table;
    the six courses are one pinned syllabus, read line by line, each photograph
    laid over the last. */
 const HERO_RUN = 80
 const STEP_RUN = 42
 
-export function CursosA() {
+export function ElHiloCursos() {
   return <CursosShell>{(c, watch) => <Page c={c} watch={watch} />}</CursosShell>
 }
 

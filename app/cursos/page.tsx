@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { CursosLayout } from '@/components/cursos/CursosLayout'
+import { ElHiloCursos } from '@/components/cursos/ElHiloCursos'
 import { ServiceGate } from '@/components/global/ServiceGate'
 import { isSettingEnabled } from '@/lib/settings-server'
 
@@ -16,7 +16,7 @@ export default async function CursosPage() {
   const enabled = await isSettingEnabled('cursos')
   return (
     <ServiceGate settingId="cursos" initialEnabled={enabled}>
-      <CursosLayout />
+      <ElHiloCursos />
     </ServiceGate>
   )
 }

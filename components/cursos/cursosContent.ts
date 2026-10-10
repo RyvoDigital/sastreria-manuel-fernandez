@@ -4,25 +4,25 @@ import { useEffect, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
 import { COURSE_PURCHASES_SETTING_ID } from '@/lib/course-purchases'
-import { COURSES, type Course } from '@/components/cursos/CursosList'
+import { COURSES, type Course } from './courses'
 
 /*
- * Everything Cursos renders, from the same sources as the live page: the
- * strings CursosLayout and CursosList hard-code (kept verbatim), the course
- * list from /api/courses with the same fallback, and the same purchase gate.
+ * Everything Cursos renders: the strings of the previous layout and list
+ * (kept verbatim), the course list from /api/courses with the same fallback,
+ * and the same purchase gate.
  */
 
-/* CursosLayout's hero photo, live alt. */
+/* The hero photo, with its alt. */
 export const HERO = {
   src: '/img/curso-sastreria-mesa-corte.webp',
   alt: 'Manuel Fernández trazando y cortando sobre el tejido en la mesa de corte',
 }
-/* CursosLayout's status badge, hard-coded in English on live. */
+/* The status badge, in English in every language as before. */
 export const BADGE = 'Online Academy'
 
 type L = 'es' | 'en' | 'it' | 'fr'
 
-/* CursosLayout */
+/* Hero and Stripe return */
 const LAYOUT: Record<L, { title: string; desc: string; back: string; successTitle: string; successMsg: string }> = {
   es: {
     title: 'Curso Artesanal',
@@ -54,7 +54,7 @@ const LAYOUT: Record<L, { title: string; desc: string; back: string; successTitl
   },
 }
 
-/* CursosList */
+/* Course list */
 const LIST: Record<L, { title: string; subtitle: string; description: string; locked: string; available: string; watch: string; duration: string; lessons: string }> = {
   es: {
     title: 'Cursos Artesanales',
@@ -120,7 +120,7 @@ export function useCursosContent() {
   const layout = LAYOUT[l]
   const list = LIST[l]
 
-  // Same source and fallback as CursosList: the admin's courses, else the built-in six.
+  // The admin's courses, else the built-in six.
   const [apiCourses, setApiCourses] = useState<Course[]>([])
   useEffect(() => {
     fetch('/api/courses')
