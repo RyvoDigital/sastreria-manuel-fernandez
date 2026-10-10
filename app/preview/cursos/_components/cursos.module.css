@@ -1,0 +1,213 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Cursos in the El hilo system (navy, a gold dashed thread, light Cormorant,
+   scrubbed highlights, masked-frame parallax). Static by default;
+   [data-staged] switches on the pinned and sticky layouts.
+     A · El temario — the hero opens like cloth unrolled on the table; the
+         six courses are one pinned syllabus, each photo laid over the last.
+     B · La lección — the hero is held while a chalk line is drawn under the
+         title; the courses run past sideways on one thread.
+   Mobile first (390), then 900+.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.page {
+  --k: 0.8;
+  --pad: 24px;
+  --nav: var(--header-offset, 84px);
+  --stitch-v: repeating-linear-gradient(180deg, var(--color-gold) 0 8px, transparent 8px 14px);
+  --stitch-h: repeating-linear-gradient(90deg, var(--color-gold) 0 8px, transparent 8px 14px);
+  --ink-soft: rgba(255, 255, 255, 0.76);
+  position: relative;
+  color: var(--color-white);
+  background: var(--color-navy);
+  overflow-x: clip;
+  padding-bottom: clamp(4rem, 3rem + 4vw, 7rem);
+}
+@media (min-width: 900px) {
+  .page { --pad: clamp(40px, 5vw, 96px); --k: 1; }
+}
+
+.cover { object-fit: cover; }
+.depth { position: absolute; inset: -12% 0; will-change: transform; }
+.center { text-align: center; margin-left: auto; margin-right: auto; }
+
+/* Type */
+.eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+}
+.h1 {
+  margin-top: 1rem;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 1.8rem + 5vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.italic { font-style: italic; }
+.h2 {
+  margin-top: 0.9rem;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.h3 { font-family: var(--font-serif); font-weight: 300; font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem); line-height: 1.1; text-wrap: balance; }
+.body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+.lead {
+  margin-top: 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 34rem;
+}
+.statement {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 1.15rem + 2.1vw, 3rem);
+  line-height: 1.26;
+  max-width: 28ch;
+  text-wrap: pretty;
+}
+.num { display: block; font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: clamp(2.6rem, 2rem + 2.4vw, 4.5rem); line-height: 0.9; color: var(--color-gold); margin-bottom: 0.75rem; }
+
+/* Course facts and button (both) */
+.meta { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; margin-top: 1.25rem; font-family: var(--font-sans); font-size: 0.8125rem; letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.6); }
+.metaLabel { color: var(--color-gold-light); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.6875rem; margin-right: 0.35rem; }
+.actionRow { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; margin-top: 1.5rem; }
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 2rem;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--color-gold);
+  color: var(--color-navy);
+  transition: background-color 0.3s var(--ease-silk);
+}
+.btnPrimary:hover { background: var(--color-gold-light); }
+.btnPrimary:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 4px; }
+.badge { font-family: var(--font-sans); font-weight: 500; font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-gold-light); padding: 0.45rem 0.9rem; box-shadow: inset 0 0 0 1px rgba(232, 213, 163, 0.35); }
+.badgeOpen { background: var(--color-gold); color: var(--color-navy); box-shadow: none; }
+
+.section { position: relative; padding: clamp(5rem, 4rem + 6vw, 9rem) var(--pad) 0; }
+
+/* Pinned stages (staged only) */
+.stage { position: relative; }
+.page[data-staged] .pin { height: calc(100svh + var(--run) * var(--k) * 1svh); padding: 0; }
+.page[data-staged] .pin + .pin, .page[data-staged] .section.pin { margin-top: clamp(3rem, 2rem + 4vw, 6rem); }
+.page[data-staged] .pin > .stage { position: sticky; top: 0; height: 100svh; overflow: clip; }
+
+/* ═════════════════════════════════════════════════════════════════════════
+   A · EL TEMARIO
+   ═════════════════════════════════════════════════════════════════════════ */
+.aHero { min-height: 100svh; display: grid; align-content: end; padding: calc(var(--nav) + 2rem) var(--pad) 3.5rem; overflow: clip; }
+.aHeroPhoto { position: absolute; inset: 0; overflow: hidden; }
+.aHeroPhoto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0.15) 35%, rgba(10, 22, 40, 0.9) 100%); }
+.aRule { position: absolute; left: 0; right: 0; top: 66%; height: 1px; background: var(--stitch-h); transform-origin: left center; opacity: 0.8; z-index: 1; }
+.page:not([data-staged]) .aRule { display: none; }
+.aHeroText { position: relative; z-index: 2; max-width: 46rem; }
+@media (min-width: 900px) {
+  .aHero { padding-bottom: 5rem; }
+}
+
+/* syllabus: static, a list of courses; staged, one page that turns */
+.aIndex { display: none; }
+.aThread { display: none; }
+.aCourses { list-style: none; padding: 0; margin: 0; display: grid; gap: 4rem; }
+.aPhoto { position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: var(--color-navy-mid); }
+.aCourseText { padding-top: 1.5rem; }
+@media (min-width: 900px) {
+  .aCourses { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5rem 4vw; }
+}
+
+.page[data-staged] .aSylStage { padding: calc(var(--nav) + 0.75rem) var(--pad) 1.5rem; display: flex; flex-direction: column; }
+.page[data-staged] .aThread { display: block; position: absolute; left: var(--pad); right: var(--pad); top: calc(var(--nav) + 0.25rem); height: 1px; background: rgba(232, 213, 163, 0.2); }
+.page[data-staged] .aThread > span { position: absolute; inset: 0; background: var(--stitch-h); transform-origin: left center; transform: scaleY(1); }
+.page[data-staged] .aCourses { display: block; position: relative; flex: 1; margin-top: 0.75rem; }
+.page[data-staged] .aCourse { position: absolute; inset: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; pointer-events: none; }
+.page[data-staged] .aCourseText { pointer-events: auto; background: var(--color-navy); padding-top: 1.25rem; }
+.page[data-staged] .aPhoto { aspect-ratio: auto; }
+@media (max-width: 899px) {
+  /* On a phone the thread runs across the top as a progress line. */
+  .page[data-staged] .aThread > span { transform: none; }
+  .page[data-staged] .aCourseText .body { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+}
+@media (min-width: 900px) {
+  .page[data-staged] .aSylStage { display: grid; grid-template-columns: minmax(0, 0.8fr) 1px minmax(0, 1.2fr); gap: 0 4vw; padding: calc(var(--nav) + 2rem) var(--pad) 3rem; }
+  .page[data-staged] .aIndex { display: flex; flex-direction: column; justify-content: center; gap: 1.1rem; list-style: none; padding: 0; margin: 0; }
+  .aIndexItem { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); align-items: baseline; }
+  .aIndexNum { font-family: var(--font-serif); font-style: italic; color: var(--color-gold); font-size: 1.1rem; }
+  .aIndexTitle { font-family: var(--font-serif); font-weight: 300; font-size: clamp(1.25rem, 0.9rem + 0.8vw, 1.75rem); line-height: 1.15; }
+  .page[data-staged] .aThread { position: relative; left: auto; right: auto; top: auto; width: 1px; height: auto; }
+  .page[data-staged] .aThread > span { background: var(--stitch-v); transform-origin: top center; }
+  .page[data-staged] .aCourses { margin-top: 0; }
+  .page[data-staged] .aCourse { grid-template-rows: minmax(0, 1fr) auto; }
+  .page[data-staged] .aCourseText .num { display: none; }
+  .page[data-staged] .aCourseText .body { max-width: 30rem; }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
+   B · LA LECCIÓN
+   ═════════════════════════════════════════════════════════════════════════ */
+.bHero { min-height: 100svh; display: grid; align-content: end; padding: calc(var(--nav) + 2rem) var(--pad) 3.5rem; overflow: clip; }
+.bHeroPhoto { position: absolute; inset: 0; overflow: hidden; }
+.bHeroShade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 22, 40, 0.6) 0%, rgba(10, 22, 40, 0.35) 40%, rgba(10, 22, 40, 0.95) 100%); opacity: 0.8; }
+.bHeroText { position: relative; z-index: 2; max-width: 46rem; }
+.bChalk { display: block; margin-top: 1.5rem; height: 1px; width: min(100%, 30rem); background: var(--stitch-h); transform-origin: left center; }
+@media (min-width: 900px) {
+  .bHero { padding-bottom: 5rem; }
+}
+
+/* rail: static, a list; staged, a track that runs sideways while held */
+.bRailSection { padding-left: 0; padding-right: 0; }
+.bLine { display: none; }
+.bTrack { list-style: none; padding: 0 var(--pad); margin: 0; display: grid; gap: 4rem; }
+.bCard { position: relative; }
+.bKnot { display: none; }
+.bPhoto { position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: var(--color-navy-mid); margin-bottom: 1.5rem; }
+.bPhotoInner { position: absolute; inset: 0 -12%; will-change: transform; }
+@media (min-width: 900px) {
+  .bTrack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5rem 3vw; }
+}
+
+.page[data-staged] .bRailSection { padding: 0; margin-top: clamp(3rem, 2rem + 4vw, 6rem); }
+.page[data-staged] .bRailStage { position: sticky; top: 0; height: 100svh; overflow: clip; display: flex; flex-direction: column; justify-content: center; padding-top: var(--nav); }
+.page[data-staged] .bTrackWrap { position: relative; width: max-content; }
+.page[data-staged] .bLine { display: block; position: absolute; left: 0; right: 0; top: calc(1rem + 1.5rem); height: 1px; background: rgba(232, 213, 163, 0.22); }
+.page[data-staged] .bLine > span { position: absolute; inset: 0; background: var(--stitch-h); transform-origin: left center; }
+.page[data-staged] .bTrack { display: flex; width: max-content; gap: 6vw; padding: 0 var(--pad); align-items: start; margin-top: 1rem; }
+.page[data-staged] .bCard { width: 82vw; padding-top: 2.5rem; }
+.page[data-staged] .bKnot { display: block; position: absolute; top: calc(1.5rem - 5px); left: 0; width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--color-gold); background: var(--color-navy); }
+.page[data-staged] .bPhoto { aspect-ratio: 16 / 11; }
+@media (max-width: 899px) {
+  .page[data-staged] .bCard .body { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+}
+@media (min-width: 900px) {
+  .page[data-staged] .bCard { width: clamp(340px, 34vw, 520px); }
+  .page[data-staged] .bTrack { gap: 4vw; padding-right: 12vw; }
+  .page[data-staged] .bPhoto { aspect-ratio: 4 / 3; }
+}

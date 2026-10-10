@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { COURSE_PURCHASES_SETTING_ID } from "@/lib/course-purchases";
 import { CursosComingSoonDialog } from "./CursosComingSoonDialog";
 
-interface Course {
+export interface Course {
   id: string
   title_es: string
   title_en: string
@@ -26,7 +26,7 @@ interface Course {
   price?: number
 }
 
-const COURSES: Course[] = [
+export const COURSES: Course[] = [
   {
     id: "intro",
     title_es: "Introducción a la Sastrería Artesanal",
