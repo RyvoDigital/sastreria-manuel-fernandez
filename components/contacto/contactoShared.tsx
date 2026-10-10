@@ -1,10 +1,28 @@
 'use client'
 
+import { useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { Calendar, MessageSquare, Video } from 'lucide-react'
-import { BookingCalendar } from '@/components/booking/BookingCalendar'
 import { BOOKING_ANCHOR } from '@/lib/booking'
 import type { Contacto } from './contactoContent'
 import s from './el-hilo-contacto.module.css'
+
+// The calendar (and the animation library it uses) is only drawn once an
+// option is chosen, so it is not part of the page's first load. It is fetched
+// as soon as the page is idle, so choosing an option does not wait for it.
+const loadCalendar = () => import('@/components/booking/BookingCalendar').then((m) => m.BookingCalendar)
+const BookingCalendar = dynamic(loadCalendar, { ssr: false })
+
+export function usePreloadCalendar() {
+  useEffect(() => {
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(() => void loadCalendar())
+      return () => window.cancelIdleCallback(id)
+    }
+    const id = setTimeout(() => void loadCalendar(), 1500)
+    return () => clearTimeout(id)
+  }, [])
+}
 
 /* The calendar step, unchanged: BookingCalendar full page, with the
    paid video call's confirmation banner on the Stripe return. */

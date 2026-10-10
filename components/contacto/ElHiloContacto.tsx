@@ -6,7 +6,7 @@ import { gsap } from 'gsap'
 import { useScene, highlight, type SceneEnv } from '@/lib/scroll-scene'
 import { Words } from '@/components/el-hilo/Words'
 import { useContacto, PHOTOS } from './contactoContent'
-import { BookingScreen, ContactForm, Details, Hub } from './contactoShared'
+import { BookingScreen, ContactForm, Details, Hub, usePreloadCalendar } from './contactoShared'
 import s from './el-hilo-contacto.module.css'
 
 /* Contacto, El mostrador: the photographs stay at your side while you read, each
@@ -17,6 +17,7 @@ const BAND_RUN = 90
 
 export function ElHiloContacto() {
   const c = useContacto()
+  usePreloadCalendar()
   if (c.booking.mode !== 'none') return <BookingScreen c={c} />
   return <Page c={c} />
 }

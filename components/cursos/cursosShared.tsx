@@ -1,11 +1,15 @@
 'use client'
 
 import { useEffect, useState, type ReactNode } from 'react'
+import dynamic from 'next/dynamic'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
-import { CursosPaymentGate } from '@/components/cursos/CursosPaymentGate'
 import { CursosComingSoonDialog } from '@/components/cursos/CursosComingSoonDialog'
 import { useCursosContent, type CourseItem, type CursosContent } from './cursosContent'
 import s from './el-hilo-cursos.module.css'
+
+// The payment step loads Stripe's script as soon as it is imported, so it is
+// fetched only when someone opens it (never while purchases are closed).
+const CursosPaymentGate = dynamic(() => import('./CursosPaymentGate').then((m) => m.CursosPaymentGate), { ssr: false })
 
 /*
  * The page's behaviour, unchanged from before: the Stripe return screen, the
