@@ -140,7 +140,6 @@ export function HeroEnhanced() {
   const isIPhone = useIsIPhone()
   const heroRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const heroTitle = getValue('hero.title') || t.hero.tagline
   const heroSubtitle = getValue('hero.subtitle') || t.hero.tagline2
@@ -178,31 +177,6 @@ export function HeroEnhanced() {
 
     return () => ctx.revert()
   }, [isIPhone])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true)
-      
-      if (textRef.current) {
-        const elements = textRef.current.querySelectorAll('.animate-in')
-        gsap.fromTo(
-          elements,
-          { y: 60, opacity: 0, rotateX: 15 },
-          { 
-            y: 0, 
-            opacity: 1, 
-            rotateX: 0,
-            duration: 1.2, 
-            stagger: 0.12, 
-            ease: 'power3.out',
-            delay: 0.3
-          }
-        )
-      }
-    }, 100)
-
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <section
@@ -307,6 +281,7 @@ export function HeroEnhanced() {
           {/* Label with character animation */}
           <div 
             className="animate-in"
+            data-i={0}
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.7rem',
@@ -322,7 +297,7 @@ export function HeroEnhanced() {
                 key={i}
                 style={{
                   display: 'inline-block',
-                  animation: isLoaded ? `fadeInUp 0.6s ease forwards ${0.5 + i * 0.03}s` : 'none',
+                  animation: `fadeInUp 0.6s ease forwards ${0.6 + i * 0.03}s`,
                   opacity: 0,
                 }}
               >
@@ -339,13 +314,14 @@ export function HeroEnhanced() {
               visual element. Reuses the type treatment of the t.hero.since
               eyebrow above rather than introducing a new one.
 
-              MUST keep className="animate-in": the GSAP effect above selects
-              .animate-in inside textRef and tweens it from opacity 0 to 1. An
-              element with the inline opacity: 0 below but without the class
-              would never be animated and would stay permanently invisible.
+              MUST keep className="animate-in" and data-i: the CSS entrance
+              at the bottom selects .animate-in[data-i] and animates it from
+              opacity 0 to 1. An element with the inline opacity: 0 below but
+              without them would never be animated and would stay invisible.
             */}
             <div
               className="animate-in"
+              data-i={1}
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.7rem',
@@ -361,6 +337,7 @@ export function HeroEnhanced() {
             </div>
             <div 
               className="animate-in"
+              data-i={2}
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
@@ -377,6 +354,7 @@ export function HeroEnhanced() {
             </div>
             <div 
               className="animate-in"
+              data-i={3}
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
@@ -394,6 +372,7 @@ export function HeroEnhanced() {
           {/* Subtext */}
           <p 
             className="animate-in"
+            data-i={4}
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: 'clamp(0.9rem, 1.2vw, 1.1rem)',
@@ -412,6 +391,7 @@ export function HeroEnhanced() {
         {/* Right Side: CTA Buttons */}
         <div 
           className="animate-in"
+          data-i={5}
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -456,7 +436,7 @@ export function HeroEnhanced() {
           alignItems: 'center',
           gap: '0.5rem',
           opacity: 0,
-          animation: isLoaded ? 'fadeIn 1s ease forwards 1.5s, bounce 2s ease-in-out infinite 2s' : 'none',
+          animation: 'fadeIn 1s ease forwards 1.6s, bounce 2s ease-in-out infinite 2.1s',
         }}
       >
         <span style={{
@@ -476,6 +456,24 @@ export function HeroEnhanced() {
       </div>
 
       <style jsx>{`
+        /* The entrance GSAP used to run once the page had hydrated (a 100ms
+           timer, then 0.3s delay, 1.2s, power3.out, 0.12s stagger, from 60px
+           down, rotateX 15deg). Same values in CSS, timed from first paint, so
+           the hero text no longer waits for JavaScript on a slow phone and is
+           readable without it. Animations override the inline opacity: 0. */
+        .animate-in[data-i] {
+          animation: heroIn 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+        }
+        .animate-in[data-i='0'] { animation-delay: 0.40s; }
+        .animate-in[data-i='1'] { animation-delay: 0.52s; }
+        .animate-in[data-i='2'] { animation-delay: 0.64s; }
+        .animate-in[data-i='3'] { animation-delay: 0.76s; }
+        .animate-in[data-i='4'] { animation-delay: 0.88s; }
+        .animate-in[data-i='5'] { animation-delay: 1.00s; }
+        @keyframes heroIn {
+          from { opacity: 0; transform: translate(0, 60px) rotateX(15deg); }
+          to { opacity: 1; transform: translate(0, 0); }
+        }
         @keyframes fadeInUp {
           from {
             opacity: 0;
