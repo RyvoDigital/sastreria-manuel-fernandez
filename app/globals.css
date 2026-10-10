@@ -286,22 +286,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   LOADING SCREEN
-   ============================================ */
-
-#loading-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-
-/* ============================================
    NAVIGATION
    ============================================ */
 
