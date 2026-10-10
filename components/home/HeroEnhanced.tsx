@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useContent } from '@/lib/content-provider'
-import { track } from '@/lib/analytics'
 import { BOOKING_HREF } from '@/lib/booking'
 import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
@@ -430,7 +429,7 @@ export function HeroEnhanced() {
 
             <MagneticButton
               href="tel:+34682192944"
-              onClick={() => track('phone_click', { location: 'hero' })}
+              track="phone_click:hero"
             >
               <Phone size={16} />
               {t.hero.cta_call}
@@ -506,13 +505,14 @@ function MagneticButton({
   children, 
   primary = false,
   outline = false,
-  onClick,
+  track,
 }: { 
   href: string
   children: React.ReactNode
   primary?: boolean
   outline?: boolean
-  onClick?: () => void
+  /** "event:location" for the early tap listener in app/layout.tsx. */
+  track?: string
 }) {
   const baseStyles = {
     display: 'inline-flex',
@@ -545,7 +545,7 @@ function MagneticButton({
   return (
     <Link
       href={href}
-      onClick={onClick}
+      data-track={track}
       style={{ ...baseStyles, ...primaryStyles }}
       onMouseEnter={(e) => {
         if (primary) e.currentTarget.style.background = '#E8D5A3'

@@ -11,6 +11,7 @@ import { ScrollToTop } from '@/components/global/ScrollToTop'
 import { ScrollToTopButton } from '@/components/global/ScrollToTopButton'
 import { HtmlLang } from '@/components/global/HtmlLang'
 import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/global/GoogleTagManager'
+import { TAP_SCRIPT } from '@/lib/analytics'
 import {
   SITE_INSTAGRAM,
   SITE_LOCALITY,
@@ -132,6 +133,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${cormorant.variable} ${inter.variable}`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: TAP_SCRIPT }} />
         <GoogleTagManager />
       </head>
       <body>

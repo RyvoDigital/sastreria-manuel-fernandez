@@ -4,7 +4,6 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useI18n, type Locale } from '@/lib/i18n'
-import { track } from '@/lib/analytics'
 import { useSettings } from '@/lib/settings-provider'
 import { useMenuDialog, useScrolled } from '@/lib/use-menu-dialog'
 import { SITE_PHONE_DISPLAY, SITE_PHONE_E164 } from '@/lib/site'
@@ -84,9 +83,6 @@ export function Navigation() {
   const barItems = items.filter((i) => i.key !== 'inicio')
   const half = Math.ceil(barItems.length / 2)
 
-  const trackPhone = () => track('phone_click', { location: 'nav' })
-  const trackWhatsApp = () => track('whatsapp_click', { location: 'nav' })
-
   const desktopLink = (item: (typeof items)[number]) => (
     <Link key={item.key} href={item.href} className="mf-nav-link" aria-current={item.active ? 'page' : undefined}>
       {item.label}
@@ -101,8 +97,8 @@ export function Navigation() {
             Jorge Juan 41 · Madrid
           </a>
           <div className="mf-nav-strip-right">
-            <a href={CONTACT.tel} className="mf-nav-strip-link" onClick={trackPhone}>{SITE_PHONE_DISPLAY}</a>
-            <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="mf-nav-strip-link" onClick={trackWhatsApp}>
+            <a href={CONTACT.tel} className="mf-nav-strip-link" data-track="phone_click:nav">{SITE_PHONE_DISPLAY}</a>
+            <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="mf-nav-strip-link" data-track="whatsapp_click:nav">
               WhatsApp
             </a>
             <div className="mf-nav-langs" role="group" aria-label={ui.language}>
@@ -143,7 +139,7 @@ export function Navigation() {
               rel="noopener noreferrer"
               className="mf-nav-icon"
               aria-label="WhatsApp"
-              onClick={trackWhatsApp}
+              data-track="whatsapp_click:nav"
             >
               <WhatsAppIcon size={18} />
             </a>
@@ -187,8 +183,8 @@ export function Navigation() {
             </div>
             <div className="mf-nav-foot-actions">
               <BookingLink className="mf-nav-pill mf-nav-pill--solid" onClick={close}>{t.hero.cta_book}</BookingLink>
-              <a href={CONTACT.tel} className="mf-nav-pill mf-nav-pill--gold" onClick={trackPhone}>{ui.call}</a>
-              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="mf-nav-pill" onClick={trackWhatsApp}>
+              <a href={CONTACT.tel} className="mf-nav-pill mf-nav-pill--gold" data-track="phone_click:nav">{ui.call}</a>
+              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="mf-nav-pill" data-track="whatsapp_click:nav">
                 <WhatsAppIcon size={14} /> WhatsApp
               </a>
             </div>
