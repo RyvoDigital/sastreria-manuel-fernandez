@@ -77,6 +77,9 @@ const HUB = {
   },
 }
 
+/* Space between the fixed header and the booking options when they are brought into view. */
+const BOOKING_GAP = 24
+
 export type BookingMode = 'none' | 'inperson-measure' | 'inperson-style' | 'videocall'
 type BookingData = { name: string; email: string; phone: string; date: string; time: string }
 
@@ -143,10 +146,36 @@ export function useContacto() {
   }, [])
   useEffect(() => {
     if (!bookingRequest) return
-    const id = requestAnimationFrame(() => {
-      document.getElementById(BOOKING_ANCHOR)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    })
-    return () => cancelAnimationFrame(id)
+    // Land the options just under the fixed header, every time. The target is
+    // measured, not left to scroll-margin, and checked again once the page has
+    // settled (fonts, images and the scroll scene can still move it).
+    const target = () => {
+      const el = document.getElementById(BOOKING_ANCHOR)
+      if (!el) return null
+      // The header's own height: it slides away while scrolling down, so its
+      // on-screen position would move the target.
+      const row = document.querySelector('.mf-nav-row') as HTMLElement | null
+      const header = row ? row.offsetTop + row.offsetHeight : 0
+      return Math.max(0, Math.round(el.getBoundingClientRect().top + window.scrollY - header - BOOKING_GAP))
+    }
+    const lenis = (window as unknown as { lenis?: { scrollTo: (y: number, o?: { immediate?: boolean; duration?: number }) => void } }).lenis
+    const go = (immediate: boolean) => {
+      const y = target()
+      if (y === null || Math.abs(window.scrollY - y) < 2) return
+      if (lenis) lenis.scrollTo(y, immediate ? { immediate: true } : { duration: 0.9 })
+      else window.scrollTo({ top: y, behavior: immediate ? 'auto' : 'smooth' })
+    }
+    const ids = [requestAnimationFrame(() => go(false))]
+    const timers = [1100, 1800, 2600].map((ms) => window.setTimeout(() => go(true), ms))
+    // The reader takes over: no more corrections once they scroll themselves.
+    const stop = () => timers.forEach(clearTimeout)
+    const events = ['wheel', 'touchstart', 'keydown'] as const
+    events.forEach((e) => window.addEventListener(e, stop, { passive: true, once: true }))
+    return () => {
+      ids.forEach(cancelAnimationFrame)
+      stop()
+      events.forEach((e) => window.removeEventListener(e, stop))
+    }
   }, [bookingRequest])
 
   /* Form submit */
