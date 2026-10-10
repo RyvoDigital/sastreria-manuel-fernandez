@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, X } from 'lucide-react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
+import { responsive } from '@/lib/responsive-image'
 
 const HOTSPOTS = [
   { id: 'lining',     x: '22%', y: '55%' },
@@ -76,7 +77,7 @@ export function SuitShowcaseSection() {
           {/* Main Image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/img/anatomia-traje-forro-interior.webp"
+            {...responsive("/img/anatomia-traje-forro-interior.webp", "(max-width: 600px) 115vw, (max-width: 1100px) 100vw, 65vw")} decoding="async" loading="lazy"
             alt="Traje azul marino abierto para mostrar el forro de paisley y el chaleco celeste"
             style={{
               width: '100%',

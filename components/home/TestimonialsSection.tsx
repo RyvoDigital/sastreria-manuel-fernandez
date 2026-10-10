@@ -6,6 +6,7 @@ import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { responsive } from '@/lib/responsive-image'
 
 const PHOTOS = [
   '/img/traje-tweed-madrid-calle.webp',
@@ -73,7 +74,7 @@ function TestimonialsSimple({ items }: { items: { name: string; occasion: string
                 flexShrink: 0,
               }}>
                 <img
-                  src={PHOTOS[i]}
+                  {...responsive(PHOTOS[i], "(max-width: 600px) 96vw, (max-width: 1100px) 100vw, 69vw")} decoding="async"
                   alt={item.name}
                   loading="lazy"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -343,7 +344,7 @@ export function TestimonialsSection() {
                   flexShrink: 0,
                 }}>
                   <img
-                    src={PHOTOS[i]}
+                    {...responsive(PHOTOS[i], "(max-width: 600px) 96vw, (max-width: 1100px) 100vw, 69vw")} decoding="async" loading="lazy"
                     alt={item.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />

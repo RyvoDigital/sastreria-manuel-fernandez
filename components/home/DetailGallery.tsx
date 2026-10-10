@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
+import { responsive } from '@/lib/responsive-image'
 
 const IMAGES = [
   '/img/prenda-medida-etiqueta.webp',
@@ -67,7 +68,7 @@ export function DetailGallery() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src={src} 
+                {...responsive(src, "(max-width: 600px) 857vw, (max-width: 1100px) 330vw, 165vw")} decoding="async" loading="lazy" 
                 alt={`Detail ${i}`}
                 style={{
                   width: '100%',

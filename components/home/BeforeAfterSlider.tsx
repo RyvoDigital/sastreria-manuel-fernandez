@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { MoveHorizontal } from 'lucide-react'
+import { responsive } from '@/lib/responsive-image'
 
 export function BeforeAfterSlider() {
   const { t } = useI18n()
@@ -154,7 +155,7 @@ export function BeforeAfterSlider() {
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* After Image (Right side) */}
             <img
-              src="/img/chaqueta-azul-terminada-despues.webp"
+              {...responsive("/img/chaqueta-azul-terminada-despues.webp", "(max-width: 600px) 115vw, (max-width: 1100px) 100vw, 69vw")} decoding="async" loading="lazy"
               alt="Chaqueta azul marino terminada, con botonadura dorada, sobre maniquí"
               style={{
                 width: '100%',
@@ -178,7 +179,7 @@ export function BeforeAfterSlider() {
             }}
           >
             <img
-              src="/img/chaqueta-hilvanada-antes-prueba.webp"
+              {...responsive("/img/chaqueta-hilvanada-antes-prueba.webp", "(max-width: 600px) 115vw, (max-width: 1100px) 100vw, 69vw")} decoding="async" loading="lazy"
               alt="La misma chaqueta hilvanada, cubierta de puntadas provisionales blancas, antes de la prueba"
               style={{
                 width: '100%',

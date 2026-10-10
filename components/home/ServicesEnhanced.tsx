@@ -8,6 +8,7 @@ import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
 import { useIsMobile } from '@/lib/use-mobile'
 import Image from 'next/image'
+import { variantLoader } from '@/lib/responsive-image'
 
 
 const SERVICES = [
@@ -239,13 +240,13 @@ export function ServicesEnhanced() {
                     src={service.image}
                     alt={label}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 600px) 170vw, (max-width: 1100px) 86vw, 47vw"
                     style={{
                       objectFit: 'cover',
                       transition: 'transform 0.7s ease',
                     }}
                     className="service-img"
-                    unoptimized
+                    loader={variantLoader}
                   />
                   {/* Gradient overlay */}
                   <div style={{

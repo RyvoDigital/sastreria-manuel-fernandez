@@ -6,6 +6,7 @@ import { gsap } from '@/lib/gsap-setup'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import { Eye, Leaf, Award, Hand } from 'lucide-react'
+import { responsive } from '@/lib/responsive-image'
 
 
 const CONTENT_BLOCKS = [
@@ -137,7 +138,7 @@ export function FabricsSection() {
                 }} className="card-bg">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
-                    src={block.image} 
+                    {...responsive(block.image, "(max-width: 600px) 122vw, (max-width: 1100px) 84vw, 65vw")} decoding="async" loading="lazy" 
                     alt={title}
                     style={{
                       width: '100%',

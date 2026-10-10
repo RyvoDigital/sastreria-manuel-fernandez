@@ -5,6 +5,7 @@ import { useScroll, useTransform, motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
 import { useIsIPhone } from '@/lib/use-iphone'
+import { responsive } from '@/lib/responsive-image'
 
 const IMAGES = [
   '/img/marcado-patron-tela-azul.webp',
@@ -80,7 +81,7 @@ export function ZoomParallaxSection() {
             }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={src}
+                {...responsive(src, "(max-width: 600px) 325vw, (max-width: 1100px) 463vw, 217vw")} decoding="async"
                 alt={`${t.zoom_parallax.alt} ${i + 1}`}
                 loading="lazy"
                 style={{
@@ -156,7 +157,7 @@ export function ZoomParallaxSection() {
                 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={src}
+                    {...responsive(src, "(max-width: 600px) 325vw, (max-width: 1100px) 463vw, 217vw")} decoding="async" loading="lazy"
                     alt={`${t.zoom_parallax.alt} ${index + 1}`}
                     style={{
                       width:      '100%',

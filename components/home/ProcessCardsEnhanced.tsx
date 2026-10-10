@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { useIsMobile } from '@/lib/use-mobile'
+import { variantLoader } from '@/lib/responsive-image'
 
 const CARD_IMAGES = [
   '/img/chaqueta-entretela-canvas-maniqui.webp',
@@ -73,13 +74,14 @@ function SimpleProcessCard({ num, title, body, image, index }: CardProps) {
           src={image}
           alt={title}
           fill
-          loading={index > 0 ? 'lazy' : 'eager'}
+          sizes="(max-width: 600px) 344vw, (max-width: 1100px) 212vw, 111vw"
+          loading="lazy"
           style={{
             objectFit: 'cover',
             objectPosition: index === 1 ? 'bottom' : 'center',
             filter: 'brightness(0.45) saturate(0.6)',
           }}
-          unoptimized
+          loader={variantLoader}
         />
       </div>
 
