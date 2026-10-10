@@ -255,6 +255,14 @@ export function HeroEnhanced() {
             re-encoded from the 73.8 MB original down to 3.3 MB. It plays muted
             and dimmed behind the hero text, which is why that holds up.
           */}
+          {/*
+            Portrait phones only ever show a centre strip about 500px wide of
+            the 1920px frame (cover crop, measured up to 555px at 360x640). This
+            is that strip, 640x1080 from the same file at the same height, so
+            the visible pixels match: 1.4 MB instead of 3.4 MB (x264 crf 27,
+            SSIM 0.991 against the same crop of the original).
+          */}
+          <source src="/video/hero-sastreria-manuel-fernandez-portrait.mp4" type="video/mp4" media="(max-aspect-ratio: 9/16)" />
           <source src="/video/hero-sastreria-manuel-fernandez.mp4" type="video/mp4" />
         </video>
       </div>
