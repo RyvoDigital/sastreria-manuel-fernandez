@@ -1,4 +1,5 @@
 import { Resend } from 'resend'
+import { SITE_URL } from '@/lib/site'
 
 export interface BookingEmailDetails {
   name: string
@@ -8,6 +9,28 @@ export interface BookingEmailDetails {
   time: string
   type: 'inperson' | 'videocall'
   locale?: string
+  /** The booking's cancel token: in-person confirmations link to /cancelar-cita with it. */
+  cancelToken?: string
+}
+
+/* Same wording as the calendar's own cancel button (BookingCalendar labels). */
+const CANCEL_LABEL: Record<string, string> = {
+  es: 'Cancelar esta reserva',
+  en: 'Cancel this booking',
+  it: 'Annulla questa prenotazione',
+  fr: 'Annuler ce rendez-vous',
+}
+
+/* A preview deployment links to itself, so testing never touches the live site. */
+function siteOrigin(): string {
+  const preview = process.env.VERCEL_ENV === 'preview' && (process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL)
+  return preview ? `https://${preview}` : SITE_URL
+}
+
+export function cancelUrl(token: string, locale: string): string {
+  // The token goes after the #: browsers never send it to the server, and
+  // analytics leave it out of the page address.
+  return `${siteOrigin()}/cancelar-cita?l=${encodeURIComponent(locale)}#t=${encodeURIComponent(token)}`
 }
 
 function phoneLine(phone: string | undefined, locale: string): string {
@@ -112,7 +135,8 @@ function getClientBody(
   name: string,
   date: string,
   time: string,
-  locale?: string
+  locale?: string,
+  cancelToken?: string
 ): { text: string; html: string } {
   const loc = locale || 'es'
 
@@ -173,11 +197,15 @@ function getClientBody(
     },
   }
 
-  return formatClientEmail(map[loc] || map.es)
+  const cancel = cancelToken ? { href: cancelUrl(cancelToken, loc), label: CANCEL_LABEL[loc] || CANCEL_LABEL.es } : undefined
+  return formatClientEmail(map[loc] || map.es, cancel)
 }
 
-function formatClientEmail(t: { greeting: string; lead: string; copy: string; signature: string }) {
-  const text = `${t.greeting}\n\n${t.lead}\n${t.copy}\n\n—\n${t.signature}`
+function formatClientEmail(
+  t: { greeting: string; lead: string; copy: string; signature: string },
+  cancel?: { href: string; label: string }
+) {
+  const text = `${t.greeting}\n\n${t.lead}\n${t.copy}${cancel ? `\n\n${cancel.label}: ${cancel.href}` : ''}\n\n—\n${t.signature}`
   const html = `
     <div style="font-family:'Cormorant Garamond','Georgia',serif;line-height:1.7;color:#222;max-width:560px;margin:0 auto;padding:2rem">
       <div style="border-bottom:1px solid #C9A84C;padding-bottom:1rem;margin-bottom:1.5rem">
@@ -185,7 +213,8 @@ function formatClientEmail(t: { greeting: string; lead: string; copy: string; si
       </div>
       <p style="font-size:1.1rem">${t.greeting}</p>
       <p>${t.lead}</p>
-      <p>${t.copy}</p>
+      <p>${t.copy}</p>${cancel ? `
+      <p style="margin-top:1.5rem"><a href="${cancel.href}" style="color:#0A1628;text-decoration:underline;text-underline-offset:3px">${cancel.label}</a></p>` : ''}
       <hr style="border:none;border-top:1px solid #eee;margin:2rem 0">
       <p style="color:#666;font-size:0.95rem">${t.signature}</p>
     </div>
@@ -207,7 +236,7 @@ export async function sendBookingEmails(
     return { ownerId, clientId }
   }
 
-  const { name, email, phone, date, time, type, locale } = details
+  const { name, email, phone, date, time, type, locale, cancelToken } = details
   const loc = locale || 'es'
 
   try {
@@ -229,7 +258,8 @@ export async function sendBookingEmails(
       ownerId = ownerResult.data?.id ?? null
     }
 
-    const clientBody = getClientBody(type, name, date, time, loc)
+    // Paid video calls are cancelled through the shop (they need a refund).
+    const clientBody = getClientBody(type, name, date, time, loc, type === 'inperson' ? cancelToken : undefined)
     const clientResult = await resend.emails.send({
       from: fromEmail,
       to: email,

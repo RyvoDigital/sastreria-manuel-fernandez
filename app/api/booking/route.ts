@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { bookSlot, isSlotBooked } from '@/lib/bookings'
+import { bookSlot, cancelBookingByToken, isCancelTokenShape, isSlotBooked } from '@/lib/bookings'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
 import { sendBookingEmails } from '@/lib/booking/emails'
 import { isSlotBlocked } from '@/lib/availability'
-import { query } from '@/lib/db'
 import { rateLimit } from '@/lib/rate-limit'
 import { checkSpam } from '@/lib/spam-filter'
 import { isEmailReachable } from '@/lib/email-validate'
 
 const bookingLimiter = rateLimit({ name: 'booking', maxRequests: 3, windowMs: 60_000 })
+const cancelLimiter = rateLimit({ name: 'booking-cancel', maxRequests: 10, windowMs: 60_000 })
 
 const bookingSchema = z.object({
   name: z.string().min(1).max(100),
@@ -108,11 +108,13 @@ export async function POST(req: NextRequest) {
       time,
       type,
       locale: loc,
+      cancelToken: bookResult.cancelToken,
     })
 
     return NextResponse.json({
       success: true,
       bookingId: bookResult.bookingId,
+      cancelToken: bookResult.cancelToken,
       ownerId,
       clientId,
     })
@@ -125,39 +127,40 @@ export async function POST(req: NextRequest) {
   }
 }
 
+/*
+ * Public cancellation. Only the booking's cancel token, which only the person
+ * who booked has (booking response, confirmation email), can cancel it. A
+ * booking number, or an email with a date and time, is refused: anyone could
+ * guess those. The admin cancels through /api/admin/bookings, behind its login.
+ */
 export async function DELETE(req: NextRequest) {
+  const limit = cancelLimiter(req)
+  if (!limit.success) {
+    return NextResponse.json({ success: false, error: 'Too many requests. Please try again later.' }, { status: 429 })
+  }
+
   try {
-    const body = await req.json()
-    const { id, email, date, time } = body
+    const body = await req.json().catch(() => ({}))
+    const { token } = body as { token?: unknown }
 
-    let result
-    if (id) {
-      result = await query(
-        `DELETE FROM bookings WHERE id = $1 RETURNING *`,
-        [id]
-      )
-    } else if (email && date && time) {
-      result = await query(
-        `DELETE FROM bookings WHERE email = $1 AND date = $2 AND time = $3 RETURNING *`,
-        [email, date, time]
-      )
-    } else {
+    if (!isCancelTokenShape(token)) {
       return NextResponse.json(
-        { success: false, error: 'Booking id or email/date/time required' },
-        { status: 400 }
+        { success: false, error: 'cancel_token_required' },
+        { status: 403 }
       )
     }
 
-    if (result.rowCount === 0) {
+    const result = await cancelBookingByToken(token)
+    if (!result.success) {
       return NextResponse.json(
-        { success: false, error: 'Booking not found' },
-        { status: 404 }
+        { success: false, error: result.error },
+        { status: result.error === 'paid_booking' ? 409 : 404 }
       )
     }
 
-    return NextResponse.json({ success: true, booking: result.rows[0] })
+    return NextResponse.json({ success: true, booking: { date: result.booking.date, time: result.booking.time } })
   } catch (err) {
-    console.error('Booking delete error:', err)
+    console.error('Booking cancel error:', err)
     return NextResponse.json(
       { success: false, error: 'Internal server error' },
       { status: 500 }
