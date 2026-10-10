@@ -5,17 +5,17 @@ import Image from 'next/image'
 import { gsap } from 'gsap'
 import { useScene, highlight, type SceneEnv } from '@/lib/scroll-scene'
 import { Words } from '@/components/el-hilo/Words'
-import { useContacto, PHOTOS } from './content'
-import { BookingScreen, ContactForm, Details, Hub } from './shared'
-import s from './contacto.module.css'
+import { useContacto, PHOTOS } from './contactoContent'
+import { BookingScreen, ContactForm, Details, Hub } from './contactoShared'
+import s from './el-hilo-contacto.module.css'
 
-/* B · El mostrador: the photographs stay at your side while you read, each
+/* Contacto, El mostrador: the photographs stay at your side while you read, each
    giving way to the next as you go down; one thread runs down the page and
    is knotted at every option. On a phone the three photographs pass first
    in a short held band. */
 const BAND_RUN = 90
 
-export function ContactoB() {
+export function ElHiloContacto() {
   const c = useContacto()
   if (c.booking.mode !== 'none') return <BookingScreen c={c} />
   return <Page c={c} />

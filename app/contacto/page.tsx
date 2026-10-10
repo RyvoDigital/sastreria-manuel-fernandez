@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ContactPage } from '@/components/contacto/ContactPage'
+import { ElHiloContacto } from '@/components/contacto/ElHiloContacto'
 import { ServiceGate } from '@/components/global/ServiceGate'
 import { isSettingEnabled } from '@/lib/settings-server'
 
@@ -16,7 +16,7 @@ export default async function ContactoPage() {
   const enabled = await isSettingEnabled('contacto')
   return (
     <ServiceGate settingId="contacto" initialEnabled={enabled}>
-      <ContactPage />
+      <ElHiloContacto />
     </ServiceGate>
   )
 }

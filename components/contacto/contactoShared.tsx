@@ -3,10 +3,10 @@
 import { Calendar, MessageSquare, Video } from 'lucide-react'
 import { BookingCalendar } from '@/components/booking/BookingCalendar'
 import { BOOKING_ANCHOR } from '@/lib/booking'
-import type { Contacto } from './content'
-import s from './contacto.module.css'
+import type { Contacto } from './contactoContent'
+import s from './el-hilo-contacto.module.css'
 
-/* The calendar step, exactly as live: BookingCalendar full page, with the
+/* The calendar step, unchanged: BookingCalendar full page, with the
    paid video call's confirmation banner on the Stripe return. */
 export function BookingScreen({ c }: { c: Contacto }) {
   const b = c.booking

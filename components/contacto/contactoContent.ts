@@ -9,7 +9,7 @@ import { useSettings } from '@/lib/settings-provider'
 import { BOOKING_ANCHOR, BOOKING_EVENT } from '@/lib/booking'
 
 /*
- * Everything ContactPage renders and does, from the same sources: messages
+ * Everything the Contacto page renders and does, from the same sources: messages
  * keys (t.contacto.*), the CMS overrides, the booking hub's hard-coded
  * wording (verbatim), the three photographs with their quotes, and the same
  * handlers for the form, the free bookings and the paid video call.
