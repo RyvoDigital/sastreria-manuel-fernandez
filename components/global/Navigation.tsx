@@ -127,7 +127,7 @@ export function Navigation() {
 
           <Link href="/" className="mf-nav-crest" aria-label={`Sastrería Manuel Fernández — ${ui.home}`} onClick={close}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/logo-manuel-fernandez.png" alt="" width={2000} height={1317} />
+            <img src="/img/crest-160.webp" srcSet="/img/crest-160.webp 160w, /img/crest-320.webp 320w, /img/crest-480.webp 480w" sizes="80px" alt="" width={2000} height={1317} />
           </Link>
 
           <div className="mf-nav-side mf-nav-side--right">

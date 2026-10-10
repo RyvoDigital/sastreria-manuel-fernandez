@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   // optimization for that host, which is metered on the Hobby plan.
   images: {
     remotePatterns: [],
+    // next/image never calls the optimiser: lib/image-loader.ts serves the
+    // copies scripts/image-variants.mjs builds into public/img/w.
+    loader: 'custom',
+    loaderFile: './lib/image-loader.ts',
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

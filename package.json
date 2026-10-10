@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "npx tsx scripts/setup-db.ts && next build",
+    "dev": "node scripts/image-variants.mjs && next dev",
+    "build": "node scripts/image-variants.mjs && npx tsx scripts/setup-db.ts && next build",
     "start": "next start",
     "lint": "eslint"
   },
