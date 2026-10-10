@@ -41,7 +41,7 @@ interface BookingCalendarProps {
     phone: string
     date: string
     time: string
-  }) => Promise<{ success: boolean; bookingId?: number }>
+  }) => Promise<{ success: boolean; bookingId?: number; cancelToken?: string }>
   onStripeCheckout?: (data: {
     name: string
     email: string
@@ -77,7 +77,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [cancelled, setCancelled] = useState(false)
   const [isCancelling, setIsCancelling] = useState(false)
   const [cancelError, setCancelError] = useState<string | null>(null)
-  const [bookingId, setBookingId] = useState<number | null>(null)
+  // Proof for cancelling this booking: only the person who made it gets it.
+  const [cancelToken, setCancelToken] = useState<string | null>(null)
   const [bookedSlots, setBookedSlots] = useState<string[]>([])
   const [blockedSlots, setBlockedSlots] = useState<string[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
@@ -373,8 +374,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
           date: toMadridDateString(selectedDate),
           time: selectedTime,
         })
-        if (result.bookingId) {
-          setBookingId(result.bookingId)
+        if (result.cancelToken) {
+          setCancelToken(result.cancelToken)
         }
         track('booking_complete', { location: 'booking' })
         setSuccess(true)
@@ -416,7 +417,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     setSuccess(false)
     setCancelled(false)
     setCancelError(null)
-    setBookingId(null)
+    setCancelToken(null)
     setStep('calendar')
     setSelectedDate(null)
     setSelectedTime(null)
@@ -428,16 +429,11 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   }
 
   const handleCancel = async () => {
-    if (!bookingId && (!selectedDate || !selectedTime || !email)) return
+    if (!cancelToken) return
     setIsCancelling(true)
     setCancelError(null)
     try {
-      const body: Record<string, unknown> = { id: bookingId }
-      if (!bookingId) {
-        body.email = email
-        body.date = selectedDate ? toMadridDateString(selectedDate) : ''
-        body.time = selectedTime
-      }
+      const body = { token: cancelToken }
       const res = await fetch('/api/booking', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -1054,7 +1050,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
               )}
 
               {/* Cancel Booking */}
-              {!cancelled && (
+              {!cancelled && cancelToken && (
                 <div style={{ marginBottom: '1.5rem' }}>
                   {cancelError && (
                     <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: '#e57373', marginBottom: '0.5rem' }}>
