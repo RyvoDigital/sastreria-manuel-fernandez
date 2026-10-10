@@ -7,16 +7,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScene, highlight, depth, speeds, type SceneEnv } from '@/lib/scroll-scene'
 import { Words } from '@/components/el-hilo/Words'
 import { BookingLink } from '@/components/global/BookingLink'
-import { useServiciosContent, HERO_IMG, GARMENTS, OVERVIEW, HOUSES } from './content'
-import { CredLinks, HERO_EYEBROW, HERO_TITLE, MundoGlobe, Stats } from './shared'
-import s from './servicios.module.css'
+import { useServiciosContent, HERO_IMG, GARMENTS, OVERVIEW, HOUSES } from './serviciosContent'
+import { CredLinks, HERO_EYEBROW, HERO_TITLE, MundoGlobe, Stats } from './serviciosShared'
+import s from './el-hilo-servicios.module.css'
 
-/* A · El muestrario: the hero opens from a stitched swatch; the repertoire is
+/* El muestrario: the hero opens from a stitched swatch; the repertoire is
    an index whose sticky frame shows the garment being named. */
 const HERO_RUN = 90
 const GARMENT_SPEED = ['0.04', '0.22', '0.1', '0.3']
 
-export function ServiciosA() {
+export function ElHiloServicios() {
   const c = useServiciosContent()
   const root = useRef<HTMLDivElement>(null)
   useScene(root, build, [c.locale])

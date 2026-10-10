@@ -3,10 +3,8 @@
    La Sastrería: navy, a gold dashed thread, light Cormorant, scrubbed
    highlights, masked-frame parallax). Static by default; [data-staged]
    switches on the pinned and sticky layouts.
-     A · El muestrario — the hero opens from a stitched swatch; the
-         repertoire is an index whose sticky frame shows the garment named.
-     B · El probador  — the garments part like a rail to show Pure Bespoke;
-         the repertoire is one frame where each name is tried on in turn.
+     El muestrario: the hero opens from a stitched swatch; the repertoire
+     is an index whose sticky frame shows the garment named.
    Mobile first (390), then 900+.
    ───────────────────────────────────────────────────────────────────────── */
 
@@ -274,75 +272,3 @@
   .aCredGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 5vw; }
 }
 .page[data-staged] .aHouses { flex-wrap: nowrap; width: max-content; white-space: nowrap; gap: 2.5rem; }
-
-/* ═════════════════════════════════════════════════════════════════════════
-   B · EL PROBADOR
-   ═════════════════════════════════════════════════════════════════════════ */
-/* hero: static = the pattern photo with the caption, then the four garments */
-.bHero .stage { min-height: 100svh; }
-.bBack { position: absolute; inset: 0; }
-.bRail { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 6px; }
-/* keeps the menu readable over the light photographs */
-.bRail { position: relative; }
-.bRail::after { content: ''; position: absolute; inset: 0 0 auto; height: 24svh; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(10, 22, 40, 0.78), rgba(10, 22, 40, 0)); }
-.bRail > div { aspect-ratio: 3 / 4; }
-.bHeroStatic { position: relative; height: 100svh; }
-.page[data-staged] .bHeroStatic { position: absolute; inset: 0; height: auto; }
-.page[data-staged] .bRail { position: absolute; inset: 0; z-index: 3; padding: 0; gap: 0; }
-.page[data-staged] .bRail { grid-template-rows: 1fr 1fr; }
-.page[data-staged] .bRail > div { aspect-ratio: auto; }
-@media (min-width: 900px) {
-  .bRail { grid-template-columns: repeat(4, 1fr); }
-  .page[data-staged] .bRail { grid-template-rows: 1fr; }
-}
-
-/* repertoire: one frame, each name tried on in turn */
-.bRep .stage { padding: 0; }
-.bRepBack { display: none; }
-.bRepInner { position: relative; z-index: 1; padding: clamp(5rem, 4rem + 6vw, 9rem) var(--pad) 0; }
-.bRepList { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.75rem; }
-.bRepRow { display: flex; align-items: center; gap: 1rem; }
-.bRepName {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: clamp(1.75rem, 1.3rem + 2.2vw, 3.5rem);
-  line-height: 1.08;
-  overflow-wrap: anywhere;
-}
-.bRepThumb { position: relative; flex: none; width: 64px; aspect-ratio: 4 / 3; overflow: hidden; order: -1; }
-.page[data-staged] .bRepThumb { display: none; }
-.page[data-staged] .bRepBack { display: block; position: absolute; inset: 0; }
-.page[data-staged] .bRepBack > div { position: absolute; inset: 0; opacity: 0; }
-.page[data-staged] .bRepBack::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10, 22, 40, 0.92) 0%, rgba(10, 22, 40, 0.7) 55%, rgba(10, 22, 40, 0.35) 100%); }
-.page[data-staged] .bRepInner { height: 100%; display: flex; flex-direction: column; justify-content: center; padding-top: calc(var(--nav) + 1rem); padding-bottom: 2rem; }
-.bRepTrack { position: relative; }
-.page[data-staged] .bRepList { gap: 0.2rem; margin-top: 1rem; }
-.page[data-staged] .bRepTrack { padding-left: 18px; }
-.page[data-staged] .bRepTrack::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: rgba(232, 213, 163, 0.18); }
-.page[data-staged] .bProgress { position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--stitch-v); transform-origin: top center; transform: scaleY(0); }
-.page[data-staged] .bRepName { font-size: clamp(1.55rem, 1.1rem + 2.1vw, 3.1rem); color: rgba(255, 255, 255, 0.24); }
-.bProgress { display: none; }
-.page[data-staged] .bProgress { display: block; }
-
-/* credenciales: the showroom photo opens from a slit, the headline over it */
-.bCredHead { position: relative; min-height: 88svh; display: grid; align-items: end; padding: 0 var(--pad) 3rem; }
-.bCredPhoto { position: absolute; inset: 0; overflow: hidden; }
-.bCredPhoto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 22, 40, 0.1) 30%, rgba(10, 22, 40, 0.9)); }
-.bCredText { position: relative; z-index: 1; }
-.bCredBody { display: grid; gap: 2.5rem; }
-@media (min-width: 900px) {
-  .bCredBody { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 6vw; align-items: start; }
-}
-.bStats { margin-top: 0; }
-@media (max-width: 899px) { .bStats { margin-top: 1rem; } }
-.bHousesList { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1.25rem; margin-top: 1.25rem; padding: 0; list-style: none; font-family: var(--font-serif); font-weight: 300; font-size: clamp(1.2rem, 0.9rem + 2vw, 2.75rem); line-height: 1.2; }
-@media (min-width: 900px) {
-  .bHousesList { column-gap: 3rem; }
-}
-
-/* mundo: the globe holds while the places are read */
-@media (min-width: 900px) {
-  .page[data-staged] .bMundoGrid { align-items: start; }
-  .page[data-staged] .bGlobeCol { position: sticky; top: calc(50svh - 270px + var(--nav) / 2); }
-  .page[data-staged] .bMundoText { padding: 10svh 0 20svh; }
-}

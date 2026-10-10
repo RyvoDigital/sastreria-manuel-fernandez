@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import type { GlobeArc, GlobeMarker } from '@/components/ui/globe'
-import type { ServiciosContent } from './content'
-import s from './servicios.module.css'
+import type { ServiciosContent } from './serviciosContent'
+import s from './el-hilo-servicios.module.css'
 
 /* ServiciosHero's centre caption, hard-coded on live ("Pure Bespoke" stays untranslated). */
 export const HERO_EYEBROW = 'Sastrería Manuel Fernández'

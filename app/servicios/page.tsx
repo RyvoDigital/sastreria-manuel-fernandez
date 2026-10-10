@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiciosLayout } from '@/components/servicios/ServiciosLayout'
+import { ElHiloServicios } from '@/components/servicios/ElHiloServicios'
 
 export const metadata: Metadata = {
   title: 'Servicios · Sastrería Manuel Fernández',
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 }
 
 export default function ServiciosPage() {
-  return <ServiciosLayout />
+  return <ElHiloServicios />
 }

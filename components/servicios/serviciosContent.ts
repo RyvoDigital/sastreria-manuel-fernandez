@@ -43,7 +43,7 @@ export const HOUSES = [
 /*
  * Strings live shows in one or two languages only (es, with en for every
  * other locale). Spanish and English are the live wording; fr and it are
- * proposed translations, pending approval before this goes live.
+ * translations approved for the El hilo redesign (Oct 2026).
  */
 type L = 'es' | 'en' | 'fr' | 'it'
 const MASTER: Record<L, string> = { es: 'Maestro Sastre', en: 'Master Tailor', fr: 'Maître Tailleur', it: 'Maestro Sarto' }
@@ -53,7 +53,7 @@ const HOUSES_LABEL: Record<L, string> = {
   fr: 'Maisons de tissus avec lesquelles nous travaillons',
   it: 'Case tessili con cui lavoriamo',
 }
-/* TejidosMundoSection's list, Spanish only on live; en/fr/it proposed. */
+/* TejidosMundoSection's list, Spanish only before; en/fr/it approved. */
 const CITIES: Record<L, [string, string][]> = {
   es: [['Miami', 'USA'], ['Oporto', 'Portugal'], ['Lisboa', 'Portugal'], ['París', 'Francia'], ['Londres', 'UK'], ['Roma', 'Italia'], ['Dubái', 'UAE'], ['Rep. Dominicana', 'Caribe'], ['Perú', 'Sudamérica']],
   en: [['Miami', 'USA'], ['Porto', 'Portugal'], ['Lisbon', 'Portugal'], ['Paris', 'France'], ['London', 'UK'], ['Rome', 'Italy'], ['Dubai', 'UAE'], ['Dominican Rep.', 'Caribbean'], ['Peru', 'South America']],
