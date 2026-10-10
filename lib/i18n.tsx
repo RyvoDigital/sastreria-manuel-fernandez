@@ -1,10 +1,7 @@
 'use client'
 
-import React, { createContext, useContext, useState, useCallback, type ReactNode } from 'react'
+import React, { createContext, useContext, useState, useCallback, useRef, type ReactNode } from 'react'
 import es from '@/messages/es.json'
-import en from '@/messages/en.json'
-import it from '@/messages/it.json'
-import fr from '@/messages/fr.json'
 
 export type Locale = 'es' | 'en' | 'it' | 'fr'
 
@@ -17,7 +14,17 @@ const LOCALE_LABELS: Record<Locale, string> = {
 
 type Messages = typeof es
 
-const dictionaries: Record<Locale, Messages> = { es, en, it, fr }
+/*
+ * Spanish ships with every page; the site always opens in Spanish. The other
+ * three are fetched the first time someone picks them (about 8 kB each over
+ * the wire), so no visitor downloads four dictionaries to read one. The
+ * return type keeps each translation checked against the Spanish shape.
+ */
+const loaders: Record<Exclude<Locale, 'es'>, () => Promise<Messages>> = {
+  en: () => import('@/messages/en.json').then((m): Messages => m.default),
+  it: () => import('@/messages/it.json').then((m): Messages => m.default),
+  fr: () => import('@/messages/fr.json').then((m): Messages => m.default),
+}
 
 interface I18nContextValue {
   locale: Locale
@@ -31,23 +38,33 @@ interface I18nContextValue {
 const I18nContext = createContext<I18nContextValue | null>(null)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('es')
+  const [{ locale, t }, setCurrent] = useState<{ locale: Locale; t: Messages }>({ locale: 'es', t: es })
+  const cache = useRef<Partial<Record<Locale, Messages>>>({ es })
+  const requested = useRef<Locale>('es')
 
-  const toggleLocale = useCallback(() => {
-    setLocaleState((prev) => {
-      const order: Locale[] = ['es', 'en', 'it', 'fr']
-      const idx = order.indexOf(prev)
-      return order[(idx + 1) % order.length]
+  // Switches once the dictionary is in hand, so the page never renders a
+  // locale without its text. The last choice wins if clicks overlap.
+  const setLocale = useCallback((newLocale: Locale) => {
+    requested.current = newLocale
+    const cached = cache.current[newLocale]
+    if (cached) {
+      setCurrent({ locale: newLocale, t: cached })
+      return
+    }
+    loaders[newLocale as Exclude<Locale, 'es'>]().then((messages) => {
+      cache.current[newLocale] = messages
+      if (requested.current === newLocale) setCurrent({ locale: newLocale, t: messages })
     })
   }, [])
 
-  const setLocale = useCallback((newLocale: Locale) => {
-    setLocaleState(newLocale)
-  }, [])
+  const toggleLocale = useCallback(() => {
+    const order: Locale[] = ['es', 'en', 'it', 'fr']
+    setLocale(order[(order.indexOf(requested.current) + 1) % order.length])
+  }, [setLocale])
 
   const value: I18nContextValue = {
     locale,
-    t: dictionaries[locale],
+    t,
     toggleLocale,
     setLocale,
     locales: ['es', 'en', 'it', 'fr'],
