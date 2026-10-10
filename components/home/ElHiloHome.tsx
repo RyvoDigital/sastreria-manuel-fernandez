@@ -66,6 +66,10 @@ const ZOOM_DRIFT = [0, 0.55, 0.3, 0.45, 0.62, 0.38, 0.5, 0.7]
 
 const pad2 = (n: number) => String(n).padStart(2, '0')
 
+/* The live testimonials' Google Reviews badge linked to the shop on Google Maps; same link here. */
+const REVIEWS_HREF =
+  'https://www.google.com/maps/search/?api=1&query=Sastrería+Manuel+Fernández,+C.+de+Jorge+Juan,+41,+Salamanca,+28001+Madrid'
+
 export function ElHiloHome() {
   const c = useHomeContent()
   const root = useRef<HTMLDivElement>(null)
@@ -257,7 +261,9 @@ export function ElHiloHome() {
                 {c.testimonials.title}
               </h2>
               <p className={s.rating}>
-                <span className={s.stars}>★ 4.9/5</span> <span>Google Reviews</span>
+                <a href={REVIEWS_HREF} target="_blank" rel="noopener noreferrer" className={s.ratingLink}>
+                  <span className={s.stars}>★ 4.9/5</span> <span>Google Reviews</span>
+                </a>
               </p>
             </header>
             <ul className={s.vList}>

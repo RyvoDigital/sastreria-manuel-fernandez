@@ -601,6 +601,18 @@
   color: rgba(255, 255, 255, 0.7);
 }
 .stars { color: var(--color-gold); }
+.ratingLink {
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 9999px;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+.ratingLink:hover { background: rgba(255, 255, 255, 0.1); }
+.ratingLink:focus-visible { outline: 1px solid var(--color-gold); outline-offset: 3px; }
 .vList { list-style: none; display: grid; gap: 3rem; margin-top: 3rem; }
 .vQuote {
   font-family: var(--font-serif);
