@@ -4,7 +4,12 @@ import { useEffect, useLayoutEffect, type RefObject } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (typeof window !== 'undefined') gsap.registerPlugin(ScrollTrigger)
+// ignoreMobileResize: the iOS address bar showing and hiding does not
+// re-measure every pin.
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+  ScrollTrigger.config({ ignoreMobileResize: true })
+}
 
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 

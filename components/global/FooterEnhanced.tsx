@@ -1,14 +1,13 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { BookingLink } from '@/components/global/BookingLink'
-import { motion } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
 import { useSettings } from '@/lib/settings-provider'
 import { usePathname } from 'next/navigation'
 import { Send, MessageCircle } from 'lucide-react'
 import { SITE_PHONE_E164 } from '@/lib/site'
-import { track } from '@/lib/analytics'
 
 const ALL_NAV_COL1 = [
   { key: 'inicio' as const, href: '/', settingId: null },
@@ -26,6 +25,21 @@ export function FooterEnhanced() {
   const { t } = useI18n()
   const { isEnabled } = useSettings()
   const pathname = usePathname()
+  const watermarkRef = useRef<HTMLDivElement>(null)
+
+  // The watermark scales in once, the first time any of it scrolls into view.
+  useEffect(() => {
+    const el = watermarkRef.current
+    if (!el) return
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.dataset.inview = ''
+        io.disconnect()
+      }
+    })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   const NAV_COL1 = ALL_NAV_COL1.filter((item) => {
     if (!item.settingId) return true
@@ -49,16 +63,13 @@ export function FooterEnhanced() {
       overflow: 'hidden',
     }}>
       {/* Background scaling text */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 0.03, scale: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-        viewport={{ once: true }}
+      <div
+        ref={watermarkRef}
+        className="mf-footer-watermark"
         style={{
           position: 'absolute',
           top: '10%',
           left: '50%',
-          transform: 'translateX(-50%)',
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(10rem, 25vw, 30rem)',
           color: '#FFFFFF',
@@ -69,7 +80,7 @@ export function FooterEnhanced() {
         }}
       >
         FERNÁNDEZ
-      </motion.div>
+      </div>
 
       <div style={{
         maxWidth: 'var(--container-max)',
@@ -202,7 +213,7 @@ export function FooterEnhanced() {
 
               <a
                 href={`tel:${SITE_PHONE_E164}`}
-                onClick={() => track('phone_click', { location: 'footer' })}
+                data-track="phone_click:footer"
                 style={{
                   color: 'rgba(255,255,255,0.5)',
                   textDecoration: 'none',
@@ -267,7 +278,7 @@ export function FooterEnhanced() {
               Facebook
             </a>
             <a href="https://wa.me/34682192944" target="_blank" rel="noopener noreferrer"
-              onClick={() => track('whatsapp_click', { location: 'footer' })} style={{ 
+              data-track="whatsapp_click:footer" style={{ 
               fontFamily: 'var(--font-sans)',
               fontSize: '0.75rem',
               color: 'rgba(255,255,255,0.4)', 
@@ -297,9 +308,8 @@ export function FooterEnhanced() {
       </div>
 
       {/* Decorative pulse at the bottom */}
-      <motion.div
-        animate={{ opacity: [0.1, 0.2, 0.1] }}
-        transition={{ duration: 4, repeat: Infinity }}
+      <div
+        className="mf-footer-pulse"
         style={{
           position: 'absolute',
           bottom: '-10rem',
@@ -311,7 +321,7 @@ export function FooterEnhanced() {
           pointerEvents: 'none',
         }}
       />
-      <style>{FOOT_CSS}</style>
+      <style>{FOOT_CSS + MOTION_CSS}</style>
     </footer>
   )
 }
@@ -340,5 +350,22 @@ const FOOT_CSS = `
 body:has([data-booking-end]) .mf-foot-book { display: none; }
 @media (min-width: 900px) {
   .mf-foot-book { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+}
+`
+
+/*
+ * The watermark and the pulse used framer-motion, which put that library on
+ * every page. Same values in CSS. framer composed the watermark's transform
+ * from its scale alone, dropping the inline translateX(-50%), so it settles
+ * at transform: none; kept that way to stay identical.
+ */
+const MOTION_CSS = `
+.mf-footer-watermark { opacity: 0; transform: scale(0.8); transition: opacity 2s cubic-bezier(0, 0, 0.58, 1), transform 2s cubic-bezier(0, 0, 0.58, 1); }
+.mf-footer-watermark[data-inview] { opacity: 0.03; transform: none; }
+.mf-footer-pulse { opacity: 0.1; animation: mf-footer-pulse 4s cubic-bezier(0.42, 0, 0.58, 1) infinite; }
+@keyframes mf-footer-pulse { 0%, 100% { opacity: 0.1 } 50% { opacity: 0.2 } }
+@media (prefers-reduced-motion: reduce) {
+  .mf-footer-watermark { transition: none; }
+  .mf-footer-pulse { animation: none; }
 }
 `
