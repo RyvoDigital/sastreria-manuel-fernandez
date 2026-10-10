@@ -459,7 +459,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   return (
     <div style={{
       minHeight: '100vh',
-      padding: 'clamp(5rem, 10vh, 7rem) var(--container-padding) 4rem',
+      // Clear the fixed header (utility bar + menu row, about 108px on desktop)
+      // so the Volver button is not under the menu's hit area.
+      padding: 'calc(var(--header-offset, 84px) + 2rem) var(--container-padding) 4rem',
       background: '#0A1628',
       position: 'relative',
     }}>
