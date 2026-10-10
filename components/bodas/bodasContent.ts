@@ -44,7 +44,7 @@ const CAROUSEL = [
 
 type L = 'es' | 'en' | 'fr' | 'it'
 
-/* Live shows these captions in English for every language; es/fr/it are proposed. */
+/* The old page showed these captions in English for every language; es/fr/it approved (Oct 2026). */
 const CAPTIONS: Record<L, string[]> = {
   en: ['Detail', 'Fabric', 'Precision', 'Atelier', 'Handwork', 'Craft', 'Process', 'Tailor Shop', 'Studio', 'Fitting', 'Pattern', 'Groom Detail', 'Morning Coat'],
   es: ['Detalle', 'Tejido', 'Precisión', 'Taller', 'Hecho a mano', 'Oficio', 'Proceso', 'Sastrería', 'Estudio', 'Prueba', 'Patrón', 'Detalle del novio', 'Chaqué'],
@@ -52,7 +52,7 @@ const CAPTIONS: Record<L, string[]> = {
   it: ['Dettaglio', 'Tessuto', 'Precisione', 'Atelier', 'Fatto a mano', 'Mestiere', 'Processo', 'Sartoria', 'Studio', 'Prova', 'Cartamodello', "Dettaglio dello sposo", 'Tight'],
 }
 
-/* BodasFormalWear's heading: es/en on live; fr/it proposed. */
+/* BodasFormalWear's heading: es/en before; fr/it approved (Oct 2026). */
 const WEAR_HEADING: Record<L, string> = {
   es: 'Vestimenta & Accesorios',
   en: 'Formal Wear & Accessories',

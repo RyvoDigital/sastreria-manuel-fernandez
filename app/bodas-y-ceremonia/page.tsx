@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { BodasLayout } from '@/components/bodas/BodasLayout'
+import { ElHiloBodas } from '@/components/bodas/ElHiloBodas'
 import { ServiceGate } from '@/components/global/ServiceGate'
 import { isSettingEnabled } from '@/lib/settings-server'
 
@@ -16,7 +16,7 @@ export default async function BodasPage() {
   const enabled = await isSettingEnabled('bodas')
   return (
     <ServiceGate settingId="bodas" initialEnabled={enabled}>
-      <BodasLayout />
+      <ElHiloBodas />
     </ServiceGate>
   )
 }

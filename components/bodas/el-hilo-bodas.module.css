@@ -2,10 +2,8 @@
    Bodas y Ceremonia in the El hilo system (navy, a gold dashed thread,
    light Cormorant, scrubbed highlights, masked-frame parallax). Static by
    default; [data-staged] switches on the pinned and sticky layouts.
-     A · El álbum   — every photograph is a print in a stitched mount; the
-         process turns its pages in one place; the album drifts past.
-     B · El pasillo — a thread down the centre like an aisle; the hero opens
-         from it, the styles stack like cards, the photos rise in columns.
+     El álbum: every photograph is a print in a stitched mount; the process
+     turns its pages in one place; the album drifts past.
    Mobile first (390), then 900+.
    ───────────────────────────────────────────────────────────────────────── */
 
@@ -106,7 +104,7 @@
 .page[data-staged] .pin { height: calc(100svh + var(--run) * var(--k) * 1svh); }
 .page[data-staged] .pin > .stage { position: sticky; top: 0; height: 100svh; overflow: clip; }
 
-/* Lists shared by both: what the groom wears, and what comes with it */
+/* Lists: what the groom wears, and what comes with it */
 .lists { display: grid; gap: 2.5rem; margin-top: 2.5rem; }
 .list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.5rem; }
 .list li { font-family: var(--font-serif); font-weight: 300; font-size: clamp(1.35rem, 1.1rem + 1vw, 2rem); line-height: 1.2; }
@@ -115,19 +113,16 @@
   .listTwo { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
 }
 
-/* Process step (both) */
+/* Process step */
 .stepNum { font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: clamp(3.5rem, 2.5rem + 4vw, 7rem); line-height: 0.9; color: var(--color-gold); }
 .stepTitle { margin-top: 1rem; }
 
-/* Final (both): the photo sits dark behind the invitation */
+/* Final: the photo sits dark behind the invitation */
 .final { position: relative; overflow: hidden; min-height: 100svh; display: grid; align-items: center; padding: clamp(6rem, 5rem + 6vw, 10rem) var(--pad); margin-top: clamp(5rem, 4rem + 6vw, 9rem); }
 .finalPhoto { position: absolute; inset: 0; overflow: hidden; }
 .finalPhoto img { filter: brightness(0.32) saturate(0.6); }
 .finalInner { position: relative; z-index: 1; }
 
-/* ═════════════════════════════════════════════════════════════════════════
-   A · EL ÁLBUM
-   ═════════════════════════════════════════════════════════════════════════ */
 /* a print: photograph in a stitched mount */
 .print { position: relative; padding: 10px; }
 .print::before {
@@ -196,83 +191,6 @@
 .aShot .frame { aspect-ratio: 3 / 4; }
 .aShot figcaption { margin-top: 0.75rem; }
 @media (min-width: 900px) { .aShot { width: 22vw; } }
-
-/* ═════════════════════════════════════════════════════════════════════════
-   B · EL PASILLO
-   ═════════════════════════════════════════════════════════════════════════ */
-.bAisle {
-  position: absolute;
-  top: 100svh;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: var(--stitch-v);
-  transform-origin: top center;
-  pointer-events: none;
-  opacity: 0.5;
-}
-.center { text-align: center; margin-left: auto; margin-right: auto; }
-.bSection { position: relative; padding: clamp(5rem, 4rem + 6vw, 9rem) var(--pad) 0; text-align: center; }
-.bSection .statement, .bSection .body { margin-left: auto; margin-right: auto; }
-.bPanel { position: relative; background: var(--color-navy); padding: 1.5rem 0; }
-
-/* hero: the aisle opens into the photograph */
-.bHero .stage { min-height: 100svh; }
-.bHeroBack { position: absolute; inset: 0; opacity: 0.18; }
-.bHeroPhoto { position: absolute; inset: 0; }
-.bHeroPhoto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0) 30%, rgba(10, 22, 40, 0) 50%, rgba(10, 22, 40, 0.85) 100%); }
-.bHeroText { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 0 var(--pad) 3.5rem; text-align: center; }
-.bHeroStatic { position: relative; height: 100svh; }
-
-/* styles: the cards stack */
-.bCats { list-style: none; padding: 0; margin: 2.5rem 0 0; display: grid; gap: 3rem; text-align: left; }
-.bCat .frame { aspect-ratio: 4 / 5; }
-.bCatText { margin-top: 1.25rem; }
-.page[data-staged] .bCatsStage { display: flex; flex-direction: column; justify-content: center; padding: calc(var(--nav) + 0.5rem) var(--pad) 1.5rem; }
-.page[data-staged] .bCats { display: block; position: relative; flex: 1; margin-top: 1rem; }
-.page[data-staged] .bCat { position: absolute; inset: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; background: var(--color-navy); }
-.page[data-staged] .bCat .frame { aspect-ratio: auto; }
-@media (min-width: 900px) {
-  .bCats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .page[data-staged] .bCat { grid-template-rows: minmax(0, 1fr); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; gap: 4vw; }
-  .page[data-staged] .bCat .bCatText { align-self: end; padding-bottom: 2rem; }
-  .page[data-staged] .bCats { max-width: 72rem; width: 100%; margin-left: auto; margin-right: auto; }
-}
-
-.bInvite { position: relative; max-width: 44rem; margin: 2.5rem auto 0; padding: clamp(2rem, 1.5rem + 3vw, 3.5rem) clamp(1.25rem, 1rem + 3vw, 3.5rem); background: var(--color-navy); box-shadow: inset 0 0 0 1px rgba(232, 213, 163, 0.3); }
-.bInvite .lists { text-align: left; }
-
-.bSuit { position: relative; display: grid; gap: 2.5rem; text-align: left; }
-.bSuit .frame { aspect-ratio: 4 / 5; }
-@media (min-width: 900px) {
-  .bSuit { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8vw; align-items: center; }
-}
-
-/* process: steps on alternate sides of the aisle */
-.bSteps { list-style: none; padding: 0; margin: 3rem 0 0; display: grid; gap: 3.5rem; }
-.bStep { position: relative; background: var(--color-navy); padding: 1rem 0; }
-.bKnot { display: block; width: 11px; height: 11px; margin: 0 auto 1.25rem; border-radius: 50%; border: 1px solid var(--color-gold); background: var(--color-navy); }
-@media (min-width: 900px) {
-  .bSteps { gap: 0; }
-  .bStep { width: calc(50% - 4vw); text-align: right; padding: 2.5rem 0; }
-  .bStep:nth-child(even) { margin-left: auto; text-align: left; }
-  .bStep .body { margin-left: auto; }
-  .bStep:nth-child(even) .body { margin-left: 0; }
-  .bKnot { position: absolute; top: 3.25rem; right: calc(-4vw - 6px); margin: 0; }
-  .bStep:nth-child(even) .bKnot { right: auto; left: calc(-4vw - 6px); }
-}
-
-/* the photographs rise in columns (two on a phone, three on desktop; one set shows) */
-.bCols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 2.5rem; padding: 0 var(--pad); text-align: left; }
-.bColsD { display: none; }
-.bCol { display: grid; gap: 0.75rem; align-content: start; }
-.bShot .frame { aspect-ratio: 3 / 4; }
-.bShot figcaption { margin-top: 0.5rem; }
-@media (min-width: 900px) {
-  .bColsM { display: none; }
-  .bColsD { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5vw; }
-  .bCol { gap: 1.5vw; }
-}
 
 /* A pinned section's own padding would eat into its sticky run; its stage pads itself. */
 .page[data-staged] .pin { padding: 0; }

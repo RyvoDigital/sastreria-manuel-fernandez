@@ -4,8 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Words } from '@/components/el-hilo/Words'
 import { BookingLink } from '@/components/global/BookingLink'
-import { FINAL, type BodasContent } from './content'
-import s from './bodas.module.css'
+import { FINAL, type BodasContent } from './bodasContent'
+import s from './el-hilo-bodas.module.css'
 
 /* BodasFormalWear: what the groom wears, and everything that comes with it. */
 export function WearLists({ c }: { c: BodasContent }) {
@@ -32,7 +32,7 @@ export function WearLists({ c }: { c: BodasContent }) {
 }
 
 /* BodasFinal: the closing invitation; its booking button ends the page. */
-export function Final({ c, centered }: { c: BodasContent; centered?: boolean }) {
+export function Final({ c }: { c: BodasContent }) {
   return (
     <section className={s.final} aria-labelledby="h-final" data-final>
       <div className={s.finalPhoto} data-final-photo>
@@ -40,12 +40,12 @@ export function Final({ c, centered }: { c: BodasContent; centered?: boolean }) 
           <Image src={FINAL.src} alt={FINAL.alt} fill sizes="100vw" className={s.cover} />
         </div>
       </div>
-      <div className={`${s.finalInner} ${centered ? s.center : ''}`}>
+      <div className={s.finalInner}>
         <span className={s.eyebrow}>{c.cta.label}</span>
-        <h2 id="h-final" className={`${s.statement} ${centered ? s.center : ''}`} style={{ marginTop: '1.25rem' }} data-hl>
+        <h2 id="h-final" className={s.statement} style={{ marginTop: '1.25rem' }} data-hl>
           <Words text={c.cta.headline} />
         </h2>
-        <div className={s.actions} style={centered ? { justifyContent: 'center' } : undefined}>
+        <div className={s.actions}>
           <BookingLink end className={s.btnPrimary}>
             {c.cta.btn_primary}
           </BookingLink>

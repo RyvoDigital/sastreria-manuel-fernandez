@@ -5,15 +5,15 @@ import Image from 'next/image'
 import { gsap } from 'gsap'
 import { useScene, highlight, depth, speeds, type SceneEnv } from '@/lib/scroll-scene'
 import { Words } from '@/components/el-hilo/Words'
-import { useBodasContent, HERO, SUIT } from './content'
-import { Final, WearLists } from './shared'
-import s from './bodas.module.css'
+import { useBodasContent, HERO, SUIT } from './bodasContent'
+import { Final, WearLists } from './bodasShared'
+import s from './el-hilo-bodas.module.css'
 
-/* A · El álbum: every photograph is a print in a stitched mount; the process
+/* El álbum: every photograph is a print in a stitched mount; the process
    turns its pages in one place; the album drifts past in two rows. */
 const PROC_RUN = 120
 
-export function BodasA() {
+export function ElHiloBodas() {
   const c = useBodasContent()
   const root = useRef<HTMLDivElement>(null)
   useScene(root, build, [c.locale])
