@@ -267,7 +267,7 @@ export function SastreriaArtesanalMadrid() {
       </section>
 
       <div className="bleed">
-        <ParallaxFigure {...IMAGES.opening} height="clamp(16rem, 40vw, 30rem)" drift={56} />
+        <ParallaxFigure priority {...IMAGES.opening} height="clamp(16rem, 40vw, 30rem)" drift={56} />
       </div>
 
       {/* Method. Italic emphasis kept: this heading carries an argument. */}

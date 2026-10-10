@@ -191,7 +191,7 @@ export function TrajesAMedidaMadrid() {
       </section>
 
       <div className="bleed">
-        <ParallaxFigure {...IMAGES.suit} height="clamp(16rem, 38vw, 28rem)" drift={56} objectPosition="center 30%" />
+        <ParallaxFigure priority {...IMAGES.suit} height="clamp(16rem, 38vw, 28rem)" drift={56} objectPosition="center 30%" />
       </div>
 
       {/* What you can order. Links out to the full repertoire. */}

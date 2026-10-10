@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap-setup'
+import { responsive } from '@/lib/responsive-image'
+
+// Full bleed, drawn taller than its frame by the drift and cropped to cover:
+// measured widest 160vw at 390px, 100vw from 768px up.
+const SIZES = '(max-width: 600px) 176vw, (max-width: 1100px) 111vw, 111vw'
 
 /**
  * Image with a scrubbed parallax drift.
@@ -17,12 +22,15 @@ export function ParallaxFigure({
   height = 'clamp(20rem, 42vw, 34rem)',
   drift = 40,
   objectPosition = 'center',
+  priority = false,
 }: {
   src: string
   alt: string
   height?: string
   drift?: number
   objectPosition?: string
+  /** The first figure after a landing hero is partly in view on load: fetch it eagerly. */
+  priority?: boolean
 }) {
   const frameRef = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLImageElement>(null)
@@ -49,9 +57,11 @@ export function ParallaxFigure({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={imgRef}
-        src={src}
+        {...responsive(src, SIZES)}
         alt={alt}
-        loading="lazy"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : undefined}
+        decoding={priority ? undefined : 'async'}
         style={{
           position: 'absolute',
           inset: `-${drift}px 0 -${drift}px 0`,

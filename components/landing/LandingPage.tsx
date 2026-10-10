@@ -118,6 +118,7 @@ export function LandingPage({ content }: { content: LandingContent }) {
           return (
             <div className="bleed" key={i}>
               <ParallaxFigure
+                priority={i === content.blocks.findIndex((b) => b.kind === 'figure')}
                 src={block.src}
                 alt={block.alt}
                 height={block.height ?? 'clamp(15rem, 36vw, 28rem)'}
