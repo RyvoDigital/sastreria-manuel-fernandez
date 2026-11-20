@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, type ReactNode } from 'react'
+import { usePathname } from 'next/navigation'
 
 /*
  * One scroll clock for the whole site. With a mouse or trackpad Lenis smooths
@@ -12,10 +13,18 @@ import { useEffect, type ReactNode } from 'react'
  * Lenis and GSAP are imported on demand, so a page that needs neither (legal,
  * 404) never downloads them on those devices. ScrollTrigger's own settings
  * live in lib/scroll-scene.ts and lib/gsap-setup.ts, where pages load it.
+ *
+ * The admin (/admin) never runs Lenis: it has no scroll animations, and Lenis
+ * takes the wheel and trackpad, so long modals (the measurements form) could
+ * only be scrolled by dragging their scrollbar. Moving between the public site
+ * and the admin starts or stops it.
  */
 export function LenisProvider({ children }: { children: ReactNode }) {
+  const isAdmin = usePathname()?.startsWith('/admin') ?? false
+
   useEffect(() => {
     const skip =
+      isAdmin ||
       window.matchMedia('(max-width: 768px)').matches ||
       window.matchMedia('(hover: none), (pointer: coarse)').matches ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -55,7 +64,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       cancelled = true
       cleanup?.()
     }
-  }, [])
+  }, [isAdmin])
 
   return <>{children}</>
 }
