@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { bookSlot, isSlotBooked } from '@/lib/bookings'
+import { bookPaidVideocall } from '@/lib/bookings'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
 import { sendBookingEmails } from '@/lib/booking/emails'
-import { isSlotBlocked } from '@/lib/availability'
 
 export async function GET(req: NextRequest) {
   try {
@@ -47,28 +46,27 @@ export async function GET(req: NextRequest) {
       )
     }
 
-    const alreadyBooked = await isSlotBooked(date, time)
-    if (!alreadyBooked) {
-      const blocked = await isSlotBlocked(date, time)
-      if (blocked) {
-        return NextResponse.json({ success: false, error: 'unavailable' }, { status: 409 })
-      }
+    // The slot was held for this session while the client paid. The webhook may have booked it
+    // already: only the first of the two creates the booking and sends the emails.
+    const result = await bookPaidVideocall({
+      name,
+      email,
+      phone,
+      date,
+      time,
+      type: 'videocall',
+      locale,
+      createdAt: new Date().toISOString(),
+      stripeSessionId: session.id,
+      holdToken: metadata.hold || null,
+    })
 
-      const bookResult = await bookSlot({
-        name,
-        email,
-        phone,
-        date,
-        time,
-        type: 'videocall',
-        locale,
-        createdAt: new Date().toISOString(),
-      })
+    if (!result.ok) {
+      console.error('Stripe verify: paid video call could not be booked, the slot is taken', { date, time, session: session.id })
+      return NextResponse.json({ success: false, error: result.error }, { status: 409 })
+    }
 
-      if (!bookResult.success) {
-        return NextResponse.json({ success: false, error: bookResult.error }, { status: 409 })
-      }
-
+    if (result.created) {
       await sendBookingEmails({
         name,
         email,

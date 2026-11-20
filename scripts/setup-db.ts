@@ -34,17 +34,43 @@ async function setup() {
       )
     `)
 
-    await pool.query(`
-      CREATE UNIQUE INDEX IF NOT EXISTS idx_bookings_date_time
-      ON bookings (date, time)
-    `)
-
     // Add missing columns if table was created before these existed
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'confirmed'`)
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS type VARCHAR(20) DEFAULT 'inperson'`)
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS phone VARCHAR(50)`)
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS locale VARCHAR(10) DEFAULT 'es'`)
     await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP`)
+
+    // One active booking per slot. A cancelled cita stays in Citas but frees its time, so the
+    // unique index covers every row except cancelled ones (see lib/booking/slots.ts).
+    await pool.query(`
+      CREATE UNIQUE INDEX IF NOT EXISTS bookings_slot_activo_key
+      ON bookings (date, time) WHERE status IS DISTINCT FROM 'cancelled'
+    `)
+    // The original index covered cancelled rows too and kept their time blocked for good.
+    // Replaced by the partial one above (Nov 2026, approved by the owner); no rows change.
+    await pool.query(`DROP INDEX IF EXISTS idx_bookings_date_time`)
+
+    // Paid video calls: the slot is held while the client is in Stripe Checkout, and the
+    // booking records its session so the webhook and the success page can't book it twice.
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS booking_holds (
+        id SERIAL PRIMARY KEY,
+        date DATE NOT NULL,
+        time VARCHAR(10) NOT NULL,
+        token VARCHAR(64) NOT NULL UNIQUE,
+        email VARCHAR(200),
+        stripe_session_id VARCHAR(255) UNIQUE,
+        expires_at TIMESTAMPTZ NOT NULL,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+        UNIQUE (date, time)
+      )
+    `)
+    await pool.query(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS stripe_session_id VARCHAR(255)`)
+    await pool.query(`
+      CREATE UNIQUE INDEX IF NOT EXISTS bookings_stripe_session_key
+      ON bookings (stripe_session_id) WHERE stripe_session_id IS NOT NULL
+    `)
 
     // Blocked time slots (admin can mark slots unavailable per day)
     await pool.query(`

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { bookSlot, isSlotBooked } from '@/lib/bookings'
+import { bookPaidVideocall } from '@/lib/bookings'
 import { updatePaymentBySessionId } from '@/lib/admin/db'
 import { sendBookingEmails } from '@/lib/booking/emails'
-import { isSlotBlocked } from '@/lib/availability'
+import { releaseHoldBySession } from '@/lib/booking/slots'
 
 export async function POST(req: NextRequest) {
   const stripeKey = process.env.STRIPE_SECRET_KEY
@@ -64,35 +64,43 @@ export async function POST(req: NextRequest) {
       const locale = metadata.locale || 'es'
 
       if (name && email && date && time) {
-        const alreadyBooked = await isSlotBooked(date, time)
-        if (!alreadyBooked) {
-          const blocked = await isSlotBlocked(date, time)
-          if (!blocked) {
-            await bookSlot({
-              name,
-              email,
-              phone,
-              date,
-              time,
-              type: 'videocall',
-              locale,
-              createdAt: new Date().toISOString(),
-            })
-
-            await sendBookingEmails({
-              name,
-              email,
-              phone,
-              date,
-              time,
-              type: 'videocall',
-              locale,
-            })
-          } else {
-            console.error('Webhook: attempted booking on blocked slot', { date, time })
-          }
+        // The success page may have booked it already: only the first of the two sends the emails
+        const result = await bookPaidVideocall({
+          name,
+          email,
+          phone,
+          date,
+          time,
+          type: 'videocall',
+          locale,
+          createdAt: new Date().toISOString(),
+          stripeSessionId: session.id,
+          holdToken: metadata.hold || null,
+        })
+        if (!result.ok) {
+          console.error('Webhook: paid video call could not be booked, the slot is taken', { date, time, session: session.id })
+        } else if (result.created) {
+          await sendBookingEmails({
+            name,
+            email,
+            phone,
+            date,
+            time,
+            type: 'videocall',
+            locale,
+          })
         }
       }
+    }
+  }
+
+  // Checkout closed without a payment: free the held video-call slot now
+  if (event.type === 'checkout.session.expired' || event.type === 'checkout.session.async_payment_failed') {
+    const session = event.data.object
+    try {
+      await releaseHoldBySession(session.id)
+    } catch (dbErr) {
+      console.error('Failed to release held slot:', dbErr)
     }
   }
 

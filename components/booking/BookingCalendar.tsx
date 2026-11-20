@@ -82,6 +82,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [bookedSlots, setBookedSlots] = useState<string[]>([])
   const [blockedSlots, setBlockedSlots] = useState<string[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
+  // Shown above the times when the chosen one was just taken by someone else
+  const [slotNotice, setSlotNotice] = useState<string | null>(null)
 
   const isVideocall = type === 'videocall'
   const isInpersonMeasure = type === 'inperson-measure'
@@ -115,7 +117,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       emailPlaceholder: 'correo@ejemplo.com',
       fillFields: 'Completa todos los campos',
       invalidEmail: 'Introduce un email válido',
-      conflict: 'Esta franja horaria ya está reservada. Por favor, elige otra.',
+      conflict: 'Esta hora se acaba de reservar. Elige otra, por favor.',
       unavailable: 'Esta franja horaria no está disponible. Por favor, elige otra.',
       cancelBooking: 'Cancelar esta reserva',
       cancelling: 'Cancelando…',
@@ -152,7 +154,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       emailPlaceholder: 'email@example.com',
       fillFields: 'Please fill in all fields',
       invalidEmail: 'Please enter a valid email',
-      conflict: 'This time slot is already booked. Please choose another.',
+      conflict: 'This time was just booked. Please choose another.',
       unavailable: 'This time slot is not available. Please choose another.',
       cancelBooking: 'Cancel this booking',
       cancelling: 'Cancelling…',
@@ -189,7 +191,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       emailPlaceholder: 'email@esempio.com',
       fillFields: 'Compila tutti i campi',
       invalidEmail: 'Inserisci un email valida',
-      conflict: 'Questa fascia oraria è già prenotata. Scegli un\'altra.',
+      conflict: 'Questo orario è appena stato prenotato. Scegline un altro, per favore.',
       unavailable: 'Questa fascia oraria non è disponibile. Scegline un\'altra.',
       cancelBooking: 'Annulla questa prenotazione',
       cancelling: 'Annullamento…',
@@ -226,7 +228,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       emailPlaceholder: 'email@exemple.com',
       fillFields: 'Veuillez remplir tous les champs',
       invalidEmail: 'Veuillez entrer un email valide',
-      conflict: 'Ce créneau horaire est déjà réservé. Veuillez en choisir un autre.',
+      conflict: 'Ce créneau vient d\'être réservé. Veuillez en choisir un autre.',
       unavailable: 'Ce créneau horaire n\'est pas disponible. Veuillez en choisir un autre.',
       cancelBooking: 'Annuler ce rendez-vous',
       cancelling: 'Annulation…',
@@ -312,32 +314,75 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     )
   }
 
-  const fetchAvailability = async (dateStr: string) => {
-    setLoadingSlots(true)
+  // Never cached: the times on screen must be the ones free right now
+  const fetchAvailability = async (dateStr: string, opts: { silent?: boolean } = {}) => {
+    if (!opts.silent) setLoadingSlots(true)
     try {
-      const res = await fetch(`/api/bookings/availability?date=${dateStr}`)
+      const res = await fetch(`/api/bookings/availability?date=${dateStr}`, { cache: 'no-store' })
       const data = await res.json()
       if (data.success) {
         setBookedSlots(data.bookedTimes)
         setBlockedSlots(data.blockedTimes || [])
+        return { booked: data.bookedTimes as string[], blocked: (data.blockedTimes || []) as string[] }
       }
     } catch (err) {
       console.error('Failed to fetch availability', err)
     } finally {
-      setLoadingSlots(false)
+      if (!opts.silent) setLoadingSlots(false)
     }
+    return null
   }
 
   const handleDateSelect = (date: Date) => {
     if (isPast(date) || isBeyond30Days(date)) return
     setSelectedDate(date)
     setSelectedTime(null)
+    setSlotNotice(null)
     scrollToTop()
     fetchAvailability(toMadridDateString(date))
   }
 
-  const handleNext = () => {
+  // The chosen time was taken while the visitor was on the page: back to the times, with a note
+  const slotTaken = (message: string) => {
+    setSelectedTime(null)
+    setStep('calendar')
+    setError(null)
+    setSlotNotice(message)
+    if (selectedDate) fetchAvailability(toMadridDateString(selectedDate), { silent: true })
+  }
+
+  // Keep the times fresh while the calendar is open: every 30 s, and when the tab comes back into view
+  useEffect(() => {
+    if (!selectedDate || success || step !== 'calendar') return
+    const dateStr = toMadridDateString(selectedDate)
+    const refresh = async () => {
+      if (document.visibilityState === 'hidden') return
+      const fresh = await fetchAvailability(dateStr, { silent: true })
+      if (fresh && selectedTime && (fresh.booked.includes(selectedTime) || fresh.blocked.includes(selectedTime))) {
+        setSelectedTime(null)
+        setSlotNotice(l.conflict)
+      }
+    }
+    const timer = window.setInterval(refresh, 30_000)
+    document.addEventListener('visibilitychange', refresh)
+    window.addEventListener('focus', refresh)
+    return () => {
+      window.clearInterval(timer)
+      document.removeEventListener('visibilitychange', refresh)
+      window.removeEventListener('focus', refresh)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- l is rebuilt every render; its text only changes with the locale
+  }, [selectedDate, selectedTime, step, success, locale])
+
+  const handleNext = async () => {
     if (!selectedDate || !selectedTime) return
+    // One last look before the form: someone may have taken it a moment ago
+    const fresh = await fetchAvailability(toMadridDateString(selectedDate), { silent: true })
+    if (fresh && (fresh.booked.includes(selectedTime) || fresh.blocked.includes(selectedTime))) {
+      slotTaken(fresh.blocked.includes(selectedTime) ? l.unavailable : l.conflict)
+      return
+    }
+    setSlotNotice(null)
     setStep('details')
   }
 
@@ -383,16 +428,10 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Error'
       if (msg === 'unavailable') {
-        setError(l.unavailable)
-        if (selectedDate) {
-          fetchAvailability(toMadridDateString(selectedDate))
-        }
+        slotTaken(l.unavailable)
       } else if (msg === 'conflict' || msg.toLowerCase().includes('already booked') || msg.toLowerCase().includes('ya está') || msg.toLowerCase().includes('già prenotata') || msg.toLowerCase().includes('déjà réservé')) {
-        setError(l.conflict)
-        // Refresh availability to show updated state
-        if (selectedDate) {
-          fetchAvailability(toMadridDateString(selectedDate))
-        }
+        // Two people sent the same time at once and the other one got there first
+        slotTaken(l.conflict)
       } else {
         setError(msg)
       }
@@ -426,6 +465,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     setPhone('')
     setBookedSlots([])
     setError(null)
+    setSlotNotice(null)
   }
 
   const handleCancel = async () => {
@@ -630,6 +670,16 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                     >
+                      {slotNotice && (
+                        <p role="alert" style={{
+                          fontFamily: 'var(--font-sans)', fontSize: '0.85rem', lineHeight: 1.5,
+                          color: '#f0c987', background: 'rgba(201,168,76,0.08)',
+                          border: '1px solid rgba(201,168,76,0.35)', borderRadius: 8,
+                          padding: '0.75rem 1rem', marginBottom: '1rem',
+                        }}>
+                          {slotNotice}
+                        </p>
+                      )}
                       <p style={{
                         fontFamily: 'var(--font-sans)', fontSize: '0.85rem',
                         color: 'rgba(255,255,255,0.7)', marginBottom: '1rem',
@@ -654,7 +704,7 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                             return (
                               <button
                                 key={time}
-                                onClick={() => { if (!isUnavailable) { setSelectedTime(time); scrollToTop() } }}
+                                onClick={() => { if (!isUnavailable) { setSelectedTime(time); setSlotNotice(null); scrollToTop() } }}
                                 disabled={isUnavailable}
                                 title={isBlocked ? 'No disponible' : isBooked ? 'Reservado' : ''}
                                 style={{

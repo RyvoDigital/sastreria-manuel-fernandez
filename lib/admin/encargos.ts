@@ -4,6 +4,7 @@ import { HttpError, esPropietario, withTransaction, wordsMatch, type CurrentAdmi
 import { aplicarMovimientos, siguienteNumero, validarCantidad } from './stock'
 import { limpiarCaracteristicas } from './medidas'
 import { METODOS_PAGO, toCents } from './ventas-calc'
+import { lockSlot, slotProblem } from '../booking/slots'
 
 // Encargos (bespoke orders). See docs/gestion-data-model.md, "Encargos y Taller".
 // Three kinds, each with its own list in the ficha del cliente. Money (total, pagos) is Propietario-only;
@@ -379,9 +380,9 @@ function horaValida(v: unknown) {
 
 async function crearCita(client: PoolClient, encargo: { id: number; cliente_id: number }, tipoCita: 'prueba' | 'entrega', fecha: string, hora: string, notas: string | null) {
   const c = (await client.query(`SELECT nombre, apellidos, email, telefono, idioma FROM clientes WHERE id = $1`, [encargo.cliente_id])).rows[0]
-  // One appointment per slot, like the web bookings
-  const taken = await client.query(`SELECT 1 FROM bookings WHERE date = $1 AND time = $2`, [fecha, hora])
-  if (taken.rowCount) throw new HttpError(409, 'slot taken')
+  // One appointment per slot, like the web bookings (cancelled citas and expired checkout holds don't count)
+  await lockSlot(client, fecha, hora)
+  if (await slotProblem(client, fecha, hora, { adminRules: true })) throw new HttpError(409, 'slot taken')
   const booking = (
     await client.query(
       `INSERT INTO bookings (date, time, type, name, email, phone, locale, status, notes, tipo_cita, encargo_id, cliente_id)
@@ -430,8 +431,10 @@ export async function programarEntrega(encargoId: number, body: Record<string, u
   return withTransaction(async (client) => {
     const encargo = await lockEncargo(client, encargoId)
     if (encargo.entrega_booking_id) {
-      const taken = await client.query(`SELECT 1 FROM bookings WHERE date = $1 AND time = $2 AND id <> $3`, [fecha, hora, encargo.entrega_booking_id])
-      if (taken.rowCount) throw new HttpError(409, 'slot taken')
+      await lockSlot(client, fecha, hora)
+      if (await slotProblem(client, fecha, hora, { ignoreBookingId: encargo.entrega_booking_id, adminRules: true })) {
+        throw new HttpError(409, 'slot taken')
+      }
       const moved = await client.query(
         `UPDATE bookings SET date = $1, time = $2, status = 'confirmed', updated_at = CURRENT_TIMESTAMP WHERE id = $3 RETURNING id`,
         [fecha, hora, encargo.entrega_booking_id]

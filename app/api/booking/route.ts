@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { bookSlot, cancelBookingByToken, isCancelTokenShape, isSlotBooked } from '@/lib/bookings'
+import { bookSlot, cancelBookingByToken, isCancelTokenShape } from '@/lib/bookings'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
 import { sendBookingEmails } from '@/lib/booking/emails'
-import { isSlotBlocked } from '@/lib/availability'
 import { rateLimit } from '@/lib/rate-limit'
 import { checkSpam } from '@/lib/spam-filter'
 import { isEmailReachable } from '@/lib/email-validate'
@@ -66,22 +65,8 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const blocked = await isSlotBlocked(date, time)
-    if (blocked) {
-      return NextResponse.json(
-        { success: false, error: 'unavailable' },
-        { status: 409 }
-      )
-    }
-
-    const alreadyBooked = await isSlotBooked(date, time)
-    if (alreadyBooked) {
-      return NextResponse.json(
-        { success: false, error: 'conflict' },
-        { status: 409 }
-      )
-    }
-
+    // Blocked slots, booked times and checkout holds are checked under the slot's lock,
+    // and the database rejects a second booking of the same slot (lib/booking/slots.ts).
     const bookResult = await bookSlot({
       name,
       email,
@@ -94,8 +79,11 @@ export async function POST(req: NextRequest) {
     })
 
     if (!bookResult.success) {
+      if (bookResult.error === 'Database error') {
+        return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 })
+      }
       return NextResponse.json(
-        { success: false, error: 'conflict' },
+        { success: false, error: bookResult.error },
         { status: 409 }
       )
     }

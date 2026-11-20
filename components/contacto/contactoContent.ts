@@ -122,7 +122,18 @@ export function useContacto() {
         })
         .catch(console.error)
     }
-    if (cancelled) setBookingMode('videocall')
+    if (cancelled) {
+      // Back from Stripe without paying: free the held time now rather than when Checkout expires
+      const hold = sp.get('hold')
+      if (hold) {
+        fetch('/api/stripe/release', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: hold }),
+        }).catch(console.error)
+      }
+      setBookingMode('videocall')
+    }
   }, [])
 
   /* "Reservar cita" from anywhere: arrive at #reservar, or the link was used

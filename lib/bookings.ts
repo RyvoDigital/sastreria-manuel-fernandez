@@ -1,6 +1,7 @@
 import { randomBytes } from 'node:crypto'
 import { query } from './db'
 import { normalizeDateString, normalizeTimeSlot } from './booking/date-utils'
+import { confirmPaidBooking, insertWebBooking, type SlotProblem } from './booking/slots'
 
 /*
  * Public cancellation needs proof that you made the booking: a random,
@@ -54,7 +55,7 @@ export interface BookingRecord {
 export async function getBookedSlots(date: string): Promise<BookingRecord[]> {
   try {
     const result = await query(
-      'SELECT date, time, type, name, email, created_at as "createdAt" FROM bookings WHERE date = $1',
+      `SELECT date, time, type, name, email, created_at as "createdAt" FROM bookings WHERE date = $1 AND status IS DISTINCT FROM 'cancelled'`,
       [date]
     )
     return (result.rows as BookingRecord[]).map((row) => ({
@@ -72,7 +73,7 @@ export async function isSlotBooked(date: string, time: string): Promise<boolean>
     const normalizedDate = normalizeDateString(date)
     const normalizedTime = normalizeTimeSlot(time)
     const result = await query(
-      'SELECT 1 FROM bookings WHERE date = $1 AND time = $2 LIMIT 1',
+      `SELECT 1 FROM bookings WHERE date = $1 AND time = $2 AND status IS DISTINCT FROM 'cancelled' LIMIT 1`,
       [normalizedDate, normalizedTime]
     )
     return result.rowCount !== null && result.rowCount > 0
@@ -81,33 +82,56 @@ export async function isSlotBooked(date: string, time: string): Promise<boolean>
   }
 }
 
+/** A free web booking. The slot check and the insert run under the slot's lock; see lib/booking/slots.ts. */
 export async function bookSlot(
   record: BookingRecord
-): Promise<{ success: boolean; error?: string; bookingId?: number; cancelToken?: string }> {
+): Promise<{ success: boolean; error?: SlotProblem | 'Database error'; bookingId?: number; cancelToken?: string }> {
   try {
     await ensureCancelTokens()
-    const normalizedDate = normalizeDateString(record.date)
-    const normalizedTime = normalizeTimeSlot(record.time)
     const cancelToken = newCancelToken()
-    const result = await query(
-      'INSERT INTO bookings (date, time, type, name, email, phone, locale, cancel_token) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id',
-      [normalizedDate, normalizedTime, record.type, record.name, record.email, record.phone || null, record.locale || 'es', cancelToken]
-    )
-    return { success: true, bookingId: result.rows[0]?.id, cancelToken }
-  } catch (err: unknown) {
-    const pgErr = err as { code?: string; detail?: string }
-    if (pgErr.code === '23505') {
-      return { success: false, error: 'Slot already booked' }
-    }
+    const result = await insertWebBooking({
+      date: record.date,
+      time: record.time,
+      type: record.type,
+      name: record.name,
+      email: record.email,
+      phone: record.phone,
+      locale: record.locale,
+      cancelToken,
+    })
+    if (!result.ok) return { success: false, error: result.error }
+    return { success: true, bookingId: result.bookingId, cancelToken }
+  } catch (err) {
     console.error('Database error booking slot:', err)
     return { success: false, error: 'Database error' }
   }
 }
 
+/**
+ * The booking for a paid video call, from the Stripe session's metadata.
+ * Safe to call from the webhook and the success page alike: only the first
+ * call creates it (created = true) and should send the emails.
+ */
+export async function bookPaidVideocall(record: BookingRecord & { stripeSessionId: string; holdToken?: string | null }) {
+  await ensureCancelTokens()
+  return confirmPaidBooking({
+    date: record.date,
+    time: record.time,
+    type: 'videocall',
+    name: record.name,
+    email: record.email,
+    phone: record.phone,
+    locale: record.locale,
+    cancelToken: newCancelToken(),
+    stripeSessionId: record.stripeSessionId,
+    holdToken: record.holdToken,
+  })
+}
+
 export async function getAllBookedDates(): Promise<string[]> {
   try {
     const result = await query(
-      'SELECT DISTINCT date FROM bookings ORDER BY date'
+      `SELECT DISTINCT date FROM bookings WHERE status IS DISTINCT FROM 'cancelled' ORDER BY date`
     )
     return result.rows.map((r) => r.date as string)
   } catch {

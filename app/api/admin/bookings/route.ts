@@ -4,6 +4,15 @@ import { TIPOS_CITA, getBookings, updateBooking } from '@/lib/admin/db'
 import { Resend } from 'resend'
 import { query } from '@/lib/db'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
+import { inTransaction, isUniqueViolation, lockSlot, slotProblem } from '@/lib/booking/slots'
+
+/** Another active cita, or a client paying for a video call, has this slot. */
+async function slotTaken(date: string, time: string, bookingId: number) {
+  return inTransaction(async (client) => {
+    await lockSlot(client, date, time)
+    return (await slotProblem(client, date, time, { ignoreBookingId: bookingId, adminRules: true })) !== null
+  })
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -41,11 +50,22 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Booking ID required' }, { status: 400 })
     }
 
+    // Re-confirming a cancelled cita takes its slot back: refuse if someone has it now
+    if (status !== undefined && status !== 'cancelled') {
+      const current = (await query(`SELECT date::text AS date, time, status FROM bookings WHERE id = $1`, [id])).rows[0]
+      if (current?.status === 'cancelled' && (await slotTaken(current.date, current.time, Number(id)))) {
+        return NextResponse.json({ error: 'conflict' }, { status: 409 })
+      }
+    }
+
     const booking = await updateBooking(id, { status, notes })
     return NextResponse.json({ booking })
   } catch (error) {
     if ((error as Error).message === 'Unauthorized') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    if (isUniqueViolation(error)) {
+      return NextResponse.json({ error: 'conflict' }, { status: 409 })
     }
     const message = error instanceof Error ? error.message : String(error)
     console.error('Update booking error:', error)
@@ -225,7 +245,15 @@ export async function PUT(request: NextRequest) {
     const newDate = date !== undefined ? date : existing.date
     const newTime = time !== undefined ? time : existing.time
 
-    // Validate new slot only if date/time changed
+    const newStatus = status !== undefined ? status : existing.status
+    const reactivated = existing.status === 'cancelled' && newStatus !== 'cancelled'
+
+    // Validate new slot only if date/time changed (or a cancelled cita takes its slot back)
+    if (reactivated && !((date !== undefined && date !== existing.date) || (time !== undefined && time !== existing.time))) {
+      if (await slotTaken(newDate, newTime, Number(id))) {
+        return NextResponse.json({ error: 'conflict' }, { status: 409 })
+      }
+    }
     if ((date !== undefined && date !== existing.date) || (time !== undefined && time !== existing.time)) {
       // Pruebas and entregas are booked months ahead from an encargo: the web's 30-day window doesn't apply
       const tipo = tipo_cita ?? existing.tipo_cita
@@ -234,12 +262,9 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: slotValidation.error }, { status: 400 })
       }
 
-      // Check for conflicts (excluding current booking)
-      const conflictResult = await query(
-        `SELECT 1 FROM bookings WHERE date = $1 AND time = $2 AND id != $3 LIMIT 1`,
-        [newDate, newTime, id]
-      )
-      if (conflictResult.rowCount && conflictResult.rowCount > 0) {
+      // Check for conflicts (excluding current booking; cancelled citas don't hold a slot).
+      // A cita being cancelled in the same edit can move anywhere.
+      if (newStatus !== 'cancelled' && (await slotTaken(newDate, newTime, Number(id)))) {
         return NextResponse.json({ error: 'conflict' }, { status: 409 })
       }
     }
@@ -256,6 +281,10 @@ export async function PUT(request: NextRequest) {
   } catch (error) {
     if ((error as Error).message === 'Unauthorized') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    // Someone took the slot between the check and the save: the database refused the second one
+    if (isUniqueViolation(error)) {
+      return NextResponse.json({ error: 'conflict' }, { status: 409 })
     }
     console.error('Update booking error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })

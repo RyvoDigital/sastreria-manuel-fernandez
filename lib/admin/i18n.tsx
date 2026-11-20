@@ -921,6 +921,7 @@ const gestion = {
       } as Record<string, string>,
     },
     citas: {
+      ocupada: 'Esa hora ya está ocupada por otra cita o por un cliente que está pagando una videollamada. Elige otra.',
       tipo: 'Tipo de cita',
       todas: 'Todas las citas',
       encargo: 'Encargo',
@@ -1846,6 +1847,7 @@ const gestion = {
       } as Record<string, string>,
     },
     citas: {
+      ocupada: 'That time is already taken by another appointment, or by a client paying for a video call. Choose another.',
       tipo: 'Appointment type',
       todas: 'All appointments',
       encargo: 'Order',
@@ -2771,6 +2773,7 @@ const gestion = {
       } as Record<string, string>,
     },
     citas: {
+      ocupada: 'Quell’orario è già occupato da un altro appuntamento o da un cliente che sta pagando una videochiamata. Scegline un altro.',
       tipo: 'Tipo di appuntamento',
       todas: 'Tutti gli appuntamenti',
       encargo: 'Ordine',
@@ -3696,6 +3699,7 @@ const gestion = {
       } as Record<string, string>,
     },
     citas: {
+      ocupada: 'Ce créneau est déjà pris par un autre rendez-vous ou par un client en train de payer une visioconférence. Choisissez-en un autre.',
       tipo: 'Type de rendez-vous',
       todas: 'Tous les rendez-vous',
       encargo: 'Commande',

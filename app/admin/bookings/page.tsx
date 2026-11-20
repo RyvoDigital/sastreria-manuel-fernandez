@@ -54,6 +54,7 @@ export default function BookingsPage() {
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null)
   const [editError, setEditError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
+  const [listError, setListError] = useState<string | null>(null)
 
   const fetchBookings = useCallback(() => {
     const params = new URLSearchParams()
@@ -72,11 +73,14 @@ export default function BookingsPage() {
   }, [fetchBookings])
 
   async function updateStatus(id: number, status: string) {
-    await fetch('/api/admin/bookings', {
+    setListError(null)
+    const res = await fetch('/api/admin/bookings', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, status }),
     })
+    // Re-confirming a cancelled cita whose time someone else has taken since
+    if (res.status === 409) setListError(t.citas.ocupada)
     fetchBookings()
   }
 
@@ -133,7 +137,7 @@ export default function BookingsPage() {
       closeEdit()
       fetchBookings()
     } else {
-      setEditError(data.error || 'Failed to update booking')
+      setEditError(data.error === 'conflict' ? t.citas.ocupada : data.error || 'Failed to update booking')
     }
   }
 
@@ -168,6 +172,12 @@ export default function BookingsPage() {
         </select>
         </div>
       </div>
+
+      {listError && (
+        <div role="alert" className="mb-4 px-4 py-3 rounded-lg border border-red-800/60 bg-red-900/20 text-red-300 text-sm">
+          {listError}
+        </div>
+      )}
 
       {loading ? (
         <div className="text-gray-400">{t.common.loading}</div>

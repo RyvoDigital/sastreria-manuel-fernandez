@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimit } from '@/lib/rate-limit'
 import { createPayment, getSettings } from '@/lib/admin/db'
-import { isSlotBooked } from '@/lib/bookings'
-import { isSlotBlocked } from '@/lib/availability'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
+import { CHECKOUT_MINUTES, attachHoldSession, createHold, releaseHold, type Hold } from '@/lib/booking/slots'
 import { areCoursePurchasesOpen } from '@/lib/course-purchases-server'
 
 const stripeLimiter = rateLimit({ name: 'stripe', maxRequests: 10, windowMs: 60_000 })
@@ -73,43 +72,69 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: slotValidation.error }, { status: 400 })
       }
 
-      if (await isSlotBlocked(date, time)) {
-        return NextResponse.json({ error: 'unavailable' }, { status: 409 })
+      // Hold the slot while the client is in Checkout, so nobody else can pay for the same time.
+      // If this same email already holds it (they came back from Stripe and tried again),
+      // close that older session and take the slot over.
+      let held = await createHold(date, time, String(email))
+      if (!held.ok && held.ownToken) {
+        let closed = true
+        if (held.ownSessionId) {
+          // Never take over a session that was paid in the meantime
+          const previous = await stripe.checkout.sessions.retrieve(held.ownSessionId).catch(() => null)
+          if (previous?.status === 'open') {
+            closed = await stripe.checkout.sessions.expire(held.ownSessionId).then(() => true, () => false)
+          } else {
+            closed = previous?.status === 'expired'
+          }
+        }
+        if (closed) {
+          await releaseHold(held.ownToken)
+          held = await createHold(date, time, String(email))
+        }
       }
-
-      if (await isSlotBooked(date, time)) {
-        return NextResponse.json({ error: 'conflict' }, { status: 409 })
+      if (!held.ok) {
+        return NextResponse.json({ error: held.error }, { status: 409 })
       }
+      const hold: Hold = held.hold
 
-      session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items: [
-          {
-            price_data: {
-              currency: 'eur',
-              product_data: {
-                name: 'Videollamada de Asesoría',
-                description: `Consulta personalizada de sastrería - ${date} a las ${time}`,
+      try {
+        session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items: [
+            {
+              price_data: {
+                currency: 'eur',
+                product_data: {
+                  name: 'Videollamada de Asesoría',
+                  description: `Consulta personalizada de sastrería - ${date} a las ${time}`,
+                },
+                unit_amount: price,
               },
-              unit_amount: price,
+              quantity: 1,
             },
-            quantity: 1,
+          ],
+          mode: 'payment',
+          // The session closes before the hold does, so a completed payment always finds its slot
+          expires_at: Math.floor(Date.now() / 1000) + CHECKOUT_MINUTES * 60,
+          success_url: `${origin}/contacto?videocall_success=1&session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${origin}/contacto?videocall_cancelled=1&hold=${hold.token}`,
+          metadata: {
+            type: 'videocall',
+            name: name || '',
+            email: email || '',
+            phone: phone || '',
+            date: date || '',
+            time: time || '',
+            locale: body.locale || 'es',
+            hold: hold.token,
           },
-        ],
-        mode: 'payment',
-        success_url: `${origin}/contacto?videocall_success=1&session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${origin}/contacto?videocall_cancelled=1`,
-        metadata: {
-          type: 'videocall',
-          name: name || '',
-          email: email || '',
-          phone: phone || '',
-          date: date || '',
-          time: time || '',
-          locale: body.locale || 'es',
-        },
-        customer_email: email,
-      })
+          customer_email: email,
+        })
+      } catch (err) {
+        await releaseHold(hold.token).catch(() => {})
+        throw err
+      }
+      await attachHoldSession(hold.token, session.id)
     } else {
       if (!(await areCoursePurchasesOpen())) {
         return NextResponse.json({ error: 'course_purchases_closed' }, { status: 403 })
