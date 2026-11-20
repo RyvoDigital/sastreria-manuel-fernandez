@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { AlertTriangle, History } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { POSTURA, SECCIONES, SECCIONES_MEDIDAS, type CampoFicha, type FichaMedidas } from '@/lib/admin/medidas'
-import { ErrorText, Field, Modal, api, btnPrimary, btnSecondary, formatDate, inputClass, intlLocale } from './ui'
+import { ErrorText, Field, Modal, api, btnDanger, btnPrimary, btnSecondary, formatDate, inputClass, intlLocale } from './ui'
 
 // One measurement version (cliente_medidas row). 'ficha' rows follow the paper Ficha de trabajo;
 // older rows (generic fields, imported notes) are shown as they were saved.
@@ -121,6 +122,55 @@ function toForm(base: MedidasRow | null): { values: FormValues; postura: string[
   }
 }
 
+// ── Never lose typed measurements ─────────────────────────────────────────────
+// The form doesn't close on an outside click or Esc. Cancel, X, the browser's back gesture, a reload
+// or closing the tab ask first when something changed. Every change is also kept as a draft in this
+// browser (per client) until it is saved, and offered back the next time the form opens.
+
+interface Borrador {
+  values: FormValues
+  postura: string[]
+  observaciones: string
+  fecha: string
+  savedAt: string
+}
+
+const borradorKey = (clienteId: number) => `smf-admin:medidas-borrador:${clienteId}`
+
+function leerBorrador(clienteId: number): Borrador | null {
+  try {
+    const raw = localStorage.getItem(borradorKey(clienteId))
+    const b = raw ? (JSON.parse(raw) as Borrador) : null
+    return b && b.values && Array.isArray(b.postura) ? b : null
+  } catch {
+    return null
+  }
+}
+
+function guardarBorrador(clienteId: number, b: Borrador) {
+  try {
+    localStorage.setItem(borradorKey(clienteId), JSON.stringify(b))
+  } catch {
+    // storage full or blocked: the leave confirmations still protect the typing
+  }
+}
+
+function borrarBorrador(clienteId: number) {
+  try {
+    localStorage.removeItem(borradorKey(clienteId))
+  } catch {
+    // ignore
+  }
+}
+
+// What counts as "changed": the measurements, posture and notes (empty fields ignored)
+function huella(values: FormValues, postura: string[], observaciones: string) {
+  const v = Object.fromEntries(
+    Object.entries(values).map(([s, campos]) => [s, Object.fromEntries(Object.entries(campos).filter(([, x]) => x.trim() !== '').sort())])
+  )
+  return JSON.stringify([v, [...postura].sort(), observaciones.trim()])
+}
+
 // A new measurement version, prefilled from `base` (the latest set) so only what changed needs typing
 export function MedidasFormModal({ clienteId, base, onClose, onSaved }: {
   clienteId: number
@@ -128,7 +178,7 @@ export function MedidasFormModal({ clienteId, base, onClose, onSaved }: {
   onClose: () => void
   onSaved: (row: MedidasRow) => void
 }) {
-  const { t } = useAdminI18n()
+  const { t, locale } = useAdminI18n()
   const { f, campo } = useFichaLabels()
   const [inicial] = useState(() => toForm(base))
   const [values, setValues] = useState<FormValues>(inicial.values)
@@ -137,6 +187,110 @@ export function MedidasFormModal({ clienteId, base, onClose, onSaved }: {
   const [fecha, setFecha] = useState(() => new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Madrid' }))
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+
+  const huellaInicial = useMemo(() => huella(inicial.values, inicial.postura, inicial.observaciones), [inicial])
+  const dirty = huella(values, postura, observaciones) !== huellaInicial
+
+  // A draft left from an earlier session, offered once; autosave waits for the answer so it isn't overwritten
+  const [oferta, setOferta] = useState<Borrador | null>(() => {
+    const b = typeof window === 'undefined' ? null : leerBorrador(clienteId)
+    return b && huella(b.values, b.postura, b.observaciones) !== huellaInicial ? b : null
+  })
+  const [autosaved, setAutosaved] = useState(false)
+
+  useEffect(() => {
+    if (oferta || !dirty) return
+    const timer = window.setTimeout(() => {
+      guardarBorrador(clienteId, { values, postura, observaciones, fecha, savedAt: new Date().toISOString() })
+      setAutosaved(true)
+    }, 400)
+    return () => window.clearTimeout(timer)
+  }, [clienteId, values, postura, observaciones, fecha, dirty, oferta])
+
+  function recuperar() {
+    if (!oferta) return
+    setValues({ chaqueta: {}, pantalon: {}, chaleco: {}, ...oferta.values })
+    setPostura(oferta.postura)
+    setObservaciones(oferta.observaciones ?? '')
+    if (oferta.fecha) setFecha(oferta.fecha)
+    setOferta(null)
+  }
+
+  function descartar() {
+    borrarBorrador(clienteId)
+    setOferta(null)
+  }
+
+  // ── Leaving ──
+  // 'cerrar' = Cancel or X; 'atras' = the browser's back (button, keyboard or trackpad swipe)
+  const [confirmar, setConfirmar] = useState<null | 'cerrar' | 'atras'>(null)
+  const dirtyRef = useRef(dirty)
+  const guardRef = useRef(false)
+  useEffect(() => {
+    dirtyRef.current = dirty
+  })
+
+  // Reload or closing the tab: the browser asks with its own wording
+  useEffect(() => {
+    if (!dirty) return
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => window.removeEventListener('beforeunload', onBeforeUnload)
+  }, [dirty])
+
+  // Back: an extra history entry (a copy of the router's own state, same URL) absorbs the first "back",
+  // so the page stays and we can ask. Unchanged forms just close, like a sheet on a phone.
+  const onCloseRef = useRef(onClose)
+  useEffect(() => {
+    onCloseRef.current = onClose
+  })
+  const mountedRef = useRef(false)
+  useEffect(() => {
+    mountedRef.current = true
+    // A remount (React dev mode mounts twice) finds the entry already there
+    if (!window.history.state?.smfMedidas) window.history.pushState({ ...(window.history.state ?? {}), smfMedidas: true }, '')
+    guardRef.current = true
+    const onPop = () => {
+      if (!guardRef.current) return
+      if (dirtyRef.current) {
+        window.history.pushState({ ...(window.history.state ?? {}), smfMedidas: true }, '')
+        setConfirmar('atras')
+      } else {
+        guardRef.current = false
+        onCloseRef.current()
+      }
+    }
+    window.addEventListener('popstate', onPop)
+    return () => {
+      window.removeEventListener('popstate', onPop)
+      mountedRef.current = false
+      // Closed from inside (Cancel, X, Save): drop the extra entry so "back" works normally afterwards.
+      // Deferred, so a remount in the same tick keeps it.
+      window.setTimeout(() => {
+        if (mountedRef.current || !guardRef.current) return
+        guardRef.current = false
+        if (window.history.state?.smfMedidas) window.history.back()
+      }, 0)
+    }
+  }, [])
+
+  const salir = useCallback((intent: 'cerrar' | 'atras') => {
+    setConfirmar(null)
+    if (intent === 'atras') {
+      // Finish the back the user asked for: past the extra entry and on to the previous page
+      guardRef.current = false
+      window.history.go(-2)
+    }
+    onCloseRef.current()
+  }, [])
+
+  function pedirCerrar() {
+    if (dirty) setConfirmar('cerrar')
+    else onClose()
+  }
 
   const setValue = (s: string, k: string, v: string) => setValues({ ...values, [s]: { ...values[s], [k]: v } })
 
@@ -149,6 +303,8 @@ export function MedidasFormModal({ clienteId, base, onClose, onSaved }: {
         method: 'POST',
         body: { medidas: { ...values, postura }, observaciones, tomada_en: fecha },
       })
+      borrarBorrador(clienteId)
+      dirtyRef.current = false
       onSaved(medidas)
     } catch (err) {
       const code = (err as Error).message
@@ -176,8 +332,23 @@ export function MedidasFormModal({ clienteId, base, onClose, onSaved }: {
   }
 
   return (
-    <Modal title={base ? t.medidas.nuevaVersion : t.medidas.add} onClose={onClose} closeLabel={t.common.close} wide>
+    <Modal title={base ? t.medidas.nuevaVersion : t.medidas.add} onClose={pedirCerrar} closeLabel={t.common.close} wide dismissible={false}>
       <form onSubmit={submit} className="space-y-6">
+        {oferta && (
+          <div role="status" className="rounded-lg border border-[#C9A84C]/40 bg-[#C9A84C]/10 p-4">
+            <p className="flex items-center gap-2 text-sm font-medium text-[#C9A84C]">
+              <History size={16} className="shrink-0" />
+              {t.medidas.borradorTitulo}
+            </p>
+            <p className="mt-1 text-sm text-gray-300">
+              {t.medidas.borradorTexto.replace('{fecha}', new Intl.DateTimeFormat(intlLocale(locale), { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Madrid' }).format(new Date(oferta.savedAt)))}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <button type="button" className={btnPrimary} onClick={recuperar}>{t.medidas.recuperar}</button>
+              <button type="button" className={btnSecondary} onClick={descartar}>{t.medidas.descartar}</button>
+            </div>
+          </div>
+        )}
         <div className="flex flex-wrap items-end gap-4">
           <Field label={t.medidas.fecha}>
             <input className={inputClass} type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} required />
@@ -222,11 +393,49 @@ export function MedidasFormModal({ clienteId, base, onClose, onSaved }: {
         </fieldset>
 
         <ErrorText>{error}</ErrorText>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button type="submit" className={btnPrimary} disabled={saving}>{saving ? t.common.saving : t.common.save}</button>
-          <button type="button" className={btnSecondary} onClick={onClose}>{t.common.cancel}</button>
+          <button type="button" className={btnSecondary} onClick={pedirCerrar}>{t.common.cancel}</button>
+          {autosaved && dirty && <span className="text-xs text-gray-500" aria-live="polite">{t.medidas.borradorGuardado}</span>}
         </div>
       </form>
+      {confirmar && <ConfirmarSalida onSeguir={() => setConfirmar(null)} onSalir={() => salir(confirmar)} />}
     </Modal>
+  )
+}
+
+// "¿Salir sin guardar?" with the safe choice focused, so Enter or Esc keeps editing
+function ConfirmarSalida({ onSeguir, onSalir }: { onSeguir: () => void; onSalir: () => void }) {
+  const { t } = useAdminI18n()
+  const seguirRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    seguirRef.current?.focus()
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation()
+        onSeguir()
+      }
+    }
+    document.addEventListener('keydown', onKey, true)
+    return () => document.removeEventListener('keydown', onKey, true)
+  }, [onSeguir])
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60">
+      <div
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="medidas-salir-titulo"
+        className="w-full max-w-md rounded-2xl border border-[#1E3A5F] bg-[#0F1D2E] p-5 sm:p-6 shadow-2xl"
+      >
+        <p id="medidas-salir-titulo" className="flex items-start gap-3 text-white">
+          <AlertTriangle size={20} className="mt-0.5 shrink-0 text-amber-400" />
+          {t.medidas.salirTitulo}
+        </p>
+        <div className="mt-5 flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
+          <button type="button" className={btnDanger} onClick={onSalir}>{t.medidas.salirSinGuardar}</button>
+          <button ref={seguirRef} type="button" className={btnPrimary} onClick={onSeguir}>{t.medidas.seguirEditando}</button>
+        </div>
+      </div>
+    </div>
   )
 }

@@ -81,22 +81,27 @@ export function Badge({ children, tone = 'neutral' }: { children: React.ReactNod
   return <span className={`inline-flex items-center text-xs px-2 py-0.5 rounded-full ${tones[tone]}`}>{children}</span>
 }
 
-export function Modal({ title, onClose, children, closeLabel, wide = false }: {
+// dismissible = false: a click outside the panel or Esc does nothing; only the panel's own buttons
+// (X, Cancel, Save) close it. For forms where losing the typing would hurt (measurements).
+export function Modal({ title, onClose, children, closeLabel, wide = false, dismissible = true }: {
   title: string
   onClose: () => void
   children: React.ReactNode
   closeLabel: string
   wide?: boolean
+  dismissible?: boolean
 }) {
   const panelRef = useRef<HTMLDivElement>(null)
   // Callers pass inline arrows; keep the effect from re-running (and re-focusing) on every render
   const onCloseRef = useRef(onClose)
+  const dismissibleRef = useRef(dismissible)
   useEffect(() => {
     onCloseRef.current = onClose
+    dismissibleRef.current = dismissible
   })
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onCloseRef.current()
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && dismissibleRef.current && onCloseRef.current()
     document.addEventListener('keydown', onKey)
     const previous = document.body.style.overflow
     document.body.style.overflow = 'hidden'
@@ -108,7 +113,7 @@ export function Modal({ title, onClose, children, closeLabel, wide = false }: {
   }, [])
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/60 backdrop-blur-sm" onClick={dismissible ? onClose : undefined}>
       <div
         ref={panelRef}
         role="dialog"
