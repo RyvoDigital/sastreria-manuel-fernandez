@@ -26,6 +26,7 @@ export interface MovimientoInput {
   ventaLineaId?: number
   devolucionLineaId?: number
   encargoMaterialId?: number
+  encargoProductoId?: number
 }
 
 export interface MovimientoAplicado {
@@ -79,7 +80,9 @@ export async function aplicarMovimientos(
         varianteId: m.varianteId,
         producto: v.nombre,
         variante: v.etiqueta,
-        disponible: stock.get(m.varianteId)! / 1000,
+        // On the shelf before this document; faltan counts every line of the document for that variant
+        disponible: milli(v.stock_actual) / 1000,
+        faltan: -next / 1000,
         unidad: v.unidad,
       })
     }
@@ -106,13 +109,14 @@ export async function aplicarMovimientos(
     const inserted = await client.query(
       `INSERT INTO movimientos_stock
          (variante_id, tipo, cantidad, stock_resultante, coste_unitario, motivo, nota, admin_id, admin_nombre,
-          compra_linea_id, venta_linea_id, devolucion_linea_id, encargo_material_id)
-       VALUES ($1, $2, $3, $4, COALESCE($5::numeric, $6::numeric), $7, $8, $9, $10, $11, $12, $13, $14)
+          compra_linea_id, venta_linea_id, devolucion_linea_id, encargo_material_id, encargo_producto_id)
+       VALUES ($1, $2, $3, $4, COALESCE($5::numeric, $6::numeric), $7, $8, $9, $10, $11, $12, $13, $14, $15)
        RETURNING id`,
       [
         m.varianteId, m.tipo, m.cantidad, row.stock_actual, m.costeUnitario ?? null, row.coste_medio,
         m.motivo ?? null, m.nota?.trim() || null, admin.id, admin.name,
         m.compraLineaId ?? null, m.ventaLineaId ?? null, m.devolucionLineaId ?? null, m.encargoMaterialId ?? null,
+        m.encargoProductoId ?? null,
       ]
     )
     applied.push({ id: inserted.rows[0].id, varianteId: m.varianteId, cantidad: String(m.cantidad), stockResultante: row.stock_actual })

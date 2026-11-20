@@ -28,6 +28,8 @@ export interface EncargoResumen {
   taller_enviado: string | null
   taller_devuelto: string | null
   proxima_prueba: string | null
+  // Ficha del cliente only: product lines taken from stock
+  productos?: { id: number; producto: string; variante: string | null; cantidad: string; unidad: string; consumido: boolean }[] | null
   total?: string | null
   pagado?: string | null
 }

@@ -21,6 +21,8 @@ interface Movimiento {
   es_unica: boolean
   compra_id: number | null
   compra_numero: string | null
+  encargo_id: number | null
+  encargo_numero: string | null
 }
 
 export default function Movimientos({ productoId, unidad, variantes, version }: {
@@ -81,8 +83,11 @@ export default function Movimientos({ productoId, unidad, variantes, version }: 
                     {r.compra_numero && (
                       <> · <Link href={`/admin/inventario/entradas/${r.compra_id}`} className="text-[#C9A84C] hover:text-[#D4B76A]">{r.compra_numero}</Link></>
                     )}
+                    {r.encargo_numero && (
+                      <> · <Link href={`/admin/encargos/${r.encargo_id}`} className="text-[#C9A84C] hover:text-[#D4B76A]">{t.citas.encargo} {r.encargo_numero}</Link></>
+                    )}
                     {r.motivo && ` · ${t.inventario.ajuste.motivos[r.motivo as keyof typeof t.inventario.ajuste.motivos] ?? r.motivo}`}
-                    {r.nota && ` · ${r.nota}`}
+                    {r.nota && r.nota !== r.encargo_numero && ` · ${r.nota}`}
                   </div>
                   <div className="text-xs text-gray-500 text-right tabular-nums">{m.resultante}: {formatQty(r.stock_resultante, locale)}</div>
                 </li>

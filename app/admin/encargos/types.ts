@@ -1,5 +1,5 @@
 import type { MedidasRow } from '../_components/MedidasFicha'
-import type { Material, Pago, Prueba } from './[id]/secciones'
+import type { Material, Pago, ProductoLinea, Prueba } from './[id]/secciones'
 import type { Estado, Tipo } from './shared'
 
 export interface Encargo {
@@ -35,6 +35,7 @@ export interface Encargo {
 export interface EncargoDetalle {
   encargo: Encargo
   materiales: Material[]
+  productos: ProductoLinea[]
   pruebas: Prueba[]
   pagos: Pago[]
   medidas: MedidasRow[]

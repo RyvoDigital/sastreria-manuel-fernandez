@@ -2,15 +2,16 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Plus, Scissors } from 'lucide-react'
+import { Package, Plus, Scissors } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { Card, btnSecondary, formatDate, formatMoney } from '../../_components/ui'
+import { formatQty } from '../../inventario/shared'
 import { useRol } from '../../_components/role'
 import { EstadoBadge, TIPOS, useEncargoTexto, type EncargoResumen, type Tipo } from '../../encargos/shared'
 
 // Prenda a medida, Camisa a medida and Arreglo each get their own list, like their paper files
 export default function EncargosSection({ clienteId, encargos }: { clienteId: number; encargos: EncargoResumen[] }) {
-  const { locale } = useAdminI18n()
+  const { t, locale } = useAdminI18n()
   const { e, prendas } = useEncargoTexto()
   const { propietario } = useRol()
   // Open on the first kind that has encargos
@@ -61,6 +62,17 @@ export default function EncargosSection({ clienteId, encargos }: { clienteId: nu
                       {[x.numero, formatDate(x.fecha_encargo, locale), x.fecha_entrega && `${e.entrega}: ${formatDate(x.fecha_entrega, locale)}`, x.sastre]
                         .filter(Boolean).join(' · ')}
                     </span>
+                    {!!x.productos?.length && (
+                      <span className="mt-1 flex items-start gap-1.5 text-xs text-gray-400" title={e.productos.titulo}>
+                        <Package size={12} className="mt-0.5 shrink-0" aria-label={e.productos.titulo} />
+                        <span className="break-words">
+                          {x.productos.map((p) => {
+                            const u = t.inventario.unidades[p.unidad as keyof typeof t.inventario.unidades] ?? p.unidad
+                            return `${p.producto}${p.variante ? ` · ${p.variante}` : ''} (${formatQty(p.cantidad, locale)} ${u})`
+                          }).join(', ')}
+                        </span>
+                      </span>
+                    )}
                   </span>
                   <span className="flex flex-col items-end gap-1 shrink-0">
                     <EstadoBadge estado={x.estado} />

@@ -114,7 +114,7 @@ export async function getEncargo(id: number, admin: CurrentAdmin) {
   ).rows[0]
   if (!encargo) throw new HttpError(404, 'not found')
 
-  const [materiales, pruebas, pagos, medidas] = await Promise.all([
+  const [materiales, productos, pruebas, pagos, medidas] = await Promise.all([
     query(
       `SELECT m.*, pr.nombre AS proveedor, p.nombre AS producto, v.etiqueta AS variante, v.es_unica, v.stock_actual, p.id AS producto_id
          FROM encargo_materiales m
@@ -122,6 +122,18 @@ export async function getEncargo(id: number, admin: CurrentAdmin) {
          LEFT JOIN producto_variantes v ON v.id = m.variante_id
          LEFT JOIN productos p ON p.id = v.producto_id
         WHERE m.encargo_id = $1 ORDER BY m.material DESC, m.id`,
+      [id]
+    ),
+    // Product lines still on the encargo (removed ones stay in the ledger only). pvp is blanked for Empleados.
+    query(
+      `SELECT ep.id, ep.variante_id, ep.cantidad, ep.consumido, ep.notas, ep.created_at,
+              p.id AS producto_id, p.nombre AS producto, p.unidad, v.etiqueta AS variante, v.es_unica, v.sku,
+              v.stock_actual, COALESCE(v.pvp, p.pvp) AS pvp
+         FROM encargo_productos ep
+         JOIN producto_variantes v ON v.id = ep.variante_id
+         JOIN productos p ON p.id = v.producto_id
+        WHERE ep.encargo_id = $1 AND ep.quitado_at IS NULL
+        ORDER BY ep.id`,
       [id]
     ),
     query(
@@ -145,6 +157,7 @@ export async function getEncargo(id: number, admin: CurrentAdmin) {
   const result = {
     encargo,
     materiales: materiales.rows,
+    productos: productos.rows,
     pruebas: pruebas.rows,
     pagos: pagos.rows,
     medidas: medidas.rows,
@@ -244,8 +257,11 @@ export async function updateEncargo(id: number, body: Record<string, unknown>, a
           if (idx >= 1 && !encargo.confirmado_at) sets.push('confirmado_at = now()')
           if (v === 'entregado' && !encargo.entregado_at) sets.push('entregado_at = now()')
           if (v !== 'entregado' && encargo.entregado_at) sets.push('entregado_at = NULL')
-          // Fabric and lining taken from inventory leave stock when the encargo is confirmed
-          if (idx >= 1) await consumirMateriales(client, encargo, admin)
+          // Fabric, lining and products taken from inventory leave stock when the encargo is confirmed
+          if (idx >= 1) {
+            await consumirMateriales(client, encargo, admin)
+            await consumirProductos(client, encargo, admin)
+          }
           break
         }
         default: set(key, textOrNull(v))
@@ -369,6 +385,80 @@ export async function deleteMaterial(encargoId: number, materialId: number) {
     [materialId, encargoId]
   )
   if (!result.rows[0]) throw new HttpError(409, 'material consumed')
+}
+
+// ── Productos (zapatos, camisas, botones…) taken from stock, no Venta ─────────
+
+// Same moment and rules as tejido/forro: stock leaves on the first confirmation, or at once if the
+// encargo already is. aplicarMovimientos locks the variants and refuses to go below zero.
+async function consumirProductos(client: PoolClient, encargo: { id: number; numero: string }, admin: CurrentAdmin, soloId?: number) {
+  const pendientes = (
+    await client.query(
+      `SELECT id, variante_id, cantidad FROM encargo_productos
+        WHERE encargo_id = $1 AND quitado_at IS NULL AND NOT consumido ${soloId ? 'AND id = $2' : ''}
+        ORDER BY id FOR UPDATE`,
+      soloId ? [encargo.id, soloId] : [encargo.id]
+    )
+  ).rows
+  if (pendientes.length === 0) return
+  await aplicarMovimientos(
+    client,
+    pendientes.map((l) => ({
+      varianteId: l.variante_id,
+      tipo: 'consumo_encargo' as const,
+      cantidad: -Number(l.cantidad),
+      nota: encargo.numero,
+      encargoProductoId: l.id,
+    })),
+    admin
+  )
+  await client.query(`UPDATE encargo_productos SET consumido = TRUE WHERE id = ANY($1)`, [pendientes.map((l) => l.id)])
+}
+
+export async function addProducto(encargoId: number, body: Record<string, unknown>, admin: CurrentAdmin) {
+  const varianteId = Number(body.variante_id)
+  if (!Number.isInteger(varianteId) || varianteId <= 0) throw new HttpError(400, 'invalid variante')
+  const cantidad = Number(String(body.cantidad ?? '').replace(',', '.'))
+  return withTransaction(async (client) => {
+    const encargo = await lockEncargo(client, encargoId)
+    const v = (await client.query(
+      `SELECT v.id, p.unidad FROM producto_variantes v JOIN productos p ON p.id = v.producto_id WHERE v.id = $1 AND v.activo AND p.activo`,
+      [varianteId]
+    )).rows[0]
+    if (!v) throw new HttpError(400, 'invalid variante')
+    validarCantidad(cantidad, v.unidad)
+    if (cantidad <= 0) throw new HttpError(400, 'invalid quantity')
+    const row = (await client.query(
+      `INSERT INTO encargo_productos (encargo_id, variante_id, cantidad, notas, admin_id) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+      [encargoId, v.id, cantidad, textOrNull(body.notas, 500), admin.id]
+    )).rows[0]
+    // Already confirmed: stock leaves now. Not enough stock rolls the whole line back (409 insufficient stock).
+    if (yaConfirmado(encargo)) await consumirProductos(client, encargo, admin, row.id)
+    return row
+  })
+}
+
+// Removing a line that already took stock puts the stock back; the row stays (the ledger points at it)
+export async function quitarProducto(encargoId: number, lineaId: number, admin: CurrentAdmin) {
+  return withTransaction(async (client) => {
+    const encargo = await lockEncargo(client, encargoId)
+    const l = (await client.query(
+      `SELECT * FROM encargo_productos WHERE id = $1 AND encargo_id = $2 AND quitado_at IS NULL FOR UPDATE`,
+      [lineaId, encargoId]
+    )).rows[0]
+    if (!l) throw new HttpError(404, 'not found')
+    if (!l.consumido) {
+      await client.query(`DELETE FROM encargo_productos WHERE id = $1`, [lineaId])
+      return { id: lineaId, devuelto: false }
+    }
+    await aplicarMovimientos(
+      client,
+      [{ varianteId: l.variante_id, tipo: 'devolucion_encargo', cantidad: Number(l.cantidad), nota: encargo.numero, encargoProductoId: l.id }],
+      admin
+    )
+    await client.query(`UPDATE encargo_productos SET quitado_at = now() WHERE id = $1`, [lineaId])
+    return { id: lineaId, devuelto: true }
+  })
 }
 
 // ── Pruebas y entrega: they are Citas ─────────────────────────────────────────

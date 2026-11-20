@@ -633,6 +633,11 @@ Sections 6.1–6.4 were the proposal. What was built:
   first confirmed, or immediately if it already is) or `cliente`. Default metres for a talla M: americana 1,80,
   pantalón 1,20, chaleco 0,70. Leftovers aren't tracked. A line that already took stock can't be edited or removed
   (fix stock with an ajuste).
+- **Productos del stock** (November 2026): `encargo_productos` (variante, cantidad, notas). Zapatos, camisas… leave
+  stock with the encargo, without a Venta: a `consumo_encargo` movement (`movimientos_stock.encargo_producto_id`) at
+  the same moment as tejido/forro from inventory. Removing a line that took stock puts it back (`devolucion_encargo`)
+  and marks the line `quitado_at` (the ledger keeps pointing at it). Not enough stock → 409 with the product and
+  what's missing, and the UI offers «Por pedir». PVP shown to Propietarios only. Movements show "Encargo E-…".
 - **Pruebas and entrega are Citas**: each prueba inserts a `bookings` row with `tipo_cita = 'prueba'` and `encargo_id`;
   date, time and status live on the booking (one source of truth). Cancelling a prueba cancels its cita. The entrega
   is one booking (`encargos.entrega_booking_id`) that can be moved; it also sets `fecha_entrega`. Bookings keep the

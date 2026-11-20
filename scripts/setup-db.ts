@@ -853,6 +853,27 @@ async function setupEncargos(pool: Pool) {
     )
   `)
   await pool.query(`CREATE INDEX IF NOT EXISTS encargo_materiales_encargo_idx ON encargo_materiales (encargo_id)`)
+
+  // Products an encargo uses (shoes, shirts, buttons…), taken from stock without a Venta.
+  // Stock leaves at the same moment as tejido/forro from inventory (first confirmation, or at once if
+  // already confirmed). Removing a line that took stock puts it back (devolucion_encargo) and keeps the
+  // row, marked quitado_at, because the ledger points at it.
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS encargo_productos (
+      id SERIAL PRIMARY KEY,
+      encargo_id INTEGER NOT NULL REFERENCES encargos(id),
+      variante_id INTEGER NOT NULL REFERENCES producto_variantes(id),
+      cantidad NUMERIC(12,3) NOT NULL CHECK (cantidad > 0),
+      consumido BOOLEAN NOT NULL DEFAULT FALSE,
+      quitado_at TIMESTAMPTZ,
+      notas TEXT,
+      admin_id INTEGER REFERENCES admins(id) ON DELETE SET NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `)
+  await pool.query(`CREATE INDEX IF NOT EXISTS encargo_productos_encargo_idx ON encargo_productos (encargo_id)`)
+  await pool.query(`ALTER TABLE movimientos_stock ADD COLUMN IF NOT EXISTS encargo_producto_id INTEGER REFERENCES encargo_productos(id)`)
+
   const fk = await pool.query(`SELECT 1 FROM pg_constraint WHERE conname = 'movimientos_encargo_material_fkey'`)
   if (fk.rowCount === 0) {
     await pool.query(`ALTER TABLE movimientos_stock ADD CONSTRAINT movimientos_encargo_material_fkey FOREIGN KEY (encargo_material_id) REFERENCES encargo_materiales(id)`)

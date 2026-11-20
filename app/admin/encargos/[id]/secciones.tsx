@@ -2,10 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { CalendarPlus, Plus, Trash2, X } from 'lucide-react'
+import { CalendarPlus, Package, Plus, Trash2, X } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
 import { METODOS_PAGO, toCents } from '@/lib/admin/ventas-calc'
 import { Badge, Card, ErrorText, Field, api, btnPrimary, btnSecondary, formatDate, formatMoney, inputClass, useApi } from '../../_components/ui'
+import { useRol } from '../../_components/role'
 import VariantePicker, { type VarianteOption } from '../../_components/VariantePicker'
 import { formatQty } from '../../inventario/shared'
 import { METROS_DEFECTO } from '../shared'
@@ -26,6 +27,22 @@ export interface Material {
   es_unica: boolean | null
   consumido: boolean
   notas: string | null
+}
+
+export interface ProductoLinea {
+  id: number
+  variante_id: number
+  cantidad: string
+  consumido: boolean
+  notas: string | null
+  producto_id: number
+  producto: string
+  unidad: string
+  variante: string | null
+  es_unica: boolean
+  sku: string | null
+  stock_actual: string
+  pvp: string | null
 }
 
 export interface Prueba {
@@ -254,6 +271,215 @@ function MaterialForm({ encargoId, prendas, confirmado, onCancel, onSaved }: {
       <ErrorText>{error}</ErrorText>
       <div className="flex gap-2">
         <button type="submit" className={btnPrimary}>{t.common.save}</button>
+        <button type="button" className={btnSecondary} onClick={onCancel}>{t.common.cancel}</button>
+      </div>
+    </form>
+  )
+}
+
+// ── Productos del stock (no Venta) ─────────────────────────────────────────────
+
+export interface FaltaStock {
+  varianteId: number
+  producto: string
+  variante?: string | null
+  disponible: number
+  faltan?: number
+  unidad: string
+}
+
+// "Not enough stock" with the same way out as Ventas: note what's missing in «Por pedir»
+export function SinStockAviso({ falta, clienteId, numero }: { falta: FaltaStock; clienteId: number; numero: string }) {
+  const { t, locale } = useAdminI18n()
+  const [estado, setEstado] = useState<'idle' | 'ok' | 'error'>('idle')
+  const u = t.inventario.unidades[falta.unidad as keyof typeof t.inventario.unidades] ?? falta.unidad
+  const nombre = `${falta.producto}${falta.variante ? ` · ${falta.variante}` : ''}`
+  const faltan = falta.faltan && falta.faltan > 0 ? falta.faltan : 1
+
+  async function anadir() {
+    try {
+      await api('/api/admin/por-pedir', { method: 'POST', body: { variante_id: falta.varianteId, cantidad: faltan, cliente_id: clienteId, notas: numero } })
+      setEstado('ok')
+    } catch {
+      setEstado('error')
+    }
+  }
+
+  return (
+    <div role="alert" className="rounded-lg border border-red-900/50 bg-red-900/15 px-3 py-2.5 text-sm">
+      <p className="text-red-300">
+        {t.encargos.productos.sinStock.replace('{producto}', nombre).replace('{n}', `${formatQty(falta.disponible, locale)} ${u}`)}
+      </p>
+      <p className="text-xs text-gray-400 mt-0.5">{t.encargos.productos.pedirHint}</p>
+      <div className="mt-1.5 text-xs">
+        {estado === 'ok' ? (
+          <span className="text-emerald-400">{t.porPedir.anadido}</span>
+        ) : (
+          <button type="button" onClick={anadir} className="text-[#C9A84C] hover:text-[#D4B76A] underline underline-offset-2 py-1">
+            {t.porPedir.anadir} ({formatQty(faltan, locale)} {u})
+          </button>
+        )}
+        {estado === 'error' && <span className="ml-2 text-red-400">{t.gestionCommon.error}</span>}
+      </div>
+    </div>
+  )
+}
+
+export function faltaDe(err: unknown): FaltaStock | null {
+  const e = err as Error & { details?: FaltaStock }
+  return e.message === 'insufficient stock' && e.details?.varianteId ? e.details : null
+}
+
+export function Productos({ encargoId, clienteId, numero, confirmado, productos, onChange }: {
+  encargoId: number
+  clienteId: number
+  numero: string
+  confirmado: boolean
+  productos: ProductoLinea[]
+  onChange: () => void
+}) {
+  const { t, locale } = useAdminI18n()
+  const pr = t.encargos.productos
+  const { propietario } = useRol()
+  const [adding, setAdding] = useState(false)
+  const { error, run } = useError()
+
+  async function quitar(l: ProductoLinea) {
+    if (!window.confirm(pr.quitarConfirm)) return
+    if (await run(() => api(`/api/admin/encargos/${encargoId}/productos/${l.id}`, { method: 'DELETE' }))) onChange()
+  }
+
+  return (
+    <Card
+      title={pr.titulo}
+      actions={!adding && (
+        <button type="button" className={btnSecondary} onClick={() => setAdding(true)}>
+          <Plus size={16} />
+          <span className="hidden sm:inline">{pr.add}</span>
+        </button>
+      )}
+    >
+      {productos.length === 0 && !adding && <p className="text-sm text-gray-400">{pr.vacio}</p>}
+      <ul className="divide-y divide-[#1E3A5F] -my-2">
+        {productos.map((l) => {
+          const u = t.inventario.unidades[l.unidad as keyof typeof t.inventario.unidades] ?? l.unidad
+          const falta = !l.consumido && Number(l.stock_actual) < Number(l.cantidad)
+          return (
+            <li key={l.id} className="py-3 flex items-start gap-3 text-sm">
+              <Package size={16} className="mt-0.5 text-gray-500 shrink-0" />
+              <div className="min-w-0 flex-1 space-y-1.5">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <Link href={`/admin/inventario/${l.producto_id}`} className="text-white hover:text-[#C9A84C] break-words">
+                    {l.producto}{l.variante && !l.es_unica ? <span className="text-[#C9A84C]"> · {l.variante}</span> : null}
+                  </Link>
+                  <span className="tabular-nums text-gray-200">{formatQty(l.cantidad, locale)} {u}</span>
+                </div>
+                <div className="text-xs text-gray-400 break-words">
+                  {[l.sku, propietario && l.pvp && `${pr.pvp} ${formatMoney(l.pvp, locale)}`, l.notas].filter(Boolean).join(' · ')}
+                </div>
+                <Badge tone={l.consumido ? 'neutral' : 'gold'}>{l.consumido ? pr.consumido : pr.seDescontara}</Badge>
+                {falta && (
+                  <SinStockAviso
+                    clienteId={clienteId}
+                    numero={numero}
+                    falta={{ varianteId: l.variante_id, producto: l.producto, variante: l.es_unica ? null : l.variante, disponible: Number(l.stock_actual), faltan: Math.round((Number(l.cantidad) - Number(l.stock_actual)) * 1000) / 1000, unidad: l.unidad }}
+                  />
+                )}
+              </div>
+              <button type="button" onClick={() => quitar(l)} className="p-2 -m-1 text-gray-500 hover:text-red-400" aria-label={`${pr.quitar}: ${l.producto}`} title={pr.quitar}>
+                <Trash2 size={16} />
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+      <ErrorText>{error}</ErrorText>
+      {adding && (
+        <ProductoForm
+          encargoId={encargoId}
+          clienteId={clienteId}
+          numero={numero}
+          confirmado={confirmado}
+          onCancel={() => setAdding(false)}
+          onSaved={() => { setAdding(false); onChange() }}
+        />
+      )}
+    </Card>
+  )
+}
+
+function ProductoForm({ encargoId, clienteId, numero, confirmado, onCancel, onSaved }: {
+  encargoId: number
+  clienteId: number
+  numero: string
+  confirmado: boolean
+  onCancel: () => void
+  onSaved: () => void
+}) {
+  const { t, locale } = useAdminI18n()
+  const pr = t.encargos.productos
+  const [variante, setVariante] = useState<VarianteOption | null>(null)
+  const [cantidad, setCantidad] = useState('1')
+  const [notas, setNotas] = useState('')
+  const [falta, setFalta] = useState<FaltaStock | null>(null)
+  const [error, setError] = useState('')
+  const [saving, setSaving] = useState(false)
+  const u = variante ? (t.inventario.unidades[variante.unidad as keyof typeof t.inventario.unidades] ?? variante.unidad) : ''
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!variante) return
+    setSaving(true)
+    setError('')
+    setFalta(null)
+    try {
+      await api(`/api/admin/encargos/${encargoId}/productos`, { method: 'POST', body: { variante_id: variante.id, cantidad, notas } })
+      onSaved()
+    } catch (err) {
+      const f = faltaDe(err)
+      if (f) setFalta(f)
+      else {
+        const code = (err as Error).message
+        setError(t.encargos.errors[code] ?? (t.inventario.errors as Record<string, string>)[code] ?? t.gestionCommon.error)
+      }
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <form onSubmit={submit} className="mt-4 pt-4 border-t border-[#1E3A5F] space-y-4">
+      {variante ? (
+        <div className="flex items-center justify-between gap-3 bg-[#1E3A5F]/20 rounded-lg px-3 py-2 text-sm">
+          <span className="text-white min-w-0 break-words">
+            {variante.producto}{!variante.es_unica && variante.etiqueta ? ` · ${variante.etiqueta}` : ''}
+            <span className="text-gray-400"> · {formatQty(variante.stock_actual, locale)} {u} {pr.enStock}</span>
+          </span>
+          <button type="button" className="p-1 text-gray-400 hover:text-white shrink-0" onClick={() => { setVariante(null); setFalta(null) }} aria-label={t.common.delete}><X size={16} /></button>
+        </div>
+      ) : (
+        <VariantePicker
+          placeholder={pr.buscar}
+          onPick={(v) => { setVariante(v); setFalta(null) }}
+          renderMeta={(v) => `${formatQty(v.stock_actual, locale)} ${t.inventario.unidades[v.unidad as keyof typeof t.inventario.unidades] ?? v.unidad}`}
+        />
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-[8rem_1fr] gap-3">
+        <Field label={pr.cantidad}>
+          <input className={`${inputClass} tabular-nums`} inputMode="decimal" value={cantidad} onChange={(e) => setCantidad(e.target.value)} required />
+        </Field>
+        <Field label={pr.notas}>
+          <input className={inputClass} value={notas} onChange={(e) => setNotas(e.target.value)} maxLength={500} />
+        </Field>
+      </div>
+      {confirmado && <p className="text-xs text-amber-300">{pr.descontaraAhora}</p>}
+      {!confirmado && variante && Number(cantidad.replace(',', '.')) > Number(variante.stock_actual) && (
+        <p className="text-xs text-amber-300">{pr.faltaAviso}</p>
+      )}
+      {falta && <SinStockAviso falta={falta} clienteId={clienteId} numero={numero} />}
+      <ErrorText>{error}</ErrorText>
+      <div className="flex gap-2">
+        <button type="submit" className={btnPrimary} disabled={!variante || saving}>{t.common.save}</button>
         <button type="button" className={btnSecondary} onClick={onCancel}>{t.common.cancel}</button>
       </div>
     </form>

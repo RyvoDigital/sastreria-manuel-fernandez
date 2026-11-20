@@ -100,9 +100,11 @@ export async function informeMovimientos(f: Filtros) {
             m.tipo, m.cantidad, p.unidad, m.stock_resultante, m.coste_unitario,
             ROUND(m.cantidad * COALESCE(m.coste_unitario, 0), 2) AS valor_coste,
             m.admin_nombre AS usuario, m.motivo, m.nota,
-            COALESCE(co.numero, ve.numero, de.numero) AS documento,
-            COALESCE(co.id, ve.id, dv.id) AS documento_id,
-            CASE WHEN co.id IS NOT NULL THEN 'compra' WHEN ve.id IS NOT NULL OR de.id IS NOT NULL THEN 'venta' END AS documento_tipo
+            COALESCE(co.numero, ve.numero, de.numero, en.numero) AS documento,
+            COALESCE(co.id, ve.id, dv.id, en.id) AS documento_id,
+            CASE WHEN co.id IS NOT NULL THEN 'compra' WHEN ve.id IS NOT NULL OR de.id IS NOT NULL THEN 'venta'
+                 WHEN en.id IS NOT NULL THEN 'encargo' END AS documento_tipo,
+            en.numero AS encargo_numero
        FROM movimientos_stock m
        JOIN producto_variantes v ON v.id = m.variante_id
        JOIN productos p ON p.id = v.producto_id
@@ -114,6 +116,9 @@ export async function informeMovimientos(f: Filtros) {
        LEFT JOIN devolucion_lineas dl ON dl.id = m.devolucion_linea_id
        LEFT JOIN devoluciones de ON de.id = dl.devolucion_id
        LEFT JOIN ventas dv ON dv.id = de.venta_id
+       LEFT JOIN encargo_materiales em ON em.id = m.encargo_material_id
+       LEFT JOIN encargo_productos ep ON ep.id = m.encargo_producto_id
+       LEFT JOIN encargos en ON en.id = COALESCE(em.encargo_id, ep.encargo_id)
       WHERE ${where.join(' AND ')}
       ORDER BY m.created_at DESC, m.id DESC
       LIMIT ${MAX_ROWS}`,

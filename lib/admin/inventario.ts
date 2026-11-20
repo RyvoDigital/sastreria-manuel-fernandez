@@ -387,11 +387,15 @@ export async function getMovimientos(productoId: number, opts: { varianteId?: nu
   const result = await query(
     `SELECT m.id, m.variante_id, m.tipo, m.cantidad, m.stock_resultante, m.coste_unitario, m.motivo, m.nota,
             m.admin_nombre, m.created_at, v.etiqueta, v.es_unica,
-            co.id AS compra_id, co.numero AS compra_numero
+            co.id AS compra_id, co.numero AS compra_numero,
+            en.id AS encargo_id, en.numero AS encargo_numero
        FROM movimientos_stock m
        JOIN producto_variantes v ON v.id = m.variante_id
        LEFT JOIN compra_lineas cl ON cl.id = m.compra_linea_id
        LEFT JOIN compras co ON co.id = cl.compra_id
+       LEFT JOIN encargo_materiales em ON em.id = m.encargo_material_id
+       LEFT JOIN encargo_productos ep ON ep.id = m.encargo_producto_id
+       LEFT JOIN encargos en ON en.id = COALESCE(em.encargo_id, ep.encargo_id)
       WHERE v.producto_id = $1 ${varFilter}
       ORDER BY m.created_at DESC, m.id DESC
       LIMIT 100 OFFSET $${params.length}`,

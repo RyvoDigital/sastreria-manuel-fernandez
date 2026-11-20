@@ -281,9 +281,19 @@ function MovimientosReport() {
     { key: 'usuario', label: r.cols.usuario },
     {
       key: 'documento', label: r.cols.documento,
-      href: (row) => row.documento_tipo === 'compra' ? `/admin/inventario/entradas/${row.documento_id}` : row.documento_tipo === 'venta' ? `/admin/ventas/${row.documento_id}` : null,
+      href: (row) => row.documento_tipo === 'compra' ? `/admin/inventario/entradas/${row.documento_id}`
+        : row.documento_tipo === 'venta' ? `/admin/ventas/${row.documento_id}`
+        : row.documento_tipo === 'encargo' ? `/admin/encargos/${row.documento_id}` : null,
     },
-    { key: 'motivo', label: r.cols.motivo, wide: true, format: (row) => [row.motivo ? t.inventario.ajuste.motivos[row.motivo as keyof typeof t.inventario.ajuste.motivos] : '', row.nota].filter(Boolean).join(' · ') },
+    {
+      key: 'motivo', label: r.cols.motivo, wide: true,
+      // Stock used by an encargo reads "Encargo E-2026-0001"; its note is that same number
+      format: (row) => [
+        row.encargo_numero ? `${t.citas.encargo} ${row.encargo_numero}` : '',
+        row.motivo ? t.inventario.ajuste.motivos[row.motivo as keyof typeof t.inventario.ajuste.motivos] : '',
+        row.nota !== row.encargo_numero ? row.nota : '',
+      ].filter(Boolean).join(' · '),
+    },
   ]
   return (
     <div>

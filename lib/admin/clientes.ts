@@ -79,7 +79,16 @@ export async function getCliente(id: number, admin: CurrentAdmin) {
     query(
       `SELECT e.id, e.numero, e.tipo, e.prendas, e.pedido, e.estado, e.fecha_encargo::text AS fecha_encargo,
               e.fecha_entrega::text AS fecha_entrega, e.total, s.nombre AS sastre,
-              (SELECT COALESCE(SUM(p.importe), 0) FROM encargo_pagos p WHERE p.encargo_id = e.id) AS pagado
+              (SELECT COALESCE(SUM(p.importe), 0) FROM encargo_pagos p WHERE p.encargo_id = e.id) AS pagado,
+              -- Product lines taken from stock for this encargo (no prices)
+              (SELECT json_agg(json_build_object('id', ep.id, 'producto', pr.nombre,
+                                                 'variante', CASE WHEN v.es_unica THEN NULL ELSE v.etiqueta END,
+                                                 'cantidad', ep.cantidad, 'unidad', pr.unidad, 'consumido', ep.consumido)
+                               ORDER BY ep.id)
+                 FROM encargo_productos ep
+                 JOIN producto_variantes v ON v.id = ep.variante_id
+                 JOIN productos pr ON pr.id = v.producto_id
+                WHERE ep.encargo_id = e.id AND ep.quitado_at IS NULL) AS productos
          FROM encargos e LEFT JOIN sastres s ON s.id = e.sastre_id
         WHERE e.cliente_id = $1
         ORDER BY e.fecha_encargo DESC, e.id DESC`,

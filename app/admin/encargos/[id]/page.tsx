@@ -10,7 +10,7 @@ import { Card, ErrorText, Field, PageHeader, api, btnPrimary, btnSecondary, form
 import { useRol } from '../../_components/role'
 import { FichaMedidasView, MedidasFormModal, MedidasVersionLabel, type MedidasRow } from '../../_components/MedidasFicha'
 import { ESTADOS, EstadoBadge, PRENDAS_PRENDA, useEncargoTexto, type Estado } from '../shared'
-import { Entrega, Materiales, Pagos, Pruebas } from './secciones'
+import { Entrega, Materiales, Pagos, Productos, Pruebas, SinStockAviso, faltaDe, type FaltaStock } from './secciones'
 import type { Encargo, EncargoDetalle } from '../types'
 
 export default function EncargoPage() {
@@ -29,19 +29,25 @@ function Detalle({ data, reload }: { data: EncargoDetalle; reload: () => void })
   const { encargo } = data
   const cliente = [encargo.cliente_nombre, encargo.cliente_apellidos].filter(Boolean).join(' ')
   const [estadoError, setEstadoError] = useState('')
+  // Confirming needs stock it doesn't have: say which product, and offer «Por pedir»
+  const [estadoFalta, setEstadoFalta] = useState<FaltaStock | null>(null)
 
   async function cambiarEstado(estado: Estado) {
     setEstadoError('')
+    setEstadoFalta(null)
     try {
       await api(`/api/admin/encargos/${encargo.id}`, { method: 'PATCH', body: { estado } })
       reload()
     } catch (err) {
+      const falta = faltaDe(err)
+      if (falta) return setEstadoFalta(falta)
       const code = (err as Error).message
       setEstadoError(e.errors[code] ?? t.gestionCommon.error)
     }
   }
 
-  const pendientesInventario = data.materiales.some((m) => m.origen === 'inventario' && !m.consumido)
+  const pendientesInventario =
+    data.materiales.some((m) => m.origen === 'inventario' && !m.consumido) || data.productos.some((p) => !p.consumido)
 
   return (
     <div>
@@ -89,6 +95,11 @@ function Detalle({ data, reload }: { data: EncargoDetalle; reload: () => void })
         </ol>
         {encargo.estado === 'presupuesto' && pendientesInventario && <p className="text-xs text-gray-500 mt-2">{e.estadoAyuda}</p>}
         <ErrorText>{estadoError}</ErrorText>
+        {estadoFalta && (
+          <div className="mt-2">
+            <SinStockAviso falta={estadoFalta} clienteId={encargo.cliente_id} numero={encargo.numero} />
+          </div>
+        )}
       </nav>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
@@ -101,6 +112,14 @@ function Detalle({ data, reload }: { data: EncargoDetalle; reload: () => void })
           {encargo.tipo !== 'arreglo' && (
             <Materiales encargoId={encargo.id} prendas={encargo.prendas} confirmado={encargo.estado !== 'presupuesto'} materiales={data.materiales} onChange={reload} />
           )}
+          <Productos
+            encargoId={encargo.id}
+            clienteId={encargo.cliente_id}
+            numero={encargo.numero}
+            confirmado={encargo.estado !== 'presupuesto'}
+            productos={data.productos}
+            onChange={reload}
+          />
           <Pruebas encargoId={encargo.id} pruebas={data.pruebas} onChange={reload} />
           <Entrega
             key={`${encargo.entrega_cita_fecha}-${encargo.entrega_cita_hora}`}
