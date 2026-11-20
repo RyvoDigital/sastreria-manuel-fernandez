@@ -25,7 +25,7 @@ export const CHECKOUT_MINUTES = 31
 /** A hold outlives its Checkout session, so a payment made in the last minute still finds it. */
 const HOLD_MINUTES = 40
 
-export type SlotProblem = 'conflict' | 'unavailable'
+export type SlotProblem = 'conflict' | 'unavailable' | 'holiday'
 
 const ACTIVE = `status IS DISTINCT FROM 'cancelled'`
 
@@ -53,16 +53,39 @@ export function isUniqueViolation(err: unknown) {
   return (err as { code?: string })?.code === '23505'
 }
 
+/** The shop is closed that whole day (Horarios → Festivos). */
+export async function isHoliday(date: string, db: { query: PoolClient['query'] } = pool): Promise<boolean> {
+  const result = await db.query(
+    `SELECT 1 FROM festivos WHERE $1::date BETWEEN fecha_inicio AND fecha_fin LIMIT 1`,
+    [normalizeDateString(date)]
+  )
+  return (result.rowCount ?? 0) > 0
+}
+
+/** Closed days between two dates (inclusive), as YYYY-MM-DD. */
+export async function getHolidayDates(from: string, to: string): Promise<string[]> {
+  const result = await query(
+    `SELECT DISTINCT d::date::text AS day
+       FROM festivos f, generate_series(GREATEST(f.fecha_inicio, $1::date), LEAST(f.fecha_fin, $2::date), interval '1 day') d
+      WHERE f.fecha_fin >= $1::date AND f.fecha_inicio <= $2::date
+      ORDER BY 1`,
+    [from, to]
+  )
+  return result.rows.map((r) => r.day)
+}
+
 /**
  * Why a slot can't be taken, or null when it is free. Call it after lockSlot()
  * inside the same transaction. Admin appointments (pruebas, entregas, Citas
- * edits) skip the web-only rules (blocked slots).
+ * edits) skip the web-only rule (blocked slots) but not holidays. A video call
+ * already paid skips both: a holiday or block added while the client was
+ * paying doesn't undo it, and the shop sees it in Citas.
  */
 export async function slotProblem(
   client: PoolClient,
   date: string,
   time: string,
-  opts: { ignoreBookingId?: number; ignoreHoldToken?: string; adminRules?: boolean } = {}
+  opts: { ignoreBookingId?: number; ignoreHoldToken?: string; adminRules?: boolean; paid?: boolean } = {}
 ): Promise<SlotProblem | null> {
   const booked = await client.query(
     `SELECT 1 FROM bookings WHERE date = $1 AND time = $2 AND ${ACTIVE} AND id <> $3 LIMIT 1`,
@@ -74,6 +97,8 @@ export async function slotProblem(
     [date, time, opts.ignoreHoldToken ?? '']
   )
   if (held.rowCount) return 'conflict'
+  if (opts.paid) return null
+  if (await isHoliday(date, client)) return 'holiday'
   if (opts.adminRules) return null
   const blocked = await client.query(`SELECT 1 FROM blocked_slots WHERE date = $1 AND time = $2 LIMIT 1`, [date, time])
   if (blocked.rowCount) return 'unavailable'
@@ -223,13 +248,12 @@ export async function confirmPaidBooking(
       await lockSlot(client, d, t)
       const existing = (await client.query(`SELECT id FROM bookings WHERE stripe_session_id = $1`, [b.stripeSessionId])).rows[0]
       if (existing) return { ok: true as const, created: false, bookingId: existing.id as number }
-      // Our own hold (even if it just expired) doesn't count against us; a block added
-      // after the client paid doesn't undo a paid booking either: the shop sees it in Citas.
+      // Our own hold (even if it just expired) doesn't count against us
       const hold = (await client.query(
         `SELECT token FROM booking_holds WHERE stripe_session_id = $1 OR (token = $2 AND $2 <> '')`,
         [b.stripeSessionId, b.holdToken ?? '']
       )).rows[0]
-      const problem = await slotProblem(client, d, t, { ignoreHoldToken: hold?.token, adminRules: true })
+      const problem = await slotProblem(client, d, t, { ignoreHoldToken: hold?.token, paid: true })
       if (problem) {
         // Paid before this change shipped: that booking carries no session id, only the same email
         const legacy = (await client.query(

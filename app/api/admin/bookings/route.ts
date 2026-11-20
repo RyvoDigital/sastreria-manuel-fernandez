@@ -6,11 +6,12 @@ import { query } from '@/lib/db'
 import { validateBookingSlot } from '@/lib/booking/date-utils'
 import { inTransaction, isUniqueViolation, lockSlot, slotProblem } from '@/lib/booking/slots'
 
-/** Another active cita, or a client paying for a video call, has this slot. */
+/** 'conflict' if another active cita (or a client paying for a video call) has this slot, 'holiday' on a closed day. */
 async function slotTaken(date: string, time: string, bookingId: number) {
   return inTransaction(async (client) => {
     await lockSlot(client, date, time)
-    return (await slotProblem(client, date, time, { ignoreBookingId: bookingId, adminRules: true })) !== null
+    const problem = await slotProblem(client, date, time, { ignoreBookingId: bookingId, adminRules: true })
+    return problem === 'holiday' ? 'holiday' : problem ? 'conflict' : null
   })
 }
 
@@ -53,9 +54,8 @@ export async function PATCH(request: NextRequest) {
     // Re-confirming a cancelled cita takes its slot back: refuse if someone has it now
     if (status !== undefined && status !== 'cancelled') {
       const current = (await query(`SELECT date::text AS date, time, status FROM bookings WHERE id = $1`, [id])).rows[0]
-      if (current?.status === 'cancelled' && (await slotTaken(current.date, current.time, Number(id)))) {
-        return NextResponse.json({ error: 'conflict' }, { status: 409 })
-      }
+      const taken = current?.status === 'cancelled' ? await slotTaken(current.date, current.time, Number(id)) : null
+      if (taken) return NextResponse.json({ error: taken }, { status: 409 })
     }
 
     const booking = await updateBooking(id, { status, notes })
@@ -250,9 +250,8 @@ export async function PUT(request: NextRequest) {
 
     // Validate new slot only if date/time changed (or a cancelled cita takes its slot back)
     if (reactivated && !((date !== undefined && date !== existing.date) || (time !== undefined && time !== existing.time))) {
-      if (await slotTaken(newDate, newTime, Number(id))) {
-        return NextResponse.json({ error: 'conflict' }, { status: 409 })
-      }
+      const taken = await slotTaken(newDate, newTime, Number(id))
+      if (taken) return NextResponse.json({ error: taken }, { status: 409 })
     }
     if ((date !== undefined && date !== existing.date) || (time !== undefined && time !== existing.time)) {
       // Pruebas and entregas are booked months ahead from an encargo: the web's 30-day window doesn't apply
@@ -264,9 +263,8 @@ export async function PUT(request: NextRequest) {
 
       // Check for conflicts (excluding current booking; cancelled citas don't hold a slot).
       // A cita being cancelled in the same edit can move anywhere.
-      if (newStatus !== 'cancelled' && (await slotTaken(newDate, newTime, Number(id)))) {
-        return NextResponse.json({ error: 'conflict' }, { status: 409 })
-      }
+      const taken = newStatus !== 'cancelled' ? await slotTaken(newDate, newTime, Number(id)) : null
+      if (taken) return NextResponse.json({ error: taken }, { status: 409 })
     }
 
     if (tipoCambia) await updateBooking(id, { tipo_cita })

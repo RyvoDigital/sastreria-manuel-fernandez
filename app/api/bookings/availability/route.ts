@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getBlockedTimes } from '@/lib/availability'
-import { getTakenTimes } from '@/lib/booking/slots'
+import { getTakenTimes, isHoliday } from '@/lib/booking/slots'
 import { normalizeDateString, normalizeTimeSlot } from '@/lib/booking/date-utils'
 
 // Always read fresh (the handler reads the request, so it is never prerendered), and tell
@@ -16,9 +16,10 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ success: false, error: 'Missing date' }, { status: 400, headers: NO_STORE })
     }
 
-    const [taken, blocked] = await Promise.all([
+    const [taken, blocked, closed] = await Promise.all([
       getTakenTimes(date),
       getBlockedTimes(date),
+      isHoliday(date),
     ])
 
     return NextResponse.json(
@@ -28,6 +29,8 @@ export async function GET(req: NextRequest) {
         // Booked, or held while someone pays for a video call
         bookedTimes: taken,
         blockedTimes: blocked.map((t) => normalizeTimeSlot(t)),
+        // Holiday (Horarios → Festivos): the whole day is closed
+        closed,
       },
       { headers: NO_STORE }
     )

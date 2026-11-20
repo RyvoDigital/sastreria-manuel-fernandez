@@ -89,6 +89,21 @@ async function setup() {
       ON blocked_slots (date)
     `)
 
+    // Festivos (Horarios): whole days the shop is closed, one row per date or date range.
+    // The web can't book them (in person or video call); existing citas are kept, never cancelled.
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS festivos (
+        id SERIAL PRIMARY KEY,
+        fecha_inicio DATE NOT NULL,
+        fecha_fin DATE NOT NULL,
+        motivo VARCHAR(200),
+        admin_id INTEGER,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+        CHECK (fecha_fin >= fecha_inicio)
+      )
+    `)
+    await pool.query(`CREATE INDEX IF NOT EXISTS festivos_fechas_idx ON festivos (fecha_fin, fecha_inicio)`)
+
     // Admin users
     await pool.query(`
       CREATE TABLE IF NOT EXISTS admins (

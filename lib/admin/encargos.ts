@@ -382,7 +382,8 @@ async function crearCita(client: PoolClient, encargo: { id: number; cliente_id: 
   const c = (await client.query(`SELECT nombre, apellidos, email, telefono, idioma FROM clientes WHERE id = $1`, [encargo.cliente_id])).rows[0]
   // One appointment per slot, like the web bookings (cancelled citas and expired checkout holds don't count)
   await lockSlot(client, fecha, hora)
-  if (await slotProblem(client, fecha, hora, { adminRules: true })) throw new HttpError(409, 'slot taken')
+  const problem = await slotProblem(client, fecha, hora, { adminRules: true })
+  if (problem) throw new HttpError(409, problem === 'holiday' ? 'holiday' : 'slot taken')
   const booking = (
     await client.query(
       `INSERT INTO bookings (date, time, type, name, email, phone, locale, status, notes, tipo_cita, encargo_id, cliente_id)
@@ -432,9 +433,8 @@ export async function programarEntrega(encargoId: number, body: Record<string, u
     const encargo = await lockEncargo(client, encargoId)
     if (encargo.entrega_booking_id) {
       await lockSlot(client, fecha, hora)
-      if (await slotProblem(client, fecha, hora, { ignoreBookingId: encargo.entrega_booking_id, adminRules: true })) {
-        throw new HttpError(409, 'slot taken')
-      }
+      const problem = await slotProblem(client, fecha, hora, { ignoreBookingId: encargo.entrega_booking_id, adminRules: true })
+      if (problem) throw new HttpError(409, problem === 'holiday' ? 'holiday' : 'slot taken')
       const moved = await client.query(
         `UPDATE bookings SET date = $1, time = $2, status = 'confirmed', updated_at = CURRENT_TIMESTAMP WHERE id = $3 RETURNING id`,
         [fecha, hora, encargo.entrega_booking_id]

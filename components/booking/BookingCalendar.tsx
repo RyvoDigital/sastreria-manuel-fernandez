@@ -84,6 +84,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
   const [loadingSlots, setLoadingSlots] = useState(false)
   // Shown above the times when the chosen one was just taken by someone else
   const [slotNotice, setSlotNotice] = useState<string | null>(null)
+  // Holidays (whole days closed) in the bookable window, and whether the selected day is one
+  const [closedDays, setClosedDays] = useState<string[]>([])
+  const [dayClosed, setDayClosed] = useState(false)
 
   const isVideocall = type === 'videocall'
   const isInpersonMeasure = type === 'inperson-measure'
@@ -119,6 +122,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       invalidEmail: 'Introduce un email válido',
       conflict: 'Esta hora se acaba de reservar. Elige otra, por favor.',
       unavailable: 'Esta franja horaria no está disponible. Por favor, elige otra.',
+      closedDay: 'Cerrado (festivo)',
+      closedLegend: 'Días tachados: la sastrería está cerrada.',
+      closedDayMsg: 'Ese día la sastrería está cerrada. Elige otro día, por favor.',
       cancelBooking: 'Cancelar esta reserva',
       cancelling: 'Cancelando…',
       cancelledSuccess: 'Reserva cancelada correctamente',
@@ -156,6 +162,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       invalidEmail: 'Please enter a valid email',
       conflict: 'This time was just booked. Please choose another.',
       unavailable: 'This time slot is not available. Please choose another.',
+      closedDay: 'Closed (holiday)',
+      closedLegend: 'Crossed-out days: the shop is closed.',
+      closedDayMsg: 'The shop is closed that day. Please choose another day.',
       cancelBooking: 'Cancel this booking',
       cancelling: 'Cancelling…',
       cancelledSuccess: 'Booking cancelled successfully',
@@ -193,6 +202,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       invalidEmail: 'Inserisci un email valida',
       conflict: 'Questo orario è appena stato prenotato. Scegline un altro, per favore.',
       unavailable: 'Questa fascia oraria non è disponibile. Scegline un\'altra.',
+      closedDay: 'Chiuso (festivo)',
+      closedLegend: 'Giorni barrati: la sartoria è chiusa.',
+      closedDayMsg: 'Quel giorno la sartoria è chiusa. Scegli un altro giorno, per favore.',
       cancelBooking: 'Annulla questa prenotazione',
       cancelling: 'Annullamento…',
       cancelledSuccess: 'Prenotazione annullata con successo',
@@ -230,6 +242,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       invalidEmail: 'Veuillez entrer un email valide',
       conflict: 'Ce créneau vient d\'être réservé. Veuillez en choisir un autre.',
       unavailable: 'Ce créneau horaire n\'est pas disponible. Veuillez en choisir un autre.',
+      closedDay: 'Fermé (jour férié)',
+      closedLegend: 'Jours barrés : l\'atelier est fermé.',
+      closedDayMsg: 'L\'atelier est fermé ce jour-là. Veuillez choisir un autre jour.',
       cancelBooking: 'Annuler ce rendez-vous',
       cancelling: 'Annulation…',
       cancelledSuccess: 'Rendez-vous annulé avec succès',
@@ -323,7 +338,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       if (data.success) {
         setBookedSlots(data.bookedTimes)
         setBlockedSlots(data.blockedTimes || [])
-        return { booked: data.bookedTimes as string[], blocked: (data.blockedTimes || []) as string[] }
+        setDayClosed(!!data.closed)
+        if (data.closed) setClosedDays((days) => (days.includes(dateStr) ? days : [...days, dateStr]))
+        return { booked: data.bookedTimes as string[], blocked: (data.blockedTimes || []) as string[], closed: !!data.closed }
       }
     } catch (err) {
       console.error('Failed to fetch availability', err)
@@ -333,8 +350,31 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     return null
   }
 
+  const fetchClosedDays = async () => {
+    try {
+      const from = toMadridDateString(new Date())
+      const to = toMadridDateString(maxBookableDate)
+      const res = await fetch(`/api/bookings/closed-days?from=${from}&to=${to}`, { cache: 'no-store' })
+      const data = await res.json()
+      if (data.success) setClosedDays(data.dates)
+    } catch (err) {
+      console.error('Failed to fetch closed days', err)
+    }
+  }
+
+  useEffect(() => {
+    fetchClosedDays()
+    const onVisible = () => { if (document.visibilityState === 'visible') fetchClosedDays() }
+    document.addEventListener('visibilitychange', onVisible)
+    return () => document.removeEventListener('visibilitychange', onVisible)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- fetch once per mount; the window is today + 30 days
+  }, [])
+
+  const isClosedDay = (date: Date) => closedDays.includes(toMadridDateString(date))
+
   const handleDateSelect = (date: Date) => {
-    if (isPast(date) || isBeyond30Days(date)) return
+    if (isPast(date) || isBeyond30Days(date) || isClosedDay(date)) return
+    setDayClosed(false)
     setSelectedDate(date)
     setSelectedTime(null)
     setSlotNotice(null)
@@ -358,9 +398,9 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     const refresh = async () => {
       if (document.visibilityState === 'hidden') return
       const fresh = await fetchAvailability(dateStr, { silent: true })
-      if (fresh && selectedTime && (fresh.booked.includes(selectedTime) || fresh.blocked.includes(selectedTime))) {
+      if (fresh && selectedTime && (fresh.closed || fresh.booked.includes(selectedTime) || fresh.blocked.includes(selectedTime))) {
         setSelectedTime(null)
-        setSlotNotice(l.conflict)
+        setSlotNotice(fresh.closed ? l.closedDayMsg : l.conflict)
       }
     }
     const timer = window.setInterval(refresh, 30_000)
@@ -378,8 +418,8 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
     if (!selectedDate || !selectedTime) return
     // One last look before the form: someone may have taken it a moment ago
     const fresh = await fetchAvailability(toMadridDateString(selectedDate), { silent: true })
-    if (fresh && (fresh.booked.includes(selectedTime) || fresh.blocked.includes(selectedTime))) {
-      slotTaken(fresh.blocked.includes(selectedTime) ? l.unavailable : l.conflict)
+    if (fresh && (fresh.closed || fresh.booked.includes(selectedTime) || fresh.blocked.includes(selectedTime))) {
+      slotTaken(fresh.closed ? l.closedDayMsg : fresh.blocked.includes(selectedTime) ? l.unavailable : l.conflict)
       return
     }
     setSlotNotice(null)
@@ -429,6 +469,10 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
       const msg = err instanceof Error ? err.message : 'Error'
       if (msg === 'unavailable') {
         slotTaken(l.unavailable)
+      } else if (msg === 'holiday') {
+        // The day was marked as a holiday while the visitor was filling in the form
+        slotTaken(l.closedDayMsg)
+        fetchClosedDays()
       } else if (msg === 'conflict' || msg.toLowerCase().includes('already booked') || msg.toLowerCase().includes('ya está') || msg.toLowerCase().includes('già prenotata') || msg.toLowerCase().includes('déjà réservé')) {
         // Two people sent the same time at once and the other one got there first
         slotTaken(l.conflict)
@@ -623,13 +667,17 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                     {calendarDays.map((day, i) => {
                       if (!day) return <div key={`empty-${i}`} />
                       const isSelected = selectedDate?.toDateString() === day.toDateString()
-                      const disabled = isPast(day) || isBeyond30Days(day)
+                      const closed = !isPast(day) && !isBeyond30Days(day) && isClosedDay(day)
+                      const disabled = isPast(day) || isBeyond30Days(day) || closed
                       return (
                         <button
                           key={day.toISOString()}
                           onClick={() => handleDateSelect(day)}
                           disabled={disabled}
+                          title={closed ? l.closedDay : undefined}
+                          aria-label={closed ? `${day.getDate()} · ${l.closedDay}` : undefined}
                           style={{
+                            textDecoration: closed ? 'line-through' : 'none',
                             aspectRatio: '1',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             borderRadius: '0.5rem',
@@ -665,6 +713,15 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                     })}
                   </div>
 
+                  {calendarDays.some((day) => day && !isPast(day) && !isBeyond30Days(day) && isClosedDay(day)) && (
+                    <p style={{
+                      fontFamily: 'var(--font-sans)', fontSize: '0.75rem',
+                      color: 'rgba(255,255,255,0.45)', margin: '-1.25rem 0 1.5rem',
+                    }}>
+                      {l.closedLegend}
+                    </p>
+                  )}
+
                   {selectedDate && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -686,7 +743,14 @@ export function BookingCalendar({ type, onFreeSubmit, onStripeCheckout, onBack }
                       }}>
                         {l.availability} {formatDateLong(selectedDate)}
                       </p>
-                      {loadingSlots ? (
+                      {!loadingSlots && dayClosed ? (
+                        <p style={{
+                          fontFamily: 'var(--font-sans)', fontSize: '0.85rem',
+                          color: 'rgba(255,255,255,0.6)', padding: '1rem 0',
+                        }}>
+                          {l.closedDayMsg}
+                        </p>
+                      ) : loadingSlots ? (
                         <p style={{
                           fontFamily: 'var(--font-sans)', fontSize: '0.8rem',
                           color: 'rgba(255,255,255,0.4)', textAlign: 'center', padding: '1rem',

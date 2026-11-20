@@ -80,7 +80,10 @@ export default function BookingsPage() {
       body: JSON.stringify({ id, status }),
     })
     // Re-confirming a cancelled cita whose time someone else has taken since
-    if (res.status === 409) setListError(t.citas.ocupada)
+    if (res.status === 409) {
+      const data = await res.json().catch(() => ({}))
+      setListError(data.error === 'holiday' ? t.citas.festivo : t.citas.ocupada)
+    }
     fetchBookings()
   }
 
@@ -137,7 +140,7 @@ export default function BookingsPage() {
       closeEdit()
       fetchBookings()
     } else {
-      setEditError(data.error === 'conflict' ? t.citas.ocupada : data.error || 'Failed to update booking')
+      setEditError(data.error === 'conflict' ? t.citas.ocupada : data.error === 'holiday' ? t.citas.festivo : data.error || 'Failed to update booking')
     }
   }
 

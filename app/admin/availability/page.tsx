@@ -1,8 +1,10 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { Clock, Lock, Unlock, Trash2, Loader2 } from 'lucide-react'
+import { CalendarOff, Clock, Lock, Unlock, Trash2, Loader2 } from 'lucide-react'
 import { useAdminI18n } from '@/lib/admin/i18n'
+import { useApi } from '../_components/ui'
+import { FestivosCard, isFestivo, type Festivo } from './Festivos'
 
 interface BlockedSlot {
   id: number
@@ -47,7 +49,8 @@ function getSlotsForDate(dateStr: string): string[] {
 }
 
 export default function AvailabilityPage() {
-  const { locale } = useAdminI18n()
+  const { t, locale } = useAdminI18n()
+  const festivos = useApi<{ festivos: Festivo[] }>('/api/admin/festivos')
   const [selectedDate, setSelectedDate] = useState(formatDateLocal(new Date()))
   const [blockedSlots, setBlockedSlots] = useState<BlockedSlot[]>([])
   const [loading, setLoading] = useState(true)
@@ -138,6 +141,12 @@ export default function AvailabilityPage() {
         <p className="mt-2 text-[#C9A84C] text-sm">
           {getDayName(selectedDate, locale)}
         </p>
+        {isFestivo(festivos.data?.festivos, selectedDate) && (
+          <p className="mt-3 inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-red-900/20 border border-red-900/50 text-red-300 text-sm">
+            <CalendarOff size={14} className="shrink-0" />
+            {t.festivos.diaFestivo}
+          </p>
+        )}
       </div>
 
       <div className="bg-[#0A1628] border border-[#1E3A5F] rounded-xl p-6">
@@ -156,7 +165,7 @@ export default function AvailabilityPage() {
         ) : slots.length === 0 ? (
           <p className="text-gray-400">No hay franjas disponibles para esta fecha.</p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 ${isFestivo(festivos.data?.festivos, selectedDate) ? 'opacity-40' : ''}`}>
             {slots.map((time) => {
               const blocked = blockedSlots.find((s) => s.time === time)
               return (
@@ -195,6 +204,8 @@ export default function AvailabilityPage() {
           </div>
         </div>
       </div>
+
+      <FestivosCard festivos={festivos.data?.festivos} loading={festivos.loading} reload={festivos.reload} />
     </div>
   )
 }
